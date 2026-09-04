@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión | Clear Credit</title>
+<meta name="description" content="Crea tu cuenta gratuita o inicia sesión para guardar tus análisis de crédito y cálculos hipotecarios.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clear Credit">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Iniciar sesión | Clear Credit">
+<meta property="og:description" content="Crea tu cuenta gratuita o inicia sesión para guardar tus análisis de crédito y cálculos hipotecarios.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/login.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Iniciar sesión | Clear Credit">
+<meta name="twitter:description" content="Crea tu cuenta gratuita o inicia sesión para guardar tus análisis de crédito y cálculos hipotecarios.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/login.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-cms-page="login">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Clear Credit" class="brand-logo"><small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="formar-negocio.html">Formar negocio</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="active">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow" id="heroEyebrow">Tu cuenta</span>
+      <h1 id="heroTitle">Guarda tu progreso</h1>
+      <p id="heroSubtitle">Crea una cuenta gratuita para guardar tus análisis de reporte de crédito y tus cálculos hipotecarios, y consultarlos cuando quieras.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="max-width:460px;">
+      <div class="auth-card">
+
+        <div class="auth-social-row">
+          <button type="button" class="auth-social-btn" id="btnGoogle" data-provider="google">
+            <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#FBBC05" d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.580z"/></svg>
+            <span>Continuar con Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" id="btnMicrosoft" data-provider="azure">
+            <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
+            <span>Continuar con Microsoft</span>
+          </button>
+        </div>
+
+        <div class="auth-divider">o continúa con correo o teléfono</div>
+
+        <div class="auth-tabs" role="tablist" aria-label="Iniciar sesión o crear cuenta">
+          <button type="button" class="auth-tab is-active" id="tabSignIn" role="tab" aria-selected="true" aria-controls="panelSignIn">Iniciar sesión</button>
+          <button type="button" class="auth-tab" id="tabSignUp" role="tab" aria-selected="false" aria-controls="panelSignUp">Crear cuenta</button>
+        </div>
+
+        <div class="auth-message" id="authMessage" hidden></div>
+
+        <!-- INICIAR SESIÓN -->
+        <div class="auth-panel" id="panelSignIn" role="tabpanel" aria-labelledby="tabSignIn">
+
+          <div class="auth-method-toggle" role="tablist" aria-label="Iniciar sesión con correo o teléfono">
+            <button type="button" class="auth-method-btn is-active" id="methodEmailBtn" aria-selected="true">✉️ Correo</button>
+            <button type="button" class="auth-method-btn" id="methodPhoneBtn" aria-selected="false">📱 Teléfono</button>
+          </div>
+
+          <!-- Método: correo + contraseña -->
+          <form id="panelSignInEmail">
+            <div class="form-group">
+              <label for="signInEmail">Correo electrónico</label>
+              <input type="email" id="signInEmail" name="email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="signInPassword">Contraseña</label>
+              <input type="password" id="signInPassword" name="password" required autocomplete="current-password" minlength="6">
+            </div>
+            <button type="submit" class="btn btn-gold" id="signInSubmit" style="width:100%;justify-content:center;">Iniciar sesión</button>
+            <button type="button" class="auth-link-btn" id="forgotPasswordBtn">¿Olvidaste tu contraseña?</button>
+          </form>
+
+          <!-- Método: teléfono (código por SMS) -->
+          <form id="panelSignInPhone" hidden>
+            <div id="phoneStep1">
+              <div class="form-group">
+                <label for="signInPhoneNumber">Número de teléfono</label>
+                <div class="auth-phone-group">
+                  <button type="button" class="auth-country-btn" id="countryBtn" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="countryFlag">🇺🇸</span><span id="countryDialCode">+1</span><span class="auth-country-caret" aria-hidden="true">▾</span>
+                  </button>
+                  <input type="tel" id="signInPhoneNumber" name="phoneNumber" required autocomplete="tel-national" inputmode="tel" placeholder="305 555 1234">
+                  <div class="auth-country-dropdown" id="countryDropdown" hidden>
+                    <input type="text" class="auth-country-search" id="countrySearch" placeholder="Buscar país o código…" autocomplete="off">
+                    <div class="auth-country-list" id="countryList" role="listbox" aria-label="Elegir país"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="auth-phone-hint">Elige tu país y escribe tu número, sin el código de país (ya lo agregamos nosotros). Te enviaremos un código de un solo uso por mensaje de texto.</p>
+              <button type="submit" class="btn btn-gold" id="sendCodeBtn" style="width:100%;justify-content:center;">Enviar código</button>
+            </div>
+            <div id="phoneStep2" hidden>
+              <div class="form-group">
+                <label for="signInCode">Código de 6 dígitos</label>
+                <input type="text" id="signInCode" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" class="auth-otp-input" placeholder="000000">
+              </div>
+              <p class="auth-phone-hint" id="phoneSentTo"></p>
+              <button type="submit" class="btn btn-gold" id="verifyCodeBtn" style="width:100%;justify-content:center;">Verificar código</button>
+              <button type="button" class="auth-link-btn" id="resendCodeBtn">Reenviar código</button>
+              <button type="button" class="auth-link-btn" id="changeNumberBtn">Usar otro número</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- CREAR CUENTA -->
+        <form class="auth-panel" id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp" hidden>
+          <div class="form-group">
+            <label for="signUpEmail">Correo electrónico</label>
+            <input type="email" id="signUpEmail" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="signUpPassword">Contraseña</label>
+            <input type="password" id="signUpPassword" name="password" required autocomplete="new-password" minlength="6">
+            <span class="mortgage-helper">Mínimo 6 caracteres.</span>
+          </div>
+          <button type="submit" class="btn btn-gold" id="signUpSubmit" style="width:100%;justify-content:center;">Crear cuenta</button>
+          <p class="auth-phone-hint" style="margin-top:14px;">¿Prefieres tu teléfono o una cuenta de Google o Microsoft? Están arriba — no necesitas llenar este formulario para eso; la cuenta se crea sola la primera vez que las uses.</p>
+        </form>
+
+        <!-- RESTABLECER CONTRASEÑA — solo aparece al llegar desde el enlace
+             que se envía por correo cuando alguien pide "¿Olvidaste tu
+             contraseña?". El resto de la tarjeta (redes, pestañas, iniciar
+             sesión, crear cuenta) se oculta mientras esta está activa. -->
+        <form class="auth-panel" id="panelRecovery" hidden>
+          <p class="auth-phone-hint" style="margin-top:0;">Escribe tu nueva contraseña. Al guardarla, entrarás directo a tu cuenta.</p>
+          <div class="form-group">
+            <label for="recoveryPassword">Nueva contraseña</label>
+            <input type="password" id="recoveryPassword" name="password" required autocomplete="new-password" minlength="6">
+            <span class="mortgage-helper">Mínimo 6 caracteres.</span>
+          </div>
+          <div class="form-group">
+            <label for="recoveryPasswordConfirm">Confirmar nueva contraseña</label>
+            <input type="password" id="recoveryPasswordConfirm" name="passwordConfirm" required autocomplete="new-password" minlength="6">
+          </div>
+          <button type="submit" class="btn btn-gold" id="recoverySubmit" style="width:100%;justify-content:center;">Guardar nueva contraseña</button>
+        </form>
+
+      </div>
+
+      <p class="disclaimer" style="margin-top:18px;">No guardamos números de cuenta, seguro social ni el documento que subes al analizador — solo un resumen de resultados (puntaje detectado, cantidad de señales positivas/negativas y la estrategia) ligado a tu cuenta.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Clear Credit</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+(function(){
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const tabSignIn = $('tabSignIn'), tabSignUp = $('tabSignUp');
+  const panelSignIn = $('panelSignIn'), panelSignUp = $('panelSignUp');
+  const message = $('authMessage');
+
+  function showMessage(text, kind){
+    message.textContent = text;
+    message.hidden = false;
+    message.className = 'auth-message ' + (kind || 'info');
+  }
+  function clearMessage(){
+    message.hidden = true;
+    message.textContent = '';
+  }
+
+  function switchTab(target){
+    clearMessage();
+    const showSignIn = target === 'signin';
+    tabSignIn.classList.toggle('is-active', showSignIn);
+    tabSignUp.classList.toggle('is-active', !showSignIn);
+    tabSignIn.setAttribute('aria-selected', String(showSignIn));
+    tabSignUp.setAttribute('aria-selected', String(!showSignIn));
+    panelSignIn.hidden = !showSignIn;
+    panelSignUp.hidden = showSignIn;
+  }
+  tabSignIn.addEventListener('click', ()=>switchTab('signin'));
+  tabSignUp.addEventListener('click', ()=>switchTab('signup'));
+
+  function friendlyError(error){
+    const msg = (error && error.message) || '';
+    if(/already registered|already exists/i.test(msg)) return 'Ya existe una cuenta con ese correo. Intenta iniciar sesión.';
+    if(/invalid login credentials/i.test(msg)) return 'Correo o contraseña incorrectos.';
+    if(/password should be/i.test(msg)) return 'La contraseña debe tener al menos 6 caracteres.';
+    if(/token has expired|otp expired/i.test(msg)) return 'El código expiró. Pide uno nuevo.';
+    if(/invalid otp|token is invalid/i.test(msg)) return 'El código no es correcto. Revísalo e inténtalo de nuevo.';
+    if(/provider is not enabled|unsupported provider/i.test(msg)) return 'Este método de acceso no está activado todavía en el sitio. Prueba con otro método.';
+    if(/sms.*not enabled|phone.*not enabled|to signup, please provide/i.test(msg)) return 'El acceso por teléfono todavía no está activado en el sitio. Prueba con correo.';
+    if(!window.CCAuth || !window.CCAuth.isConfigured) return 'Las cuentas todavía no están configuradas en este sitio (falta conectar Supabase).';
+    return msg || 'Ocurrió un error. Intenta de nuevo.';
+  }
+
+  /* ===== Botones de Google / Microsoft ===== */
+  document.querySelectorAll('.auth-social-btn').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      clearMessage();
+      if(!window.CCAuth || !window.CCAuth.isConfigured){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+      btn.disabled = true;
+      try{
+        await window.CCAuth.signInWithProvider(btn.dataset.provider);
+        // Si signInWithProvider no lanzó error, el navegador ya está siendo redirigido
+        // hacia la pantalla de acceso del proveedor — no hay más que hacer aquí.
+      }catch(error){
+        showMessage(friendlyError(error), 'error');
+        btn.disabled = false;
+      }
+    });
+  });
+
+  /* ===== Método correo / teléfono dentro de "Iniciar sesión" ===== */
+  const methodEmailBtn = $('methodEmailBtn'), methodPhoneBtn = $('methodPhoneBtn');
+  const panelSignInEmail = $('panelSignInEmail'), panelSignInPhone = $('panelSignInPhone');
+  function switchMethod(target){
+    clearMessage();
+    const showEmail = target === 'email';
+    methodEmailBtn.classList.toggle('is-active', showEmail);
+    methodPhoneBtn.classList.toggle('is-active', !showEmail);
+    methodEmailBtn.setAttribute('aria-selected', String(showEmail));
+    methodPhoneBtn.setAttribute('aria-selected', String(!showEmail));
+    panelSignInEmail.hidden = !showEmail;
+    panelSignInPhone.hidden = showEmail;
+  }
+  methodEmailBtn.addEventListener('click', ()=>switchMethod('email'));
+  methodPhoneBtn.addEventListener('click', ()=>switchMethod('phone'));
+
+  /* ===== Selector de país + código (bandera y +código a la izquierda, el número solo a la derecha) =====
+     La lista no es exhaustiva de los ~195 países del mundo, pero cubre Estados Unidos, Canadá, todo
+     Latinoamérica y el Caribe hispanohablante, y los países con más población de origen inmigrante en
+     EE.UU. — suficiente para el público de este sitio. Estados Unidos queda seleccionado por defecto. */
+  const COUNTRIES = [
+    {iso:'US',name:'Estados Unidos',dial:'+1'},
+    {iso:'CA',name:'Canadá',dial:'+1'},
+    {iso:'MX',name:'México',dial:'+52'},
+    {iso:'GT',name:'Guatemala',dial:'+502'},
+    {iso:'BZ',name:'Belice',dial:'+501'},
+    {iso:'HN',name:'Honduras',dial:'+504'},
+    {iso:'SV',name:'El Salvador',dial:'+503'},
+    {iso:'NI',name:'Nicaragua',dial:'+505'},
+    {iso:'CR',name:'Costa Rica',dial:'+506'},
+    {iso:'PA',name:'Panamá',dial:'+507'},
+    {iso:'CU',name:'Cuba',dial:'+53'},
+    {iso:'DO',name:'República Dominicana',dial:'+1'},
+    {iso:'PR',name:'Puerto Rico',dial:'+1'},
+    {iso:'HT',name:'Haití',dial:'+509'},
+    {iso:'JM',name:'Jamaica',dial:'+1'},
+    {iso:'TT',name:'Trinidad y Tobago',dial:'+1'},
+    {iso:'CO',name:'Colombia',dial:'+57'},
+    {iso:'VE',name:'Venezuela',dial:'+58'},
+    {iso:'EC',name:'Ecuador',dial:'+593'},
+    {iso:'PE',name:'Perú',dial:'+51'},
+    {iso:'BO',name:'Bolivia',dial:'+591'},
+    {iso:'CL',name:'Chile',dial:'+56'},
+    {iso:'AR',name:'Argentina',dial:'+54'},
+    {iso:'UY',name:'Uruguay',dial:'+598'},
+    {iso:'PY',name:'Paraguay',dial:'+595'},
+    {iso:'BR',name:'Brasil',dial:'+55'},
+    {iso:'ES',name:'España',dial:'+34'},
+    {iso:'GQ',name:'Guinea Ecuatorial',dial:'+240'},
+    {iso:'PT',name:'Portugal',dial:'+351'},
+    {iso:'GB',name:'Reino Unido',dial:'+44'},
+    {iso:'FR',name:'Francia',dial:'+33'},
+    {iso:'DE',name:'Alemania',dial:'+49'},
+    {iso:'IT',name:'Italia',dial:'+39'},
+    {iso:'NL',name:'Países Bajos',dial:'+31'},
+    {iso:'IE',name:'Irlanda',dial:'+353'},
+    {iso:'CH',name:'Suiza',dial:'+41'},
+    {iso:'SE',name:'Suecia',dial:'+46'},
+    {iso:'NO',name:'Noruega',dial:'+47'},
+    {iso:'PL',name:'Polonia',dial:'+48'},
+    {iso:'RU',name:'Rusia',dial:'+7'},
+    {iso:'TR',name:'Turquía',dial:'+90'},
+    {iso:'CN',name:'China',dial:'+86'},
+    {iso:'IN',name:'India',dial:'+91'},
+    {iso:'PH',name:'Filipinas',dial:'+63'},
+    {iso:'VN',name:'Vietnam',dial:'+84'},
+    {iso:'JP',name:'Japón',dial:'+81'},
+    {iso:'KR',name:'Corea del Sur',dial:'+82'},
+    {iso:'AU',name:'Australia',dial:'+61'},
+    {iso:'NZ',name:'Nueva Zelanda',dial:'+64'},
+    {iso:'ZA',name:'Sudáfrica',dial:'+27'},
+    {iso:'NG',name:'Nigeria',dial:'+234'},
+    {iso:'MA',name:'Marruecos',dial:'+212'},
+    {iso:'EG',name:'Egipto',dial:'+20'},
+    {iso:'IL',name:'Israel',dial:'+972'},
+    {iso:'AE',name:'Emiratos Árabes Unidos',dial:'+971'},
+  ];
+
+  function isoToFlag(iso){
+    return iso.toUpperCase().replace(/./g, ch => String.fromCodePoint(127397 + ch.charCodeAt(0)));
+  }
+
+  let selectedCountry = COUNTRIES[0]; // Estados Unidos por defecto
+
+  const countryBtn = $('countryBtn'), countryDropdown = $('countryDropdown'),
+        countryList = $('countryList'), countrySearch = $('countrySearch'),
+        countryFlag = $('countryFlag'), countryDialCode = $('countryDialCode');
+
+  function renderCountryList(filter){
+    const term = (filter||'').trim().toLowerCase();
+    const matches = COUNTRIES.filter(c =>
+      !term || c.name.toLowerCase().indexOf(term) !== -1 || c.dial.indexOf(term) !== -1
+    );
+    countryList.innerHTML = matches.length ? matches.map(c =>
+      '<button type="button" class="auth-country-option" data-iso="'+c.iso+'" role="option">'+
+        '<span class="flag" aria-hidden="true">'+isoToFlag(c.iso)+'</span>'+
+        '<span class="name">'+c.name+'</span>'+
+        '<span class="dial">'+c.dial+'</span>'+
+      '</button>'
+    ).join('') : '<p class="auth-country-empty">Ningún país coincide con esa búsqueda.</p>';
+  }
+
+  function openCountryDropdown(){
+    countryDropdown.hidden = false;
+    countryBtn.setAttribute('aria-expanded', 'true');
+    countrySearch.value = '';
+    renderCountryList('');
+    countrySearch.focus();
+  }
+  function closeCountryDropdown(){
+    countryDropdown.hidden = true;
+    countryBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  countryBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(countryDropdown.hidden) openCountryDropdown(); else closeCountryDropdown();
+  });
+  countrySearch.addEventListener('input', ()=>renderCountryList(countrySearch.value));
+  countryList.addEventListener('click', (e)=>{
+    const opt = e.target.closest('.auth-country-option');
+    if(!opt) return;
+    const country = COUNTRIES.find(c => c.iso === opt.dataset.iso);
+    if(!country) return;
+    selectedCountry = country;
+    countryFlag.textContent = isoToFlag(country.iso);
+    countryDialCode.textContent = country.dial;
+    closeCountryDropdown();
+    $('signInPhoneNumber').focus();
+  });
+  document.addEventListener('click', (e)=>{
+    if(!countryDropdown.hidden && !e.target.closest('.auth-phone-group')) closeCountryDropdown();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && !countryDropdown.hidden) closeCountryDropdown();
+  });
+
+  /* ===== Teléfono: combina el código de país elegido con el número local ===== */
+  function normalizePhone(localNumberRaw){
+    const digits = (localNumberRaw||'').replace(/\D/g,'');
+    if(digits.length < 6 || digits.length > 12) return null;
+    return selectedCountry.dial + digits;
+  }
+
+  let currentPhone = null;
+  let resendCooldownTimer = null;
+
+  function startResendCooldown(seconds){
+    const resendBtn = $('resendCodeBtn');
+    let remaining = seconds;
+    resendBtn.disabled = true;
+    resendBtn.textContent = 'Reenviar código (' + remaining + 's)';
+    clearInterval(resendCooldownTimer);
+    resendCooldownTimer = setInterval(()=>{
+      remaining -= 1;
+      if(remaining <= 0){
+        clearInterval(resendCooldownTimer);
+        resendBtn.disabled = false;
+        resendBtn.textContent = 'Reenviar código';
+      } else {
+        resendBtn.textContent = 'Reenviar código (' + remaining + 's)';
+      }
+    }, 1000);
+  }
+
+  panelSignInPhone.addEventListener('submit', async event=>{
+    event.preventDefault();
+    clearMessage();
+    if(!window.CCAuth || !window.CCAuth.isConfigured){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+
+    const step1Visible = !$('phoneStep1').hidden;
+    if(step1Visible){
+      const phone = normalizePhone($('signInPhoneNumber').value);
+      if(!phone){ showMessage('Escribe un número de teléfono válido (solo dígitos, sin el código de país).', 'error'); return; }
+      const sendBtn = $('sendCodeBtn');
+      sendBtn.disabled = true;
+      try{
+        await window.CCAuth.signInWithPhone(phone);
+        currentPhone = phone;
+        $('phoneStep1').hidden = true;
+        $('phoneStep2').hidden = false;
+        $('phoneSentTo').textContent = 'Enviamos un código a ' + phone + '.';
+        $('signInCode').value = '';
+        $('signInCode').focus();
+        startResendCooldown(30);
+      }catch(error){
+        showMessage(friendlyError(error), 'error');
+      }finally{
+        sendBtn.disabled = false;
+      }
+    } else {
+      const code = $('signInCode').value.trim();
+      if(!code || code.length !== 6){ showMessage('Escribe el código de 6 dígitos que recibiste por mensaje de texto.', 'error'); return; }
+      const verifyBtn = $('verifyCodeBtn');
+      verifyBtn.disabled = true;
+      try{
+        await window.CCAuth.verifyPhoneCode(currentPhone, code);
+        window.location.href = 'cuenta.html';
+      }catch(error){
+        showMessage(friendlyError(error), 'error');
+      }finally{
+        verifyBtn.disabled = false;
+      }
+    }
+  });
+
+  $('resendCodeBtn').addEventListener('click', async ()=>{
+    if(!currentPhone) return;
+    clearMessage();
+    try{
+      await window.CCAuth.signInWithPhone(currentPhone);
+      showMessage('Te enviamos un nuevo código.', 'success');
+      startResendCooldown(30);
+    }catch(error){
+      showMessage(friendlyError(error), 'error');
+    }
+  });
+
+  $('changeNumberBtn').addEventListener('click', ()=>{
+    clearMessage();
+    clearInterval(resendCooldownTimer);
+    currentPhone = null;
+    $('phoneStep1').hidden = false;
+    $('phoneStep2').hidden = true;
+    $('signInPhoneNumber').focus();
+  });
+
+  panelSignInEmail.addEventListener('submit', async event=>{
+    event.preventDefault();
+    clearMessage();
+    if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+    const email = $('signInEmail').value.trim();
+    const password = $('signInPassword').value;
+    const submitBtn = $('signInSubmit');
+    submitBtn.disabled = true;
+    try{
+      await window.CCAuth.signIn(email, password);
+      window.location.href = 'cuenta.html';
+    }catch(error){
+      showMessage(friendlyError(error), 'error');
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+
+  panelSignUp.addEventListener('submit', async event=>{
+    event.preventDefault();
+    clearMessage();
+    if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+    const email = $('signUpEmail').value.trim();
+    const password = $('signUpPassword').value;
+    const submitBtn = $('signUpSubmit');
+    submitBtn.disabled = true;
+    try{
+      const data = await window.CCAuth.signUp(email, password);
+      if(data && data.session){
+        window.location.href = 'cuenta.html';
+      } else {
+        showMessage('Cuenta creada. Revisa tu correo para confirmar tu dirección y luego inicia sesión.', 'success');
+        switchTab('signin');
+      }
+    }catch(error){
+      showMessage(friendlyError(error), 'error');
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+
+  $('forgotPasswordBtn').addEventListener('click', async ()=>{
+    if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+    const email = $('signInEmail').value.trim();
+    if(!email){ showMessage('Escribe tu correo arriba y vuelve a intentar.', 'error'); return; }
+    try{
+      await window.CCAuth.resetPassword(email);
+      showMessage('Te enviamos un enlace para restablecer tu contraseña.', 'success');
+    }catch(error){
+      showMessage(friendlyError(error), 'error');
+    }
+  });
+
+  /* ===== Restablecer contraseña (llegada desde el enlace del correo) =====
+     Supabase abre una sesión temporal de "recuperación" apenas alguien hace
+     clic en el enlace del correo — sin este bloque, esa sesión se vería
+     igual que un inicio de sesión normal y la persona sería mandada directo
+     a cuenta.html sin nunca poder escribir su nueva contraseña. */
+  const panelRecovery = $('panelRecovery');
+  const socialRow = document.querySelector('.auth-social-row');
+  const authDivider = document.querySelector('.auth-divider');
+  const authTabs = document.querySelector('.auth-tabs');
+  let inRecoveryMode = false;
+
+  function enterRecoveryMode(){
+    inRecoveryMode = true;
+    clearMessage();
+    if(socialRow) socialRow.hidden = true;
+    if(authDivider) authDivider.hidden = true;
+    if(authTabs) authTabs.hidden = true;
+    panelSignIn.hidden = true;
+    panelSignUp.hidden = true;
+    panelRecovery.hidden = false;
+    $('heroEyebrow').textContent = 'Nueva contraseña';
+    $('heroTitle').textContent = 'Elige tu nueva contraseña';
+    $('heroSubtitle').textContent = 'Escribe y confirma tu nueva contraseña para volver a entrar a tu cuenta.';
+    $('recoveryPassword').focus();
+  }
+
+  panelRecovery.addEventListener('submit', async event=>{
+    event.preventDefault();
+    clearMessage();
+    const newPassword = $('recoveryPassword').value;
+    const confirmPassword = $('recoveryPasswordConfirm').value;
+    if(newPassword.length < 6){ showMessage('La contraseña debe tener al menos 6 caracteres.', 'error'); return; }
+    if(newPassword !== confirmPassword){ showMessage('Las dos contraseñas no coinciden. Vuelve a escribirlas.', 'error'); return; }
+    const submitBtn = $('recoverySubmit');
+    submitBtn.disabled = true;
+    try{
+      await window.CCAuth.updatePassword(newPassword);
+      showMessage('Contraseña actualizada. Entrando a tu cuenta…', 'success');
+      const user = window.CCAuth.getUser();
+      const isAdmin = !!(user && user.app_metadata && user.app_metadata.is_admin);
+      setTimeout(()=>{ window.location.href = isAdmin ? 'admin.html' : 'cuenta.html'; }, 1200);
+    }catch(error){
+      showMessage(friendlyError(error), 'error');
+      submitBtn.disabled = false;
+    }
+  });
+
+  if(window.CCAuth){
+    window.CCAuth.onPasswordRecovery(enterRecoveryMode);
+    window.CCAuth.onChange(user=>{
+      if(user && !inRecoveryMode) window.location.href = 'cuenta.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

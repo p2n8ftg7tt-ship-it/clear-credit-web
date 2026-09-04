@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clear Credit | Tu crédito, explicado en español</title>
+  <meta name="description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clear Credit">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Clear Credit | Tu crédito, explicado en español">
+<meta property="og:description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clear Credit | Tu crédito, explicado en español">
+<meta name="twitter:description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .home-hero{padding:70px 0 0;background:var(--paper-dim);overflow:hidden;}
+    .home-hero-grid{display:grid;grid-template-columns:1fr .92fr;gap:52px;align-items:center;}
+    .home-hero-copy{padding-bottom:64px;}
+    .home-hero-copy .eyebrow{color:var(--gold);}
+    .home-hero-copy h1{font:600 clamp(2.3rem,4.2vw,3.5rem)/1.08 'Fraunces',serif;color:var(--ink);letter-spacing:-.025em;max-width:560px;}
+    .home-hero-copy p{max-width:520px;margin-top:20px;color:var(--muted);font-size:1.02rem;}
+    .home-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
+    .home-hero-img-wrap{position:relative;}
+    .home-hero-img-wrap::before{content:"";position:absolute;inset:-16px 16px auto auto;width:120px;height:120px;border-radius:50%;background:var(--gold);opacity:.18;}
+    .home-hero-img-wrap img{position:relative;width:100%;aspect-ratio:4/3.1;object-fit:cover;border-radius:20px;box-shadow:var(--shadow);}
+
+    .why-section{padding:76px 0;background:var(--paper);}
+    .why-grid{display:grid;grid-template-columns:.4fr 1fr;gap:44px;align-items:start;}
+    .why-grid img{width:100%;max-width:220px;border-radius:16px;display:block;margin-inline:auto;}
+    .why-grid h2{max-width:640px;}
+    .why-grid p{margin-top:16px;max-width:640px;color:var(--muted);}
+
+    .trust-strip{padding:0 0 76px;background:var(--paper);}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+    .trust-item{background:var(--paper-dim);padding:26px 24px;}
+    .trust-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
+    .trust-item span{font-size:.78rem;color:var(--muted);}
+
+    .routes-section{padding:76px 0;background:#eef2ec;}
+    .routes-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .route-card{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(42,33,24,.08);text-decoration:none;transition:transform .18s ease;}
+    .route-card:hover{transform:translateY(-4px);}
+    .route-card .route-img{height:190px;overflow:hidden;}
+    .route-card .route-img img{width:100%;height:100%;object-fit:cover;}
+    .route-card .route-body{padding:26px 28px 30px;}
+    .route-card .route-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);}
+    .route-card h3{font:600 1.55rem 'Fraunces',serif;margin:8px 0 10px;color:var(--ink);}
+    .route-card p{color:var(--muted);font-size:.88rem;}
+    .route-card .route-cta{display:inline-block;margin-top:20px;color:var(--navy);font-weight:800;font-size:.8rem;}
+
+    .tools-section{padding:76px 0;background:#fff;}
+    .tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .tool-card{background:var(--paper-dim);border-radius:14px;padding:28px;}
+    .tool-card h3{font:600 1.15rem 'Fraunces',serif;margin-bottom:8px;color:var(--ink);}
+    .tool-card p{color:var(--muted);font-size:.85rem;}
+
+    .faq-section{padding:76px 0;background:var(--paper-dim);}
+    .faq-wrap{max-width:760px;}
+    .faq-wrap h2{margin-bottom:30px;}
+    .faq-list{border-top:1px solid var(--line);}
+    .faq-item{padding:20px 0;border-bottom:1px solid var(--line);}
+    .faq-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
+    .faq-item span{color:var(--muted);font-size:.86rem;}
+
+    .account-cta{padding:70px 0;background:#fff;}
+    .account-cta-box{background:var(--ink);border-radius:18px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+    .account-cta-box h2{font-size:1.6rem;color:#fff;}
+    .account-cta-box p{margin-top:10px;color:rgba(255,255,255,.68);font-size:.88rem;max-width:520px;}
+
+    @media(max-width:900px){
+      .home-hero-grid,.why-grid,.routes-grid,.tools-grid{grid-template-columns:1fr;}
+      .trust-grid{grid-template-columns:1fr 1fr;}
+      .home-hero-copy{padding-bottom:36px;}
+      .why-grid img{max-width:140px;}
+    }
+    @media(max-width:560px){
+      .trust-grid{grid-template-columns:1fr;}
+      .account-cta-box{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body data-cms-page="index">
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Clear Credit" class="brand-logo"><small>Guía en español</small></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="links" id="navLinks" aria-label="Navegación principal">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="credito.html">Crédito</a>
+        <a href="cartas-claras.html">Cartas Claras</a>
+        <a href="comprar-casa.html">Comprar casa</a>
+        <a href="comprar-auto.html">Comprar auto</a>
+        <a href="herramientas.html">Herramientas</a>
+        <a href="listar-negocio.html">Listar negocio</a>
+        <a href="formar-negocio.html">Formar negocio</a>
+        <a href="quienes-somos.html">Quiénes somos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- HERO -->
+    <section class="home-hero">
+      <div class="wrap home-hero-grid">
+        <div class="home-hero-copy">
+          <span class="eyebrow">Para la comunidad hispana en EE. UU.</span>
+          <h1 data-cms="index_hero_titulo">Tu crédito, explicado como se lo explicarías a un amigo.</h1>
+          <p data-cms="index_hero_texto">Nadie debería tomar la decisión más grande de su vida —comprar casa o auto— sin entender los números detrás. Aquí los desglosamos en español claro, sin letra pequeña y sin venderte nada.</p>
+          <div class="home-hero-actions">
+            <a href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte gratis</a>
+            <a href="#por-que" class="btn btn-outline">¿Por qué existe este sitio?</a>
+          </div>
+        </div>
+        <div class="home-hero-img-wrap">
+          <img data-cms="index_hero_imagen" src="images/hero-familia.png" alt="Familia revisando sus finanzas en casa">
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ -->
+    <section class="why-section" id="por-que">
+      <div class="wrap why-grid">
+        <div><img src="images/compass.png" alt="Brújula, símbolo de guía"></div>
+        <div>
+          <span class="eyebrow-dark">Por qué existe Clear Credit</span>
+          <h2>El sistema de crédito en EE. UU. no fue diseñado en español.</h2>
+          <p>Términos como "utilización", "hard inquiry" o "PMI" rara vez se explican bien, y mucho menos en el idioma en que piensas. Este sitio nació para cerrar esa brecha: mismas fuentes oficiales que usa cualquier prestamista —CFPB, Experian, HUD, Regulation Z— pero traducidas a decisiones que puedes entender y tomar tú mismo.</p>
+          <p>No vendemos préstamos ni cobramos por "arreglar" tu crédito. Te damos las herramientas y la explicación; la decisión siempre es tuya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIANZA -->
+    <section class="trust-strip">
+      <div class="wrap trust-grid">
+        <div class="trust-item"><strong>100% privado</strong><span>Tu documento se analiza en tu navegador. Nunca se sube a un servidor.</span></div>
+        <div class="trust-item"><strong>Siempre gratis</strong><span>El analizador, la calculadora y el mapa de tasas no cuestan nada, sin letra pequeña.</span></div>
+        <div class="trust-item"><strong>Fuentes oficiales</strong><span>CFPB, Experian, HUD y Regulation Z citados en cada sección.</span></div>
+        <div class="trust-item"><strong>Sin presión</strong><span>No vendemos productos financieros ni compartimos tu información con dealers.</span></div>
+      </div>
+    </section>
+
+    <!-- DOS RUTAS -->
+    <section class="routes-section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark">Dos decisiones, dos rutas</span>
+          <h2>¿Qué quieres comprar?</h2>
+          <p>Cada ruta tiene sus propios requisitos, tasas y contratos — por eso las separamos, para que profundices sin mezclar información.</p>
+        </div>
+        <div class="routes-grid">
+          <a class="route-card" href="comprar-casa.html">
+            <div class="route-img"><img src="images/hero-compra-casa.png" alt="Comprar una casa"></div>
+            <div class="route-body">
+              <span class="route-kicker">Vivienda</span>
+              <h3>Comprar una casa</h3>
+              <p>Compara FHA, VA, USDA y convencional con recorridos paso a paso que te muestran enganche, seguro hipotecario y pago mensual real — no solo el anuncio.</p>
+              <span class="route-cta">Entrar a la ruta de casa →</span>
+            </div>
+          </a>
+          <a class="route-card" href="comprar-auto.html">
+            <div class="route-img"><img src="images/hero-compra-auto.png" alt="Comprar un auto"></div>
+            <div class="route-body">
+              <span class="route-kicker">Vehículo</span>
+              <h3>Comprar un auto</h3>
+              <p>Mapa de tasas promedio por estado, cómo tu categoría de crédito cambia el APR, y una guía para leer el contrato del dealer antes de firmar.</p>
+              <span class="route-cta">Entrar a la ruta de auto →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section class="tools-section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark">Herramientas gratuitas</span>
+          <h2>Todo lo que necesitas, en un solo lugar</h2>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h3>Analizador de reporte</h3>
+            <p>Sube tu PDF, Word o Excel y recibe, en segundos, tus fortalezas, señales negativas y una estrategia priorizada para mejorar tu puntaje.</p>
+          </div>
+          <div class="tool-card">
+            <h3>Calculadora hipotecaria</h3>
+            <p>Ajusta precio, pronto inicial, tasa, impuestos y HOA para ver tu pago mensual completo, no solo principal e interés.</p>
+          </div>
+          <div class="tool-card">
+            <h3>Mapa de tasas de auto</h3>
+            <p>Promedios de APR nuevo y usado por estado, actualizados automáticamente cada mañana con fuentes verificadas.</p>
+          </div>
+          <div class="tool-card">
+            <h3>Mr. Credit Coach</h3>
+            <p>Un asistente que responde tus dudas sobre crédito, hipoteca o compra de auto y te dirige a la sección exacta que necesitas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="faq-section">
+      <div class="wrap faq-wrap">
+        <span class="eyebrow-dark">Antes de empezar</span>
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-list">
+          <div class="faq-item"><strong>¿Suben mi reporte de crédito a algún servidor?</strong><span>No. El análisis ocurre por completo dentro de tu navegador; el archivo nunca se envía a ningún lado.</span></div>
+          <div class="faq-item"><strong>¿Necesito crear una cuenta para usar las herramientas?</strong><span>No. La cuenta es opcional y solo sirve para guardar un resumen de tus resultados y consultarlos después.</span></div>
+          <div class="faq-item"><strong>¿Esto sustituye asesoría financiera o legal?</strong><span>No. Es contenido educativo para que entiendas tus opciones. Para tu caso particular, consulta siempre con un profesional certificado.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA CUENTA -->
+    <section class="account-cta">
+      <div class="wrap account-cta-box">
+        <div>
+          <h2>Guarda tu progreso con una cuenta gratuita</h2>
+          <p>Guarda un resumen de tus análisis y cálculos hipotecarios para consultarlos cuando quieras. Nunca guardamos tu documento original.</p>
+        </div>
+        <a href="login.html" class="btn btn-gold">Crear cuenta gratis</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="brand">Clear Credit</span>
+      <span>© 2026 · Contenido educativo en español</span>
+      <span><a href="comprar-casa.html">Comprar casa</a> · <a href="comprar-auto.html">Comprar auto</a> · <a href="contacto.html">Contacto</a></span>
+    </div>
+    <div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden style="border-top:1px solid rgba(255,255,255,.14);margin-top:14px;padding-top:14px;">
+      <span data-cms="global_contacto_telefono"></span>
+      <span data-cms="global_contacto_correo"></span>
+      <span data-cms="global_contacto_redes"></span>
+    </div>
+  </footer>
+
+  <script>
+    const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+    if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js"></script>
+  <script src="cms.js"></script>
+  <script src="credit-coach.js"></script>
+</body>
+</html>

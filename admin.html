@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de administrador | Clear Credit</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .admin-band{padding:44px 0;background:var(--navy-deep);color:#fff}
+  .admin-band-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .admin-band h1{font-family:'Fraunces',serif;font-size:1.7rem;margin:0}
+  .admin-band p{margin:4px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
+
+  .admin-section{padding:44px 0 80px}
+  .admin-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:14px}
+  @media(max-width:1100px){.admin-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.admin-grid{grid-template-columns:1fr 1fr}}
+  .admin-stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-stat span{display:block;font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+  .admin-stat strong{font:600 1.7rem 'Fraunces',serif;color:var(--navy-deep)}
+
+  .admin-plans{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin:24px 0 40px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-plans h3{font-size:.95rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:14px}
+  .admin-plan-row{display:grid;grid-template-columns:110px 1fr 40px;align-items:center;gap:12px;margin-bottom:10px;font-size:.8rem}
+  .admin-plan-row span:first-child{color:var(--muted);font-weight:600}
+  .admin-plan-bar{height:10px;border-radius:99px;background:var(--paper-dim);overflow:hidden}
+  .admin-plan-bar span{display:block;height:100%;background:var(--gold);border-radius:99px}
+  .admin-plan-row .admin-plan-count{text-align:right;color:var(--navy-deep);font-weight:700}
+
+  .admin-table-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .admin-search{border:1.5px solid var(--line);border-radius:8px;padding:9px 13px;font:400 .86rem 'Public Sans',sans-serif;min-width:240px}
+  .admin-search:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
+  .admin-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  table.admin-table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:760px}
+  table.admin-table th{text-align:left;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+  table.admin-table td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+  table.admin-table tr:last-child td{border-bottom:0}
+  .admin-plan-pill{display:inline-block;font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--paper-dim);color:var(--navy)}
+  .admin-plan-pill.is-none{color:var(--muted)}
+  .admin-admin-pill{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--gold);color:var(--navy-deep);margin-left:6px}
+  .admin-empty-row td{text-align:center;color:var(--muted);padding:30px}
+
+  .admin-state{max-width:520px;margin:60px auto;text-align:center}
+  .admin-state[hidden]{display:none}
+
+  .admin-content-editor{margin-top:48px;padding-top:8px}
+  .admin-editor-layout{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
+  @media(max-width:900px){.admin-editor-layout{grid-template-columns:1fr}}
+  .admin-editor-form{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-editor-form h3{font-size:.9rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:12px}
+  .admin-editor-form textarea{border:1.5px solid var(--line);border-radius:8px;padding:11px 13px;font:400 .92rem 'Public Sans',sans-serif;color:var(--ink);background:#fff;width:100%;resize:vertical}
+  .admin-editor-form textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
+  .admin-upload-status{display:block;margin-top:6px;color:var(--muted);font-size:.72rem}
+  .admin-saved-flash{font-size:.78rem;color:var(--good);font-weight:700;opacity:0;transition:opacity .2s ease}
+  .admin-saved-flash.is-visible{opacity:1}
+  .admin-note{margin-top:12px;color:var(--danger);font-size:.8rem}
+  .admin-editor-preview{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-preview-label{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
+  .admin-editor-preview iframe{width:100%;height:640px;border:1px solid var(--line);border-radius:6px;background:#fff}
+
+  .admin-color-grid{display:flex;flex-direction:column;gap:10px}
+  .admin-color-item{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+  .admin-color-item input[type="color"]{width:38px;height:38px;padding:0;border:1.5px solid var(--line);border-radius:7px;cursor:pointer;flex-shrink:0;background:none}
+  .admin-color-item .admin-color-info{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+  .admin-color-item .admin-color-name{font-size:.82rem;font-weight:700;color:var(--navy)}
+  .admin-color-item .admin-color-hex{font-size:.7rem;color:var(--muted);font-family:monospace}
+</style>
+</head>
+<body>
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Clear Credit" class="brand-logo"><small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="cuenta.html">Mi cuenta</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <div class="admin-band">
+    <div class="wrap admin-band-row">
+      <div>
+        <h1>Panel de administrador</h1>
+        <p>Estadísticas y clientes de Clear Credit — visible solo para tu cuenta.</p>
+      </div>
+      <button type="button" class="btn btn-outline-dark" id="adminSignOutBtn" style="border-color:rgba(255,255,255,.35);color:#fff;" hidden>Cerrar sesión</button>
+    </div>
+  </div>
+
+  <section class="admin-state" id="adminSignedOut" hidden>
+    <p>Necesitas iniciar sesión con tu cuenta de administrador para ver esta página.</p>
+    <a href="login.html" class="btn btn-gold">Iniciar sesión</a>
+  </section>
+
+  <section class="admin-state" id="adminForbidden" hidden>
+    <p>Tu cuenta no tiene acceso al panel de administrador.</p>
+  </section>
+
+  <section class="admin-state" id="adminError" hidden>
+    <p id="adminErrorText">No pudimos cargar el panel. Intenta de nuevo.</p>
+    <button type="button" class="btn btn-outline-dark" id="adminRetryBtn">Reintentar</button>
+  </section>
+
+  <section class="admin-state" id="adminLoading" hidden>
+    <p>Cargando…</p>
+  </section>
+
+  <section class="admin-section" id="adminContent" hidden>
+    <div class="wrap">
+
+      <div class="admin-grid">
+        <div class="admin-stat"><span>Total clientes</span><strong id="statTotal">—</strong></div>
+        <div class="admin-stat"><span>Nuevos · 7 días</span><strong id="stat7">—</strong></div>
+        <div class="admin-stat"><span>Nuevos · 30 días</span><strong id="stat30">—</strong></div>
+        <div class="admin-stat"><span>Análisis de crédito</span><strong id="statAnalyses">—</strong></div>
+        <div class="admin-stat"><span>Cálculos hipotecarios</span><strong id="statMortgages">—</strong></div>
+      </div>
+
+      <div class="admin-plans">
+        <h3>Distribución de planes</h3>
+        <div id="planRows"></div>
+      </div>
+
+      <div class="admin-grid" style="margin-top:14px;">
+        <div class="admin-stat"><span>Conversión tras prueba gratis</span><strong id="statConversion">—</strong></div>
+        <div class="admin-stat"><span>Activos · últimos 30 días</span><strong id="statActivos">—</strong></div>
+        <div class="admin-stat"><span>Utilización promedio</span><strong id="statUtilizacion">—</strong></div>
+        <div class="admin-stat"><span>Pago hipotecario promedio</span><strong id="statPagoHipoteca">—</strong></div>
+      </div>
+
+      <div class="admin-plans">
+        <h3>Registros nuevos · últimas 8 semanas</h3>
+        <div id="trendRows"></div>
+      </div>
+
+      <div class="admin-plans">
+        <h3>Puntaje de crédito detectado por el analizador</h3>
+        <p style="font-size:.74rem;color:var(--muted);margin:-6px 0 14px;">Mismos rangos que explicas en Crédito — te dice si la gente que llega necesita más ayuda de reparación o más contenido de mantenimiento.</p>
+        <div id="scoreRows"></div>
+      </div>
+
+      <div class="admin-plans">
+        <h3>Precio de casa cotizado en la calculadora hipotecaria</h3>
+        <div id="priceRows"></div>
+      </div>
+
+      <div class="admin-table-head">
+        <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Clientes</h2>
+        <input type="search" class="admin-search" id="clientSearch" placeholder="Buscar por correo, nombre o teléfono…">
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Correo</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Plan</th>
+              <th>Registrado</th>
+              <th>Último acceso</th>
+            </tr>
+          </thead>
+          <tbody id="clientRows"></tbody>
+        </table>
+      </div>
+
+      <div class="admin-content-editor" id="contentEditor">
+        <div class="admin-table-head">
+          <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Editar contenido</h2>
+          <span style="font-size:.78rem;color:var(--muted);">Cambia lo que quieras y presiona "Publicar cambios" para que se vea en el sitio.</span>
+        </div>
+
+        <div class="admin-editor-layout">
+          <div class="admin-editor-form">
+            <h3>Página principal</h3>
+            <div class="form-group">
+              <label for="cmsHeroTitulo">Título principal</label>
+              <input type="text" id="cmsHeroTitulo">
+            </div>
+            <div class="form-group">
+              <label for="cmsHeroTexto">Texto debajo del título</label>
+              <textarea id="cmsHeroTexto" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cmsHeroImagenFile">Imagen principal</label>
+              <input type="file" id="cmsHeroImagenFile" accept="image/*">
+              <small class="admin-upload-status" id="cmsHeroImagenStatus"></small>
+            </div>
+
+            <h3 style="margin-top:26px;">Contacto y redes <span style="font-weight:400;color:var(--muted);font-size:.72rem;">(pie de página)</span></h3>
+            <div class="form-group">
+              <label for="cmsTelefono">Teléfono</label>
+              <input type="text" id="cmsTelefono" placeholder="Ej. +1 305 555 1234">
+            </div>
+            <div class="form-group">
+              <label for="cmsCorreo">Correo</label>
+              <input type="text" id="cmsCorreo" placeholder="Ej. hola@creditoclaro.com">
+            </div>
+            <div class="form-group">
+              <label for="cmsRedes">Redes sociales</label>
+              <input type="text" id="cmsRedes" placeholder="Ej. Facebook: /creditoclaro · Instagram: @creditoclaro">
+            </div>
+
+            <h3 style="margin-top:26px;">Colores de marca <span style="font-weight:400;color:var(--muted);font-size:.72rem;">(se aplican en todo el sitio)</span></h3>
+            <p style="font-size:.72rem;color:var(--muted);margin:-6px 0 12px;">Estos 5 colores controlan el estilo de todas las páginas. No incluimos el color de errores, el de fondo ni el del texto para que un cambio no vuelva algo ilegible por accidente.</p>
+            <div class="admin-color-grid" id="cmsColorGrid"></div>
+            <div style="margin-top:12px;">
+              <button type="button" class="btn btn-outline" id="cmsColorResetBtn" style="font-size:.76rem;padding:8px 14px;">Restablecer a los colores originales</button>
+            </div>
+
+            <div style="display:flex;gap:14px;align-items:center;margin-top:20px;">
+              <button type="button" class="btn btn-gold" id="cmsPublishBtn">Publicar cambios</button>
+              <span class="admin-saved-flash" id="cmsSavedFlash">Publicado ✓</span>
+            </div>
+            <p class="admin-note" id="cmsErrorNote" hidden></p>
+          </div>
+
+          <div class="admin-editor-preview">
+            <span class="admin-preview-label">Vista previa en vivo — página principal</span>
+            <iframe id="cmsPreviewFrame" src="index.html" title="Vista previa de la página principal"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Clear Credit</span>
+    <span>© 2026 · Panel interno</span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script>
+(function(){
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const PLAN_LABELS = { basico:'Básico', estandar:'Estándar', premium:'Premium', sin_plan:'Sin plan' };
+  const dateFmt = value => { try { return new Date(value).toLocaleDateString('es-US', {year:'numeric',month:'short',day:'numeric'}); } catch(e){ return '—'; } };
+
+  const states = ['adminSignedOut','adminForbidden','adminError','adminLoading','adminContent'];
+  function showState(id){
+    states.forEach(s => { $(s).hidden = (s !== id); });
+    $('adminSignOutBtn').hidden = (id !== 'adminContent' && id !== 'adminForbidden');
+  }
+
+  const SCORE_LABELS = { malo:'Malo (300–579)', regular:'Regular (580–669)', bueno:'Bueno (670–739)', muy_bueno:'Muy bueno (740–799)', excepcional:'Excepcional (800–850)', sin_dato:'Sin puntaje detectado' };
+  const PRICE_LABELS = { menos_200k:'Menos de $200k', '200k_350k':'$200k – $350k', '350k_500k':'$350k – $500k', mas_500k:'Más de $500k', sin_dato:'Sin dato' };
+  const weekFmt = value => { try { return new Date(value + 'T00:00:00Z').toLocaleDateString('es-US', {month:'short',day:'numeric'}); } catch(e){ return value; } };
+  const money = value => value == null ? '—' : '$' + Math.round(value).toLocaleString('en-US');
+
+  // Dibuja una fila de barras genérica (mismo patrón visual que "Distribución
+  // de planes") a partir de una lista de {label, count} — se reutiliza para
+  // la tendencia semanal, el puntaje de crédito y el precio de hipoteca.
+  function renderBarRows(containerId, entries){
+    const total = entries.reduce((sum, e) => sum + e.count, 0) || 1;
+    $(containerId).innerHTML = entries.map(e => {
+      const pct = Math.round((e.count / total) * 100);
+      return '<div class="admin-plan-row">' +
+        '<span>' + e.label + '</span>' +
+        '<div class="admin-plan-bar"><span style="width:' + pct + '%"></span></div>' +
+        '<span class="admin-plan-count">' + e.count + '</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  function renderStats(stats){
+    $('statTotal').textContent = stats.total_clientes;
+    $('stat7').textContent = stats.nuevos_7_dias;
+    $('stat30').textContent = stats.nuevos_30_dias;
+    $('statAnalyses').textContent = stats.total_analisis_credito != null ? stats.total_analisis_credito : '—';
+    $('statMortgages').textContent = stats.total_calculos_hipoteca != null ? stats.total_calculos_hipoteca : '—';
+
+    const total = stats.total_clientes || 1;
+    const order = ['premium','estandar','basico','sin_plan'];
+    $('planRows').innerHTML = order.map(key => {
+      const count = stats.planes[key] || 0;
+      const pct = Math.round((count / total) * 100);
+      return '<div class="admin-plan-row">' +
+        '<span>' + PLAN_LABELS[key] + '</span>' +
+        '<div class="admin-plan-bar"><span style="width:' + pct + '%"></span></div>' +
+        '<span class="admin-plan-count">' + count + '</span>' +
+      '</div>';
+    }).join('');
+
+    // --- Estadísticas nuevas ---
+    const conv = stats.conversion_prueba || {};
+    $('statConversion').textContent = conv.pct != null ? conv.pct + '%' : '—';
+    const activ = stats.actividad || {};
+    $('statActivos').textContent = activ.activos_30_dias != null ? activ.activos_30_dias : '—';
+    $('statUtilizacion').textContent = stats.utilizacion_promedio != null ? Math.round(stats.utilizacion_promedio) + '%' : '—';
+    const hip = stats.hipoteca || {};
+    $('statPagoHipoteca').textContent = money(hip.pago_promedio);
+
+    if(stats.tendencia_registros){
+      renderBarRows('trendRows', stats.tendencia_registros.map(w => ({ label: 'Semana del ' + weekFmt(w.semana), count: w.cantidad })));
+    }
+    if(stats.distribucion_puntaje){
+      const order2 = ['excepcional','muy_bueno','bueno','regular','malo','sin_dato'];
+      renderBarRows('scoreRows', order2.map(key => ({ label: SCORE_LABELS[key], count: stats.distribucion_puntaje[key] || 0 })));
+    }
+    if(hip.distribucion_precio){
+      const order3 = ['mas_500k','350k_500k','200k_350k','menos_200k','sin_dato'];
+      renderBarRows('priceRows', order3.map(key => ({ label: PRICE_LABELS[key], count: hip.distribucion_precio[key] || 0 })));
+    }
+  }
+
+  let allClients = [];
+  function renderClients(list){
+    if(!list.length){
+      $('clientRows').innerHTML = '<tr class="admin-empty-row"><td colspan="6">No hay clientes que coincidan.</td></tr>';
+      return;
+    }
+    $('clientRows').innerHTML = list.map(c => {
+      const planKey = c.plan && PLAN_LABELS[c.plan] ? c.plan : null;
+      const planHtml = planKey
+        ? '<span class="admin-plan-pill">' + PLAN_LABELS[planKey] + '</span>'
+        : '<span class="admin-plan-pill is-none">Sin plan</span>';
+      const adminHtml = c.is_admin ? '<span class="admin-admin-pill">Admin</span>' : '';
+      return '<tr>' +
+        '<td>' + (c.email || '—') + '</td>' +
+        '<td>' + (c.name || '—') + '</td>' +
+        '<td>' + (c.phone || '—') + '</td>' +
+        '<td>' + planHtml + adminHtml + '</td>' +
+        '<td>' + dateFmt(c.created_at) + '</td>' +
+        '<td>' + (c.last_sign_in_at ? dateFmt(c.last_sign_in_at) : '—') + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  $('clientSearch').addEventListener('input', () => {
+    const q = $('clientSearch').value.trim().toLowerCase();
+    if(!q){ renderClients(allClients); return; }
+    renderClients(allClients.filter(c =>
+      (c.email && c.email.toLowerCase().includes(q)) ||
+      (c.name && c.name.toLowerCase().includes(q)) ||
+      (c.phone && c.phone.toLowerCase().includes(q))
+    ));
+  });
+
+  async function loadAdminData(){
+    showState('adminLoading');
+    try{
+      const res = await fetch('/.netlify/functions/admin-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken: window.CCAuth.getAccessToken() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if(res.status === 401){ showState('adminSignedOut'); return; }
+      if(res.status === 403){ showState('adminForbidden'); return; }
+      if(!res.ok){
+        $('adminErrorText').textContent = data.error || 'No pudimos cargar el panel. Intenta de nuevo.';
+        showState('adminError');
+        return;
+      }
+      allClients = data.clients || [];
+      renderStats(data.stats);
+      renderClients(allClients);
+      showState('adminContent');
+      loadContentEditor();
+    }catch(err){
+      $('adminErrorText').textContent = 'No pudimos conectar con el panel. Revisa tu conexión e intenta de nuevo.';
+      showState('adminError');
+    }
+  }
+
+  // ---- Editar contenido (textos, imagen del hero, contacto/redes) ----
+  const CMS_FIELDS = [
+    { key:'index_hero_titulo', tipo:'texto', pagina:'index', etiqueta:'Título principal' },
+    { key:'index_hero_texto', tipo:'texto', pagina:'index', etiqueta:'Texto del hero' },
+    { key:'index_hero_imagen', tipo:'imagen', pagina:'index', etiqueta:'Imagen principal' },
+    { key:'global_contacto_telefono', tipo:'texto', pagina:'global', etiqueta:'Teléfono de contacto' },
+    { key:'global_contacto_correo', tipo:'texto', pagina:'global', etiqueta:'Correo de contacto' },
+    { key:'global_contacto_redes', tipo:'texto', pagina:'global', etiqueta:'Redes sociales' },
+  ];
+  let cmsState = {};
+
+  // Colores de marca — solo los "seguros" quedan editables aquí. El resto de la
+  // paleta (fondo, texto, error, éxito) se queda fija a propósito: son colores
+  // que sostienen la legibilidad y el significado del sitio, no la identidad
+  // visual, así que abrirlos a edición podría romper el sitio por accidente.
+  const COLOR_FIELDS = [
+    { key:'--gold', tipo:'color', pagina:'global', etiqueta:'Dorado principal', nombre:'Dorado principal (botones, acentos)', default:'#c98a3e' },
+    { key:'--gold-light', tipo:'color', pagina:'global', etiqueta:'Dorado claro', nombre:'Dorado claro (detalles suaves)', default:'#e8c99a' },
+    { key:'--navy', tipo:'color', pagina:'global', etiqueta:'Marrón (marca)', nombre:'Marrón (títulos, marca)', default:'#6b4226' },
+    { key:'--navy-deep', tipo:'color', pagina:'global', etiqueta:'Marrón oscuro', nombre:'Marrón oscuro (encabezados, fondo oscuro)', default:'#2a2118' },
+    { key:'--teal', tipo:'color', pagina:'global', etiqueta:'Verde salvia', nombre:'Verde salvia (acentos secundarios)', default:'#4f6b57' },
+  ];
+  let colorState = {};
+
+  function renderColorGrid(){
+    $('cmsColorGrid').innerHTML = COLOR_FIELDS.map(f =>
+      '<div class="admin-color-item">' +
+        '<input type="color" id="cmsColor-' + f.key + '" data-key="' + f.key + '">' +
+        '<div class="admin-color-info">' +
+          '<span class="admin-color-name">' + f.nombre + '</span>' +
+          '<span class="admin-color-hex" id="cmsColorHex-' + f.key + '"></span>' +
+        '</div>' +
+      '</div>'
+    ).join('');
+    COLOR_FIELDS.forEach(f => {
+      $('cmsColor-' + f.key).addEventListener('input', e => {
+        const value = e.target.value;
+        colorState[f.key] = value;
+        $('cmsColorHex-' + f.key).textContent = value;
+        applyPreview(f.key, 'color', value);
+      });
+    });
+  }
+
+  function applyPreview(key, tipo, value){
+    try{
+      const frame = $('cmsPreviewFrame');
+      const doc = frame && frame.contentDocument;
+      if(!doc) return;
+      if(tipo === 'color'){
+        doc.documentElement.style.setProperty(key, value);
+        return;
+      }
+      const els = doc.querySelectorAll('[data-cms="' + key + '"]');
+      els.forEach(el => {
+        if(tipo === 'imagen'){
+          if(el.tagName === 'IMG') el.src = value;
+          else el.style.backgroundImage = 'url(' + value + ')';
+        } else {
+          el.textContent = value;
+        }
+        const revealParent = el.closest('[data-cms-reveal]');
+        if(revealParent) revealParent.hidden = false;
+      });
+    }catch(err){
+      // Vista previa entre cruzada de orígenes o el iframe todavía no cargó — no es grave.
+    }
+  }
+
+  async function loadContentEditor(){
+    let rows = [];
+    try{
+      const { data, error } = await window.CCAuth.client.from('contenido_sitio').select('id,tipo,valor');
+      if(error) throw error;
+      rows = data || [];
+    }catch(err){
+      console.warn('[admin] no se pudo cargar el contenido actual', err);
+    }
+    const byId = {};
+    rows.forEach(r => { byId[r.id] = r.valor; });
+    cmsState = {};
+    CMS_FIELDS.forEach(f => { cmsState[f.key] = byId[f.key] != null ? byId[f.key] : ''; });
+
+    $('cmsHeroTitulo').value = cmsState.index_hero_titulo;
+    $('cmsHeroTexto').value = cmsState.index_hero_texto;
+    $('cmsTelefono').value = cmsState.global_contacto_telefono;
+    $('cmsCorreo').value = cmsState.global_contacto_correo;
+    $('cmsRedes').value = cmsState.global_contacto_redes;
+    $('cmsHeroImagenStatus').textContent = cmsState.index_hero_imagen
+      ? 'Imagen actual guardada. Sube otra para reemplazarla.'
+      : 'Sin imagen personalizada todavía — el sitio usa la imagen original.';
+
+    colorState = {};
+    COLOR_FIELDS.forEach(f => {
+      const value = byId[f.key] != null && byId[f.key] !== '' ? byId[f.key] : f.default;
+      colorState[f.key] = value;
+      $('cmsColor-' + f.key).value = value;
+      $('cmsColorHex-' + f.key).textContent = value;
+    });
+  }
+
+  function flashSaved(){
+    $('cmsSavedFlash').classList.add('is-visible');
+    setTimeout(() => $('cmsSavedFlash').classList.remove('is-visible'), 1800);
+  }
+
+  $('cmsHeroTitulo').addEventListener('input', e => { cmsState.index_hero_titulo = e.target.value; applyPreview('index_hero_titulo', 'texto', e.target.value); });
+  $('cmsHeroTexto').addEventListener('input', e => { cmsState.index_hero_texto = e.target.value; applyPreview('index_hero_texto', 'texto', e.target.value); });
+  $('cmsTelefono').addEventListener('input', e => { cmsState.global_contacto_telefono = e.target.value; applyPreview('global_contacto_telefono', 'texto', e.target.value); });
+  $('cmsCorreo').addEventListener('input', e => { cmsState.global_contacto_correo = e.target.value; applyPreview('global_contacto_correo', 'texto', e.target.value); });
+  $('cmsRedes').addEventListener('input', e => { cmsState.global_contacto_redes = e.target.value; applyPreview('global_contacto_redes', 'texto', e.target.value); });
+
+  $('cmsHeroImagenFile').addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if(!file) return;
+    $('cmsHeroImagenStatus').textContent = 'Subiendo…';
+    try{
+      const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '');
+      const path = 'index_hero_imagen-' + Date.now() + '-' + safeName;
+      const { error: upErr } = await window.CCAuth.client.storage.from('sitio-imagenes').upload(path, file, { upsert: true });
+      if(upErr) throw upErr;
+      const { data: pub } = window.CCAuth.client.storage.from('sitio-imagenes').getPublicUrl(path);
+      const url = pub && pub.publicUrl;
+      if(!url) throw new Error('Sin URL pública.');
+      cmsState.index_hero_imagen = url;
+      applyPreview('index_hero_imagen', 'imagen', url);
+      $('cmsHeroImagenStatus').textContent = 'Imagen lista — presiona "Publicar cambios" para que se vea en el sitio.';
+    }catch(err){
+      $('cmsHeroImagenStatus').textContent = 'No pudimos subir la imagen. Intenta de nuevo.';
+    }
+  });
+
+  $('cmsPublishBtn').addEventListener('click', async () => {
+    $('cmsErrorNote').hidden = true;
+    $('cmsPublishBtn').disabled = true;
+    const rows = CMS_FIELDS.map(f => ({
+      id: f.key,
+      pagina: f.pagina,
+      tipo: f.tipo,
+      etiqueta: f.etiqueta,
+      valor: cmsState[f.key] != null ? cmsState[f.key] : '',
+      updated_at: new Date().toISOString(),
+    })).concat(COLOR_FIELDS.map(f => ({
+      id: f.key,
+      pagina: f.pagina,
+      tipo: f.tipo,
+      etiqueta: f.etiqueta,
+      valor: colorState[f.key] != null ? colorState[f.key] : f.default,
+      updated_at: new Date().toISOString(),
+    })));
+    try{
+      const { error } = await window.CCAuth.client.from('contenido_sitio').upsert(rows, { onConflict: 'id' });
+      if(error) throw error;
+      flashSaved();
+    }catch(err){
+      $('cmsErrorNote').textContent = 'No pudimos publicar los cambios. Intenta de nuevo.';
+      $('cmsErrorNote').hidden = false;
+    }
+    $('cmsPublishBtn').disabled = false;
+  });
+
+  $('cmsColorResetBtn').addEventListener('click', () => {
+    COLOR_FIELDS.forEach(f => {
+      colorState[f.key] = f.default;
+      $('cmsColor-' + f.key).value = f.default;
+      $('cmsColorHex-' + f.key).textContent = f.default;
+      applyPreview(f.key, 'color', f.default);
+    });
+  });
+
+  $('adminRetryBtn').addEventListener('click', loadAdminData);
+  $('adminSignOutBtn').addEventListener('click', async ()=>{
+    await window.CCAuth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  renderColorGrid();
+
+  if(window.CCAuth){
+    window.CCAuth.onChange((user, ready)=>{
+      if(!ready) return;
+      if(!user){ showState('adminSignedOut'); return; }
+      // Chequeo rápido en el navegador solo para no mostrar una carga innecesaria —
+      // la función del servidor vuelve a verificar is_admin de todas formas.
+      const looksAdmin = !!(user.app_metadata && user.app_metadata.is_admin);
+      if(!looksAdmin){ showState('adminForbidden'); return; }
+      loadAdminData();
+    });
+  } else {
+    showState('adminSignedOut');
+  }
+})();
+</script>
+
+</body>
+</html>

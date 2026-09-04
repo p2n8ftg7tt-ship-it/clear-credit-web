@@ -1,0 +1,7 @@
+# Clear Credit
+# IMPORTANTE: reemplaza TU-DOMINIO-AQUI.com por tu dominio real antes de publicar.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://TU-DOMINIO-AQUI.com/sitemap.xml

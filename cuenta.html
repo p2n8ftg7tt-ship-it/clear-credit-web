@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cuenta | Clear Credit</title>
+<meta name="description" content="Tu plan, tu progreso en Clear Credit y la configuración de tu cuenta, todo en un solo lugar.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clear Credit">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Mi cuenta | Clear Credit">
+<meta property="og:description" content="Tu plan, tu progreso en Clear Credit y la configuración de tu cuenta, todo en un solo lugar.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/cuenta.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mi cuenta | Clear Credit">
+<meta name="twitter:description" content="Tu plan, tu progreso en Clear Credit y la configuración de tu cuenta, todo en un solo lugar.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/cuenta.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  #accountContent{padding:0}
+  /* ---- Mi cuenta: identidad + plan ---- */
+  .acct-identity{padding:56px 0 46px;background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+  .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-200px;top:-210px}
+  .acct-identity-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .acct-identity-left{display:flex;align-items:center;gap:20px}
+  .acct-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem 'Fraunces',serif;flex:none}
+  .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+  .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:'Fraunces',serif}
+  .acct-meta{margin:6px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
+  .acct-identity-right{display:flex;align-items:center;gap:12px}
+  .acct-plan-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .acct-plan-pill{background:var(--gold);color:var(--navy-deep);padding:7px 14px;border-radius:999px;font:800 .74rem 'Public Sans',sans-serif;letter-spacing:.02em}
+  .acct-plan-pill.is-empty{background:rgba(255,255,255,.14);color:#fff}
+  .acct-plan-pill.is-trial{background:rgba(90,190,214,.22);color:#bdeaf5}
+  .acct-plan-desc{color:rgba(255,255,255,.55);font-size:.78rem}
+
+  /* ---- Tu progreso ---- */
+  .acct-progress{padding:54px 0 10px}
+  .acct-section-lead{max-width:680px;margin-bottom:30px}
+  .acct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:980px){.acct-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.acct-grid{grid-template-columns:1fr}}
+  .acct-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:20px;box-shadow:0 6px 18px rgba(8,47,73,.05);display:flex;flex-direction:column;gap:10px}
+  .acct-card.is-good{border-left-color:var(--good)}
+  .acct-card.is-gold{border-left-color:var(--gold)}
+  .acct-card.is-teal{border-left-color:var(--teal)}
+  .acct-card.is-navy{border-left-color:var(--navy)}
+  .acct-card-kicker{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .acct-card h3{font-size:1.02rem;color:var(--navy-deep);font-family:'Fraunces',serif}
+  .acct-card p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.55;flex-grow:1}
+  .acct-card-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:700;font-size:.78rem;text-decoration:none}
+  .acct-card-link:hover{color:var(--gold)}
+  .acct-bar{height:5px;border-radius:99px;background:var(--paper-dim);overflow:hidden}
+  .acct-bar span{display:block;height:100%;background:var(--gold)}
+
+  .acct-nudge{display:flex;gap:18px;align-items:center;margin-top:26px;border-left:3px solid var(--gold);background:var(--paper-dim);padding:18px 22px}
+  .acct-nudge p{margin:0;color:rgba(12,37,56,.72);font-size:.88rem;flex-grow:1}
+  .acct-nudge[hidden]{display:none}
+
+  /* ---- Configuración ---- */
+  .acct-config{padding:54px 0 80px;background:var(--paper-dim)}
+  .acct-config-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.acct-config-grid{grid-template-columns:1fr}}
+  .acct-config-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .acct-config-card.is-navy{border-left-color:var(--navy)}
+  .acct-config-card.is-gold{border-left-color:var(--gold)}
+  .acct-config-card.is-good{border-left-color:var(--good)}
+  .acct-config-card h3{font-size:1.02rem;color:var(--navy-deep);margin-bottom:6px;font-family:'Fraunces',serif}
+  .acct-config-card>.acct-note{margin-bottom:10px}
+  .acct-field{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .acct-field:last-child{border-bottom:0;padding-bottom:0}
+  .acct-field-label{display:block;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+  .acct-field-value{font-size:.88rem;color:var(--ink);font-weight:600}
+  .acct-field-sub{font-size:.76rem;color:var(--muted);display:block;margin-top:2px}
+  .acct-link-btn{border:0;background:none;color:var(--teal);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;text-decoration:none}
+  .acct-link-btn:hover{color:var(--gold)}
+  .acct-link-btn:disabled{color:var(--muted);cursor:not-allowed}
+  .acct-note{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+  .acct-toggle{width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;flex:none;border:0;cursor:pointer;padding:0}
+  .acct-toggle::after{content:"";position:absolute;top:2.5px;left:2.5px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:.15s ease}
+  .acct-toggle.is-on{background:var(--gold)}
+  .acct-toggle.is-on::after{left:19.5px}
+  .acct-toggle:disabled{opacity:.5;cursor:not-allowed}
+  .acct-soon{font-size:.62rem;font-weight:800;color:var(--muted);background:var(--line);padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;flex:none}
+  .acct-saved-flash{font-size:.7rem;color:var(--good);font-weight:700;margin-left:8px;opacity:0;transition:opacity .2s ease}
+  .acct-saved-flash.is-visible{opacity:1}
+
+  .acct-danger{margin-top:16px;background:#fff;border:1px solid rgba(179,64,42,.3);border-left:4px solid var(--danger);border-radius:8px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .acct-danger h3{font-size:1rem;color:var(--danger);margin-bottom:4px;font-family:'Fraunces',serif}
+  .acct-danger p{margin:0;color:var(--muted);font-size:.82rem;max-width:520px}
+
+  /* ---- Modal reutilizable ---- */
+  .acct-modal-overlay{position:fixed;inset:0;background:rgba(20,14,8,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+  .acct-modal-overlay[hidden]{display:none}
+  .acct-modal{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);max-width:420px;width:100%;padding:26px}
+  .acct-modal h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--navy-deep);margin-bottom:6px}
+  .acct-modal-desc{color:var(--muted);font-size:.84rem;margin-bottom:16px;line-height:1.5}
+  .acct-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+</style>
+</head>
+<body data-cms-page="cuenta">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Clear Credit" class="brand-logo"><small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="formar-negocio.html">Formar negocio</a>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Tu cuenta</span>
+      <h1 id="accountGreeting">Todo tu progreso, en un solo lugar</h1>
+      <p>Tu plan, lo que has guardado en cada herramienta y la configuración de tu cuenta.</p>
+    </div>
+  </section>
+
+  <!-- Se muestra si no hay sesión activa -->
+  <section id="signedOutNotice" hidden>
+    <div class="wrap" style="max-width:560px;text-align:center;">
+      <p>Necesitas iniciar sesión para ver esta página.</p>
+      <a href="login.html" class="btn btn-gold">Iniciar sesión</a>
+    </div>
+  </section>
+
+  <!-- Contenido de la cuenta -->
+  <section id="accountContent" hidden>
+
+    <!-- IDENTIDAD + PLAN -->
+    <div class="acct-identity">
+      <div class="wrap acct-identity-inner">
+        <div class="acct-identity-left">
+          <div class="acct-avatar" id="acctAvatar">•</div>
+          <div>
+            <span class="acct-kicker">Tu cuenta</span>
+            <h2 class="acct-name" id="acctName">Tu cuenta</h2>
+            <p class="acct-meta" id="acctEmailMeta"></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <!-- Solo visible si tu cuenta tiene la marca de administrador — invisible para cualquier cliente normal. -->
+          <a href="admin.html" class="btn btn-outline-dark" id="acctAdminLink" style="border-color:rgba(255,255,255,.35);color:#fff;" hidden>Panel de administrador</a>
+          <button type="button" class="btn btn-outline-dark" id="signOutBtn" style="border-color:rgba(255,255,255,.35);color:#fff;">Cerrar sesión</button>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="acct-plan-row">
+          <span class="acct-plan-pill" id="acctPlanPill">Sin plan activo</span>
+          <span class="acct-plan-desc" id="acctPlanDesc">Elige un plan para acceso a cartas de disputa y validación de deuda.</span>
+          <a href="contacto.html" class="btn btn-outline-dark" style="margin-left:auto;border-color:var(--gold-light);color:var(--gold-light);">Gestionar plan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TU PROGRESO -->
+    <div class="acct-progress">
+      <div class="wrap">
+        <div class="acct-section-lead">
+          <span class="eyebrow-dark">Tu progreso</span>
+          <h2>Todo lo que has hecho en Clear Credit, en un solo lugar</h2>
+        </div>
+
+        <div class="acct-grid">
+
+          <article class="acct-card" id="acctCardCredito">
+            <span class="acct-card-kicker" id="acctCreditoKicker" style="color:var(--muted);">Crédito</span>
+            <h3 id="acctCreditoTitle">Cargando…</h3>
+            <p id="acctCreditoBody"></p>
+            <a href="#analysesList" class="acct-card-link" id="acctCreditoLink">Ver detalle →</a>
+          </article>
+
+          <article class="acct-card" id="acctCardCasa">
+            <span class="acct-card-kicker" id="acctCasaKicker" style="color:var(--muted);">Comprar casa</span>
+            <h3 id="acctCasaTitle">Cargando…</h3>
+            <p id="acctCasaBody"></p>
+            <a href="#mortgagesList" class="acct-card-link" id="acctCasaLink">Ver detalle →</a>
+          </article>
+
+          <article class="acct-card is-teal">
+            <span class="acct-card-kicker" style="color:var(--teal);">Cartas Claras</span>
+            <h3>Aún no has revisado ninguna carta</h3>
+            <p>Sube una carta de un cobrador o buró y te decimos, en lenguaje claro, qué significa y si es legítima.</p>
+            <a href="cartas-claras.html" class="acct-card-link">Revisar una carta →</a>
+          </article>
+
+          <article class="acct-card is-navy">
+            <span class="acct-card-kicker" style="color:var(--navy);">Comprar auto</span>
+            <h3>Aún no has calculado tu pago</h3>
+            <p>Estima el pago mensual de tu próximo auto según el precio, tu enganche y la tasa.</p>
+            <a href="comprar-auto.html" class="acct-card-link">Calcular pago →</a>
+          </article>
+
+        </div>
+
+        <div class="acct-nudge" id="acctNudge">
+          <p><strong style="color:var(--navy-deep);">¿Ya calculaste tu enganche?</strong> Todavía no has usado la calculadora hipotecaria — te ayuda a saber cuánto necesitas ahorrar antes de hablar con un prestamista.</p>
+          <a href="herramientas.html#calculadora-hipoteca" class="btn btn-gold" style="flex:none;">Calcular ahora</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL COMPLETO -->
+    <div class="wrap">
+      <div class="section-head" style="margin-top:64px;">
+        <span class="eyebrow-dark">Historial completo</span>
+        <h2>Todos tus análisis y cálculos guardados</h2>
+      </div>
+
+      <div class="section-head" style="margin-top:48px;">
+        <span class="eyebrow-dark">Analizador de reporte</span>
+        <h2>Tus análisis de crédito guardados</h2>
+        <p>Resúmenes de las evaluaciones que guardaste desde la sección Crédito. El documento original nunca se almacena.</p>
+      </div>
+      <div id="analysesList" class="saved-list">
+        <p class="cr-empty">Cargando…</p>
+      </div>
+      <a href="credito.html#analizar-reporte" class="btn btn-outline-dark" style="margin-top:18px;">Analizar un nuevo reporte</a>
+
+      <div class="section-head" style="margin-top:64px;">
+        <span class="eyebrow-dark">Calculadora hipotecaria</span>
+        <h2>Tus cálculos guardados</h2>
+        <p>Estimaciones de pago mensual que guardaste desde Herramientas.</p>
+      </div>
+      <div id="mortgagesList" class="saved-list">
+        <p class="cr-empty">Cargando…</p>
+      </div>
+      <a href="herramientas.html#calculadora-hipoteca" class="btn btn-outline-dark" style="margin-top:18px;">Hacer un nuevo cálculo</a>
+    </div>
+
+    <!-- CONFIGURACIÓN -->
+    <div class="acct-config" style="margin-top:70px;">
+      <div class="wrap">
+        <div class="acct-section-lead">
+          <span class="eyebrow-dark">Configuración</span>
+          <h2>Ajusta tu cuenta a tu manera</h2>
+        </div>
+
+        <div class="acct-config-grid">
+
+          <!-- Datos personales -->
+          <div class="acct-config-card">
+            <h3>Datos personales</h3>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Nombre</span><span class="acct-field-value" id="acctFieldName">—</span></div>
+              <button type="button" class="acct-link-btn" id="acctEditNameBtn">Editar →</button>
+            </div>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Teléfono</span><span class="acct-field-value" id="acctFieldPhone">—</span></div>
+              <a href="contacto.html" class="acct-link-btn">Contáctanos →</a>
+            </div>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Correo</span><span class="acct-field-value" id="acctFieldEmail">—</span></div>
+              <button type="button" class="acct-link-btn" id="acctEditEmailBtn">Editar →</button>
+            </div>
+          </div>
+
+          <!-- Seguridad -->
+          <div class="acct-config-card is-navy">
+            <h3>Seguridad</h3>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Contraseña</span><span class="acct-field-value">••••••••</span></div>
+              <button type="button" class="acct-link-btn" id="acctChangePasswordBtn">Cambiar →</button>
+            </div>
+            <div class="acct-field">
+              <div><span class="acct-field-value">Verificación en dos pasos</span><span class="acct-field-sub">Un código extra al iniciar sesión</span></div>
+              <span class="acct-soon">Próximamente</span>
+            </div>
+          </div>
+
+          <!-- Notificaciones -->
+          <div class="acct-config-card is-gold">
+            <h3>Notificaciones</h3>
+            <p class="acct-note">Guardamos tu preferencia para cuando activemos los avisos automáticos — por ahora seguimos revisando tu cuenta manualmente.</p>
+            <div class="acct-field">
+              <span class="acct-field-value">Alertas por correo</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleEmail" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashEmail">Guardado ✓</span></span>
+            </div>
+            <div class="acct-field">
+              <span class="acct-field-value">Alertas por SMS</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleSms" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashSms">Guardado ✓</span></span>
+            </div>
+            <div class="acct-field">
+              <span class="acct-field-value">Resumen semanal de tu crédito</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleWeekly" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashWeekly">Guardado ✓</span></span>
+            </div>
+          </div>
+
+          <!-- Plan y facturación -->
+          <div class="acct-config-card is-good">
+            <h3>Plan y facturación</h3>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Plan actual</span><span class="acct-field-value" id="acctFieldPlan">Sin plan activo</span></div>
+              <a href="contacto.html" class="acct-link-btn">Cambiar →</a>
+            </div>
+            <p class="acct-note" style="margin-top:10px;">Activamos y cambiamos los planes manualmente después de confirmar tu pago — escríbenos desde Contacto y lo resolvemos contigo.</p>
+          </div>
+
+        </div>
+
+        <!-- ZONA DE PELIGRO -->
+        <div class="acct-danger">
+          <div>
+            <h3>Eliminar mi cuenta</h3>
+            <p>Esto borra permanentemente tus análisis, cálculos y preferencias guardadas. Para cerrar también tu acceso, nuestro equipo lo confirma contigo por Contacto.</p>
+          </div>
+          <button type="button" class="btn" style="flex:none;border:1.5px solid var(--danger);background:transparent;color:var(--danger);" id="acctDeleteBtn">Eliminar cuenta</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- Modal reutilizable -->
+<div class="acct-modal-overlay" id="acctModalOverlay" hidden>
+  <div class="acct-modal" role="dialog" aria-modal="true" aria-labelledby="acctModalTitle">
+    <h3 id="acctModalTitle">Título</h3>
+    <p class="acct-modal-desc" id="acctModalDesc"></p>
+    <div class="form-group" id="acctModalFieldWrap">
+      <label for="acctModalInput" id="acctModalLabel">Campo</label>
+      <input id="acctModalInput" type="text">
+    </div>
+    <p class="auth-message" id="acctModalMessage" hidden></p>
+    <div class="acct-modal-actions">
+      <button type="button" class="btn btn-outline-dark" id="acctModalCancel">Cancelar</button>
+      <button type="button" class="btn btn-gold" id="acctModalSubmit">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Clear Credit</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+(function(){
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const money = value => value == null ? '—' : '$' + Number(value).toLocaleString('en-US', {maximumFractionDigits:0});
+  const dateFmt = value => { try { return new Date(value).toLocaleDateString('es-US', {year:'numeric',month:'short',day:'numeric'}); } catch(e){ return ''; } };
+  const monthYearFmt = value => { try { return new Date(value).toLocaleDateString('es-US', {year:'numeric',month:'long'}); } catch(e){ return ''; } };
+
+  const PLAN_LABELS = { basico:'Básico', estandar:'Estándar', premium:'Premium' };
+  const PLAN_DESCRIPTIONS = {
+    basico:'Incluye cartas de validación de deuda ilimitadas.',
+    estandar:'Incluye cartas de disputa y validación de deuda.',
+    premium:'Incluye todas las herramientas y prioridad de soporte.'
+  };
+
+  function analysisCard(row){
+    const tone = row.tono || 'stable';
+    return '<article class="saved-item saved-item-'+tone+'">' +
+      '<div class="saved-item-head">' +
+        '<div><strong>'+(row.salud || 'Análisis guardado')+'</strong><span class="saved-item-date">'+dateFmt(row.created_at)+'</span></div>' +
+        '<button type="button" class="saved-item-delete" data-table="analisis_credito" data-id="'+row.id+'" aria-label="Eliminar este análisis">Eliminar</button>' +
+      '</div>' +
+      '<p>'+(row.conclusion || '')+'</p>' +
+      '<div class="saved-item-meta">' +
+        '<span>Puntaje: '+(row.puntaje != null ? row.puntaje : 'No visible')+'</span>' +
+        '<span>Utilización: '+(row.utilizacion != null ? row.utilizacion+'%' : 'No visible')+'</span>' +
+        '<span>Negativos: '+(row.negativos != null ? row.negativos : '0')+'</span>' +
+        '<span>Positivos: '+(row.positivos != null ? row.positivos : '0')+'</span>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function mortgageCard(row){
+    return '<article class="saved-item">' +
+      '<div class="saved-item-head">' +
+        '<div><strong>'+money(row.pago_mensual)+' / mes</strong><span class="saved-item-date">'+dateFmt(row.created_at)+'</span></div>' +
+        '<button type="button" class="saved-item-delete" data-table="calculos_hipoteca" data-id="'+row.id+'" aria-label="Eliminar este cálculo">Eliminar</button>' +
+      '</div>' +
+      '<div class="saved-item-meta">' +
+        '<span>Precio: '+money(row.precio)+'</span>' +
+        '<span>Pronto inicial: '+(row.pronto_pct != null ? row.pronto_pct+'%' : '—')+'</span>' +
+        '<span>Tasa: '+(row.tasa != null ? row.tasa+'%' : '—')+'</span>' +
+        '<span>Plazo: '+(row.plazo != null ? row.plazo+' años' : '—')+'</span>' +
+        '<span>Monto financiado: '+money(row.monto_financiado)+'</span>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function renderCreditoCard(analyses){
+    const latest = analyses[0];
+    if(!latest){
+      $('acctCardCredito').className = 'acct-card';
+      $('acctCreditoKicker').textContent = 'Crédito';
+      $('acctCreditoKicker').style.color = 'var(--muted)';
+      $('acctCreditoTitle').textContent = 'Aún no has analizado tu reporte';
+      $('acctCreditoBody').textContent = 'Sube tu reporte de crédito y te explicamos, en español claro, qué significa cada parte.';
+      $('acctCreditoLink').textContent = 'Analizar ahora →';
+      $('acctCreditoLink').href = 'credito.html#analizar-reporte';
+      return;
+    }
+    $('acctCardCredito').className = 'acct-card is-good';
+    $('acctCreditoKicker').textContent = 'Crédito · ' + (latest.salud || 'Analizado');
+    $('acctCreditoKicker').style.color = 'var(--good)';
+    $('acctCreditoTitle').textContent = 'Tu último análisis';
+    $('acctCreditoBody').textContent = 'Analizado el ' + dateFmt(latest.created_at) + (latest.utilizacion != null ? '. Utilización ' + latest.utilizacion + '%.' : '.');
+    $('acctCreditoLink').textContent = 'Ver detalle →';
+    $('acctCreditoLink').href = '#analysesList';
+  }
+
+  function renderCasaCard(mortgages){
+    const latest = mortgages[0];
+    if(!latest){
+      $('acctCardCasa').className = 'acct-card';
+      $('acctCasaKicker').textContent = 'Comprar casa';
+      $('acctCasaKicker').style.color = 'var(--muted)';
+      $('acctCasaTitle').textContent = 'Empieza tu guía de compra';
+      $('acctCasaBody').textContent = 'Sigue los 8 pasos para comprar casa en EE.UU., pensados para quien empieza de cero.';
+      $('acctCasaLink').textContent = 'Ver los 8 pasos →';
+      $('acctCasaLink').href = 'comprar-casa.html#pasos';
+      return;
+    }
+    $('acctCardCasa').className = 'acct-card is-gold';
+    $('acctCasaKicker').textContent = 'Comprar casa';
+    $('acctCasaKicker').style.color = 'var(--gold)';
+    $('acctCasaTitle').textContent = money(latest.pago_mensual) + ' / mes estimado';
+    $('acctCasaBody').textContent = 'Casa de ' + money(latest.precio) + ', calculado el ' + dateFmt(latest.created_at) + '.';
+    $('acctCasaLink').textContent = 'Ver detalle →';
+    $('acctCasaLink').href = '#mortgagesList';
+  }
+
+  async function loadLists(){
+    let analyses = [];
+    let mortgages = [];
+    try{
+      analyses = await window.CCAuth.listAnalyses();
+      $('analysesList').innerHTML = analyses.length
+        ? analyses.map(analysisCard).join('')
+        : '<p class="cr-empty">Todavía no has guardado ningún análisis.</p>';
+    }catch(err){
+      $('analysesList').innerHTML = '<p class="cr-empty">No pudimos cargar tus análisis guardados.</p>';
+    }
+    try{
+      mortgages = await window.CCAuth.listMortgages();
+      $('mortgagesList').innerHTML = mortgages.length
+        ? mortgages.map(mortgageCard).join('')
+        : '<p class="cr-empty">Todavía no has guardado ningún cálculo hipotecario.</p>';
+    }catch(err){
+      $('mortgagesList').innerHTML = '<p class="cr-empty">No pudimos cargar tus cálculos guardados.</p>';
+    }
+    renderCreditoCard(analyses);
+    renderCasaCard(mortgages);
+    $('acctNudge').hidden = mortgages.length > 0;
+  }
+
+  function renderIdentity(user){
+    const name = user.user_metadata && user.user_metadata.full_name ? user.user_metadata.full_name : '';
+    const email = user.email || '';
+    const phone = user.phone || '';
+    const initialSource = name || email || phone || '?';
+    $('acctAvatar').textContent = initialSource.trim().charAt(0).toUpperCase() || '?';
+    $('acctName').textContent = name || (email || phone || 'Tu cuenta');
+    const metaParts = [];
+    if(email) metaParts.push(email);
+    if(user.created_at) metaParts.push('Cliente desde ' + monthYearFmt(user.created_at));
+    $('acctEmailMeta').textContent = metaParts.join(' · ');
+
+    const isAdmin = !!(user.app_metadata && user.app_metadata.is_admin);
+    $('acctAdminLink').hidden = !isAdmin;
+
+    $('acctFieldName').textContent = name || 'Agrega tu nombre';
+    $('acctEditNameBtn').textContent = name ? 'Editar →' : 'Agregar →';
+    $('acctFieldPhone').textContent = phone || '—';
+    $('acctFieldEmail').textContent = email || '—';
+
+    const plan = window.CCAuth.getPlan();
+    const trialDaysLeft = window.CCAuth.getTrialDaysLeft ? window.CCAuth.getTrialDaysLeft() : 0;
+    const planPill = $('acctPlanPill');
+    planPill.classList.remove('is-empty', 'is-trial');
+    if(plan && PLAN_LABELS[plan]){
+      planPill.textContent = 'Plan ' + PLAN_LABELS[plan];
+      $('acctPlanDesc').textContent = PLAN_DESCRIPTIONS[plan] || '';
+      $('acctFieldPlan').textContent = 'Plan ' + PLAN_LABELS[plan];
+    } else if(trialDaysLeft > 0){
+      planPill.textContent = 'Prueba gratis · ' + trialDaysLeft + (trialDaysLeft === 1 ? ' día' : ' días');
+      planPill.classList.add('is-trial');
+      $('acctPlanDesc').textContent = 'Tu prueba gratis de 7 días incluye cartas de disputa y validación de deuda. Elige un plan antes de que termine para no perder el acceso.';
+      $('acctFieldPlan').textContent = 'Prueba gratis (' + trialDaysLeft + (trialDaysLeft === 1 ? ' día restante)' : ' días restantes)');
+    } else {
+      planPill.textContent = 'Sin plan activo';
+      planPill.classList.add('is-empty');
+      $('acctPlanDesc').textContent = 'Elige un plan para acceso a cartas de disputa y validación de deuda.';
+      $('acctFieldPlan').textContent = 'Sin plan activo';
+    }
+  }
+
+  async function loadPreferences(){
+    try{
+      const prefs = await window.CCAuth.getPreferences();
+      $('acctToggleEmail').classList.toggle('is-on', !!prefs.alertas_correo);
+      $('acctToggleEmail').setAttribute('aria-pressed', !!prefs.alertas_correo);
+      $('acctToggleSms').classList.toggle('is-on', !!prefs.alertas_sms);
+      $('acctToggleSms').setAttribute('aria-pressed', !!prefs.alertas_sms);
+      $('acctToggleWeekly').classList.toggle('is-on', !!prefs.resumen_semanal);
+      $('acctToggleWeekly').setAttribute('aria-pressed', !!prefs.resumen_semanal);
+    }catch(err){
+      // Si la tabla de preferencias todavía no existe en Supabase, no rompemos la página.
+      console.warn('[Clear Credit] No pudimos cargar preferencias de notificación.', err);
+    }
+  }
+
+  function flash(id){
+    const el = $(id);
+    el.classList.add('is-visible');
+    setTimeout(()=> el.classList.remove('is-visible'), 1400);
+  }
+
+  async function toggleAndSave(btn, flashId){
+    const nowOn = !btn.classList.contains('is-on');
+    btn.classList.toggle('is-on', nowOn);
+    btn.setAttribute('aria-pressed', nowOn);
+    try{
+      await window.CCAuth.savePreferences({
+        alertas_correo: $('acctToggleEmail').classList.contains('is-on'),
+        alertas_sms: $('acctToggleSms').classList.contains('is-on'),
+        resumen_semanal: $('acctToggleWeekly').classList.contains('is-on'),
+      });
+      flash(flashId);
+    }catch(err){
+      btn.classList.toggle('is-on', !nowOn);
+      btn.setAttribute('aria-pressed', !nowOn);
+      alert('No pudimos guardar tu preferencia. Intenta de nuevo.');
+    }
+  }
+
+  $('acctToggleEmail').addEventListener('click', ()=> toggleAndSave($('acctToggleEmail'), 'acctFlashEmail'));
+  $('acctToggleSms').addEventListener('click', ()=> toggleAndSave($('acctToggleSms'), 'acctFlashSms'));
+  $('acctToggleWeekly').addEventListener('click', ()=> toggleAndSave($('acctToggleWeekly'), 'acctFlashWeekly'));
+
+  // ---- Modal genérico ----
+  const overlay = $('acctModalOverlay');
+  let modalHandler = null;
+
+  function openModal(opts){
+    $('acctModalTitle').textContent = opts.title;
+    $('acctModalDesc').textContent = opts.desc || '';
+    $('acctModalDesc').hidden = !opts.desc;
+    $('acctModalLabel').textContent = opts.label;
+    $('acctModalInput').type = opts.inputType || 'text';
+    $('acctModalInput').value = opts.value || '';
+    $('acctModalInput').placeholder = opts.placeholder || '';
+    $('acctModalMessage').hidden = true;
+    $('acctModalMessage').className = 'auth-message';
+    $('acctModalSubmit').textContent = opts.submitLabel || 'Guardar';
+    $('acctModalSubmit').disabled = false;
+    modalHandler = opts.onSubmit;
+    overlay.hidden = false;
+    document.body.classList.add('modal-open');
+    setTimeout(()=> $('acctModalInput').focus(), 30);
+  }
+
+  function closeModal(){
+    overlay.hidden = true;
+    document.body.classList.remove('modal-open');
+    modalHandler = null;
+  }
+
+  function showModalMessage(text, type){
+    const el = $('acctModalMessage');
+    el.textContent = text;
+    el.className = 'auth-message ' + (type || 'info');
+    el.hidden = false;
+  }
+
+  $('acctModalCancel').addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+
+  $('acctModalSubmit').addEventListener('click', async ()=>{
+    if(!modalHandler) return;
+    const value = $('acctModalInput').value.trim();
+    $('acctModalSubmit').disabled = true;
+    try{
+      await modalHandler(value, { showModalMessage, close: closeModal });
+    }catch(err){
+      showModalMessage(err && err.message ? err.message : 'Algo salió mal. Intenta de nuevo.', 'error');
+    }
+    $('acctModalSubmit').disabled = false;
+  });
+
+  $('acctEditNameBtn').addEventListener('click', ()=>{
+    const user = window.CCAuth.getUser();
+    const current = user && user.user_metadata ? user.user_metadata.full_name : '';
+    openModal({
+      title: 'Tu nombre',
+      label: 'Nombre completo',
+      value: current || '',
+      placeholder: 'Ej. Ana Martínez',
+      submitLabel: 'Guardar',
+      onSubmit: async (value, ctx)=>{
+        if(!value){ ctx.showModalMessage('Escribe tu nombre.', 'error'); return; }
+        await window.CCAuth.updateName(value);
+        $('acctFieldName').textContent = value;
+        $('acctName').textContent = value;
+        $('acctAvatar').textContent = value.trim().charAt(0).toUpperCase();
+        $('acctEditNameBtn').textContent = 'Editar →';
+        ctx.showModalMessage('Guardado ✓', 'success');
+        setTimeout(ctx.close, 900);
+      }
+    });
+  });
+
+  $('acctEditEmailBtn').addEventListener('click', ()=>{
+    const user = window.CCAuth.getUser();
+    openModal({
+      title: 'Cambiar tu correo',
+      desc: 'Te enviaremos un enlace de confirmación a tu correo nuevo. Tu correo actual sigue activo hasta que lo confirmes.',
+      label: 'Correo nuevo',
+      inputType: 'email',
+      value: '',
+      placeholder: user && user.email ? user.email : 'tu@correo.com',
+      submitLabel: 'Enviar confirmación',
+      onSubmit: async (value, ctx)=>{
+        if(!value || value.indexOf('@') === -1){ ctx.showModalMessage('Escribe un correo válido.', 'error'); return; }
+        await window.CCAuth.updateEmail(value);
+        ctx.showModalMessage('Revisa tu bandeja de entrada en ' + value + ' para confirmar el cambio.', 'success');
+      }
+    });
+  });
+
+  $('acctChangePasswordBtn').addEventListener('click', ()=>{
+    openModal({
+      title: 'Cambiar tu contraseña',
+      desc: 'Usa al menos 6 caracteres.',
+      label: 'Contraseña nueva',
+      inputType: 'password',
+      value: '',
+      placeholder: '••••••••',
+      submitLabel: 'Actualizar',
+      onSubmit: async (value, ctx)=>{
+        if(!value || value.length < 6){ ctx.showModalMessage('Debe tener al menos 6 caracteres.', 'error'); return; }
+        await window.CCAuth.updatePassword(value);
+        ctx.showModalMessage('Contraseña actualizada ✓', 'success');
+        setTimeout(ctx.close, 900);
+      }
+    });
+  });
+
+  $('acctDeleteBtn').addEventListener('click', ()=>{
+    openModal({
+      title: 'Eliminar mi cuenta',
+      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas. No se puede deshacer. Para cerrar también tu acceso, escribe "ELIMINAR" y luego contáctanos para confirmarlo.',
+      label: 'Escribe ELIMINAR para confirmar',
+      value: '',
+      placeholder: 'ELIMINAR',
+      submitLabel: 'Borrar mis datos',
+      onSubmit: async (value, ctx)=>{
+        if(value.trim().toUpperCase() !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+        await window.CCAuth.deleteAllMyData();
+        ctx.showModalMessage('Listo. Te llevamos a Contacto para cerrar tu acceso.', 'success');
+        setTimeout(async ()=>{
+          try{ await window.CCAuth.signOut(); }catch(e){}
+          window.location.href = 'contacto.html';
+        }, 1400);
+      }
+    });
+  });
+
+  document.addEventListener('click', async event=>{
+    const btn = event.target.closest('.saved-item-delete');
+    if(!btn) return;
+    btn.disabled = true;
+    try{
+      await window.CCAuth.deleteRecord(btn.dataset.table, btn.dataset.id);
+      btn.closest('.saved-item').remove();
+    }catch(err){
+      btn.disabled = false;
+      alert('No pudimos eliminar este elemento. Intenta de nuevo.');
+    }
+  });
+
+  $('signOutBtn').addEventListener('click', async ()=>{
+    await window.CCAuth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  if(window.CCAuth){
+    window.CCAuth.onChange((user, ready)=>{
+      if(!ready) return;
+      if(user){
+        $('signedOutNotice').hidden = true;
+        $('accountContent').hidden = false;
+        renderIdentity(user);
+        loadLists();
+        loadPreferences();
+      } else {
+        $('signedOutNotice').hidden = false;
+        $('accountContent').hidden = true;
+      }
+    });
+  } else {
+    $('signedOutNotice').hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>
