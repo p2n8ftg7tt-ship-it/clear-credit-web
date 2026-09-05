@@ -103,13 +103,28 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .map-section{padding-top:76px;background:var(--paper-dim)}
 .rate-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;align-items:stretch}
 .map-card,.rate-panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 38px rgba(42,33,24,.08)}
-.map-card{position:relative;min-height:540px;padding:20px;overflow-x:auto}
-#usMap{width:100%;min-width:720px;height:500px;display:grid}
-.us-tile-map{grid-template-columns:repeat(12,minmax(46px,1fr));grid-template-rows:repeat(8,minmax(48px,1fr));gap:6px;align-content:center;padding:8px}
-.state-tile{border:2px solid #fff;border-radius:8px;display:grid;place-items:center;min-width:0;color:var(--navy-deep);font-size:.72rem;font-weight:900;letter-spacing:.04em;cursor:pointer;box-shadow:0 2px 7px rgba(42,33,24,.16);transition:transform .14s ease,box-shadow .14s ease,filter .14s ease}
-.state-tile[data-dark="true"]{color:#fff}
-.state-tile:hover,.state-tile:focus{position:relative;z-index:2;transform:translateY(-3px) scale(1.05);box-shadow:0 9px 18px rgba(42,33,24,.24);filter:saturate(1.15);outline:3px solid var(--gold-light);outline-offset:1px}
-.state-tile small{display:block;font-size:.5rem;line-height:1;color:inherit;opacity:.75}
+.map-card{position:relative;min-height:340px;padding:20px;overflow:visible}
+/* Mapa geográfico con relieve: cada estado es una pieza flotante */
+#usMap{width:100%;display:block}
+.us-geo-svg{display:block;width:100%;height:auto;overflow:visible}
+.geo-state{cursor:pointer;outline:none}
+.geo-side{transition:opacity .16s ease}
+.geo-face{transition:transform .16s ease;transform-box:fill-box;transform-origin:center}
+.geo-top{stroke:rgba(255,255,255,.75);stroke-width:1.1;stroke-linejoin:round;transition:filter .16s ease}
+.geo-label{font:800 13px 'Public Sans',sans-serif;fill:#fff;stroke:rgba(20,40,55,.55);stroke-width:2.6;paint-order:stroke fill;text-anchor:middle;dominant-baseline:central;pointer-events:none;letter-spacing:.02em}
+.geo-label-out{fill:var(--navy-deep);stroke:#fff;stroke-width:3;text-anchor:start}
+.geo-leader{stroke:rgba(42,33,24,.4);stroke-width:1.2;fill:none;pointer-events:none}
+
+/* al pasar el cursor la cara se levanta y deja ver más grosor */
+.geo-state:hover .geo-face,.geo-state:focus-visible .geo-face{transform:translateY(-5px)}
+.geo-state:hover .geo-top,.geo-state:focus-visible .geo-top{filter:saturate(1.2) brightness(1.06)}
+.geo-state:focus-visible .geo-top{stroke:var(--gold);stroke-width:2.4}
+.geo-state.is-selected .geo-top{stroke:var(--gold);stroke-width:2.6}
+.geo-state.is-selected .geo-face{transform:translateY(-4px)}
+
+@media(prefers-reduced-motion:reduce){
+  .geo-face,.geo-top,.geo-side{transition:none}
+}
 .map-loading{position:absolute;inset:20px;display:grid;place-items:center;color:var(--muted);font-size:.8rem;text-align:center}
 .map-loading[hidden]{display:none}
 .map-tooltip{position:fixed;z-index:150;min-width:180px;padding:13px 15px;border-radius:9px;background:var(--navy-deep);color:#fff;box-shadow:var(--shadow);pointer-events:none;transform:translate(14px,-50%)}
@@ -184,7 +199,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
   .reader-card{position:static}
   .credit-factors{grid-template-columns:1fr 1fr}
   .profile-grid{grid-template-columns:1fr 1fr}
-  .map-card{min-height:430px}#usMap{height:390px}
+  .map-card{min-height:0}#usMap{height:auto}.geo-label{font-size:18px}
 }
 
 @media(max-width:720px){
@@ -199,7 +214,9 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 
 @media(max-width:480px){
   .wrap,.nav{width:min(100% - 26px,1160px)}
-  .page-hero h1{font-size:2.5rem}.credit-factors{grid-template-columns:1fr}.contract{padding:16px}.tila-box{grid-template-columns:1fr}.tila-field{border-right:0!important;border-bottom:1px solid var(--ink)!important}.tila-field:last-child{border-bottom:0!important}.contract-schedule{grid-template-columns:1fr}.map-card{padding:8px;min-height:345px}#usMap{height:330px}
+  .page-hero h1{font-size:2.5rem}.credit-factors{grid-template-columns:1fr}.contract{padding:16px}.tila-box{grid-template-columns:1fr}.tila-field{border-right:0!important;border-bottom:1px solid var(--ink)!important}.tila-field:last-child{border-bottom:0!important}.contract-schedule{grid-template-columns:1fr}.map-card{padding:8px;min-height:0}#usMap{height:auto}.geo-label{font-size:25px;stroke-width:5}.geo-leader{stroke-width:2.4}
+  /* en pantallas chicas el noreste se amontona: esos rótulos se ocultan y el estado se identifica al tocarlo */
+  .geo-state[data-abbr="VT"] .geo-label,.geo-state[data-abbr="NH"] .geo-label,.geo-state[data-abbr="MA"] .geo-label,.geo-state[data-abbr="CT"] .geo-label,.geo-state[data-abbr="MD"] .geo-label{display:none}
 }
 
 /* Kairon — asistente flotante (credit-coach.js) */
