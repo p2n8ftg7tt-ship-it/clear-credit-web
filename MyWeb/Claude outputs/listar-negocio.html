@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listar tu negocio en Google Maps y Apple Maps | Crédito Claro</title>
+<meta name="description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crédito Claro">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Listar tu negocio en Google Maps y Apple Maps | Crédito Claro">
+<meta property="og:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/listar-negocio.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Listar tu negocio en Google Maps y Apple Maps | Crédito Claro">
+<meta name="twitter:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/listar-negocio.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ln-steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:ln-step}
+  .ln-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .ln-step::before{counter-increment:ln-step;content:counter(ln-step);flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;display:grid;place-items:center;font-size:.9rem}
+  .ln-step h3{margin:0 0 4px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ln-step p{margin:0;color:var(--muted);font-size:.9rem}
+  .ln-includes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .ln-include-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+  .ln-include-card h3{margin:0 0 8px;font:700 .95rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ln-include-card p{margin:0;color:var(--muted);font-size:.87rem}
+  .ln-price-wrap{background:var(--navy-deep);border-radius:14px;padding:32px 28px;color:#fff;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+  .ln-price-tag{font:700 2.6rem 'Fraunces',serif;color:#fff}
+  .ln-price-tag small{display:block;font:700 .68rem 'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+  .ln-price-note{max-width:420px;font-size:.85rem;color:rgba(255,255,255,.75)}
+  .ln-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:10px}
+  .ln-trust{display:flex;gap:16px;align-items:flex-start;background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:8px;padding:18px 20px;margin-top:26px}
+  .ln-trust p{margin:0;color:var(--muted);font-size:.87rem}
+  .ln-trust strong{display:block;color:var(--navy-deep);font-size:.85rem;margin-bottom:3px}
+  .ln-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .ln-form-grid .form-group.full{grid-column:1/-1}
+  .ln-form-status{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
+  .ln-form-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
+  .ln-form-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .ln-form-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
+  @media(max-width:640px){
+    .ln-form-grid{grid-template-columns:1fr}
+    .ln-price-wrap{flex-direction:column;align-items:flex-start;text-align:left}
+  }
+</style>
+</head>
+<body data-cms-page="listar-negocio">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">Crédito Claro <small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html" class="active">Listar negocio</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Nuevo servicio</span>
+      <h1>¿Tu negocio no aparece en Google Maps ni en Apple Maps?</h1>
+      <p>Muchos negocios hispanos pierden clientes todos los días simplemente porque no aparecen cuando alguien busca &quot;cerca de mí&quot;. Yo me encargo de configurarlo por ti — tú me envías los datos, yo hago el trabajo técnico.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Cómo funciona</span>
+        <h2>Tres pasos, sin complicaciones</h2>
+        <p>No necesitas saber nada de tecnología. Solo llena el formulario y yo hago el resto.</p>
+      </div>
+      <ol class="ln-steps">
+        <li class="ln-step">
+          <div>
+            <h3>Me envías los datos de tu negocio</h3>
+            <p>Nombre, dirección, teléfono, horario y una breve descripción — todo por el formulario de esta página. Toma unos minutos.</p>
+          </div>
+        </li>
+        <li class="ln-step">
+          <div>
+            <h3>Yo creo y verifico tu perfil</h3>
+            <p>Configuro tu ficha de negocio en Google Business Profile y en Apple Business Connect con la información que me diste, lista para que aparezcas en los mapas y en las búsquedas.</p>
+          </div>
+        </li>
+        <li class="ln-step">
+          <div>
+            <h3>Te confirmo cuando esté listo</h3>
+            <p>Te escribo al correo o teléfono que me diste para confirmar que tu negocio ya está visible, y te explico cómo mantenerlo actualizado.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Qué incluye</span>
+        <h2>Presencia en los dos mapas más usados</h2>
+      </div>
+      <div class="ln-includes">
+        <div class="ln-include-card">
+          <h3>Google Maps / Google Business Profile</h3>
+          <p>Tu negocio visible en Google Maps y en la búsqueda de Google, con dirección, teléfono, horario y categoría correctos.</p>
+        </div>
+        <div class="ln-include-card">
+          <h3>Apple Maps / Apple Business Connect</h3>
+          <p>La misma información configurada en Apple Maps, para que también aparezcas a quienes buscan desde un iPhone.</p>
+        </div>
+        <div class="ln-include-card">
+          <h3>Sin costo de las plataformas</h3>
+          <p>Google Business Profile y Apple Business Connect son completamente gratis — el único costo es mi trabajo de configurarlo por ti.</p>
+        </div>
+      </div>
+
+      <div class="ln-trust">
+        <div>
+          <strong>Tu contraseña nunca me la das</strong>
+          <p>No necesito ni te voy a pedir la contraseña de tu cuenta de Gmail o de tu negocio. Si ya tienes un perfil creado, te pido que me agregues como &quot;administrador&quot; o &quot;gerente&quot; con tu correo — así puedo trabajar en tu ficha sin tener acceso a tu cuenta personal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="ln-price-wrap">
+        <div>
+          <span class="ln-launch-badge">Precio de lanzamiento</span>
+          <div class="ln-price-tag"><small>Los dos mapas, un solo pago</small>$49.99</div>
+        </div>
+        <p class="ln-price-note">Incluye configuración en Google Maps y Apple Maps. Este es un precio especial de lanzamiento — llena el formulario y te confirmo los detalles antes de empezar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap" style="max-width:720px;">
+      <div class="section-head">
+        <span class="eyebrow-dark">Empecemos</span>
+        <h2>Cuéntame de tu negocio</h2>
+        <p>Llena este formulario con la información de tu negocio. Te voy a escribir para confirmar el pago y los próximos pasos antes de hacer cualquier cambio en tus perfiles.</p>
+      </div>
+
+      <form id="lnForm" novalidate>
+        <div class="ln-form-grid">
+          <div class="form-group">
+            <label for="lnNombre">Tu nombre</label>
+            <input type="text" id="lnNombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="lnCorreo">Tu correo electrónico</label>
+            <input type="email" id="lnCorreo" name="correo" required>
+          </div>
+          <div class="form-group">
+            <label for="lnTelefono">Tu teléfono</label>
+            <input type="tel" id="lnTelefono" name="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="lnGmail">¿Ya tienes cuenta de Gmail para el negocio?</label>
+            <select id="lnGmail" name="tiene_gmail">
+              <option value="Sí">Sí</option>
+              <option value="No">No</option>
+              <option value="No estoy seguro">No estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="lnNegocio">Nombre del negocio</label>
+            <input type="text" id="lnNegocio" name="negocio" required>
+          </div>
+          <div class="form-group">
+            <label for="lnCategoria">Categoría del negocio</label>
+            <input type="text" id="lnCategoria" name="categoria" placeholder="Ej: restaurante, taller mecánico, salón" required>
+          </div>
+          <div class="form-group">
+            <label for="lnTelNegocio">Teléfono del negocio</label>
+            <input type="tel" id="lnTelNegocio" name="telefono_negocio" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnDireccion">Dirección completa del negocio</label>
+            <input type="text" id="lnDireccion" name="direccion" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnHorario">Horario de atención</label>
+            <input type="text" id="lnHorario" name="horario" placeholder="Ej: Lunes a viernes 9am–6pm, sábado 9am–2pm" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnWeb">Sitio web o redes sociales (opcional)</label>
+            <input type="text" id="lnWeb" name="web">
+          </div>
+          <div class="form-group full">
+            <label for="lnDescripcion">Breve descripción del negocio</label>
+            <textarea id="lnDescripcion" name="descripcion" rows="3" required></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="lnMensaje">Mensaje adicional (opcional)</label>
+            <textarea id="lnMensaje" name="mensaje" rows="3"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold" id="lnSubmitBtn">Enviar mis datos</button>
+        <p class="ln-form-status" id="lnFormStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Prefieres primero hacer una pregunta?</h2>
+      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente.</p>
+      <a href="contacto.html" class="btn btn-gold">Ir a contacto</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Crédito Claro</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<!-- Formulario compatible con Netlify Forms (igual que en contacto.html y credito.html):
+     al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
+     enviemos por JavaScript, sin necesitar backend propio. -->
+<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="lnStaticForm">
+  <input type="hidden" name="form-name" value="listar-negocio" />
+  <input name="bot-field" />
+  <input type="text" name="nombre" />
+  <input type="email" name="correo" />
+  <input type="tel" name="telefono" />
+  <input type="text" name="tiene_gmail" />
+  <input type="text" name="negocio" />
+  <input type="text" name="categoria" />
+  <input type="tel" name="telefono_negocio" />
+  <input type="text" name="direccion" />
+  <input type="text" name="horario" />
+  <input type="text" name="web" />
+  <input type="text" name="descripcion" />
+  <input type="text" name="mensaje" />
+</form>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+
+<script>
+(function(){
+  'use strict';
+  const form=document.getElementById('lnForm');
+  const status=document.getElementById('lnFormStatus');
+  const submitBtn=document.getElementById('lnSubmitBtn');
+  if(!form)return;
+
+  async function submitListing(data){
+    const body=new URLSearchParams(Object.assign({'form-name':'listar-negocio'},data)).toString();
+    const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    if(!response.ok)throw new Error('No se pudo enviar el formulario');
+  }
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    const data={
+      nombre:form.nombre.value.trim(),
+      correo:form.correo.value.trim(),
+      telefono:form.telefono.value.trim(),
+      tiene_gmail:form.tiene_gmail.value,
+      negocio:form.negocio.value.trim(),
+      categoria:form.categoria.value.trim(),
+      telefono_negocio:form.telefono_negocio.value.trim(),
+      direccion:form.direccion.value.trim(),
+      horario:form.horario.value.trim(),
+      web:form.web.value.trim(),
+      descripcion:form.descripcion.value.trim(),
+      mensaje:form.mensaje.value.trim()
+    };
+    submitBtn.disabled=true;
+    const original=submitBtn.textContent;
+    submitBtn.textContent='Enviando…';
+    status.className='ln-form-status is-loading';
+    status.textContent='Enviando tu información…';
+    try{
+      await submitListing(data);
+      status.className='ln-form-status is-success';
+      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(data.correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
+      form.reset();
+    }catch(error){
+      status.className='ln-form-status is-error';
+      status.textContent='No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento, o escríbeme desde la página de contacto.';
+    }finally{
+      submitBtn.disabled=false;
+      submitBtn.textContent=original;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

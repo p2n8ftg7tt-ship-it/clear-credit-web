@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crédito y analizador de reportes | Crédito Claro</title>
+<meta name="description" content="Aprende cómo funciona el crédito y analiza localmente reportes en PDF, Word o Excel para identificar fortalezas, señales negativas y una estrategia de acción.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crédito Claro">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Crédito y analizador de reportes | Crédito Claro">
+<meta property="og:description" content="Aprende cómo funciona el crédito y analiza localmente reportes en PDF, Word o Excel para identificar fortalezas, señales negativas y una estrategia de acción.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/credito.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Crédito y analizador de reportes | Crédito Claro">
+<meta name="twitter:description" content="Aprende cómo funciona el crédito y analiza localmente reportes en PDF, Word o Excel para identificar fortalezas, señales negativas y una estrategia de acción.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/credito.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== HERO ===== */
+  .cr-hero{overflow:hidden;}
+  .cr-hero::after{display:none}
+  .cr-hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;}
+  .cr-hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;animation:credHeroFade 48s infinite;}
+  .cr-hero-bg img:nth-child(1){animation-delay:0s;}
+  .cr-hero-bg img:nth-child(2){animation-delay:12s;}
+  .cr-hero-bg img:nth-child(3){animation-delay:24s;}
+  .cr-hero-bg img:nth-child(4){animation-delay:36s;}
+  .cr-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg, rgba(24,18,12,.93) 0%, rgba(24,18,12,.8) 38%, rgba(24,18,12,.5) 100%);}
+  @keyframes credHeroFade{
+    0%{opacity:0;}
+    4%{opacity:1;}
+    21%{opacity:1;}
+    25%{opacity:0;}
+    100%{opacity:0;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cr-hero-bg img{animation:none;opacity:0;}
+    .cr-hero-bg img:first-child{opacity:1;}
+  }
+
+  /* ===== ANALIZADOR DE DOCUMENTOS ===== */
+  .cr-analyzer-section{background:var(--navy-deep);color:var(--paper);position:relative;overflow:hidden;}
+  .cr-analyzer-section::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(246,242,232,.09);border-radius:50%;right:-250px;top:-250px;pointer-events:none;}
+  .cr-analyzer-section .section-head h2{color:#fff;}
+  .cr-analyzer-section .section-head p{color:rgba(246,242,232,.72);}
+  .cr-analyzer-section .eyebrow-dark{color:var(--gold-light);}
+  .cr-process{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,242,232,.13);border:1px solid rgba(246,242,232,.13);margin-bottom:28px;}
+  .cr-process-item{background:var(--navy-deep);padding:18px 20px;display:flex;align-items:center;gap:12px;}
+  .cr-process-item>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:'Fraunces',serif;font-weight:700;flex:none;}
+  .cr-process-item strong{display:block;color:#fff;font-size:.9rem;}
+  .cr-process-item small{display:block;color:rgba(246,242,232,.58);font-size:.76rem;}
+  .cr-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22);}
+  .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 14px;}
+  .cr-dropzone{min-height:310px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius);transition:.2s ease;cursor:pointer;}
+  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:#fffaf0;}
+  .cr-dropzone.has-file{min-height:120px;}
+  .cr-dropzone:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .cr-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .cr-upload-empty{display:flex;flex-direction:column;align-items:center;}
+  .cr-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:1.7rem;margin-bottom:18px;}
+  .cr-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px;}
+  .cr-upload-empty p{color:rgba(27,27,24,.62);margin:0 0 20px;}
+  .cr-upload-empty small{color:rgba(27,27,24,.5);margin-top:14px;font-size:.75rem;}
+  .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius);font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .cr-select-btn{background:var(--navy);color:#fff;padding:12px 20px;}
+  .cr-select-btn:hover,.cr-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2);}
+  .cr-file-ready{display:flex;align-items:center;text-align:left;width:min(100%,680px);}
+  .cr-file-ready[hidden],.cr-upload-empty[hidden],.cr-analyze-btn[hidden],.cr-progress[hidden],.cr-error[hidden],.cr-results[hidden]{display:none!important;}
+  .cr-file-type{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(184,134,59,.14);color:var(--gold);font-weight:700;font-size:.72rem;flex:none;}
+  .cr-file-copy{display:flex;flex:1;min-width:0;flex-direction:column;padding:0 16px;}
+  .cr-file-copy strong{color:var(--navy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cr-file-copy small{color:rgba(27,27,24,.58);}
+  .cr-change-btn{border:0;background:none;color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline;}
+  .cr-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:#fff;padding:15px 20px;margin-top:14px;}
+  .cr-analyze-btn span{font-size:1.2rem;}
+  .cr-progress{display:flex;align-items:center;gap:14px;background:rgba(47,111,98,.1);color:var(--navy);padding:15px 18px;margin-top:14px;border-radius:var(--radius);}
+  .cr-progress-copy{display:flex;flex-direction:column;}
+  .cr-progress-copy small{color:rgba(27,27,24,.58);}
+  .cr-spinner{width:30px;height:30px;border:3px solid rgba(47,111,98,.2);border-top-color:var(--teal);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
+  @keyframes cr-spin{to{transform:rotate(360deg)}}
+  .cr-error{display:flex;gap:12px;background:#fff0ed;border-left:4px solid #a34838;color:#7e3127;padding:15px 18px;margin-top:14px;}
+  .cr-error b{font-size:1.15rem;}
+  .cr-error p{margin:0;}
+  .cr-error strong{display:block;}
+  .cr-results{margin-top:42px;}
+  .cr-results-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:24px;}
+  .cr-results-head h3{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 8px;}
+  .cr-results-head p{color:rgba(246,242,232,.68);max-width:68ch;}
+  .cr-health{min-width:220px;border:1px solid rgba(246,242,232,.2);padding:14px 17px;display:flex;flex-direction:column;}
+  .cr-health small{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,242,232,.58);}
+  .cr-health strong{color:#fff;}
+  .cr-health.critical{border-color:#d67868;background:rgba(163,72,56,.2);}
+  .cr-health.attention{border-color:var(--gold-light);background:rgba(184,134,59,.15);}
+  .cr-health.stable{border-color:#70b69b;background:rgba(47,111,98,.18);}
+  .cr-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:rgba(246,242,232,.14);border:1px solid rgba(246,242,232,.14);margin-bottom:24px;}
+  .cr-kpi{background:var(--navy-deep);padding:18px;display:flex;flex-direction:column;}
+  .cr-kpi span{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(246,242,232,.5);}
+  .cr-kpi strong{font-family:'Fraunces',serif;font-size:1.55rem;color:#fff;}
+  .cr-kpi small{color:rgba(246,242,232,.55);}
+  .cr-groups{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+  .cr-group{background:var(--paper);color:var(--ink);padding:24px;border-radius:var(--radius);}
+  .cr-group-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:14px;}
+  .cr-group-head h4{font-size:1.2rem;margin:0;}
+  .cr-group-head span{font-size:.7rem;font-weight:700;border-radius:20px;padding:4px 9px;}
+  .cr-negative .cr-group-head h4{color:#8c4034;}
+  .cr-negative .cr-group-head span{background:rgba(163,72,56,.12);color:#8c4034;}
+  .cr-positive .cr-group-head h4{color:var(--teal);}
+  .cr-positive .cr-group-head span{background:rgba(47,111,98,.12);color:var(--teal);}
+  .cr-summary{background:var(--paper);color:var(--ink);padding:24px;border-radius:var(--radius);margin-bottom:22px;}
+  .cr-summary-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:16px;}
+  .cr-summary-head h4{font-size:1.2rem;margin:0;color:var(--navy);}
+  .cr-summary-head span{font-size:.7rem;font-weight:700;border-radius:20px;padding:4px 9px;background:rgba(47,111,98,.12);color:var(--teal);}
+  .cr-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
+  .cr-summary-item{display:flex;flex-direction:column;gap:3px;}
+  .cr-summary-item span{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(27,27,24,.5);}
+  .cr-summary-item strong{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy);word-break:break-word;}
+  .cr-summary-item small{color:rgba(27,27,24,.6);font-size:.78rem;}
+  .cr-summary-note{margin:16px 0 0;font-size:.76rem;color:rgba(27,27,24,.55);}
+  .cr-finding{border-bottom:1px solid var(--line);padding:14px 0;}
+  .cr-finding:last-child{border-bottom:0;padding-bottom:0;}
+  .cr-finding:first-child{padding-top:0;}
+  .cr-finding-title{display:flex;align-items:flex-start;gap:9px;}
+  .cr-finding-dot{width:9px;height:9px;border-radius:50%;margin-top:7px;flex:none;}
+  .cr-negative .cr-finding-dot{background:#a34838;}
+  .cr-positive .cr-finding-dot{background:var(--teal);}
+  .cr-finding strong{display:block;color:var(--navy);}
+  .cr-finding p{font-size:.88rem;color:rgba(27,27,24,.68);margin:5px 0 0 18px;}
+  .cr-evidence{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);font-weight:700;margin:7px 0 0 18px;}
+  .cr-empty{font-size:.9rem;color:rgba(27,27,24,.62);margin:0;}
+  .cr-strategy{margin-top:22px;background:var(--paper-dim);color:var(--ink);padding:28px;border-radius:var(--radius);}
+  .cr-strategy-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:20px;}
+  .cr-strategy h4{color:var(--navy);font-size:1.35rem;margin:0 0 5px;}
+  .cr-strategy-head p{color:rgba(27,27,24,.62);margin:0;}
+  .cr-strategy-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .cr-strategy-list li{display:grid;grid-template-columns:36px 1fr;gap:13px;background:#fff;padding:16px;border-left:3px solid var(--gold);}
+  .cr-step-number{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-weight:700;}
+  .cr-strategy-list strong{display:block;color:var(--navy);margin-bottom:2px;}
+  .cr-strategy-list p{font-size:.86rem;color:rgba(27,27,24,.68);margin:0;}
+  .cr-solution-toggle{margin-top:12px;border:0;border-radius:var(--radius);background:var(--teal);color:#fff;padding:10px 14px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-solution-toggle:hover{filter:brightness(.94);}
+  .cr-solution-toggle:focus-visible,.cr-solution-submit:focus-visible,.cr-copy-solution:focus-visible,.cr-google-address:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .cr-solution-form{margin-top:14px;padding:16px;background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius);}
+  .cr-solution-form[hidden],.cr-solution-result[hidden]{display:none!important;}
+  .cr-solution-form>p{margin:0 0 13px;color:rgba(27,27,24,.72);}
+  .cr-solution-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+  .cr-solution-field{display:flex;flex-direction:column;gap:5px;}
+  .cr-solution-field-wide{grid-column:1/-1;}
+  .cr-solution-field label{font-size:.75rem;font-weight:700;color:var(--navy);}
+  .cr-solution-field input,.cr-solution-field select{width:100%;border:1px solid rgba(11,39,72,.28);border-radius:4px;background:#fff;color:var(--ink);padding:10px 11px;font:inherit;box-sizing:border-box;}
+  .cr-solution-field input:focus,.cr-solution-field select:focus{border-color:var(--teal);outline:2px solid rgba(47,111,98,.18);}
+  .cr-detected-data{grid-column:1/-1;margin:0 0 3px;padding:13px;border:1px solid rgba(184,134,59,.35);background:#fffaf0;}
+  .cr-detected-data legend{padding:0 5px;color:var(--navy);font-size:.78rem;font-weight:800;}
+  .cr-detected-help{display:block;margin-bottom:9px;color:rgba(27,27,24,.65);font-size:.76rem;}
+  .cr-detected-option{display:flex;align-items:flex-start;gap:8px;margin:7px 0;color:rgba(27,27,24,.82);font-size:.82rem;}
+  .cr-detected-option input{width:auto;margin-top:2px;accent-color:var(--teal);}
+  .cr-detected-option b{color:var(--navy);}
+  .cr-form-alert{grid-column:1/-1;margin:0!important;padding:10px 12px;border-left:3px solid #a34838;background:#fff0ed;color:#7e3127!important;font-size:.8rem!important;}
+  .cr-form-alert[hidden]{display:none!important;}
+  .cr-address-tools{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .cr-google-address{border:1px solid rgba(11,39,72,.24);border-radius:var(--radius);background:#fff;color:var(--teal);padding:9px 12px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-address-tools small{color:rgba(27,27,24,.58);}
+  .cr-solution-submit,.cr-copy-solution{margin-top:13px;border:0;border-radius:var(--radius);padding:10px 14px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-solution-submit{background:var(--navy);color:#fff;}
+  .cr-copy-solution{background:var(--gold);color:#fff;}
+  .cr-solution-result{margin-top:14px;border-top:1px solid var(--line);padding-top:14px;}
+  .cr-solution-result strong{margin-bottom:7px;}
+  .cr-solution-letter{width:100%;min-height:210px;resize:vertical;box-sizing:border-box;border:1px solid rgba(11,39,72,.2);background:#fff;padding:12px;color:var(--ink);font:inherit;font-size:.82rem;line-height:1.5;}
+  .cr-result-actions{display:flex;justify-content:center;gap:10px;margin-top:20px;}
+  .cr-outline-btn{background:transparent;border:1px solid rgba(246,242,232,.38);color:#fff;padding:10px 16px;}
+  .cr-outline-btn:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  .cr-note{text-align:center;color:rgba(246,242,232,.48);font-size:.72rem;max-width:76ch;margin:16px auto 0;}
+  /* ===== REPORTE OFICIAL Y MODELOS DE PUNTAJE ===== */
+  .credit-report-callout{padding:34px 0;background:var(--navy-deep);color:#fff;}
+  .credit-report-row{display:flex;align-items:center;justify-content:space-between;gap:28px;}
+  .credit-report-row h2{color:#fff;font-size:clamp(1.35rem,2.5vw,1.9rem);margin:0 0 6px;}
+  .credit-report-row p{margin:0;color:rgba(255,255,255,.72);max-width:68ch;}
+  .official-report-btn{flex:none;display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:var(--radius);background:var(--gold);color:var(--navy-deep);text-decoration:none;font-weight:800;box-shadow:0 10px 25px rgba(0,0,0,.16);transition:transform .2s ease,box-shadow .2s ease;}
+  .official-report-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.22);}
+  .official-report-btn:focus-visible{outline:3px solid #fff;outline-offset:4px;}
+  .score-model-section{background:var(--paper-dim);}
+  .score-model-intro{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px;}
+  .score-model-card{padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;}
+  .score-model-card .model-name{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .score-model-card .model-tag{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-weight:800;}
+  .score-model-card h3{margin:0;color:var(--navy);font-size:1.25rem;}
+  .score-model-card p{margin:0;color:rgba(12,37,56,.72);font-size:.93rem;}
+  .score-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px;}
+  .score-product{padding:22px;border-left:4px solid var(--gold);background:#fff;box-shadow:0 1px 0 var(--line);}
+  .score-product-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:9px;}
+  .score-product h3{font-size:1.08rem;margin:0;color:var(--navy);}
+  .score-product .score-chip{flex:none;border-radius:999px;background:rgba(14,165,233,.12);color:var(--teal);padding:4px 9px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;}
+  .score-product p{font-size:.88rem;color:rgba(12,37,56,.7);margin:0;}
+  .score-product strong{color:var(--navy-deep);}
+  .score-caution{margin-top:20px;padding:16px 18px;border:1px solid rgba(14,165,233,.25);border-radius:var(--radius);background:rgba(14,165,233,.08);color:rgba(12,37,56,.8);font-size:.86rem;}
+  .decision-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;}
+  .decision-table{width:100%;border-collapse:collapse;min-width:820px;}
+  .decision-table th,.decision-table td{padding:17px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:.85rem;}
+  .decision-table th{background:var(--navy-deep);color:#fff;font-family:'Public Sans',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;}
+  .decision-table tbody tr:last-child td{border-bottom:0;}
+  .decision-table .tier{font-weight:800;color:var(--navy);white-space:nowrap;}
+  .decision-table .tier small{display:block;color:var(--teal);font-weight:700;margin-top:2px;}
+  .decision-table td{color:rgba(12,37,56,.76);}
+  .decision-table strong{color:var(--navy-deep);}
+  .example-note{margin-top:16px;color:rgba(12,37,56,.58);font-size:.78rem;}
+  .source-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .source-links a{color:var(--teal);font-size:.76rem;font-weight:700;}
+  /* ===== RANGOS DE PUNTAJE Y FACTORES (antes sin estilo) ===== */
+  .range-strip{display:flex;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:10px;}
+  .range-seg{flex:1 1 0;min-width:78px;padding:20px 14px;display:flex;flex-direction:column;gap:4px;color:#fff;position:relative;}
+  .range-seg::after{content:'';position:absolute;right:0;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.28);}
+  .range-seg:last-child::after{display:none;}
+  .range-seg .num{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;}
+  .range-seg .lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.92;}
+  .range-seg.r1{background:#a63a26;flex-grow:280;}
+  .range-seg.r2{background:#b8622f;flex-grow:90;}
+  .range-seg.r3{background:var(--gold);flex-grow:70;}
+  .range-seg.r4{background:#7f9a4c;flex-grow:60;}
+  .range-seg.r5{background:var(--good);flex-grow:51;}
+  .range-caption{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:30px;}
+  .factor-grid{display:grid;gap:16px;}
+  .factor-row{display:grid;grid-template-columns:48px 1fr;gap:14px 16px;align-items:center;}
+  .factor-pct{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--navy);text-align:right;}
+  .factor-track{grid-column:2;grid-row:1;height:10px;border-radius:999px;background:var(--line);overflow:hidden;}
+  .factor-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold-light),var(--gold));}
+  .factor-desc{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;}
+  .factor-desc strong{color:var(--navy-deep);font-size:.94rem;}
+  .factor-desc span{color:var(--muted);font-size:.84rem;}
+  .factor-row{grid-template-rows:auto auto;}
+  @media(max-width:600px){
+    .range-strip{flex-direction:column;}
+    .range-seg{flex-grow:0!important;min-width:0;flex-direction:row;justify-content:space-between;align-items:center;padding:13px 16px;}
+    .range-seg::after{right:14%;left:14%;top:auto;bottom:0;width:auto;height:1px;}
+    .factor-row{grid-template-columns:40px 1fr;}
+  }
+  /* ===== LOS TRES BURÓS (antes .timeline sin estilo) ===== */
+  .bureau-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px;}
+  .bureau-card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:var(--radius);padding:22px;}
+  .bureau-card .bureau-badge{width:40px;height:40px;border-radius:50%;background:var(--navy-deep);color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;margin-bottom:12px;}
+  .bureau-card h4{color:var(--navy);font-size:1.05rem;margin:0 0 8px;}
+  .bureau-card p{color:rgba(12,37,56,.7);font-size:.87rem;margin:0;}
+  .model-stats{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px solid var(--line);display:grid;gap:7px;}
+  .model-stats li{display:flex;justify-content:space-between;gap:12px;font-size:.8rem;}
+  .model-stats li span:first-child{color:var(--muted);}
+  .model-stats li span:last-child{color:var(--navy-deep);font-weight:700;text-align:right;}
+  @media(max-width:760px){
+    .bureau-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:760px){
+    .cr-process,.cr-kpis,.cr-summary-grid{grid-template-columns:1fr;}
+    .cr-process-item{padding:14px 16px;}
+    .cr-groups{grid-template-columns:1fr;}
+    .cr-results-head,.cr-strategy-head{align-items:stretch;flex-direction:column;}
+    .cr-health{min-width:0;}
+    .cr-dropzone{min-height:280px;padding:24px 16px;}
+    .cr-file-ready{align-items:flex-start;}
+    .cr-solution-fields{grid-template-columns:1fr;}
+    .credit-report-row{align-items:flex-start;flex-direction:column;}
+    .score-model-intro,.score-product-grid{grid-template-columns:1fr;}
+  }
+  @media print{
+    header,.page-hero,#basicos,#como-funciona,#burós,#modelos-prestamos,#impacto-puntaje,.credit-report-callout,.cr-upload-card,.cr-process,.cta-final,footer,.cr-result-actions{display:none!important;}
+    .cr-analyzer-section{background:#fff;color:#111;padding:0;}
+    .cr-analyzer-section .wrap{width:100%;max-width:none;}
+    .cr-analyzer-section .section-head{display:none;}
+    .cr-results{margin-top:0;}
+    .cr-results-head h3,.cr-health strong{color:#111;}
+    .cr-results-head p,.cr-health small,.cr-kpi span,.cr-kpi small{color:#555;}
+    .cr-health,.cr-kpis{border-color:#ccc;background:#fff;}
+    .cr-kpi{background:#fff;border:1px solid #ddd;}
+    .cr-kpi strong{color:#111;}
+    .cr-groups{grid-template-columns:1fr 1fr;}
+    .cr-summary{border:1px solid #ddd;}
+    .cr-summary-head span{color:#333;background:#eee;}
+  }
+</style>
+</head>
+<body data-cms-page="credito">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">Crédito Claro <small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html" class="active">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="formar-negocio.html">Formar negocio</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero cr-hero">
+    <div class="cr-hero-bg" aria-hidden="true">
+      <img src="images/credito-hero-1.jpg" alt="">
+      <img src="images/credito-hero-2.jpg" alt="">
+      <img src="images/credito-hero-3.jpg" alt="">
+      <img src="images/credito-hero-4.jpg" alt="">
+    </div>
+    <div class="wrap">
+      <span class="eyebrow">Fundamentos</span>
+      <h1>Todo lo que necesitas saber sobre tu crédito</h1>
+      <p>Desde qué significa la palabra "crédito" hasta quién decide tu puntaje — y una herramienta para analizar tu propio reporte, gratis y en privado. Sin tecnicismos innecesarios.</p>
+      <div class="hero-actions">
+        <a href="#analizar-reporte" class="btn btn-gold">Analizar mi reporte ahora</a>
+        <a href="#basicos" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">Aprender los fundamentos</a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="credit-report-callout" aria-labelledby="official-report-title">
+    <div class="wrap credit-report-row">
+      <div>
+        <h2 id="official-report-title">Primero, revisa tus tres reportes oficiales</h2>
+        <p>AnnualCreditReport.com es el sitio autorizado para solicitar gratuitamente tus reportes de Equifax, Experian y TransUnion. Revisar tu propio reporte no reduce tu puntaje.</p>
+      </div>
+      <a class="official-report-btn" href="https://www.annualcreditreport.com/index.action" target="_blank" rel="noopener noreferrer">Obtener mis reportes <span aria-hidden="true">↗</span></a>
+    </div>
+  </aside>
+
+  <!-- ANALIZADOR DE REPORTE -->
+  <section id="analizar-reporte" class="cr-analyzer-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Evaluación privada</span>
+        <h2>Sube tu reporte y conviértelo en un plan</h2>
+        <p>Acepta reportes en PDF, Word y Excel. El archivo se procesa en este navegador para identificar señales positivas, riesgos y una estrategia clara de corrección.</p>
+      </div>
+
+      <div class="cr-process" aria-label="Cómo funciona el análisis">
+        <div class="cr-process-item"><span>1</span><div><strong>Sube</strong><small>PDF, DOCX, XLSX, XLS o CSV</small></div></div>
+        <div class="cr-process-item"><span>2</span><div><strong>Evaluamos</strong><small>Puntaje, pagos, saldos y alertas</small></div></div>
+        <div class="cr-process-item"><span>3</span><div><strong>Resuelve</strong><small>Plan ordenado por prioridad</small></div></div>
+      </div>
+
+      <div class="cr-upload-card">
+        <div class="cr-privacy">● Procesamiento local · El documento no se almacena</div>
+        <div class="cr-dropzone" id="crDropzone" role="button" tabindex="0" aria-label="Seleccionar documento para evaluar">
+          <input id="crFileInput" class="cr-file-input" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
+          <div class="cr-upload-empty" id="crUploadEmpty">
+            <div class="cr-upload-icon">↑</div>
+            <h3>Arrastra tu documento aquí</h3>
+            <p>o selecciónalo desde tu computadora o teléfono</p>
+            <button class="cr-select-btn" id="crSelectButton" type="button">Seleccionar documento</button>
+            <small>PDF · Word (.docx) · Excel (.xlsx, .xls, .csv) · Máximo 20 MB</small>
+          </div>
+          <div class="cr-file-ready" id="crFileReady" hidden>
+            <span class="cr-file-type" id="crFileType">PDF</span>
+            <div class="cr-file-copy"><strong id="crFileName"></strong><small id="crFileMeta"></small></div>
+            <button class="cr-change-btn" id="crChangeButton" type="button">Cambiar</button>
+          </div>
+        </div>
+        <button class="cr-analyze-btn" id="crAnalyzeButton" type="button" hidden>Evaluar documento <span>→</span></button>
+        <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
+          <span class="cr-spinner"></span>
+          <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Extraemos únicamente el contenido necesario</small></div>
+        </div>
+        <div class="cr-error" id="crError" role="alert" hidden><b>!</b><p><strong>No pudimos completar la evaluación</strong><span id="crErrorText"></span></p></div>
+      </div>
+
+      <div class="cr-results" id="crResults" hidden>
+        <div class="cr-results-head">
+          <div><span class="eyebrow-dark">Resultado del documento</span><h3>Evaluación positiva y negativa</h3><p id="crConclusion"></p></div>
+          <div class="cr-health" id="crHealth"><small>Estado general</small><strong id="crHealthText"></strong><span id="crDocumentMeta"></span></div>
+        </div>
+
+        <div class="cr-kpis" id="crKpis"></div>
+
+        <article class="cr-summary">
+          <div class="cr-summary-head"><h4>Resumen del reporte</h4><span>Datos generales</span></div>
+          <div class="cr-summary-grid" id="crSummaryGrid"></div>
+          <p class="cr-summary-note">Extraído automáticamente del documento. Verifica cada dato contra el reporte original antes de usarlo.</p>
+        </article>
+
+        <div class="cr-groups">
+          <article class="cr-group cr-negative">
+            <div class="cr-group-head"><h4>Puntos negativos</h4><span id="crNegativeCount">0 detectados</span></div>
+            <div id="crNegativeList"></div>
+          </article>
+          <article class="cr-group cr-positive">
+            <div class="cr-group-head"><h4>Puntos positivos</h4><span id="crPositiveCount">0 detectados</span></div>
+            <div id="crPositiveList"></div>
+          </article>
+        </div>
+
+        <article class="cr-strategy">
+          <div class="cr-strategy-head"><div><span class="eyebrow-dark">Estrategia recomendada</span><h4>Qué hacer y en qué orden</h4></div><p>Ataca primero lo que puede causar más daño; protege al mismo tiempo lo que ya está funcionando.</p></div>
+          <ol class="cr-strategy-list" id="crStrategyList"></ol>
+        </article>
+
+        <div class="cr-result-actions">
+          <button class="cr-outline-btn" id="crResetButton" type="button">Analizar otro documento</button>
+          <button class="cr-outline-btn" id="crPrintButton" type="button">Imprimir evaluación</button>
+          <button class="cr-outline-btn" id="crSaveButton" type="button" hidden>Guardar en mi cuenta</button>
+        </div>
+        <p class="cr-note" id="crSaveHint" hidden><a href="login.html" style="color:var(--gold-light);text-decoration:underline;">Inicia sesión</a> para guardar este resultado en tu cuenta y consultarlo después.</p>
+        <p class="cr-note">Evaluación automática con fines educativos. Verifica cada dato en el documento original. No disputa información correcta ni sustituye asesoría financiera o legal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LO BÁSICO -->
+  <section id="basicos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Lo básico</span>
+        <h2>Antes de todo, dos preguntas</h2>
+        <p>Estas son las bases sobre las que se construye todo lo demás: tu puntaje, tus opciones de préstamo y hasta algunos trabajos o rentas.</p>
+      </div>
+
+      <div class="qa-list">
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué es el crédito?</h3>
+          <p>El crédito es la capacidad de pedir dinero prestado o recibir un producto o servicio ahora, con el compromiso de pagarlo después. Cuando usas una tarjeta, financias un carro o firmas un plan de pago, estás usando crédito. A cambio de esa confianza, los prestamistas evalúan qué tan probable es que pagues según lo acordado — y esa evaluación se resume, con el tiempo, en tu historial y tu puntaje de crédito.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué es el historial de crédito?</h3>
+          <p>Es el registro detallado de cómo has manejado el crédito a lo largo del tiempo: qué cuentas has abierto, cuánto debes, si pagas a tiempo o te atrasas, y cuánto tiempo llevas usando cada cuenta. Tres empresas privadas — los burós de crédito — recopilan esta información de tus prestamistas y la organizan en un reporte. Ese reporte es la materia prima que se usa para calcular tu puntaje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section id="como-funciona" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Cómo funciona</span>
+        <h2>Los rangos del puntaje FICO</h2>
+        <p>La escala principal en Estados Unidos va de 300 a 850. No es un examen que se aprueba una vez — es una fotografía que cambia cada mes según tu comportamiento reciente.</p>
+      </div>
+
+      <div class="range-strip">
+        <div class="range-seg r1"><span class="num">300–579</span><span class="lbl">Malo</span></div>
+        <div class="range-seg r2"><span class="num">580–669</span><span class="lbl">Regular</span></div>
+        <div class="range-seg r3"><span class="num">670–739</span><span class="lbl">Bueno</span></div>
+        <div class="range-seg r4"><span class="num">740–799</span><span class="lbl">Muy bueno</span></div>
+        <div class="range-seg r5"><span class="num">800–850</span><span class="lbl">Excepcional</span></div>
+      </div>
+      <div class="range-caption"><span>Menos opciones, tasas más altas</span><span>Más opciones, mejores condiciones</span></div>
+
+      <div class="section-head" style="margin-bottom:18px;">
+        <span class="eyebrow-dark">Qué pesa más</span>
+        <h3 style="font-family:'Fraunces',serif;color:var(--navy-deep);font-size:1.4rem;">De qué está hecho tu puntaje</h3>
+      </div>
+      <div class="factor-grid">
+        <div class="factor-row">
+          <span class="factor-pct">35%</span>
+          <div class="factor-track"><div class="factor-fill" style="width:100%"></div></div>
+          <div class="factor-desc"><strong>Historial de pagos</strong><span>Pagar a tiempo, mes tras mes</span></div>
+        </div>
+        <div class="factor-row">
+          <span class="factor-pct">30%</span>
+          <div class="factor-track"><div class="factor-fill" style="width:86%"></div></div>
+          <div class="factor-desc"><strong>Uso del crédito</strong><span>Saldo usado frente al límite disponible</span></div>
+        </div>
+        <div class="factor-row">
+          <span class="factor-pct">15%</span>
+          <div class="factor-track"><div class="factor-fill" style="width:43%"></div></div>
+          <div class="factor-desc"><strong>Antigüedad</strong><span>Cuánto tiempo llevas usando crédito</span></div>
+        </div>
+        <div class="factor-row">
+          <span class="factor-pct">10%</span>
+          <div class="factor-track"><div class="factor-fill" style="width:29%"></div></div>
+          <div class="factor-desc"><strong>Tipos de crédito</strong><span>Variedad: tarjetas, préstamos, etc.</span></div>
+        </div>
+        <div class="factor-row">
+          <span class="factor-pct">10%</span>
+          <div class="factor-track"><div class="factor-fill" style="width:29%"></div></div>
+          <div class="factor-desc"><strong>Crédito nuevo</strong><span>Cuántas solicitudes recientes tienes</span></div>
+        </div>
+      </div>
+      <div class="source-links" aria-label="Fuentes de esta sección">
+        <a href="https://www.myfico.com/credit-education/whats-in-my-credit-score" target="_blank" rel="noopener noreferrer">Factores oficiales de myFICO ↗</a>
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/" target="_blank" rel="noopener noreferrer">CFPB: reportes y puntajes ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BURÓS -->
+  <section id="burós">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Quién lo mide</span>
+        <h2>Los tres burós de crédito</h2>
+        <p>Tu información no vive en un solo lugar. Tres compañías privadas la recopilan de forma independiente — por eso tu reporte puede verse distinto en cada una.</p>
+      </div>
+
+      <div class="bureau-grid">
+        <article class="bureau-card">
+          <span class="bureau-badge">Eq</span>
+          <h4>Equifax</h4>
+          <p>Una de las tres agencias que recopila información de bancos, prestamistas y cobradores de deuda para armar tu reporte de crédito.</p>
+        </article>
+        <article class="bureau-card">
+          <span class="bureau-badge">Ex</span>
+          <h4>Experian</h4>
+          <p>Recibe datos de tus cuentas de crédito de forma independiente a las otras dos — no todos los prestamistas reportan a las tres.</p>
+        </article>
+        <article class="bureau-card">
+          <span class="bureau-badge">TU</span>
+          <h4>TransUnion</h4>
+          <p>La tercera agencia. Por eso conviene revisar los tres reportes, no solo uno: un error puede aparecer en una sola agencia.</p>
+        </article>
+      </div>
+      <p class="example-note">Ninguna es una agencia del gobierno — son empresas privadas. La sección siguiente explica cómo cada una traduce tu historial en un número.</p>
+    </div>
+  </section>
+
+  <section id="modelos-prestamos" class="score-model-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">No tienes un solo puntaje</span>
+        <h2>FICO y VantageScore según el crédito que solicitas</h2>
+        <p>El número que ves en una aplicación puede no ser el mismo que consulta el banco. El modelo, la versión, el buró y la fecha de cálculo pueden cambiar el resultado.</p>
+      </div>
+
+      <div class="score-model-intro">
+        <article class="score-model-card">
+          <div class="model-name"><span class="model-tag">F</span><h3>Familia FICO</h3></div>
+          <p>Desarrollado por Fair Isaac Corporation. Los puntajes FICO base normalmente usan una escala de 300 a 850. También existen versiones especializadas para autos y tarjetas que pueden ir de 250 a 900. Cada prestamista decide qué versión utiliza.</p>
+          <ul class="model-stats">
+            <li><span>Historial mínimo</span><span>Generalmente 6 meses</span></li>
+            <li><span>Dónde se usa más</span><span>Hipotecas y préstamos grandes</span></li>
+          </ul>
+        </article>
+        <article class="score-model-card">
+          <div class="model-name"><span class="model-tag">V</span><h3>Familia VantageScore</h3></div>
+          <p>Creado en conjunto por los tres burós. VantageScore 3.0 y 4.0 usan una escala de 300 a 850. VantageScore 4.0 considera tendencias y puede evaluar a algunas personas con expedientes más nuevos o limitados.</p>
+          <ul class="model-stats">
+            <li><span>Historial mínimo</span><span>Puede generar con menos historial</span></li>
+            <li><span>Dónde se usa más</span><span>Apps de monitoreo gratuito</span></li>
+          </ul>
+        </article>
+      </div>
+      <p class="example-note">En ambos casos, lo que más mejora tu puntaje es lo mismo: pagos puntuales y saldos bajos.</p>
+
+      <div class="score-product-grid">
+        <article class="score-product">
+          <div class="score-product-top"><h3>Préstamo hipotecario</h3><span class="score-chip">Casa</span></div>
+          <p><strong>Qué podrían consultar:</strong> tradicionalmente, puntajes hipotecarios FICO 2 de Experian, FICO 5 de Equifax y FICO 4 de TransUnion, a menudo usando el puntaje medio. El mercado hipotecario está incorporando también VantageScore 4.0 y FICO 10T según el programa y el prestamista. Revisan además ingresos, deudas, activos y pronto inicial.</p>
+        </article>
+        <article class="score-product">
+          <div class="score-product-top"><h3>Financiamiento de auto</h3><span class="score-chip">Auto</span></div>
+          <p><strong>Qué podrían consultar:</strong> FICO Auto Score 8, 9 u otra versión especializada; algunos prestamistas usan un FICO base o VantageScore. También pesan el ingreso, las deudas, el pronto inicial, el plazo y el vehículo.</p>
+        </article>
+        <article class="score-product">
+          <div class="score-product-top"><h3>Tarjetas de crédito</h3><span class="score-chip">Tarjeta</span></div>
+          <p><strong>Qué podrían consultar:</strong> FICO Bankcard Score 8 o 9, FICO Score 8 o 9, o VantageScore. El emisor puede decidir aprobación, límite, APR, depósito de seguridad y recompensas usando su propio modelo interno además del puntaje.</p>
+        </article>
+        <article class="score-product">
+          <div class="score-product-top"><h3>Préstamo personal</h3><span class="score-chip">Personal</span></div>
+          <p><strong>Qué podrían consultar:</strong> con frecuencia un FICO base —como FICO Score 8— o VantageScore, junto con ingreso, relación deuda-ingreso, empleo, monto y plazo. Un puntaje bajo puede significar tasa mayor, menor monto o garantía/cosolicitante.</p>
+        </article>
+        <article class="score-product">
+          <div class="score-product-top"><h3>Crédito estudiantil</h3><span class="score-chip">Estudios</span></div>
+          <p><strong>Préstamos federales:</strong> la mayoría no exige revisión de crédito; Direct PLUS es una excepción. <strong>Préstamos privados:</strong> normalmente revisan el historial y algún modelo de puntaje, y pueden requerir cosolicitante o cobrar una tasa mayor.</p>
+        </article>
+        <article class="score-product">
+          <div class="score-product-top"><h3>Lo que decide el banco</h3><span class="score-chip">Decisión total</span></div>
+          <p><strong>El puntaje no decide solo:</strong> el banco puede considerar el reporte completo, pagos recientes, utilización, cobranzas, ingreso, deudas, reservas, garantía, relación previa y reglas internas. Dos bancos pueden ofrecer resultados diferentes al mismo solicitante.</p>
+        </article>
+      </div>
+
+      <div class="score-caution"><strong>Actualización hipotecaria:</strong> la adopción de modelos nuevos está en transición. Pregunta al prestamista qué modelo, versión y buró consultará antes de presentar la solicitud.</div>
+      <div class="source-links" aria-label="Fuentes de esta sección">
+        <a href="https://www.myfico.com/credit-education/credit-scores/fico-score-versions" target="_blank" rel="noopener noreferrer">Versiones FICO ↗</a>
+        <a href="https://www.vantagescore.com/consumers/blog/the-complete-guide-to-your-vantagescore" target="_blank" rel="noopener noreferrer">Rangos VantageScore ↗</a>
+        <a href="https://www.fhfa.gov/policy/credit-scores" target="_blank" rel="noopener noreferrer">Modelos hipotecarios FHFA ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="impacto-puntaje">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Ejemplos educativos</span>
+        <h2>Cómo puede influir la categoría de crédito</h2>
+        <p>Estos escenarios muestran tendencias generales, no promesas de aprobación. Cada banco fija sus propios límites y revisa el perfil completo.</p>
+      </div>
+
+      <div class="decision-table-wrap">
+        <table class="decision-table">
+          <thead><tr><th>Categoría orientativa</th><th>Casa</th><th>Auto</th><th>Tarjetas / personal</th><th>Estudiantil privado</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="tier">Excelente<small>FICO 800–850</small></td>
+              <td><strong>Más opciones.</strong> Puede competir por tasas bajas si ingreso, deudas y pronto también son sólidos.</td>
+              <td><strong>Mayor poder de negociación.</strong> Más probabilidad de APR competitivo y plazos favorables.</td>
+              <td><strong>Productos premium.</strong> Límites mayores y mejores APR/recompensas, sujetos a ingreso.</td>
+              <td><strong>Mejores condiciones posibles.</strong> Puede reducir la necesidad de cosolicitante.</td>
+            </tr>
+            <tr>
+              <td class="tier">Muy bueno<small>FICO 740–799</small></td>
+              <td><strong>Perfil fuerte.</strong> Suele tener buenas opciones convencionales y tasas competitivas.</td>
+              <td><strong>Buena aprobación potencial.</strong> El APR puede acercarse al nivel preferente.</td>
+              <td><strong>Amplia selección.</strong> Buenas tarjetas y préstamos, aunque no siempre la oferta mínima anunciada.</td>
+              <td><strong>Condiciones favorables.</strong> El ingreso y el historial siguen determinando monto y tasa.</td>
+            </tr>
+            <tr>
+              <td class="tier">Bueno<small>FICO 670–739</small></td>
+              <td><strong>Posible aprobación.</strong> Puede pagar una tasa algo mayor y necesitar comparar más ofertas.</td>
+              <td><strong>Financiamiento disponible.</strong> Tasa intermedia; un pronto mayor puede mejorar la propuesta.</td>
+              <td><strong>Opciones estándar.</strong> Límites iniciales moderados o APR más alto.</td>
+              <td><strong>Posible sin cosolicitante.</strong> Dependerá bastante del ingreso y deudas.</td>
+            </tr>
+            <tr>
+              <td class="tier">Regular<small>FICO 580–669</small></td>
+              <td><strong>Menos opciones.</strong> Tasas mayores; podría explorar programas FHA/VA/USDA si reúne requisitos.</td>
+              <td><strong>Costo elevado.</strong> APR mayor, pronto más alto o plazo/monto limitado.</td>
+              <td><strong>Productos limitados.</strong> Tarjeta asegurada, menor límite o préstamo con tasa alta.</td>
+              <td><strong>Cosolicitante probable.</strong> El prestamista puede reducir el monto o aumentar el APR.</td>
+            </tr>
+            <tr>
+              <td class="tier">Malo<small>FICO 300–579</small></td>
+              <td><strong>Aprobación difícil.</strong> Puede convenir corregir errores y fortalecer el perfil antes de solicitar.</td>
+              <td><strong>Riesgo de términos costosos.</strong> Posible denegación, APR muy alto o pronto considerable.</td>
+              <td><strong>Muy pocas opciones.</strong> Productos asegurados o denegación; cuidado con préstamos abusivos.</td>
+              <td><strong>Crédito privado difícil.</strong> Podría requerir un cosolicitante fuerte; prioriza ayuda federal primero.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="example-note">Los rangos mostrados son categorías FICO comunes. VantageScore 4.0 agrupa 781–850 como superprime, 661–780 prime, 601–660 near prime y 300–600 subprime. No son requisitos universales de aprobación.</p>
+      <div class="source-links" aria-label="Fuentes sobre decisiones de crédito">
+        <a href="https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/understand-your-credit-score/" target="_blank" rel="noopener noreferrer">CFPB: entender el puntaje ↗</a>
+        <a href="https://www.consumerfinance.gov/owning-a-home/prepare/get-your-money-situation-in-order/" target="_blank" rel="noopener noreferrer">CFPB: puntaje e hipoteca ↗</a>
+        <a href="https://studentaid.gov/articles/evaluating-financial-aid-offers/" target="_blank" rel="noopener noreferrer">Federal Student Aid ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO DE DISPUTA ANTE UN BURÓ (FCRA) -->
+  <section id="proceso-disputa-fcra" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Ley federal · Fair Credit Reporting Act</span>
+        <h2>Qué pasa después de que envías una disputa a un buró de crédito</h2>
+        <p>Esto es distinto a lo de los cobradores: aquí hablamos de tu derecho a disputar información con el buró de crédito mismo (Equifax, Experian o TransUnion) — el que decide qué aparece en tu reporte, sin importar quién la reportó.</p>
+      </div>
+
+      <div class="qa-list">
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué pasa después de que envío una disputa a un buró de crédito?</h3>
+          <p>Por ley, el buró debe investigar de forma gratuita — no puede cobrarte por eso. Tiene que revisar la información que disputas, considerar cualquier evidencia que le envíes, y decidir si la mantiene tal cual, la corrige o la elimina de tu archivo.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Cuánto tiempo tiene el buró para investigar mi disputa?</h3>
+          <p>Por regla general, 30 días calendario desde que reciben tu disputa (45 días si la envías poco después de pedir tu reporte anual gratis). Ese plazo puede extenderse 15 días más si tú les mandas información adicional relevante durante esos 30 días. Dentro de los primeros 5 días hábiles, el buró también debe avisarle a quien reportó esa información — tu acreedor, el cobrador, etc. — que la estás disputando.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué debe hacer el buró si no puede confirmar que la información es correcta?</h3>
+          <p>Si al terminar la investigación la información resulta incorrecta, incompleta, o simplemente no se puede verificar, la ley los obliga a eliminarla o corregirla de tu archivo y a avisarle a quien la reportó. Dentro de los 5 días hábiles siguientes, deben enviarte por escrito los resultados y una copia gratuita de tu reporte ya actualizado.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué pasa si no estoy de acuerdo con el resultado de la investigación?</h3>
+          <p>Si el buró decide mantener la información y tú sigues en desacuerdo, tienes derecho a agregar una breve declaración —hasta 100 palabras— explicando tu versión. Esa declaración debe aparecer junto a esa cuenta cada vez que alguien más pida tu reporte de ahí en adelante.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Puedo pedir que le avisen a quien ya vio mi reporte con el error?</h3>
+          <p>Sí. Tienes derecho a pedirle al buró que notifique la corrección (o la eliminación) a cualquier persona o empresa a la que le hayan entregado tu reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué hago si el buró no cumple el plazo o no corrige nada que claramente está mal?</h3>
+          <p>Primero, guarda todo por escrito: la disputa que enviaste, la fecha, y cualquier respuesta. Puedes presentar una queja gratuita ante el CFPB o la FTC, que supervisan a los burós de crédito. La ley también te permite demandar: si el incumplimiento fue negligente, puedes recuperar tu daño real más los costos legales; si fue intencional, puedes recuperar entre $100 y $1,000 aunque no pruebes un daño específico, más daños punitivos y honorarios de abogado. Tienes hasta 2 años desde que te enteraste del problema, o 5 años desde que ocurrió — lo que pase primero.</p>
+        </div>
+      </div>
+
+      <p class="example-note" style="margin-top:18px;">Resumen educativo de la Fair Credit Reporting Act, en especial la § 611 (15 U.S.C. § 1681i) sobre el proceso de reinvestigación, y las §§ 616–618 (15 U.S.C. §§ 1681n–1681p) sobre responsabilidad civil y plazos para demandar. No es asesoría legal; si tu disputa involucra montos altos o el buró se niega a corregir algo evidente, considera consultar a un abogado de consumidores o a un programa de asistencia legal gratuita en tu estado.</p>
+      <div class="source-links" aria-label="Fuentes de esta sección">
+        <a href="https://www.ftc.gov/legal-library/browse/statutes/fair-credit-reporting-act" target="_blank" rel="noopener noreferrer">Texto completo de la FCRA (FTC) ↗</a>
+        <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/" target="_blank" rel="noopener noreferrer">CFPB: cómo disputar un error en tu reporte ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERECHOS FRENTE A COBRADORES (FDCPA) -->
+  <section id="derechos-cobradores" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Ley federal · Fair Debt Collection Practices Act</span>
+        <h2>Tus derechos frente a cobradores de deuda</h2>
+        <p>Si tu reporte muestra una cuenta en cobranza, estas son las reglas que la ley federal impone a quien intenta cobrarte — no a tu acreedor original en la mayoría de los casos, sino específicamente a las agencias de cobranza.</p>
+      </div>
+
+      <div class="qa-list">
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué es un "cobrador de deuda" y en qué se diferencia de mi acreedor original?</h3>
+          <p>Un cobrador de deuda es una empresa cuyo negocio principal es cobrar deudas de otros — por ejemplo, una agencia que compró tu deuda o que la maneja por cuenta del acreedor original. Tu banco o la tienda donde abriste una cuenta, cobrando bajo su propio nombre, generalmente no cuenta como "cobrador de deuda" bajo esta ley — así que estas protecciones aplican con más fuerza cuando es una agencia externa la que te contacta.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Puedo exigir prueba de que la deuda es mía antes de pagar?</h3>
+          <p>Sí. Dentro de los primeros 5 días de contactarte, el cobrador debe enviarte por escrito el monto, el nombre del acreedor original y una explicación de tu derecho a disputar. Si les respondes por escrito dentro de 30 días diciendo que disputas la deuda, están obligados a detener el cobro hasta que te envíen prueba de que es válida.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Puedo pedir que dejen de contactarme?</h3>
+          <p>Sí — por escrito, en cualquier momento. Una vez que reciben tu carta, solo pueden contactarte una vez más: para confirmar que dejarán de hacerlo, o para avisarte qué acción legal específica van a tomar. No pueden seguir llamándote después de eso.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué NO pueden hacer legalmente?</h3>
+          <p>No pueden amenazarte con violencia, usar lenguaje obsceno, llamarte repetidamente con la intención de acosarte, ni mentir sobre el monto o el estatus legal de la deuda. Tampoco pueden decir que te arrestarán o embargarán tu sueldo si no tienen intención real (o autoridad legal) de hacerlo, ni hacerse pasar por abogados o por una agencia del gobierno.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>A qué horas pueden llamarme, y pueden llamarme al trabajo?</h3>
+          <p>Solo pueden contactarte entre las 8:00 a.m. y las 9:00 p.m., hora de tu ubicación. Si el cobrador sabe (o debería saber) que tu empleador prohíbe este tipo de llamadas en el trabajo, no puede contactarte ahí.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">¿</span>Qué puedo hacer si un cobrador viola estas reglas?</h3>
+          <p>Tienes un año desde que ocurrió la violación para demandar. Puedes recuperar el daño real que sufriste, hasta $1,000 adicionales aunque no puedas probar un daño específico, y que te paguen los costos y honorarios de tu abogado si ganas. También puedes reportar la conducta a la FTC o al CFPB.</p>
+        </div>
+      </div>
+
+      <p class="example-note" style="margin-top:18px;">Resumen educativo de la Fair Debt Collection Practices Act (15 U.S.C. §§ 1692–1692p). No es asesoría legal; si estás enfrentando cobranza activa o crees que violaron tus derechos, considera consultar a un abogado de consumidores o a un programa de asistencia legal gratuita en tu estado.</p>
+      <div class="source-links" aria-label="Fuentes de esta sección">
+        <a href="https://www.ftc.gov/legal-library/browse/rules/fair-debt-collection-practices-act-text" target="_blank" rel="noopener noreferrer">Texto completo de la FDCPA (FTC) ↗</a>
+        <a href="https://www.consumerfinance.gov/consumer-tools/debt-collection/" target="_blank" rel="noopener noreferrer">CFPB: cobranza de deudas ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Listo para el siguiente paso?</h2>
+      <p>Ahora que conoces las bases, mira cómo tu crédito se conecta con la compra de una casa o un auto.</p>
+      <a href="index.html" class="btn btn-gold">Ver casa y auto</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Crédito Claro</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.12.1/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+
+<script>
+(function(){
+  'use strict';
+
+  const MAX_SIZE=20*1024*1024;
+  const allowed=['pdf','doc','docx','xls','xlsx','csv'];
+  const $=id=>document.getElementById(id);
+  const input=$('crFileInput'),dropzone=$('crDropzone'),empty=$('crUploadEmpty'),ready=$('crFileReady');
+  const analyzeButton=$('crAnalyzeButton'),progress=$('crProgress'),errorBox=$('crError'),results=$('crResults');
+  let selectedFile=null;
+
+  const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const normalize=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ');
+  const normalizeMultiline=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\r\n?/g,'\n').replace(/[^\S\n]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+  const count=(text,regex)=>(text.match(regex)||[]).length;
+  const bytes=size=>size<1048576?Math.max(1,Math.round(size/1024))+' KB':(size/1048576).toFixed(1)+' MB';
+  const firstNumber=(text,patterns)=>{for(const pattern of patterns){const match=text.match(pattern);if(match&&match[1]!==undefined)return Number(match[1].replace(/,/g,''));}return null;};
+  const money=value=>value===null?'No visible':'$'+Number(value).toLocaleString('en-US',{maximumFractionDigits:0});
+  const CREDIT_BUREAUS={
+    equifax:{key:'equifax',name:'Equifax',recipient:'Equifax Information Services LLC',address:['P.O. Box 740256','Atlanta, GA 30374']},
+    experian:{key:'experian',name:'Experian',recipient:'Experian — Dispute by Mail',address:['P.O. Box 4500','Allen, TX 75013']},
+    transunion:{key:'transunion',name:'TransUnion',recipient:'TransUnion Consumer Solutions',address:['P.O. Box 2000','Chester, PA 19016-2000']},
+    unknown:{key:'unknown',name:'No identificado automáticamente',recipient:'',address:[]}
+  };
+  const US_STATES=[
+    ['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['FL','Florida'],['GA','Georgia'],['HI','Hawái'],['ID','Idaho'],['IL','Illinois'],['IN','Indiana'],['IA','Iowa'],['KS','Kansas'],['KY','Kentucky'],['LA','Luisiana'],['ME','Maine'],['MD','Maryland'],['MA','Massachusetts'],['MI','Míchigan'],['MN','Minnesota'],['MS','Misisipi'],['MO','Misuri'],['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],['NH','Nuevo Hampshire'],['NJ','Nueva Jersey'],['NM','Nuevo México'],['NY','Nueva York'],['NC','Carolina del Norte'],['ND','Dakota del Norte'],['OH','Ohio'],['OK','Oklahoma'],['OR','Oregón'],['PA','Pensilvania'],['RI','Rhode Island'],['SC','Carolina del Sur'],['SD','Dakota del Sur'],['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],['VA','Virginia'],['WA','Washington'],['WV','Virginia Occidental'],['WI','Wisconsin'],['WY','Wyoming'],['DC','Distrito de Columbia'],['PR','Puerto Rico']
+  ];
+
+  function detectCreditBureau(source){
+    const header=normalize(source).slice(0,6000);
+    const definitions=[
+      {key:'equifax',token:/\bequifax\b/g,strong:[/\bequifax (?:credit )?report\b/,/\b(?:report (?:provided|prepared|issued) by|provided by) equifax\b/,/\bequifax information services\b/]},
+      {key:'experian',token:/\bexperian\b/g,strong:[/\bexperian (?:credit )?report\b/,/\b(?:report (?:provided|prepared|issued) by|provided by) experian\b/,/\bexperian national consumer assistance center\b/]},
+      {key:'transunion',token:/\b(?:transunion|trans union)\b/g,strong:[/\b(?:transunion|trans union) (?:credit )?report\b/,/\b(?:report (?:provided|prepared|issued) by|provided by) (?:transunion|trans union)\b/,/\btransunion consumer solutions\b/]}
+    ];
+    const scored=definitions.map(definition=>{
+      const tokenMatch=definition.token.exec(header);
+      const first=tokenMatch?tokenMatch.index:-1;
+      let score=first<0?0:first<600?40:first<2500?20:5;
+      definition.strong.forEach(pattern=>{if(pattern.test(header))score+=100;});
+      return {key:definition.key,score,first};
+    }).sort((a,b)=>b.score-a.score||(a.first<0?99999:a.first)-(b.first<0?99999:b.first));
+    if(!scored[0]||scored[0].score===0)return 'unknown';
+    if(scored[1]&&scored[0].score===scored[1].score)return 'unknown';
+    return scored[0].key;
+  }
+
+  function stateOptionsHtml(){
+    return US_STATES.map(state=>'<option value="'+state[0]+'">'+escapeHtml(state[1])+'</option>').join('');
+  }
+
+  function bureauOptionsHtml(selectedKey){
+    const options=['equifax','experian','transunion'];
+    return '<option value="">Selecciona el buró</option>'+options.map(key=>'<option value="'+key+'"'+(key===selectedKey?' selected':'')+'>'+CREDIT_BUREAUS[key].name+'</option>').join('');
+  }
+
+  function identityDisplayValue(type,value){
+    if(type==='Teléfono'){
+      const digits=String(value).replace(/\D/g,'');
+      return digits.length===10?'('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6):String(value);
+    }
+    return String(value).replace(/\b[a-z]/g,letter=>letter.toUpperCase());
+  }
+
+  function detectedOptionsHtml(values,formId){
+    if(!values||!values.length)return '';
+    return '<fieldset class="cr-detected-data"><legend>Datos personales detectados</legend><span class="cr-detected-help">Marca únicamente los datos que son incorrectos o que nunca te pertenecieron.</span>'+values.map((item,index)=>{
+      const inputId=formId+'Detected'+index;
+      return '<label class="cr-detected-option" for="'+inputId+'"><input id="'+inputId+'" name="disputedValue" type="checkbox" value="'+escapeHtml(JSON.stringify(item))+'"><span><b>'+escapeHtml(item.type)+':</b> '+escapeHtml(item.value)+'</span></label>';
+    }).join('')+'</fieldset>';
+  }
+
+  function extractPersonalInformation(source){
+    const documentText=normalizeMultiline(source);
+    const startPattern=/\b(?:personal information|personal identification information|consumer information|consumer identification|information about you|your personal information|informacion personal|informacion del consumidor|datos personales|identificacion del consumidor|perfil personal)\b/g;
+    // Reports often repeat this heading as a plain-language explainer ("This section includes
+    // your name...") before the real data block. Prefer the occurrence actually followed by a
+    // data marker (a masked SSN or a real date of birth) so we scope to the real section instead
+    // of the explanatory one.
+    const dataMarkerPattern=/(?:x{3}[-\s]?x{2}[-\s]?\d{2,4}|\*{3}[-\s]?\*{2}[-\s]?\d{2,4}|date of birth:?\s*\d{1,2}\/\d{1,2}\/\d{2,4}|fecha de nacimiento:?\s*\d{1,2}\/\d{1,2}\/\d{2,4})/i;
+    const startCandidates=[...documentText.matchAll(startPattern)];
+    const startMatch=startCandidates.find(candidate=>dataMarkerPattern.test(documentText.slice(candidate.index,candidate.index+700)))||startCandidates[0]||null;
+    const start=startMatch?startMatch.index:0;
+    const available=documentText.slice(start);
+    const boundaryPattern=/\b(?:credit summary|account summary|accounts summary|credit accounts|account information|credit items|tradelines?|payment history|creditor contacts?|collections?|public records?|hard inquiries|soft inquiries|credit inquiries|consultas de credito|resumen de credito|resumen de cuentas|informacion de cuentas|historial de pagos|cuentas de credito|registros publicos)\b/g;
+    let end=-1;
+    let boundary;
+    while((boundary=boundaryPattern.exec(available))){
+      if(boundary.index>=60){end=boundary.index;break;}
+    }
+    const maximum=startMatch?7000:3500;
+    const scoped=available.slice(0,end>=0?Math.min(end,maximum):maximum).trim();
+    return {text:scoped,hasHeading:Boolean(startMatch)};
+  }
+
+  function extractReportedNames(personalText){
+    const names=new Set();
+    const rejected=/\b(?:address|direccion|phone|telefono|employer|empleador|social security|seguro social|date of birth|fecha de nacimiento|report|reporte|creditor|acreedor|bank|banco|account|cuenta)\b/;
+    const addCandidate=value=>{
+      String(value||'').split(/\s*(?:;|\||\/)\s*|\s+\b(?:and|y)\b\s+/).forEach(part=>{
+        const cleaned=part.replace(/^[\s:,-]+|[\s:,-]+$/g,'').replace(/\s+/g,' ');
+        const words=cleaned.split(' ').filter(Boolean);
+        if(cleaned.length>=5&&cleaned.length<=70&&words.length>=2&&words.length<=7&&!/\d/.test(cleaned)&&!rejected.test(cleaned)&&/^[a-z .,'-]+$/.test(cleaned))names.add(cleaned);
+      });
+    };
+    const lines=personalText.split('\n').map(line=>line.trim()).filter(Boolean);
+    const heading=/^(?:names? reported|reported names?|other names?|previous names?|former names?|also known as|aka|nombres? reportados?|otros nombres?|nombres? anteriores?|tambien conocido como)\s*[:#-]?$/;
+    const stopHeading=/^(?:addresses?|direcciones?|phones?|telephone numbers?|telefonos?|employers?|empleadores?|social security|seguro social|date of birth|fecha de nacimiento)\b/;
+    lines.forEach((line,index)=>{
+      if(heading.test(line)){
+        for(let offset=1;offset<=8&&index+offset<lines.length;offset++){
+          if(stopHeading.test(lines[index+offset]))break;
+          addCandidate(lines[index+offset]);
+        }
+      }
+      const labeled=line.match(/^(?:consumer name|full name|legal name|current name|name|nombre del consumidor|nombre completo|nombre legal|nombre actual|nombre)\s*[:#-]\s*(.+)$/);
+      if(labeled)addCandidate(labeled[1]);
+      const alias=line.match(/^(?:names? reported|reported names?|other names?|previous names?|former names?|also known as|aka|nombres? reportados?|otros nombres?|nombres? anteriores?|tambien conocido como)\s*[:#-]\s*(.+)$/);
+      if(alias)addCandidate(alias[1]);
+    });
+    const flat=personalText.replace(/\n/g,' ');
+    const inlinePattern=/(?:consumer name|full name|legal name|current name|nombre del consumidor|nombre completo|nombre legal|nombre actual|also known as|aka|otros nombres|nombres anteriores|tambien conocido como)\s*[:#-]\s*([a-z .,'-]{5,70}?)(?=\s+(?:address|direccion|phone|telefono|date of birth|fecha de nacimiento|social security|seguro social|employer|empleador)\s*[:#-]|$)/g;
+    [...flat.matchAll(inlinePattern)].forEach(match=>addCandidate(match[1]));
+    return names;
+  }
+
+  // Some reports never label the name explicitly ("Name:") — they just print it as its own
+  // line inside the personal-information card. As a fallback, many exports repeat "Prepared
+  // for: <name>" as a running header on every page; use the first clean occurrence of that.
+  function extractPreparedForName(source){
+    const documentText=normalizeMultiline(source);
+    const match=documentText.match(/prepared for:?\s*\n\s*([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*){0,3})\s*\n/i)
+      ||documentText.match(/preparado para:?\s*\n\s*([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*){0,3})\s*\n/i);
+    if(!match)return null;
+    const cleaned=match[1].trim();
+    return cleaned.length>=3&&cleaned.length<=60?cleaned:null;
+  }
+
+  // Real official credit-report exports always bundle plain-language explainer copy (what a
+  // section means) and a federally mandated "Summary of Your Rights" appendix. Both are full of
+  // words like "bankruptcy", "charge off" or "identity theft" used in a purely educational sense,
+  // never as an actual finding about this consumer — left alone they cause false positives. This
+  // strips that noise, plus the fixed payment-history legend (the code key explaining what
+  // "CO", "F", "R", etc. mean) and field LABELS that appear on every account whether or not they
+  // have a value (e.g. "Charge Off Amount:" printed even when blank). Numeric extraction (which
+  // requires an actual amount to follow) already ignores blank labels correctly and is
+  // deliberately run against the un-stripped text, before this function is applied.
+  function stripReportNoise(value){
+    let cleaned=value;
+    cleaned=cleaned.split(/a summary of your rights under the fair credit reporting act/i)[0];
+    cleaned=cleaned.split(/resumen de sus derechos conforme a la ley/i)[0];
+    const noisePhrases=[
+      /\(collections and bankruptcy public records\)/gi,
+      /open,\s*closed,\s*paid on time,\s*or past due/gi,
+      /unfamiliar inquiries may be a sign of identity theft/gi,
+      /\bpaid on time\b/gi,
+      /\b(30|60|90|120|150|180)\s+\1\s*days?\s*past\s*due\b/gi,
+      /\bv\s+voluntary surrender\b/gi,
+      /\bf\s+foreclosure\b/gi,
+      /\bco\s+charge\s*[- ]?off\b/gi,
+      /\bb\s+included in bankruptcy\b/gi,
+      /\br\s+repossession\b/gi,
+      /\btn\s+too new to rate\b/gi,
+      /\bc\s+collection account\b/gi,
+      /\bno data available\b/gi,
+      /\bcharge off amount\b/gi,
+      /\bamount past due\b/gi,
+      /\bpast due amount\b/gi
+    ];
+    noisePhrases.forEach(pattern=>{cleaned=cleaned.replace(pattern,' ');});
+    return cleaned;
+  }
+
+  // Summarizes the accounts/tradelines the document actually lists, using the
+  // "Loan/Account Type: X | Status: Y" field pair that appears once per account in these
+  // exports, so the analyzer can show a plain "here's what we found" summary instead of only
+  // flagged problems.
+  function extractAccountsSummary(text){
+    const pattern=/(?:loan\/)?account type:\s*([a-z][a-z /]{2,30}?)\s*\|\s*status:\s*([a-z][a-z .,]{2,40}?)(?=\s*date opened|\s*payment history|\s*narrative|\s*(?:loan\/)?account type:|\s*$)/gi;
+    const accounts=[...text.matchAll(pattern)].map(match=>({type:match[1].trim(),status:match[2].trim()}));
+    const byType=new Map();
+    accounts.forEach(account=>{
+      const label=identityDisplayValue('Tipo de cuenta',account.type);
+      byType.set(label,(byType.get(label)||0)+1);
+    });
+    const cardCount=accounts.filter(account=>/credit card|tarjeta/.test(account.type)).length;
+    return {count:accounts.length,byType:[...byType.entries()].map(([type,count])=>({type,count})),cardCount};
+  }
+
+  // Counts inquiry rows by type ("Hard"/"Soft" immediately followed by a date), which is how
+  // these exports list each inquiry — more reliable than looking for a stated total.
+  function extractInquiriesSummary(text){
+    const rows=[...text.matchAll(/\b(hard|soft|dura|blanda)\s+\d{1,2}\/\d{1,2}\/\d{2,4}/gi)];
+    const hard=rows.filter(match=>/^(?:hard|dura)$/i.test(match[1])).length;
+    const soft=rows.filter(match=>/^(?:soft|blanda)$/i.test(match[1])).length;
+    return {hard,soft,total:rows.length};
+  }
+
+  function showError(message){
+    progress.hidden=true;
+    analyzeButton.hidden=!selectedFile;
+    $('crErrorText').textContent=message;
+    errorBox.hidden=false;
+  }
+
+  function selectFile(file){
+    if(!file)return;
+    const extension=(file.name.split('.').pop()||'').toLowerCase();
+    selectedFile=file;
+    if(!allowed.includes(extension)){selectedFile=null;return showError('Usa un archivo PDF, Word (.docx) o Excel (.xlsx, .xls o .csv).');}
+    if(file.size>MAX_SIZE){selectedFile=null;return showError('El archivo supera 20 MB. Usa una versión más ligera e inténtalo nuevamente.');}
+    if(extension==='doc'){selectedFile=null;return showError('El formato .doc antiguo no se puede leer de forma segura. Ábrelo en Word y guárdalo como .docx o PDF.');}
+
+    errorBox.hidden=true;results.hidden=true;empty.hidden=true;ready.hidden=false;dropzone.classList.add('has-file');
+    $('crFileType').textContent=extension.toUpperCase();
+    $('crFileName').textContent=file.name;
+    $('crFileMeta').textContent=bytes(file.size)+' · Listo para evaluar';
+    analyzeButton.hidden=false;
+  }
+
+  async function extractPdf(file){
+    if(!window.pdfjsLib)throw new Error('No se pudo cargar el lector de PDF. Revisa tu conexión e inténtalo nuevamente.');
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf=await window.pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+    const parts=[];
+    for(let pageNumber=1;pageNumber<=Math.min(pdf.numPages,150);pageNumber++){
+      const page=await pdf.getPage(pageNumber);
+      const content=await page.getTextContent();
+      parts.push(content.items.map(item=>(item.str||'')+(item.hasEOL?'\n':' ')).join(''));
+    }
+    return {text:parts.join('\n'),detail:pdf.numPages+' página'+(pdf.numPages===1?'':'s')};
+  }
+
+  async function extractWord(file){
+    if(!window.mammoth)throw new Error('No se pudo cargar el lector de Word. Revisa tu conexión e inténtalo nuevamente.');
+    const result=await window.mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});
+    return {text:result.value,detail:'Documento Word'};
+  }
+
+  async function extractExcel(file){
+    if(!window.XLSX)throw new Error('No se pudo cargar el lector de Excel. Revisa tu conexión e inténtalo nuevamente.');
+    const workbook=window.XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:true});
+    const parts=[];
+    workbook.SheetNames.forEach(name=>{
+      const sheet=workbook.Sheets[name];
+      parts.push('HOJA: '+name+'\n'+window.XLSX.utils.sheet_to_csv(sheet,{blankrows:false}));
+    });
+    return {text:parts.join('\n\n'),detail:workbook.SheetNames.length+' hoja'+(workbook.SheetNames.length===1?'':'s')+' de cálculo'};
+  }
+
+  function evaluateDocument(source,detail){
+    const text=normalize(source);
+    const negatives=[];
+    const positives=[];
+    const bureauKey=detectCreditBureau(source);
+    const addNegative=(priority,title,description,action,evidence,solutionType=null,detectedValues=[])=>negatives.push({priority,title,description,action,evidence,solutionType,detectedValues});
+    const addPositive=(title,description,evidence)=>positives.push({title,description,evidence});
+
+    const score=firstNumber(text,[/(?:fico|vantagescore|credit score|puntaje(?: de credito)?|score)[^0-9]{0,28}([3-8][0-9]{2})/i,/([3-8][0-9]{2})[^a-z0-9]{0,14}(?:fico|vantagescore|credit score)/i]);
+    const utilization=firstNumber(text,[/(?:credit utilization|revolving utilization|utilization rate|uso del credito|utilizacion)[^0-9]{0,24}([0-9]{1,3})\s*%/i,/([0-9]{1,3})\s*%[^a-z0-9]{0,20}(?:utilization|utilizacion|uso del credito)/i]);
+    const inquiries=firstNumber(text,[/(?:hard inquiries|hard inquiry|consultas duras|consultas recientes)[^0-9]{0,18}([0-9]{1,2})/i]);
+    const pastDueAmount=firstNumber(text,[/(?:past due amount|amount past due|saldo vencido|monto vencido)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
+    const chargeOffAmount=firstNumber(text,[/(?:charge off amount|charge-off amount|monto castigado)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
+    const totalDebt=firstNumber(text,[/(?:total debt|total balance|deuda total|saldo total)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
+    const income=firstNumber(text,[/(?:monthly income|ingreso mensual|gross income|ingreso bruto)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
+    const monthlyDebt=firstNumber(text,[/(?:monthly debt|debt payment|pago mensual de deuda|pagos mensuales)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
+    const dti=income&&monthlyDebt?Math.round(monthlyDebt/income*100):firstNumber(text,[/(?:debt.to.income|dti|relacion deuda.ingreso)[^0-9]{0,16}([0-9]{1,3})\s*%/i]);
+
+    // Boolean "has this negative signal" checks run against scanText, not the raw text: real
+    // official credit-report exports always include a payment-history legend, per-account field
+    // labels (printed even when blank), plain-language explainer copy and the federally mandated
+    // "Summary of Your Rights" appendix — all of which reuse the same words ("charge off",
+    // "bankruptcy", "fraud alert") without describing an actual finding about this consumer.
+    // stripReportNoise removes that noise so these checks only match genuine reported data.
+    const scanText=stripReportNoise(text);
+    const late30=count(scanText,/\b(?:30|60|90|120)\s*(?:days?|dias?)\s*(?:late|past due|delinquent|atrasad[oa]s?)\b/g)+count(scanText,/\b(?:late|delinquent|atrasad[oa]s?)\s*(?:30|60|90|120)\s*(?:days?|dias?)\b/g);
+    const hasPastDue=/(?:\bcurrently past due\b|\bstatus:?\s*past due\b|\bpast due status\b|currently delinquent|saldo vencido|monto vencido|cuenta vencida)/.test(scanText);
+    const hasCollection=/(?:collection account|account in collection|placed for collection|cuenta en cobranza|agencia de cobro|debt collection)/.test(scanText);
+    const hasChargeOff=/(?:charge[ -]?off|charged off|cuenta castigada|deuda castigada)/.test(scanText);
+    const hasBankruptcy=/(?:bankruptcy|chapter 7|chapter 13|bancarrota|quiebra)/.test(scanText);
+    const hasForeclosure=/(?:foreclosure|ejecucion hipotecaria)/.test(scanText);
+    const hasRepossession=/(?:repossession|repossessed|reposesion|vehiculo recuperado)/.test(scanText);
+    const hasFraud=/(?:fraud alert|identity theft|alerta de fraude|robo de identidad)/.test(scanText);
+    const hasCurrent=/(?:paid as agreed|pays? as agreed|current account|account current|cuenta al dia|al corriente|nunca atrasad)/.test(scanText);
+    const hasNoCollections=/(?:no collections|no collection accounts|sin cobranzas|cero cobranzas)/.test(scanText);
+    const hasNoLate=/(?:no late payments|never late|sin pagos atrasados|cero pagos atrasados)/.test(scanText);
+    const hasPaid=/(?:paid in full|balance paid|pagado en su totalidad|saldo pagado)/.test(scanText);
+
+    const personalInformation=extractPersonalInformation(source);
+    const personalText=personalInformation.text.replace(/\n/g,' ');
+    const reportedNames=extractReportedNames(personalInformation.text);
+    const phoneMatches=[...personalText.matchAll(/\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}\b/g)];
+    const phoneNumbers=new Set(phoneMatches.map(match=>match[0].replace(/[^\d]/g,'')));
+    const addressMatches=[...personalText.matchAll(/\b\d{1,6}\s+(?!\d+\b)[a-z0-9#.,'-]+(?:\s+(?!\d+\b)[a-z0-9#.,'-]+){0,6}\s+(?:st|street|ave|avenue|dr|drive|rd|road|blvd|boulevard|ln|lane|ct|court|way|pl|place|cir|circle|ter|terrace|pkwy|parkway|hwy|highway|calle|avenida)\b\.?(?:\s+(?:n|s|e|w|ne|nw|se|sw)\b\.?)?(?:\s+(?:apt|apartment|unit|suite|ste|#)\.?\s*[a-z0-9-]+)?(?:,?\s*[a-z][a-z .'-]{1,28}?,\s*[a-z]{2}\s*\d{5}(?:-\d{4})?)?/g)];
+    const addresses=new Set(addressMatches.map(match=>match[0].replace(/\s+/g,' ').trim()));
+    const hasPersonalInfoSection=personalInformation.hasHeading;
+    const detectedNames=[...reportedNames].map(value=>({type:'Nombre o alias',value:identityDisplayValue('Nombre',value)}));
+    const detectedPhones=[...phoneNumbers].map(value=>({type:'Teléfono',value:identityDisplayValue('Teléfono',value)}));
+    const detectedAddresses=[...addresses].map(value=>({type:'Dirección',value:identityDisplayValue('Dirección',value)}));
+    const allDetectedIdentity=[...detectedNames,...detectedPhones,...detectedAddresses];
+    const primaryName=(reportedNames.size?[...reportedNames][0]:null)||extractPreparedForName(source);
+    const primaryPhone=phoneNumbers.size?identityDisplayValue('Teléfono',[...phoneNumbers][0]):null;
+    const primaryAddress=addresses.size?[...addresses][0]:null;
+    const accountsSummary=extractAccountsSummary(text);
+    const inquiriesSummary=extractInquiriesSummary(text);
+
+    if(hasBankruptcy)addNegative('Crítica','Bancarrota reportada','El documento contiene una referencia a bancarrota o a un capítulo judicial.','Verifica tribunal, tipo de caso, estado y fechas. Disputa solo datos inexactos y consulta a un profesional autorizado para decisiones legales.','Registro público','bureau-dispute');
+    if(hasForeclosure)addNegative('Crítica','Ejecución hipotecaria detectada','Aparece una referencia a foreclosure o ejecución hipotecaria.','Comprueba propiedad, préstamo, estado y fechas. Reúne documentos antes de contactar al acreedor o presentar una disputa.','Vivienda','bureau-dispute');
+    if(hasRepossession)addNegative('Crítica','Reposesión detectada','El documento parece incluir una recuperación de vehículo u otro bien.','Verifica saldo, fechas y venta del bien. Solicita un desglose escrito de cualquier saldo restante.','Cuenta garantizada','bureau-dispute');
+    if(hasChargeOff||(chargeOffAmount!==null&&chargeOffAmount>0))addNegative('Alta','Cuenta castigada o charge-off','El acreedor parece haber marcado una cuenta como pérdida contable.','Confirma acreedor, saldo y fecha de primera morosidad. Disputa errores; si es correcta, negocia únicamente con términos escritos.','Cuenta negativa','bureau-dispute');
+    if(hasCollection&&!hasNoCollections)addNegative('Alta','Cuenta en cobranza','El documento contiene señales de una cuenta enviada o vendida a cobros.','No pagues todavía: la ley federal (FDCPA) te da derecho a exigirle al cobrador que pruebe que la deuda es tuya y el monto correcto antes de seguir cobrando.','Cobranza','debt-validation');
+    if(late30>0||hasPastDue)addNegative('Alta','Pagos atrasados o saldo vencido','Se encontraron referencias a morosidad que pueden afectar considerablemente el historial de pagos.','Compara cuenta, mes, categoría del atraso y monto con tus estados. Corrige errores o lleva la cuenta al día cuanto antes.','Historial de pagos','bureau-dispute');
+    if(pastDueAmount!==null&&pastDueAmount>0)addNegative('Alta','Monto vencido visible: '+money(pastDueAmount),'El documento muestra un saldo identificado como vencido.','Confirma que el monto sea actual y solicita por escrito las opciones para poner la cuenta al día.','Saldo vencido','bureau-dispute');
+    if(utilization!==null&&utilization>=50)addNegative('Alta','Utilización elevada: '+utilization+'%','Usar la mitad o más del crédito disponible puede presionar el puntaje aunque los pagos estén al día.','Prioriza la tarjeta con mayor porcentaje; paga antes del cierre y baja primero de 50%, después de 30% y finalmente de 10%.','Uso del crédito');
+    else if(utilization!==null&&utilization>=30)addNegative('Media','Utilización por encima de 30%: '+utilization+'%','Existe margen para mejorar el perfil reduciendo los saldos reportados.','Haz pagos antes de la fecha de cierre y evita concentrar la deuda en una sola tarjeta.','Uso del crédito');
+    if(inquiries!==null&&inquiries>=5)addNegative('Media','Muchas consultas recientes: '+inquiries,'Varias solicitudes en poco tiempo pueden transmitir necesidad urgente de crédito.','Confirma cada empresa y fecha; si alguna no la autorizaste, puedes disputarla directamente con el buró.','Crédito nuevo','bureau-dispute');
+    if(dti!==null&&dti>43)addNegative('Media','Relación deuda/ingreso elevada: '+dti+'%','Una carga mensual alta puede dificultar nuevas aprobaciones incluso con buen puntaje.','Reduce pagos mensuales o aumenta ingresos documentables antes de solicitar una obligación grande.','Capacidad de pago');
+    if(hasFraud)addNegative('Alta','Alerta de fraude o identidad','El documento menciona una alerta de fraude o posible robo de identidad.','Revisa cuentas y consultas desconocidas; contacta a los burós y acreedores mediante sus canales oficiales.','Seguridad');
+    if(reportedNames.size>=2)addNegative('Alta','Varios nombres o alias detectados: '+reportedNames.size,'El bloque de información personal incluye más de un nombre asociado a tu identidad. No se usan nombres de bancos ni acreedores para este cálculo.','Compara cada nombre personal con tu identificación oficial y solicita que se elimine cualquier variante que no te pertenezca.','Identidad','identity-names',detectedNames);
+    if(phoneNumbers.size>=2)addNegative('Media','Varios números de teléfono personales: '+phoneNumbers.size,'El bloque inicial de información personal contiene más de un teléfono; los teléfonos de bancos y cobradores quedan excluidos.','Confirma cuál número es el actual y solicita la corrección de los números que no reconozcas o ya no correspondan.','Identidad','identity-phones',detectedPhones);
+    if(addresses.size>=2)addNegative('Media','Varias direcciones personales registradas: '+addresses.size,'El bloque inicial de información personal muestra más de una dirección; las direcciones de bancos y acreedores quedan excluidas.','Confirma tu dirección actual y cuáles direcciones anteriores son legítimas; solicita la eliminación de cualquier dirección que no reconozcas.','Identidad','identity-addresses',detectedAddresses);
+    if(reportedNames.size>=2&&phoneNumbers.size>=2&&addresses.size>=2)addNegative('Crítica','Posible mezcla de identidad en el reporte','La información personal inicial combina varios nombres, teléfonos y direcciones. Esto merece una revisión cuidadosa, aunque algunas variaciones puedan ser legítimas.','Compara los datos personales de los tres burós con tu identificación y solicita por escrito la corrección de toda información que no te pertenezca.','Identidad','identity-mixed',allDetectedIdentity);
+    if(score!==null&&score<580)addNegative('Alta','Puntaje bajo: '+score,'El puntaje aparece en un rango que suele limitar opciones y elevar costos.','Trabaja primero pagos vencidos y utilización; evita abrir cuentas nuevas mientras estabilizas el perfil.','Puntaje');
+    else if(score!==null&&score<670)addNegative('Media','Puntaje regular: '+score,'El puntaje está cerca del rango bueno, pero todavía puede limitar algunas ofertas.','Protege los pagos puntuales y reduce saldos; mide el progreso mensualmente, no diariamente.','Puntaje');
+
+    if(hasCurrent)addPositive('Cuentas reportadas al día','El documento contiene referencias a cuentas corrientes o pagadas según lo acordado.','Historial de pagos');
+    if(hasNoLate)addPositive('Sin pagos atrasados visibles','Se encontró una indicación explícita de ausencia de atrasos.','Historial de pagos');
+    if(hasNoCollections)addPositive('Sin cobranzas visibles','El documento indica que no aparecen cuentas en cobranza.','Cuentas negativas');
+    if(hasPaid)addPositive('Obligaciones pagadas','Aparecen cuentas o saldos identificados como pagados por completo.','Reducción de deuda');
+    if(utilization!==null&&utilization<30)addPositive('Utilización controlada: '+utilization+'%','El porcentaje detectado está por debajo de 30%, una señal favorable para el uso del crédito.','Uso del crédito');
+    if(score!==null&&score>=670)addPositive('Puntaje en rango bueno o mejor: '+score,'El puntaje detectado se encuentra en un rango generalmente considerado bueno o superior.','Puntaje');
+    if(inquiries!==null&&inquiries<=2)addPositive('Pocas consultas recientes: '+inquiries,'Un número bajo de consultas reduce la presión del crédito nuevo.','Crédito nuevo');
+    if(dti!==null&&dti<=36)addPositive('Relación deuda/ingreso manejable: '+dti+'%','La carga mensual estimada se encuentra en un rango generalmente más cómodo.','Capacidad de pago');
+    if(hasPersonalInfoSection&&reportedNames.size<=1&&phoneNumbers.size<=1&&addresses.size<=1)addPositive('Información personal consistente','El bloque personal inicial no muestra variaciones múltiples evidentes de nombre, teléfono o dirección.','Identidad');
+
+    if(!positives.length&&!negatives.length)addPositive('Sin alertas evidentes en el texto','No se detectaron palabras o cifras que indiquen problemas graves en el contenido extraído.','Revisión inicial');
+    if(!negatives.length)addPositive('No se detectaron señales negativas principales','No aparecen referencias claras a atrasos, cobranzas, charge-offs, bancarrota o utilización elevada.','Resumen');
+
+    const priorityOrder={Crítica:0,Alta:1,Media:2,Baja:3};
+    negatives.sort((a,b)=>priorityOrder[a.priority]-priorityOrder[b.priority]);
+    const strategies=[];
+    negatives.forEach(item=>strategies.push({title:item.title,description:item.action,solutionType:item.solutionType,detectedValues:item.detectedValues}));
+    if(strategies.length<4)strategies.push({title:'Proteger lo positivo',description:'Mantén pagos automáticos, saldos bajos y evita cerrar cuentas antiguas sin evaluar el impacto.'});
+    if(strategies.length<4)strategies.push({title:'Comparar los tres burós',description:'Revisa Equifax, Experian y TransUnion: una cuenta o error puede aparecer solo en uno de ellos.'});
+    if(strategies.length<4)strategies.push({title:'Documentar cada gestión',description:'Guarda reportes, cartas, comprobantes, capturas y números de caso. Disputa únicamente información incorrecta o que no te pertenezca.'});
+
+    const critical=negatives.filter(item=>item.priority==='Crítica'||item.priority==='Alta').length;
+    const health=critical?'Atención prioritaria':negatives.length?'Hay margen de mejora':'Perfil sin alertas obvias';
+    const tone=critical?'critical':negatives.length?'attention':'stable';
+    const conclusion=critical
+      ?'Se identificaron '+critical+' punto'+(critical===1?'':'s')+' de prioridad alta. Resuelve primero los registros que afectan pagos, cobranzas o cuentas negativas y verifica cada dato antes de pagar o disputar.'
+      :negatives.length
+        ?'El documento muestra aspectos favorables, pero también '+negatives.length+' oportunidad'+(negatives.length===1?'':'es')+' de mejora. Sigue el plan en orden para fortalecer el perfil sin perder lo que ya funciona.'
+        :'No aparecen problemas principales en el contenido extraído. Conserva los hábitos positivos y confirma visualmente que las tres agencias reporten información correcta.';
+
+    return {score,utilization,inquiries,totalDebt,dti,negatives,positives,strategies,health,tone,conclusion,detail,bureauKey,primaryName,primaryPhone,primaryAddress,accountsSummary,inquiriesSummary};
+  }
+
+  function renderFinding(item,negative){
+    return '<div class="cr-finding"><div class="cr-finding-title"><span class="cr-finding-dot"></span><div><strong>'+escapeHtml(item.title)+'</strong></div></div><p>'+escapeHtml(item.description)+'</p><span class="cr-evidence">'+escapeHtml(negative?item.priority+' · '+item.evidence:item.evidence)+'</span></div>';
+  }
+
+  const SOLUTION_LABELS={
+    'identity-names':'Solucionar este problema','identity-phones':'Solucionar este problema',
+    'identity-addresses':'Solucionar este problema','identity-mixed':'Solucionar este problema',
+    'bureau-dispute':'Disputar esta información','debt-validation':'Exigir validación de la deuda'
+  };
+
+  function personalFieldsHtml(formId){
+    return '<div class="cr-solution-field"><label for="'+formId+'GivenNames">Nombre o nombres</label><input id="'+formId+'GivenNames" name="givenNames" type="text" autocomplete="given-name" maxlength="70" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'FirstSurname">Primer apellido</label><input id="'+formId+'FirstSurname" name="firstSurname" type="text" autocomplete="family-name" maxlength="60" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'SecondSurname">Segundo apellido <span aria-hidden="true">(si aplica)</span></label><input id="'+formId+'SecondSurname" name="secondSurname" type="text" maxlength="60"></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'Phone">Número de teléfono actual</label><input id="'+formId+'Phone" name="currentPhone" type="tel" autocomplete="tel" maxlength="30" required></div>'+
+      '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Street">Calle y número</label><input id="'+formId+'Street" name="street" type="text" autocomplete="street-address" maxlength="120" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'City">Ciudad</label><input id="'+formId+'City" name="city" type="text" autocomplete="address-level2" maxlength="70" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'State">Estado</label><input id="'+formId+'State" name="state" type="text" list="'+formId+'States" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'PostalCode">Código postal</label><input id="'+formId+'PostalCode" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="[0-9]{5}(?:-[0-9]{4})?" title="Usa 5 dígitos o el formato 12345-6789" required></div>'+
+      '<div class="cr-address-tools"><button class="cr-google-address" type="button">Verificar dirección en Google Maps ↗</button><small>La dirección solo se comparte con Google cuando presionas este botón.</small></div>';
+  }
+
+  function renderIdentityForm(item,formId,bureauKey){
+    return '<p>Confirma el buró, marca los datos incorrectos e introduce únicamente tu información correcta. La carta se preparará para el destinatario seleccionado.</p>'+
+      '<div class="cr-solution-fields">'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Bureau">Buró de crédito que emitió el reporte</label><select id="'+formId+'Bureau" name="creditBureau" required>'+bureauOptionsHtml(bureauKey)+'</select></div>'+
+        detectedOptionsHtml(item.detectedValues,formId)+
+        personalFieldsHtml(formId)+
+        '<p class="cr-form-alert" role="alert" hidden></p>'+
+      '</div>'+
+      '<button class="cr-solution-submit" type="submit">Preparar solicitud de corrección</button>'+
+      '<div class="cr-solution-result" hidden><strong>Borrador de solicitud</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de solicitud de corrección"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+  }
+
+  function renderBureauDisputeForm(item,formId,bureauKey){
+    return '<p>Esta carta se envía al buró que emitió el reporte, pidiéndole que reinvestigue el dato — no al cobrador. Úsala cuando crees que la información en sí es incorrecta, no solo cuando quieras negociar el pago.</p>'+
+      '<div class="cr-solution-fields">'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Bureau">Buró de crédito que emitió el reporte</label><select id="'+formId+'Bureau" name="creditBureau" required>'+bureauOptionsHtml(bureauKey)+'</select></div>'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Reason">Motivo de la disputa</label><select id="'+formId+'Reason" name="disputeReason" required>'+
+          '<option value="">Selecciona un motivo</option>'+
+          '<option value="not-mine">Esta cuenta no es mía / no la reconozco</option>'+
+          '<option value="wrong-amount">El monto reportado es incorrecto</option>'+
+          '<option value="wrong-date">La fecha del atraso o del evento es incorrecta</option>'+
+          '<option value="already-resolved">Esta cuenta ya fue pagada o resuelta</option>'+
+          '<option value="wrong-status">El estatus de la cuenta es incorrecto</option>'+
+          '<option value="other">Otro motivo</option>'+
+        '</select></div>'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Detail">Detalle adicional <span aria-hidden="true">(opcional, recomendado si elegiste "Otro")</span></label><textarea id="'+formId+'Detail" name="disputeDetail" rows="3" maxlength="500" style="width:100%;font:inherit;padding:10px 11px;border:1px solid rgba(11,39,72,.28);border-radius:4px;box-sizing:border-box;"></textarea></div>'+
+        personalFieldsHtml(formId)+
+        '<p class="cr-form-alert" role="alert" hidden></p>'+
+      '</div>'+
+      '<button class="cr-solution-submit" type="submit">Preparar carta de disputa</button>'+
+      '<div class="cr-solution-result" hidden><strong>Borrador de disputa</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de carta de disputa"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+  }
+
+  function renderDebtValidationForm(item,formId){
+    return '<p>Esta carta se envía directo a la agencia de cobranza — no al buró — exigiendo, bajo la Fair Debt Collection Practices Act, que prueben que la deuda es tuya y el monto es correcto antes de que puedan seguir cobrándote.</p>'+
+      '<div class="cr-solution-fields">'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'CollectorName">Nombre de la agencia de cobranza</label><input id="'+formId+'CollectorName" name="collectorName" type="text" maxlength="120" required></div>'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'CollectorStreet">Dirección de la agencia (calle y número)</label><input id="'+formId+'CollectorStreet" name="collectorStreet" type="text" maxlength="120" required></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorCity">Ciudad</label><input id="'+formId+'CollectorCity" name="collectorCity" type="text" maxlength="70" required></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorState">Estado</label><input id="'+formId+'CollectorState" name="collectorState" type="text" list="'+formId+'States" maxlength="40" placeholder="Ej.: FL" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorPostalCode">Código postal</label><input id="'+formId+'CollectorPostalCode" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" required></div>'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'AccountRef">Número de cuenta o referencia <span aria-hidden="true">(opcional, si aparece en el reporte o en una carta que recibiste)</span></label><input id="'+formId+'AccountRef" name="accountReference" type="text" maxlength="60"></div>'+
+        personalFieldsHtml(formId)+
+        '<p class="cr-form-alert" role="alert" hidden></p>'+
+      '</div>'+
+      '<button class="cr-solution-submit" type="submit">Preparar carta de validación</button>'+
+      '<div class="cr-solution-result" hidden><strong>Borrador de validación</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de carta de validación de deuda"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+  }
+
+  function renderStrategy(item,index,bureauKey){
+    const formId='crIdentitySolution'+index;
+    let inner='';
+    if(item.solutionType&&item.solutionType.indexOf('identity-')===0)inner=renderIdentityForm(item,formId,bureauKey);
+    else if(item.solutionType==='bureau-dispute')inner=renderBureauDisputeForm(item,formId,bureauKey);
+    else if(item.solutionType==='debt-validation')inner=renderDebtValidationForm(item,formId);
+    const label=SOLUTION_LABELS[item.solutionType]||'Solucionar este problema';
+    const solution=item.solutionType
+      ?'<button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="'+formId+'" data-open-label="Ocultar formulario" data-closed-label="'+escapeHtml(label)+'">'+escapeHtml(label)+'</button>'+
+       '<form class="cr-solution-form" id="'+formId+'" data-solution-type="'+escapeHtml(item.solutionType)+'" data-issue-title="'+escapeHtml(item.title)+'" hidden>'+inner+'</form>'
+      :'';
+    return '<li><span class="cr-step-number">'+(index+1)+'</span><div><strong>'+escapeHtml(item.title)+'</strong><p>'+escapeHtml(item.description)+'</p>'+solution+'</div></li>';
+  }
+
+  function identityCorrectionSubject(type){
+    const subjects={
+      'identity-names':'los nombres o alias que no corresponden a mi identidad',
+      'identity-phones':'los números de teléfono incorrectos o desactualizados',
+      'identity-addresses':'las direcciones que no corresponden a mi historial personal',
+      'identity-mixed':'la información personal que no me pertenece o está desactualizada'
+    };
+    return subjects[type]||'la información personal incorrecta';
+  }
+
+  const DISPUTE_REASON_TEXT={
+    'not-mine':'Esta cuenta no es mía y no la reconozco como una obligación que yo haya contraído.',
+    'wrong-amount':'El monto reportado para esta cuenta es incorrecto.',
+    'wrong-date':'La fecha del atraso, del evento o de apertura de esta cuenta es incorrecta.',
+    'already-resolved':'Esta cuenta ya fue pagada o resuelta y no debería seguir apareciendo con este estatus.',
+    'wrong-status':'El estatus actual de esta cuenta, tal como aparece en el reporte, es incorrecto.',
+    'other':'La información reportada sobre esta cuenta es inexacta.'
+  };
+
+  function render(data){
+    window.__ccLastAnalysis=data;
+    const detectedBureau=CREDIT_BUREAUS[data.bureauKey]||CREDIT_BUREAUS.unknown;
+    $('crConclusion').textContent=data.conclusion;
+    $('crHealth').className='cr-health '+data.tone;
+    $('crHealthText').textContent=data.health;
+    $('crDocumentMeta').textContent=data.detail+' · Buró: '+detectedBureau.name;
+    const kpis=[
+      ['Buró emisor',detectedBureau.name,data.bureauKey==='unknown'?'Confírmalo en la portada':'Detectado en el encabezado'],
+      ['Puntaje encontrado',data.score===null?'No visible':String(data.score),data.score===null?'Puede estar en una imagen':'Confirma modelo y buró'],
+      ['Utilización',data.utilization===null?'No visible':data.utilization+'%',data.utilization===null?'Revisa saldos y límites':'Objetivo inicial: menos de 30%'],
+      ['Puntos negativos',String(data.negatives.length),data.negatives.length?'Ordenados por prioridad':'Ninguno principal detectado'],
+      ['Puntos positivos',String(data.positives.length),data.positives.length?'Fortalezas identificadas':'Requiere revisión manual']
+    ];
+    $('crKpis').innerHTML=kpis.map(item=>'<div class="cr-kpi"><span>'+escapeHtml(item[0])+'</span><strong>'+escapeHtml(item[1])+'</strong><small>'+escapeHtml(item[2])+'</small></div>').join('');
+    const accountsSummary=data.accountsSummary||{count:0,byType:[],cardCount:0};
+    const inquiriesSummary=data.inquiriesSummary||{hard:0,soft:0,total:0};
+    const accountsDetail=accountsSummary.byType.length?accountsSummary.byType.map(entry=>entry.type+': '+entry.count).join(' · '):'Sin cuentas detectadas en el texto';
+    const summaryItems=[
+      ['Nombre',data.primaryName?identityDisplayValue('Nombre',data.primaryName):'No visible',data.primaryName?'Según el reporte':'Puede estar en una imagen'],
+      ['Teléfono',data.primaryPhone?data.primaryPhone:'No visible',data.primaryPhone?'Reportado en el documento':'No aparece en el texto extraído'],
+      ['Dirección',data.primaryAddress?identityDisplayValue('Dirección',data.primaryAddress):'No visible',data.primaryAddress?'Dirección actual detectada':'No aparece en el texto extraído'],
+      ['Cuentas abiertas',String(accountsSummary.count),accountsDetail],
+      ['Tarjetas',String(accountsSummary.cardCount),accountsSummary.cardCount?'Cuentas de tipo tarjeta de crédito':'No se detectaron tarjetas'],
+      ['Inquiries',String(inquiriesSummary.total),'Duras: '+inquiriesSummary.hard+' · Blandas: '+inquiriesSummary.soft]
+    ];
+    $('crSummaryGrid').innerHTML=summaryItems.map(item=>'<div class="cr-summary-item"><span>'+escapeHtml(item[0])+'</span><strong>'+escapeHtml(item[1])+'</strong><small>'+escapeHtml(item[2])+'</small></div>').join('');
+    $('crNegativeCount').textContent=data.negatives.length+' detectado'+(data.negatives.length===1?'':'s');
+    $('crPositiveCount').textContent=data.positives.length+' detectado'+(data.positives.length===1?'':'s');
+    $('crNegativeList').innerHTML=data.negatives.length?data.negatives.map(item=>renderFinding(item,true)).join(''):'<p class="cr-empty">No se detectaron señales negativas principales en el texto extraído. Confirma visualmente cuentas, saldos y fechas.</p>';
+    $('crPositiveList').innerHTML=data.positives.length?data.positives.map(item=>renderFinding(item,false)).join(''):'<p class="cr-empty">No se encontraron suficientes señales positivas explícitas. Esto no significa que el documento sea negativo; revisa las cuentas manualmente.</p>';
+    $('crStrategyList').innerHTML=data.strategies.map((item,index)=>renderStrategy(item,index,data.bureauKey)).join('');
+    results.hidden=false;
+    setTimeout(()=>results.scrollIntoView({behavior:'smooth',block:'start'}),80);
+  }
+
+  async function runAnalysis(){
+    if(!selectedFile)return;
+    errorBox.hidden=true;results.hidden=true;analyzeButton.hidden=true;progress.hidden=false;
+    $('crProgressTitle').textContent='Leyendo el documento…';
+    $('crProgressText').textContent='Extraemos únicamente el contenido necesario';
+    try{
+      const extension=selectedFile.name.toLowerCase().split('.').pop();
+      let extracted;
+      if(extension==='pdf')extracted=await extractPdf(selectedFile);
+      else if(extension==='docx')extracted=await extractWord(selectedFile);
+      else extracted=await extractExcel(selectedFile);
+      if(extracted.text.replace(/\s/g,'').length<100)throw new Error('No pudimos leer suficiente contenido. Si el PDF es un escaneo, conviértelo con OCR; si es una hoja de cálculo, confirma que tenga datos visibles.');
+      $('crProgressTitle').textContent='Evaluando señales positivas y negativas…';
+      $('crProgressText').textContent='Ordenamos los hallazgos y preparamos la estrategia';
+      await new Promise(resolve=>setTimeout(resolve,400));
+      render(evaluateDocument(extracted.text,extracted.detail));
+      progress.hidden=true;analyzeButton.hidden=false;
+    }catch(error){showError(error&&error.message?error.message:'No pudimos procesar el documento. Inténtalo con otro archivo.');}
+  }
+
+  $('crSelectButton').addEventListener('click',event=>{event.stopPropagation();input.click();});
+  $('crChangeButton').addEventListener('click',event=>{event.stopPropagation();input.click();});
+  input.addEventListener('change',()=>selectFile(input.files[0]));
+  dropzone.addEventListener('click',()=>{if(!selectedFile)input.click();});
+  dropzone.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&!selectedFile){event.preventDefault();input.click();}});
+  dropzone.addEventListener('dragover',event=>{event.preventDefault();dropzone.classList.add('is-dragging');});
+  dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
+  dropzone.addEventListener('drop',event=>{event.preventDefault();dropzone.classList.remove('is-dragging');selectFile(event.dataTransfer.files[0]);});
+  results.addEventListener('click',async event=>{
+    const mapButton=event.target.closest('.cr-google-address');
+    if(mapButton){
+      const form=mapButton.closest('.cr-solution-form');
+      const street=String(form.elements.street.value||'').trim();
+      const city=String(form.elements.city.value||'').trim();
+      const state=String(form.elements.state.value||'').trim();
+      const postalCode=String(form.elements.postalCode.value||'').trim();
+      const formAlert=form.querySelector('.cr-form-alert');
+      if(!street||!city||!state||!postalCode){
+        formAlert.textContent='Completa calle, ciudad, estado y código postal antes de verificar la dirección.';
+        formAlert.hidden=false;
+        return;
+      }
+      formAlert.hidden=true;
+      const query=[street,city,state,postalCode].join(', ');
+      const mapWindow=window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query),'_blank','noopener,noreferrer');
+      if(mapWindow)mapWindow.opener=null;
+      return;
+    }
+    const copyButton=event.target.closest('.cr-copy-solution');
+    if(copyButton){
+      const textarea=copyButton.closest('.cr-solution-result').querySelector('.cr-solution-letter');
+      try{
+        if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(textarea.value);
+        else{textarea.focus();textarea.select();document.execCommand('copy');}
+        copyButton.textContent='Borrador copiado';
+        setTimeout(()=>{copyButton.textContent='Copiar borrador';},1800);
+      }catch(error){textarea.focus();textarea.select();copyButton.textContent='Selecciona y copia el texto';}
+      return;
+    }
+    const toggle=event.target.closest('.cr-solution-toggle');
+    if(!toggle)return;
+    const form=$(toggle.getAttribute('aria-controls'));
+    const willOpen=form.hidden;
+    form.hidden=!willOpen;
+    toggle.setAttribute('aria-expanded',String(willOpen));
+    toggle.textContent=willOpen?'Ocultar formulario':toggle.dataset.closedLabel;
+    if(willOpen){
+      form.querySelector('input,select').focus();
+    }
+  });
+  function readPersonalInfo(formData){
+    const givenNames=String(formData.get('givenNames')||'').trim();
+    const firstSurname=String(formData.get('firstSurname')||'').trim();
+    const secondSurname=String(formData.get('secondSurname')||'').trim();
+    const street=String(formData.get('street')||'').trim();
+    const city=String(formData.get('city')||'').trim();
+    const state=String(formData.get('state')||'').trim();
+    const postalCode=String(formData.get('postalCode')||'').trim();
+    const currentPhone=String(formData.get('currentPhone')||'').trim();
+    return {
+      givenNames,firstSurname,secondSurname,street,city,state,postalCode,currentPhone,
+      legalName:[givenNames,firstSurname,secondSurname].filter(Boolean).join(' '),
+      currentAddress:street+', '+city+', '+state+' '+postalCode
+    };
+  }
+
+  function submitIdentityCorrection(form){
+    const formData=new FormData(form);
+    const formAlert=form.querySelector('.cr-form-alert');
+    const bureauKey=String(formData.get('creditBureau')||'');
+    const bureau=CREDIT_BUREAUS[bureauKey];
+    const disputedValues=formData.getAll('disputedValue').map(value=>{
+      try{return JSON.parse(String(value));}catch(error){return null;}
+    }).filter(Boolean);
+    if(!bureau){
+      formAlert.textContent='Selecciona el buró de crédito que emitió el reporte.';
+      formAlert.hidden=false;
+      return;
+    }
+    if(!disputedValues.length){
+      formAlert.textContent='Marca por lo menos un nombre, teléfono o dirección incorrectos para incluirlos en la carta.';
+      formAlert.hidden=false;
+      return;
+    }
+    formAlert.hidden=true;
+    const givenNames=String(formData.get('givenNames')||'').trim();
+    const firstSurname=String(formData.get('firstSurname')||'').trim();
+    const secondSurname=String(formData.get('secondSurname')||'').trim();
+    const street=String(formData.get('street')||'').trim();
+    const city=String(formData.get('city')||'').trim();
+    const state=String(formData.get('state')||'').trim();
+    const postalCode=String(formData.get('postalCode')||'').trim();
+    const currentPhone=String(formData.get('currentPhone')||'').trim();
+    const legalName=[givenNames,firstSurname,secondSurname].filter(Boolean).join(' ');
+    const currentAddress=street+', '+city+', '+state+' '+postalCode;
+    const subject=identityCorrectionSubject(form.dataset.solutionType);
+    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
+    const disputedLines=disputedValues.map(item=>'- '+item.type+': '+item.value);
+    const letter=[
+      legalName,
+      currentAddress,
+      'Teléfono: '+currentPhone,
+      '',
+      currentDate,
+      '',
+      bureau.recipient,
+      ...bureau.address,
+      '',
+      'Asunto: Solicitud formal de corrección de información personal en mi reporte de '+bureau.name,
+      '',
+      'Estimado equipo de disputas de '+bureau.name+':',
+      '',
+      'Al revisar el reporte de crédito emitido por '+bureau.name+', detecté '+subject+'. Solicito formalmente que investiguen los datos indicados a continuación y que eliminen o corrijan toda información que sea inexacta, esté desactualizada o no me pertenezca.',
+      '',
+      'INFORMACIÓN QUE DISPUTO:',
+      ...disputedLines,
+      '',
+      'MI INFORMACIÓN CORRECTA:',
+      'Nombre legal: '+legalName,
+      'Nombre(s): '+givenNames,
+      'Primer apellido: '+firstSurname,
+      'Segundo apellido: '+(secondSurname||'No aplica'),
+      'Dirección actual: '+currentAddress,
+      'Calle y número: '+street,
+      'Ciudad: '+city,
+      'Estado: '+state,
+      'Código postal: '+postalCode,
+      'Teléfono actual: '+currentPhone,
+      '',
+      'Adjunto copias de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada. Solicito que me envíen por escrito el resultado de la investigación y una copia actualizada de mi reporte de crédito a la dirección indicada arriba.',
+      '',
+      'Declaro que esta solicitud se refiere únicamente a información que considero incorrecta o que no me pertenece.',
+      '',
+      'Atentamente,',
+      '',
+      'Firma: ______________________________',
+      legalName
+    ].join('\n');
+    const result=form.querySelector('.cr-solution-result');
+    result.querySelector('.cr-solution-letter').value=letter;
+    result.hidden=false;
+  }
+
+  function submitBureauDispute(form){
+    const formData=new FormData(form);
+    const formAlert=form.querySelector('.cr-form-alert');
+    const bureauKey=String(formData.get('creditBureau')||'');
+    const bureau=CREDIT_BUREAUS[bureauKey];
+    const reasonKey=String(formData.get('disputeReason')||'');
+    if(!bureau){
+      formAlert.textContent='Selecciona el buró de crédito que emitió el reporte.';
+      formAlert.hidden=false;
+      return;
+    }
+    if(!DISPUTE_REASON_TEXT[reasonKey]){
+      formAlert.textContent='Selecciona el motivo de tu disputa.';
+      formAlert.hidden=false;
+      return;
+    }
+    formAlert.hidden=true;
+    const info=readPersonalInfo(formData);
+    const detail=String(formData.get('disputeDetail')||'').trim();
+    const issueTitle=form.dataset.issueTitle||'esta cuenta';
+    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
+    const letter=[
+      info.legalName,
+      info.currentAddress,
+      'Teléfono: '+info.currentPhone,
+      '',
+      currentDate,
+      '',
+      bureau.recipient,
+      ...bureau.address,
+      '',
+      'Asunto: Solicitud formal de investigación de información inexacta en mi reporte de '+bureau.name,
+      '',
+      'Estimado equipo de disputas de '+bureau.name+':',
+      '',
+      'Al revisar mi reporte de crédito emitido por '+bureau.name+', identifiqué la siguiente cuenta o información que considero inexacta: "'+issueTitle+'".',
+      '',
+      'Motivo de la disputa: '+DISPUTE_REASON_TEXT[reasonKey],
+      ...(detail?['Detalle adicional: '+detail]:[]),
+      '',
+      'De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito.',
+      '',
+      'Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo.',
+      '',
+      'MI INFORMACIÓN:',
+      'Nombre legal: '+info.legalName,
+      'Dirección actual: '+info.currentAddress,
+      'Teléfono actual: '+info.currentPhone,
+      '',
+      'Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada.',
+      '',
+      'Declaro que esta solicitud se refiere únicamente a información que considero inexacta.',
+      '',
+      'Atentamente,',
+      '',
+      'Firma: ______________________________',
+      info.legalName
+    ].join('\n');
+    const result=form.querySelector('.cr-solution-result');
+    result.querySelector('.cr-solution-letter').value=letter;
+    result.hidden=false;
+  }
+
+  function submitDebtValidation(form){
+    const formData=new FormData(form);
+    const formAlert=form.querySelector('.cr-form-alert');
+    const collectorName=String(formData.get('collectorName')||'').trim();
+    const collectorStreet=String(formData.get('collectorStreet')||'').trim();
+    const collectorCity=String(formData.get('collectorCity')||'').trim();
+    const collectorState=String(formData.get('collectorState')||'').trim();
+    const collectorPostalCode=String(formData.get('collectorPostalCode')||'').trim();
+    if(!collectorName||!collectorStreet||!collectorCity||!collectorState||!collectorPostalCode){
+      formAlert.textContent='Completa el nombre y la dirección completa de la agencia de cobranza.';
+      formAlert.hidden=false;
+      return;
+    }
+    formAlert.hidden=true;
+    const info=readPersonalInfo(formData);
+    const accountReference=String(formData.get('accountReference')||'').trim();
+    const issueTitle=form.dataset.issueTitle||'esta cuenta';
+    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
+    const letter=[
+      info.legalName,
+      info.currentAddress,
+      'Teléfono: '+info.currentPhone,
+      '',
+      currentDate,
+      '',
+      collectorName,
+      collectorStreet,
+      collectorCity+', '+collectorState+' '+collectorPostalCode,
+      '',
+      'Asunto: Solicitud de validación de deuda — '+issueTitle+(accountReference?' (referencia de cuenta: '+accountReference+')':''),
+      '',
+      'Estimado(a) '+collectorName+':',
+      '',
+      'Recibí información de que su empresa está intentando cobrarme una deuda'+(accountReference?' con referencia de cuenta '+accountReference:'')+'. De acuerdo con la Fair Debt Collection Practices Act (15 U.S.C. § 1692g), solicito formalmente que me envíen validación por escrito de esta deuda, incluyendo:',
+      '',
+      '- El monto exacto que alegan que debo y cómo se calculó.',
+      '- El nombre del acreedor original.',
+      '- Prueba de que soy la persona legalmente obligada a pagar esta deuda.',
+      '- Confirmación de que su empresa tiene derecho a cobrarla.',
+      '',
+      'Esta carta no es un reconocimiento de que la deuda es válida ni una promesa de pago. Mientras espero esta validación, les solicito que suspendan todo intento de cobro, incluyendo llamadas y reportes adicionales a las agencias de crédito, tal como exige la ley mientras la deuda está en disputa.',
+      '',
+      'MI INFORMACIÓN:',
+      'Nombre legal: '+info.legalName,
+      'Dirección actual: '+info.currentAddress,
+      'Teléfono actual: '+info.currentPhone,
+      '',
+      'Atentamente,',
+      '',
+      'Firma: ______________________________',
+      info.legalName
+    ].join('\n');
+    const result=form.querySelector('.cr-solution-result');
+    result.querySelector('.cr-solution-letter').value=letter;
+    result.hidden=false;
+  }
+
+  results.addEventListener('submit',event=>{
+    const form=event.target.closest('.cr-solution-form');
+    if(!form)return;
+    event.preventDefault();
+    const type=form.dataset.solutionType||'';
+    if(type==='bureau-dispute')submitBureauDispute(form);
+    else if(type==='debt-validation')submitDebtValidation(form);
+    else submitIdentityCorrection(form);
+  });
+  analyzeButton.addEventListener('click',runAnalysis);
+  $('crResetButton').addEventListener('click',()=>{selectedFile=null;input.value='';results.hidden=true;progress.hidden=true;errorBox.hidden=true;analyzeButton.hidden=true;ready.hidden=true;empty.hidden=false;dropzone.classList.remove('has-file');dropzone.scrollIntoView({behavior:'smooth',block:'center'});});
+  $('crPrintButton').addEventListener('click',()=>window.print());
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+(function(){
+  'use strict';
+  const saveBtn=document.getElementById('crSaveButton');
+  const saveHint=document.getElementById('crSaveHint');
+  if(!saveBtn||!window.CCAuth)return;
+
+  window.CCAuth.onChange(function(user){
+    const loggedIn=!!user;
+    saveBtn.hidden=!loggedIn;
+    saveHint.hidden=loggedIn;
+  });
+
+  saveBtn.addEventListener('click', async function(){
+    if(!window.__ccLastAnalysis){
+      alert('Analiza un documento primero.');
+      return;
+    }
+    saveBtn.disabled=true;
+    const originalText=saveBtn.textContent;
+    saveBtn.textContent='Guardando…';
+    try{
+      await window.CCAuth.saveAnalysis(window.__ccLastAnalysis);
+      saveBtn.textContent='Guardado ✓';
+      setTimeout(()=>{ saveBtn.textContent=originalText; saveBtn.disabled=false; },2200);
+    }catch(err){
+      alert('No pudimos guardar tu resultado. Intenta de nuevo.');
+      saveBtn.textContent=originalText;
+      saveBtn.disabled=false;
+    }
+  });
+})();
+</script>
+<script src="credit-coach.js"></script>
+
+</body>
+</html>

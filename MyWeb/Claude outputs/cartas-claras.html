@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas Claras — Entiende cualquier carta o aviso financiero | Crédito Claro</title>
+<meta name="description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS o una corte. Te explicamos en español qué dice, si es urgente y qué hacer — gratis y en privado.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crédito Claro">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Cartas Claras — Entiende cualquier carta o aviso financiero">
+<meta property="og:description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS o una corte. Te explicamos en español qué dice, si es urgente y qué hacer.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/cartas-claras.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cartas Claras — Entiende cualquier carta o aviso financiero">
+<meta name="twitter:description" content="Sube una foto, un PDF o pega el texto de una carta que recibiste. Te explicamos en español qué dice, si es urgente y qué hacer.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/cartas-claras.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== EXPLICADOR DE PRIVACIDAD ===== */
+  .cc-privacy-callout{background:var(--navy-deep);color:#fff;}
+  .cc-privacy-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,242,232,.14);border:1px solid rgba(246,242,232,.14);}
+  .cc-privacy-item{background:var(--navy-deep);padding:22px 24px;}
+  .cc-privacy-item span{font-size:1.4rem;display:block;margin-bottom:8px;}
+  .cc-privacy-item strong{display:block;color:#fff;font-size:.92rem;margin-bottom:4px;}
+  .cc-privacy-item small{display:block;color:rgba(246,242,232,.65);font-size:.78rem;line-height:1.5;}
+
+  /* ===== HERRAMIENTA (reutiliza patrones de credito.html) ===== */
+  .cc-tool-section{background:var(--navy-deep);color:var(--paper);position:relative;overflow:hidden;}
+  .cc-tool-section::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(246,242,232,.09);border-radius:50%;right:-250px;top:-250px;pointer-events:none;}
+  .cc-tool-section .section-head h2{color:#fff;}
+  .cc-tool-section .section-head p{color:rgba(246,242,232,.72);}
+  .cc-tool-section .eyebrow-dark{color:var(--gold-light);}
+  .cr-process{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,242,232,.13);border:1px solid rgba(246,242,232,.13);margin-bottom:28px;}
+  .cr-process-item{background:var(--navy-deep);padding:18px 20px;display:flex;align-items:center;gap:12px;}
+  .cr-process-item>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:'Fraunces',serif;font-weight:700;flex:none;}
+  .cr-process-item strong{display:block;color:#fff;font-size:.9rem;}
+  .cr-process-item small{display:block;color:rgba(246,242,232,.58);font-size:.76rem;}
+  .cr-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22);}
+  .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 14px;}
+  .cc-scope-label{margin:0 6px 8px;font-size:.76rem;font-weight:700;color:var(--muted);}
+  .cc-scope-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 6px 18px;}
+  .cc-scope-chip{background:var(--paper-dim);border:1px solid rgba(11,39,72,.16);color:var(--navy);font:600 .74rem 'Public Sans',sans-serif;padding:6px 12px;border-radius:999px;}
+  .cc-scope-chip-alert{background:rgba(179,64,42,.1);border-color:rgba(179,64,42,.35);color:#a3402a;}
+
+  /* Pestañas: subir documento / pegar texto */
+  .cc-tabs{display:flex;gap:6px;margin-bottom:14px;}
+  .cc-tab-btn{flex:1;border:1.5px solid rgba(11,39,72,.18);background:var(--paper-dim);color:var(--navy);font:700 .82rem 'Public Sans',sans-serif;padding:11px 14px;border-radius:8px;cursor:pointer;transition:.2s ease;}
+  .cc-tab-btn.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .cc-tab-panel[hidden]{display:none!important;}
+
+  .cr-dropzone{min-height:280px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius);transition:.2s ease;cursor:pointer;}
+  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:#fffaf0;}
+  .cr-dropzone.has-file{min-height:120px;}
+  .cr-dropzone:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .cr-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .cr-upload-empty{display:flex;flex-direction:column;align-items:center;}
+  .cr-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:1.7rem;margin-bottom:18px;}
+  .cr-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px;}
+  .cr-upload-empty p{color:rgba(27,27,24,.62);margin:0 0 20px;}
+  .cr-upload-empty small{color:rgba(27,27,24,.5);margin-top:14px;font-size:.75rem;}
+  .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius);font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .cr-select-btn{background:var(--navy);color:#fff;padding:12px 20px;}
+  .cr-select-btn:hover,.cr-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2);}
+  .cr-file-ready{display:flex;align-items:center;text-align:left;width:min(100%,680px);}
+  .cr-file-ready[hidden],.cr-upload-empty[hidden],.cr-analyze-btn[hidden],.cr-progress[hidden],.cr-error[hidden],.cc-results[hidden]{display:none!important;}
+  .cr-file-type{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(184,134,59,.14);color:var(--gold);font-weight:700;font-size:.72rem;flex:none;}
+  .cr-file-copy{display:flex;flex:1;min-width:0;flex-direction:column;padding:0 16px;}
+  .cr-file-copy strong{color:var(--navy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cr-file-copy small{color:rgba(27,27,24,.58);}
+  .cr-change-btn{border:0;background:none;color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline;}
+  .cr-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:#fff;padding:15px 20px;margin-top:14px;}
+  .cr-analyze-btn span{font-size:1.2rem;}
+  .cr-analyze-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;box-shadow:none!important;}
+  .cr-progress{display:flex;align-items:center;gap:14px;background:rgba(47,111,98,.1);color:var(--navy);padding:15px 18px;margin-top:14px;border-radius:var(--radius);}
+  .cr-progress-copy{display:flex;flex-direction:column;}
+  .cr-progress-copy small{color:rgba(27,27,24,.58);}
+  .cr-spinner{width:30px;height:30px;border:3px solid rgba(47,111,98,.2);border-top-color:var(--teal);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
+  @keyframes cr-spin{to{transform:rotate(360deg)}}
+  .cr-error{display:flex;gap:12px;background:#fff0ed;border-left:4px solid #a34838;color:#7e3127;padding:15px 18px;margin-top:14px;border-radius:0 6px 6px 0;}
+  .cr-error b{font-size:1.15rem;}
+  .cr-error p{margin:0;}
+  .cr-error strong{display:block;}
+
+  .cc-paste-panel textarea{width:100%;min-height:220px;box-sizing:border-box;border:1.5px solid rgba(11,39,72,.2);border-radius:var(--radius);padding:16px;font:400 .92rem/1.5 'Public Sans',sans-serif;color:var(--ink);resize:vertical;}
+  .cc-paste-panel textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold);}
+  .cc-paste-hint{font-size:.75rem;color:rgba(27,27,24,.55);margin-top:8px;}
+
+  /* ===== RESULTADOS ===== */
+  .cc-results{margin-top:42px;}
+  .cc-results-head{margin-bottom:20px;}
+  .cc-results-head h3{color:#fff;font-size:clamp(1.5rem,3vw,2rem);margin:6px 0 0;}
+  .cc-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .cc-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font:700 .78rem 'Public Sans',sans-serif;letter-spacing:.01em;}
+  .cc-badge-cat{background:rgba(200,138,62,.18);color:var(--gold-light);border:1px solid rgba(200,138,62,.4);}
+  .cc-badge-urg-alta{background:rgba(179,64,42,.22);color:#f2a898;border:1px solid rgba(179,64,42,.5);}
+  .cc-badge-urg-media{background:rgba(200,138,62,.2);color:var(--gold-light);border:1px solid rgba(200,138,62,.45);}
+  .cc-badge-urg-baja{background:rgba(79,107,87,.28);color:#a9d3b8;border:1px solid rgba(79,107,87,.55);}
+  .cc-panel{background:rgba(246,242,232,.06);border:1px solid rgba(246,242,232,.14);border-radius:var(--radius);padding:22px 24px;margin-top:16px;}
+  .cc-panel h4{color:#fff;font:600 1.05rem 'Fraunces',serif;margin:0 0 10px;}
+  .cc-panel p{color:rgba(246,242,232,.82);margin:0;line-height:1.6;}
+  .cc-scam-alert{background:rgba(179,64,42,.16);border:1.5px solid rgba(179,64,42,.55);border-radius:var(--radius);padding:22px 24px;margin-top:16px;display:flex;gap:14px;}
+  .cc-scam-alert b{font-size:1.5rem;color:#f2a898;flex:none;}
+  .cc-scam-alert h4{color:#f2a898;font:700 1.05rem 'Public Sans',sans-serif;margin:0 0 8px;}
+  .cc-scam-alert p{color:rgba(246,242,232,.88);margin:0 0 12px;line-height:1.6;}
+  .cc-scam-links{display:flex;flex-wrap:wrap;gap:10px;}
+  .cc-scam-links a{color:#fff;background:rgba(179,64,42,.5);border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:8px;font:700 .76rem 'Public Sans',sans-serif;text-decoration:none;}
+  .cc-scam-links a:hover{background:rgba(179,64,42,.7);}
+  .cc-crosslink{background:rgba(79,107,87,.14);border:1.5px solid rgba(79,107,87,.5);border-radius:var(--radius);padding:22px 24px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .cc-crosslink p{color:rgba(246,242,232,.82);margin:0;max-width:56ch;line-height:1.55;}
+  .cc-crosslink a.btn{flex:none;}
+  .cc-source-note{margin-top:18px;font-size:.72rem;color:rgba(246,242,232,.5);line-height:1.6;}
+  .cc-source-note strong{color:rgba(246,242,232,.72);}
+  .cc-scam-alert[hidden],.cc-crosslink[hidden]{display:none!important;}
+
+  @media(max-width:760px){
+    .cc-privacy-row{grid-template-columns:1fr;}
+    .cr-process{grid-template-columns:1fr;}
+    .cc-tabs{flex-direction:column;}
+    .cc-crosslink{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body data-cms-page="cartas-claras">
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">Crédito Claro <small>Guía en español</small></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html" class="active">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Nuevo · Cartas Claras</span>
+      <h1>¿Recibiste una carta que no entiendes? Descífrala en segundos.</h1>
+      <p>Sube una foto, un PDF o pega el texto de esa carta en inglés — de un cobrador, tu banco, un buró de crédito, el IRS o una corte. Te decimos en español claro de qué se trata, qué tan urgente es y exactamente qué hacer.</p>
+      <div class="credito-hero-actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;">
+        <a href="#analizar-carta" class="btn btn-gold">Analizar mi carta ahora</a>
+        <a href="#como-funciona-cartas" class="btn btn-outline-dark">Ver cómo funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="cc-privacy-callout">
+    <div class="wrap">
+      <div class="cc-privacy-row">
+        <div class="cc-privacy-item">
+          <span>🔒</span>
+          <strong>Tu carta no se guarda</strong>
+          <small>Leemos el documento en tu propio navegador. Nunca lo almacenamos en nuestros servidores.</small>
+        </div>
+        <div class="cc-privacy-item">
+          <span>🕶️</span>
+          <strong>Ocultamos números sensibles</strong>
+          <small>Antes de cualquier análisis más profundo, tapamos automáticamente números de seguro social y de cuenta.</small>
+        </div>
+        <div class="cc-privacy-item">
+          <span>⚖️</span>
+          <strong>No es asesoría legal</strong>
+          <small>Es una guía educativa para entender tu situación y tus derechos — no sustituye a un abogado.</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HERRAMIENTA -->
+  <section id="analizar-carta" class="cc-tool-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark" id="como-funciona-cartas">Cómo funciona</span>
+        <h2>Tres pasos para entender tu carta</h2>
+        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes — y te avisa si algo huele a estafa.</p>
+      </div>
+
+      <div class="cr-process" aria-label="Cómo funciona Cartas Claras">
+        <div class="cr-process-item"><span>1</span><div><strong>Sube o pega</strong><small>Foto, PDF, Word o el texto directo</small></div></div>
+        <div class="cr-process-item"><span>2</span><div><strong>Analizamos</strong><small>Identificamos el tipo de carta y su urgencia</small></div></div>
+        <div class="cr-process-item"><span>3</span><div><strong>Actúa</strong><small>Explicación clara y próximos pasos</small></div></div>
+      </div>
+
+      <div class="cr-upload-card">
+        <div class="cr-privacy">● Procesamiento en tu navegador · La carta no se almacena</div>
+
+        <p class="cc-scope-label">Funciona con cartas de:</p>
+        <div class="cc-scope-chips">
+          <span class="cc-scope-chip">Cobradores de deuda</span>
+          <span class="cc-scope-chip">Bancos</span>
+          <span class="cc-scope-chip">Burós de crédito</span>
+          <span class="cc-scope-chip">IRS</span>
+          <span class="cc-scope-chip">Cortes</span>
+          <span class="cc-scope-chip cc-scope-chip-alert">⚠ Detecta estafas</span>
+        </div>
+
+        <div class="cc-tabs" role="tablist" aria-label="Forma de analizar la carta">
+          <button type="button" class="cc-tab-btn is-active" id="ccTabFile" role="tab" aria-selected="true" aria-controls="ccPanelFile">📄 Subir foto o documento</button>
+          <button type="button" class="cc-tab-btn" id="ccTabPaste" role="tab" aria-selected="false" aria-controls="ccPanelPaste">⌨️ Pegar el texto</button>
+        </div>
+
+        <div class="cc-tab-panel" id="ccPanelFile" role="tabpanel">
+          <div class="cr-dropzone" id="crDropzone" role="button" tabindex="0" aria-label="Seleccionar foto o documento de la carta">
+            <input id="crFileInput" class="cr-file-input" type="file" accept=".pdf,.docx,.png,.jpg,.jpeg,.webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp">
+            <div class="cr-upload-empty" id="crUploadEmpty">
+              <div class="cr-upload-icon">↑</div>
+              <h3>Arrastra la carta aquí</h3>
+              <p>o selecciónala desde tu computadora o teléfono — puedes usar una foto</p>
+              <button class="cr-select-btn" id="crSelectButton" type="button">Seleccionar archivo</button>
+              <small>Foto (JPG, PNG) · PDF · Word (.docx) · Máximo 20 MB</small>
+            </div>
+            <div class="cr-file-ready" id="crFileReady" hidden>
+              <span class="cr-file-type" id="crFileType">PDF</span>
+              <div class="cr-file-copy"><strong id="crFileName"></strong><small id="crFileMeta"></small></div>
+              <button class="cr-change-btn" id="crChangeButton" type="button">Cambiar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cc-tab-panel" id="ccPanelPaste" role="tabpanel" hidden>
+          <div class="cc-paste-panel">
+            <textarea id="ccPasteText" placeholder="Copia y pega aquí el texto de la carta o el correo que recibiste…" maxlength="8000"></textarea>
+            <p class="cc-paste-hint">Útil si ya tienes el texto (por ejemplo, de un correo electrónico) o si prefieres no subir el archivo.</p>
+          </div>
+        </div>
+
+        <button class="cr-analyze-btn" id="crAnalyzeButton" type="button">Explicar esta carta <span>→</span></button>
+        <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
+          <span class="cr-spinner"></span>
+          <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Esto se hace en tu propio navegador</small></div>
+        </div>
+        <div class="cr-error" id="crError" role="alert" hidden><b>!</b><p><strong>No pudimos completar el análisis</strong><span id="crErrorText"></span></p></div>
+      </div>
+
+      <div class="cc-results" id="ccResults" hidden>
+        <div class="cc-results-head">
+          <span class="eyebrow-dark">Resultado</span>
+          <h3>Esto es lo que dice tu carta</h3>
+          <div class="cc-badges">
+            <span class="cc-badge cc-badge-cat" id="ccCatBadge">—</span>
+            <span class="cc-badge" id="ccUrgBadge">—</span>
+          </div>
+        </div>
+
+        <div class="cc-panel">
+          <h4>¿Qué significa?</h4>
+          <p id="ccExplicacion"></p>
+        </div>
+
+        <div class="cc-panel">
+          <h4>Qué puedes hacer</h4>
+          <p id="ccAccion"></p>
+        </div>
+
+        <div class="cc-scam-alert" id="ccScamAlert" hidden>
+          <b>⚠</b>
+          <div>
+            <h4>Esto tiene señales de ser una estafa</h4>
+            <p id="ccScamReason"></p>
+            <div class="cc-scam-links">
+              <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener noreferrer">Reportar a la FTC ↗</a>
+              <a href="https://www.identitytheft.gov/" target="_blank" rel="noopener noreferrer">IdentityTheft.gov ↗</a>
+              <a href="https://www.consumerfinance.gov/complaint/" target="_blank" rel="noopener noreferrer">Quejarme ante el CFPB ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cc-crosslink" id="ccCrosslink" hidden>
+          <p id="ccCrosslinkText"></p>
+          <a class="btn btn-gold" id="ccCrosslinkBtn" href="#">Continuar →</a>
+        </div>
+
+        <p class="cc-source-note" id="ccSourceNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Preguntas frecuentes</span>
+        <h2>Antes de empezar</h2>
+      </div>
+      <div class="qa-list">
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No. Es una herramienta educativa que te ayuda a entender el tipo de carta que recibiste, su nivel de urgencia y los pasos generales que otras personas en tu situación suelen tomar. Para casos graves — una demanda, un posible fraude de identidad o un embargo — siempre recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer?</h3><p>Cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes o juzgados, y también identifica señales comunes de estafa. Si no reconoce el tipo de carta, te lo dirá honestamente en vez de adivinar.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social y de cuenta que aparezcan en el texto.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué hago si es una foto y no se lee bien?</h3><p>Intenta con buena luz, sin sombras y con la carta lo más plana posible. Si el texto sigue sin leerse bien, usa la pestaña "Pegar el texto" y escribe o copia el contenido directamente.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cómo sé si es una estafa?</h3><p>Buscamos señales conocidas: exigencias de pago con tarjetas de regalo o transferencias, amenazas de arresto inmediato, presión para no decirle a nadie, plazos de solo horas, o solicitudes de tu número de seguro social sin verificación. Si detectamos estas señales, te lo advertimos de inmediato — pero ante cualquier duda, nunca envíes dinero ni información personal sin verificar primero por un medio oficial.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Ya revisaste tu reporte de crédito?</h2>
+      <p>Cartas Claras te ayuda a entender una carta puntual. Nuestro analizador de reportes te da una vista completa de tu situación crediticia — y genera las cartas de disputa o validación que necesites.</p>
+      <a href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte de crédito</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Crédito Claro</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.12.1/mammoth.browser.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  const $=(id)=>document.getElementById(id);
+  const MAX_SIZE=20*1024*1024;
+  const allowedExt=['pdf','docx','png','jpg','jpeg','webp'];
+
+  const dropzone=$('crDropzone'), fileInput=$('crFileInput'), selectButton=$('crSelectButton'),
+        changeButton=$('crChangeButton'), empty=$('crUploadEmpty'), ready=$('crFileReady'),
+        analyzeButton=$('crAnalyzeButton'), progress=$('crProgress'), progressTitle=$('crProgressTitle'),
+        progressText=$('crProgressText'), errorBox=$('crError'), results=$('ccResults'),
+        tabFile=$('ccTabFile'), tabPaste=$('ccTabPaste'), panelFile=$('ccPanelFile'), panelPaste=$('ccPanelPaste'),
+        pasteText=$('ccPasteText');
+
+  let selectedFile=null;
+  let activeTab='file';
+
+  /* ===== Utilidades ===== */
+  function bytes(n){
+    if(n>=1048576)return (n/1048576).toFixed(1)+' MB';
+    if(n>=1024)return Math.round(n/1024)+' KB';
+    return n+' B';
+  }
+
+  function showError(message){
+    results.hidden=true;
+    errorBox.hidden=false;
+    $('crErrorText').textContent=message;
+    errorBox.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function showProgress(title,text){
+    errorBox.hidden=true;
+    progress.hidden=false;
+    progressTitle.textContent=title;
+    progressText.textContent=text;
+    analyzeButton.disabled=true;
+  }
+
+  function hideProgress(){
+    progress.hidden=true;
+    analyzeButton.disabled=false;
+  }
+
+  /* ===== Pestañas subir / pegar ===== */
+  function setTab(tab){
+    activeTab=tab;
+    const isFile=tab==='file';
+    tabFile.classList.toggle('is-active',isFile);
+    tabPaste.classList.toggle('is-active',!isFile);
+    tabFile.setAttribute('aria-selected',String(isFile));
+    tabPaste.setAttribute('aria-selected',String(!isFile));
+    panelFile.hidden=!isFile;
+    panelPaste.hidden=isFile;
+    errorBox.hidden=true;
+  }
+  tabFile.addEventListener('click',()=>setTab('file'));
+  tabPaste.addEventListener('click',()=>setTab('paste'));
+
+  /* ===== Selección de archivo (igual patrón que credito.html) ===== */
+  selectButton.addEventListener('click',(e)=>{e.stopPropagation();fileInput.click();});
+  dropzone.addEventListener('click',()=>fileInput.click());
+  dropzone.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();}});
+  dropzone.addEventListener('dragover',(e)=>{e.preventDefault();dropzone.classList.add('is-dragging');});
+  dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
+  dropzone.addEventListener('drop',(e)=>{
+    e.preventDefault();dropzone.classList.remove('is-dragging');
+    if(e.dataTransfer.files&&e.dataTransfer.files[0])selectFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change',()=>{if(fileInput.files&&fileInput.files[0])selectFile(fileInput.files[0]);});
+  changeButton.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    selectedFile=null;fileInput.value='';
+    ready.hidden=true;empty.hidden=false;dropzone.classList.remove('has-file');
+  });
+
+  function selectFile(file){
+    if(!file)return;
+    const extension=(file.name.split('.').pop()||'').toLowerCase();
+    errorBox.hidden=true;
+    if(!allowedExt.includes(extension)){
+      selectedFile=null;
+      return showError('Usa una foto (JPG, PNG), un PDF o un Word (.docx). El formato .doc antiguo o .heic de iPhone no se puede leer — si tu foto se guardó como .heic, compártela como JPG.');
+    }
+    if(file.size>MAX_SIZE){
+      selectedFile=null;
+      return showError('El archivo supera 20 MB. Usa una versión más ligera (por ejemplo, una foto con menor resolución) e inténtalo de nuevo.');
+    }
+    selectedFile=file;
+    results.hidden=true;empty.hidden=true;ready.hidden=false;dropzone.classList.add('has-file');
+    $('crFileType').textContent=extension.toUpperCase();
+    $('crFileName').textContent=file.name;
+    $('crFileMeta').textContent=bytes(file.size)+' · Listo para analizar';
+  }
+
+  /* ===== Extracción de texto ===== */
+  async function extractPdf(file){
+    if(!window.pdfjsLib)throw new Error('No se pudo cargar el lector de PDF. Revisa tu conexión e inténtalo nuevamente.');
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf=await window.pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+    const parts=[];
+    for(let pageNumber=1;pageNumber<=Math.min(pdf.numPages,30);pageNumber++){
+      const page=await pdf.getPage(pageNumber);
+      const content=await page.getTextContent();
+      parts.push(content.items.map(item=>(item.str||'')+(item.hasEOL?'\n':' ')).join(''));
+    }
+    return {text:parts.join('\n'),detail:'PDF · '+pdf.numPages+' página'+(pdf.numPages===1?'':'s')};
+  }
+
+  async function extractWord(file){
+    if(!window.mammoth)throw new Error('No se pudo cargar el lector de Word. Revisa tu conexión e inténtalo nuevamente.');
+    const result=await window.mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});
+    return {text:result.value,detail:'Documento Word'};
+  }
+
+  let tesseractLoadPromise=null;
+  function loadTesseract(){
+    if(window.Tesseract)return Promise.resolve();
+    if(tesseractLoadPromise)return tesseractLoadPromise;
+    tesseractLoadPromise=new Promise((resolve,reject)=>{
+      const s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/7.0.0/tesseract.min.js';
+      s.onload=()=>resolve();
+      s.onerror=()=>reject(new Error('No se pudo cargar el lector de imágenes. Revisa tu conexión e inténtalo nuevamente.'));
+      document.head.appendChild(s);
+    });
+    return tesseractLoadPromise;
+  }
+
+  async function extractImage(file){
+    showProgress('Cargando el lector de imágenes…','La primera vez tarda unos segundos');
+    await loadTesseract();
+    if(!window.Tesseract)throw new Error('No se pudo cargar el lector de imágenes. Revisa tu conexión e inténtalo nuevamente.');
+    const worker=await window.Tesseract.createWorker('eng+spa',1,{
+      logger:(m)=>{
+        if(m&&m.status==='recognizing text'&&typeof m.progress==='number'){
+          showProgress('Leyendo el texto de la foto…',Math.round(m.progress*100)+'% completado');
+        }
+      }
+    });
+    try{
+      const {data}=await worker.recognize(file);
+      return {text:data.text,detail:'Foto (texto leído automáticamente)'};
+    }finally{
+      await worker.terminate();
+    }
+  }
+
+  async function extractFromFile(file){
+    const extension=(file.name.split('.').pop()||'').toLowerCase();
+    if(extension==='pdf')return extractPdf(file);
+    if(extension==='docx')return extractWord(file);
+    if(['png','jpg','jpeg','webp'].includes(extension)||file.type.indexOf('image/')===0)return extractImage(file);
+    throw new Error('Formato no compatible. Usa una foto (JPG, PNG), un PDF o un Word (.docx).');
+  }
+
+  /* ===== Ocultar datos sensibles antes de cualquier análisis con IA ===== */
+  function redactSensitive(text){
+    let out=String(text||'');
+    out=out.replace(/\b\d{3}[-\s]\d{2}[-\s]\d{4}\b/g,'[NÚMERO DE SEGURO SOCIAL OCULTO]');
+    out=out.replace(/\b(?:\d[\s-]?){7,19}\d\b/g,(match)=>{
+      const digits=match.replace(/[^\d]/g,'');
+      return digits.length>=8?'[NÚMERO OCULTO]':match;
+    });
+    return out;
+  }
+
+  /* ===== Clasificador local (sin IA, siempre disponible y gratis) ===== */
+  /* Cada categoría tiene señales "fuertes" (muy específicas — casi nunca aparecen por accidente,
+     así que una sola es suficiente) y señales "débiles" (palabras sueltas o ambiguas — como "corte"
+     o "banco", que en español también significan "cut"/"bench", o "irs", que como texto de 3 letras
+     puede aparecer dentro de palabras comunes en inglés como "first"). Una señal débil sola NUNCA
+     alcanza para clasificar una carta; necesita otra señal débil o una fuerte que la respalde. Esto
+     es intencional: preferimos decir "no estamos seguros" (categoría "otro") a inventar con
+     confianza el tipo de carta equivocado. */
+  const CATEGORY_KEYWORDS={
+    estafa:{
+      strong:['gift card','tarjeta de regalo','wire transfer','western union','moneygram','arrest warrant','orden de arresto','do not tell anyone','no le digas a nadie','suspend your social security','suspender tu numero de seguro social','pay immediately or','call this number immediately','llama a este numero de inmediato','irs will never call','claim your prize','you have won','ganaste un premio'],
+      weak:['bitcoin','criptomoneda','crypto','act immediately','actua de inmediato']
+    },
+    cobrador:{
+      strong:['debt collector','collection agency','fair debt collection practices act','fdcpa','validation notice','placed for collection','agencia de cobro','cobrador de deuda'],
+      weak:['collections','amount owed','balance due','validate this debt','settle your debt','account has been placed','cobranza','deuda pendiente','saldo adeudado']
+    },
+    buro:{
+      strong:['equifax','experian','transunion','fair credit reporting act','fcra','buro de credito'],
+      weak:['credit bureau','credit report','consumer report','dispute this','information on your file','reporte de credito']
+    },
+    corte:{
+      strong:['summons','civil action','case number','plaintiff','defendant','small claims','citacion judicial','demanda civil'],
+      weak:['court','lawsuit','hearing date','corte','demanda','juzgado','audiencia','caso numero']
+    },
+    irs:{
+      strong:['internal revenue service','form 1040','notice of deficiency','cp2000','servicio de impuestos internos'],
+      weak:['irs','tax return','impuesto','declaracion de impuestos','hacienda']
+    },
+    banco:{
+      strong:['account statement','routing number','bank of america','wells fargo','chase bank','estado de cuenta bancario'],
+      weak:['overdraft','wire','your checking account','your savings account','banco','sobregiro','cuenta corriente','cuenta de ahorros']
+    }
+  };
+  const MIN_CATEGORY_SCORE=2; // mínimo de puntos (fuerte=2, débil=1) para comprometernos con una categoría
+
+  const CATEGORY_LABELS={
+    cobrador:'Cobrador de deuda',buro:'Buró de crédito',corte:'Corte o proceso legal',
+    irs:'IRS (impuestos)',banco:'Banco o institución financiera',estafa:'Posible estafa',otro:'Otro / no identificado'
+  };
+
+  const URGENCY_LABELS={alta:'Urgente — actúa pronto',media:'Atiéndela esta semana',baja:'Sin prisa, pero revísala'};
+
+  const CATEGORY_EXPLANATIONS={
+    cobrador:'Este documento parece venir de un cobrador de deuda o una agencia de cobranza. Suelen enviarse cuando una cuenta no se ha pagado y fue transferida o vendida para su cobro.',
+    buro:'Este documento parece venir de un buró de crédito (como Equifax, Experian o TransUnion) o mencionar tu reporte de crédito.',
+    corte:'Este documento hace referencia a un proceso legal, una corte o un caso — puede tratarse de una demanda, una citación o un aviso de audiencia.',
+    irs:'Este documento parece ser del IRS o tratar sobre impuestos.',
+    banco:'Este documento parece venir de un banco o institución financiera, o tratar sobre una cuenta bancaria.',
+    otro:'Esta carta no coincide con los tipos que reconocemos con más precisión (cobrador de deuda, banco, buró de crédito, IRS o corte), así que no queremos adivinar de qué se trata.'
+  };
+
+  const CATEGORY_ACTIONS={
+    cobrador:'Tienes derecho, bajo la Fair Debt Collection Practices Act (FDCPA), a pedir por escrito que el cobrador valide la deuda dentro de los 30 días de haber recibido el aviso — esto los obliga a demostrar que la deuda es tuya y el monto correcto antes de seguir cobrando. Guarda una copia de la carta y de todo lo que envíes.',
+    buro:'Bajo la Fair Credit Reporting Act (FCRA), tienes derecho a disputar información inexacta en tu reporte de crédito. Solicita tus tres reportes gratis en AnnualCreditReport.com y compáralos con esta carta antes de responder.',
+    corte:'Anota la fecha límite o de audiencia que aparezca en el documento — perder un plazo legal puede tener consecuencias serias. Te recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área lo antes posible.',
+    irs:'No ignores un aviso del IRS, pero tampoco actúes solo por miedo: verifica cualquier aviso llamando directamente al número oficial en irs.gov (nunca al número que aparece en un correo o mensaje de texto sospechoso). Un contador o preparador de impuestos de confianza puede ayudarte a responder.',
+    banco:'Revisa que los datos de la cuenta y los montos coincidan con tus propios registros. Si algo no cuadra, contacta a tu banco directamente usando el número oficial que aparece en tu tarjeta o en su sitio web — no el que venga en la carta si tienes dudas sobre su autenticidad.',
+    otro:'Por ahora Cartas Claras se enfoca en cartas de cobradores, bancos, burós de crédito, el IRS y cortes. Guarda este documento y, si puedes, compártelo con alguien de confianza o un profesional del área correspondiente antes de responder o pagar cualquier cosa.'
+  };
+
+  function escapeRegex(str){
+    return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  }
+
+  // Coincidencia por palabra completa (con \b), no por subcadena — así "irs" no coincide dentro de
+  // "first", ni "corte" dentro de "cortesía". Se permite una "s" final opcional para cubrir el
+  // plural más común ("gift card"/"gift cards", "banco"/"bancos") sin duplicar cada palabra clave.
+  // Se cachea el RegExp por palabra clave para no reconstruirlo en cada llamada.
+  const _keywordRegexCache={};
+  function keywordMatches(text,keyword){
+    let re=_keywordRegexCache[keyword];
+    if(!re){re=new RegExp('\\b'+escapeRegex(keyword)+'s?\\b','i');_keywordRegexCache[keyword]=re;}
+    return re.test(text);
+  }
+
+  function detectScam(text){
+    const strongHits=CATEGORY_KEYWORDS.estafa.strong.filter((kw)=>keywordMatches(text,kw));
+    const weakHits=CATEGORY_KEYWORDS.estafa.weak.filter((kw)=>keywordMatches(text,kw));
+    // Una señal fuerte de estafa basta; dos señales débiles también — evita marcar como estafa por
+    // una sola palabra ambigua como "crypto" mencionada de pasada.
+    const isScam=strongHits.length>=1||weakHits.length>=2;
+    return {isScam,hits:strongHits.concat(weakHits)};
+  }
+
+  // Puntaje ponderado: cada señal fuerte vale 2 puntos, cada débil vale 1. Se necesita un mínimo de
+  // MIN_CATEGORY_SCORE para comprometernos con esa categoría — así una sola palabra suelta y
+  // ambigua (como "banco" o "corte", que también tienen otro significado común en español) nunca
+  // alcanza por sí sola para decidir de qué trata la carta.
+  function scoreCategory(text,cat){
+    const def=CATEGORY_KEYWORDS[cat];
+    let score=0;
+    def.strong.forEach((kw)=>{if(keywordMatches(text,kw))score+=2;});
+    def.weak.forEach((kw)=>{if(keywordMatches(text,kw))score+=1;});
+    return score;
+  }
+
+  function classifyLetterLocally(text){
+    const scam=detectScam(text);
+    let bestCat='otro',bestScore=0;
+    ['cobrador','buro','corte','irs','banco'].forEach((cat)=>{
+      const score=scoreCategory(text,cat);
+      if(score>bestScore){bestScore=score;bestCat=cat;}
+    });
+    if(bestScore<MIN_CATEGORY_SCORE)bestCat='otro';
+
+    const isScam=scam.isScam;
+    const categoria=isScam?'estafa':bestCat;
+
+    const deadlineHint=/\b(24\s*hours|immediately|inmediatamente|within\s*hours|antes de hoy)\b/i.test(text);
+    let urgencia='baja';
+    if(isScam||categoria==='corte'||deadlineHint)urgencia='alta';
+    else if(categoria!=='otro')urgencia='media';
+
+    const explicacion=(isScam?'Este documento tiene una o más señales típicas de fraude financiero. ':'')+CATEGORY_EXPLANATIONS[bestCat];
+    const accion=isScam
+      ?'No envíes dinero, tarjetas de regalo ni información personal hasta verificar quién te contactó por un medio oficial (llamando directamente a la institución con el número que tú busques, no el que aparece en la carta). Si ya diste información o dinero, repórtalo de inmediato a la FTC.'
+      :CATEGORY_ACTIONS[bestCat];
+
+    return {
+      categoria,
+      urgencia,
+      explicacion,
+      accion,
+      alerta_estafa:isScam?'si':'no',
+      razon_estafa:isScam?('Detectamos frases asociadas a estafas comunes, como: "'+scam.hits.slice(0,3).join('", "')+'".'):'ninguna'
+    };
+  }
+
+  /* ===== Análisis con IA real (solo con sesión activa — mismo patrón que Mr. Credit Coach) ===== */
+  async function callExplainLetter(redactedText){
+    if(!window.CCAuth||!window.CCAuth.isConfigured)return null;
+    const user=window.CCAuth.getUser&&window.CCAuth.getUser();
+    if(!user)return null;
+    const accessToken=window.CCAuth.getAccessToken?window.CCAuth.getAccessToken():null;
+    if(!accessToken)return null;
+
+    const res=await fetch('/.netlify/functions/explain-letter',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({letterText:redactedText,accessToken})
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok||!data||!data.result)return null;
+    return data.result;
+  }
+
+  /* ===== Enlaces cruzados hacia las otras herramientas del sitio ===== */
+  function crosslinkFor(categoria,isScam){
+    if(isScam)return null;
+    if(categoria==='cobrador'){
+      return {
+        text:'¿Quieres que dejen de contactarte? Prepara una carta gratuita de cese de comunicación, o analiza tu reporte de crédito para generar una carta de validación de deuda con tus propios datos.',
+        href:'herramientas.html#carta-cese-comunicacion',
+        label:'Preparar mi carta →'
+      };
+    }
+    if(categoria==='buro'){
+      return {
+        text:'Si crees que esta información es incorrecta, analiza tu reporte de crédito para generar una carta de disputa dirigida al buró correspondiente, con los datos exactos de tu caso.',
+        href:'credito.html#analizar-reporte',
+        label:'Analizar mi reporte →'
+      };
+    }
+    return null;
+  }
+
+  /* ===== Renderizar resultados ===== */
+  function renderResults(result,source,detail){
+    const categoria=result.categoria||'otro';
+    const urgencia=(result.urgencia||'media').toLowerCase();
+    const isScam=String(result.alerta_estafa||'no').toLowerCase()==='si';
+
+    $('ccCatBadge').textContent=CATEGORY_LABELS[categoria]||CATEGORY_LABELS.otro;
+
+    const urgBadge=$('ccUrgBadge');
+    urgBadge.className='cc-badge cc-badge-urg-'+(['alta','media','baja'].includes(urgencia)?urgencia:'media');
+    urgBadge.textContent=URGENCY_LABELS[urgencia]||URGENCY_LABELS.media;
+
+    $('ccExplicacion').textContent=result.explicacion||'No fue posible generar una explicación.';
+    $('ccAccion').textContent=result.accion||'Revisa el documento original y, si tienes dudas, consulta a un profesional.';
+
+    const scamBox=$('ccScamAlert');
+    if(isScam){
+      scamBox.hidden=false;
+      $('ccScamReason').textContent=result.razon_estafa&&result.razon_estafa!=='ninguna'?result.razon_estafa:'El contenido de esta carta coincide con patrones comunes de fraude.';
+    }else{
+      scamBox.hidden=true;
+    }
+
+    const cross=crosslinkFor(categoria,isScam);
+    const crossBox=$('ccCrosslink');
+    if(cross){
+      crossBox.hidden=false;
+      $('ccCrosslinkText').textContent=cross.text;
+      const btn=$('ccCrosslinkBtn');
+      btn.href=cross.href;btn.textContent=cross.label;
+    }else{
+      crossBox.hidden=true;
+    }
+
+    $('ccSourceNote').innerHTML=(source==='ai'
+      ?'<strong>Análisis generado con inteligencia artificial.</strong> '
+      :'<strong>Análisis automático basado en palabras clave</strong> — ')
+      +(source==='ai'?'Revisado con el texto que leímos de tu documento ('+detail+'). ':'sin necesidad de iniciar sesión ('+detail+'). ')
+      +'Esto es información educativa, no asesoría legal ni financiera profesional.';
+
+    results.hidden=false;
+    results.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  /* ===== Flujo principal ===== */
+  async function handleAnalyze(){
+    errorBox.hidden=true;
+
+    let raw='',detail='';
+    try{
+      if(activeTab==='paste'){
+        raw=(pasteText.value||'').trim();
+        if(!raw)return showError('Pega el texto de la carta antes de continuar.');
+        detail='Texto pegado';
+      }else{
+        if(!selectedFile)return showError('Selecciona una foto o un documento antes de continuar.');
+        showProgress('Leyendo el documento…','Esto se hace en tu propio navegador');
+        const extracted=await extractFromFile(selectedFile);
+        raw=(extracted.text||'').trim();
+        detail=extracted.detail;
+      }
+
+      if(!raw||raw.replace(/\s+/g,'').length<15){
+        hideProgress();
+        return showError('No pudimos leer suficiente texto. Si es una foto, inténtalo con mejor luz y sin sombras; si prefieres, usa la pestaña "Pegar el texto".');
+      }
+      if(raw.length>8000)raw=raw.slice(0,8000);
+
+      showProgress('Analizando el contenido…','Buscando de qué se trata la carta');
+      const redacted=redactSensitive(raw);
+
+      let result=null,source='local';
+      try{
+        const aiResult=await callExplainLetter(redacted);
+        if(aiResult){result=aiResult;source='ai';}
+      }catch(err){
+        console.warn('[cartas-claras] Análisis con IA no disponible, usando análisis local:',err);
+      }
+      if(!result){
+        result=classifyLetterLocally(redacted);
+        source='local';
+      }
+
+      hideProgress();
+      renderResults(result,source,detail);
+    }catch(err){
+      hideProgress();
+      showError(err&&err.message?err.message:'Ocurrió un error inesperado. Intenta de nuevo.');
+    }
+  }
+
+  analyzeButton.addEventListener('click',handleAnalyze);
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="credit-coach.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+(()=>{
+  'use strict';
+
+  const launcher=document.createElement('button');
+  launcher.type='button';
+  launcher.className='credit-coach-launcher';
+  launcher.setAttribute('aria-expanded','false');
+  launcher.setAttribute('aria-controls','creditCoachPanel');
+  launcher.setAttribute('aria-label','Abrir Mr. Credit Coach');
+  launcher.innerHTML='<span class="credit-coach-avatar" aria-hidden="true">MC</span><span class="credit-coach-online" aria-hidden="true"></span><span>Mr. Credit Coach</span>';
+
+  const panel=document.createElement('section');
+  panel.id='creditCoachPanel';
+  panel.className='credit-coach-panel';
+  panel.hidden=true;
+  panel.setAttribute('aria-label','Asistente Mr. Credit Coach');
+  panel.innerHTML=`
+    <div class="credit-coach-header">
+      <span class="credit-coach-avatar" aria-hidden="true">MC</span>
+      <div class="credit-coach-title"><strong>Mr. Credit Coach</strong><small>Asistente educativo · disponible ahora</small></div>
+      <button class="credit-coach-close" type="button" aria-label="Cerrar asistente">×</button>
+    </div>
+    <div class="credit-coach-messages" role="log" aria-live="polite" aria-relevant="additions">
+      <div class="coach-message bot">¡Hola! Soy Mr. Credit Coach. Puedo orientarte sobre crédito, reportes, compra de casa o auto y nuestra calculadora hipotecaria. ¿Qué quieres lograr?</div>
+    </div>
+    <div class="credit-coach-suggestions" aria-label="Preguntas sugeridas">
+      <button class="coach-suggestion" type="button">Mejorar mi crédito</button>
+      <button class="coach-suggestion" type="button">Comprar una casa</button>
+      <button class="coach-suggestion" type="button">Calcular mortgage</button>
+      <button class="coach-suggestion" type="button">Analizar mi reporte</button>
+    </div>
+    <form class="credit-coach-form">
+      <label class="sr-only" for="creditCoachInput">Escribe tu pregunta</label>
+      <input class="credit-coach-input" id="creditCoachInput" maxlength="300" autocomplete="off" placeholder="Escribe tu pregunta…">
+      <button class="credit-coach-send" type="submit" aria-label="Enviar pregunta">➜</button>
+    </form>
+    <p class="credit-coach-legal">Orientación educativa; no sustituye asesoría financiera, legal o crediticia profesional.</p>`;
+
+  document.body.append(launcher,panel);
+
+  const close=panel.querySelector('.credit-coach-close');
+  const messages=panel.querySelector('.credit-coach-messages');
+  const form=panel.querySelector('.credit-coach-form');
+  const input=panel.querySelector('.credit-coach-input');
+
+  function toggle(open){
+    panel.hidden=!open;
+    launcher.setAttribute('aria-expanded',String(open));
+    launcher.setAttribute('aria-label',open?'Cerrar Mr. Credit Coach':'Abrir Mr. Credit Coach');
+    if(open)setTimeout(()=>input.focus(),80);
+  }
+
+  const conversationHistory=[];
+
+  function addMessage(text,who='bot',link=null){
+    const bubble=document.createElement('div');
+    bubble.className=`coach-message ${who}`;
+    bubble.textContent=text;
+    if(link){
+      const anchor=document.createElement('a');
+      anchor.href=link.href;
+      anchor.textContent=link.label;
+      bubble.appendChild(document.createElement('br'));
+      bubble.appendChild(anchor);
+    }
+    messages.appendChild(bubble);
+    messages.scrollTop=messages.scrollHeight;
+    return bubble;
+  }
+
+  function addTyping(){
+    const bubble=document.createElement('div');
+    bubble.className='coach-message bot coach-typing';
+    bubble.innerHTML='<span></span><span></span><span></span>';
+    bubble.setAttribute('aria-label','Mr. Credit Coach está escribiendo');
+    messages.appendChild(bubble);
+    messages.scrollTop=messages.scrollHeight;
+    return bubble;
+  }
+
+  // Si hay sesión activa de Supabase, intenta usar el asistente con IA real
+  // (netlify/functions/coach.js). Si no hay sesión, no está configurado, o
+  // la llamada falla por cualquier razón, se usa siempre el asistente local
+  // de respaldo — el chat nunca se queda sin responder.
+  async function askAI(question){
+    if(!window.CCAuth||!window.CCAuth.isConfigured)return null;
+    const user=window.CCAuth.getUser&&window.CCAuth.getUser();
+    const token=window.CCAuth.getAccessToken&&window.CCAuth.getAccessToken();
+    if(!user||!token)return null;
+    try{
+      const res=await fetch('/.netlify/functions/coach',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({question,accessToken:token,history:conversationHistory})
+      });
+      if(!res.ok)return null;
+      const data=await res.json();
+      return data&&data.answer?data.answer:null;
+    }catch(error){
+      return null;
+    }
+  }
+
+  function answer(raw){
+    const question=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    if(/mortgage|hipoteca|pago mensual|cuota|casa/.test(question)){
+      return {text:'Para estimar una hipoteca necesitas el precio, pronto inicial, interés, plazo, impuestos, seguro y HOA. La calculadora suma esos componentes y separa principal e interés.',link:{href:'herramientas.html#calculadora-hipoteca',label:'Abrir calculadora hipotecaria →'}};
+    }
+    if(/analiz|reporte|pdf|word|excel|negativ|coleccion|collection/.test(question)){
+      return {text:'Puedes analizar tu reporte directamente en la sección Crédito. El archivo se procesa en tu navegador y recibirás fortalezas, señales negativas y una estrategia priorizada.',link:{href:'credito.html#analizar-reporte',label:'Ir al analizador →'}};
+    }
+    if(/mejor|subir|puntaje|score|utilizacion|tarjeta|pago tardio|late/.test(question)){
+      return {text:'Empieza por tres acciones: paga siempre a tiempo, reduce la utilización de tarjetas —idealmente por debajo de 30%, y revisa los tres reportes para corregir errores. Evita abrir varias cuentas en poco tiempo.',link:{href:'credito.html',label:'Ver fundamentos del crédito →'}};
+    }
+    if(/auto|carro|dealer|vehiculo/.test(question)){
+      return {text:'Antes de financiar un auto, compara ofertas, revisa el APR y calcula el costo total, no solo el pago mensual. Una mejor entrada y un plazo más corto suelen reducir los intereses.',link:{href:'comprar-auto.html',label:'Ver guía de compra de auto →'}};
+    }
+    if(/disput|error|incorrect|fraude|robo/.test(question)){
+      return {text:'Si ves información incorrecta, guarda evidencia, disputa directamente con el buró y el proveedor de la cuenta, y conserva números de confirmación. En casos de identidad, coloca alertas o congela tu crédito.'};
+    }
+    if(/hola|hello|buenos|ayuda|que puedes/.test(question)){
+      return {text:'Puedo ayudarte a entender tu puntaje, priorizar mejoras, leer señales de un reporte, preparar la compra de casa o auto y calcular una hipoteca. Cuéntame cuál es tu meta.'};
+    }
+    return {text:'Para darte una orientación útil, dime si tu pregunta es sobre puntaje, reporte de crédito, deudas, compra de casa, compra de auto o cálculo de mortgage. No incluyas números de cuenta ni información sensible.'};
+  }
+
+  async function submitQuestion(value){
+    const clean=String(value||'').trim();
+    if(!clean)return;
+    addMessage(clean,'user');
+    conversationHistory.push({role:'user',content:clean});
+    input.value='';
+
+    const typingBubble=addTyping();
+    const aiAnswer=await askAI(clean);
+    typingBubble.remove();
+
+    if(aiAnswer){
+      addMessage(aiAnswer,'bot');
+      conversationHistory.push({role:'assistant',content:aiAnswer});
+      return;
+    }
+
+    const response=answer(clean);
+    addMessage(response.text,'bot',response.link);
+    conversationHistory.push({role:'assistant',content:response.text});
+  }
+
+  launcher.addEventListener('click',()=>toggle(panel.hidden));
+  close.addEventListener('click',()=>{toggle(false);launcher.focus();});
+  form.addEventListener('submit',event=>{event.preventDefault();submitQuestion(input.value);});
+  panel.querySelectorAll('.coach-suggestion').forEach(button=>button.addEventListener('click',()=>submitQuestion(button.textContent)));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){toggle(false);launcher.focus();}});
+})();

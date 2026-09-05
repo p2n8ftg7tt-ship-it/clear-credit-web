@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Préstamos y compra de casa | Themora</title>
+<meta name="description" content="Guía en español para comparar préstamos hipotecarios FHA, VA, USDA, convencionales y otras alternativas de vivienda.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Préstamos y compra de casa | Themora">
+<meta property="og:description" content="Guía en español para comparar préstamos hipotecarios FHA, VA, USDA, convencionales y otras alternativas de vivienda.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/comprar-casa.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Préstamos y compra de casa | Themora">
+<meta name="twitter:description" content="Guía en español para comparar préstamos hipotecarios FHA, VA, USDA, convencionales y otras alternativas de vivienda.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/comprar-casa.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .rate-watch-section{background:var(--paper-dim);position:relative;overflow:hidden;}
+  .rate-watch-section::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(14,165,233,.14);border-radius:50%;right:-200px;top:-210px;}
+  .rate-watch-layout{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:22px;align-items:stretch;}
+  .rate-watch-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:0 18px 45px rgba(7,89,133,.1);}
+  .rate-agent-title{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .rate-agent-icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-deep);font-family:'Fraunces',serif;font-size:1.15rem;font-weight:800;}
+  .rate-agent-title h3{font-size:1.25rem;margin:0;color:var(--navy);}
+  .rate-agent-title p{font-size:.78rem;color:var(--teal);font-weight:800;margin:1px 0 0;}
+  .rate-status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 10px;background:rgba(2,132,199,.1);color:var(--teal);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;}
+  .rate-status::before{content:"";width:8px;height:8px;border-radius:50%;background:#20b875;box-shadow:0 0 0 3px rgba(32,184,117,.14);}
+  .rate-checklist{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .rate-checklist li{padding:13px 14px;border-left:3px solid var(--gold);background:var(--paper-dim);color:rgba(12,37,56,.78);font-size:.84rem;}
+  .rate-checklist strong{display:block;color:var(--navy-deep);margin-bottom:2px;}
+  .rate-delivery{background:var(--navy-deep);color:#fff;border-radius:18px;padding:30px;display:flex;flex-direction:column;}
+  .rate-delivery .eyebrow{color:var(--gold-light);}
+  .rate-delivery h3{color:#fff;font-size:1.5rem;margin:0 0 10px;}
+  .rate-delivery>p{color:rgba(255,255,255,.7);font-size:.9rem;margin:0;}
+  .rate-time{font-family:'Fraunces',serif;color:#fff;font-weight:700;font-size:2.5rem;line-height:1;margin:24px 0 5px;}
+  .rate-time span{font:600 .78rem 'Public Sans',sans-serif;color:rgba(255,255,255,.55);}
+  .rate-source-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:24px;}
+  .rate-source-links a{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 10px;color:#fff;text-decoration:none;font-size:.7rem;font-weight:700;}
+  .rate-source-links a:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  .rate-disclaimer{margin-top:15px!important;font-size:.68rem!important;color:rgba(255,255,255,.45)!important;}
+  @media(max-width:800px){.rate-watch-layout{grid-template-columns:1fr}.rate-checklist{grid-template-columns:1fr;}}
+
+  /* Recorridos educativos de préstamos */
+  .fha-entry,.conv-entry{position:relative;background:linear-gradient(90deg,#fff 0%,#fff 72%,rgba(14,165,233,.035) 100%);}
+  .fha-entry::before,.conv-entry::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:var(--gold);}
+  .conv-entry::before{background:var(--navy);}
+  .conv-world .fha-world-mark{background:var(--teal);}
+  .fha-entry-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px;}
+  .fha-learn-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-width:255px;border:0;border-radius:9px;background:var(--navy-deep);color:#fff;padding:14px 18px;font:700 .86rem 'Public Sans',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(8,47,73,.16);transition:transform .18s ease,background .18s ease;}
+  .fha-learn-btn:hover{transform:translateY(-2px);background:var(--teal);}
+  .fha-learn-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .fha-entry-actions small{color:rgba(12,37,56,.55);font-size:.72rem;}
+  .fha-entry-actions small strong{color:var(--teal);}
+
+  .fha-world{position:fixed;inset:0;z-index:300;background:#fff;display:grid;grid-template-rows:72px auto minmax(0,1fr) 72px;color:var(--ink);animation:fha-enter .28s ease both;}
+  .fha-world[hidden]{display:none;}
+  @keyframes fha-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .fha-world-header{position:static;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 28px;background:#fff;border-bottom:1px solid var(--line);}
+  .fha-world-close{justify-self:start;display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:var(--navy);font:700 .82rem 'Public Sans',sans-serif;cursor:pointer;}
+  .fha-world-close:hover{color:var(--gold);}
+  .fha-world-brand{display:flex;align-items:center;gap:11px;}
+  .fha-world-mark{width:36px;height:36px;border-radius:50% 50% 50% 13px;background:var(--navy-deep);color:#fff;display:grid;place-items:center;font:700 1.1rem 'Fraunces',serif;}
+  .fha-world-brand div{display:flex;flex-direction:column;line-height:1.2;}
+  .fha-world-brand strong{font:600 1.08rem 'Fraunces',serif;color:var(--navy);}
+  .fha-world-brand small{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);font-weight:700;}
+  .fha-counter{justify-self:end;text-align:right;line-height:1.25;}
+  .fha-counter strong{display:block;color:var(--navy);font-size:.75rem;}
+  .fha-counter span{display:block;color:rgba(12,37,56,.5);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;}
+  .fha-progress-wrap{background:#fff;border-bottom:1px solid var(--line);padding:0 28px;}
+  .fha-progress-track{height:3px;background:var(--paper-dim);margin:0 -28px;}
+  .fha-progress-fill{display:block;height:100%;width:14.285%;background:var(--gold);transition:width .25s ease;}
+  .fha-step-tabs{height:70px;display:flex;justify-content:center;align-items:center;gap:clamp(12px,3.6vw,48px);}
+  .fha-step-tab{border:0;background:transparent;color:rgba(12,37,56,.42);display:flex;align-items:center;gap:7px;padding:9px 0;cursor:pointer;font:700 .66rem 'Public Sans',sans-serif;}
+  .fha-step-tab i{width:22px;height:22px;border:1px solid rgba(7,89,133,.22);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.6rem;}
+  .fha-step-tab.is-active{color:var(--navy);}
+  .fha-step-tab.is-active i{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
+  .fha-step-tab.is-done{color:var(--teal);}
+  .fha-step-tab.is-done i{background:var(--paper-dim);border-color:var(--gold-light);}
+  .fha-world-scroll{overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);}
+  .fha-world-content{width:min(1080px,calc(100% - 56px));margin:0 auto;padding:52px 0 64px;}
+  .fha-step[hidden]{display:none;}
+  .fha-step{animation:fha-step-in .25s ease both;}
+  @keyframes fha-step-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+  .fha-step-kicker{display:block;color:var(--gold);font-size:.67rem;text-transform:uppercase;letter-spacing:.16em;font-weight:800;margin-bottom:13px;}
+  .fha-step h2{font-size:clamp(2rem,4vw,3.25rem);line-height:1.07;letter-spacing:-.025em;max-width:820px;margin:0 0 17px;color:var(--navy-deep);}
+  .fha-step-lead{max-width:760px;color:rgba(12,37,56,.68);font-size:1.02rem;line-height:1.7;}
+  .fha-plain-note{display:flex;gap:20px;align-items:baseline;margin-top:26px;border-left:3px solid var(--gold);background:var(--paper-dim);padding:17px 20px;max-width:780px;}
+  .fha-plain-note strong{white-space:nowrap;color:var(--navy);font-size:.69rem;text-transform:uppercase;letter-spacing:.08em;}
+  .fha-plain-note p{color:rgba(12,37,56,.7);font-size:.88rem;}
+  .fha-concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line);}
+  .fha-concept-card{background:#fff;padding:25px;min-height:170px;}
+  .fha-card-num{display:block;color:var(--gold);font-size:.62rem;font-weight:800;letter-spacing:.12em;}
+  .fha-concept-card h3,.fha-profile-card h3{font-size:1.25rem;margin:17px 0 7px;color:var(--navy);}
+  .fha-concept-card p,.fha-profile-card p{color:rgba(12,37,56,.66);font-size:.82rem;line-height:1.58;}
+  .fha-myth{display:flex;gap:22px;align-items:flex-start;margin-top:18px;background:#e9f7fd;padding:18px 21px;}
+  .fha-myth>span,.fha-definition>span{color:var(--teal);font-size:.62rem;font-weight:900;letter-spacing:.13em;}
+  .fha-myth strong{display:block;color:var(--navy);font-family:'Fraunces',serif;margin-bottom:3px;}
+  .fha-myth p{font-size:.8rem;color:rgba(12,37,56,.65);}
+  .fha-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line);}
+  .fha-profile-card{background:#fff;padding:24px;min-height:192px;}
+  .fha-profile-card small{display:block;color:rgba(12,37,56,.48);font-size:.68rem;margin-top:12px;}
+  .fha-callout{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:center;background:var(--navy-deep);color:#fff;padding:21px 25px;margin-top:18px;}
+  .fha-callout strong{font:600 1.02rem 'Fraunces',serif;}
+  .fha-callout p{font-size:.78rem;color:rgba(255,255,255,.68);}
+  .fha-payments{margin-top:34px;border-top:1px solid var(--line);}
+  .fha-payment-row{display:grid;grid-template-columns:42px minmax(0,1fr) 125px;gap:18px;align-items:center;padding:17px 7px;border-bottom:1px solid var(--line);}
+  .fha-payment-row>span{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--paper-dim);color:var(--teal);font-size:.68rem;font-weight:800;}
+  .fha-payment-row small{display:block;color:var(--teal);font-size:.57rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:2px;}
+  .fha-payment-row h3{display:inline;font-size:1.04rem;margin-right:9px;color:var(--navy);}
+  .fha-payment-row p{display:inline;color:rgba(12,37,56,.64);font-size:.77rem;line-height:1.5;}
+  .fha-payment-row>b{justify-self:end;background:var(--paper-dim);color:var(--teal);padding:6px 9px;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;}
+  .fha-definition{display:flex;gap:24px;margin-top:18px;background:#e9f7fd;padding:17px 20px;}
+  .fha-definition p{font-size:.78rem;color:rgba(12,37,56,.66);}
+  .fha-mip-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px;}
+  .fha-mip-card{padding:30px;}
+  .fha-mip-card:first-child{background:var(--navy-deep);color:#fff;}
+  .fha-mip-card:last-child{background:var(--paper-dim);color:var(--ink);}
+  .fha-mip-card>small{text-transform:uppercase;letter-spacing:.13em;font-size:.61rem;font-weight:800;opacity:.65;}
+  .fha-mip-card>strong{display:block;font:600 3.3rem 'Fraunces',serif;letter-spacing:-.04em;margin-top:16px;color:var(--gold-light);}
+  .fha-mip-card:last-child>strong{color:var(--gold);}
+  .fha-mip-card h3{font-size:1.25rem;margin:0 0 9px;color:inherit;}
+  .fha-mip-card>p{font-size:.78rem;line-height:1.6;opacity:.72;min-height:58px;}
+  .fha-mip-line{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(125,211,252,.25);padding-top:10px;margin-top:10px;font-size:.72rem;}
+  .fha-mip-line span{opacity:.65;}
+  .fha-fine-print{color:rgba(12,37,56,.48);font-size:.62rem;line-height:1.55;margin-top:12px;}
+  .fha-calculator{display:grid;grid-template-columns:.92fr 1.08fr;margin-top:34px;border:1px solid var(--line);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(7,89,133,.1);}
+  .fha-calc-controls{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:28px;}
+  .fha-calc-field{display:flex;flex-direction:column;gap:6px;}
+  .fha-calc-field label{color:var(--navy-deep);font-size:.68rem;font-weight:800;}
+  .fha-calc-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;}
+  .fha-calc-input:focus-within{outline:3px solid rgba(14,165,233,.14);border-color:var(--gold);}
+  .fha-calc-input input{min-width:0;width:100%;height:42px;border:0;background:transparent;padding:0 10px;color:var(--ink);font-weight:700;outline:0;}
+  .fha-calc-input span{padding:0 10px;color:var(--teal);font-size:.72rem;font-weight:800;}
+  .fha-cash{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:4px 15px;background:var(--paper-dim);padding:14px 16px;margin-top:2px;}
+  .fha-cash>span{font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;font-weight:800;color:var(--navy);}
+  .fha-cash>strong{font:600 1.25rem 'Fraunces',serif;color:var(--navy-deep);}
+  .fha-cash>small{grid-column:1/-1;color:rgba(12,37,56,.5);font-size:.6rem;}
+  .fha-calc-result{background:var(--navy-deep);color:#fff;padding:32px;}
+  .fha-calc-result>span{color:var(--gold-light);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;}
+  .fha-monthly-total{display:block;font:600 clamp(2.5rem,5vw,3.6rem) 'Fraunces',serif;letter-spacing:-.04em;line-height:1.05;margin:10px 0 2px;}
+  .fha-monthly-total small{font:.65rem 'Public Sans',sans-serif;color:rgba(255,255,255,.55);letter-spacing:0;}
+  .fha-financed{font-size:.67rem;color:rgba(255,255,255,.58);}
+  .fha-breakdown{margin-top:22px;border-top:1px solid rgba(255,255,255,.15);}
+  .fha-breakdown div{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid rgba(255,255,255,.13);padding:9px 0;font-size:.72rem;color:rgba(255,255,255,.67);}
+  .fha-breakdown b{color:#fff;}
+  .fha-estimate-note{margin-top:15px;color:rgba(255,255,255,.43);font-size:.58rem;line-height:1.5;}
+  .fha-route{list-style:none;margin-top:34px;border-top:1px solid var(--line);}
+  .fha-route li{display:grid;grid-template-columns:45px 1fr 120px;gap:15px;align-items:center;padding:15px 5px;border-bottom:1px solid var(--line);}
+  .fha-route li>span{color:var(--gold);font-size:.62rem;font-weight:900;letter-spacing:.1em;}
+  .fha-route h3{display:inline;font-size:1rem;margin-right:8px;color:var(--navy);}
+  .fha-route p{display:inline;color:rgba(12,37,56,.62);font-size:.75rem;}
+  .fha-route li>b{justify-self:end;color:rgba(12,37,56,.45);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;}
+  .fha-final{text-align:center;max-width:800px;margin:0 auto;}
+  .fha-complete{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;background:var(--gold);color:var(--navy-deep);font-weight:900;box-shadow:0 0 0 9px rgba(14,165,233,.12);}
+  .fha-final h2,.fha-final .fha-step-lead{margin-left:auto;margin-right:auto;}
+  .fha-questions{margin:32px 0 22px;border:1px solid var(--line);background:#fff;text-align:left;}
+  .fha-question{display:grid;grid-template-columns:40px 1fr;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);}
+  .fha-question:last-child{border-bottom:0;}
+  .fha-question span{color:var(--gold);font-size:.62rem;font-weight:900;}
+  .fha-question p{font-size:.78rem;color:rgba(12,37,56,.67);}
+  .fha-sources{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:13px;margin-top:25px;font-size:.64rem;}
+  .fha-sources span{color:rgba(12,37,56,.45);text-transform:uppercase;letter-spacing:.1em;font-weight:800;}
+  .fha-sources a{color:var(--teal);font-weight:700;text-underline-offset:3px;}
+  .fha-world-footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 28px;background:#fff;border-top:1px solid var(--line);}
+  .fha-prev,.fha-next{border:0;font:700 .76rem 'Public Sans',sans-serif;cursor:pointer;}
+  .fha-prev{justify-self:start;background:transparent;color:var(--navy);padding:12px 0;}
+  .fha-prev:disabled{opacity:.25;cursor:default;}
+  .fha-world-footer>span{color:rgba(12,37,56,.45);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;}
+  .fha-next{justify-self:end;min-width:135px;display:flex;justify-content:space-between;gap:18px;background:var(--navy-deep);color:#fff;border-radius:7px;padding:12px 15px;}
+  .fha-next:hover{background:var(--teal);}
+
+  @media(max-width:800px){
+    .fha-world-header{padding:0 16px}.fha-progress-wrap{padding:0 16px}.fha-progress-track{margin:0 -16px}
+    .fha-step-tabs{justify-content:space-between;gap:4px}.fha-step-tab b{display:none}
+    .fha-world-content{width:calc(100% - 36px);padding-top:38px}
+    .fha-profile-grid{grid-template-columns:1fr 1fr}.fha-calculator,.fha-mip-grid{grid-template-columns:1fr}
+    .fha-callout{grid-template-columns:1fr;gap:8px}
+  }
+  @media(max-width:560px){
+    .fha-entry-actions{align-items:stretch;flex-direction:column}.fha-learn-btn{min-width:0;width:100%}
+    .fha-world{grid-template-rows:64px auto minmax(0,1fr) 64px}.fha-world-close span,.fha-counter span,.fha-world-brand small{display:none}
+    .fha-step-tabs{height:55px}.fha-step-tab i{width:24px;height:24px}.fha-step h2{font-size:2rem}
+    .fha-concept-grid,.fha-profile-grid{grid-template-columns:1fr}.fha-profile-card{min-height:0}
+    .fha-plain-note,.fha-myth,.fha-definition{flex-direction:column;gap:7px}
+    .fha-payment-row{grid-template-columns:38px 1fr;align-items:start}.fha-payment-row>b{grid-column:2;justify-self:start}.fha-payment-row h3,.fha-payment-row p{display:block}.fha-payment-row p{margin-top:3px}
+    .fha-calc-controls{grid-template-columns:1fr;padding:22px 18px}.fha-cash{grid-column:auto}.fha-calc-result{padding:25px 21px}
+    .fha-route li{grid-template-columns:36px 1fr;align-items:start}.fha-route li>b{display:none}.fha-route h3,.fha-route p{display:block}.fha-route p{margin-top:3px}
+    .fha-world-footer{grid-template-columns:1fr 1fr;padding:0 16px}.fha-world-footer>span{display:none}.fha-next{min-width:120px}
+  }
+
+  /* Mapa de los 8 pasos para comprar casa */
+  .buy-roadmap-lead{max-width:740px;color:rgba(12,37,56,.7);font-size:.95rem;line-height:1.7;margin-top:-8px}
+  .buy-steps{list-style:none;margin:34px 0 0;padding:0;border-top:1px solid var(--line);counter-reset:buystep}
+  .buy-step{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .buy-step-num{font:600 1.8rem 'Fraunces',serif;color:var(--gold);line-height:1}
+  .buy-step h3{font-size:1.15rem;color:var(--navy-deep);margin:0 0 3px}
+  .buy-step-en{display:block;font:700 .6rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);margin:0 0 9px}
+  .buy-step p{color:rgba(12,37,56,.68);font-size:.88rem;line-height:1.65;max-width:740px}
+  .buy-step-link{display:inline-flex;align-items:center;gap:6px;margin-top:11px;color:var(--teal);font-weight:700;font-size:.79rem;text-decoration:none}
+  .buy-step-link:hover{color:var(--gold)}
+  .buy-glossary{margin-top:60px}
+  .buy-source-note{margin-top:20px}
+  @media(max-width:640px){
+    .buy-step{grid-template-columns:38px 1fr;gap:14px}
+    .buy-step-num{font-size:1.35rem}
+  }
+
+  /* Gancho: mito de la ciudadanía + rutas por estatus */
+  .citizen-myth{background:var(--navy-deep);position:relative;overflow:hidden;}
+  .citizen-myth::before{content:"";position:absolute;width:460px;height:460px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-220px;top:-230px;}
+  .citizen-myth .section-head h2{color:#fff}
+  .citizen-myth .section-head p{color:rgba(255,255,255,.72)}
+  .citizen-myth .eyebrow{color:var(--gold-light)}
+  .myth-answer{display:inline-flex;align-items:baseline;gap:12px;margin:6px 0 26px;flex-wrap:wrap;}
+  .myth-answer b{font:600 1rem 'Public Sans',sans-serif;color:rgba(255,255,255,.55);text-decoration:line-through;}
+  .myth-answer strong{font:600 1.35rem 'Fraunces',serif;color:var(--gold-light);}
+  .status-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);margin-top:8px;}
+  .status-card{background:var(--navy-deep);padding:26px;}
+  .status-card small{display:block;color:var(--gold-light);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;margin-bottom:10px;}
+  .status-card h3{color:#fff;font-size:1.12rem;margin:0 0 9px;}
+  .status-card p{color:rgba(255,255,255,.68);font-size:.83rem;line-height:1.62;}
+  .status-card p+p{margin-top:8px;}
+  .citizen-myth .fha-sources{margin-top:28px;}
+  .citizen-myth .fha-sources span{color:rgba(255,255,255,.5);}
+  .citizen-myth .fha-sources a{color:var(--gold-light);}
+  .citizen-myth .disclaimer{color:rgba(255,255,255,.5)!important;}
+  @media(max-width:700px){
+    .status-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body data-cms-page="comprar-casa">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html" class="active">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="formar-negocio.html">Formar negocio</a>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Ruta de vivienda</span>
+      <h1>Tu crédito y la compra de tu casa</h1>
+      <p>Empieza por la pregunta que probablemente te ha detenido hasta hoy — y luego sigue el mapa completo de 8 pasos, compara tu préstamo hipotecario según tu situación, y entra en recorridos detallados para entender FHA y convencional paso a paso.</p>
+    </div>
+  </section>
+
+  <!-- MITO DE LA CIUDADANÍA -->
+  <section class="citizen-myth">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">La primera pregunta</span>
+        <h2>¿Necesitas ser ciudadano para comprar tu casa?</h2>
+        <div class="myth-answer"><b>Lo que muchos creen: sí, necesitas papeles</b><strong>→ La realidad: no</strong></div>
+        <p>No necesitas ser ciudadano ni tener residencia permanente para comprar una propiedad en Estados Unidos — comprar una casa es una cuestión de propiedad, no de estatus migratorio. Lo que sí cambia según tu situación es <em>cómo</em> consigues el préstamo. Encuentra tu camino:</p>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <small>Camino más directo</small>
+          <h3>Tienes green card (residente permanente)</h3>
+          <p>Calificas con los mismos requisitos que cualquier ciudadano — mismos programas, mismos puntajes de crédito de referencia, y acceso a enganches bajos (desde 0% a 3% según el programa).</p>
+        </div>
+        <div class="status-card">
+          <small>Con visa de trabajo</small>
+          <h3>Tienes una visa de trabajo vigente</h3>
+          <p>Puedes calificar mostrando tu visa vigente y una carta de tu empleador que confirme continuidad laboral. Los prestamistas suelen pedir que tu estatus legal siga vigente por al menos 3 años más.</p>
+        </div>
+        <div class="status-card">
+          <small>DACA, asilo o refugio</small>
+          <h3>Tienes DACA, asilo o estatus de refugiado</h3>
+          <p>Eres elegible bajo las guías de Fannie Mae presentando tu documento de autorización de empleo (EAD) y un ITIN o número de seguro social, junto con la documentación financiera habitual.</p>
+        </div>
+        <div class="status-card">
+          <small>Sin número de seguro social</small>
+          <h3>No tienes número de seguro social</h3>
+          <p>Existen <strong>préstamos ITIN</strong>, diseñados justo para esto. En vez de historial de crédito tradicional, el prestamista usa tus declaraciones de impuestos (2 años), tu historial laboral (2 años), estados de cuenta bancarios y recibos de servicios pagados a tiempo. El enganche típico es de 10% a 20%, aunque algunos prestamistas piden menos.</p>
+        </div>
+      </div>
+
+      <div class="fha-sources">
+        <span>Fuentes oficiales y de la industria</span>
+        <a href="https://themortgagereports.com/58687/us-home-buying-guide-for-foreign-national-green-card-refugee-asylee-daca" target="_blank" rel="noopener noreferrer">The Mortgage Reports · Guía para no ciudadanos ↗</a>
+        <a href="https://www.nerdwallet.com/best/mortgages/best-mortgage-lenders-for-itin-loans" target="_blank" rel="noopener noreferrer">NerdWallet · Prestamistas ITIN ↗</a>
+        <a href="https://singlefamily.fanniemae.com/originating-underwriting/eligibility" target="_blank" rel="noopener noreferrer">Fannie Mae · Elegibilidad ↗</a>
+      </div>
+      <p class="disclaimer" style="margin-top:16px;">Contenido educativo general. Los requisitos exactos varían por prestamista y cambian con el tiempo — esto no sustituye asesoría legal, migratoria o financiera personalizada. Habla con un oficial de préstamos con experiencia en tu situación específica antes de tomar una decisión.</p>
+    </div>
+  </section>
+
+  <!-- LOS 8 PASOS -->
+  <section id="pasos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Antes de empezar</span>
+        <h2>Los 8 pasos para comprar tu casa en Estados Unidos</h2>
+        <p class="buy-roadmap-lead">Si nunca has comprado una casa aquí, este proceso puede sentirse como un idioma nuevo — literalmente. No estás solo: miles de personas pasan por esto cada año, muchas sin haberlo hecho antes en ningún país. Este es el mapa completo, en el mismo orden en que vas a vivirlo, siguiendo las guías oficiales de la <strong>Oficina para la Protección Financiera del Consumidor (CFPB)</strong> y el <strong>Departamento de Vivienda (HUD)</strong>.</p>
+
+      <ol class="buy-steps">
+        <li class="buy-step">
+          <span class="buy-step-num">01</span>
+          <div>
+            <h3>Prepara tus finanzas y revisa tu crédito</h3>
+            <span class="buy-step-en">Credit check &amp; financial prep</span>
+            <p>Revisa tu reporte de crédito gratis en <strong>AnnualCreditReport.com</strong> — el único sitio autorizado por el gobierno federal para eso; ningún otro que te pida tarjeta es realmente gratis. Como referencia general: con más de 620 de puntaje suele abrirse la puerta a la mayoría de préstamos convencionales; con 580 o más puedes calificar para un préstamo FHA con solo 3.5% de enganche; y entre 500 y 579 el FHA sigue siendo posible, pero normalmente exige al menos 10% de enganche. Además del enganche, aparta dinero para los <strong>costos de cierre</strong> (closing costs), que suelen ser un 2% a 5% adicional del precio de la casa.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">02</span>
+          <div>
+            <h3>Elige tu tipo de préstamo y consigue tu carta de pre-aprobación</h3>
+            <span class="buy-step-en">Loan type &amp; pre-approval</span>
+            <p>Un banco o prestamista revisa formalmente tus ingresos, tus formularios de impuestos (W-2 o tax returns) y tus estados de cuenta bancarios, y te da una <strong>carta de pre-aprobación</strong> — el documento que le muestra a un vendedor que sí puedes pagar. Existen varios tipos de préstamo según tu perfil: FHA para crédito más moderado, convencional para crédito sólido, y VA o USDA con posible enganche de 0% para veteranos o zonas rurales elegibles.</p>
+            <a class="buy-step-link" href="#casa">Compara los tipos de préstamo por tu perfil ↓</a>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">03</span>
+          <div>
+            <h3>Elige un agente de bienes raíces que te represente a ti</h3>
+            <span class="buy-step-en">Buyer's agent (Realtor)</span>
+            <p>Un <strong>buyer's agent</strong> trabaja para ti, no para el vendedor: busca propiedades, agenda visitas, compara precios de casas similares en la zona (comps) y redacta tu oferta. En la mayoría de las transacciones residenciales, es el vendedor quien paga la comisión del agente — no tú.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">04</span>
+          <div>
+            <h3>Busca casas y haz tu oferta</h3>
+            <span class="buy-step-en">House hunting &amp; making an offer</span>
+            <p>Cuando encuentres la casa adecuada, tu agente redacta un contrato de compraventa (purchase agreement) con el precio ofrecido y las contingencias que te protegen (de financiamiento, de inspección, de tasación). Al enviar la oferta entregas el <strong>earnest money deposit</strong> — dinero de buena fe, normalmente entre 1% y 3% del precio — que queda guardado en una cuenta de garantía (escrow) hasta el cierre.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">05</span>
+          <div>
+            <h3>Inspecciona la propiedad</h3>
+            <span class="buy-step-en">Home inspection</span>
+            <p>Contratas a un inspector de viviendas con licencia (licensed home inspector), independiente del vendedor y de tu agente. Revisa la estructura, el techo, el sistema eléctrico, la plomería y la calefacción/aire acondicionado. Con ese informe puedes negociar reparaciones con el vendedor, o pedir un crédito en los costos de cierre.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">06</span>
+          <div>
+            <h3>Espera la tasación de la casa</h3>
+            <span class="buy-step-en">Home appraisal</span>
+            <p>Tu prestamista contrata a un tasador independiente para confirmar que el valor real de mercado de la casa respalda la cantidad de dinero que te van a prestar. Es una protección para el banco, pero también para ti — evita que pagues de más por una propiedad.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">07</span>
+          <div>
+            <h3>El banco revisa todo a fondo</h3>
+            <span class="buy-step-en">Underwriting</span>
+            <p>El departamento de underwriting del banco hace la revisión final de toda tu documentación financiera. En este momento también contratas el <strong>seguro de vivienda</strong> (homeowners insurance) obligatorio, y se pide un <strong>title search</strong> — una revisión para confirmar que la propiedad no tiene deudas ni embargos pendientes.</p>
+          </div>
+        </li>
+        <li class="buy-step">
+          <span class="buy-step-num">08</span>
+          <div>
+            <h3>El cierre: firmas y recibes las llaves</h3>
+            <span class="buy-step-en">Closing</span>
+            <p>Por ley, tu prestamista debe entregarte la <strong>Closing Disclosure</strong> al menos 3 días hábiles antes de firmar — un documento que detalla cada centavo de la transacción: tasa de interés final, enganche y costos de cierre exactos. El día del cierre firmas los documentos del préstamo y la escritura, transfieres el dinero restante (por transferencia bancaria o cheque de caja) y recibes las llaves de tu nueva casa.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="buy-glossary">
+        <div class="section-head">
+          <span class="eyebrow-dark">Glosario rápido</span>
+          <h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">Términos en inglés que vas a escuchar</h2>
+          <p>Nadie los sabe de memoria la primera vez. Guarda esta lista para consultarla cuando los escuches.</p>
+        </div>
+        <div class="fha-concept-grid">
+          <div class="fha-concept-card"><span class="fha-card-num">Down Payment</span><h3>Enganche</h3><p>El pago inicial que das de tu bolsillo, normalmente entre 3% y 20% del precio de la casa.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Closing Costs</span><h3>Costos de cierre</h3><p>Honorarios del prestamista, del título y de registro. Se suman al enganche; suelen ser 2% a 5% del precio.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Earnest Money</span><h3>Depósito de buena fe</h3><p>Dinero que entregas con tu oferta para mostrar que va en serio, normalmente 1% a 3% del precio.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Escrow</span><h3>Cuenta de garantía</h3><p>Una cuenta neutral donde se guarda dinero (como el earnest money) hasta que se cumplen las condiciones del cierre.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Pre-approval</span><h3>Carta de pre-aprobación</h3><p>Confirmación por escrito de un prestamista de cuánto te prestaría, basada en tus finanzas ya revisadas.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Buyer's Agent</span><h3>Agente comprador</h3><p>El agente de bienes raíces que te representa a ti, no al vendedor, durante toda la compra.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Underwriting</span><h3>Revisión final del banco</h3><p>El análisis a fondo de tu crédito, ingresos, deudas y activos antes de aprobar el préstamo definitivamente.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Closing Disclosure</span><h3>Divulgación de cierre</h3><p>El documento con los números finales del préstamo. Por ley llega al menos 3 días hábiles antes de firmar.</p></div>
+          <div class="fha-concept-card"><span class="fha-card-num">Title Search</span><h3>Revisión de título</h3><p>Confirma que la propiedad esté libre de deudas o embargos antes de que sea tuya.</p></div>
+        </div>
+      </div>
+
+      <div class="fha-sources buy-source-note">
+        <span>Fuentes oficiales</span>
+        <a href="https://www.consumerfinance.gov/es/comprar-casa/" target="_blank" rel="noopener noreferrer">CFPB · Guía de compra en español ↗</a>
+        <a href="https://www.hud.gov/" target="_blank" rel="noopener noreferrer">HUD · Vivienda ↗</a>
+        <a href="https://www.realtor.com/" target="_blank" rel="noopener noreferrer">National Association of Realtors ↗</a>
+        <a href="https://www.zillow.com/learn/" target="_blank" rel="noopener noreferrer">Zillow · Guía del comprador ↗</a>
+      </div>
+      <p class="disclaimer" style="margin-top:16px;">Contenido educativo general basado en el proceso estándar regulado por la CFPB, HUD y las prácticas habituales de la industria inmobiliaria. Los porcentajes son rangos de referencia — no sustituyen la cotización exacta de tu prestamista, tu agente o tu asesor legal.</p>
+    </div>
+  </section>
+
+  <!-- CASA -->
+  <section id="casa">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Vivienda</span>
+        <h2>Tipos de préstamo hipotecario por perfil</h2>
+        <p>Este es el Paso 2 de la guía de arriba, a fondo: no todos los préstamos exigen lo mismo. Encuentra el perfil que más se parece a tu situación.</p>
+      </div>
+
+      <div class="qa-list">
+        <div class="qa-item fha-entry">
+          <h3><span class="q-mark">•</span>Primera vez comprando — Préstamo FHA</h3>
+          <p>Respaldado por la Administración Federal de Vivienda. Pensado para compradores con historial de crédito más corto o enganche limitado. Los requisitos de puntaje suelen ser más flexibles que en un préstamo convencional, a cambio de un seguro hipotecario obligatorio.</p>
+          <div class="fha-entry-actions">
+            <button class="fha-learn-btn" id="fhaLearnBtn" type="button" aria-haspopup="dialog" aria-controls="fhaWorld">
+              <span>Conocer el FHA paso a paso</span><span aria-hidden="true">→</span>
+            </button>
+            <small><strong>7 pasos</strong> · requisitos, costos y pago mensual</small>
+          </div>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">•</span>Veteranos y militares activos — Préstamo VA</h3>
+          <p>Respaldado por el Departamento de Asuntos de Veteranos. Para quienes califican, puede no requerir enganche ni seguro hipotecario privado, lo que reduce el costo mensual comparado con otras opciones.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">•</span>Zonas rurales o suburbanas — Préstamo USDA</h3>
+          <p>Diseñado para propiedades en áreas elegibles definidas por el Departamento de Agricultura de EE. UU. Puede ofrecer opciones de bajo o nulo enganche para compradores con ingresos dentro de ciertos límites.</p>
+        </div>
+        <div class="qa-item conv-entry">
+          <h3><span class="q-mark">•</span>Crédito sólido y buen enganche — Préstamo convencional</h3>
+          <p>No está respaldado por el gobierno, así que el prestamista asume más riesgo directamente. Por eso suele pedir mejor puntaje de crédito y más enganche, a cambio de mayor flexibilidad en el tipo de propiedad.</p>
+          <div class="fha-entry-actions">
+            <button class="fha-learn-btn" id="convLearnBtn" type="button" aria-haspopup="dialog" aria-controls="convWorld">
+              <span>Conocer el convencional paso a paso</span><span aria-hidden="true">→</span>
+            </button>
+            <small><strong>7 pasos</strong> · enganche, PMI, costos y pago mensual</small>
+          </div>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">•</span>Propiedades de alto valor — Préstamo Jumbo</h3>
+          <p>Se usa cuando el monto solicitado supera los límites que el gobierno establece para un préstamo convencional. Generalmente exige crédito muy sólido, más reservas de ahorro y un enganche considerable.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">•</span>Ya tienes casa — HELOC y Home Equity Loan</h3>
+          <p>Ambos te permiten usar el valor (equity) que ya acumulaste en tu propiedad. Un HELOC funciona como una línea de crédito que puedes usar según lo necesites; un Home Equity Loan te da el dinero de una sola vez, con pagos fijos.</p>
+        </div>
+        <div class="qa-item">
+          <h3><span class="q-mark">•</span>Tasa fija o ajustable — Préstamo ARM</h3>
+          <p>Un ARM (Adjustable Rate Mortgage) empieza con una tasa de interés más baja que un préstamo de tasa fija, pero esa tasa puede subir o bajar después de un periodo inicial. Puede convenir si planeas vender o refinanciar antes de que la tasa cambie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECORRIDO FHA -->
+  <div class="fha-world" id="fhaWorld" role="dialog" aria-modal="true" aria-labelledby="fhaWorldTitle" hidden>
+    <header class="fha-world-header">
+      <button class="fha-world-close" id="fhaClose" type="button" aria-label="Cerrar guía FHA"><span aria-hidden="true">←</span><span>Volver</span></button>
+      <div class="fha-world-brand">
+        <span class="fha-world-mark" aria-hidden="true">F</span>
+        <div><strong id="fhaWorldTitle">Tu ruta FHA</strong><small>De la duda a las llaves</small></div>
+      </div>
+      <div class="fha-counter"><strong id="fhaCounter">1 de 7</strong><span>completado</span></div>
+    </header>
+
+    <div class="fha-progress-wrap">
+      <div class="fha-progress-track" aria-hidden="true"><span class="fha-progress-fill" id="fhaProgress"></span></div>
+      <nav class="fha-step-tabs" aria-label="Pasos de la guía FHA">
+        <button class="fha-step-tab is-active" type="button" data-fha-go="0" aria-current="step"><i>1</i><b>Qué es</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="1"><i>2</i><b>Tu perfil</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="2"><i>3</i><b>Pagos</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="3"><i>4</i><b>Seguro</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="4"><i>5</i><b>Tu mes</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="5"><i>6</i><b>La ruta</b></button>
+        <button class="fha-step-tab" type="button" data-fha-go="6"><i>7</i><b>Listo</b></button>
+      </nav>
+    </div>
+
+    <div class="fha-world-scroll" id="fhaScroll">
+      <div class="fha-world-content">
+        <section class="fha-step" data-fha-panel="0">
+          <span class="fha-step-kicker">Paso 1 · La idea esencial</span>
+          <h2>FHA no te presta el dinero. Hace que el préstamo sea posible.</h2>
+          <p class="fha-step-lead">Un prestamista aprobado te presta. La FHA asegura ese préstamo, reduciendo parte del riesgo y permitiendo requisitos más flexibles.</p>
+          <div class="fha-plain-note"><strong>En una frase</strong><p>Tú compras la casa, el prestamista financia y la FHA respalda el préstamo.</p></div>
+          <div class="fha-concept-grid">
+            <article class="fha-concept-card"><span class="fha-card-num">01</span><h3>Tú</h3><p>Solicitas, eliges la vivienda, aportas los fondos requeridos y haces los pagos.</p></article>
+            <article class="fha-concept-card"><span class="fha-card-num">02</span><h3>Prestamista</h3><p>Evalúa tu expediente, establece las condiciones y entrega el financiamiento.</p></article>
+            <article class="fha-concept-card"><span class="fha-card-num">03</span><h3>FHA</h3><p>Asegura el préstamo cuando el comprador, la propiedad y el proceso cumplen sus reglas.</p></article>
+          </div>
+          <div class="fha-myth"><span>MITO</span><div><strong>“FHA es solo para quien compra por primera vez.”</strong><p>No. Puede usarse aunque ya hayas sido propietario, si cumples los requisitos del programa.</p></div></div>
+        </section>
+
+        <section class="fha-step" data-fha-panel="1" hidden>
+          <span class="fha-step-kicker">Paso 2 · Tu punto de partida</span>
+          <h2>No es un solo número. Es la historia completa.</h2>
+          <p class="fha-step-lead">El prestamista combina crédito, ingresos, deudas, fondos disponibles y la vivienda que quieres comprar.</p>
+          <div class="fha-profile-grid">
+            <article class="fha-profile-card"><span class="fha-card-num">01</span><h3>Crédito</h3><p>Con puntaje de 580 o más, la inversión mínima permitida puede ser 3.5%. Entre 500 y 579, es al menos 10%.</p><small>El prestamista puede exigir más.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">02</span><h3>Ingresos</h3><p>Deben ser suficientes, estables y verificables. Importa la continuidad, no solo el salario.</p><small>Prepara talones, W-2 o declaraciones.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">03</span><h3>Deudas</h3><p>Se compara lo que debes pagar cada mes con tu ingreso bruto mensual.</p><small>Auto, tarjetas y préstamos cuentan.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">04</span><h3>Fondos</h3><p>El enganche puede venir de fuentes aceptables, incluso ciertos regalos o programas de ayuda.</p><small>El origen siempre se documenta.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">05</span><h3>Vivienda principal</h3><p>Debes tener intención de ocuparla como residencia principal, no como inversión pura.</p><small>Hay opciones de una a cuatro unidades.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">06</span><h3>Propiedad</h3><p>Una tasación FHA revisa valor y condiciones mínimas de seguridad y habitabilidad.</p><small>No sustituye una inspección.</small></article>
+          </div>
+          <div class="fha-callout"><strong>Una denegación de un banco no define tu elegibilidad.</strong><p>Los prestamistas pueden añadir reglas propias. Comparar opciones importa.</p></div>
+        </section>
+
+        <section class="fha-step" data-fha-panel="2" hidden>
+          <span class="fha-step-kicker">Paso 3 · Mapa de pagos</span>
+          <h2>Qué pagas, cuándo y para qué.</h2>
+          <p class="fha-step-lead">El enganche es solo una parte. Este mapa te ayuda a anticipar todo el recorrido financiero.</p>
+          <div class="fha-payments">
+            <article class="fha-payment-row"><span>1</span><div><small>Al hacer la oferta</small><h3>Depósito de buena fe</h3><p>Demuestra seriedad. Si cierras, normalmente se acredita al dinero del cierre; su devolución depende del contrato.</p></div><b>Se acredita</b></article>
+            <article class="fha-payment-row"><span>2</span><div><small>Durante el proceso</small><h3>Inspección y tasación</h3><p>La inspección protege tu decisión. La tasación FHA confirma valor y requisitos mínimos. Son trabajos distintos.</p></div><b>Pago previo</b></article>
+            <article class="fha-payment-row"><span>3</span><div><small>En el cierre</small><h3>Enganche + costos de cierre</h3><p>Cargos del prestamista, título, gobierno, prepagos e inicio del escrow, menos créditos y depósitos aplicables.</p></div><b>Cash to close</b></article>
+            <article class="fha-payment-row"><span>4</span><div><small>Cada mes</small><h3>Hipoteca completa</h3><p>Principal, interés, MIP FHA, impuestos y seguro de vivienda. La asociación HOA suele cobrarse aparte.</p></div><b>Pago mensual</b></article>
+            <article class="fha-payment-row"><span>5</span><div><small>Como propietario</small><h3>Mantenimiento y reservas</h3><p>Reparaciones, servicios y emergencias no están incluidos en la hipoteca. Reserva margen desde el primer mes.</p></div><b>Tu colchón</b></article>
+          </div>
+          <div class="fha-definition"><span>NO CONFUNDIR</span><p><strong>Costos de cierre</strong> son los cargos de la transacción. <strong>Cash to close</strong> es el total final que llevas después de sumar el enganche y restar depósitos o créditos.</p></div>
+        </section>
+
+        <section class="fha-step" data-fha-panel="3" hidden>
+          <span class="fha-step-kicker">Paso 4 · Seguro hipotecario</span>
+          <h2>El precio de la flexibilidad FHA tiene dos partes.</h2>
+          <p class="fha-step-lead">Este seguro protege al prestamista. No reemplaza el seguro de propietarios que protege tu vivienda.</p>
+          <div class="fha-mip-grid">
+            <article class="fha-mip-card"><small>Una vez · al originar</small><strong>1.75%</strong><h3>UFMIP inicial</h3><p>Se calcula sobre el préstamo base. La mayoría lo financia dentro del préstamo; también puede pagarse en efectivo.</p><div class="fha-mip-line"><span>Préstamo base del ejemplo</span><b id="fhaMipBase">$308,800</b></div><div class="fha-mip-line"><span>UFMIP estimado</span><b id="fhaMipUpfront">$5,404</b></div></article>
+            <article class="fha-mip-card"><small>Se cobra mensualmente</small><strong>0.55%*</strong><h3>MIP anual</h3><p>La tasa depende del plazo, porcentaje financiado y tamaño del préstamo. Se divide entre pagos mensuales.</p><div class="fha-mip-line"><span>Estimado mensual</span><b id="fhaMipMonthly">$142</b></div><div class="fha-mip-line"><span>Con menos de 10% inicial</span><b>Usualmente por el plazo</b></div></article>
+          </div>
+          <p class="fha-fine-print">*Se usa 0.55% para ilustrar un préstamo común a 30 años con más de 95% financiado y monto dentro del límite aplicable. Tu prestamista confirmará la tasa exacta. Con 10% o más de enganche, el MIP anual suele cobrarse 11 años; con menos de 10%, suele durar todo el plazo.</p>
+          <div class="fha-callout"><strong>Financiar el UFMIP reduce el efectivo inicial, pero aumenta el saldo y el interés.</strong><p>Pide ver ambas opciones en tu Loan Estimate.</p></div>
+        </section>
+
+        <section class="fha-step" data-fha-panel="4" hidden>
+          <span class="fha-step-kicker">Paso 5 · Tu pago mensual</span>
+          <h2>Prueba los números. Mira el pago completo.</h2>
+          <p class="fha-step-lead">La estimación incluye conceptos que suelen omitirse cuando se muestra únicamente principal e interés.</p>
+          <div class="fha-calculator">
+            <div class="fha-calc-controls">
+              <div class="fha-calc-field"><label for="fhaPrice">Precio de la vivienda</label><div class="fha-calc-input"><input id="fhaPrice" type="number" min="50000" max="2000000" step="5000" value="320000"><span>$</span></div></div>
+              <div class="fha-calc-field"><label for="fhaDown">Enganche</label><div class="fha-calc-input"><input id="fhaDown" type="number" min="3.5" max="50" step="0.5" value="3.5"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="fhaRate">Tasa ilustrativa</label><div class="fha-calc-input"><input id="fhaRate" type="number" min="0" max="15" step="0.125" value="6.25"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="fhaClosing">Costos de cierre estimados</label><div class="fha-calc-input"><input id="fhaClosing" type="number" min="0" max="10" step="0.25" value="3"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="fhaInsurance">Seguro de vivienda / mes</label><div class="fha-calc-input"><input id="fhaInsurance" type="number" min="0" max="2000" step="10" value="140"><span>$</span></div></div>
+              <div class="fha-calc-field"><label for="fhaHoa">HOA / mes</label><div class="fha-calc-input"><input id="fhaHoa" type="number" min="0" max="3000" step="10" value="0"><span>$</span></div></div>
+              <div class="fha-cash"><span>Efectivo estimado al cierre</span><strong id="fhaCash">$20,800</strong><small id="fhaCashDetail">$11,200 de enganche + $9,600 de costos estimados, antes de depósitos o créditos.</small></div>
+            </div>
+            <div class="fha-calc-result">
+              <span>Pago mensual estimado</span>
+              <strong class="fha-monthly-total"><span id="fhaMonthly">$2,622</span><small> / mes</small></strong>
+              <p class="fha-financed">Préstamo financiado estimado: <b id="fhaFinanced">$314,204</b></p>
+              <div class="fha-breakdown">
+                <div><span>Principal + interés</span><b id="fhaPI">$1,934</b></div>
+                <div><span>MIP FHA</span><b id="fhaMIP">$142</b></div>
+                <div><span>Impuestos estimados</span><b id="fhaTaxes">$320</b></div>
+                <div><span>Seguro de vivienda</span><b id="fhaInsuranceOut">$140</b></div>
+                <div><span>HOA</span><b id="fhaHoaOut">$0</b></div>
+              </div>
+              <p class="fha-estimate-note">Estimación educativa a 30 años. Usa 1.2% anual para impuestos y 0.55% para MIP. No incluye mantenimiento, servicios ni posibles variaciones del escrow.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="fha-step" data-fha-panel="5" hidden>
+          <span class="fha-step-kicker">Paso 6 · Del sí a las llaves</span>
+          <h2>La ruta completa, sin saltos misteriosos.</h2>
+          <p class="fha-step-lead">Cada etapa responde una pregunta distinta. No avances sin entender la respuesta.</p>
+          <ol class="fha-route">
+            <li><span>01</span><div><h3>Define un pago cómodo</h3><p>Parte del pago total y conserva margen para mantenimiento.</p></div><b>Presupuesto</b></li>
+            <li><span>02</span><div><h3>Compara y obtén preaprobación</h3><p>Consulta más de un prestamista aprobado por FHA.</p></div><b>Opciones</b></li>
+            <li><span>03</span><div><h3>Busca casa y haz oferta</h3><p>Protege tu propuesta con las contingencias adecuadas.</p></div><b>Negociación</b></li>
+            <li><span>04</span><div><h3>Inspección + tasación FHA</h3><p>Una protege tu decisión; la otra verifica valor y requisitos.</p></div><b>Dos miradas</b></li>
+            <li><span>05</span><div><h3>Underwriting</h3><p>Se verifican crédito, ingresos, fondos, título y propiedad.</p></div><b>Revisión</b></li>
+            <li><span>06</span><div><h3>Closing Disclosure</h3><p>Recíbelo al menos tres días hábiles antes y compara todo.</p></div><b>Confirmación</b></li>
+            <li><span>07</span><div><h3>Firma, fondos y llaves</h3><p>Al cerrar asumes la obligación de pago. Conserva tus documentos.</p></div><b>Tu casa</b></li>
+          </ol>
+        </section>
+
+        <section class="fha-step fha-final" data-fha-panel="6" hidden>
+          <div class="fha-complete" aria-hidden="true">✓</div>
+          <span class="fha-step-kicker">Paso 7 · Ya tienes el mapa</span>
+          <h2>Ahora puedes hacer mejores preguntas.</h2>
+          <p class="fha-step-lead">No necesitas memorizarlo todo. Necesitas saber qué confirmar antes de firmar.</p>
+          <div class="fha-questions">
+            <div class="fha-question"><span>01</span><p>¿Cuál es mi <strong>pago mensual total</strong>, incluyendo escrow y MIP?</p></div>
+            <div class="fha-question"><span>02</span><p>¿Cuánto es mi <strong>cash to close</strong> y qué puede hacerlo cambiar?</p></div>
+            <div class="fha-question"><span>03</span><p>¿Qué tasa, APR, puntos y <strong>créditos del prestamista</strong> estoy aceptando?</p></div>
+            <div class="fha-question"><span>04</span><p>¿Por cuánto tiempo pagaré el <strong>MIP anual</strong>?</p></div>
+            <div class="fha-question"><span>05</span><p>¿Qué condiciones faltan para la <strong>aprobación final</strong>?</p></div>
+          </div>
+          <div class="fha-sources">
+            <span>Fuentes oficiales</span>
+            <a href="https://www.hud.gov/sites/dfiles/OCHCO/documents/2023-05hsgml.pdf" target="_blank" rel="noopener noreferrer">HUD · Primas FHA ↗</a>
+            <a href="https://www.consumerfinance.gov/owning-a-home/loan-estimate/" target="_blank" rel="noopener noreferrer">CFPB · Loan Estimate ↗</a>
+            <a href="https://www.consumerfinance.gov/owning-a-home/closing-disclosure/" target="_blank" rel="noopener noreferrer">CFPB · Closing Disclosure ↗</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="fha-world-footer">
+      <button class="fha-prev" id="fhaPrev" type="button" disabled>← Anterior</button>
+      <span id="fhaStepName">Qué es FHA</span>
+      <button class="fha-next" id="fhaNext" type="button"><span>Continuar</span><span aria-hidden="true">→</span></button>
+    </footer>
+  </div>
+
+  <!-- RECORRIDO CONVENCIONAL -->
+  <div class="fha-world conv-world" id="convWorld" role="dialog" aria-modal="true" aria-labelledby="convWorldTitle" hidden>
+    <header class="fha-world-header">
+      <button class="fha-world-close" id="convClose" type="button" aria-label="Cerrar guía del préstamo convencional"><span aria-hidden="true">←</span><span>Volver</span></button>
+      <div class="fha-world-brand">
+        <span class="fha-world-mark" aria-hidden="true">C</span>
+        <div><strong id="convWorldTitle">Tu ruta convencional</strong><small>Más control, más variables</small></div>
+      </div>
+      <div class="fha-counter"><strong id="convCounter">1 de 7</strong><span>completado</span></div>
+    </header>
+
+    <div class="fha-progress-wrap">
+      <div class="fha-progress-track" aria-hidden="true"><span class="fha-progress-fill" id="convProgress"></span></div>
+      <nav class="fha-step-tabs" aria-label="Pasos de la guía del préstamo convencional">
+        <button class="fha-step-tab is-active" type="button" data-conv-go="0" aria-current="step"><i>1</i><b>Qué es</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="1"><i>2</i><b>Tu perfil</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="2"><i>3</i><b>Pagos</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="3"><i>4</i><b>PMI</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="4"><i>5</i><b>Tu mes</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="5"><i>6</i><b>La ruta</b></button>
+        <button class="fha-step-tab" type="button" data-conv-go="6"><i>7</i><b>Listo</b></button>
+      </nav>
+    </div>
+
+    <div class="fha-world-scroll" id="convScroll">
+      <div class="fha-world-content">
+        <section class="fha-step" data-conv-panel="0">
+          <span class="fha-step-kicker">Paso 1 · La idea esencial</span>
+          <h2>Convencional significa que no depende de un seguro del gobierno.</h2>
+          <p class="fha-step-lead">El prestamista evalúa directamente el riesgo. Muchos préstamos convencionales siguen las reglas de Fannie Mae o Freddie Mac para poder venderse en el mercado hipotecario.</p>
+          <div class="fha-plain-note"><strong>En una frase</strong><p>Más flexibilidad en propiedad y seguro, a cambio de una evaluación más sensible al crédito, enganche y características del préstamo.</p></div>
+          <div class="fha-concept-grid">
+            <article class="fha-concept-card"><span class="fha-card-num">01</span><h3>Conforming</h3><p>Cumple límites y reglas aplicables para que Fannie Mae o Freddie Mac puedan adquirirlo.</p></article>
+            <article class="fha-concept-card"><span class="fha-card-num">02</span><h3>Prestamista</h3><p>Define la oferta final según crédito, deudas, ingresos, enganche, propiedad y mercado.</p></article>
+            <article class="fha-concept-card"><span class="fha-card-num">03</span><h3>Sin respaldo FHA</h3><p>No tiene UFMIP ni MIP FHA. Con menos de 20% de enganche puede requerir PMI privado.</p></article>
+          </div>
+          <div class="fha-myth"><span>MITO</span><div><strong>“Siempre necesito 20% de enganche.”</strong><p>No. Algunas opciones convencionales elegibles permiten hasta 97% de financiamiento, equivalente a 3% de enganche. Veinte por ciento suele evitar el PMI, pero no siempre es el mínimo para comprar.</p></div></div>
+        </section>
+
+        <section class="fha-step" data-conv-panel="1" hidden>
+          <span class="fha-step-kicker">Paso 2 · Tu punto de partida</span>
+          <h2>En convencional, cada fortaleza puede mejorar el precio.</h2>
+          <p class="fha-step-lead">No basta con “calificar”. El mismo préstamo puede costar distinto según la combinación completa de tu expediente.</p>
+          <div class="fha-profile-grid">
+            <article class="fha-profile-card"><span class="fha-card-num">01</span><h3>Crédito</h3><p>El puntaje y el historial influyen en aprobación, tasa, PMI y ajustes de precio.</p><small>El mínimo real depende del programa y prestamista.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">02</span><h3>Enganche</h3><p>Más enganche reduce el monto, el LTV y con frecuencia el costo del PMI.</p><small>Ciertos programas elegibles permiten desde 3%.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">03</span><h3>Ingresos y deudas</h3><p>El prestamista verifica capacidad de pago usando ingresos estables y obligaciones mensuales.</p><small>No uses el máximo aprobado como tu presupuesto.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">04</span><h3>Reservas</h3><p>Los fondos que quedan después del cierre pueden fortalecer el expediente.</p><small>El requisito varía por operación y propiedad.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">05</span><h3>Uso de la propiedad</h3><p>Puede financiar vivienda principal y, bajo reglas distintas, segunda vivienda o inversión.</p><small>El uso cambia enganche y precio.</small></article>
+            <article class="fha-profile-card"><span class="fha-card-num">06</span><h3>Tipo de propiedad</h3><p>Casa, condominio, unidades múltiples y otras propiedades tienen reglas diferentes.</p><small>La propiedad también debe ser elegible.</small></article>
+          </div>
+          <div class="fha-callout"><strong>Una tasa baja no siempre significa el préstamo más barato.</strong><p>Compara APR, puntos, créditos, PMI, efectivo al cierre y costo durante el tiempo que planeas conservar la hipoteca.</p></div>
+        </section>
+
+        <section class="fha-step" data-conv-panel="2" hidden>
+          <span class="fha-step-kicker">Paso 3 · Mapa de pagos</span>
+          <h2>Todo lo que puede salir de tu bolsillo.</h2>
+          <p class="fha-step-lead">Separa los pagos por momento. Así podrás comparar dos Loan Estimates sin mirar solamente la tasa.</p>
+          <div class="fha-payments">
+            <article class="fha-payment-row"><span>1</span><div><small>Al hacer la oferta</small><h3>Depósito de buena fe</h3><p>Se entrega según el contrato y normalmente se acredita al cierre si la compra se completa.</p></div><b>Se acredita</b></article>
+            <article class="fha-payment-row"><span>2</span><div><small>Durante el proceso</small><h3>Inspección y valoración</h3><p>La inspección protege tu decisión. Puede requerirse tasación, aunque ciertos expedientes reciben alternativas de valoración.</p></div><b>Pago previo</b></article>
+            <article class="fha-payment-row"><span>3</span><div><small>Opcional al contratar</small><h3>Puntos</h3><p>Un pago anticipado al prestamista para reducir la tasa. Solo conviene si recuperas el costo antes de vender o refinanciar.</p></div><b>Decisión</b></article>
+            <article class="fha-payment-row"><span>4</span><div><small>En el cierre</small><h3>Enganche + costos de cierre</h3><p>Originación, título, gobierno, prepagos y escrow, menos depósitos y créditos aplicables.</p></div><b>Cash to close</b></article>
+            <article class="fha-payment-row"><span>5</span><div><small>Cada mes</small><h3>Hipoteca completa</h3><p>Principal, interés, PMI si aplica, impuestos, seguro de vivienda y posiblemente HOA.</p></div><b>Pago mensual</b></article>
+            <article class="fha-payment-row"><span>6</span><div><small>Como propietario</small><h3>Reservas y mantenimiento</h3><p>Reparaciones, servicios y emergencias no aparecen en el pago hipotecario.</p></div><b>Tu colchón</b></article>
+          </div>
+          <div class="fha-definition"><span>CRÉDITO ≠ GRATIS</span><p>Un <strong>crédito del prestamista</strong> reduce el efectivo al cierre, pero normalmente se intercambia por una tasa más alta. Compara cuánto ahorras hoy con cuánto pagarías después.</p></div>
+        </section>
+
+        <section class="fha-step" data-conv-panel="3" hidden>
+          <span class="fha-step-kicker">Paso 4 · Enganche y PMI</span>
+          <h2>El 20% es una frontera de costo, no siempre una puerta de entrada.</h2>
+          <p class="fha-step-lead">El seguro hipotecario privado protege al prestamista cuando el enganche es reducido. Su precio depende de tu operación y no es una tarifa única.</p>
+          <div class="fha-mip-grid">
+            <article class="fha-mip-card"><small>En programas elegibles</small><strong>3%*</strong><h3>Enganche bajo</h3><p>Fannie Mae ofrece opciones de 97% LTV para ciertas compras de vivienda principal, incluyendo HomeReady y casos elegibles de primeros compradores.</p><div class="fha-mip-line"><span>Precio del ejemplo</span><b id="convDownPrice">$320,000</b></div><div class="fha-mip-line"><span>Enganche del ejemplo</span><b id="convDownAmount">$32,000</b></div></article>
+            <article class="fha-mip-card"><small>Regla práctica común</small><strong>20%</strong><h3>Sin PMI del prestatario</h3><p>Con menos de 20% normalmente puede requerirse PMI. El costo mensual se establece según riesgo y cobertura.</p><div class="fha-mip-line"><span>PMI ilustrativo mensual</span><b id="convPmiMonthlyTop">$144</b></div><div class="fha-mip-line"><span>Con 20% o más</span><b>$0 en esta guía</b></div></article>
+          </div>
+          <p class="fha-fine-print">*El 3% no está disponible para todas las operaciones. Puede exigir vivienda principal de una unidad, tasa fija, educación de compra, límites de ingreso u otras condiciones según el programa.</p>
+          <div class="fha-callout"><strong>Para muchas hipotecas puedes solicitar cancelar el PMI cuando el saldo llega al 80% del valor original.</strong><p>En general, debe terminar automáticamente cuando el saldo programado llega al 78%, si estás al día. Aplican condiciones, excepciones y reglas del inversionista.</p></div>
+        </section>
+
+        <section class="fha-step" data-conv-panel="4" hidden>
+          <span class="fha-step-kicker">Paso 5 · Tu pago mensual</span>
+          <h2>Cambia el enganche y mira qué ocurre con el PMI.</h2>
+          <p class="fha-step-lead">La calculadora elimina automáticamente el PMI ilustrativo al llegar a 20% de enganche.</p>
+          <div class="fha-calculator">
+            <div class="fha-calc-controls">
+              <div class="fha-calc-field"><label for="convPrice">Precio de la vivienda</label><div class="fha-calc-input"><input id="convPrice" type="number" min="50000" max="2000000" step="5000" value="320000"><span>$</span></div></div>
+              <div class="fha-calc-field"><label for="convDown">Enganche</label><div class="fha-calc-input"><input id="convDown" type="number" min="3" max="50" step="0.5" value="10"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="convRate">Tasa ilustrativa</label><div class="fha-calc-input"><input id="convRate" type="number" min="0" max="15" step="0.125" value="6.25"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="convPmiRate">PMI anual ilustrativo</label><div class="fha-calc-input"><input id="convPmiRate" type="number" min="0" max="3" step="0.05" value="0.6"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="convClosing">Costos de cierre estimados</label><div class="fha-calc-input"><input id="convClosing" type="number" min="0" max="10" step="0.25" value="3"><span>%</span></div></div>
+              <div class="fha-calc-field"><label for="convInsurance">Seguro de vivienda / mes</label><div class="fha-calc-input"><input id="convInsurance" type="number" min="0" max="2000" step="10" value="140"><span>$</span></div></div>
+              <div class="fha-calc-field"><label for="convHoa">HOA / mes</label><div class="fha-calc-input"><input id="convHoa" type="number" min="0" max="3000" step="10" value="0"><span>$</span></div></div>
+              <div class="fha-cash"><span>Efectivo estimado al cierre</span><strong id="convCash">$41,600</strong><small id="convCashDetail">$32,000 de enganche + $9,600 de costos estimados, antes de depósitos o créditos.</small></div>
+            </div>
+            <div class="fha-calc-result">
+              <span>Pago mensual estimado</span>
+              <strong class="fha-monthly-total"><span id="convMonthly">$2,442</span><small> / mes</small></strong>
+              <p class="fha-financed">Préstamo estimado: <b id="convFinanced">$288,000</b></p>
+              <div class="fha-breakdown">
+                <div><span>Principal + interés</span><b id="convPI">$1,773</b></div>
+                <div><span>PMI privado</span><b id="convPMI">$144</b></div>
+                <div><span>Impuestos estimados</span><b id="convTaxes">$320</b></div>
+                <div><span>Seguro de vivienda</span><b id="convInsuranceOut">$140</b></div>
+                <div><span>HOA</span><b id="convHoaOut">$0</b></div>
+              </div>
+              <p class="fha-estimate-note">Estimación educativa a 30 años. Usa 1.2% anual para impuestos. La tasa real, el PMI y los costos dependen de tu prestamista, propiedad y expediente.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="fha-step" data-conv-panel="5" hidden>
+          <span class="fha-step-kicker">Paso 6 · Del presupuesto a las llaves</span>
+          <h2>La ruta convencional, de principio a fin.</h2>
+          <p class="fha-step-lead">Usa cada documento para comprobar que la oferta final sigue siendo la que elegiste.</p>
+          <ol class="fha-route">
+            <li><span>01</span><div><h3>Define tu pago cómodo</h3><p>Incluye PMI, escrow, HOA, mantenimiento y objetivos de ahorro.</p></div><b>Presupuesto</b></li>
+            <li><span>02</span><div><h3>Compara preaprobaciones</h3><p>Solicita escenarios con distintos enganches, puntos y créditos.</p></div><b>Estrategia</b></li>
+            <li><span>03</span><div><h3>Elige vivienda y oferta</h3><p>Confirma que el tipo de propiedad sea elegible para tu programa.</p></div><b>Contrato</b></li>
+            <li><span>04</span><div><h3>Inspección y valoración</h3><p>Revisa la condición de la casa y completa la valoración exigida.</p></div><b>Propiedad</b></li>
+            <li><span>05</span><div><h3>Underwriting</h3><p>Se verifican crédito, ingresos, deudas, activos, título y seguro.</p></div><b>Aprobación</b></li>
+            <li><span>06</span><div><h3>Closing Disclosure</h3><p>Compara tasa, APR, PMI, costos y efectivo final al menos tres días hábiles antes.</p></div><b>Revisión</b></li>
+            <li><span>07</span><div><h3>Firma y llaves</h3><p>Después del cierre conserva documentos y conoce cómo solicitar la cancelación del PMI.</p></div><b>Tu casa</b></li>
+          </ol>
+        </section>
+
+        <section class="fha-step fha-final" data-conv-panel="6" hidden>
+          <div class="fha-complete" aria-hidden="true">✓</div>
+          <span class="fha-step-kicker">Paso 7 · Ya puedes comparar</span>
+          <h2>La mejor oferta es la que entiendes completa.</h2>
+          <p class="fha-step-lead">Lleva estas preguntas a cada prestamista y exige respuestas con números.</p>
+          <div class="fha-questions">
+            <div class="fha-question"><span>01</span><p>¿Qué <strong>programa convencional</strong> estoy usando y por qué es adecuado para mí?</p></div>
+            <div class="fha-question"><span>02</span><p>¿Cuál es mi tasa, <strong>APR, puntos y créditos</strong> del prestamista?</p></div>
+            <div class="fha-question"><span>03</span><p>¿Cuánto pagaré de <strong>PMI</strong> y cuándo podré solicitar su cancelación?</p></div>
+            <div class="fha-question"><span>04</span><p>¿Cuál es mi <strong>pago mensual total</strong> y qué conceptos pueden cambiar?</p></div>
+            <div class="fha-question"><span>05</span><p>¿Cuánto es mi <strong>cash to close</strong> después de depósitos y créditos?</p></div>
+          </div>
+          <div class="fha-sources">
+            <span>Fuentes oficiales</span>
+            <a href="https://singlefamily.fanniemae.com/learning-center/originating-and-underwriting/faqs-97-ltv-options" target="_blank" rel="noopener noreferrer">Fannie Mae · 97% LTV ↗</a>
+            <a href="https://singlefamily.fanniemae.com/originating-underwriting/mortgage-products/homeready-mortgage" target="_blank" rel="noopener noreferrer">Fannie Mae · HomeReady ↗</a>
+            <a href="https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/" target="_blank" rel="noopener noreferrer">CFPB · Cancelar PMI ↗</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="fha-world-footer">
+      <button class="fha-prev" id="convPrev" type="button" disabled>← Anterior</button>
+      <span id="convStepName">Qué es convencional</span>
+      <button class="fha-next" id="convNext" type="button"><span>Continuar</span><span aria-hidden="true">→</span></button>
+    </footer>
+  </div>
+
+  <!-- AUTO -->
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿También estás comparando un auto?</h2>
+      <p>La información automotriz ahora vive en una página separada con mapa de tasas, perfiles de crédito y guía del contrato.</p>
+      <a href="comprar-auto.html" class="btn btn-gold">Ir a préstamos de auto</a>
+      <p class="disclaimer" style="margin-left:auto;margin-right:auto;">Contenido educativo general. No sustituye asesoría financiera, legal o crediticia personalizada.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+
+  (()=>{
+    const launcher=document.getElementById('fhaLearnBtn');
+    const world=document.getElementById('fhaWorld');
+    const closeBtn=document.getElementById('fhaClose');
+    const prevBtn=document.getElementById('fhaPrev');
+    const nextBtn=document.getElementById('fhaNext');
+    const panels=[...document.querySelectorAll('[data-fha-panel]')];
+    const tabs=[...document.querySelectorAll('[data-fha-go]')];
+    const scroll=document.getElementById('fhaScroll');
+    const counter=document.getElementById('fhaCounter');
+    const progress=document.getElementById('fhaProgress');
+    const stepName=document.getElementById('fhaStepName');
+    const names=['Qué es FHA','Tu punto de partida','Todo lo que pagarás','El seguro FHA','Tu pago mensual','Del sí a las llaves','Tus próximas preguntas'];
+    let current=0;
+
+    const showStep=(index)=>{
+      current=Math.max(0,Math.min(panels.length-1,index));
+      panels.forEach((panel,i)=>panel.hidden=i!==current);
+      tabs.forEach((tab,i)=>{
+        tab.classList.toggle('is-active',i===current);
+        tab.classList.toggle('is-done',i<current);
+        tab.toggleAttribute('aria-current',i===current);
+        tab.querySelector('i').textContent=i<current?'✓':String(i+1);
+      });
+      counter.textContent=`${current+1} de ${panels.length}`;
+      progress.style.width=`${((current+1)/panels.length)*100}%`;
+      stepName.textContent=names[current];
+      prevBtn.disabled=current===0;
+      nextBtn.innerHTML=current===panels.length-1?'<span>Terminar</span><span aria-hidden="true">✓</span>':'<span>Continuar</span><span aria-hidden="true">→</span>';
+      scroll.scrollTo({top:0,behavior:'smooth'});
+    };
+
+    const openWorld=()=>{
+      world.hidden=false;
+      document.body.style.overflow='hidden';
+      showStep(0);
+      closeBtn.focus();
+    };
+    const closeWorld=()=>{
+      world.hidden=true;
+      document.body.style.overflow='';
+      launcher.focus();
+    };
+
+    launcher?.addEventListener('click',openWorld);
+    closeBtn?.addEventListener('click',closeWorld);
+    prevBtn?.addEventListener('click',()=>showStep(current-1));
+    nextBtn?.addEventListener('click',()=>current===panels.length-1?closeWorld():showStep(current+1));
+    tabs.forEach(tab=>tab.addEventListener('click',()=>showStep(Number(tab.dataset.fhaGo))));
+    world?.addEventListener('keydown',(event)=>{
+      if(event.key==='Escape'){event.preventDefault();closeWorld();return;}
+      if(event.key!=='Tab')return;
+      const focusable=[...world.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')].filter(el=>el.offsetParent!==null);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    });
+
+    const ids=['fhaPrice','fhaDown','fhaRate','fhaClosing','fhaInsurance','fhaHoa'];
+    const fields=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+    const usd=new Intl.NumberFormat('es-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+    const out=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=usd.format(Number.isFinite(value)?value:0);};
+    const calculate=()=>{
+      const price=Math.max(Number(fields.fhaPrice.value)||0,0);
+      const downPct=Math.max(Number(fields.fhaDown.value)||0,0);
+      const rate=Math.max(Number(fields.fhaRate.value)||0,0)/1200;
+      const closingPct=Math.max(Number(fields.fhaClosing.value)||0,0);
+      const insurance=Math.max(Number(fields.fhaInsurance.value)||0,0);
+      const hoa=Math.max(Number(fields.fhaHoa.value)||0,0);
+      const down=price*(downPct/100);
+      const base=Math.max(price-down,0);
+      const upfront=base*.0175;
+      const financed=base+upfront;
+      const periods=360;
+      const principalInterest=rate?financed*((rate*Math.pow(1+rate,periods))/(Math.pow(1+rate,periods)-1)):financed/periods;
+      const mip=base*.0055/12;
+      const taxes=price*.012/12;
+      const closing=price*(closingPct/100);
+      const cash=down+closing;
+      const monthly=principalInterest+mip+taxes+insurance+hoa;
+      out('fhaCash',cash);out('fhaMonthly',monthly);out('fhaFinanced',financed);out('fhaPI',principalInterest);out('fhaMIP',mip);out('fhaTaxes',taxes);out('fhaInsuranceOut',insurance);out('fhaHoaOut',hoa);
+      out('fhaMipBase',base);out('fhaMipUpfront',upfront);out('fhaMipMonthly',mip);
+      document.getElementById('fhaCashDetail').textContent=`${usd.format(down)} de enganche + ${usd.format(closing)} de costos estimados, antes de depósitos o créditos.`;
+    };
+    Object.values(fields).forEach(field=>field?.addEventListener('input',calculate));
+    calculate();
+  })();
+
+  (()=>{
+    const launcher=document.getElementById('convLearnBtn');
+    const world=document.getElementById('convWorld');
+    const closeBtn=document.getElementById('convClose');
+    const prevBtn=document.getElementById('convPrev');
+    const nextBtn=document.getElementById('convNext');
+    const panels=[...document.querySelectorAll('[data-conv-panel]')];
+    const tabs=[...document.querySelectorAll('[data-conv-go]')];
+    const scroll=document.getElementById('convScroll');
+    const counter=document.getElementById('convCounter');
+    const progress=document.getElementById('convProgress');
+    const stepName=document.getElementById('convStepName');
+    const names=['Qué es convencional','Tu perfil convencional','Todo lo que pagarás','Enganche y PMI','Tu pago mensual','Del presupuesto a las llaves','Tus preguntas clave'];
+    let current=0;
+
+    const showStep=(index)=>{
+      current=Math.max(0,Math.min(panels.length-1,index));
+      panels.forEach((panel,i)=>panel.hidden=i!==current);
+      tabs.forEach((tab,i)=>{
+        tab.classList.toggle('is-active',i===current);
+        tab.classList.toggle('is-done',i<current);
+        tab.toggleAttribute('aria-current',i===current);
+        tab.querySelector('i').textContent=i<current?'✓':String(i+1);
+      });
+      counter.textContent=`${current+1} de ${panels.length}`;
+      progress.style.width=`${((current+1)/panels.length)*100}%`;
+      stepName.textContent=names[current];
+      prevBtn.disabled=current===0;
+      nextBtn.innerHTML=current===panels.length-1?'<span>Terminar</span><span aria-hidden="true">✓</span>':'<span>Continuar</span><span aria-hidden="true">→</span>';
+      scroll.scrollTo({top:0,behavior:'smooth'});
+    };
+
+    const openWorld=()=>{
+      world.hidden=false;
+      document.body.style.overflow='hidden';
+      showStep(0);
+      closeBtn.focus();
+    };
+    const closeWorld=()=>{
+      world.hidden=true;
+      document.body.style.overflow='';
+      launcher.focus();
+    };
+
+    launcher?.addEventListener('click',openWorld);
+    closeBtn?.addEventListener('click',closeWorld);
+    prevBtn?.addEventListener('click',()=>showStep(current-1));
+    nextBtn?.addEventListener('click',()=>current===panels.length-1?closeWorld():showStep(current+1));
+    tabs.forEach(tab=>tab.addEventListener('click',()=>showStep(Number(tab.dataset.convGo))));
+    world?.addEventListener('keydown',(event)=>{
+      if(event.key==='Escape'){event.preventDefault();closeWorld();return;}
+      if(event.key!=='Tab')return;
+      const focusable=[...world.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')].filter(el=>el.offsetParent!==null);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    });
+
+    const ids=['convPrice','convDown','convRate','convPmiRate','convClosing','convInsurance','convHoa'];
+    const fields=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+    const usd=new Intl.NumberFormat('es-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+    const out=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=usd.format(Number.isFinite(value)?value:0);};
+    const calculate=()=>{
+      const price=Math.max(Number(fields.convPrice.value)||0,0);
+      const downPct=Math.max(Number(fields.convDown.value)||0,0);
+      const rate=Math.max(Number(fields.convRate.value)||0,0)/1200;
+      const pmiRate=Math.max(Number(fields.convPmiRate.value)||0,0)/100;
+      const closingPct=Math.max(Number(fields.convClosing.value)||0,0);
+      const insurance=Math.max(Number(fields.convInsurance.value)||0,0);
+      const hoa=Math.max(Number(fields.convHoa.value)||0,0);
+      const down=price*(downPct/100);
+      const loan=Math.max(price-down,0);
+      const periods=360;
+      const principalInterest=rate?loan*((rate*Math.pow(1+rate,periods))/(Math.pow(1+rate,periods)-1)):loan/periods;
+      const pmi=downPct>=20?0:loan*pmiRate/12;
+      const taxes=price*.012/12;
+      const closing=price*(closingPct/100);
+      const cash=down+closing;
+      const monthly=principalInterest+pmi+taxes+insurance+hoa;
+      out('convCash',cash);out('convMonthly',monthly);out('convFinanced',loan);out('convPI',principalInterest);out('convPMI',pmi);out('convTaxes',taxes);out('convInsuranceOut',insurance);out('convHoaOut',hoa);
+      out('convDownPrice',price);out('convDownAmount',down);out('convPmiMonthlyTop',pmi);
+      document.getElementById('convCashDetail').textContent=`${usd.format(down)} de enganche + ${usd.format(closing)} de costos estimados, antes de depósitos o créditos.`;
+    };
+    Object.values(fields).forEach(field=>field?.addEventListener('input',calculate));
+    calculate();
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script src="credit-coach.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/comprar-casa-auto.html"
+  to = "/index.html"
+  status = 301
+  force = true

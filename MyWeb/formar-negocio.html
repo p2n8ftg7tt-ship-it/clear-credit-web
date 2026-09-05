@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formar tu negocio (LLC) y sacar tu EIN | Themora</title>
+<meta name="description" content="Te ayudo a registrar legalmente tu negocio (LLC) y a sacar tu número de identificación federal (EIN) — trámite de papeleo, sin sorpresas, en español.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Formar tu negocio (LLC) y sacar tu EIN | Themora">
+<meta property="og:description" content="Te ayudo a registrar legalmente tu negocio (LLC) y a sacar tu número de identificación federal (EIN) — trámite de papeleo, sin sorpresas, en español.">
+<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/formar-negocio.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Formar tu negocio (LLC) y sacar tu EIN | Themora">
+<meta name="twitter:description" content="Te ayudo a registrar legalmente tu negocio (LLC) y a sacar tu número de identificación federal (EIN) — trámite de papeleo, sin sorpresas, en español.">
+<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
+<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/formar-negocio.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .fn-badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .fn-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.76rem;font-weight:700;padding:7px 12px;border-radius:20px;}
+  .fn-disclaimer{background:var(--paper-dim);border-left:3px solid var(--navy);border-radius:8px;padding:20px 22px;margin:0 0 34px;}
+  .fn-disclaimer strong{display:block;color:var(--navy-deep);font-size:.95rem;margin-bottom:6px;}
+  .fn-disclaimer p{margin:0 0 8px;color:var(--muted);font-size:.87rem;line-height:1.65;}
+  .fn-disclaimer p:last-child{margin-bottom:0;}
+  .fn-steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:fn-step}
+  .fn-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .fn-step::before{counter-increment:fn-step;content:counter(fn-step);flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;display:grid;place-items:center;font-size:.9rem}
+  .fn-step h3{margin:0 0 4px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .fn-step p{margin:0;color:var(--muted);font-size:.9rem}
+  .fn-includes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .fn-include-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+  .fn-include-card h3{margin:0 0 8px;font:700 .95rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .fn-include-card p{margin:0;color:var(--muted);font-size:.87rem}
+  .fn-include-card .tag{display:inline-block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:rgba(79,107,87,.1);padding:3px 9px;border-radius:12px;margin-bottom:9px;}
+  .fn-va-panel{background:var(--navy-deep);border-radius:14px;padding:34px 30px;color:#fff;}
+  .fn-va-panel .eyebrow{color:var(--gold-light);}
+  .fn-va-panel h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.4vw,2.4rem);margin:6px 0 14px;letter-spacing:-.025em;}
+  .fn-va-panel > p{color:rgba(255,255,255,.75);max-width:640px;margin:0 0 26px;}
+  .fn-va-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+  .fn-va-fact{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:16px 18px;}
+  .fn-va-fact .amt{font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;}
+  .fn-va-fact .lbl{display:block;font-size:.72rem;color:rgba(255,255,255,.6);margin-top:3px;}
+  .fn-other-states{margin-top:18px;padding:16px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;font-size:.85rem;color:rgba(255,255,255,.78);}
+  .fn-price-wrap{background:#fff;border:1.5px solid var(--gold);border-radius:14px;padding:32px 28px;}
+  .fn-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:14px;}
+  .fn-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
+  .fn-price-item{background:var(--paper-dim);border-radius:10px;padding:18px 20px;}
+  .fn-price-item .amt{font:700 2rem 'Fraunces',serif;color:var(--navy-deep);}
+  .fn-price-item .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800;color:var(--teal);margin-bottom:6px;}
+  .fn-price-item p{margin:8px 0 0;font-size:.82rem;color:var(--muted);}
+  .fn-trust{display:flex;gap:16px;align-items:flex-start;background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:8px;padding:18px 20px;margin-top:26px}
+  .fn-trust p{margin:0;color:var(--muted);font-size:.87rem}
+  .fn-trust strong{display:block;color:var(--navy-deep);font-size:.85rem;margin-bottom:3px}
+  .fn-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .fn-form-grid .form-group.full{grid-column:1/-1}
+  .fn-form-status{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
+  .fn-form-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
+  .fn-form-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .fn-form-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
+  @media(max-width:640px){
+    .fn-form-grid{grid-template-columns:1fr}
+    .fn-price-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body data-cms-page="formar-negocio">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="credito.html">Crédito</a>
+      <a href="cartas-claras.html">Cartas Claras</a>
+      <a href="comprar-casa.html">Comprar casa</a>
+      <a href="comprar-auto.html">Comprar auto</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="listar-negocio.html">Listar negocio</a>
+      <a href="formar-negocio.html" class="active">Formar negocio</a>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Nuevo servicio</span>
+      <h1>¿Quieres abrir tu negocio pero no sabes por dónde empezar?</h1>
+      <p>Formar tu compañía (LLC) y sacar tu número federal de identificación (EIN) es puro papeleo — pero papeleo que hay que hacer bien. Yo me encargo del trámite por ti, en español, paso a paso.</p>
+      <div class="fn-badge-row">
+        <span class="fn-badge">📍 Disponible en los 50 estados</span>
+        <span class="fn-badge">⭐ Atención especial en Virginia</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="max-width:900px;">
+      <div class="fn-disclaimer">
+        <strong>No somos un despacho de abogados</strong>
+        <p>Este es un servicio de preparación y presentación de trámites (paperwork) — no asesoría legal. Preparamos y presentamos tus documentos de formación ante el estado y tramitamos tu EIN con la información que tú nos das. No te decimos qué tipo de entidad te conviene legalmente, ni te representamos ante ninguna corte o agencia.</p>
+        <p>Si tu situación es más compleja (varios socios, inversionistas, un negocio regulado, temas de inmigración, etc.), te recomendamos hablar primero con un abogado o contador. Con gusto seguimos ayudándote con el papeleo después.</p>
+        <p><strong style="display:inline;">Importante sobre licencias profesionales:</strong> una licencia de contratista, de salón de belleza, o cualquier licencia profesional similar es personal e intransferible — el examen, los años de experiencia y el historial los tiene que cumplir la persona misma. Nosotros no podemos sacarte esa licencia; sí podemos darte la lista de lo que necesitas y ayudarte a registrar la empresa detrás de ese negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Cómo funciona</span>
+        <h2>Cuatro pasos, sin complicaciones</h2>
+        <p>Tú nos cuentas qué negocio quieres abrir, nosotros preparamos y presentamos el papeleo.</p>
+      </div>
+      <ol class="fn-steps">
+        <li class="fn-step">
+          <div>
+            <h3>Nos cuentas de tu negocio</h3>
+            <p>Nombre que quieres para tu empresa, en qué estado, a qué se va a dedicar, y quiénes son los dueños — todo por el formulario de esta página.</p>
+          </div>
+        </li>
+        <li class="fn-step">
+          <div>
+            <h3>Confirmamos el pago y los datos</h3>
+            <p>Te contactamos para confirmar el pago y para pedirte, de forma privada (nunca por este formulario), cualquier dato sensible que haga falta — como el número de seguro social del dueño para el EIN.</p>
+          </div>
+        </li>
+        <li class="fn-step">
+          <div>
+            <h3>Preparamos y presentamos tus documentos</h3>
+            <p>Presentamos la formación de tu LLC ante el estado, tramitamos tu EIN directo con el IRS (es gratis — nunca pagas por el número en sí), y te damos una plantilla de acuerdo operativo.</p>
+          </div>
+        </li>
+        <li class="fn-step">
+          <div>
+            <h3>Te confirmamos cuando esté listo</h3>
+            <p>Te mandamos tus documentos aprobados y una guía de los próximos pasos (cuenta bancaria del negocio, licencias locales, y cuándo vence tu reporte anual).</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Qué incluye</span>
+        <h2>El papeleo básico para arrancar</h2>
+      </div>
+      <div class="fn-includes">
+        <div class="fn-include-card">
+          <span class="tag">Estatal</span>
+          <h3>Formación de tu LLC</h3>
+          <p>Preparamos y presentamos los documentos de formación (Articles of Organization) ante la agencia de tu estado.</p>
+        </div>
+        <div class="fn-include-card">
+          <span class="tag">Federal · Gratis del IRS</span>
+          <h3>Número de identificación (EIN)</h3>
+          <p>El EIN nunca tiene costo con el IRS — nosotros hacemos el trámite por ti con tu autorización firmada, para que no tengas que hacerlo tú mismo en inglés.</p>
+        </div>
+        <div class="fn-include-card">
+          <span class="tag">Plantilla</span>
+          <h3>Acuerdo operativo</h3>
+          <p>Un modelo de "operating agreement" para dejar por escrito cómo se reparten las decisiones y las ganancias del negocio.</p>
+        </div>
+        <div class="fn-include-card">
+          <span class="tag">Guía educativa</span>
+          <h3>Checklist de licencias y permisos</h3>
+          <p>Una lista de lo que normalmente se necesita para tu tipo de negocio (licencia local, permisos, seguro) — informativo, no es un trámite que hagamos por ti cuando la licencia es personal.</p>
+        </div>
+      </div>
+
+      <div class="fn-trust">
+        <div>
+          <strong>Nunca pedimos tu número de seguro social por este formulario</strong>
+          <p>El formulario de esta página solo pide datos generales del negocio. Si tu trámite requiere tu número de seguro social o ITIN (por ejemplo, para el EIN), te lo pedimos después, de forma privada y directa — nunca por un formulario público del sitio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="fn-va-panel">
+        <span class="eyebrow">Enfoque Virginia</span>
+        <h2>Si tu negocio es en Virginia, esto es exactamente lo que pasa</h2>
+        <p>Virginia es donde más experiencia tenemos con este trámite — así se ve el proceso real, con los montos actuales de la Comisión Estatal de Corporaciones (SCC).</p>
+        <div class="fn-va-facts">
+          <div class="fn-va-fact"><span class="amt">$100</span><span class="lbl">Cuota estatal para formar tu LLC (Articles of Organization ante la SCC)</span></div>
+          <div class="fn-va-fact"><span class="amt">$50/año</span><span class="lbl">Cuota de registro anual, o tu LLC puede perder su estatus activo</span></div>
+          <div class="fn-va-fact"><span class="amt">Mismo día</span><span class="lbl">La presentación en línea suele procesarse el mismo día</span></div>
+          <div class="fn-va-fact"><span class="amt">Obligatorio</span><span class="lbl">Agente registrado con dirección física en Virginia — te ayudamos a resolverlo</span></div>
+        </div>
+        <div class="fn-other-states">
+          <strong style="color:#fff;">¿Tu negocio es en otro estado?</strong> El trámite sigue el mismo patrón general en todo el país — cada estado tiene su propia agencia y su propia cuota, y el EIN siempre es federal, directo con el IRS. Cuéntanos tu estado en el formulario y te confirmamos los montos exactos antes de cobrarte nada.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="fn-price-wrap">
+        <span class="fn-launch-badge">Precio de lanzamiento</span>
+        <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.1rem);color:var(--navy-deep);margin:0;">Formación de LLC + EIN</h2>
+        <div class="fn-price-grid">
+          <div class="fn-price-item">
+            <span class="lbl">Nuestra tarifa de servicio</span>
+            <span class="amt">$149</span>
+            <p>Incluye la preparación y presentación de tu LLC, el trámite del EIN, y la plantilla de acuerdo operativo.</p>
+          </div>
+          <div class="fn-price-item">
+            <span class="lbl">Cuota del estado (aparte)</span>
+            <span class="amt">$100</span>
+            <p>En Virginia son $100 — se la pagas directo al estado o te la cobramos junto con nuestra tarifa, como prefieras. En otros estados puede variar; te lo confirmamos antes de empezar.</p>
+          </div>
+        </div>
+        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);">El EIN en sí siempre es gratis con el IRS — nuestra tarifa es solo por el trabajo de hacer el trámite por ti. Este es un precio de lanzamiento; llena el formulario y te confirmamos el total exacto antes de cobrarte nada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="max-width:720px;">
+      <div class="section-head">
+        <span class="eyebrow-dark">Empecemos</span>
+        <h2>Cuéntame de tu negocio</h2>
+        <p>Con esto es suficiente para empezar — nada de números de seguro social ni información sensible por aquí.</p>
+      </div>
+
+      <form id="fnForm" novalidate>
+        <div class="fn-form-grid">
+          <div class="form-group">
+            <label for="fnNombre">Tu nombre</label>
+            <input type="text" id="fnNombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="fnCorreo">Tu correo electrónico</label>
+            <input type="email" id="fnCorreo" name="correo" required>
+          </div>
+          <div class="form-group">
+            <label for="fnTelefono">Tu teléfono</label>
+            <input type="tel" id="fnTelefono" name="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="fnEstado">¿En qué estado será tu negocio?</label>
+            <input type="text" id="fnEstado" name="estado" placeholder="Ej: Virginia" required>
+          </div>
+          <div class="form-group full">
+            <label for="fnNegocioNombre">Nombre que quieres para tu empresa</label>
+            <input type="text" id="fnNegocioNombre" name="negocio_nombre" placeholder="Ej: Hernández Construcción LLC" required>
+          </div>
+          <div class="form-group">
+            <label for="fnGiro">¿A qué se va a dedicar el negocio?</label>
+            <input type="text" id="fnGiro" name="giro" placeholder="Ej: construcción, limpieza, comida" required>
+          </div>
+          <div class="form-group">
+            <label for="fnDuenos">¿Cuántos dueños tendrá?</label>
+            <select id="fnDuenos" name="duenos">
+              <option value="Solo yo">Solo yo</option>
+              <option value="2 personas">2 personas</option>
+              <option value="3 o más personas">3 o más personas</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fnDescripcion">Cuéntanos un poco más de tu idea de negocio</label>
+            <textarea id="fnDescripcion" name="descripcion" rows="3" required></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="fnMensaje">Mensaje adicional (opcional)</label>
+            <textarea id="fnMensaje" name="mensaje" rows="3"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold" id="fnSubmitBtn">Enviar mis datos</button>
+        <p class="fn-form-status" id="fnFormStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Prefieres primero hacer una pregunta?</h2>
+      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente.</p>
+      <a href="contacto.html" class="btn btn-gold">Ir a contacto</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<!-- Formulario compatible con Netlify Forms (igual que en contacto.html y listar-negocio.html):
+     al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
+     enviemos por JavaScript, sin necesitar backend propio. A propósito NO incluye ningún
+     campo sensible (seguro social, ITIN, etc.) -- ese dato se pide después, en privado. -->
+<form name="formar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="fnStaticForm">
+  <input type="hidden" name="form-name" value="formar-negocio" />
+  <input name="bot-field" />
+  <input type="text" name="nombre" />
+  <input type="email" name="correo" />
+  <input type="tel" name="telefono" />
+  <input type="text" name="estado" />
+  <input type="text" name="negocio_nombre" />
+  <input type="text" name="giro" />
+  <input type="text" name="duenos" />
+  <input type="text" name="descripcion" />
+  <input type="text" name="mensaje" />
+</form>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+
+<script>
+(function(){
+  'use strict';
+  const form=document.getElementById('fnForm');
+  const status=document.getElementById('fnFormStatus');
+  const submitBtn=document.getElementById('fnSubmitBtn');
+  if(!form)return;
+
+  async function submitFormation(data){
+    const body=new URLSearchParams(Object.assign({'form-name':'formar-negocio'},data)).toString();
+    const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    if(!response.ok)throw new Error('No se pudo enviar el formulario');
+  }
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    const data={
+      nombre:form.nombre.value.trim(),
+      correo:form.correo.value.trim(),
+      telefono:form.telefono.value.trim(),
+      estado:form.estado.value.trim(),
+      negocio_nombre:form.negocio_nombre.value.trim(),
+      giro:form.giro.value.trim(),
+      duenos:form.duenos.value,
+      descripcion:form.descripcion.value.trim(),
+      mensaje:form.mensaje.value.trim()
+    };
+    submitBtn.disabled=true;
+    const original=submitBtn.textContent;
+    submitBtn.textContent='Enviando…';
+    status.className='fn-form-status is-loading';
+    status.textContent='Enviando tu información…';
+    try{
+      await submitFormation(data);
+      status.className='fn-form-status is-success';
+      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(data.correo||'tu correo')+' para confirmar el pago, el estado exacto de tu trámite y los próximos pasos.';
+      form.reset();
+    }catch(error){
+      status.className='fn-form-status is-error';
+      status.textContent='No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento, o escríbeme desde la página de contacto.';
+    }finally{
+      submitBtn.disabled=false;
+      submitBtn.textContent=original;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
