@@ -103,16 +103,31 @@
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="links" id="navLinks" aria-label="Navegación principal">
         <a href="index.html" class="active">Inicio</a>
-        <a href="credito.html">Crédito</a>
-        <a href="cartas-claras.html">Cartas Claras</a>
-        <a href="comprar-casa.html">Comprar casa</a>
-        <a href="comprar-auto.html">Comprar auto</a>
+        <div class="nav-group">
+          <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu">
+            <a href="credito.html"><strong>Crédito</strong><span>Cómo funciona tu puntaje y análisis de tu reporte</span></a>
+            <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas de cobro, bancos, burós, IRS o corte</span></a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Comprar<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu">
+            <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+            <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu">
+            <a href="listar-negocio.html"><strong>Listar negocio</strong><span>Aparece en Google Maps y Apple Maps</span></a>
+            <a href="formar-negocio.html"><strong>Formar negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          </div>
+        </div>
         <a href="herramientas.html">Herramientas</a>
-        <a href="listar-negocio.html">Listar negocio</a>
-        <a href="formar-negocio.html">Formar negocio</a>
         <a href="quienes-somos.html">Quiénes somos</a>
         <a href="contacto.html">Contacto</a>
-        <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+        <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
       </nav>
     </div>
   </header>
@@ -264,5 +279,6 @@
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
   <script src="credit-coach.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

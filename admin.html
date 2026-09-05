@@ -49,8 +49,12 @@
   .admin-admin-pill{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--gold);color:var(--navy-deep);margin-left:6px}
   .admin-empty-row td{text-align:center;color:var(--muted);padding:30px}
 
-  .admin-state{max-width:520px;margin:60px auto;text-align:center}
+  .admin-state{max-width:580px;margin:60px auto;text-align:center}
   .admin-state[hidden]{display:none}
+  .admin-state p{line-height:1.65}
+  /* El mensaje de error puede traer instrucciones de varios pasos: se lee
+     mejor alineado a la izquierda y dentro de un recuadro. */
+  #adminErrorText{text-align:left;background:var(--paper-dim);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:16px 18px;margin-bottom:20px;font-size:.86rem}
 
   .admin-content-editor{margin-top:48px;padding-top:8px}
   .admin-editor-layout{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
@@ -86,7 +90,7 @@
     <nav class="links" id="navLinks">
       <a href="index.html">Inicio</a>
       <a href="cuenta.html">Mi cuenta</a>
-      <a href="login.html" id="navAuthLink">Iniciar sesión</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
     </nav>
   </div>
 </header>
