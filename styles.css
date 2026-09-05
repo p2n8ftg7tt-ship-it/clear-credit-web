@@ -38,8 +38,9 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
 .links a:hover,.links a.active{color:var(--navy);border-color:var(--gold)}
 .nav-toggle{display:none;border:0;background:var(--paper-dim);color:var(--navy);width:42px;height:42px;border-radius:7px;cursor:pointer}
 
-.page-hero{padding:94px 0 82px;background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
-.page-hero::after{content:"";position:absolute;width:270px;height:270px;border:1px solid rgba(246,213,139,.32);border-radius:50%;right:-90px;top:-100px}
+.page-hero{padding:94px 0 82px;background:radial-gradient(640px circle at 84% -8%,rgba(246,213,139,.16),transparent 62%),var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+.page-hero::before{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(246,213,139,.2);border-radius:50%;right:70px;top:38px}
+.page-hero::after{content:"";position:absolute;width:380px;height:380px;border:1px solid rgba(246,213,139,.3);border-radius:50%;right:-130px;top:-140px}
 .page-hero .wrap{position:relative;z-index:1}
 .eyebrow,.eyebrow-dark{display:block;font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
 .eyebrow{color:var(--gold-light)}

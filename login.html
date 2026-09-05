@@ -26,6 +26,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== HERO con tarjeta flotante ===== */
+  .login-hero{padding-bottom:250px}
+  .login-card-band{padding-top:0;margin-top:-210px;position:relative;z-index:2}
+  @media(max-width:640px){
+    .login-hero{padding-bottom:210px}
+    .login-card-band{margin-top:-170px}
+  }
+</style>
 </head>
 <body data-cms-page="login">
 
@@ -52,7 +61,7 @@
 
 <main id="contenido">
 
-  <section class="page-hero">
+  <section class="page-hero login-hero">
     <div class="wrap">
       <span class="eyebrow" id="heroEyebrow">Tu cuenta</span>
       <h1 id="heroTitle">Guarda tu progreso</h1>
@@ -60,7 +69,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="login-card-band">
     <div class="wrap" style="max-width:460px;">
       <div class="auth-card">
 

@@ -32,7 +32,7 @@
       linear-gradient(100deg, rgba(24,18,12,.93) 0%, rgba(24,18,12,.8) 38%, rgba(24,18,12,.42) 100%),
       url('images/listar-negocio-hero.jpg') center 38%/cover no-repeat;
   }
-  .ln-hero::after{display:none}
+  .ln-hero::before,.ln-hero::after{display:none}
   .ln-steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:ln-step}
   .ln-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
   .ln-step::before{counter-increment:ln-step;content:counter(ln-step);flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;display:grid;place-items:center;font-size:.9rem}
