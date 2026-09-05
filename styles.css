@@ -29,7 +29,7 @@ button,input{font:inherit}
 
 header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
 .nav{width:min(1160px,calc(100% - 40px));min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;font:700 1.35rem 'Fraunces',serif;color:var(--navy-deep);text-decoration:none;letter-spacing:-.02em}
+.brand{display:inline-flex;flex-direction:column;align-items:center;gap:4px;font:700 1.35rem 'Fraunces',serif;color:var(--navy-deep);text-decoration:none;letter-spacing:-.02em}
 .brand-logo{display:block;height:36px;width:auto}
 .brand-name{display:block;line-height:1}
 .brand small{display:block;font:700 .55rem 'Public Sans',sans-serif;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}
