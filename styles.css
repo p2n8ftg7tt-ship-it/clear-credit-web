@@ -31,6 +31,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
 .nav{width:min(1160px,calc(100% - 40px));min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;font:700 1.35rem 'Fraunces',serif;color:var(--navy-deep);text-decoration:none;letter-spacing:-.02em}
 .brand-logo{display:block;height:36px;width:auto}
+.brand-name{display:block;line-height:1}
 .brand small{display:block;font:700 .55rem 'Public Sans',sans-serif;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}
 .links{display:flex;align-items:center;gap:24px}
 .links a{font-size:.76rem;font-weight:700;text-decoration:none;color:rgba(12,37,56,.66);padding:25px 0 22px;border-bottom:3px solid transparent}

@@ -1,4 +1,4 @@
-# Cómo funcionan los planes de pago en Clear Credit
+# Cómo funcionan los planes de pago en Themora
 
 Ahora generar una carta (validación de deuda, disputa a un buró, o corrección
 de identidad) requiere que el cliente tenga un plan activo: **Básico**

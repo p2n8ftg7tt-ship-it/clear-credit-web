@@ -1,4 +1,4 @@
-# Clear Credit
+# Themora
 # IMPORTANTE: reemplaza TU-DOMINIO-AQUI.com por tu dominio real antes de publicar.
 
 User-agent: *

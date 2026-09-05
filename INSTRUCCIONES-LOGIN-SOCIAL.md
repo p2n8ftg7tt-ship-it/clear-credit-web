@@ -34,7 +34,7 @@ Es el más simple de los dos proveedores de redes sociales.
 1. Ve a [console.cloud.google.com](https://console.cloud.google.com/) y crea un
    proyecto (o usa uno existente).
 2. Ve a **APIs y servicios → Pantalla de consentimiento de OAuth**. Elige
-   "Externo", completa el nombre de la app ("Clear Credit") y tu correo de
+   "Externo", completa el nombre de la app ("Themora") y tu correo de
    contacto.
 3. Ve a **APIs y servicios → Credenciales → Crear credenciales → ID de cliente
    de OAuth**. Tipo de aplicación: **Aplicación web**.
@@ -55,7 +55,7 @@ Es el más simple de los dos proveedores de redes sociales.
 
 1. Ve a [portal.azure.com](https://portal.azure.com/) → **Azure Active
    Directory → Registros de aplicaciones → Nuevo registro**.
-2. Nombre: "Clear Credit". En "URI de redirección" elige tipo **Web** y pega
+2. Nombre: "Themora". En "URI de redirección" elige tipo **Web** y pega
    la URL de callback que te muestra Supabase (**Authentication → Providers →
    Azure** en Supabase).
 3. Una vez creado, copia el **ID de aplicación (cliente)** y el **ID de

@@ -1,4 +1,4 @@
-# Clear Credit: casa y auto separados
+# Themora: casa y auto separados
 
 Abre `index.html` para elegir una de las dos rutas:
 

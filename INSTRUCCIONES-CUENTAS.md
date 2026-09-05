@@ -1,4 +1,4 @@
-# Cómo activar el login en Clear Credit
+# Cómo activar el login en Themora
 
 Tu sitio es 100% archivos estáticos (HTML/CSS/JS), así que para tener cuentas de
 verdad (con contraseña, sesión y una base de datos) necesitas un servicio externo

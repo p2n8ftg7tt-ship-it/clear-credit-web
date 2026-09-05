@@ -1,4 +1,4 @@
-# Clear Credit — Informe de auditoría y hoja de ruta
+# Themora — Informe de auditoría y hoja de ruta
 
 *Preparado el 29 de agosto de 2026*
 
@@ -190,7 +190,7 @@ fondo completo) — pero conectada a reporte real a los burós de crédito.
   depende de notificaciones para que vuelvas, una tanda te obliga a volver
   cada período porque es un compromiso social con personas reales — familia
   o amigos que tú mismo invitas. Eso es retención sin trucos.
-- **Conecta directo con lo que ya construiste.** Clear Credit ya explica
+- **Conecta directo con lo que ya construiste.** Themora ya explica
   crédito, historial y burós en español claro — la capa educativa que este
   producto necesita ya existe. El plan Familia de la sección 4 es, sin
   quererlo, el primer paso hacia esto.

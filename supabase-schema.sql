@@ -1,5 +1,5 @@
 -- =========================================================
--- Clear Credit — esquema de base de datos para cuentas
+-- Themora — esquema de base de datos para cuentas
 -- Copia y pega todo este archivo en el "SQL Editor" de tu
 -- proyecto de Supabase (menú izquierdo) y presiona "Run".
 -- =========================================================

@@ -1,5 +1,5 @@
 /* =========================================================
-   Contenido editable — Clear Credit
+   Contenido editable — Themora
    Lee la tabla "contenido_sitio" en Supabase y aplica los valores
    guardados a los elementos marcados con data-cms="clave" en esta
    página (más los marcados como "global", que aparecen en varias
@@ -54,7 +54,7 @@
         data.forEach(applyRow);
       })
       .catch(function (err) {
-        console.warn("[Clear Credit] No se pudo cargar el contenido editable de esta página.", err);
+        console.warn("[Themora] No se pudo cargar el contenido editable de esta página.", err);
       });
   }
 

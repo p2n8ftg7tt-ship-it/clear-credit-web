@@ -1,5 +1,5 @@
 /* =========================================================
-   Cuentas de cliente — Clear Credit
+   Cuentas de cliente — Themora
    Usa Supabase (https://supabase.com) para manejar registro,
    inicio de sesión y guardado de resultados por usuario.
 
@@ -20,14 +20,14 @@
 
   if (!window.supabase || !window.supabase.createClient) {
     console.warn(
-      "[Clear Credit] No se encontró la librería de Supabase. Agrega el <script> de supabase-js antes de auth.js."
+      "[Themora] No se encontró la librería de Supabase. Agrega el <script> de supabase-js antes de auth.js."
     );
     return;
   }
 
   if (notConfigured) {
     console.warn(
-      "[Clear Credit] Todavía no configuraste SUPABASE_URL / SUPABASE_ANON_KEY en auth.js. El login no funcionará hasta que lo hagas."
+      "[Themora] Todavía no configuraste SUPABASE_URL / SUPABASE_ANON_KEY en auth.js. El login no funcionará hasta que lo hagas."
     );
   }
 
