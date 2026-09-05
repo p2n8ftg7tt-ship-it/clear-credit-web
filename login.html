@@ -92,44 +92,48 @@
           </button>
         </div>
 
-        <div class="auth-divider">o continúa con tu correo</div>
+        <p class="auth-switch-line">¿Ya tienes cuenta? <button type="button" class="auth-link-btn" id="tabSignIn" role="tab" aria-selected="false" aria-controls="panelSignIn">Iniciar sesión aquí</button></p>
 
         <div class="auth-message" id="authMessage" hidden></div>
 
-        <!-- CREAR CUENTA (panel por defecto) -->
-        <form class="auth-panel" id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp">
-          <div class="form-group">
-            <label for="signUpEmail">Correo electrónico</label>
-            <input type="email" id="signUpEmail" name="email" required autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label for="signUpPassword">Contraseña</label>
-            <input type="password" id="signUpPassword" name="password" required autocomplete="new-password" minlength="6">
-            <span class="mortgage-helper">Mínimo 6 caracteres.</span>
-          </div>
-          <button type="submit" class="btn btn-gold" id="signUpSubmit" style="width:100%;justify-content:center;">Crear cuenta</button>
-          <p class="auth-phone-hint" style="margin-top:14px;">¿Prefieres una cuenta de Google, Facebook o Microsoft? Están arriba — no necesitas llenar este formulario para eso; la cuenta se crea sola la primera vez que las uses.</p>
-        </form>
+        <div id="authForms" hidden>
 
-        <!-- INICIAR SESIÓN -->
-        <div class="auth-panel" id="panelSignIn" role="tabpanel" aria-labelledby="tabSignIn" hidden>
+          <div class="auth-divider">o continúa con tu correo</div>
 
-          <!-- Correo + contraseña -->
-          <form id="panelSignInEmail">
+          <!-- CREAR CUENTA (panel por defecto al abrir) -->
+          <form class="auth-panel" id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp">
             <div class="form-group">
-              <label for="signInEmail">Correo electrónico</label>
-              <input type="email" id="signInEmail" name="email" required autocomplete="email">
+              <label for="signUpEmail">Correo electrónico</label>
+              <input type="email" id="signUpEmail" name="email" required autocomplete="email">
             </div>
             <div class="form-group">
-              <label for="signInPassword">Contraseña</label>
-              <input type="password" id="signInPassword" name="password" required autocomplete="current-password" minlength="6">
+              <label for="signUpPassword">Contraseña</label>
+              <input type="password" id="signUpPassword" name="password" required autocomplete="new-password" minlength="6">
+              <span class="mortgage-helper">Mínimo 6 caracteres.</span>
             </div>
-            <button type="submit" class="btn btn-gold" id="signInSubmit" style="width:100%;justify-content:center;">Iniciar sesión</button>
-            <button type="button" class="auth-link-btn" id="forgotPasswordBtn">¿Olvidaste tu contraseña?</button>
+            <button type="submit" class="btn btn-gold" id="signUpSubmit" style="width:100%;justify-content:center;">Crear cuenta</button>
+            <p class="auth-phone-hint" style="margin-top:14px;">¿Prefieres una cuenta de Google, Facebook o Microsoft? Están arriba — no necesitas llenar este formulario para eso; la cuenta se crea sola la primera vez que las uses.</p>
           </form>
-        </div>
 
-        <p class="auth-switch-line">¿Ya tienes cuenta? <button type="button" class="auth-link-btn" id="tabSignIn" role="tab" aria-selected="false" aria-controls="panelSignIn">Iniciar sesión aquí</button></p>
+          <!-- INICIAR SESIÓN -->
+          <div class="auth-panel" id="panelSignIn" role="tabpanel" aria-labelledby="tabSignIn" hidden>
+
+            <!-- Correo + contraseña -->
+            <form id="panelSignInEmail">
+              <div class="form-group">
+                <label for="signInEmail">Correo electrónico</label>
+                <input type="email" id="signInEmail" name="email" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label for="signInPassword">Contraseña</label>
+                <input type="password" id="signInPassword" name="password" required autocomplete="current-password" minlength="6">
+              </div>
+              <button type="submit" class="btn btn-gold" id="signInSubmit" style="width:100%;justify-content:center;">Iniciar sesión</button>
+              <button type="button" class="auth-link-btn" id="forgotPasswordBtn">¿Olvidaste tu contraseña?</button>
+            </form>
+          </div>
+
+        </div>
 
         <!-- RESTABLECER CONTRASEÑA — solo aparece al llegar desde el enlace
              que se envía por correo cuando alguien pide "¿Olvidaste tu
@@ -177,6 +181,7 @@
   const $ = id => document.getElementById(id);
   const tabSignIn = $('tabSignIn'), tabSignUp = $('tabSignUp');
   const panelSignIn = $('panelSignIn'), panelSignUp = $('panelSignUp');
+  const authForms = $('authForms');
   const message = $('authMessage');
 
   function showMessage(text, kind){
@@ -191,6 +196,7 @@
 
   function switchTab(target){
     clearMessage();
+    if(authForms) authForms.hidden = false;
     const showSignIn = target === 'signin';
     tabSignIn.classList.toggle('is-active', showSignIn);
     tabSignUp.classList.toggle('is-active', !showSignIn);

@@ -272,9 +272,12 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .auth-divider{display:flex;align-items:center;gap:14px;margin:4px 0 22px;color:var(--muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line)}
 
-.auth-switch-line{text-align:center;font-size:.82rem;color:var(--muted);margin:18px 0 0}
+.auth-switch-line{text-align:center;font-size:.82rem;color:var(--muted);margin:0}
 .auth-switch-line[hidden]{display:none}
 .auth-switch-line .auth-link-btn{display:inline;padding:0;text-align:center}
+
+#authForms{margin-top:20px}
+#authForms[hidden]{display:none}
 
 .auth-panel[hidden]{display:none}
 
