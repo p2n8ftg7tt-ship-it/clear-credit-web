@@ -15,13 +15,13 @@
 <meta property="og:locale" content="es_US">
 <meta property="og:title" content="Herramientas | Themora">
 <meta property="og:description" content="Recursos para trabajar tu crédito, analizar reportes y estimar el pago mensual de una hipoteca.">
-<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
-<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/herramientas.html">
+<meta property="og:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<meta property="og:url" content="https://delightful-sable-a4a33d.netlify.app/herramientas.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Herramientas | Themora">
 <meta name="twitter:description" content="Recursos para trabajar tu crédito, analizar reportes y estimar el pago mensual de una hipoteca.">
-<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
-<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/herramientas.html">
+<meta name="twitter:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<link rel="canonical" href="https://delightful-sable-a4a33d.netlify.app/herramientas.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,6 +53,30 @@
   .mortgage-loan-summary p{display:flex;justify-content:space-between;font-size:.76rem;color:rgba(255,255,255,.65);margin:6px 0}
   .mortgage-loan-summary strong{color:rgba(255,255,255,.92)}
   .mortgage-note{font-size:.68rem;color:rgba(255,255,255,.55);margin-top:12px;line-height:1.5}
+
+  /* Calculadoras rápidas */
+  .quick-calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quick-calc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:24px;box-shadow:0 10px 28px rgba(8,47,73,.06);display:flex;flex-direction:column;gap:14px}
+  .quick-calc-card h3{font:600 1.1rem 'Fraunces',serif;color:var(--navy-deep);margin:0}
+  .quick-calc-card .qc-desc{font-size:.78rem;color:var(--muted);margin:-8px 0 4px}
+  .qc-field{display:flex;flex-direction:column;gap:5px}
+  .qc-field label{font-size:.72rem;font-weight:700;color:var(--navy)}
+  .qc-input-wrap{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
+  .qc-input-wrap input{border:0;background:transparent;padding:10px 12px;font:inherit;color:var(--ink);width:100%;box-sizing:border-box}
+  .qc-input-wrap input:focus{outline:2px solid var(--gold-light)}
+  .qc-input-wrap .prefix,.qc-input-wrap .suffix{display:flex;align-items:center;padding:0 11px;color:var(--muted);font-weight:700;background:rgba(11,39,72,.04)}
+  .qc-input-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
+  .qc-input-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
+  .qc-result{margin-top:4px;padding:14px 16px;border-radius:8px;background:var(--paper-dim);border-left:4px solid var(--line)}
+  .qc-result.band-green{border-left-color:var(--good)}
+  .qc-result.band-amber{border-left-color:var(--gold)}
+  .qc-result.band-red{border-left-color:#a3402a}
+  .qc-result .qc-big{font:700 1.5rem 'Fraunces',serif;color:var(--navy-deep)}
+  .qc-result .qc-big span{display:block;font:400 .72rem 'Public Sans',sans-serif;color:var(--muted);margin-top:2px}
+  .qc-result p{margin:6px 0 0;font-size:.76rem;color:var(--muted);line-height:1.45}
+  .qc-warning{margin-top:2px;padding:10px 12px;border-radius:8px;background:rgba(179,64,42,.1);border:1px solid rgba(179,64,42,.3);color:#a3402a;font-size:.76rem;font-weight:700}
+  .qc-warning[hidden]{display:none!important}
+  @media(max-width:900px){.quick-calc-grid{grid-template-columns:1fr}}
 
   /* Tarjetas de recursos y herramientas */
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
@@ -199,6 +223,79 @@
           <p class="mortgage-note" id="mortgageSaveHint" hidden><a href="login.html" style="color:var(--gold-light);text-decoration:underline;">Inicia sesión</a> para guardar este cálculo en tu cuenta.</p>
           <p class="mortgage-note">Estimación educativa. No incluye PMI, costos de cierre ni cambios futuros en impuestos o seguro.</p>
         </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadoras-rapidas" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Calculadoras rápidas</span>
+        <h2>Tres herramientas simples para tomar mejores decisiones</h2>
+        <p>Escribe tus números y mira el resultado al instante — sin crear cuenta, sin subir nada.</p>
+      </div>
+
+      <div class="quick-calc-grid">
+        <div class="quick-calc-card" id="simulador-utilizacion">
+          <h3>¿Qué tanto estás usando tu crédito?</h3>
+          <p class="qc-desc">La utilización es cuánto debes comparado con tu límite. Entre más baja, mejor para tu puntaje.</p>
+          <div class="qc-field">
+            <label for="utilBalance">Saldo actual en tus tarjetas</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilBalance" type="number" min="0" step="50" value="1800" inputmode="decimal"></div>
+          </div>
+          <div class="qc-field">
+            <label for="utilLimit">Límite total de crédito</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilLimit" type="number" min="0" step="50" value="5000" inputmode="decimal"></div>
+          </div>
+          <div class="qc-field">
+            <label for="utilPayment">Si pagas esto antes de la fecha de corte</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilPayment" type="number" min="0" step="25" value="0" inputmode="decimal"></div>
+          </div>
+          <div class="qc-result band-green" id="utilResultBox">
+            <div class="qc-big" id="utilCurrentPct">0%<span>uso actual</span></div>
+            <p id="utilNote">Escribe tus números arriba.</p>
+          </div>
+        </div>
+
+        <div class="quick-calc-card" id="simulador-dti">
+          <h3>¿Cuánta deuda tienes comparado con lo que ganas?</h3>
+          <p class="qc-desc">Los bancos usan esto para decidir si calificas para una hipoteca o un préstamo de auto.</p>
+          <div class="qc-field">
+            <label for="dtiIncome">Ingreso mensual bruto (antes de impuestos)</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="dtiIncome" type="number" min="0" step="50" value="3800" inputmode="decimal"></div>
+          </div>
+          <div class="qc-field">
+            <label for="dtiDebts">Total de tus pagos mensuales de deuda</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="dtiDebts" type="number" min="0" step="25" value="1200" inputmode="decimal"></div>
+            <span class="mortgage-helper">Renta o hipoteca, auto, tarjetas (pago mínimo), préstamos</span>
+          </div>
+          <div class="qc-result band-green" id="dtiResultBox">
+            <div class="qc-big" id="dtiPct">0%<span>deuda-a-ingreso</span></div>
+            <p id="dtiNote">Escribe tus números arriba.</p>
+          </div>
+        </div>
+
+        <div class="quick-calc-card" id="simulador-pago-tarjeta">
+          <h3>¿Cuánto tardarás en pagar una tarjeta?</h3>
+          <p class="qc-desc">Ve cuántos meses te tomará y cuánto interés pagarás con el pago mensual que puedes hacer.</p>
+          <div class="qc-field">
+            <label for="payoffBalance">Saldo actual</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="payoffBalance" type="number" min="0" step="50" value="2500" inputmode="decimal"></div>
+          </div>
+          <div class="qc-field">
+            <label for="payoffApr">Tasa de interés anual (APR)</label>
+            <div class="qc-input-wrap has-suffix"><input id="payoffApr" type="number" min="0" max="60" step="0.1" value="24.9" inputmode="decimal"><span class="suffix">%</span></div>
+          </div>
+          <div class="qc-field">
+            <label for="payoffPayment">Pago mensual que puedes hacer</label>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="payoffPayment" type="number" min="0" step="10" value="120" inputmode="decimal"></div>
+          </div>
+          <div class="qc-result band-green" id="payoffResultBox">
+            <div class="qc-big" id="payoffMonths">0<span>meses para pagarla</span></div>
+            <p>Interés total que pagarás: <strong id="payoffInterest">$0</strong></p>
+          </div>
+          <p class="qc-warning" id="payoffWarning" hidden>Con ese pago mensual nunca terminarás de pagar la tarjeta — el interés crece más rápido que tu pago. Sube el pago mensual.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -556,10 +653,11 @@
 
       <div class="card-grid">
         <div class="info-card">
-          <span class="status-pill status-soon">En camino</span>
+          <span class="status-pill status-live">Disponible ahora</span>
           <span class="icon-tag">S</span>
           <h3>Simulador de utilización</h3>
-          <p>Calcula cómo cambiaría tu puntaje aproximado si bajas el saldo de tus tarjetas antes de la fecha de corte.</p>
+          <p>Calcula cómo cambiaría tu utilización si bajas el saldo de tus tarjetas antes de la fecha de corte.</p>
+          <a href="#simulador-utilizacion" class="btn btn-outline-dark" style="margin-top:auto;">Usar simulador</a>
         </div>
         <div class="info-card">
           <span class="status-pill status-live">Disponible ahora</span>
@@ -708,6 +806,7 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="mortgage-calculator.js"></script>
+<script src="quick-calculators.js"></script>
 <script src="credit-coach.js"></script>
 
 </body>

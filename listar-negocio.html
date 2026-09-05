@@ -15,13 +15,13 @@
 <meta property="og:locale" content="es_US">
 <meta property="og:title" content="Listar tu negocio en Google Maps y Apple Maps | Themora">
 <meta property="og:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
-<meta property="og:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
-<meta property="og:url" content="https://TU-DOMINIO-AQUI.com/listar-negocio.html">
+<meta property="og:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<meta property="og:url" content="https://delightful-sable-a4a33d.netlify.app/listar-negocio.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Listar tu negocio en Google Maps y Apple Maps | Themora">
 <meta name="twitter:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
-<meta name="twitter:image" content="https://TU-DOMINIO-AQUI.com/images/hero-familia.png">
-<link rel="canonical" href="https://TU-DOMINIO-AQUI.com/listar-negocio.html">
+<meta name="twitter:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<link rel="canonical" href="https://delightful-sable-a4a33d.netlify.app/listar-negocio.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -52,6 +52,15 @@
   .ln-trust strong{display:block;color:var(--navy-deep);font-size:.85rem;margin-bottom:3px}
   .ln-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
   .ln-form-grid .form-group.full{grid-column:1/-1}
+  .ln-verification-block{background:var(--paper-dim);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:4px}
+  .ln-verification-note{font-size:.82rem;color:var(--muted);margin:6px 0 14px}
+  .ln-radio-group{display:flex;flex-direction:column;gap:10px}
+  .ln-radio-option{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--ink);cursor:pointer}
+  .ln-radio-option input[type="radio"]{appearance:auto;width:16px;height:16px;flex:none;margin-top:3px;padding:0;border:0;border-radius:0;background:none;accent-color:var(--gold)}
+  .ln-doc-upload{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .ln-doc-upload[hidden]{display:none!important}
+  .ln-doc-upload input[type="file"]{font-size:.82rem;padding:8px 0}
+  .ln-doc-helper{display:block;font-size:.7rem;color:var(--muted);margin-top:6px;line-height:1.5}
   .ln-form-status{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
   .ln-form-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
   .ln-form-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
@@ -226,6 +235,27 @@
             <label for="lnDescripcion">Breve descripción del negocio</label>
             <textarea id="lnDescripcion" name="descripcion" rows="3" required></textarea>
           </div>
+
+          <div class="form-group full ln-verification-block">
+            <label>Verificación del negocio</label>
+            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. Hay dos formas de hacerlo — elige la que te quede mejor:</p>
+            <div class="ln-radio-group">
+              <label class="ln-radio-option">
+                <input type="radio" name="verificacion_metodo" value="Llamada telefónica" checked>
+                <span>Puedo contestar una llamada corta al teléfono del negocio para recibir un código</span>
+              </label>
+              <label class="ln-radio-option">
+                <input type="radio" name="verificacion_metodo" value="Documento">
+                <span>Prefiero enviar un documento del negocio</span>
+              </label>
+            </div>
+            <div class="form-group full ln-doc-upload" id="lnDocUploadWrap" hidden>
+              <label for="lnVerificacionDoc">Sube el documento (opcional aquí, o envíamelo por correo/WhatsApp)</label>
+              <input type="file" id="lnVerificacionDoc" name="verificacion_documento" accept="image/*,.pdf">
+              <span class="ln-doc-helper">Acepta: recibo de agua/luz/gas, contrato de renta, licencia de negocio o póliza de seguro — que muestre el nombre y la dirección del negocio. Si el archivo es grande, mejor envíamelo directo por correo o WhatsApp.</span>
+            </div>
+          </div>
+
           <div class="form-group full">
             <label for="lnMensaje">Mensaje adicional (opcional)</label>
             <textarea id="lnMensaje" name="mensaje" rows="3"></textarea>
@@ -258,7 +288,7 @@
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y credito.html):
      al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
      enviemos por JavaScript, sin necesitar backend propio. -->
-<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="lnStaticForm">
+<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="sr-only" id="lnStaticForm">
   <input type="hidden" name="form-name" value="listar-negocio" />
   <input name="bot-field" />
   <input type="text" name="nombre" />
@@ -272,6 +302,8 @@
   <input type="text" name="horario" />
   <input type="text" name="web" />
   <input type="text" name="descripcion" />
+  <input type="text" name="verificacion_metodo" />
+  <input type="file" name="verificacion_documento" />
   <input type="text" name="mensaje" />
 </form>
 
@@ -291,9 +323,18 @@
   const submitBtn=document.getElementById('lnSubmitBtn');
   if(!form)return;
 
-  async function submitListing(data){
-    const body=new URLSearchParams(Object.assign({'form-name':'listar-negocio'},data)).toString();
-    const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+  const docWrap=document.getElementById('lnDocUploadWrap');
+  const verifRadios=form.querySelectorAll('input[name="verificacion_metodo"]');
+  function syncDocVisibility(){
+    const selected=form.querySelector('input[name="verificacion_metodo"]:checked');
+    const wantsDoc=!!selected&&selected.value==='Documento';
+    if(docWrap)docWrap.hidden=!wantsDoc;
+  }
+  verifRadios.forEach(r=>r.addEventListener('change',syncDocVisibility));
+  syncDocVisibility();
+
+  async function submitListing(formData){
+    const response=await fetch('/',{method:'POST',body:formData});
     if(!response.ok)throw new Error('No se pudo enviar el formulario');
   }
 
@@ -303,30 +344,39 @@
       form.reportValidity();
       return;
     }
-    const data={
-      nombre:form.nombre.value.trim(),
-      correo:form.correo.value.trim(),
-      telefono:form.telefono.value.trim(),
-      tiene_gmail:form.tiene_gmail.value,
-      negocio:form.negocio.value.trim(),
-      categoria:form.categoria.value.trim(),
-      telefono_negocio:form.telefono_negocio.value.trim(),
-      direccion:form.direccion.value.trim(),
-      horario:form.horario.value.trim(),
-      web:form.web.value.trim(),
-      descripcion:form.descripcion.value.trim(),
-      mensaje:form.mensaje.value.trim()
-    };
+    const correo=form.correo.value.trim();
+    const formData=new FormData();
+    formData.append('form-name','listar-negocio');
+    formData.append('nombre',form.nombre.value.trim());
+    formData.append('correo',correo);
+    formData.append('telefono',form.telefono.value.trim());
+    formData.append('tiene_gmail',form.tiene_gmail.value);
+    formData.append('negocio',form.negocio.value.trim());
+    formData.append('categoria',form.categoria.value.trim());
+    formData.append('telefono_negocio',form.telefono_negocio.value.trim());
+    formData.append('direccion',form.direccion.value.trim());
+    formData.append('horario',form.horario.value.trim());
+    formData.append('web',form.web.value.trim());
+    formData.append('descripcion',form.descripcion.value.trim());
+    const verifSelected=form.querySelector('input[name="verificacion_metodo"]:checked');
+    formData.append('verificacion_metodo',verifSelected?verifSelected.value:'');
+    const docInput=document.getElementById('lnVerificacionDoc');
+    if(docInput&&docInput.files&&docInput.files[0]){
+      formData.append('verificacion_documento',docInput.files[0]);
+    }
+    formData.append('mensaje',form.mensaje.value.trim());
+
     submitBtn.disabled=true;
     const original=submitBtn.textContent;
     submitBtn.textContent='Enviando…';
     status.className='ln-form-status is-loading';
     status.textContent='Enviando tu información…';
     try{
-      await submitListing(data);
+      await submitListing(formData);
       status.className='ln-form-status is-success';
-      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(data.correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
+      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
       form.reset();
+      syncDocVisibility();
     }catch(error){
       status.className='ln-form-status is-error';
       status.textContent='No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento, o escríbeme desde la página de contacto.';
