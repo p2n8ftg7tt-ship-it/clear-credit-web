@@ -24,22 +24,22 @@
   launcher.className='credit-coach-launcher';
   launcher.setAttribute('aria-expanded','false');
   launcher.setAttribute('aria-controls','creditCoachPanel');
-  launcher.setAttribute('aria-label','Abrir Kairon, el asistente de Themora');
-  launcher.innerHTML=`<span class="credit-coach-avatar" aria-hidden="true">${SPARK_ICON}</span><span class="credit-coach-online" aria-hidden="true"></span><span class="credit-coach-tooltip" aria-hidden="true">Pregúntale a Kairon</span>`;
+  launcher.setAttribute('aria-label','Abrir Zyron, el asistente de Themora');
+  launcher.innerHTML=`<span class="credit-coach-avatar" aria-hidden="true">${SPARK_ICON}</span><span class="credit-coach-online" aria-hidden="true"></span><span class="credit-coach-tooltip" aria-hidden="true">Pregúntale a Zyron</span>`;
 
   const panel=document.createElement('section');
   panel.id='creditCoachPanel';
   panel.className='credit-coach-panel';
   panel.hidden=true;
-  panel.setAttribute('aria-label','Asistente Kairon');
+  panel.setAttribute('aria-label','Asistente Zyron');
   panel.innerHTML=`
     <div class="credit-coach-header">
       <span class="credit-coach-avatar" aria-hidden="true">${SPARK_ICON}</span>
-      <div class="credit-coach-title"><strong>Kairon</strong><small>Asistente inteligente · en línea</small></div>
+      <div class="credit-coach-title"><strong>Zyron</strong><small>Asistente inteligente · en línea</small></div>
       <button class="credit-coach-close" type="button" aria-label="Cerrar asistente">×</button>
     </div>
     <div class="credit-coach-messages" role="log" aria-live="polite" aria-relevant="additions">
-      <div class="coach-message bot">¡Hola! Soy Kairon. Puedo orientarte sobre crédito, reportes, compra de casa o auto, y buscar la sección exacta del sitio que necesitas. ¿Qué quieres lograr?</div>
+      <div class="coach-message bot">¡Hola! Soy Zyron. Puedo orientarte sobre crédito, reportes, compra de casa o auto, y buscar la sección exacta del sitio que necesitas. ¿Qué quieres lograr?</div>
     </div>
     <div class="credit-coach-suggestions" aria-label="Preguntas sugeridas">
       ${currentPageSuggestions().map(s=>`<button class="coach-suggestion" type="button">${s}</button>`).join('')}
@@ -61,7 +61,7 @@
   function toggle(open){
     panel.hidden=!open;
     launcher.setAttribute('aria-expanded',String(open));
-    launcher.setAttribute('aria-label',open?'Cerrar Kairon':'Abrir Kairon, el asistente de Themora');
+    launcher.setAttribute('aria-label',open?'Cerrar Zyron':'Abrir Zyron, el asistente de Themora');
     if(open)setTimeout(()=>input.focus(),80);
   }
 
@@ -92,7 +92,7 @@
     const bubble=document.createElement('div');
     bubble.className='coach-message bot coach-typing';
     bubble.innerHTML='<span></span><span></span><span></span>';
-    bubble.setAttribute('aria-label','Kairon está escribiendo');
+    bubble.setAttribute('aria-label','Zyron está escribiendo');
     messages.appendChild(bubble);
     messages.scrollTop=messages.scrollHeight;
     return bubble;
@@ -201,4 +201,18 @@
   form.addEventListener('submit',event=>{event.preventDefault();submitQuestion(input.value);});
   panel.querySelectorAll('.coach-suggestion').forEach(button=>button.addEventListener('click',()=>submitQuestion(button.textContent)));
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){toggle(false);launcher.focus();}});
+
+  /* Permite abrir a Zyron desde cualquier parte de la página — por ejemplo,
+     desde el botón "Preguntarle a Zyron" de la franja de citas. */
+  window.Zyron={
+    open(){toggle(true);},
+    close(){toggle(false);launcher.focus();},
+    ask(question){toggle(true);if(question)submitQuestion(question);}
+  };
+
+  /* Cualquier botón de la página con data-zyron-ask abre a Zyron y le hace
+     esa pregunta. Así la franja de citas puede ofrecer respuesta inmediata. */
+  document.querySelectorAll('[data-zyron-ask]').forEach(button=>{
+    button.addEventListener('click',()=>window.Zyron.ask(button.dataset.zyronAsk));
+  });
 })();

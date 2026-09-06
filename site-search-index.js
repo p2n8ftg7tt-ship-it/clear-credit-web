@@ -1,6 +1,6 @@
 /* =========================================================
    Índice de búsqueda del contenido del sitio (Themora)
-   Usado por Kairon (credit-coach.js) para sugerir secciones
+   Usado por Zyron (credit-coach.js) para sugerir secciones
    reales del sitio según lo que la persona escribe.
    Cada entrada apunta a una sección que existe de verdad en
    el sitio — nada de anclas inventadas.

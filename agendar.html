@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendar una cita | Themora</title>
+<meta name="description" content="Agenda una llamada con el equipo de Themora para entender, en español y sin compromiso, el proceso de comprar tu casa o tu auto.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Agendar una cita | Themora">
+<meta property="og:description" content="Agenda una llamada con el equipo de Themora para entender, en español y sin compromiso, el proceso de comprar tu casa o tu auto.">
+<meta property="og:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<meta property="og:url" content="https://delightful-sable-a4a33d.netlify.app/agendar.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agendar una cita | Themora">
+<meta name="twitter:description" content="Agenda una llamada con el equipo de Themora para entender, en español y sin compromiso, el proceso de comprar tu casa o tu auto.">
+<meta name="twitter:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
+<link rel="canonical" href="https://delightful-sable-a4a33d.netlify.app/agendar.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ag-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:start}
+  .ag-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px;box-shadow:0 10px 30px rgba(42,33,24,.06)}
+  .ag-card h2{font:600 1.35rem 'Fraunces',serif;color:var(--navy-deep);margin:0 0 6px}
+  .ag-card>p{color:var(--muted);font-size:.88rem;margin:0 0 18px}
+  .ag-or{display:flex;align-items:center;gap:14px;margin:26px 0;color:var(--muted);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+  .ag-or::before,.ag-or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .ag-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .ag-grid .form-group.full{grid-column:1/-1}
+  .ag-checks{display:flex;flex-wrap:wrap;gap:8px}
+  .ag-check{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;font-size:.8rem;cursor:pointer;background:#fff;transition:.15s ease}
+  .ag-check:hover{border-color:var(--navy)}
+  .ag-check input{appearance:auto;width:15px;height:15px;margin:0;padding:0;border:0;border-radius:0;background:none;accent-color:var(--gold)}
+  .ag-check.is-on{border-color:var(--gold);background:var(--paper-dim)}
+  .ag-side{background:var(--paper-dim);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .ag-side h3{font:700 .82rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin:0 0 14px}
+  .ag-side li{list-style:none;position:relative;padding-left:22px;margin-bottom:12px;font-size:.85rem;color:var(--ink);line-height:1.55}
+  .ag-side li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
+  .ag-side .ag-note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted);line-height:1.6}
+  .ag-status{margin-top:16px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
+  .ag-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
+  .ag-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .ag-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
+  .ag-cal-frame{width:100%;min-height:640px;border:1px solid var(--line);border-radius:10px}
+  @media(max-width:900px){.ag-layout{grid-template-columns:1fr}}
+  @media(max-width:640px){.ag-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-cms-page="agendar">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="credito.html"><strong>Crédito</strong><span>Cómo funciona tu puntaje y análisis de tu reporte</span></a>
+          <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas de cobro, bancos, burós, IRS o corte</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Comprar<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="listar-negocio.html"><strong>Listar negocio</strong><span>Aparece en Google Maps y Apple Maps</span></a>
+          <a href="formar-negocio.html"><strong>Formar negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+        </div>
+      </div>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Sin compromiso</span>
+      <h1>Habla con el equipo de Themora</h1>
+      <p>Comprar una casa o un auto trae papeles, plazos y palabras en inglés que casi nadie te explica antes de que firmes. En esta llamada te explicamos, en español, qué sigue en tu caso y qué preguntas hacerle a tu prestamista o al dealer.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap ag-layout">
+
+      <div class="ag-card">
+        <!-- ===================================================================
+             CALENDARIO EN VIVO — opcional
+             Cuando tengas tu calendario (Cal.com o Google Calendar), pega su
+             enlace entre las comillas de CALENDAR_URL, más abajo en el script
+             de esta misma página. Mientras esté vacío, esta parte no aparece y
+             solo se ve el formulario, que ya funciona.
+             =================================================================== -->
+        <div id="agCalendar" hidden>
+          <h2>Elige tu hora</h2>
+          <p>Escoge un espacio libre y queda agendado al momento.</p>
+          <iframe class="ag-cal-frame" id="agCalFrame" title="Calendario para agendar tu cita" loading="lazy"></iframe>
+          <div class="ag-or">O si prefieres</div>
+        </div>
+
+        <h2 id="agFormTitle">Dinos cuándo te queda bien</h2>
+        <p>Llena esto y te escribimos para confirmar día y hora. Es gratis y no te compromete a nada.</p>
+
+        <form id="agForm" novalidate>
+          <div class="ag-grid">
+            <div class="form-group">
+              <label for="agNombre">Tu nombre</label>
+              <input type="text" id="agNombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="agCorreo">Tu correo electrónico</label>
+              <input type="email" id="agCorreo" name="correo" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="agTelefono">Tu teléfono</label>
+              <input type="tel" id="agTelefono" name="telefono" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="agTema">¿De qué quieres hablar?</label>
+              <select id="agTema" name="tema">
+                <option>Comprar casa</option>
+                <option>Comprar auto</option>
+                <option>Mi crédito en general</option>
+                <option>Una carta que recibí</option>
+                <option>Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label>¿Qué días puedes?</label>
+              <div class="ag-checks" id="agDias">
+                <label class="ag-check"><input type="checkbox" name="dias" value="Lunes"> Lunes</label>
+                <label class="ag-check"><input type="checkbox" name="dias" value="Martes"> Martes</label>
+                <label class="ag-check"><input type="checkbox" name="dias" value="Miércoles"> Miércoles</label>
+                <label class="ag-check"><input type="checkbox" name="dias" value="Jueves"> Jueves</label>
+                <label class="ag-check"><input type="checkbox" name="dias" value="Viernes"> Viernes</label>
+                <label class="ag-check"><input type="checkbox" name="dias" value="Sábado"> Sábado</label>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label>¿A qué hora te queda mejor?</label>
+              <div class="ag-checks" id="agHoras">
+                <label class="ag-check"><input type="checkbox" name="horas" value="Mañana (8am–12pm)"> Mañana (8am–12pm)</label>
+                <label class="ag-check"><input type="checkbox" name="horas" value="Tarde (12pm–5pm)"> Tarde (12pm–5pm)</label>
+                <label class="ag-check"><input type="checkbox" name="horas" value="Noche (5pm–8pm)"> Noche (5pm–8pm)</label>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label for="agMensaje">Cuéntanos brevemente tu situación (opcional)</label>
+              <textarea id="agMensaje" name="mensaje" rows="3" placeholder="Ej: quiero comprar mi primera casa pero no sé si califico"></textarea>
+              <span class="mortgage-helper">No escribas aquí números de cuenta, de seguro social ni contraseñas.</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" id="agSubmit">Pedir mi cita</button>
+          <p class="ag-status" id="agStatus" role="status"></p>
+        </form>
+      </div>
+
+      <aside class="ag-side">
+        <h3>Qué esperar</h3>
+        <ul>
+          <li>Una llamada corta, en español, para entender en qué punto estás.</li>
+          <li>Te explicamos los pasos que vienen y qué papeles te van a pedir.</li>
+          <li>Te decimos qué preguntarle a tu prestamista, agente o dealer.</li>
+          <li>Sin costo y sin compromiso de contratar nada.</li>
+        </ul>
+        <p class="ag-note">Themora ofrece orientación educativa en español. No somos prestamistas ni asesores hipotecarios con licencia: no aprobamos préstamos ni sustituimos a un oficial de préstamos, un abogado o un asesor financiero. Antes de firmar cualquier cosa, confirma los números con tu prestamista.</p>
+        <p class="ag-note">¿Prefieres no esperar? <button type="button" class="auth-link-btn" id="agAskZyron">Pregúntale a Zyron ahora</button> — el asistente del sitio responde al momento.</p>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · Contenido educativo en español</span>
+  </div>
+</footer>
+
+<!-- Formulario compatible con Netlify Forms: al desplegar en Netlify queda
+     registrado automáticamente aunque lo enviemos por JavaScript. -->
+<form name="agendar-cita" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="agStaticForm">
+  <input type="hidden" name="form-name" value="agendar-cita" />
+  <input name="bot-field" />
+  <input type="text" name="nombre" />
+  <input type="email" name="correo" />
+  <input type="tel" name="telefono" />
+  <input type="text" name="tema" />
+  <input type="text" name="dias" />
+  <input type="text" name="horas" />
+  <input type="text" name="mensaje" />
+</form>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script src="site-search-index.js"></script>
+<script src="credit-coach.js"></script>
+<script src="nav.js"></script>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ====================================================================
+     PEGA AQUÍ EL ENLACE DE TU CALENDARIO cuando lo tengas.
+     Ejemplos:
+       Cal.com          →  'https://cal.com/tu-usuario/30min'
+       Google Calendar  →  el enlace de "Programación de citas" que te da Google
+     Déjalo vacío ('') y esta página muestra solo el formulario, que ya sirve.
+     ==================================================================== */
+  const CALENDAR_URL = '';
+
+  if(CALENDAR_URL){
+    const wrap=document.getElementById('agCalendar');
+    document.getElementById('agCalFrame').src=CALENDAR_URL;
+    wrap.hidden=false;
+    // Con calendario en vivo, el formulario pasa a ser la segunda opción.
+    document.getElementById('agFormTitle').textContent='¿No te sirve ninguna hora?';
+  }
+
+  // Las "pastillas" de días y horas se marcan visualmente al elegirlas.
+  document.querySelectorAll('.ag-check input').forEach(box=>{
+    const pill=box.closest('.ag-check');
+    box.addEventListener('change',()=>pill.classList.toggle('is-on',box.checked));
+  });
+
+  const zyronBtn=document.getElementById('agAskZyron');
+  if(zyronBtn)zyronBtn.addEventListener('click',()=>{
+    if(window.Zyron)window.Zyron.open();
+  });
+
+  // Si llegan desde la franja de "Comprar casa" o "Comprar auto", el tema
+  // viene en la dirección y queda preseleccionado.
+  const tema=new URLSearchParams(window.location.search).get('tema');
+  if(tema){
+    const select=document.getElementById('agTema');
+    Array.from(select.options).forEach(o=>{ if(o.value.toLowerCase()===tema.toLowerCase())select.value=o.value; });
+  }
+
+  const form=document.getElementById('agForm');
+  const status=document.getElementById('agStatus');
+  const submitBtn=document.getElementById('agSubmit');
+
+  function marcados(nombre){
+    return Array.from(form.querySelectorAll('input[name="'+nombre+'"]:checked')).map(i=>i.value).join(', ');
+  }
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    const dias=marcados('dias'), horas=marcados('horas');
+    if(!dias||!horas){
+      status.className='ag-status is-error';
+      status.textContent='Marca al menos un día y una hora que te sirvan, para poder proponerte algo que de verdad te quede bien.';
+      return;
+    }
+
+    const datos=new FormData();
+    datos.append('form-name','agendar-cita');
+    datos.append('nombre',form.nombre.value.trim());
+    datos.append('correo',form.correo.value.trim());
+    datos.append('telefono',form.telefono.value.trim());
+    datos.append('tema',form.tema.value);
+    datos.append('dias',dias);
+    datos.append('horas',horas);
+    datos.append('mensaje',form.mensaje.value.trim());
+
+    submitBtn.disabled=true;
+    const original=submitBtn.textContent;
+    submitBtn.textContent='Enviando…';
+    status.className='ag-status is-loading';
+    status.textContent='Enviando tu solicitud…';
+    try{
+      const res=await fetch('/',{method:'POST',body:datos});
+      if(!res.ok)throw new Error('fallo');
+      status.className='ag-status is-success';
+      status.textContent='¡Listo! Recibimos tu solicitud. Te escribimos a '+form.correo.value.trim()+' para confirmar el día y la hora.';
+      form.reset();
+      document.querySelectorAll('.ag-check').forEach(p=>p.classList.remove('is-on'));
+      submitBtn.textContent=original;
+    }catch(err){
+      status.className='ag-status is-error';
+      status.textContent='No pudimos enviar tu solicitud. Inténtalo otra vez en un momento, o escríbenos desde la página de contacto.';
+      submitBtn.textContent=original;
+    }finally{
+      submitBtn.disabled=false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

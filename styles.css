@@ -126,6 +126,22 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .agent-state::before{content:"";width:9px;height:9px;border-radius:50%;background:#21b77a;box-shadow:0 0 0 4px rgba(33,183,122,.14)}
 .refresh-btn{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:7px;padding:9px 12px;font-weight:800;font-size:.7rem;cursor:pointer}
 
+/* ===== Franja "habla con alguien" (arriba de Comprar casa / Comprar auto) ===== */
+.talk-strip{padding:0;margin-top:26px;margin-bottom:-26px}
+.talk-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;background:var(--paper-dim);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:22px 26px}
+.talk-icon{flex:none;width:46px;height:46px;border-radius:50%;background:var(--navy-deep);display:grid;place-items:center}
+.talk-icon svg{width:22px;height:22px;stroke:var(--gold-light);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.talk-copy strong{display:block;font:600 1.12rem 'Fraunces',serif;color:var(--navy-deep);margin-bottom:4px}
+.talk-copy p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.6;max-width:56ch}
+.talk-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.talk-ghost{background:transparent;color:var(--navy-deep);border:1.5px solid var(--line)}
+.talk-ghost:hover{border-color:var(--navy-deep)}
+@media(max-width:860px){
+  .talk-card{grid-template-columns:1fr;gap:16px;padding:20px}
+  .talk-actions{justify-content:flex-start}
+  .talk-copy p{max-width:none}
+}
+
 .map-section{padding-top:76px;background:var(--paper-dim)}
 .rate-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;align-items:stretch}
 .map-card,.rate-panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 38px rgba(42,33,24,.08)}

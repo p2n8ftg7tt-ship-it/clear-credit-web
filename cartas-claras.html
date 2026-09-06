@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cartas Claras — Entiende cualquier carta o aviso financiero | Themora</title>
-<meta name="description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS o una corte. Te explicamos en español qué dice, si es urgente y qué hacer — gratis y en privado.">
+<meta name="description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS, una corte o tu seguro médico. Te explicamos en español qué dice, si es urgente y qué hacer — gratis y en privado.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
 <meta property="og:title" content="Cartas Claras — Entiende cualquier carta o aviso financiero">
-<meta property="og:description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS o una corte. Te explicamos en español qué dice, si es urgente y qué hacer.">
+<meta property="og:description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS, una corte o tu seguro médico. Te explicamos en español qué dice, si es urgente y qué hacer.">
 <meta property="og:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.png">
 <meta property="og:url" content="https://delightful-sable-a4a33d.netlify.app/cartas-claras.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -44,7 +44,7 @@
   .cc-privacy-item small{display:block;color:rgba(246,242,232,.65);font-size:.78rem;line-height:1.5;}
 
   /* ===== HERRAMIENTA (reutiliza patrones de credito.html) ===== */
-  .cc-tool-section{background:var(--navy-deep);color:var(--paper);position:relative;overflow:hidden;}
+  .cc-tool-section{background:radial-gradient(760px circle at 78% 6%,rgba(246,213,139,.13),transparent 60%),radial-gradient(520px circle at 8% 88%,rgba(79,107,87,.16),transparent 62%),var(--navy-deep);color:var(--paper);position:relative;overflow:hidden;}
   .cc-tool-section::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(246,242,232,.09);border-radius:50%;right:-250px;top:-250px;pointer-events:none;}
   .cc-tool-section .section-head h2{color:#fff;}
   .cc-tool-section .section-head p{color:rgba(246,242,232,.72);}
@@ -54,55 +54,62 @@
   .cr-process-item>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:'Fraunces',serif;font-weight:700;flex:none;}
   .cr-process-item strong{display:block;color:#fff;font-size:.9rem;}
   .cr-process-item small{display:block;color:rgba(246,242,232,.58);font-size:.76rem;}
-  .cr-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22);}
-  .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 14px;}
-  .cc-scope-label{margin:0 6px 8px;font-size:.76rem;font-weight:700;color:var(--muted);}
+  /* Panel flotante de vidrio: deja ver el fondo a través de él */
+  .cr-upload-card{background:rgba(255,255,255,.07);backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%);color:var(--paper);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.34);}
+  .cr-privacy{font-size:.72rem;color:var(--gold-light);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 16px;}
+  .cc-scope-label{margin:0 6px 8px;font-size:.76rem;font-weight:700;color:rgba(246,242,232,.62);}
   .cc-scope-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 6px 18px;}
-  .cc-scope-chip{background:var(--paper-dim);border:1px solid rgba(11,39,72,.16);color:var(--navy);font:600 .74rem 'Public Sans',sans-serif;padding:6px 12px;border-radius:999px;}
-  .cc-scope-chip-alert{background:rgba(179,64,42,.1);border-color:rgba(179,64,42,.35);color:#a3402a;}
+  .cc-scope-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(246,242,232,.9);font:600 .74rem 'Public Sans',sans-serif;padding:6px 12px;border-radius:999px;transition:opacity .3s ease,background .3s ease,border-color .3s ease,transform .3s ease;}
+  .cc-scope-chip-alert{background:rgba(179,64,42,.18);border-color:rgba(214,110,86,.45);color:#f0b4a5;}
+  /* Al detectar el tipo de carta, ese chip se enciende y los demás se apagan */
+  .cc-scope-chips.has-detection .cc-scope-chip{opacity:.3;}
+  .cc-scope-chip.is-detected{opacity:1;background:var(--gold);border-color:var(--gold);color:var(--navy-deep);font-weight:800;transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,138,62,.4);}
+  .cc-scope-chip-alert.is-detected{background:#b3402a;border-color:#b3402a;color:#fff;box-shadow:0 6px 18px rgba(179,64,42,.45);}
 
   /* Pestañas: subir documento / pegar texto */
   .cc-tabs{display:flex;gap:6px;margin-bottom:14px;}
-  .cc-tab-btn{flex:1;border:1.5px solid rgba(11,39,72,.18);background:var(--paper-dim);color:var(--navy);font:700 .82rem 'Public Sans',sans-serif;padding:11px 14px;border-radius:8px;cursor:pointer;transition:.2s ease;}
-  .cc-tab-btn.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .cc-tab-btn{flex:1;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:rgba(246,242,232,.82);font:700 .82rem 'Public Sans',sans-serif;padding:11px 14px;border-radius:9px;cursor:pointer;transition:.2s ease;}
+  .cc-tab-btn:hover{border-color:rgba(246,213,139,.5);color:#fff;}
+  .cc-tab-btn.is-active{background:var(--gold);color:var(--navy-deep);border-color:var(--gold);}
   .cc-tab-panel[hidden]{display:none!important;}
 
-  .cr-dropzone{min-height:280px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius);transition:.2s ease;cursor:pointer;}
-  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:#fffaf0;}
+  .cr-dropzone{min-height:280px;border:1.5px dashed rgba(255,255,255,.26);background:rgba(255,255,255,.04);display:grid;place-items:center;text-align:center;padding:34px;border-radius:14px;transition:.2s ease;cursor:pointer;}
+  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:rgba(246,213,139,.09);}
   .cr-dropzone.has-file{min-height:120px;}
   .cr-dropzone:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
   .cr-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
   .cr-upload-empty{display:flex;flex-direction:column;align-items:center;}
-  .cr-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:1.7rem;margin-bottom:18px;}
-  .cr-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px;}
-  .cr-upload-empty p{color:rgba(27,27,24,.62);margin:0 0 20px;}
-  .cr-upload-empty small{color:rgba(27,27,24,.5);margin-top:14px;font-size:.75rem;}
+  .cr-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font-size:1.7rem;margin-bottom:18px;}
+  .cr-upload-empty h3{color:#fff;font-size:1.3rem;margin:0 0 4px;}
+  .cr-upload-empty p{color:rgba(246,242,232,.66);margin:0 0 20px;}
+  .cr-upload-empty small{color:rgba(246,242,232,.48);margin-top:14px;font-size:.75rem;}
   .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius);font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease;}
-  .cr-select-btn{background:var(--navy);color:#fff;padding:12px 20px;}
+  .cr-select-btn{background:var(--gold);color:var(--navy-deep);padding:12px 20px;}
   .cr-select-btn:hover,.cr-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2);}
   .cr-file-ready{display:flex;align-items:center;text-align:left;width:min(100%,680px);}
   .cr-file-ready[hidden],.cr-upload-empty[hidden],.cr-analyze-btn[hidden],.cr-progress[hidden],.cr-error[hidden],.cc-results[hidden]{display:none!important;}
   .cr-file-type{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(184,134,59,.14);color:var(--gold);font-weight:700;font-size:.72rem;flex:none;}
   .cr-file-copy{display:flex;flex:1;min-width:0;flex-direction:column;padding:0 16px;}
-  .cr-file-copy strong{color:var(--navy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .cr-file-copy small{color:rgba(27,27,24,.58);}
-  .cr-change-btn{border:0;background:none;color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline;}
-  .cr-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:#fff;padding:15px 20px;margin-top:14px;}
+  .cr-file-copy strong{color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cr-file-copy small{color:rgba(246,242,232,.6);}
+  .cr-change-btn{border:0;background:none;color:var(--gold-light);font-weight:700;cursor:pointer;text-decoration:underline;}
+  .cr-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:var(--navy-deep);padding:15px 20px;margin-top:14px;font-size:.92rem;}
   .cr-analyze-btn span{font-size:1.2rem;}
   .cr-analyze-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;box-shadow:none!important;}
-  .cr-progress{display:flex;align-items:center;gap:14px;background:rgba(47,111,98,.1);color:var(--navy);padding:15px 18px;margin-top:14px;border-radius:var(--radius);}
+  .cr-progress{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);color:#fff;padding:15px 18px;margin-top:14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);}
   .cr-progress-copy{display:flex;flex-direction:column;}
-  .cr-progress-copy small{color:rgba(27,27,24,.58);}
-  .cr-spinner{width:30px;height:30px;border:3px solid rgba(47,111,98,.2);border-top-color:var(--teal);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
+  .cr-progress-copy small{color:rgba(246,242,232,.6);}
+  .cr-spinner{width:30px;height:30px;border:3px solid rgba(246,213,139,.25);border-top-color:var(--gold);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
   @keyframes cr-spin{to{transform:rotate(360deg)}}
-  .cr-error{display:flex;gap:12px;background:#fff0ed;border-left:4px solid #a34838;color:#7e3127;padding:15px 18px;margin-top:14px;border-radius:0 6px 6px 0;}
+  .cr-error{display:flex;gap:12px;background:rgba(179,64,42,.16);border-left:4px solid #d66e56;color:#f5c9bd;padding:15px 18px;margin-top:14px;border-radius:0 8px 8px 0;}
   .cr-error b{font-size:1.15rem;}
   .cr-error p{margin:0;}
   .cr-error strong{display:block;}
 
-  .cc-paste-panel textarea{width:100%;min-height:220px;box-sizing:border-box;border:1.5px solid rgba(11,39,72,.2);border-radius:var(--radius);padding:16px;font:400 .92rem/1.5 'Public Sans',sans-serif;color:var(--ink);resize:vertical;}
+  .cc-paste-panel textarea{width:100%;min-height:220px;box-sizing:border-box;border:1.5px solid rgba(255,255,255,.18);border-radius:12px;padding:16px;font:400 .92rem/1.5 'Public Sans',sans-serif;color:#fff;background:rgba(255,255,255,.05);resize:vertical;}
+  .cc-paste-panel textarea::placeholder{color:rgba(246,242,232,.42);}
   .cc-paste-panel textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold);}
-  .cc-paste-hint{font-size:.75rem;color:rgba(27,27,24,.55);margin-top:8px;}
+  .cc-paste-hint{font-size:.75rem;color:rgba(246,242,232,.55);margin-top:8px;}
 
   /* ===== RESULTADOS ===== */
   .cc-results{margin-top:42px;}
@@ -202,7 +209,7 @@
         <div class="cc-privacy-item">
           <span>🕶️</span>
           <strong>Ocultamos números sensibles</strong>
-          <small>Antes de cualquier análisis más profundo, tapamos automáticamente números de seguro social y de cuenta.</small>
+          <small>Antes de cualquier análisis más profundo, tapamos automáticamente números de seguro social, de cuenta y de expediente médico.</small>
         </div>
         <div class="cc-privacy-item">
           <span>⚖️</span>
@@ -219,7 +226,7 @@
       <div class="section-head">
         <span class="eyebrow-dark" id="como-funciona-cartas">Cómo funciona</span>
         <h2>Tres pasos para entender tu carta</h2>
-        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes — y te avisa si algo huele a estafa.</p>
+        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes, y facturas o avisos médicos y de seguro de salud — y te avisa si algo huele a estafa.</p>
       </div>
 
       <div class="cr-process" aria-label="Cómo funciona Cartas Claras">
@@ -233,12 +240,13 @@
 
         <p class="cc-scope-label">Funciona con cartas de:</p>
         <div class="cc-scope-chips">
-          <span class="cc-scope-chip">Cobradores de deuda</span>
-          <span class="cc-scope-chip">Bancos</span>
-          <span class="cc-scope-chip">Burós de crédito</span>
-          <span class="cc-scope-chip">IRS</span>
-          <span class="cc-scope-chip">Cortes</span>
-          <span class="cc-scope-chip cc-scope-chip-alert">⚠ Detecta estafas</span>
+          <span class="cc-scope-chip" data-cat="cobrador">Cobradores de deuda</span>
+          <span class="cc-scope-chip" data-cat="banco">Bancos</span>
+          <span class="cc-scope-chip" data-cat="buro">Burós de crédito</span>
+          <span class="cc-scope-chip" data-cat="irs">IRS</span>
+          <span class="cc-scope-chip" data-cat="corte">Cortes</span>
+          <span class="cc-scope-chip" data-cat="salud">Médicas y de seguro</span>
+          <span class="cc-scope-chip cc-scope-chip-alert" data-cat="estafa">⚠ Detecta estafas</span>
         </div>
 
         <div class="cc-tabs" role="tablist" aria-label="Forma de analizar la carta">
@@ -330,8 +338,8 @@
       </div>
       <div class="qa-list">
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No. Es una herramienta educativa que te ayuda a entender el tipo de carta que recibiste, su nivel de urgencia y los pasos generales que otras personas en tu situación suelen tomar. Para casos graves — una demanda, un posible fraude de identidad o un embargo — siempre recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área.</p></div>
-        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer?</h3><p>Cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes o juzgados, y también identifica señales comunes de estafa. Si no reconoce el tipo de carta, te lo dirá honestamente en vez de adivinar.</p></div>
-        <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social y de cuenta que aparezcan en el texto.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer?</h3><p>Cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes o juzgados, y documentos médicos o de seguro de salud (facturas de hospital, resúmenes de beneficios, decisiones de la aseguranza). También identifica señales comunes de estafa. Si no reconoce el tipo de carta, te lo dirá honestamente en vez de adivinar.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social, de cuenta y de expediente o póliza médica que aparezcan en el texto.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué hago si es una foto y no se lee bien?</h3><p>Intenta con buena luz, sin sombras y con la carta lo más plana posible. Si el texto sigue sin leerse bien, usa la pestaña "Pegar el texto" y escribe o copia el contenido directamente.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Cómo sé si es una estafa?</h3><p>Buscamos señales conocidas: exigencias de pago con tarjetas de regalo o transferencias, amenazas de arresto inmediato, presión para no decirle a nadie, plazos de solo horas, o solicitudes de tu número de seguro social sin verificación. Si detectamos estas señales, te lo advertimos de inmediato — pero ante cualquier duda, nunca envíes dinero ni información personal sin verificar primero por un medio oficial.</p></div>
       </div>
@@ -383,6 +391,7 @@
   }
 
   function showError(message){
+    clearScopeChips();
     results.hidden=true;
     errorBox.hidden=false;
     $('crErrorText').textContent=message;
@@ -447,6 +456,7 @@
       return showError('El archivo supera 20 MB. Usa una versión más ligera (por ejemplo, una foto con menor resolución) e inténtalo de nuevo.');
     }
     selectedFile=file;
+    clearScopeChips();
     results.hidden=true;empty.hidden=true;ready.hidden=false;dropzone.classList.add('has-file');
     $('crFileType').textContent=extension.toUpperCase();
     $('crFileName').textContent=file.name;
@@ -518,6 +528,9 @@
   function redactSensitive(text){
     let out=String(text||'');
     out=out.replace(/\b\d{3}[-\s]\d{2}[-\s]\d{4}\b/g,'[NÚMERO DE SEGURO SOCIAL OCULTO]');
+    // Identificadores médicos: número de expediente, de miembro o de póliza.
+    // Van antes del barrido general porque suelen mezclar letras y números.
+    out=out.replace(/\b(mrn|member\s*id|policy\s*(?:no|number|#)|group\s*(?:no|number|#)|patient\s*(?:id|account)|numero\s+de\s+(?:poliza|miembro|expediente))\b\s*[:#]?\s*[A-Z0-9-]{4,}/gi,'[IDENTIFICADOR MÉDICO OCULTO]');
     out=out.replace(/\b(?:\d[\s-]?){7,19}\d\b/g,(match)=>{
       const digits=match.replace(/[^\d]/g,'');
       return digits.length>=8?'[NÚMERO OCULTO]':match;
@@ -539,8 +552,10 @@
       weak:['bitcoin','criptomoneda','crypto','act immediately','actua de inmediato']
     },
     cobrador:{
-      strong:['debt collector','collection agency','fair debt collection practices act','fdcpa','validation notice','placed for collection','agencia de cobro','cobrador de deuda'],
-      weak:['collections','amount owed','balance due','validate this debt','settle your debt','account has been placed','cobranza','deuda pendiente','saldo adeudado']
+      // Las tres primeras son el aviso que la FDCPA obliga a incluir en toda
+      // carta de cobro ("mini-Miranda"): son la señal más confiable que existe.
+      strong:['attempt to collect a debt','information obtained will be used for that purpose','communication is from a debt collector','debt collector','collection agency','fair debt collection practices act','fdcpa','validation notice','placed for collection','agencia de cobro','cobrador de deuda','intento de cobrar una deuda'],
+      weak:['collections','amount owed','balance due','validate this debt','settle your debt','account has been placed','original creditor','acreedor original','cobranza','deuda pendiente','saldo adeudado']
     },
     buro:{
       strong:['equifax','experian','transunion','fair credit reporting act','fcra','buro de credito'],
@@ -557,13 +572,20 @@
     banco:{
       strong:['account statement','routing number','bank of america','wells fargo','chase bank','estado de cuenta bancario'],
       weak:['overdraft','wire','your checking account','your savings account','banco','sobregiro','cuenta corriente','cuenta de ahorros']
+    },
+    // Cartas médicas y de seguro de salud. Las señales fuertes son términos que
+    // prácticamente solo aparecen en documentos de salud, para que una carta de
+    // cobro común que solo mencione un hospital siga clasificándose como cobrador.
+    salud:{
+      strong:['explanation of benefits','this is not a bill','esto no es una factura','prior authorization','autorizacion previa','out-of-network','in-network','fuera de la red','deductible','coinsurance','copay','copago','deducible','medicare','medicaid','hipaa','no surprises act','factura medica','aseguranza medica','seguro medico','plan de salud','health plan','claim denied','reclamo denegado','patient responsibility','responsabilidad del paciente'],
+      weak:['hospital','clinic','clinica','medical center','centro medico','physician','doctor','patient','paciente','medical','medico','sala de emergencia','emergency room','laboratorio','laboratory','prescription','receta']
     }
   };
   const MIN_CATEGORY_SCORE=2; // mínimo de puntos (fuerte=2, débil=1) para comprometernos con una categoría
 
   const CATEGORY_LABELS={
     cobrador:'Cobrador de deuda',buro:'Buró de crédito',corte:'Corte o proceso legal',
-    irs:'IRS (impuestos)',banco:'Banco o institución financiera',estafa:'Posible estafa',otro:'Otro / no identificado'
+    irs:'IRS (impuestos)',banco:'Banco o institución financiera',salud:'Médica o de seguro de salud',estafa:'Posible estafa',otro:'Otro / no identificado'
   };
 
   const URGENCY_LABELS={alta:'Urgente — actúa pronto',media:'Atiéndela esta semana',baja:'Sin prisa, pero revísala'};
@@ -574,7 +596,8 @@
     corte:'Este documento hace referencia a un proceso legal, una corte o un caso — puede tratarse de una demanda, una citación o un aviso de audiencia.',
     irs:'Este documento parece ser del IRS o tratar sobre impuestos.',
     banco:'Este documento parece venir de un banco o institución financiera, o tratar sobre una cuenta bancaria.',
-    otro:'Esta carta no coincide con los tipos que reconocemos con más precisión (cobrador de deuda, banco, buró de crédito, IRS o corte), así que no queremos adivinar de qué se trata.'
+    salud:'Este documento parece ser médico o de tu seguro de salud — puede ser una factura de un hospital o clínica, un resumen de beneficios (EOB), o una decisión de tu aseguranza sobre un reclamo.',
+    otro:'Esta carta no coincide con los tipos que reconocemos con más precisión (cobrador de deuda, banco, buró de crédito, IRS, corte o médica), así que no queremos adivinar de qué se trata.'
   };
 
   const CATEGORY_ACTIONS={
@@ -583,7 +606,8 @@
     corte:'Anota la fecha límite o de audiencia que aparezca en el documento — perder un plazo legal puede tener consecuencias serias. Te recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área lo antes posible.',
     irs:'No ignores un aviso del IRS, pero tampoco actúes solo por miedo: verifica cualquier aviso llamando directamente al número oficial en irs.gov (nunca al número que aparece en un correo o mensaje de texto sospechoso). Un contador o preparador de impuestos de confianza puede ayudarte a responder.',
     banco:'Revisa que los datos de la cuenta y los montos coincidan con tus propios registros. Si algo no cuadra, contacta a tu banco directamente usando el número oficial que aparece en tu tarjeta o en su sitio web — no el que venga en la carta si tienes dudas sobre su autenticidad.',
-    otro:'Por ahora Cartas Claras se enfoca en cartas de cobradores, bancos, burós de crédito, el IRS y cortes. Guarda este documento y, si puedes, compártelo con alguien de confianza o un profesional del área correspondiente antes de responder o pagar cualquier cosa.'
+    salud:'Antes de pagar, revisa dos cosas. Primero: si el papel dice "Explanation of Benefits" o "This is not a bill", NO es una factura — es el resumen de lo que tu seguro cubrió, y la factura real llega aparte del hospital o la clínica. Segundo: pide siempre la factura detallada (itemized bill) y compárala con ese resumen, porque los errores de facturación médica son comunes. Casi todos los hospitales tienen programas de ayuda financiera (financial assistance o charity care) aunque no los anuncien — pregunta por ellos. Sobre tu crédito: una deuda médica no aparece de inmediato en tu reporte (los burós esperan al menos 12 meses), las que ya pagaste deben desaparecer, y las de menos de $500 no se reportan. La regla federal que iba a eliminarlas todas fue anulada por una corte en julio de 2025, así que una deuda médica grande y sin pagar sí puede terminar en tu reporte.',
+    otro:'Por ahora Cartas Claras se enfoca en cartas de cobradores, bancos, burós de crédito, el IRS, cortes y documentos médicos o de seguro de salud. Guarda este documento y, si puedes, compártelo con alguien de confianza o un profesional del área correspondiente antes de responder o pagar cualquier cosa.'
   };
 
   function escapeRegex(str){
@@ -595,10 +619,15 @@
   // plural más común ("gift card"/"gift cards", "banco"/"bancos") sin duplicar cada palabra clave.
   // Se cachea el RegExp por palabra clave para no reconstruirlo en cada llamada.
   const _keywordRegexCache={};
+  // Quita los acentos para que "citación judicial" coincida con la palabra clave
+  // "citacion judicial". Sin esto, TODA palabra clave en español con acento era
+  // letra muerta: el texto real venía acentuado y nunca coincidía.
+  const _normCache=new WeakMap();
+  function stripAccents(str){return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
   function keywordMatches(text,keyword){
     let re=_keywordRegexCache[keyword];
-    if(!re){re=new RegExp('\\b'+escapeRegex(keyword)+'s?\\b','i');_keywordRegexCache[keyword]=re;}
-    return re.test(text);
+    if(!re){re=new RegExp('\\b'+escapeRegex(stripAccents(keyword))+'s?\\b','i');_keywordRegexCache[keyword]=re;}
+    return re.test(stripAccents(text));
   }
 
   function detectScam(text){
@@ -625,7 +654,7 @@
   function classifyLetterLocally(text){
     const scam=detectScam(text);
     let bestCat='otro',bestScore=0;
-    ['cobrador','buro','corte','irs','banco'].forEach((cat)=>{
+    ['cobrador','buro','corte','irs','banco','salud'].forEach((cat)=>{
       const score=scoreCategory(text,cat);
       if(score>bestScore){bestScore=score;bestCat=cat;}
     });
@@ -692,11 +721,34 @@
     return null;
   }
 
+  /* ===== Encender el chip de la categoría detectada =====
+     Los chips de arriba dejan de ser decorativos: al terminar el análisis se
+     enciende el de la categoría que se detectó y los demás se atenúan. Si no
+     se reconoció el tipo ("otro"), no se enciende ninguno — preferimos no
+     señalar una categoría equivocada. */
+  function highlightScopeChip(categoria){
+    const chips=document.querySelector('.cc-scope-chips');
+    if(!chips)return;
+    const objetivo=chips.querySelector('[data-cat="'+categoria+'"]');
+    chips.querySelectorAll('.cc-scope-chip').forEach(c=>c.classList.remove('is-detected'));
+    if(!objetivo){chips.classList.remove('has-detection');return;}
+    chips.classList.add('has-detection');
+    objetivo.classList.add('is-detected');
+  }
+
+  function clearScopeChips(){
+    const chips=document.querySelector('.cc-scope-chips');
+    if(!chips)return;
+    chips.classList.remove('has-detection');
+    chips.querySelectorAll('.cc-scope-chip').forEach(c=>c.classList.remove('is-detected'));
+  }
+
   /* ===== Renderizar resultados ===== */
   function renderResults(result,source,detail){
     const categoria=result.categoria||'otro';
     const urgencia=(result.urgencia||'media').toLowerCase();
     const isScam=String(result.alerta_estafa||'no').toLowerCase()==='si';
+    highlightScopeChip(isScam?'estafa':categoria);
 
     $('ccCatBadge').textContent=CATEGORY_LABELS[categoria]||CATEGORY_LABELS.otro;
 
