@@ -55,11 +55,19 @@
   .cr-analyzer-section .section-head h2{color:#fff;}
   .cr-analyzer-section .section-head p{color:rgba(246,242,232,.72);}
   .cr-analyzer-section .eyebrow-dark{color:var(--gold-light);}
-  .cr-process{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,242,232,.13);border:1px solid rgba(246,242,232,.13);margin-bottom:28px;}
-  .cr-process-item{background:var(--navy-deep);padding:18px 20px;display:flex;align-items:center;gap:12px;}
-  .cr-process-item>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:'Fraunces',serif;font-weight:700;flex:none;}
-  .cr-process-item strong{display:block;color:#fff;font-size:.9rem;}
-  .cr-process-item small{display:block;color:rgba(246,242,232,.58);font-size:.76rem;}
+  /* Los tres pasos: una píldora de vidrio compacta que se ajusta a su
+     contenido, en vez de tres bloques sólidos de ancho completo. */
+  .cr-process{display:inline-flex;flex-wrap:wrap;align-items:stretch;gap:0;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid rgba(255,255,255,.15);border-radius:999px;
+    padding:6px 8px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);}
+  .cr-process-item{display:flex;align-items:center;gap:9px;padding:8px 18px;position:relative;}
+  .cr-process-item + .cr-process-item::before{content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:rgba(255,255,255,.16);}
+  .cr-process-item>span{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font:700 .74rem 'Fraunces',serif;flex:none;}
+  .cr-process-item strong{display:block;color:#fff;font-size:.82rem;line-height:1.25;}
+  .cr-process-item small{display:block;color:rgba(246,242,232,.55);font-size:.7rem;line-height:1.3;}
   .cr-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22);}
   .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 14px;}
   .cr-dropzone{min-height:310px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius);transition:.2s ease;cursor:pointer;}
@@ -245,9 +253,17 @@
   }
   /* ===== LOS TRES BURÓS (antes .timeline sin estilo) ===== */
   .bureau-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px;}
-  .bureau-card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:var(--radius);padding:22px;}
-  .bureau-card .bureau-badge{width:40px;height:40px;border-radius:50%;background:var(--navy-deep);color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;margin-bottom:12px;}
-  .bureau-card h4{color:var(--navy);font-size:1.05rem;margin:0 0 8px;}
+  /* Cada tarjeta lleva el color de marca de su buró. Es el color real de cada
+     compañía, que es lo que la gente reconoce, sin reproducir su logotipo. */
+  .bureau-card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--bureau,var(--navy));border-radius:var(--radius);padding:22px;transition:box-shadow .18s ease,transform .18s ease;}
+  .bureau-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(42,33,24,.1);}
+  .bureau-card .bureau-badge{width:44px;height:44px;border-radius:50%;background:var(--bureau,var(--navy-deep));color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;font-size:.95rem;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--bureau,var(--navy-deep)) 38%,transparent);}
+  .bureau-card h4{color:var(--bureau,var(--navy));}
+  /* Colores de marca: Equifax rojo, Experian morado, TransUnion azul */
+  .bureau-card.is-equifax{--bureau:#b32541;}
+  .bureau-card.is-experian{--bureau:#982881;}
+  .bureau-card.is-transunion{--bureau:#0089a8;}
+  .bureau-card h4{font-size:1.05rem;margin:0 0 8px;}
   .bureau-card p{color:rgba(12,37,56,.7);font-size:.87rem;margin:0;}
   .model-stats{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px solid var(--line);display:grid;gap:7px;}
   .model-stats li{display:flex;justify-content:space-between;gap:12px;font-size:.8rem;}
@@ -257,8 +273,10 @@
     .bureau-grid{grid-template-columns:1fr;}
   }
   @media(max-width:760px){
-    .cr-process,.cr-kpis,.cr-summary-grid{grid-template-columns:1fr;}
-    .cr-process-item{padding:14px 16px;}
+    .cr-kpis,.cr-summary-grid{grid-template-columns:1fr;}
+    .cr-process{display:flex;flex-direction:column;width:100%;border-radius:18px;padding:6px 10px;}
+    .cr-process-item{padding:11px 8px;}
+    .cr-process-item + .cr-process-item::before{left:8px;right:8px;top:0;width:auto;height:1px;}
     .cr-groups{grid-template-columns:1fr;}
     .cr-results-head,.cr-strategy-head{align-items:stretch;flex-direction:column;}
     .cr-health{min-width:0;}
@@ -523,17 +541,17 @@
       </div>
 
       <div class="bureau-grid">
-        <article class="bureau-card">
+        <article class="bureau-card is-equifax">
           <span class="bureau-badge">Eq</span>
           <h4>Equifax</h4>
           <p>Una de las tres agencias que recopila información de bancos, prestamistas y cobradores de deuda para armar tu reporte de crédito.</p>
         </article>
-        <article class="bureau-card">
+        <article class="bureau-card is-experian">
           <span class="bureau-badge">Ex</span>
           <h4>Experian</h4>
           <p>Recibe datos de tus cuentas de crédito de forma independiente a las otras dos — no todos los prestamistas reportan a las tres.</p>
         </article>
-        <article class="bureau-card">
+        <article class="bureau-card is-transunion">
           <span class="bureau-badge">TU</span>
           <h4>TransUnion</h4>
           <p>La tercera agencia. Por eso conviene revisar los tres reportes, no solo uno: un error puede aparecer en una sola agencia.</p>
