@@ -10,7 +10,9 @@
     'comprar-casa.html':['Comprar una casa','Calcular mortgage'],
     'comprar-auto.html':['Comprar un auto','Mejorar mi crédito'],
     'herramientas.html':['Calcular mortgage','Analizar mi reporte'],
-    'cartas-claras.html':['Entender una carta','Analizar mi reporte']
+    'cartas-claras.html':['Entender una carta','Analizar mi reporte'],
+    'listar-negocio.html':['Listar mi negocio','Aparecer en Google Maps'],
+    'formar-negocio.html':['Formar una LLC','Sacar mi número EIN']
   };
   const DEFAULT_SUGGESTIONS=['Mejorar mi crédito','Analizar mi reporte'];
 
@@ -146,6 +148,12 @@
     }
     if(/auto|carro|dealer|vehiculo/.test(question)){
       return {text:'Antes de financiar un auto, compara ofertas, revisa el APR y calcula el costo total, no solo el pago mensual. Una mejor entrada y un plazo más corto suelen reducir los intereses.',link:{href:'comprar-auto.html',label:'Ver guía de compra de auto →'}};
+    }
+    if(/listar|google maps|apple maps|mapa|aparecer|ficha|directorio/.test(question)){
+      return {text:'Para que tu negocio aparezca en Google Maps y en Apple Maps hay que crear la ficha y luego verificar que el negocio es tuyo — Google suele hacerlo con una llamada o un documento, y Apple pide dos comprobaciones distintas. En Themora te lo configuramos sin que compartas contraseñas.',link:{href:'listar-negocio.html',label:'Ver cómo listar tu negocio →'}};
+    }
+    if(/llc|ein|formar|registrar|incorporar|abrir un negocio|permiso/.test(question)){
+      return {text:'Formar tu negocio son dos trámites distintos: registrar la empresa (por ejemplo una LLC) ante el estado, y sacar el EIN, que es el número federal con el que el negocio paga impuestos y abre cuenta de banco. El EIN es gratis y se saca directo con el IRS — desconfía de quien te lo cobre como si fuera un permiso especial.',link:{href:'formar-negocio.html',label:'Ver cómo formar tu negocio →'}};
     }
     if(/disput|error|incorrect|fraude|robo/.test(question)){
       return {text:'Si ves información incorrecta, guarda evidencia, disputa directamente con el buró y el proveedor de la cuenta, y conserva números de confirmación. En casos de identidad, coloca alertas o congela tu crédito.'};
