@@ -34,6 +34,53 @@
     .login-hero{padding-bottom:210px}
     .login-card-band{margin-top:-170px}
   }
+
+  /* ===== Sugerencias de dominio de correo ===== */
+  .mail-suggest-wrap{position:relative}
+  .mail-suggest{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 14px 34px rgba(42,33,24,.18);padding:5px;max-height:232px;overflow-y:auto}
+  .mail-suggest[hidden]{display:none}
+  .mail-suggest-item{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 11px;border-radius:6px;font:400 .86rem 'Public Sans',sans-serif;color:var(--ink);cursor:pointer}
+  .mail-suggest-item b{font-weight:700;color:var(--navy)}
+  .mail-suggest-user{color:var(--muted)}
+  .mail-suggest-item:hover,.mail-suggest-item.is-active{background:var(--paper-dim)}
+
+  /* ===== Contraseña: ver, medidor y reglas ===== */
+  .pass-wrap{position:relative;display:flex;align-items:stretch}
+  .pass-wrap input{flex:1;padding-right:60px}
+  .pass-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--teal);font:700 .74rem 'Public Sans',sans-serif;cursor:pointer;padding:6px 8px;border-radius:6px}
+  .pass-eye:hover{background:var(--paper-dim)}
+
+  .pass-meter{display:flex;align-items:center;gap:10px;margin-top:8px}
+  .pass-meter[hidden]{display:none}
+  .pass-bar{flex:1;height:6px;border-radius:99px;background:rgba(42,33,24,.12);overflow:hidden}
+  .pass-bar span{display:block;height:100%;width:0;border-radius:99px;transition:width .25s ease,background .25s ease}
+  .pass-level{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;min-width:74px;text-align:right}
+  .pass-meter[data-score="0"] .pass-bar span{width:8%;background:#b3402a}
+  .pass-meter[data-score="1"] .pass-bar span{width:30%;background:#b3402a}
+  .pass-meter[data-score="2"] .pass-bar span{width:55%;background:var(--gold)}
+  .pass-meter[data-score="3"] .pass-bar span{width:80%;background:#5f8f6b}
+  .pass-meter[data-score="4"] .pass-bar span{width:100%;background:var(--good)}
+  .pass-meter[data-score="0"] .pass-level,.pass-meter[data-score="1"] .pass-level{color:#b3402a}
+  .pass-meter[data-score="2"] .pass-level{color:#8a5a20}
+  .pass-meter[data-score="3"] .pass-level,.pass-meter[data-score="4"] .pass-level{color:var(--good)}
+
+  .pass-problem{margin:8px 0 0;font-size:.76rem;line-height:1.5;color:#8a2b2b;background:rgba(179,64,42,.08);border-left:3px solid #b3402a;border-radius:0 6px 6px 0;padding:9px 11px}
+  .pass-problem[hidden]{display:none}
+
+  .pass-rules{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:5px}
+  .pass-rules[hidden]{display:none}
+  .pass-rules li{display:flex;align-items:flex-start;gap:8px;font-size:.74rem;color:var(--muted);line-height:1.45}
+  .pass-rules li b{color:var(--navy-deep);font-weight:700}
+  .pass-rules i{flex:none;width:14px;height:14px;margin-top:2px;border-radius:50%;border:1.5px solid rgba(42,33,24,.25);position:relative}
+  .pass-rules li.is-ok{color:var(--good)}
+  .pass-rules li.is-ok b{color:var(--good)}
+  .pass-rules li.is-ok i{background:var(--good);border-color:var(--good)}
+  .pass-rules li.is-ok i::after{content:"";position:absolute;left:4px;top:1px;width:3px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+
+  .pass-match{margin:8px 0 0;font-size:.76rem;font-weight:700}
+  .pass-match[hidden]{display:none}
+  .pass-match.is-ok{color:var(--good)}
+  .pass-match.is-bad{color:#b3402a}
 </style>
 </head>
 <body data-cms-page="login">
@@ -123,10 +170,37 @@
               <input type="email" id="signUpEmail" name="email" required autocomplete="email">
             </div>
             <div class="form-group">
-              <label for="signUpPassword">Contraseña</label>
-              <input type="password" id="signUpPassword" name="password" required autocomplete="new-password" minlength="6">
-              <span class="mortgage-helper">Mínimo 6 caracteres.</span>
+              <label for="signUpPassword">Nueva contraseña</label>
+              <div class="pass-wrap">
+                <input type="password" id="signUpPassword" name="password" required autocomplete="new-password" minlength="10">
+                <button type="button" class="pass-eye" id="signUpPassToggle" aria-label="Mostrar la contraseña" aria-pressed="false">Ver</button>
+              </div>
+
+              <div class="pass-meter" id="signUpMeter" hidden>
+                <div class="pass-bar"><span id="signUpBar"></span></div>
+                <span class="pass-level" id="signUpLevel"></span>
+              </div>
+              <p class="pass-problem" id="signUpProblem" hidden></p>
+
+              <ul class="pass-rules" id="signUpRules" hidden>
+                <li data-rule="largo"><i aria-hidden="true"></i><span>Al menos 10 caracteres <b>(obligatorio)</b></span></li>
+                <li data-rule="mayuscula"><i aria-hidden="true"></i><span>Una mayúscula</span></li>
+                <li data-rule="numero"><i aria-hidden="true"></i><span>Un número</span></li>
+                <li data-rule="simbolo"><i aria-hidden="true"></i><span>Un símbolo (! ? # $ …)</span></li>
+                <li data-rule="largoExtra"><i aria-hidden="true"></i><span>14 caracteres o más — lo que más la protege</span></li>
+              </ul>
+              <span class="mortgage-helper" id="signUpTip">Una frase que recuerdes —"mi perro se llama pancho"— es más segura y más fácil que algo corto y raro.</span>
             </div>
+
+            <div class="form-group">
+              <label for="signUpPassword2">Confirmar la nueva contraseña</label>
+              <div class="pass-wrap">
+                <input type="password" id="signUpPassword2" name="passwordConfirm" required autocomplete="new-password" minlength="10">
+                <button type="button" class="pass-eye" id="signUpPass2Toggle" aria-label="Mostrar la contraseña" aria-pressed="false">Ver</button>
+              </div>
+              <p class="pass-match" id="signUpMatch" hidden></p>
+            </div>
+
             <button type="submit" class="btn btn-gold" id="signUpSubmit" style="width:100%;justify-content:center;">Crear cuenta</button>
             <p class="auth-phone-hint" style="margin-top:14px;">¿Prefieres una cuenta de Google, Facebook o Microsoft? Están arriba — no necesitas llenar este formulario para eso; la cuenta se crea sola la primera vez que las uses.</p>
           </form>
@@ -159,12 +233,20 @@
           <p class="auth-phone-hint" style="margin-top:0;">Escribe tu nueva contraseña. Al guardarla, entrarás directo a tu cuenta.</p>
           <div class="form-group">
             <label for="recoveryPassword">Nueva contraseña</label>
-            <input type="password" id="recoveryPassword" name="password" required autocomplete="new-password" minlength="6">
-            <span class="mortgage-helper">Mínimo 6 caracteres.</span>
+            <div class="pass-wrap">
+              <input type="password" id="recoveryPassword" name="password" required autocomplete="new-password" minlength="10">
+              <button type="button" class="pass-eye" id="recoveryPassToggle" aria-label="Mostrar la contraseña" aria-pressed="false">Ver</button>
+            </div>
+            <div class="pass-meter" id="recoveryMeter" hidden>
+              <div class="pass-bar"><span id="recoveryBar"></span></div>
+              <span class="pass-level" id="recoveryLevel"></span>
+            </div>
+            <p class="pass-problem" id="recoveryProblem" hidden></p>
+            <span class="mortgage-helper">Al menos 10 caracteres. Una frase que recuerdes es más segura que algo corto y raro.</span>
           </div>
           <div class="form-group">
             <label for="recoveryPasswordConfirm">Confirmar nueva contraseña</label>
-            <input type="password" id="recoveryPasswordConfirm" name="passwordConfirm" required autocomplete="new-password" minlength="6">
+            <input type="password" id="recoveryPasswordConfirm" name="passwordConfirm" required autocomplete="new-password" minlength="10">
           </div>
           <button type="submit" class="btn btn-gold" id="recoverySubmit" style="width:100%;justify-content:center;">Guardar nueva contraseña</button>
         </form>
@@ -191,6 +273,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
 <script src="cms.js"></script>
+<script src="auth-helpers.js"></script>
 <script>
 (function(){
   'use strict';
@@ -277,9 +360,29 @@
   panelSignUp.addEventListener('submit', async event=>{
     event.preventDefault();
     clearMessage();
-    if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
     const email = $('signUpEmail').value.trim();
     const password = $('signUpPassword').value;
+    const password2 = $('signUpPassword2').value;
+
+    // Se revisa la contraseña ANTES que la conexión con Supabase: si el
+    // problema es la contraseña, decirle "el sitio no está configurado"
+    // mandaría a la persona a buscar un error que no existe.
+    const H = window.ThemoraAuthHelpers;
+    if(H){
+      const r = H.evaluar(password, email);
+      if(!r.valida){
+        showMessage(H.MENSAJES[r.problemas[0]] || 'Elige una contraseña más segura.', 'error');
+        $('signUpPassword').focus();
+        return;
+      }
+    }
+    if(password !== password2){
+      showMessage('Las dos contraseñas no coinciden. Vuelve a escribirlas.', 'error');
+      $('signUpPassword2').focus();
+      return;
+    }
+    if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
+
     const submitBtn = $('signUpSubmit');
     submitBtn.disabled = true;
     try{
@@ -308,6 +411,77 @@
       showMessage(friendlyError(error), 'error');
     }
   });
+
+  /* ===== Sugerencias de correo, fuerza de la contraseña y confirmación ===== */
+  (function(){
+    const H = window.ThemoraAuthHelpers;
+    if(!H) return;
+
+    // Sugerencias de dominio en los dos campos de correo
+    [$('signUpEmail'), $('signInEmail')].forEach(el => H.montarSugerenciasCorreo(el));
+
+    // Botón "Ver" de cada campo de contraseña
+    [['signUpPassToggle','signUpPassword'],
+     ['signUpPass2Toggle','signUpPassword2'],
+     ['recoveryPassToggle','recoveryPassword']].forEach(([btnId, inputId]) => {
+      const btn = $(btnId), campo = $(inputId);
+      if(!btn || !campo) return;
+      btn.addEventListener('click', () => {
+        const visible = campo.type === 'text';
+        campo.type = visible ? 'password' : 'text';
+        btn.textContent = visible ? 'Ver' : 'Ocultar';
+        btn.setAttribute('aria-pressed', String(!visible));
+        btn.setAttribute('aria-label', visible ? 'Mostrar la contraseña' : 'Ocultar la contraseña');
+        campo.focus();
+      });
+    });
+
+    // Medidor: pinta barra, nivel, problema y palomea las reglas
+    function conectarMedidor(inputId, meterId, barId, levelId, problemId, rulesId, emailId){
+      const campo = $(inputId), meter = $(meterId);
+      if(!campo || !meter) return;
+      const nivel = $(levelId), problema = $(problemId), reglas = rulesId ? $(rulesId) : null;
+      campo.addEventListener('input', () => {
+        const valor = campo.value;
+        if(!valor){
+          meter.hidden = true; problema.hidden = true;
+          if(reglas) reglas.hidden = true;
+          return;
+        }
+        const correo = emailId && $(emailId) ? $(emailId).value : '';
+        const r = H.evaluar(valor, correo);
+        meter.hidden = false;
+        meter.dataset.score = String(r.puntos);
+        nivel.textContent = r.nivel;
+        if(r.problemas.length){
+          problema.textContent = H.MENSAJES[r.problemas[0]] || '';
+          problema.hidden = !problema.textContent;
+        } else {
+          problema.hidden = true;
+        }
+        if(reglas){
+          reglas.hidden = false;
+          reglas.querySelectorAll('li').forEach(li => {
+            li.classList.toggle('is-ok', !!r.checks[li.dataset.rule]);
+          });
+        }
+      });
+    }
+
+    conectarMedidor('signUpPassword','signUpMeter','signUpBar','signUpLevel','signUpProblem','signUpRules','signUpEmail');
+    conectarMedidor('recoveryPassword','recoveryMeter','recoveryBar','recoveryLevel','recoveryProblem',null,null);
+
+    // ¿Coinciden las dos contraseñas?
+    const p1 = $('signUpPassword'), p2 = $('signUpPassword2'), aviso = $('signUpMatch');
+    function compararSignUp(){
+      if(!p2.value){ aviso.hidden = true; return; }
+      const igual = p1.value === p2.value;
+      aviso.hidden = false;
+      aviso.className = 'pass-match ' + (igual ? 'is-ok' : 'is-bad');
+      aviso.textContent = igual ? '✓ Las dos coinciden' : 'Todavía no coinciden';
+    }
+    [p1, p2].forEach(el => el.addEventListener('input', compararSignUp));
+  })();
 
   /* ===== Restablecer contraseña (llegada desde el enlace del correo) =====
      Supabase abre una sesión temporal de "recuperación" apenas alguien hace
@@ -342,7 +516,13 @@
     clearMessage();
     const newPassword = $('recoveryPassword').value;
     const confirmPassword = $('recoveryPasswordConfirm').value;
-    if(newPassword.length < 6){ showMessage('La contraseña debe tener al menos 6 caracteres.', 'error'); return; }
+    const HR = window.ThemoraAuthHelpers;
+    if(HR){
+      const r = HR.evaluar(newPassword, '');
+      if(!r.valida){ showMessage(HR.MENSAJES[r.problemas[0]] || 'Elige una contraseña más segura.', 'error'); return; }
+    } else if(newPassword.length < 10){
+      showMessage('La contraseña debe tener al menos 10 caracteres.', 'error'); return;
+    }
     if(newPassword !== confirmPassword){ showMessage('Las dos contraseñas no coinciden. Vuelve a escribirlas.', 'error'); return; }
     const submitBtn = $('recoverySubmit');
     submitBtn.disabled = true;
