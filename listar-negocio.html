@@ -61,12 +61,34 @@
   .ln-doc-upload[hidden]{display:none!important}
   .ln-doc-upload input[type="file"]{font-size:.82rem;padding:8px 0}
   .ln-doc-helper{display:block;font-size:.7rem;color:var(--muted);margin-top:6px;line-height:1.5}
+
+  /* Verificación: encabezados de cada parte */
+  .ln-verif-part{margin:20px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal)}
+  .ln-verif-part b{color:var(--navy-deep)}
+  .ln-verif-apple{margin-bottom:4px}
+  /* Los dos métodos que pide Apple, numerados */
+  .ln-verif-step{display:flex;gap:12px;align-items:flex-start;margin-top:14px}
+  .ln-verif-num{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.76rem;display:grid;place-items:center;margin-top:2px}
+  .ln-verif-body{flex:1;min-width:0}
+  .ln-verif-body>strong{display:block;font-size:.88rem;color:var(--navy-deep)}
+  .ln-verif-body>.ln-doc-helper{margin:2px 0 4px}
+  .ln-verif-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:8px}
+  .ln-verif-fields input[type="file"]{font-size:.8rem;padding:8px 0}
+  .ln-optional{font-weight:400;color:var(--muted)}
+  .ln-warn{color:#8a2b2b}
+  .ln-warn b{color:#8a2b2b}
+  /* Aviso por archivo (logo muy chico, foto muy pesada, etc.) */
+  .ln-file-msg{display:block;font-size:.72rem;font-weight:600;line-height:1.5;margin-top:6px;padding:8px 10px;border-radius:6px}
+  .ln-file-msg[hidden]{display:none}
+  .ln-file-msg.is-error{background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .ln-file-msg.is-ok{background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
   .ln-form-status{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
   .ln-form-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
   .ln-form-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
   .ln-form-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
   @media(max-width:640px){
     .ln-form-grid{grid-template-columns:1fr}
+    .ln-verif-fields{grid-template-columns:1fr}
     .ln-price-wrap{flex-direction:column;align-items:flex-start;text-align:left}
   }
 </style>
@@ -137,7 +159,7 @@
         <li class="ln-step">
           <div>
             <h3>Yo creo y verifico tu perfil</h3>
-            <p>Configuro tu ficha de negocio en Google Business Profile y en Apple Business Connect con la información que me diste, lista para que aparezcas en los mapas y en las búsquedas.</p>
+            <p>Configuro tu ficha de negocio en Google Business Profile y en Apple Business (antes Apple Business Connect) con la información que me diste, lista para que aparezcas en los mapas y en las búsquedas.</p>
           </div>
         </li>
         <li class="ln-step">
@@ -162,12 +184,12 @@
           <p>Tu negocio visible en Google Maps y en la búsqueda de Google, con dirección, teléfono, horario y categoría correctos.</p>
         </div>
         <div class="ln-include-card">
-          <h3>Apple Maps / Apple Business Connect</h3>
+          <h3>Apple Maps / Apple Business</h3>
           <p>La misma información configurada en Apple Maps, para que también aparezcas a quienes buscan desde un iPhone.</p>
         </div>
         <div class="ln-include-card">
           <h3>Sin costo de las plataformas</h3>
-          <p>Google Business Profile y Apple Business Connect son completamente gratis — el único costo es mi trabajo de configurarlo por ti.</p>
+          <p>Google Business Profile y Apple Business son completamente gratis — el único costo es mi trabajo de configurarlo por ti.</p>
         </div>
       </div>
 
@@ -253,7 +275,9 @@
 
           <div class="form-group full ln-verification-block">
             <label>Verificación del negocio</label>
-            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. Hay dos formas de hacerlo — elige la que te quede mejor:</p>
+            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. <strong>Todo lo de abajo es opcional</strong> — si no tienes algo a la mano, envía el formulario igual y te lo pido después. Entre más me mandes ahora, más rápido sale.</p>
+
+            <p class="ln-verif-part">Cómo prefieres que <b>Google</b> lo confirme</p>
             <div class="ln-radio-group">
               <label class="ln-radio-option">
                 <input type="radio" name="verificacion_metodo" value="Llamada telefónica" checked>
@@ -261,13 +285,76 @@
               </label>
               <label class="ln-radio-option">
                 <input type="radio" name="verificacion_metodo" value="Documento">
-                <span>Prefiero enviar un documento del negocio</span>
+                <span>Prefiero que usemos un documento del negocio</span>
               </label>
             </div>
-            <div class="form-group full ln-doc-upload" id="lnDocUploadWrap" hidden>
-              <label for="lnVerificacionDoc">Sube el documento (opcional aquí, o envíamelo por correo/WhatsApp)</label>
-              <input type="file" id="lnVerificacionDoc" name="verificacion_documento" accept="image/*,.pdf">
-              <span class="ln-doc-helper">Acepta: recibo de agua/luz/gas, contrato de renta, licencia de negocio o póliza de seguro — que muestre el nombre y la dirección del negocio. Si el archivo es grande, mejor envíamelo directo por correo o WhatsApp.</span>
+
+            <!-- Apple pide DOS métodos distintos dentro de 60 días. Las dos
+                 partes de abajo son justamente esos dos métodos. -->
+            <p class="ln-verif-part ln-verif-apple">Para <b>Apple</b> hacen falta dos cosas distintas</p>
+
+            <div class="ln-verif-step">
+              <span class="ln-verif-num">1</span>
+              <div class="ln-verif-body">
+                <strong>Número de identificación del negocio</strong>
+                <p class="ln-doc-helper">Con uno de los dos basta. Si no tienes ninguno, sáltalo.</p>
+                <div class="ln-verif-fields">
+                  <div class="form-group">
+                    <label for="lnEin">EIN (número federal del negocio)</label>
+                    <input type="text" id="lnEin" name="ein" inputmode="numeric" autocomplete="off" placeholder="12-3456789">
+                    <span class="ln-doc-helper ln-warn">Solo el EIN del negocio. <b>Nunca escribas aquí tu número de seguro social</b> — si no tienes EIN, deja esto vacío y lo vemos por otro camino.</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="lnDuns">Número DUNS <span class="ln-optional">(si ya lo tienes)</span></label>
+                    <input type="text" id="lnDuns" name="duns" inputmode="numeric" autocomplete="off" placeholder="123456789">
+                    <span class="ln-doc-helper">Desde abril de 2026 Apple ya no lo exige en EE.&nbsp;UU. Si no lo tienes, no hace falta sacarlo.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ln-verif-step">
+              <span class="ln-verif-num">2</span>
+              <div class="ln-verif-body">
+                <strong>Un documento oficial del negocio</strong>
+                <p class="ln-doc-helper">Tiene que verse el <b>nombre del negocio</b> y la <b>dirección</b>, y estar vigente.</p>
+                <div class="ln-verif-fields">
+                  <div class="form-group">
+                    <label for="lnDocTipo">¿Qué documento vas a mandar?</label>
+                    <select id="lnDocTipo" name="documento_tipo">
+                      <option value="">Elige uno…</option>
+                      <option>Licencia de negocio (Business License)</option>
+                      <option>Permiso de impuestos sobre ventas (Sales Tax Permit)</option>
+                      <option>Permiso de comida, salud o alcohol (Food / Health / Alcohol Permit)</option>
+                      <option>Contrato de renta o de propiedad (Lease / Property Agreement)</option>
+                      <option>Recibo de servicios: luz, agua, gas o internet (Utility Bill)</option>
+                      <option>Carta del banco con la dirección y los dueños</option>
+                      <option>Otro documento oficial</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="lnVerificacionDoc">Sube el documento</label>
+                    <input type="file" id="lnVerificacionDoc" name="verificacion_documento" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,image/jpeg,image/png,image/heic,image/heif,application/pdf">
+                    <span class="ln-doc-helper">PDF o foto (JPG, PNG, HEIC).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="ln-verif-part">Imágenes para tu ficha</p>
+            <div class="ln-verif-fields">
+              <div class="form-group">
+                <label for="lnLogo">Logo del negocio</label>
+                <input type="file" id="lnLogo" name="logo" accept=".jpg,.jpeg,.png,.svg,.heic,.heif,image/jpeg,image/png,image/svg+xml,image/heic,image/heif">
+                <span class="ln-doc-helper">Apple lo exige <b>cuadrado</b> y de <b>1024 × 1024 píxeles como mínimo</b>. JPG, PNG o SVG. Si es más chico, Apple lo rechaza — te aviso aquí mismo.</span>
+                <span class="ln-file-msg" id="lnLogoMsg" hidden></span>
+              </div>
+              <div class="form-group">
+                <label for="lnFoto">Foto del negocio</label>
+                <input type="file" id="lnFoto" name="foto" accept=".jpg,.jpeg,.png,.heic,.heif,image/jpeg,image/png,image/heic,image/heif">
+                <span class="ln-doc-helper">La fachada o el interior. Mínimo 720 × 960 píxeles. JPG, PNG o HEIC — si pesa mucho, la reduzco yo antes de enviarla.</span>
+                <span class="ln-file-msg" id="lnFotoMsg" hidden></span>
+              </div>
             </div>
           </div>
 
@@ -318,7 +405,12 @@
   <input type="text" name="web" />
   <input type="text" name="descripcion" />
   <input type="text" name="verificacion_metodo" />
+  <input type="text" name="ein" />
+  <input type="text" name="duns" />
+  <input type="text" name="documento_tipo" />
   <input type="file" name="verificacion_documento" />
+  <input type="file" name="logo" />
+  <input type="file" name="foto" />
   <input type="text" name="mensaje" />
 </form>
 
@@ -338,15 +430,104 @@
   const submitBtn=document.getElementById('lnSubmitBtn');
   if(!form)return;
 
-  const docWrap=document.getElementById('lnDocUploadWrap');
-  const verifRadios=form.querySelectorAll('input[name="verificacion_metodo"]');
-  function syncDocVisibility(){
-    const selected=form.querySelector('input[name="verificacion_metodo"]:checked');
-    const wantsDoc=!!selected&&selected.value==='Documento';
-    if(docWrap)docWrap.hidden=!wantsDoc;
+  /* ===== Archivos =====
+     Netlify acepta como máximo 8 MB por envío COMPLETO (es un límite de su
+     red, no se arregla pagando un plan mayor). Por eso las fotos se reducen
+     aquí, en el navegador, antes de enviarlas — cuidando de no bajar del
+     mínimo que exige Apple. */
+  const LIMITE_TOTAL = 7.2 * 1024 * 1024;   // margen bajo los 8 MB del envío
+  const APPLE_LOGO_MIN = 1024;              // Apple: logo cuadrado, mín. 1024x1024
+  const APPLE_FOTO_MIN_ANCHO = 720;         // Apple: foto mín. 720x960
+  const APPLE_FOTO_MIN_ALTO = 960;
+
+  const logoInput=document.getElementById('lnLogo');
+  const fotoInput=document.getElementById('lnFoto');
+  const docInput=document.getElementById('lnVerificacionDoc');
+  const logoMsg=document.getElementById('lnLogoMsg');
+  const fotoMsg=document.getElementById('lnFotoMsg');
+
+  // Archivos ya procesados (reducidos si hizo falta), listos para enviar.
+  const listos={logo:null,foto:null};
+  let logoInvalido=false;
+
+  function mb(bytes){ return (bytes/1024/1024).toFixed(1)+' MB'; }
+
+  function mostrar(el,texto,tipo){
+    if(!el)return;
+    el.textContent=texto;
+    el.className='ln-file-msg '+(tipo||'');
+    el.hidden=!texto;
   }
-  verifRadios.forEach(r=>r.addEventListener('change',syncDocVisibility));
-  syncDocVisibility();
+
+  function medirImagen(file){
+    return new Promise(resolve=>{
+      const url=URL.createObjectURL(file);
+      const img=new Image();
+      img.onload=()=>{ URL.revokeObjectURL(url); resolve({w:img.naturalWidth,h:img.naturalHeight,img:img}); };
+      img.onerror=()=>{ URL.revokeObjectURL(url); resolve(null); }; // HEIC u otro formato que el navegador no abre
+      img.src=url;
+    });
+  }
+
+  /* Reduce una imagen sin bajar de minLado, y sin cambiar de formato cuando
+     es PNG (para no perder el fondo transparente de un logo). */
+  async function reducir(file,maxLado,minLado){
+    const medida=await medirImagen(file);
+    if(!medida)return file;                       // no se pudo abrir: va tal cual
+    const {w,h,img}=medida;
+    const mayor=Math.max(w,h);
+    if(mayor<=maxLado && file.size<=1.6*1024*1024)return file;  // ya está bien
+    let escala=Math.min(1,maxLado/mayor);
+    if(Math.min(w,h)*escala<minLado)escala=Math.min(1,minLado/Math.min(w,h)); // nunca por debajo del mínimo de Apple
+    const nw=Math.round(w*escala), nh=Math.round(h*escala);
+    const canvas=document.createElement('canvas');
+    canvas.width=nw; canvas.height=nh;
+    canvas.getContext('2d').drawImage(img,0,0,nw,nh);
+    const png=/png$/i.test(file.type);
+    const blob=await new Promise(r=>canvas.toBlob(r,png?'image/png':'image/jpeg',png?undefined:0.82));
+    if(!blob||blob.size>=file.size)return file;   // si no mejoró, se queda el original
+    const nombre=file.name.replace(/\.[^.]+$/,'')+(png?'.png':'.jpg');
+    return new File([blob],nombre,{type:blob.type});
+  }
+
+  if(logoInput)logoInput.addEventListener('change',async()=>{
+    listos.logo=null; logoInvalido=false;
+    const file=logoInput.files&&logoInput.files[0];
+    if(!file){ mostrar(logoMsg,''); return; }
+    if(/svg/i.test(file.type)){ listos.logo=file; mostrar(logoMsg,'Logo en SVG: perfecto, ese sirve a cualquier tamaño.','is-ok'); return; }
+    const medida=await medirImagen(file);
+    if(!medida){ listos.logo=file; mostrar(logoMsg,'No pude revisar las medidas de este archivo en tu navegador. Lo envío igual y yo lo reviso.',''); return; }
+    const {w,h}=medida;
+    const cuadrado=Math.abs(w-h)<=Math.max(w,h)*0.02;
+    if(w<APPLE_LOGO_MIN||h<APPLE_LOGO_MIN){
+      logoInvalido=true;
+      mostrar(logoMsg,'Este logo mide '+w+' × '+h+' y Apple lo va a rechazar: necesita mínimo 1024 × 1024. Busca el archivo original más grande, o déjalo vacío y lo vemos después.','is-error');
+      return;
+    }
+    if(!cuadrado){
+      logoInvalido=true;
+      mostrar(logoMsg,'Este logo mide '+w+' × '+h+', y Apple lo pide cuadrado (mismo ancho que alto). Mándalo cuadrado, o déjalo vacío y yo lo ajusto.','is-error');
+      return;
+    }
+    listos.logo=await reducir(file,2048,APPLE_LOGO_MIN);
+    mostrar(logoMsg,'Logo correcto ('+w+' × '+h+').'+(listos.logo!==file?' Lo reduje a '+mb(listos.logo.size)+' para que quepa en el envío.':''),'is-ok');
+  });
+
+  if(fotoInput)fotoInput.addEventListener('change',async()=>{
+    listos.foto=null;
+    const file=fotoInput.files&&fotoInput.files[0];
+    if(!file){ mostrar(fotoMsg,''); return; }
+    const medida=await medirImagen(file);
+    if(!medida){ listos.foto=file; mostrar(fotoMsg,'No pude abrir este archivo aquí (pasa con fotos HEIC del iPhone). Lo envío tal cual.',''); return; }
+    const {w,h}=medida;
+    if(w<APPLE_FOTO_MIN_ANCHO||h<APPLE_FOTO_MIN_ALTO){
+      listos.foto=file;
+      mostrar(fotoMsg,'Esta foto mide '+w+' × '+h+'. Apple pide al menos 720 × 960, así que puede que no la acepte. La envío igual por si sirve.','is-error');
+      return;
+    }
+    listos.foto=await reducir(file,2000,APPLE_FOTO_MIN_ANCHO);
+    mostrar(fotoMsg,'Foto lista ('+w+' × '+h+').'+(listos.foto!==file?' La reduje de '+mb(file.size)+' a '+mb(listos.foto.size)+'.':''),'is-ok');
+  });
 
   async function submitListing(formData){
     const response=await fetch('/',{method:'POST',body:formData});
@@ -357,6 +538,14 @@
     event.preventDefault();
     if(!form.checkValidity()){
       form.reportValidity();
+      return;
+    }
+    // El logo es opcional, pero si adjuntaron uno que Apple va a rechazar,
+    // mejor decirlo ahora que descubrirlo a mitad del trámite.
+    if(logoInvalido){
+      status.className='ln-form-status is-error';
+      status.textContent='El logo que subiste no cumple lo que pide Apple (cuadrado y de 1024 × 1024 como mínimo). Cámbialo o quítalo — puedes enviar el formulario sin logo y me lo mandas después.';
+      logoInput.focus();
       return;
     }
     const correo=form.correo.value.trim();
@@ -375,10 +564,27 @@
     formData.append('descripcion',form.descripcion.value.trim());
     const verifSelected=form.querySelector('input[name="verificacion_metodo"]:checked');
     formData.append('verificacion_metodo',verifSelected?verifSelected.value:'');
-    const docInput=document.getElementById('lnVerificacionDoc');
-    if(docInput&&docInput.files&&docInput.files[0]){
-      formData.append('verificacion_documento',docInput.files[0]);
+    formData.append('ein',form.ein.value.trim());
+    formData.append('duns',form.duns.value.trim());
+    formData.append('documento_tipo',form.documento_tipo.value);
+
+    const adjuntos=[];
+    if(docInput&&docInput.files&&docInput.files[0])adjuntos.push(['verificacion_documento',docInput.files[0],'el documento']);
+    const logoFinal=listos.logo||(logoInput&&logoInput.files&&logoInput.files[0]);
+    if(logoFinal)adjuntos.push(['logo',logoFinal,'el logo']);
+    const fotoFinal=listos.foto||(fotoInput&&fotoInput.files&&fotoInput.files[0]);
+    if(fotoFinal)adjuntos.push(['foto',fotoFinal,'la foto']);
+
+    // Los archivos de más de 8 MB en total los rechaza la red de Netlify sin
+    // explicación, así que aquí se avisa antes y se dice cuál es el culpable.
+    const total=adjuntos.reduce((s,[,f])=>s+f.size,0);
+    if(total>LIMITE_TOTAL){
+      const mayor=adjuntos.slice().sort((a,b)=>b[1].size-a[1].size)[0];
+      status.className='ln-form-status is-error';
+      status.textContent='Los archivos suman '+mb(total)+' y el máximo son 8 MB por envío. El más pesado es '+mayor[2]+' ('+mb(mayor[1].size)+'). Quítalo y mándamelo aparte por correo, o súbelo más liviano.';
+      return;
     }
+    adjuntos.forEach(([campo,file])=>formData.append(campo,file));
     formData.append('mensaje',form.mensaje.value.trim());
 
     submitBtn.disabled=true;
@@ -391,7 +597,8 @@
       status.className='ln-form-status is-success';
       status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
       form.reset();
-      syncDocVisibility();
+      listos.logo=null; listos.foto=null; logoInvalido=false;
+      mostrar(logoMsg,''); mostrar(fotoMsg,'');
     }catch(error){
       status.className='ln-form-status is-error';
       status.textContent='No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento, o escríbeme desde la página de contacto.';
