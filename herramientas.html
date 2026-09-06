@@ -88,6 +88,49 @@
   .status-live{background:rgba(63,122,82,.12);color:var(--good)}
   .status-soon{background:rgba(184,134,59,.14);color:var(--gold)}
 
+
+  /* Acelerador de hipoteca */
+  .acc-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr);gap:22px;align-items:start}
+  .acc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
+  .acc-step{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:var(--teal);margin:0 0 4px}
+  .acc-step-desc{font-size:.8rem;color:var(--muted);margin:0 0 16px;line-height:1.55}
+  .acc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .acc-field{display:flex;flex-direction:column;gap:6px}
+  .acc-field.full{grid-column:1/-1}
+  .acc-field label{font-size:.76rem;font-weight:700;color:var(--navy)}
+  .acc-wrap{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
+  .acc-wrap input{border:0;background:transparent;padding:12px 13px;font:inherit;color:var(--ink);width:100%;box-sizing:border-box}
+  .acc-wrap input:focus{outline:2px solid var(--gold-light)}
+  .acc-wrap .prefix,.acc-wrap .suffix{display:flex;align-items:center;padding:0 13px;color:var(--muted);font-weight:700;background:rgba(11,39,72,.04)}
+  .acc-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
+  .acc-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
+  .acc-date{display:flex;gap:8px}
+  .acc-date select{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--paper-dim);padding:12px 10px;font:inherit;color:var(--ink)}
+  .acc-date select:focus{outline:2px solid var(--gold-light)}
+  .acc-divider{margin:24px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+  /* El campo que la persona escribió se marca; los otros dos se ven calculados */
+  .acc-field.is-calculated .acc-wrap,.acc-field.is-calculated .acc-date select{background:rgba(201,138,62,.09);border-color:rgba(201,138,62,.35)}
+  .acc-tag{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);opacity:0;transition:opacity .2s ease}
+  .acc-field.is-calculated .acc-tag{opacity:1}
+  .acc-label-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .acc-current{background:var(--paper-dim);border-left:3px solid var(--teal);border-radius:8px;padding:13px 15px;margin-top:16px;font-size:.8rem;color:var(--ink)}
+  .acc-current strong{color:var(--navy-deep)}
+  .acc-current small{display:block;color:var(--muted);font-size:.72rem;margin-top:4px;line-height:1.5}
+  .acc-result{background:var(--navy-deep);color:#fff;border-radius:var(--radius,10px);padding:28px;position:sticky;top:92px}
+  .acc-result h3{font:600 1.35rem 'Fraunces',serif;margin:4px 0 16px;color:#fff}
+  .acc-big{font:700 2.1rem 'Fraunces',serif;color:var(--gold-light);line-height:1.1}
+  .acc-big span{display:block;font:400 .8rem 'Public Sans',sans-serif;color:rgba(255,255,255,.6);margin-top:4px}
+  .acc-lines{list-style:none;margin-top:18px;border-top:1px solid rgba(255,255,255,.16)}
+  .acc-lines li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.16);font-size:.82rem;color:rgba(255,255,255,.78)}
+  .acc-lines strong{color:#fff}
+  .acc-empty{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.6}
+  .acc-note{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:16px;line-height:1.55}
+  .acc-warning{margin-top:16px;padding:12px 14px;border-radius:8px;background:rgba(179,64,42,.1);border:1px solid rgba(179,64,42,.35);color:#a3402a;font-size:.78rem;font-weight:600;line-height:1.5}
+  .acc-warning[hidden]{display:none!important}
+  .acc-reset{border:0;background:none;color:var(--teal);font-weight:700;font-size:.76rem;cursor:pointer;text-decoration:underline;padding:4px 0;margin-top:12px}
+  @media(max-width:900px){.acc-layout{grid-template-columns:1fr}.acc-result{position:static}}
+  @media(max-width:560px){.acc-fields{grid-template-columns:1fr}}
+
   /* Herramienta: carta de cese de comunicación (FDCPA) */
   .cd-tool{background:var(--navy-deep);color:#fff;border-radius:var(--radius,10px);padding:32px;box-shadow:0 20px 50px rgba(8,47,73,.18)}
   .cd-tool .eyebrow-dark{color:var(--gold-light)}
@@ -311,6 +354,89 @@
           </div>
           <p class="qc-warning" id="payoffWarning" hidden>Con ese pago mensual nunca terminarás de pagar la tarjeta — el interés crece más rápido que tu pago. Sube el pago mensual.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Acelerador: cuánto antes puedes pagar tu casa ===== -->
+  <section id="acelerador-hipoteca">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Pagar antes</span>
+        <h2>¿Cuánto antes puedes pagar tu casa?</h2>
+        <p>Ponle un poco más cada mes o cada semana <b>encima</b> de tu pago normal, y mira cuántos años te quitas de encima — y cuánto interés dejas de pagar. Funciona en los dos sentidos: dime la fecha en que quieres terminar y te digo cuánto poner, o dime cuánto puedes poner y te digo cuándo terminarías.</p>
+      </div>
+
+      <div class="acc-layout">
+        <div class="acc-card">
+
+          <p class="acc-step">1 · Lo que ya sabes de tu hipoteca</p>
+          <p class="acc-step-desc">Estos tres datos vienen en tu estado de cuenta mensual.</p>
+          <div class="acc-fields">
+            <div class="acc-field">
+              <label for="accBalance">Balance actual</label>
+              <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accBalance" type="number" min="0" step="1000" inputmode="decimal" placeholder="285000"></div>
+            </div>
+            <div class="acc-field">
+              <label for="accApr">Tasa de interés (APR)</label>
+              <div class="acc-wrap has-suffix"><input id="accApr" type="number" min="0" max="25" step="0.01" inputmode="decimal" placeholder="6.5"><span class="suffix">%</span></div>
+            </div>
+            <div class="acc-field full">
+              <label for="accEndMonth">Fecha de terminación (la que tienes hoy)</label>
+              <div class="acc-date">
+                <select id="accEndMonth" aria-label="Mes de terminación"></select>
+                <select id="accEndYear" aria-label="Año de terminación"></select>
+              </div>
+              <span class="mortgage-helper">Si tu préstamo es a 30 años y empezó en 2020, termina en 2050.</span>
+            </div>
+          </div>
+
+          <div class="acc-current" id="accCurrent" hidden>
+            Con esos datos, tu pago mensual de capital e interés es de <strong id="accPayment">$0</strong>, y te faltan <strong id="accRemaining">0</strong>.
+            <small>Tu pago real seguramente es más alto porque incluye impuestos y seguro (el <i>escrow</i>). Esa parte no cambia aunque pagues extra, así que aquí no cuenta.</small>
+          </div>
+
+          <div class="acc-divider">
+            <p class="acc-step">2 · Llena solo uno de estos tres</p>
+            <p class="acc-step-desc">Escribe el que te sirva y los otros dos se calculan solos. Todo lo que pongas aquí es <b>adicional</b> a tu pago normal.</p>
+            <div class="acc-fields">
+              <div class="acc-field full" id="accFieldTarget">
+                <div class="acc-label-row"><label for="accTargetMonth">Quiero terminar en…</label><span class="acc-tag">calculado</span></div>
+                <div class="acc-date">
+                  <select id="accTargetMonth" aria-label="Mes en que quieres terminar"></select>
+                  <select id="accTargetYear" aria-label="Año en que quieres terminar"></select>
+                </div>
+              </div>
+              <div class="acc-field" id="accFieldMonthly">
+                <div class="acc-label-row"><label for="accExtraMonthly">Adicional al mes</label><span class="acc-tag">calculado</span></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraMonthly" type="number" min="0" step="25" inputmode="decimal" placeholder="0"></div>
+              </div>
+              <div class="acc-field" id="accFieldWeekly">
+                <div class="acc-label-row"><label for="accExtraWeekly">Adicional a la semana</label><span class="acc-tag">calculado</span></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraWeekly" type="number" min="0" step="5" inputmode="decimal" placeholder="0"></div>
+              </div>
+            </div>
+            <p class="acc-warning" id="accWarning" hidden></p>
+            <button type="button" class="acc-reset" id="accReset">Borrar y empezar de nuevo</button>
+          </div>
+
+        </div>
+
+        <aside class="acc-result" aria-live="polite">
+          <h3>Tu resultado</h3>
+          <div id="accEmpty" class="acc-empty">Llena tus datos arriba y elige una de las tres opciones. Aquí verás cuánto tiempo te ahorras y cuánto interés dejas de pagar.</div>
+          <div id="accOutput" hidden>
+            <div class="acc-big" id="accSaved">—<span>menos de hipoteca</span></div>
+            <ul class="acc-lines">
+              <li><span>Terminarías en</span><strong id="accNewDate">—</strong></li>
+              <li><span>En vez de</span><strong id="accOldDate">—</strong></li>
+              <li><span>Pagarías al mes</span><strong id="accTotalMonthly">—</strong></li>
+              <li><span>Interés que te ahorras</span><strong id="accInterestSaved">—</strong></li>
+            </ul>
+            <p class="acc-note" id="accNote"></p>
+          </div>
+          <p class="acc-note">Estimación educativa de capital e interés. Antes de mandar dinero extra, confirma con tu prestamista que lo aplique <b>al capital (principal)</b> y no como adelanto del siguiente pago — no todos lo hacen igual, y algunos préstamos cobran penalidad por pagar antes.</p>
+        </aside>
       </div>
     </div>
   </section>
@@ -822,6 +948,7 @@
 <script src="cms.js"></script>
 <script src="mortgage-calculator.js"></script>
 <script src="quick-calculators.js"></script>
+<script src="mortgage-accelerator.js"></script>
 <script src="site-search-index.js"></script>
 <script src="credit-coach.js"></script>
 
