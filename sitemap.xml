@@ -2,33 +2,68 @@
 <!-- IMPORTANTE: reemplaza TU-DOMINIO-AQUI.com por tu dominio real antes de publicar. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/index.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/credito.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/credito.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/comprar-casa.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/comprar-casa.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/comprar-auto.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/comprar-auto.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/herramientas.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/herramientas.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://TU-DOMINIO-AQUI.com/contacto.html</loc>
+    <loc>https://delightful-sable-a4a33d.netlify.app/contacto.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/privacidad.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/terminos.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/cartas-claras.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/listar-negocio.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/formar-negocio.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/agendar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://delightful-sable-a4a33d.netlify.app/quienes-somos.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

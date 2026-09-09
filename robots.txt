@@ -1,7 +1,12 @@
 # Themora
-# IMPORTANTE: reemplaza TU-DOMINIO-AQUI.com por tu dominio real antes de publicar.
+# NOTA: cuando compres tu dominio propio, reemplaza la línea Sitemap de abajo
+# (y los mismos enlaces en sitemap.xml y en las etiquetas canonical de cada página).
 
 User-agent: *
 Allow: /
 
-Sitemap: https://TU-DOMINIO-AQUI.com/sitemap.xml
+# El panel interno y la cuenta no deben salir en buscadores
+Disallow: /admin.html
+Disallow: /cuenta.html
+
+Sitemap: https://delightful-sable-a4a33d.netlify.app/sitemap.xml
