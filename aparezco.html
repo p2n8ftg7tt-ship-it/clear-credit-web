@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Aparece mi negocio? | Themora</title>
+<meta name="description" content="Averigua en 2 minutos si tu negocio sale en Google Maps y Apple Maps cuando un cliente lo busca. Gratis, sin crear cuenta.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="¿Aparece tu negocio cuando alguien lo busca?">
+<meta property="og:description" content="Averígualo en 2 minutos. Gratis, sin crear cuenta.">
+<meta property="og:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.jpg">
+<meta property="og:url" content="https://delightful-sable-a4a33d.netlify.app/aparezco.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="¿Aparece tu negocio cuando alguien lo busca?">
+<meta name="twitter:description" content="Averígualo en 2 minutos. Gratis, sin crear cuenta.">
+<meta name="twitter:image" content="https://delightful-sable-a4a33d.netlify.app/images/hero-familia.jpg">
+<link rel="canonical" href="https://delightful-sable-a4a33d.netlify.app/aparezco.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ap-wrap{max-width:720px;margin-inline:auto;padding:0 20px}
+
+  /* Panel flotante sobre el hero */
+  .ap-hero{padding-bottom:150px}
+  .ap-card{position:relative;z-index:3;margin-top:-108px;background:rgba(255,255,255,.94);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-radius:20px;box-shadow:0 26px 68px rgba(42,33,24,.22);padding:32px 30px}
+  @media (max-width:620px){ .ap-card{padding:24px 20px;margin-top:-86px} .ap-hero{padding-bottom:128px} }
+
+  .ap-step{display:none}
+  .ap-step.is-on{display:block;animation:apIn .28s ease}
+  @keyframes apIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .ap-count{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+  .ap-q{font-family:'Fraunces',serif;font-size:1.5rem;line-height:1.24;color:var(--navy-deep);margin:0 0 8px}
+  .ap-help{font-size:.92rem;line-height:1.62;color:var(--muted);margin:0 0 18px}
+
+  .ap-search{display:block;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 12px;text-decoration:none;background:var(--paper-dim);transition:border-color .18s,transform .18s}
+  .ap-search:hover{border-color:var(--teal);transform:translateY(-1px)}
+  .ap-search .k{display:block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:5px}
+  .ap-search .q{display:block;font-weight:700;color:var(--navy-deep);font-size:1rem;line-height:1.4}
+  .ap-search .go{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--teal);font-weight:700}
+
+  .ap-opts{display:grid;gap:9px;margin-top:18px}
+  .ap-opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:13px;padding:14px 17px;cursor:pointer;font:inherit;transition:border-color .16s,background .16s}
+  .ap-opt:hover{border-color:var(--navy);background:var(--paper-dim)}
+  .ap-opt strong{display:block;color:var(--navy-deep);font-size:.98rem;margin-bottom:2px}
+  .ap-opt span{display:block;font-size:.83rem;color:var(--muted);line-height:1.5}
+
+  .ap-back{border:0;background:none;color:var(--muted);font:600 .84rem 'Public Sans',sans-serif;cursor:pointer;padding:8px 0;margin-top:14px}
+  .ap-back:hover{color:var(--navy);text-decoration:underline}
+
+  /* Resultado */
+  .ap-verdict{border-radius:16px;padding:24px 26px;margin-bottom:22px}
+  .ap-verdict h3{font-family:'Fraunces',serif;font-size:1.42rem;line-height:1.24;margin:0 0 10px}
+  .ap-verdict p{margin:0;line-height:1.66}
+  .ap-verdict.malo{background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.24)}
+  .ap-verdict.malo h3{color:#8a2b2b}
+  .ap-verdict.medio{background:rgba(184,134,48,.11);border:1px solid rgba(184,134,48,.26)}
+  .ap-verdict.medio h3{color:#8a5a20}
+  .ap-verdict.bien{background:rgba(74,124,89,.10);border:1px solid rgba(74,124,89,.26)}
+  .ap-verdict.bien h3{color:var(--good)}
+
+  .ap-findings{display:grid;gap:10px;margin:22px 0}
+  .ap-finding{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .ap-finding .mark{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;color:#fff;margin-top:1px}
+  .ap-finding.si .mark{background:var(--good)}
+  .ap-finding.no .mark{background:#b3402a}
+  .ap-finding.mas .mark{background:var(--gold)}
+  .ap-finding div{line-height:1.58;font-size:.93rem}
+  .ap-finding b{color:var(--navy-deep)}
+
+  .ap-evidence{border-left:3px solid var(--teal);background:rgba(31,110,115,.06);border-radius:0 12px 12px 0;padding:18px 20px;margin:24px 0}
+  .ap-evidence h4{margin:0 0 8px;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--teal)}
+  .ap-evidence p{margin:0 0 10px;font-size:.93rem;line-height:1.68}
+  .ap-evidence p:last-child{margin:0}
+  .ap-evidence cite{display:block;margin-top:10px;font-size:.78rem;color:var(--muted);font-style:normal}
+
+  .ap-todo{margin:26px 0}
+  .ap-todo h3{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:0 0 6px}
+  .ap-todo>p{font-size:.92rem;color:var(--muted);margin:0 0 14px;line-height:1.6}
+  .ap-todo ol{padding-left:22px;display:grid;gap:11px;margin:0}
+  .ap-todo li{line-height:1.62;font-size:.94rem}
+  .ap-todo li b{color:var(--navy-deep)}
+
+  .ap-offer{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:var(--paper-dim);margin-top:26px}
+  .ap-offer h3{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:0 0 8px}
+  .ap-offer p{font-size:.94rem;line-height:1.66;margin:0 0 16px}
+  .ap-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+  .ap-privacy{display:flex;align-items:flex-start;gap:9px;margin-top:20px;font-size:.82rem;color:var(--muted);line-height:1.58}
+  .ap-privacy svg{flex:none;margin-top:2px}
+
+  @media print{
+    header,footer,.ap-offer,.ap-back,.credit-coach-launcher{display:none!important}
+    .ap-card{box-shadow:none;border:0;margin-top:0;background:#fff}
+  }
+</style>
+</head>
+<body data-cms-page="aparezco">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegación principal">
+      
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="aparezco.html" class="active"><strong>¿Aparece mi negocio?</strong><span>Revisa gratis si sales en Google y Apple Maps</span></a>
+          <a href="listar-negocio.html"><strong>Ponerlo en el mapa</strong><span>Google Maps y Apple Maps, hecho por nosotros</span></a>
+          <a href="formar-negocio.html"><strong>Abrir mi negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          <a href="agendar.html"><strong>Hablar con alguien</strong><span>Agenda una cita, sin compromiso</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas del IRS, cobradores, bancos o corte</span></a>
+          <a href="credito.html"><strong>Mi reporte de crédito</strong><span>Súbelo y te lo explicamos, sin que salga de tu teléfono</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Guías<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="herramientas.html"><strong>Calculadoras</strong><span>Hipoteca, pagos adelantados y cartas de disputa</span></a>
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero ap-hero">
+    <div class="wrap">
+      <span class="eyebrow">Revisión gratis</span>
+      <h1>¿Tu negocio aparece cuando alguien lo busca?</h1>
+      <p>Averígualo en dos minutos. No hace falta crear cuenta, ni darme tu correo, ni tu teléfono. Al final te digo exactamente qué te falta — lo arregles tú o no.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="ap-wrap">
+      <div class="ap-card">
+
+        <!-- PASO 1 -->
+        <div class="ap-step is-on" id="paso1">
+          <p class="ap-count">Paso 1 de 4</p>
+          <h2 class="ap-q">¿Cómo se llama tu negocio?</h2>
+          <p class="ap-help">Escríbelo igual que lo tienes en el letrero. Esto se queda en tu teléfono — no se manda a ningún lado.</p>
+
+          <div class="form-group">
+            <label for="apNombre">Nombre del negocio</label>
+            <input type="text" id="apNombre" placeholder="Taquería La Esperanza" autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="apCiudad">Ciudad y estado</label>
+            <input type="text" id="apCiudad" placeholder="Roanoke, VA" autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label for="apGiro">¿A qué se dedica? <span style="font-weight:400;color:var(--muted)">(en las palabras que usaría un cliente)</span></label>
+            <input type="text" id="apGiro" placeholder="comida mexicana" autocomplete="off">
+          </div>
+
+          <button type="button" class="btn btn-gold" id="apIr1" style="width:100%;justify-content:center;">Empezar la revisión</button>
+
+          <div class="ap-privacy">
+            <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l5.5 2.4v4c0 3.4-2.3 6.6-5.5 7.6C4.8 14 2.5 10.8 2.5 7.4v-4L8 1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span>Esta herramienta no manda nada a internet. Las búsquedas las haces tú, en tu propio teléfono, y las respuestas se quedan en esta pestaña. Si la cierras, se borran.</span>
+          </div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="ap-step" id="paso2">
+          <p class="ap-count">Paso 2 de 4</p>
+          <h2 class="ap-q">Busca tu negocio por su nombre</h2>
+          <p class="ap-help">Toca el botón. Se abre en otra pestaña, miras el resultado, y regresas aquí.</p>
+
+          <a class="ap-search" id="apLinkNombre" href="#" target="_blank" rel="noopener">
+            <span class="k">Google Maps</span>
+            <span class="q" id="apTextoNombre">—</span>
+            <span class="go">Abrir la búsqueda →</span>
+          </a>
+
+          <p class="ap-help" style="margin-top:18px;margin-bottom:0"><strong>¿Qué viste?</strong></p>
+          <div class="ap-opts">
+            <button type="button" class="ap-opt" data-p="nombre" data-v="bien"><strong>Aparece, y la información está bien</strong><span>Sale con su dirección, horario y teléfono correctos</span></button>
+            <button type="button" class="ap-opt" data-p="nombre" data-v="medio"><strong>Aparece, pero hay algo mal</strong><span>Falta el horario, el teléfono está viejo, la dirección no es, o dice "cerrado permanentemente"</span></button>
+            <button type="button" class="ap-opt" data-p="nombre" data-v="no"><strong>No aparece</strong><span>No sale, o sale otro negocio distinto</span></button>
+          </div>
+          <button type="button" class="ap-back" data-atras="1">← Regresar</button>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="ap-step" id="paso3">
+          <p class="ap-count">Paso 3 de 4</p>
+          <h2 class="ap-q">Ahora busca como buscaría un cliente nuevo</h2>
+          <p class="ap-help">Esta es la búsqueda que de verdad importa. Casi nadie escribe el nombre de un negocio que todavía no conoce — escribe lo que necesita.</p>
+
+          <a class="ap-search" id="apLinkGiro" href="#" target="_blank" rel="noopener">
+            <span class="k">Google Maps</span>
+            <span class="q" id="apTextoGiro">—</span>
+            <span class="go">Abrir la búsqueda →</span>
+          </a>
+
+          <p class="ap-help" style="margin-top:18px;margin-bottom:0"><strong>¿Saliste en esa lista?</strong></p>
+          <div class="ap-opts">
+            <button type="button" class="ap-opt" data-p="giro" data-v="bien"><strong>Sí, salgo entre los primeros</strong><span>Se ve mi negocio sin tener que buscar mucho</span></button>
+            <button type="button" class="ap-opt" data-p="giro" data-v="medio"><strong>Salgo, pero muy abajo</strong><span>Tuve que bajar bastante para encontrarme</span></button>
+            <button type="button" class="ap-opt" data-p="giro" data-v="no"><strong>No salgo</strong><span>Solo aparece mi competencia</span></button>
+          </div>
+          <button type="button" class="ap-back" data-atras="2">← Regresar</button>
+        </div>
+
+        <!-- PASO 4 -->
+        <div class="ap-step" id="paso4">
+          <p class="ap-count">Paso 4 de 4</p>
+          <h2 class="ap-q">¿Y en el iPhone?</h2>
+          <p class="ap-help">Apple Maps es un mapa aparte, con su propia base de datos. Un negocio puede salir perfecto en Google y no existir en Apple. Es la mitad de los teléfonos en Estados Unidos.</p>
+
+          <a class="ap-search" id="apLinkApple" href="#" target="_blank" rel="noopener">
+            <span class="k">Apple Maps</span>
+            <span class="q" id="apTextoApple">—</span>
+            <span class="go">Abrir la búsqueda →</span>
+          </a>
+
+          <p class="ap-help" style="margin-top:18px;margin-bottom:0"><strong>¿Qué viste?</strong></p>
+          <div class="ap-opts">
+            <button type="button" class="ap-opt" data-p="apple" data-v="bien"><strong>Aparece bien</strong><span>Sale con su información correcta</span></button>
+            <button type="button" class="ap-opt" data-p="apple" data-v="medio"><strong>Aparece, pero con datos viejos o incompletos</strong><span></span></button>
+            <button type="button" class="ap-opt" data-p="apple" data-v="no"><strong>No aparece</strong><span>O no pude abrirlo desde este dispositivo</span></button>
+          </div>
+          <button type="button" class="ap-back" data-atras="3">← Regresar</button>
+        </div>
+
+        <!-- RESULTADO -->
+        <div class="ap-step" id="pasoResultado">
+          <p class="ap-count">Tu resultado</p>
+          <div id="apVerdict"></div>
+          <div class="ap-findings" id="apFindings"></div>
+
+          <div class="ap-evidence">
+            <h4>Por qué esto importa (con evidencia, no con miedo)</h4>
+            <p>Un estudio de Harvard Business School midió ingresos reales de restaurantes independientes y encontró que <strong>una estrella más en su calificación en línea equivale a entre 5 % y 9 % más de ingresos</strong>. El efecto aparecía solo en los negocios independientes — las cadenas no cambiaban, porque la gente ya las conoce.</p>
+            <p>Ese estudio es sobre calificaciones, no sobre aparecer o no. Pero la cadena es sencilla: <strong>no puedes tener reseñas si no tienes ficha.</strong> Sin ficha, ese mecanismo —el que mueve dinero de verdad para los negocios independientes— simplemente no está disponible para ti.</p>
+            <cite>Michael Luca, Harvard Business School, «Reviews, Reputation, and Revenue: The Case of Yelp.com», Working Paper 12-016.</cite>
+          </div>
+
+          <div class="ap-todo">
+            <h3>Qué hacer, paso a paso</h3>
+            <p>Esto lo puedes hacer tú solo, gratis. Lo escribo completo a propósito: si lo haces por tu cuenta, me da gusto igual.</p>
+            <ol id="apTodo"></ol>
+          </div>
+
+          <div class="ap-offer">
+            <h3>Y si prefieres que lo haga yo</h3>
+            <p>Lo de arriba toma varias horas y suele trabarse en la verificación — sobre todo la de Apple, que pide dos métodos y documentos oficiales. Si prefieres no pelearte con eso, yo lo hago completo y te aviso cuando esté listo.</p>
+            <div class="ap-actions">
+              <a href="listar-negocio.html" class="btn btn-gold" data-umami-event="aparezco-a-listar">Que lo haga Themora</a>
+              <a href="agendar.html?tema=listar" class="btn btn-outline" data-umami-event="aparezco-a-cita">Primero quiero preguntar</a>
+              <button type="button" class="btn btn-outline" id="apImprimir">Guardar este resultado</button>
+            </div>
+          </div>
+
+          <button type="button" class="ap-back" id="apReiniciar">← Revisar otro negocio</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+
+  // Todo vive en memoria. Si cierras la pestaña, desaparece.
+  const datos = { nombre:'', ciudad:'', giro:'', nombreR:null, giroR:null, appleR:null };
+
+  const PASOS = ['paso1','paso2','paso3','paso4','pasoResultado'];
+  function mostrar(id){
+    PASOS.forEach(p => $(p).classList.toggle('is-on', p === id));
+    document.querySelector('.ap-card').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  const stat = (n,d) => { if(window.ThemoraStats) window.ThemoraStats.evento(n,d); };
+
+  /* ---- Paso 1 ---- */
+  $('apIr1').addEventListener('click', () => {
+    datos.nombre = $('apNombre').value.trim();
+    datos.ciudad = $('apCiudad').value.trim();
+    datos.giro   = $('apGiro').value.trim();
+
+    if(!datos.nombre){ $('apNombre').focus(); $('apNombre').style.borderColor='#b3402a'; return; }
+    $('apNombre').style.borderColor='';
+
+    const q1 = datos.nombre + (datos.ciudad ? ' ' + datos.ciudad : '');
+    const q2 = (datos.giro || datos.nombre) + (datos.ciudad ? ' en ' + datos.ciudad : ' cerca de mí');
+
+    $('apTextoNombre').textContent = q1;
+    $('apLinkNombre').href = 'https://www.google.com/maps/search/' + encodeURIComponent(q1);
+
+    $('apTextoGiro').textContent = q2;
+    $('apLinkGiro').href = 'https://www.google.com/maps/search/' + encodeURIComponent(q2);
+
+    $('apTextoApple').textContent = q1;
+    $('apLinkApple').href = 'https://maps.apple.com/?q=' + encodeURIComponent(q1);
+
+    stat('aparezco-empezar', { tiene_giro: datos.giro ? 'si' : 'no' });
+    mostrar('paso2');
+  });
+
+  /* ---- Respuestas ---- */
+  document.querySelectorAll('.ap-opt').forEach(b => {
+    b.addEventListener('click', () => {
+      const p = b.dataset.p, v = b.dataset.v;
+      if(p === 'nombre'){ datos.nombreR = v; stat('aparezco-p2',{r:v}); mostrar('paso3'); }
+      else if(p === 'giro'){ datos.giroR = v; stat('aparezco-p3',{r:v}); mostrar('paso4'); }
+      else { datos.appleR = v; stat('aparezco-p4',{r:v}); resultado(); }
+    });
+  });
+
+  document.querySelectorAll('[data-atras]').forEach(b => {
+    b.addEventListener('click', () => mostrar('paso' + b.dataset.atras));
+  });
+
+  /* ---- Resultado ---- */
+  function resultado(){
+    const malos = [datos.nombreR, datos.giroR, datos.appleR].filter(v => v === 'no').length;
+    const medios = [datos.nombreR, datos.giroR, datos.appleR].filter(v => v === 'medio').length;
+    const negocio = datos.nombre;
+
+    let clase, titulo, texto;
+    if(malos >= 2){
+      clase='malo'; titulo='Hoy tu negocio es casi invisible en los mapas';
+      texto='Un cliente nuevo que ande buscando lo que tú vendes no te va a encontrar. No es tu culpa ni es algo que hiciste mal — es un trámite que nadie te dijo que existía. Y tiene arreglo.';
+    } else if(malos === 1 || medios >= 2){
+      clase='medio'; titulo='Estás a medias, y ahí es donde se pierde gente';
+      texto='Existes, pero con huecos. Un negocio con la información incompleta o que solo sale en un mapa pierde justo a los clientes que estaban a un paso de llegar.';
+    } else if(medios === 1){
+      clase='medio'; titulo='Vas bien, pero hay un detalle que arreglar';
+      texto='Lo importante ya está. Falta afinar un punto — y esos detalles son los que hacen que alguien decida entrar o seguir de largo.';
+    } else {
+      clase='bien'; titulo='Tu negocio está bien puesto en los mapas';
+      texto='En serio: la mayoría no está así. Ya tienes lo básico. Lo siguiente que mueve la aguja son las reseñas y mantener la información al día.';
+    }
+
+    $('apVerdict').innerHTML =
+      '<div class="ap-verdict '+clase+'"><h3>'+esc(titulo)+'</h3><p>'+esc(texto)+'</p></div>';
+
+    const F = [];
+    const marca = v => v==='bien' ? ['si','✓'] : v==='medio' ? ['mas','!'] : ['no','✕'];
+
+    const t1 = { bien:'<b>Google te encuentra por tu nombre.</b> Quien ya te conoce puede llegar, ver tu horario y llamarte.',
+                 medio:'<b>Sales en Google, pero con información equivocada.</b> Un horario viejo o un teléfono que no contesta hace más daño que no salir: el cliente ya hizo el esfuerzo de buscarte y se topó con una pared.',
+                 no:'<b>No sales en Google ni buscándote por tu nombre.</b> Es lo más urgente. Alguien que te recomendaron no tiene forma de llegar a ti.' }[datos.nombreR];
+    const t2 = { bien:'<b>Apareces cuando alguien busca lo que vendes.</b> Esto es lo más difícil de lograr y ya lo tienes.',
+                 medio:'<b>Apareces, pero muy abajo.</b> Casi nadie baja tanto. En la práctica te está viendo muy poca gente nueva.',
+                 no:'<b>No apareces en la búsqueda que trae clientes nuevos.</b> Ese es el hueco que más dinero cuesta: todos los que buscaban lo que tú vendes se fueron con tu competencia.' }[datos.giroR];
+    const t3 = { bien:'<b>También estás en Apple Maps.</b> Bien — muchos negocios no lo revisan nunca.',
+                 medio:'<b>En Apple Maps tu información está incompleta.</b> Apple llena huecos con datos de otras fuentes, y a veces se equivoca.',
+                 no:'<b>No estás en Apple Maps.</b> Es un mapa distinto, con su propia base de datos: estar en Google no te pone ahí. Son todos los clientes con iPhone, además de Siri y el mapa del carro.' }[datos.appleR];
+
+    [[datos.nombreR,t1],[datos.giroR,t2],[datos.appleR,t3]].forEach(([v,txt]) => {
+      const [c,s] = marca(v);
+      F.push('<div class="ap-finding '+c+'"><span class="mark">'+s+'</span><div>'+txt+'</div></div>');
+    });
+    $('apFindings').innerHTML = F.join('');
+
+    // Lista de tareas, ordenada por lo que más duele primero
+    const T = [];
+    if(datos.nombreR !== 'bien' || datos.giroR !== 'bien'){
+      T.push('<b>Reclama tu ficha en Google.</b> Entra a <code>google.com/business</code> con tu cuenta de Google y busca tu negocio. Si ya existe, pide reclamarlo; si no, créalo. Google te manda una postal con un código a tu dirección, o te pide un video del local.');
+    }
+    T.push('<b>Llena TODO, no solo el nombre.</b> Horario de cada día, teléfono que de verdad contesten, categoría correcta, y la descripción en español y en inglés. Los perfiles a medias salen más abajo.');
+    T.push('<b>Sube fotos de verdad, no de catálogo.</b> El local por fuera para que lo reconozcan desde la calle, por dentro, y lo que vendes. Al menos ocho, tomadas con buena luz.');
+    if(datos.appleR !== 'bien'){
+      T.push('<b>Registra el negocio en Apple.</b> Entra a <code>business.apple.com</code>. Apple pide <strong>dos métodos de verificación</strong> en 60 días: el EIN del negocio, validación del dominio, o documentos oficiales como la licencia o un recibo de servicios a nombre del negocio. Es la parte donde más gente se atora.');
+    }
+    T.push('<b>Pide reseñas, de frente y sin pena.</b> A los clientes contentos, en el momento en que están contentos. Es lo único de esta lista que sigue trabajando para ti todos los días.');
+    T.push('<b>Revísalo cada tres meses.</b> Google y Apple cambian datos solos, y cualquiera puede «sugerir una corrección» a tu ficha sin avisarte.');
+    $('apTodo').innerHTML = T.map(x => '<li>'+x+'</li>').join('');
+
+    stat('aparezco-resultado', { veredicto: clase, sin_google: datos.giroR==='no'?'si':'no', sin_apple: datos.appleR==='no'?'si':'no' });
+    mostrar('pasoResultado');
+    if(negocio) document.title = '¿Aparece ' + negocio + '? | Themora';
+  }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  $('apImprimir').addEventListener('click', () => { stat('aparezco-guardar'); window.print(); });
+  $('apReiniciar').addEventListener('click', () => {
+    datos.nombreR = datos.giroR = datos.appleR = null;
+    mostrar('paso1');
+  });
+
+  // Enter para avanzar en el paso 1
+  ['apNombre','apCiudad','apGiro'].forEach(id => {
+    $(id).addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); $('apIr1').click(); } });
+  });
+})();
+</script>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script src="site-search-index.js"></script>
+<script src="credit-coach.js"></script>
+<script src="nav.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

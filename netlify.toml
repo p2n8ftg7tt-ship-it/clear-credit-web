@@ -7,3 +7,64 @@
   to = "/index.html"
   status = 301
   force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# Notas internas: se quedan en tu carpeta y en GitHub, pero NO se sirven
+# en el sitio. Antes de esto, cualquiera podía descargar
+# INSTRUCCIONES-ADMIN.md y leer cómo está montado el panel, la base de
+# datos y la autenticación. No había llaves adentro, pero sí el mapa.
+# ─────────────────────────────────────────────────────────────────────
+
+[[redirects]]
+  from = "/INFORME-CREDITO-CLARO.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-ADMIN.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-CUENTAS.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-FORMAR-NEGOCIO.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-IA.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-LISTAR-NEGOCIO.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-LOGIN-SOCIAL.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-PLANES.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/index.html"
+  status = 404
+  force = true
