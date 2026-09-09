@@ -255,7 +255,7 @@
 
         <div class="cc-tabs" role="tablist" aria-label="Forma de analizar la carta">
           <button type="button" class="cc-tab-btn is-active" id="ccTabFile" role="tab" aria-selected="true" aria-controls="ccPanelFile">📄 Subir foto o documento</button>
-          <button type="button" class="cc-tab-btn" id="ccTabPaste" role="tab" aria-selected="false" aria-controls="ccPanelPaste">⌨️ Pegar el texto</button>
+          <button type="button" class="cc-tab-btn" id="ccTabPaste" data-umami-event="carta-pegar-texto" role="tab" aria-selected="false" aria-controls="ccPanelPaste">⌨️ Pegar el texto</button>
         </div>
 
         <div class="cc-tab-panel" id="ccPanelFile" role="tabpanel">
@@ -265,7 +265,7 @@
               <div class="cr-upload-icon">↑</div>
               <h3>Arrastra la carta aquí</h3>
               <p>o selecciónala desde tu computadora o teléfono — puedes usar una foto</p>
-              <button class="cr-select-btn" id="crSelectButton" type="button">Seleccionar archivo</button>
+              <button class="cr-select-btn" id="crSelectButton" data-umami-event="carta-subir" type="button">Seleccionar archivo</button>
               <small>Foto (JPG, PNG) · PDF · Word (.docx) · Máximo 20 MB</small>
             </div>
             <div class="cr-file-ready" id="crFileReady" hidden>
@@ -283,7 +283,7 @@
           </div>
         </div>
 
-        <button class="cr-analyze-btn" id="crAnalyzeButton" type="button">Explicar esta carta <span>→</span></button>
+        <button class="cr-analyze-btn" id="crAnalyzeButton" data-umami-event="carta-explicar" type="button">Explicar esta carta <span>→</span></button>
         <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
           <span class="cr-spinner"></span>
           <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Esto se hace en tu propio navegador</small></div>
@@ -754,6 +754,17 @@
     const isScam=String(result.alerta_estafa||'no').toLowerCase()==='si';
     highlightScopeChip(isScam?'estafa':categoria);
 
+    /* Analítica: solo la etiqueta de la categoría y si se detectó estafa.
+       NUNCA el contenido de la carta ni ningún dato de la persona. */
+    if(window.ThemoraStats){
+      window.ThemoraStats.evento('carta-explicada',{
+        categoria: categoria,
+        urgencia: urgencia,
+        estafa: isScam ? 'si' : 'no',
+        origen: source === 'paste' ? 'texto' : 'archivo'
+      });
+    }
+
     $('ccCatBadge').textContent=CATEGORY_LABELS[categoria]||CATEGORY_LABELS.otro;
 
     const urgBadge=$('ccUrgBadge');
@@ -854,5 +865,6 @@
 <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>

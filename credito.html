@@ -395,7 +395,7 @@
             <div class="cr-upload-icon">↑</div>
             <h3>Arrastra tu documento aquí</h3>
             <p>o selecciónalo desde tu computadora o teléfono</p>
-            <button class="cr-select-btn" id="crSelectButton" type="button">Seleccionar documento</button>
+            <button class="cr-select-btn" id="crSelectButton" data-umami-event="reporte-subir" type="button">Seleccionar documento</button>
             <small>PDF · Word (.docx) · Excel (.xlsx, .xls, .csv) · Máximo 20 MB</small>
           </div>
           <div class="cr-file-ready" id="crFileReady" hidden>
@@ -404,7 +404,7 @@
             <button class="cr-change-btn" id="crChangeButton" type="button">Cambiar</button>
           </div>
         </div>
-        <button class="cr-analyze-btn" id="crAnalyzeButton" type="button" hidden>Evaluar documento <span>→</span></button>
+        <button class="cr-analyze-btn" id="crAnalyzeButton" data-umami-event="reporte-evaluar" type="button" hidden>Evaluar documento <span>→</span></button>
         <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
           <span class="cr-spinner"></span>
           <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Extraemos únicamente el contenido necesario</small></div>
@@ -1633,5 +1633,6 @@
 <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>

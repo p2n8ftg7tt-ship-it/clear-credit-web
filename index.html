@@ -142,8 +142,8 @@
           <h1 data-cms="index_hero_titulo">Tu crédito, explicado como se lo explicarías a un amigo.</h1>
           <p data-cms="index_hero_texto">Nadie debería tomar la decisión más grande de su vida —comprar casa o auto— sin entender los números detrás. Aquí los desglosamos en español claro, sin letra pequeña y sin venderte nada.</p>
           <div class="home-hero-actions">
-            <a href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte gratis</a>
-            <a href="#por-que" class="btn btn-outline">¿Por qué existe este sitio?</a>
+            <a data-umami-event="inicio-analizar-reporte" href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte gratis</a>
+            <a data-umami-event="inicio-por-que" href="#por-que" class="btn btn-outline">¿Por qué existe este sitio?</a>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
           <p>Cada ruta tiene sus propios requisitos, tasas y contratos — por eso las separamos, para que profundices sin mezclar información.</p>
         </div>
         <div class="routes-grid">
-          <a class="route-card" href="comprar-casa.html">
+          <a data-umami-event="inicio-ruta-casa" class="route-card" href="comprar-casa.html">
             <div class="route-img"><img src="images/hero-compra-casa.jpg" alt="Comprar una casa"></div>
             <div class="route-body">
               <span class="route-kicker">Vivienda</span>
@@ -190,7 +190,7 @@
               <span class="route-cta">Entrar a la ruta de casa →</span>
             </div>
           </a>
-          <a class="route-card" href="comprar-auto.html">
+          <a data-umami-event="inicio-ruta-auto" class="route-card" href="comprar-auto.html">
             <div class="route-img"><img src="images/hero-compra-auto.jpg" alt="Comprar un auto"></div>
             <div class="route-body">
               <span class="route-kicker">Vehículo</span>
@@ -280,5 +280,6 @@
   <script src="site-search-index.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>

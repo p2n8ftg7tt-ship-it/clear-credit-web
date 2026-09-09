@@ -277,7 +277,7 @@
             <p><span>Pronto inicial</span><strong id="mortgageDownAmount">$0</strong></p>
             <p><span>Interés durante el plazo</span><strong id="mortgageInterestTotal">$0</strong></p>
           </div>
-          <button class="btn btn-gold" id="mortgageSaveButton" type="button" style="margin-top:16px;" hidden>Guardar este cálculo</button>
+          <button class="btn btn-gold" id="mortgageSaveButton" data-umami-event="hipoteca-guardar" type="button" style="margin-top:16px;" hidden>Guardar este cálculo</button>
           <p class="mortgage-note" id="mortgageSaveHint" hidden><a href="login.html" style="color:var(--gold-light);text-decoration:underline;">Inicia sesión</a> para guardar este cálculo en tu cuenta.</p>
           <p class="mortgage-note">Estimación educativa. No incluye PMI, costos de cierre ni cambios futuros en impuestos o seguro.</p>
         </aside>
@@ -739,7 +739,7 @@
         <span class="eyebrow-dark">Herramienta gratuita · Fair Debt Collection Practices Act</span>
         <h2>Carta para exigir que un cobrador deje de contactarte</h2>
         <p class="cd-tool-intro">Si una agencia de cobranza te llama con frecuencia excesiva, te llama al trabajo o simplemente quieres que toda comunicación futura sea por escrito, la ley federal te da ese derecho. Completa el formulario y prepara tu carta en un minuto — esta herramienta es independiente y no depende de haber analizado ningún reporte de crédito.</p>
-        <button type="button" class="cd-toggle" id="cdToggle" aria-expanded="false" aria-controls="cdForm">Preparar mi carta</button>
+        <button type="button" class="cd-toggle" id="cdToggle" data-umami-event="carta-disputa-preparar" aria-expanded="false" aria-controls="cdForm">Preparar mi carta</button>
 
         <form id="cdForm" class="cd-form" hidden>
           <div class="cd-fields">
@@ -776,7 +776,7 @@
           <div class="cd-result" id="cdResult" hidden>
             <strong>Borrador de tu carta</strong>
             <textarea class="cd-letter" id="cdLetter" readonly aria-label="Borrador de carta de cese de comunicación"></textarea>
-            <button type="button" class="cd-copy" id="cdCopy">Copiar borrador</button>
+            <button type="button" class="cd-copy" id="cdCopy" data-umami-event="carta-disputa-copiar">Copiar borrador</button>
           </div>
         </form>
         <p class="cd-note">Basado en la Fair Debt Collection Practices Act (15 U.S.C. § 1692c(c)). Envía la carta por correo certificado con acuse de recibo y guarda una copia — es tu comprobante si necesitas hacer valer tus derechos más adelante. Esto es contenido educativo, no asesoría legal.</p>
@@ -953,5 +953,6 @@
 <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>
