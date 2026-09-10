@@ -68,3 +68,16 @@
   to = "/index.html"
   status = 404
   force = true
+
+# El script de limpieza y la papelera son de tu computadora, no del sitio
+[[redirects]]
+  from = "/LIMPIAR.bat"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/_papelera/*"
+  to = "/index.html"
+  status = 404
+  force = true
