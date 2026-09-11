@@ -148,6 +148,64 @@
     .cc-tabs{flex-direction:column;}
     .cc-crosslink{flex-direction:column;align-items:flex-start;}
   }
+
+  /* ===== Resultado del intérprete ===== */
+  .cc-deadline{display:flex;align-items:center;gap:14px;background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.28);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .cc-deadline[hidden]{display:none}
+  .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#8a2b2b;flex:none}
+  .cc-deadline strong{font-family:'Fraunces',serif;font-size:1.3rem;line-height:1.2;color:#8a2b2b}
+
+  .cc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .cc-meta[hidden]{display:none}
+  .cc-meta-item{flex:1 1 auto;min-width:150px;border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fff}
+  .cc-meta-item[hidden]{display:none}
+  .cc-meta-item span{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+  .cc-meta-item strong{font-size:.95rem;color:var(--navy-deep);line-height:1.35;word-break:break-word}
+
+  .cc-panel-note{font-size:.84rem;color:var(--muted);line-height:1.55;margin:-4px 0 12px;font-style:italic}
+  .cc-panel-warn{border-left:3px solid var(--gold)}
+
+  .cc-list{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .cc-list li{position:relative;padding-left:26px;line-height:1.62}
+  .cc-list li::before{content:"";position:absolute;left:6px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--teal)}
+  .cc-list-rights li::before{background:var(--good)}
+
+  .cc-phrases{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+  .cc-phrases li{border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:0 11px 11px 0;padding:13px 16px;background:#fff}
+  .cc-phrase-en{display:block;font-weight:700;color:var(--navy-deep);line-height:1.5}
+  .cc-phrase-es{display:block;font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.5}
+
+  .cc-lawyer{border:1px solid rgba(31,110,115,.3);background:rgba(31,110,115,.06);border-radius:16px;padding:22px 24px;margin-top:18px}
+  .cc-lawyer[hidden]{display:none}
+  .cc-lawyer-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .cc-lawyer-icon{flex:none;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:800 1rem 'Fraunces',serif}
+  .cc-lawyer h4{margin:0;font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.28;color:var(--navy-deep)}
+  .cc-lawyer p{margin:0 0 12px;line-height:1.65;font-size:.94rem}
+  .cc-lawyer-free{background:#fff;border-radius:10px;padding:13px 15px;font-size:.9rem!important}
+
+  .cc-translation{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#fff}
+  .cc-translation[hidden]{display:none}
+  .cc-translation summary{cursor:pointer;padding:14px 18px;font-weight:700;color:var(--navy);font-size:.93rem}
+  .cc-translation summary::marker{color:var(--teal)}
+  .cc-translation p{margin:0;padding:0 18px 18px;line-height:1.72;color:var(--ink);white-space:pre-wrap}
+
+  @media (max-width:620px){
+    .cc-deadline{flex-direction:column;align-items:flex-start;gap:6px}
+    .cc-meta-item{min-width:100%}
+  }
+
+  /* ===== Permiso para mandar la foto ===== */
+  .cc-permiso{border:2px solid var(--gold);background:rgba(184,134,48,.07);border-radius:16px;padding:24px 26px;margin-top:18px}
+  .cc-permiso[hidden]{display:none}
+  .cc-permiso h4{margin:0 0 12px;font-family:'Fraunces',serif;font-size:1.16rem;line-height:1.3;color:var(--navy-deep)}
+  .cc-permiso p{margin:0 0 12px;line-height:1.66;font-size:.94rem;color:var(--ink)}
+  .cc-permiso-lista{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+  .cc-permiso-lista li{display:flex;gap:11px;align-items:flex-start;background:#fff;border-radius:10px;padding:12px 14px;font-size:.9rem;line-height:1.58}
+  .cc-permiso-lista .si,.cc-permiso-lista .no{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:800;color:#fff;margin-top:1px}
+  .cc-permiso-lista .si{background:var(--good)}
+  .cc-permiso-lista .no{background:#b3402a}
+  .cc-permiso-tip{font-size:.87rem!important;color:var(--muted)!important;font-style:italic}
+  .cc-permiso-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 </style>
 </head>
 <body data-cms-page="cartas-claras">
@@ -292,6 +350,25 @@
           <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Esto se hace en tu propio navegador</small></div>
         </div>
         <div class="cr-error" id="crError" role="alert" hidden><b>!</b><p><strong>No pudimos completar el análisis</strong><span id="crErrorText"></span></p></div>
+
+        <!-- Aparece solo cuando el teléfono no pudo leer la foto (por ejemplo,
+             una carta en chino o árabe, que nuestro lector local no reconoce).
+             Pide permiso explícito antes de mandar la imagen, porque en ese
+             camino no se pueden tapar los números antes de salir. -->
+        <div class="cc-permiso" id="ccPermiso" hidden role="alertdialog" aria-labelledby="ccPermisoTitulo">
+          <h4 id="ccPermisoTitulo">No pude leer esta foto aquí en tu dispositivo</h4>
+          <p>Nuestro lector local entiende inglés y español. Si tu carta está en otro idioma —chino, árabe, vietnamita, criollo— no puede leerla.</p>
+          <p><strong>Sí puedo mandar la foto para que la lea la inteligencia artificial, que sí entiende cualquier idioma.</strong> Pero necesito tu permiso, porque hay una diferencia importante:</p>
+          <ul class="cc-permiso-lista">
+            <li><span class="si">✓</span> Normalmente tapamos tu número de seguro social y los números de cuenta <em>antes</em> de que el texto salga de tu teléfono.</li>
+            <li><span class="no">✕</span> Si mandamos la foto, no hay texto que tapar — va tal como se ve, con todo lo que tenga escrito.</li>
+          </ul>
+          <p class="cc-permiso-tip">Si prefieres, cierra esto, tapa con el dedo los números que no quieras mandar, toma la foto otra vez y vuelve a intentar.</p>
+          <div class="cc-permiso-acciones">
+            <button type="button" class="btn btn-gold" id="ccPermisoSi" data-umami-event="carta-foto-permitida">Sí, manda la foto</button>
+            <button type="button" class="btn btn-outline" id="ccPermisoNo">Mejor no</button>
+          </div>
+        </div>
       </div>
 
       <div class="cc-results" id="ccResults" hidden>
@@ -304,15 +381,60 @@
           </div>
         </div>
 
-        <div class="cc-panel">
-          <h4>¿Qué significa?</h4>
-          <p id="ccExplicacion"></p>
+        <!-- Lo primero: la fecha límite. Es el dato por el que se pierde todo. -->
+        <div class="cc-deadline" id="ccDeadline" hidden>
+          <span class="cc-deadline-k">Fecha límite</span>
+          <strong id="ccDeadlineVal"></strong>
+        </div>
+
+        <div class="cc-meta" id="ccMeta" hidden>
+          <div class="cc-meta-item" id="ccFromItem" hidden><span>Quién la envía</span><strong id="ccFrom"></strong></div>
+          <div class="cc-meta-item" id="ccAmountItem" hidden><span>Monto</span><strong id="ccAmount"></strong></div>
+          <div class="cc-meta-item" id="ccLangItem" hidden><span>Idioma original</span><strong id="ccLang"></strong></div>
         </div>
 
         <div class="cc-panel">
-          <h4>Qué puedes hacer</h4>
-          <p id="ccAccion"></p>
+          <h4>Qué dice, en corto</h4>
+          <p id="ccExplicacion"></p>
         </div>
+
+        <div class="cc-panel cc-panel-warn" id="ccNothingPanel" hidden>
+          <h4>Si no haces nada</h4>
+          <p id="ccNothing"></p>
+        </div>
+
+        <div class="cc-panel" id="ccOptionsPanel" hidden>
+          <h4>Tus opciones</h4>
+          <p class="cc-panel-note">Estos son los caminos que existen. Cuál te conviene lo decides tú — nosotros no podemos decidirlo por ti.</p>
+          <ul class="cc-list" id="ccOptions"></ul>
+        </div>
+
+        <div class="cc-panel" id="ccRightsPanel" hidden>
+          <h4>Tus derechos</h4>
+          <p class="cc-panel-note">Esto te lo da la ley. Nadie te lo puede quitar.</p>
+          <ul class="cc-list cc-list-rights" id="ccRights"></ul>
+        </div>
+
+        <div class="cc-panel" id="ccPhrasesPanel" hidden>
+          <h4>Qué decir si llamas</h4>
+          <p class="cc-panel-note">Frases exactas en inglés, con su significado. Puedes leerlas tal cual por teléfono o copiarlas en un correo.</p>
+          <ul class="cc-phrases" id="ccPhrases"></ul>
+        </div>
+
+        <div class="cc-lawyer" id="ccLawyer" hidden>
+          <div class="cc-lawyer-head">
+            <span class="cc-lawyer-icon" aria-hidden="true">§</span>
+            <h4 id="ccLawyerTitle"></h4>
+          </div>
+          <p id="ccLawyerWhy"></p>
+          <p class="cc-lawyer-free"><strong>Hay ayuda legal gratis.</strong> LawHelp.org es un directorio sin fines de lucro de asistencia legal gratuita en los 50 estados. No cuesta nada usarlo, y tienen una guía sobre tu derecho a que te atiendan en tu idioma.</p>
+          <a class="btn btn-gold" href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer" data-umami-event="carta-ayuda-legal">Buscar ayuda legal gratis en mi estado ↗</a>
+        </div>
+
+        <details class="cc-translation" id="ccTranslationBox" hidden>
+          <summary>Leer la traducción completa de la carta</summary>
+          <p id="ccTranslation"></p>
+        </details>
 
         <div class="cc-scam-alert" id="ccScamAlert" hidden>
           <b>⚠</b>
@@ -344,8 +466,8 @@
         <h2>Antes de empezar</h2>
       </div>
       <div class="qa-list">
-        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No. Es una herramienta educativa que te ayuda a entender el tipo de carta que recibiste, su nivel de urgencia y los pasos generales que otras personas en tu situación suelen tomar. Para casos graves — una demanda, un posible fraude de identidad o un embargo — siempre recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área.</p></div>
-        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer?</h3><p>Cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes o juzgados, y documentos médicos o de seguro de salud (facturas de hospital, resúmenes de beneficios, decisiones de la aseguranza). También identifica señales comunes de estafa. Si no reconoce el tipo de carta, te lo dirá honestamente en vez de adivinar.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No, y es importante que quede claro. Te dice <strong>qué dice</strong> tu carta, qué fecha límite tiene, qué pasa si no haces nada, qué opciones existen y qué derechos te da la ley. Lo que <strong>no</strong> hace es decidir por ti cuál opción tomar en tu caso — eso es asesoría legal y solo un abogado puede darla. Cuando la carta lo amerita, te lo decimos y te mandamos a <a href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer">LawHelp.org</a>, un directorio de asistencia legal <strong>gratuita</strong> en los 50 estados.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer, y en qué idioma?</h3><p>Cartas de cobradores, bancos, burós de crédito, el IRS, cortes, documentos médicos y de seguro, avisos de gobierno, de empleo y de vivienda. También identifica señales de estafa. <strong>La carta puede venir en cualquier idioma</strong> — inglés casi siempre, pero también portugués, francés, criollo, chino o el que sea: la respuesta siempre sale en español. Si no reconoce el tipo de documento, te lo dirá honestamente en vez de adivinar.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social, de cuenta y de expediente o póliza médica que aparezcan en el texto.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué hago si es una foto y no se lee bien?</h3><p>Intenta con buena luz, sin sombras y con la carta lo más plana posible. Si el texto sigue sin leerse bien, usa la pestaña "Pegar el texto" y escribe o copia el contenido directamente.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Cómo sé si es una estafa?</h3><p>Buscamos señales conocidas: exigencias de pago con tarjetas de regalo o transferencias, amenazas de arresto inmediato, presión para no decirle a nadie, plazos de solo horas, o solicitudes de tu número de seguro social sin verificación. Si detectamos estas señales, te lo advertimos de inmediato — pero ante cualquier duda, nunca envíes dinero ni información personal sin verificar primero por un medio oficial.</p></div>
@@ -452,6 +574,7 @@
 
   function selectFile(file){
     if(!file)return;
+    const panelPermiso=$('ccPermiso'); if(panelPermiso)panelPermiso.hidden=true;
     const extension=(file.name.split('.').pop()||'').toLowerCase();
     errorBox.hidden=true;
     if(!allowedExt.includes(extension)){
@@ -517,10 +640,60 @@
     });
     try{
       const {data}=await worker.recognize(file);
-      return {text:data.text,detail:'Foto (texto leído automáticamente)'};
+      return {
+        text:data.text,
+        detail:'Foto (texto leído automáticamente)',
+        confianza:typeof data.confidence==='number'?data.confidence:null,
+        esFoto:true
+      };
     }finally{
       await worker.terminate();
     }
+  }
+
+  /* ¿El lector del teléfono entendió la foto, o sacó basura?
+     Tesseract está configurado en inglés+español. Una carta en chino, árabe,
+     vietnamita o criollo sale como caracteres sueltos sin sentido. Esto lo
+     detecta para poder ofrecer el otro camino en vez de dar un error seco. */
+  function lecturaConfiable(extracted){
+    if(!extracted||!extracted.esFoto)return true;          // PDF y Word no pasan por aquí
+    const texto=String(extracted.text||'').trim();
+    const sinEspacios=texto.replace(/\s+/g,'');
+    if(sinEspacios.length<100)return false;                 // apenas sacó nada
+    if(typeof extracted.confianza==='number'&&extracted.confianza<55)return false;
+    // Proporción de letras reales frente a signos raros
+    const letras=(texto.match(/[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g)||[]).length;
+    if(letras/sinEspacios.length<0.55)return false;
+    // Palabras de 3+ letras: el texto basura casi no tiene
+    const palabras=(texto.match(/[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]{3,}/g)||[]).length;
+    if(palabras<15)return false;
+    return true;
+  }
+
+  /* Reduce la foto antes de mandarla: 1568 px de lado mayor es el tamaño que
+     mejor equilibra lectura y costo. Sale en JPEG para que pese poco. */
+  function reducirFoto(file,maxLado=1568,calidad=0.85){
+    return new Promise((resolve,reject)=>{
+      const url=URL.createObjectURL(file);
+      const img=new Image();
+      img.onload=()=>{
+        URL.revokeObjectURL(url);
+        let{width:w,height:h}=img;
+        if(Math.max(w,h)>maxLado){
+          const f=maxLado/Math.max(w,h);
+          w=Math.round(w*f);h=Math.round(h*f);
+        }
+        const c=document.createElement('canvas');
+        c.width=w;c.height=h;
+        const ctx=c.getContext('2d');
+        ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);   // fondo blanco por si es PNG transparente
+        ctx.drawImage(img,0,0,w,h);
+        const dataUrl=c.toDataURL('image/jpeg',calidad);
+        resolve({base64:dataUrl.split(',')[1],mediaType:'image/jpeg'});
+      };
+      img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('No se pudo abrir la foto.'));};
+      img.src=url;
+    });
   }
 
   async function extractFromFile(file){
@@ -691,7 +864,7 @@
   }
 
   /* ===== Análisis con IA real (solo con sesión activa — mismo patrón que Mr. Credit Coach) ===== */
-  async function callExplainLetter(redactedText){
+  async function callExplainLetter(redactedText, foto){
     if(!window.CCAuth||!window.CCAuth.isConfigured)return null;
     const user=window.CCAuth.getUser&&window.CCAuth.getUser();
     if(!user)return null;
@@ -701,7 +874,9 @@
     const res=await fetch('/.netlify/functions/explain-letter',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({letterText:redactedText,accessToken})
+      body:JSON.stringify(foto
+        ? {imageBase64:foto.base64,mediaType:foto.mediaType,accessToken}
+        : {letterText:redactedText,accessToken})
     });
     const data=await res.json().catch(()=>({}));
     if(!res.ok||!data||!data.result)return null;
@@ -750,6 +925,18 @@
     chips.querySelectorAll('.cc-scope-chip').forEach(c=>c.classList.remove('is-detected'));
   }
 
+  /* Muestra u oculta un bloque y, si se muestra, lo llena. */
+  function mostrar(id, condicion, llenar){
+    const el=$(id);
+    if(!el) return;
+    el.hidden=!condicion;
+    if(condicion && typeof llenar==='function') llenar();
+  }
+
+  function escapeHtml(t){
+    return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+
   /* ===== Renderizar resultados ===== */
   function renderResults(result,source,detail){
     const categoria=result.categoria||'otro';
@@ -764,7 +951,10 @@
         categoria: categoria,
         urgencia: urgencia,
         estafa: isScam ? 'si' : 'no',
-        origen: source === 'paste' ? 'texto' : 'archivo'
+        origen: source === 'paste' ? 'texto' : 'archivo',
+        idioma: (result.idioma || 'no detectado').toLowerCase().slice(0, 20),
+        tenia_fecha: (result.fecha_limite || '').trim() ? 'si' : 'no',
+        abogado: String(result.necesitas_abogado || 'no').toLowerCase()
       });
     }
 
@@ -774,8 +964,61 @@
     urgBadge.className='cc-badge cc-badge-urg-'+(['alta','media','baja'].includes(urgencia)?urgencia:'media');
     urgBadge.textContent=URGENCY_LABELS[urgencia]||URGENCY_LABELS.media;
 
-    $('ccExplicacion').textContent=result.explicacion||'No fue posible generar una explicación.';
-    $('ccAccion').textContent=result.accion||'Revisa el documento original y, si tienes dudas, consulta a un profesional.';
+    /* --- Fecha límite: lo primero que tiene que ver --- */
+    const fecha=(result.fecha_limite||'').trim();
+    mostrar('ccDeadline', !!fecha, ()=>{ $('ccDeadlineVal').textContent=fecha; });
+
+    /* --- Datos de cabecera --- */
+    const remitente=(result.remitente||'').trim();
+    const monto=(result.monto||'').trim();
+    const idioma=(result.idioma||'').trim();
+    const hayRemitente = remitente && !/^no identificado$/i.test(remitente);
+    mostrar('ccFromItem', !!hayRemitente, ()=>{ $('ccFrom').textContent=remitente; });
+    mostrar('ccAmountItem', !!monto, ()=>{ $('ccAmount').textContent=monto; });
+    mostrar('ccLangItem', !!idioma, ()=>{ $('ccLang').textContent=idioma; });
+    mostrar('ccMeta', !!(hayRemitente||monto||idioma));
+
+    /* --- Qué dice / si no haces nada --- */
+    $('ccExplicacion').textContent=result.que_dice||result.explicacion||'No fue posible generar una explicación.';
+    const nada=(result.si_no_haces_nada||'').trim();
+    mostrar('ccNothingPanel', !!nada, ()=>{ $('ccNothing').textContent=nada; });
+
+    /* --- Listas --- */
+    const opciones=Array.isArray(result.tus_opciones)?result.tus_opciones:[];
+    mostrar('ccOptionsPanel', opciones.length>0, ()=>{
+      $('ccOptions').innerHTML=opciones.map(o=>'<li>'+escapeHtml(o)+'</li>').join('');
+    });
+
+    const derechos=Array.isArray(result.tus_derechos)?result.tus_derechos:[];
+    mostrar('ccRightsPanel', derechos.length>0, ()=>{
+      $('ccRights').innerHTML=derechos.map(d=>'<li>'+escapeHtml(d)+'</li>').join('');
+    });
+
+    /* Las frases vienen como: Frase en inglés. (Significado en español.) */
+    const frases=Array.isArray(result.frases_en_ingles)?result.frases_en_ingles:[];
+    mostrar('ccPhrasesPanel', frases.length>0, ()=>{
+      $('ccPhrases').innerHTML=frases.map(f=>{
+        const m=String(f).match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+        const en=m?m[1].trim():String(f).trim();
+        const es=m?m[2].trim():'';
+        return '<li><span class="cc-phrase-en">'+escapeHtml(en)+'</span>'+
+               (es?'<span class="cc-phrase-es">'+escapeHtml(es)+'</span>':'')+'</li>';
+      }).join('');
+    });
+
+    /* --- Abogado: el puente a ayuda real --- */
+    const nivel=String(result.necesitas_abogado||'no').toLowerCase();
+    mostrar('ccLawyer', nivel==='recomendable'||nivel==='urgente', ()=>{
+      $('ccLawyerTitle').textContent = nivel==='urgente'
+        ? 'Esta carta necesita un abogado, y no conviene esperar'
+        : 'Conviene que un abogado la revise';
+      $('ccLawyerWhy').textContent = (result.por_que_abogado||'').trim() ||
+        'Por el tipo de documento, una persona con licencia debería revisarlo antes de que respondas.';
+    });
+
+    /* --- Traducción completa, plegada --- */
+    const trad=(result.traduccion||'').trim();
+    mostrar('ccTranslationBox', !!trad, ()=>{ $('ccTranslation').textContent=trad; });
 
     const scamBox=$('ccScamAlert');
     if(isScam){
@@ -822,6 +1065,14 @@
         const extracted=await extractFromFile(selectedFile);
         raw=(extracted.text||'').trim();
         detail=extracted.detail;
+
+        /* La foto no se pudo leer aquí. En vez de un error seco, ofrecemos
+           el otro camino — pero pidiendo permiso, porque implica mandar la
+           imagen sin poder tapar los números. */
+        if(!lecturaConfiable(extracted)){
+          hideProgress();
+          return pedirPermisoFoto();
+        }
       }
 
       if(!raw||raw.replace(/\s+/g,'').length<15){
@@ -852,6 +1103,42 @@
       showError(err&&err.message?err.message:'Ocurrió un error inesperado. Intenta de nuevo.');
     }
   }
+
+  /* ===== Camino de la foto, con permiso explícito ===== */
+  function pedirPermisoFoto(){
+    errorBox.hidden=true;
+    const panel=$('ccPermiso');
+    panel.hidden=false;
+    panel.scrollIntoView({behavior:'smooth',block:'center'});
+    if(window.ThemoraStats)window.ThemoraStats.evento('carta-foto-permiso-pedido');
+    $('ccPermisoSi').focus();
+  }
+
+  $('ccPermisoNo').addEventListener('click',()=>{
+    $('ccPermiso').hidden=true;
+    showError('Sin problema. Puedes tomar la foto de nuevo tapando lo que no quieras mandar, o usar la pestaña "Pegar el texto" y escribir lo que dice la carta.');
+  });
+
+  $('ccPermisoSi').addEventListener('click',async()=>{
+    $('ccPermiso').hidden=true;
+    if(!selectedFile)return showError('Vuelve a seleccionar la foto.');
+    try{
+      showProgress('Preparando la foto…','Se reduce el tamaño antes de enviarla');
+      const foto=await reducirFoto(selectedFile);
+
+      showProgress('Leyendo la carta…','La inteligencia artificial está interpretando la imagen');
+      const result=await callExplainLetter('',foto);
+      hideProgress();
+
+      if(!result){
+        return showError('No se pudo leer la foto en este momento. Intenta de nuevo en unos minutos, o usa la pestaña "Pegar el texto".');
+      }
+      renderResults(result,'ai','Foto leída directamente (con tu permiso)');
+    }catch(err){
+      hideProgress();
+      showError(err&&err.message?err.message:'No se pudo procesar la foto. Intenta de nuevo.');
+    }
+  });
 
   analyzeButton.addEventListener('click',handleAnalyze);
 })();
