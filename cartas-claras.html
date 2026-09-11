@@ -120,6 +120,7 @@
   .cc-results-head{margin-bottom:20px;}
   .cc-results-head h3{color:var(--navy-deep);font-size:clamp(1.5rem,3vw,2rem);margin:6px 0 0;}
   .cc-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .cc-badge[hidden]{display:none!important;}
   .cc-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font:700 .78rem 'Public Sans',sans-serif;letter-spacing:.01em;}
   .cc-badge-cat{background:rgba(201,138,62,.16);color:#8a5a20;border:1px solid rgba(201,138,62,.45);}
   .cc-badge-urg-alta{background:rgba(179,64,42,.12);color:#8a2b2b;border:1px solid rgba(179,64,42,.42);}
@@ -150,6 +151,18 @@
   }
 
   /* ===== Resultado del intérprete ===== */
+  /* Lo primero que se lee: qué es este papel. Va siempre, sea lo que sea. */
+  .cc-tipo{background:var(--navy-deep,#10243b);border-radius:16px;padding:20px 24px;margin-bottom:16px}
+  .cc-tipo[hidden]{display:none}
+  .cc-tipo-k{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.6);margin-bottom:7px}
+  .cc-tipo p{margin:0;font-family:'Fraunces',serif;font-size:1.22rem;line-height:1.38;color:#fff}
+
+  .cc-general{display:flex;gap:14px;background:rgba(31,110,115,.07);border:1px solid rgba(31,110,115,.28);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .cc-general[hidden]{display:none}
+  .cc-general b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:800 .95rem 'Fraunces',serif}
+  .cc-general h4{margin:0 0 6px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .cc-general p{margin:0;line-height:1.62;font-size:.93rem;color:var(--ink)}
+
   .cc-deadline{display:flex;align-items:center;gap:14px;background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.28);border-radius:14px;padding:18px 22px;margin-bottom:18px}
   .cc-deadline[hidden]{display:none}
   .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#8a2b2b;flex:none}
@@ -192,6 +205,9 @@
   @media (max-width:620px){
     .cc-deadline{flex-direction:column;align-items:flex-start;gap:6px}
     .cc-meta-item{min-width:100%}
+    .cc-tipo{padding:17px 18px}
+    .cc-tipo p{font-size:1.08rem}
+    .cc-general{padding:16px 17px;gap:11px}
   }
 
   /* ===== Permiso para mandar la foto ===== */
@@ -374,10 +390,30 @@
       <div class="cc-results" id="ccResults" hidden>
         <div class="cc-results-head">
           <span class="eyebrow-dark">Resultado</span>
-          <h3>Esto es lo que dice tu carta</h3>
+          <h3 id="ccResultsTitle">Esto es lo que dice tu carta</h3>
           <div class="cc-badges">
             <span class="cc-badge cc-badge-cat" id="ccCatBadge">—</span>
             <span class="cc-badge" id="ccUrgBadge">—</span>
+          </div>
+        </div>
+
+        <!-- Antes que nada: qué es este papel. Aunque no sea una carta. -->
+        <div class="cc-tipo" id="ccTipoDoc">
+          <span class="cc-tipo-k">Este documento se trata de</span>
+          <p id="ccTipoVal"></p>
+        </div>
+
+        <div class="cc-panel" id="ccDatosPanel" hidden>
+          <h4>Datos del documento</h4>
+          <ul class="cc-list" id="ccDatos"></ul>
+        </div>
+
+        <!-- Si no va dirigido a esta persona, decírselo y bajarle el susto. -->
+        <div class="cc-general" id="ccGeneral" hidden>
+          <b>i</b>
+          <div>
+            <h4 id="ccGeneralTitle">Este papel no va dirigido a ti</h4>
+            <p id="ccGeneralText"></p>
           </div>
         </div>
 
@@ -765,7 +801,10 @@
 
   const CATEGORY_LABELS={
     cobrador:'Cobrador de deuda',buro:'Buró de crédito',corte:'Corte o proceso legal',
-    irs:'IRS (impuestos)',banco:'Banco o institución financiera',salud:'Médica o de seguro de salud',estafa:'Posible estafa',otro:'Otro / no identificado'
+    irs:'IRS (impuestos)',banco:'Banco o institución financiera',salud:'Médica o de seguro de salud',
+    gobierno:'Aviso del gobierno',empleo:'Trabajo o empleo',vivienda:'Vivienda o renta',
+    inmigracion:'Inmigración',reglas_trabajo:'Reglamento de trabajo',informativo:'Informativo',
+    estafa:'Posible estafa',otro:'Otro / no identificado'
   };
 
   const URGENCY_LABELS={alta:'Urgente — actúa pronto',media:'Atiéndela esta semana',baja:'Sin prisa, pero revísala'};
@@ -954,13 +993,43 @@
         origen: source === 'paste' ? 'texto' : 'archivo',
         idioma: (result.idioma || 'no detectado').toLowerCase().slice(0, 20),
         tenia_fecha: (result.fecha_limite || '').trim() ? 'si' : 'no',
-        abogado: String(result.necesitas_abogado || 'no').toLowerCase()
+        abogado: String(result.necesitas_abogado || 'no').toLowerCase(),
+        dirigido: String(result.dirigido_a_ti || 'no_claro').toLowerCase()
       });
     }
 
     $('ccCatBadge').textContent=CATEGORY_LABELS[categoria]||CATEGORY_LABELS.otro;
 
+    /* --- Lo primero: qué es este papel. Va siempre, sea carta o no. --- */
+    const tipo=(result.tipo_documento||'').trim();
+    $('ccTipoVal').textContent = tipo || 'No se pudo determinar con seguridad qué tipo de documento es.';
+
+    /* --- Los datos que sí se pudieron sacar, aunque no sea una carta --- */
+    const datos=Array.isArray(result.datos_clave)?result.datos_clave:[];
+    mostrar('ccDatosPanel', datos.length>0, ()=>{
+      $('ccDatos').innerHTML=datos.map(d=>'<li>'+escapeHtml(d)+'</li>').join('');
+    });
+
+    /* --- ¿Va dirigido a esta persona? Si no, bajarle el susto de una vez. --- */
+    const dirigido=String(result.dirigido_a_ti||'no_claro').toLowerCase();
+    const esGeneral = dirigido==='no' ||
+      (dirigido==='no_claro' && (categoria==='reglas_trabajo'||categoria==='informativo'));
+    mostrar('ccGeneral', esGeneral && !isScam, ()=>{
+      $('ccGeneralTitle').textContent = categoria==='reglas_trabajo'
+        ? 'Esto es un reglamento, no una carta para ti'
+        : 'Este papel no va dirigido a ti en particular';
+      $('ccGeneralText').textContent = categoria==='reglas_trabajo'
+        ? 'Es información general de un lugar de trabajo, escrita para todos. No trae una fecha límite para ti, no te están cobrando nada y no hay nada que tengas que responder. Abajo te explicamos qué dice.'
+        : 'Es información general, no algo que te estén pidiendo a ti. No tiene fecha límite ni consecuencias para ti. Abajo te explicamos qué dice.';
+    });
+    $('ccResultsTitle').textContent = esGeneral && !isScam
+      ? 'Esto es lo que dice tu documento'
+      : 'Esto es lo que dice tu carta';
+
+    /* La etiqueta de urgencia dice "revísala" / "actúa pronto". En un papel que
+       no le pide nada a nadie eso sobra y confunde, así que no se pinta. */
     const urgBadge=$('ccUrgBadge');
+    urgBadge.hidden = esGeneral && !isScam;
     urgBadge.className='cc-badge cc-badge-urg-'+(['alta','media','baja'].includes(urgencia)?urgencia:'media');
     urgBadge.textContent=URGENCY_LABELS[urgencia]||URGENCY_LABELS.media;
 
