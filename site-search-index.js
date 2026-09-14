@@ -39,6 +39,8 @@
       keywords:['contrato del dealer','letra pequeña auto','que firmar en el dealer','revisar contrato de auto']},
     {title:'Tres pasos para entender tu carta',url:'cartas-claras.html#analizar-carta',
       keywords:['carta','aviso','entender una carta','carta del irs','carta de cobranza','que dice esta carta']},
+    {title:'Revisa el contrato del dealer antes de firmar',url:'contrato-auto.html',
+      keywords:['contrato del dealer','antes de firmar el carro','garantia extendida','gap','cargos escondidos auto','extras del dealer','cuanto me cobran de mas en el dealer','financiamiento de auto']},
     {title:'El sistema de crédito en EE. UU. no fue diseñado en español',url:'index.html#por-que',
       keywords:['por que existe este sitio','para que sirve themora','sistema de credito en ingles']},
     {title:'Calculadora hipotecaria',url:'herramientas.html#calculadora-hipoteca',

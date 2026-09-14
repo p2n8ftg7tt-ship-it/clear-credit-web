@@ -9,4 +9,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /cuenta.html
 
-Sitemap: https://delightful-sable-a4a33d.netlify.app/sitemap.xml
+Sitemap: https://mithemora.com/sitemap.xml
