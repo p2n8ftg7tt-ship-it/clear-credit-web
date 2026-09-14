@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas Claras — Entiende cualquier carta o aviso financiero | Themora</title>
+<meta name="description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS, una corte o tu seguro médico. Te explicamos en español qué dice, si es urgente y qué hacer — gratis y en privado.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Cartas Claras — Entiende cualquier carta o aviso financiero">
+<meta property="og:description" content="Sube una foto, un PDF o pega el texto de una carta de un cobrador, un banco, un buró de crédito, el IRS, una corte o tu seguro médico. Te explicamos en español qué dice, si es urgente y qué hacer.">
+<meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
+<meta property="og:url" content="https://mithemora.com/cartas-claras.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cartas Claras — Entiende cualquier carta o aviso financiero">
+<meta name="twitter:description" content="Sube una foto, un PDF o pega el texto de una carta que recibiste. Te explicamos en español qué dice, si es urgente y qué hacer.">
+<meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
+<link rel="canonical" href="https://mithemora.com/cartas-claras.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== HERO ===== */
+  .cc-hero{
+    background:
+      linear-gradient(100deg, rgba(24,18,12,.93) 0%, rgba(24,18,12,.8) 38%, rgba(24,18,12,.42) 100%),
+      url('images/cartas-hero-vangogh.jpg') center 42%/cover no-repeat;
+  }
+  .cc-hero::before,.cc-hero::after{display:none}
+  .cc-hero{padding-bottom:172px;}
+
+  /* ===== EXPLICADOR DE PRIVACIDAD ===== */
+  /* Las tres tarjetas de privacidad: un panel de vidrio claro que flota
+     sobre la foto del encabezado, en vez de una banda oscura pegada abajo. */
+  .cc-privacy-callout{position:relative;z-index:3;margin-top:-132px;padding:0 0 8px;}
+  .cc-privacy-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:rgba(255,255,255,.74);backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);border:1px solid rgba(255,255,255,.55);border-radius:16px;box-shadow:0 26px 70px rgba(24,18,12,.30);overflow:hidden;}
+  .cc-privacy-item{padding:24px 26px;border-right:1px solid rgba(42,33,24,.1);}
+  .cc-privacy-item:last-child{border-right:0;}
+  .cc-privacy-item span{font-size:1.4rem;display:block;margin-bottom:8px;}
+  .cc-privacy-item strong{display:block;color:var(--navy-deep);font-size:.92rem;margin-bottom:4px;}
+  .cc-privacy-item small{display:block;color:var(--muted);font-size:.78rem;line-height:1.5;}
+
+  /* ===== HERRAMIENTA (reutiliza patrones de credito.html) ===== */
+  .cc-tool-section{background:radial-gradient(820px circle at 82% 4%,rgba(201,138,62,.13),transparent 58%),radial-gradient(560px circle at 6% 92%,rgba(79,107,87,.12),transparent 60%),var(--paper-dim);color:var(--ink);position:relative;overflow:hidden;}
+  .cc-tool-section::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(42,33,24,.07);border-radius:50%;right:-250px;top:-250px;pointer-events:none;}
+  .cc-tool-section .section-head h2{color:var(--navy-deep);}
+  .cc-tool-section .section-head p{color:var(--muted);}
+  .cc-tool-section .eyebrow-dark{color:var(--teal);}
+  .cr-process{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:none;border:0;margin-bottom:28px;}
+  .cr-process-item{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.7);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 22px rgba(42,33,24,.06);}
+  .cr-process-item>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font-family:'Fraunces',serif;font-weight:700;flex:none;}
+  .cr-process-item strong{display:block;color:var(--navy-deep);font-size:.9rem;}
+  .cr-process-item small{display:block;color:var(--muted);font-size:.76rem;}
+  /* Panel flotante de vidrio claro: deja ver el fondo a través de él */
+  .cr-upload-card{background:rgba(255,255,255,.66);backdrop-filter:blur(28px) saturate(165%);-webkit-backdrop-filter:blur(28px) saturate(165%);color:var(--ink);border:1px solid rgba(255,255,255,.75);border-radius:18px;padding:26px;box-shadow:0 26px 68px rgba(42,33,24,.14);}
+  .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 16px;}
+  .cc-scope-label{margin:0 6px 8px;font-size:.76rem;font-weight:700;color:var(--muted);}
+  .cc-scope-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 6px 18px;}
+  .cc-scope-chip{background:rgba(255,255,255,.8);border:1px solid rgba(42,33,24,.14);color:var(--navy);font:600 .74rem 'Public Sans',sans-serif;padding:6px 12px;border-radius:999px;transition:opacity .3s ease,background .3s ease,border-color .3s ease,transform .3s ease;}
+  .cc-scope-chip-alert{background:rgba(179,64,42,.1);border-color:rgba(179,64,42,.35);color:#a3402a;}
+  /* Al detectar el tipo de carta, ese chip se enciende y los demás se apagan */
+  .cc-scope-chips.has-detection .cc-scope-chip{opacity:.32;}
+  .cc-scope-chip.is-detected{opacity:1;background:var(--gold);border-color:var(--gold);color:var(--navy-deep);font-weight:800;transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,138,62,.4);}
+  .cc-scope-chip-alert.is-detected{background:#b3402a;border-color:#b3402a;color:#fff;box-shadow:0 6px 18px rgba(179,64,42,.45);}
+
+  /* Pestañas: subir documento / pegar texto */
+  .cc-tabs{display:flex;gap:6px;margin-bottom:14px;}
+  .cc-tab-btn{flex:1;border:1.5px solid rgba(42,33,24,.14);background:rgba(255,255,255,.72);color:var(--navy);font:700 .82rem 'Public Sans',sans-serif;padding:11px 14px;border-radius:9px;cursor:pointer;transition:.2s ease;}
+  .cc-tab-btn:hover{border-color:var(--gold);color:var(--navy-deep);}
+  .cc-tab-btn.is-active{background:var(--gold);color:var(--navy-deep);border-color:var(--gold);}
+  .cc-tab-panel[hidden]{display:none!important;}
+
+  .cr-dropzone{min-height:280px;border:1.5px dashed rgba(42,33,24,.24);background:rgba(255,255,255,.5);display:grid;place-items:center;text-align:center;padding:34px;border-radius:14px;transition:.2s ease;cursor:pointer;}
+  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:rgba(246,213,139,.16);}
+  .cr-dropzone.has-file{min-height:120px;}
+  .cr-dropzone:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .cr-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .cr-upload-empty{display:flex;flex-direction:column;align-items:center;}
+  .cr-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font-size:1.7rem;margin-bottom:18px;}
+  .cr-upload-empty h3{color:var(--navy-deep);font-size:1.3rem;margin:0 0 4px;}
+  .cr-upload-empty p{color:var(--muted);margin:0 0 20px;}
+  .cr-upload-empty small{color:rgba(42,33,24,.5);margin-top:14px;font-size:.75rem;}
+  .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius);font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .cr-select-btn{background:var(--gold);color:var(--navy-deep);padding:12px 20px;}
+  .cr-select-btn:hover,.cr-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2);}
+  .cr-file-ready{display:flex;align-items:center;text-align:left;width:min(100%,680px);}
+  .cr-file-ready[hidden],.cr-upload-empty[hidden],.cr-analyze-btn[hidden],.cr-progress[hidden],.cr-error[hidden],.cc-results[hidden]{display:none!important;}
+  .cr-file-type{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(184,134,59,.14);color:var(--gold);font-weight:700;font-size:.72rem;flex:none;}
+  .cr-file-copy{display:flex;flex:1;min-width:0;flex-direction:column;padding:0 16px;}
+  .cr-file-copy strong{color:var(--navy-deep);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cr-file-copy small{color:var(--muted);}
+  .cr-change-btn{border:0;background:none;color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline;}
+  .cr-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:var(--navy-deep);padding:15px 20px;margin-top:14px;font-size:.92rem;}
+  .cr-analyze-btn span{font-size:1.2rem;}
+  .cr-analyze-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;box-shadow:none!important;}
+  .cr-progress{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.7);color:var(--navy-deep);padding:15px 18px;margin-top:14px;border-radius:12px;border:1px solid rgba(42,33,24,.1);}
+  .cr-progress-copy{display:flex;flex-direction:column;}
+  .cr-progress-copy small{color:var(--muted);}
+  .cr-spinner{width:30px;height:30px;border:3px solid rgba(246,213,139,.25);border-top-color:var(--gold);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
+  @keyframes cr-spin{to{transform:rotate(360deg)}}
+  .cr-error{display:flex;gap:12px;background:#fff0ed;border-left:4px solid #a34838;color:#7e3127;padding:15px 18px;margin-top:14px;border-radius:0 8px 8px 0;}
+  .cr-error b{font-size:1.15rem;}
+  .cr-error p{margin:0;}
+  .cr-error strong{display:block;}
+
+  .cc-paste-panel textarea{width:100%;min-height:220px;box-sizing:border-box;border:1.5px solid rgba(42,33,24,.16);border-radius:12px;padding:16px;font:400 .92rem/1.5 'Public Sans',sans-serif;color:var(--ink);background:rgba(255,255,255,.75);resize:vertical;}
+  .cc-paste-panel textarea::placeholder{color:rgba(42,33,24,.4);}
+  .cc-paste-panel textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold);}
+  .cc-paste-hint{font-size:.75rem;color:var(--muted);margin-top:8px;}
+
+  /* ===== RESULTADOS ===== */
+  .cc-results{margin-top:42px;}
+  .cc-results-head{margin-bottom:20px;}
+  .cc-results-head h3{color:var(--navy-deep);font-size:clamp(1.5rem,3vw,2rem);margin:6px 0 0;}
+  .cc-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .cc-badge[hidden]{display:none!important;}
+  .cc-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font:700 .78rem 'Public Sans',sans-serif;letter-spacing:.01em;}
+  .cc-badge-cat{background:rgba(201,138,62,.16);color:#8a5a20;border:1px solid rgba(201,138,62,.45);}
+  .cc-badge-urg-alta{background:rgba(179,64,42,.12);color:#8a2b2b;border:1px solid rgba(179,64,42,.42);}
+  .cc-badge-urg-media{background:rgba(201,138,62,.16);color:#8a5a20;border:1px solid rgba(201,138,62,.45);}
+  .cc-badge-urg-baja{background:rgba(79,107,87,.14);color:#31543c;border:1px solid rgba(79,107,87,.42);}
+  .cc-panel{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.75);border-radius:14px;padding:22px 24px;margin-top:16px;box-shadow:0 10px 26px rgba(42,33,24,.06);}
+  .cc-panel h4{color:var(--navy-deep);font:600 1.05rem 'Fraunces',serif;margin:0 0 10px;}
+  .cc-panel p{color:var(--ink);margin:0;line-height:1.6;}
+  .cc-scam-alert{background:#fff0ed;border:1.5px solid rgba(179,64,42,.45);border-radius:14px;padding:22px 24px;margin-top:16px;display:flex;gap:14px;}
+  .cc-scam-alert b{font-size:1.5rem;color:#a34838;flex:none;}
+  .cc-scam-alert h4{color:#8a2b2b;font:700 1.05rem 'Public Sans',sans-serif;margin:0 0 8px;}
+  .cc-scam-alert p{color:#7e3127;margin:0 0 12px;line-height:1.6;}
+  .cc-scam-links{display:flex;flex-wrap:wrap;gap:10px;}
+  .cc-scam-links a{color:#fff;background:#a34838;border:1px solid #a34838;padding:8px 14px;border-radius:8px;font:700 .76rem 'Public Sans',sans-serif;text-decoration:none;}
+  .cc-scam-links a:hover{background:#8a2b2b;}
+  .cc-crosslink{background:rgba(79,107,87,.1);border:1.5px solid rgba(79,107,87,.35);border-radius:14px;padding:22px 24px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .cc-crosslink p{color:var(--ink);margin:0;max-width:56ch;line-height:1.55;}
+  .cc-crosslink a.btn{flex:none;}
+  .cc-source-note{margin-top:18px;font-size:.72rem;color:var(--muted);line-height:1.6;}
+  .cc-source-note strong{color:var(--navy-deep);}
+  .cc-scam-alert[hidden],.cc-crosslink[hidden]{display:none!important;}
+
+  @media(max-width:760px){
+    .cc-privacy-row{grid-template-columns:1fr;}
+    .cr-process{grid-template-columns:1fr;}
+    .cc-tabs{flex-direction:column;}
+    .cc-crosslink{flex-direction:column;align-items:flex-start;}
+  }
+
+  /* ===== Resultado del intérprete ===== */
+  /* Lo primero que se lee: qué es este papel. Va siempre, sea lo que sea. */
+  .cc-tipo{background:var(--navy-deep,#10243b);border-radius:16px;padding:20px 24px;margin-bottom:16px}
+  .cc-tipo[hidden]{display:none}
+  .cc-tipo-k{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.6);margin-bottom:7px}
+  .cc-tipo p{margin:0;font-family:'Fraunces',serif;font-size:1.22rem;line-height:1.38;color:#fff}
+
+  .cc-general{display:flex;gap:14px;background:rgba(31,110,115,.07);border:1px solid rgba(31,110,115,.28);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .cc-general[hidden]{display:none}
+  .cc-general b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:800 .95rem 'Fraunces',serif}
+  .cc-general h4{margin:0 0 6px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .cc-general p{margin:0;line-height:1.62;font-size:.93rem;color:var(--ink)}
+
+  .cc-deadline{display:flex;align-items:center;gap:14px;background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.28);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .cc-deadline[hidden]{display:none}
+  .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#8a2b2b;flex:none}
+  .cc-deadline strong{font-family:'Fraunces',serif;font-size:1.3rem;line-height:1.2;color:#8a2b2b}
+  .cc-deadline-aviso{flex:1 0 100%;font-size:.82rem;line-height:1.5;color:#6b4a3f}
+
+  .cc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .cc-meta[hidden]{display:none}
+  .cc-meta-item{flex:1 1 auto;min-width:150px;border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fff}
+  .cc-meta-item[hidden]{display:none}
+  .cc-meta-item span{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+  .cc-meta-item strong{font-size:.95rem;color:var(--navy-deep);line-height:1.35;word-break:break-word}
+
+  .cc-panel-note{font-size:.84rem;color:var(--muted);line-height:1.55;margin:-4px 0 12px;font-style:italic}
+  .cc-panel-warn{border-left:3px solid var(--gold)}
+
+  .cc-list{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .cc-list li{position:relative;padding-left:26px;line-height:1.62}
+  .cc-list li::before{content:"";position:absolute;left:6px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--teal)}
+  .cc-list-rights li::before{background:var(--good)}
+
+  .cc-phrases{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+  .cc-phrases li{border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:0 11px 11px 0;padding:13px 16px;background:#fff}
+  .cc-phrase-en{display:block;font-weight:700;color:var(--navy-deep);line-height:1.5}
+  .cc-phrase-es{display:block;font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.5}
+
+  .cc-verificar{border:1px solid rgba(31,110,115,.28);background:#fff;border-radius:16px;padding:20px 22px;margin-top:18px}
+  .cc-verificar[hidden]{display:none}
+  .cc-verificar-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .cc-verificar-icon{flex:none;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:.95rem}
+  .cc-verificar h4{margin:0;font-family:'Fraunces',serif;font-size:1.08rem;line-height:1.3;color:var(--navy-deep)}
+  .cc-verificar p{margin:0 0 10px;line-height:1.65;font-size:.93rem}
+  .cc-verificar-lista{margin:0;padding-left:20px}
+  .cc-verificar-lista li{margin-bottom:7px;line-height:1.6;font-size:.9rem}
+  .cc-verificar-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}
+  .cc-verificar-links a{font-size:.86rem;font-weight:700;color:var(--teal);text-decoration:underline}
+  .cc-lawyer{border:1px solid rgba(31,110,115,.3);background:rgba(31,110,115,.06);border-radius:16px;padding:22px 24px;margin-top:18px}
+  .cc-lawyer[hidden]{display:none}
+  .cc-lawyer-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .cc-lawyer-icon{flex:none;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:800 1rem 'Fraunces',serif}
+  .cc-lawyer h4{margin:0;font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.28;color:var(--navy-deep)}
+  .cc-lawyer p{margin:0 0 12px;line-height:1.65;font-size:.94rem}
+  .cc-lawyer-free{background:#fff;border-radius:10px;padding:13px 15px;font-size:.9rem!important}
+
+  .cc-translation{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#fff}
+  .cc-translation[hidden]{display:none}
+  .cc-translation summary{cursor:pointer;padding:14px 18px;font-weight:700;color:var(--navy);font-size:.93rem}
+  .cc-translation summary::marker{color:var(--teal)}
+  .cc-translation p{margin:0;padding:0 18px 18px;line-height:1.72;color:var(--ink);white-space:pre-wrap}
+
+  @media (max-width:620px){
+    .cc-deadline{flex-direction:column;align-items:flex-start;gap:6px}
+    .cc-meta-item{min-width:100%}
+    .cc-tipo{padding:17px 18px}
+    .cc-tipo p{font-size:1.08rem}
+    .cc-general{padding:16px 17px;gap:11px}
+  }
+
+  /* ===== Permiso para mandar la foto ===== */
+  .cc-permiso{border:2px solid var(--gold);background:rgba(184,134,48,.07);border-radius:16px;padding:24px 26px;margin-top:18px}
+  .cc-permiso[hidden]{display:none}
+  .cc-permiso h4{margin:0 0 12px;font-family:'Fraunces',serif;font-size:1.16rem;line-height:1.3;color:var(--navy-deep)}
+  .cc-permiso p{margin:0 0 12px;line-height:1.66;font-size:.94rem;color:var(--ink)}
+  .cc-permiso-lista{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+  .cc-permiso-lista li{display:flex;gap:11px;align-items:flex-start;background:#fff;border-radius:10px;padding:12px 14px;font-size:.9rem;line-height:1.58}
+  .cc-permiso-lista .si,.cc-permiso-lista .no{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:800;color:#fff;margin-top:1px}
+  .cc-permiso-lista .si{background:var(--good)}
+  .cc-permiso-lista .no{background:#b3402a}
+  .cc-permiso-tip{font-size:.87rem!important;color:var(--muted)!important;font-style:italic}
+  .cc-permiso-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+</style>
+</head>
+<body data-cms-page="cartas-claras">
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegación principal">
+      
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="aparezco.html"><strong>¿Aparece mi negocio?</strong><span>Revisa gratis si sales en Google y Apple Maps</span></a>
+          <a href="listar-negocio.html"><strong>Ponerlo en el mapa</strong><span>Google Maps y Apple Maps, hecho por nosotros</span></a>
+          <a href="formar-negocio.html"><strong>Abrir mi negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          <a href="agendar.html"><strong>Hablar con alguien</strong><span>Agenda una cita, sin compromiso</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="cartas-claras.html" class="active"><strong>Cartas Claras</strong><span>Entiende cartas del IRS, cobradores, bancos o corte</span></a>
+          <a href="credito.html"><strong>Mi reporte de crédito</strong><span>Súbelo y te lo explicamos, sin que salga de tu teléfono</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Guías<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="herramientas.html"><strong>Calculadoras</strong><span>Hipoteca, pagos adelantados y cartas de disputa</span></a>
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero cc-hero">
+    <div class="wrap">
+      <span class="eyebrow">Nuevo · Cartas Claras</span>
+      <h1>¿Recibiste una carta que no entiendes? Descífrala en segundos.</h1>
+      <p>Sube una foto, un PDF o pega el texto de esa carta en inglés — de un cobrador, tu banco, un buró de crédito, el IRS o una corte. Te decimos en español claro de qué se trata, qué tan urgente es y exactamente qué hacer.</p>
+      <div class="credito-hero-actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;">
+        <a href="#analizar-carta" class="btn btn-gold">Analizar mi carta ahora</a>
+        <a href="#como-funciona-cartas" class="btn btn-outline-dark" style="border-color:rgba(255,255,255,.5);color:#fff;">Ver cómo funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="cc-privacy-callout">
+    <div class="wrap">
+      <div class="cc-privacy-row">
+        <div class="cc-privacy-item">
+          <span>🔒</span>
+          <strong>Qué sale de tu dispositivo</strong>
+          <small>La lectura empieza en tu propio navegador. Si pides el análisis con inteligencia artificial (hace falta iniciar sesión), el texto —o las páginas como imagen— <strong>sí salen</strong>: viajan cifrados a nuestro servidor y de ahí al proveedor de IA que los lee. No guardamos tu carta.</small>
+        </div>
+        <div class="cc-privacy-item">
+          <span>🕶️</span>
+          <strong>Intentamos ocultar números sensibles</strong>
+          <small>Antes de mandar el texto tapamos automáticamente números de seguro social, de cuenta y de expediente médico. No es infalible, y en una foto no hay texto que tapar: revisa y cubre tú mismo cualquier dato que no quieras compartir.</small>
+        </div>
+        <div class="cc-privacy-item">
+          <span>⚖️</span>
+          <strong>No es asesoría legal</strong>
+          <small>Es una guía educativa para entender tu situación y tus derechos — no sustituye a un abogado.</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HERRAMIENTA -->
+  <section id="analizar-carta" class="cc-tool-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark" id="como-funciona-cartas">Cómo funciona</span>
+        <h2>Tres pasos para entender tu carta</h2>
+        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes, y facturas o avisos médicos y de seguro de salud — y te señala lo que conviene verificar si algo huele a estafa.</p>
+      </div>
+
+      <div class="cr-process" aria-label="Cómo funciona Cartas Claras">
+        <div class="cr-process-item"><span>1</span><div><strong>Sube o pega</strong><small>Foto, PDF, Word o el texto directo</small></div></div>
+        <div class="cr-process-item"><span>2</span><div><strong>Analizamos</strong><small>Identificamos el tipo de carta y su urgencia</small></div></div>
+        <div class="cr-process-item"><span>3</span><div><strong>Actúa</strong><small>Explicación clara y próximos pasos</small></div></div>
+      </div>
+
+      <div class="cr-upload-card">
+        <div class="cr-privacy">● La lectura empieza en tu navegador · No guardamos tu carta</div>
+
+        <p class="cc-scope-label">Funciona con cartas de:</p>
+        <div class="cc-scope-chips">
+          <span class="cc-scope-chip" data-cat="cobrador">Cobradores de deuda</span>
+          <span class="cc-scope-chip" data-cat="banco">Bancos</span>
+          <span class="cc-scope-chip" data-cat="buro">Burós de crédito</span>
+          <span class="cc-scope-chip" data-cat="irs">IRS</span>
+          <span class="cc-scope-chip" data-cat="corte">Cortes</span>
+          <span class="cc-scope-chip" data-cat="salud">Médicas y de seguro</span>
+          <span class="cc-scope-chip cc-scope-chip-alert" data-cat="estafa">⚠ Señales de posible estafa</span>
+        </div>
+
+        <div class="cc-tabs" role="tablist" aria-label="Forma de analizar la carta">
+          <button type="button" class="cc-tab-btn is-active" id="ccTabFile" role="tab" aria-selected="true" aria-controls="ccPanelFile">📄 Subir foto o documento</button>
+          <button type="button" class="cc-tab-btn" id="ccTabPaste" data-umami-event="carta-pegar-texto" role="tab" aria-selected="false" aria-controls="ccPanelPaste">⌨️ Pegar el texto</button>
+        </div>
+
+        <div class="cc-tab-panel" id="ccPanelFile" role="tabpanel">
+          <div class="cr-dropzone" id="crDropzone" role="button" tabindex="0" aria-label="Seleccionar foto o documento de la carta">
+            <input id="crFileInput" class="cr-file-input" type="file" multiple accept=".pdf,.docx,.png,.jpg,.jpeg,.webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp">
+            <div class="cr-upload-empty" id="crUploadEmpty">
+              <div class="cr-upload-icon">↑</div>
+              <h3>Arrastra la carta aquí</h3>
+              <p>o selecciónala desde tu computadora o teléfono — puedes usar una foto</p>
+              <button class="cr-select-btn" id="crSelectButton" data-umami-event="carta-subir" type="button">Seleccionar archivo</button>
+              <small>Foto (JPG, PNG) · PDF · Word (.docx) · Máximo 20 MB</small>
+            </div>
+            <div class="cr-file-ready" id="crFileReady" hidden>
+              <span class="cr-file-type" id="crFileType">PDF</span>
+              <div class="cr-file-copy"><strong id="crFileName"></strong><small id="crFileMeta"></small></div>
+              <button class="cr-change-btn" id="crChangeButton" type="button">Cambiar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cc-tab-panel" id="ccPanelPaste" role="tabpanel" hidden>
+          <div class="cc-paste-panel">
+            <textarea id="ccPasteText" placeholder="Copia y pega aquí el texto de la carta o el correo que recibiste…" maxlength="8000"></textarea>
+            <p class="cc-paste-hint">Útil si ya tienes el texto (por ejemplo, de un correo electrónico) o si prefieres no subir el archivo.</p>
+          </div>
+        </div>
+
+        <button class="cr-analyze-btn" id="crAnalyzeButton" data-umami-event="carta-explicar" type="button">Explicar esta carta <span>→</span></button>
+        <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
+          <span class="cr-spinner"></span>
+          <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo el documento…</strong><small id="crProgressText">Esto se hace en tu propio navegador</small></div>
+        </div>
+        <div class="cr-error" id="crError" role="alert" hidden><b>!</b><p><strong>No pudimos completar el análisis</strong><span id="crErrorText"></span></p></div>
+
+        <!-- Aparece solo cuando el teléfono no pudo leer la foto (por ejemplo,
+             una carta en chino o árabe, que nuestro lector local no reconoce).
+             Pide permiso explícito antes de mandar la imagen, porque en ese
+             camino no se pueden tapar los números antes de salir. -->
+        <div class="cc-permiso" id="ccPermiso" hidden role="alertdialog" aria-labelledby="ccPermisoTitulo">
+          <h4 id="ccPermisoTitulo">No pude leer esta foto aquí en tu dispositivo</h4>
+          <p id="ccPermisoMotivo">Nuestro lector local entiende inglés y español. Si tu carta está en otro idioma —chino, árabe, vietnamita, criollo— no puede leerla.</p>
+          <p><strong>Puedo mandar las páginas para que las lea la inteligencia artificial, que entiende muchos más idiomas.</strong> Pero necesito tu permiso, porque hay una diferencia importante:</p>
+          <ul class="cc-permiso-lista">
+            <li><span class="si">✓</span> Normalmente tapamos tu número de seguro social y los números de cuenta <em>antes</em> de que el texto salga de tu teléfono.</li>
+            <li><span class="no">✕</span> Si mandamos las páginas como imagen, no hay texto que tapar — van tal como se ven, con todo lo que tengan escrito.</li>
+          </ul>
+          <p class="cc-permiso-tip">Si prefieres, cierra esto, tapa con el dedo los números que no quieras mandar, toma la foto otra vez y vuelve a intentar.</p>
+          <div class="cc-permiso-acciones">
+            <button type="button" class="btn btn-gold" id="ccPermisoSi" data-umami-event="carta-foto-permitida">Sí, manda las páginas</button>
+            <button type="button" class="btn btn-outline" id="ccPermisoNo">Mejor no</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-results" id="ccResults" hidden>
+        <div class="cc-results-head">
+          <span class="eyebrow-dark">Resultado</span>
+          <h3 id="ccResultsTitle">Esto es lo que dice tu carta</h3>
+          <div class="cc-badges">
+            <span class="cc-badge cc-badge-cat" id="ccCatBadge">—</span>
+            <span class="cc-badge" id="ccUrgBadge">—</span>
+          </div>
+        </div>
+
+        <!-- Antes que nada: qué es este papel. Aunque no sea una carta. -->
+        <div class="cc-tipo" id="ccTipoDoc">
+          <span class="cc-tipo-k">Este documento se trata de</span>
+          <p id="ccTipoVal"></p>
+        </div>
+
+        <div class="cc-panel" id="ccDatosPanel" hidden>
+          <h4>Datos del documento</h4>
+          <ul class="cc-list" id="ccDatos"></ul>
+        </div>
+
+        <!-- Si no va dirigido a esta persona, decírselo y bajarle el susto. -->
+        <div class="cc-general" id="ccGeneral" hidden>
+          <b>i</b>
+          <div>
+            <h4 id="ccGeneralTitle">Este papel no va dirigido a ti</h4>
+            <p id="ccGeneralText"></p>
+          </div>
+        </div>
+
+        <!-- Lo primero: la fecha límite. Es el dato por el que se pierde todo. -->
+        <div class="cc-deadline" id="ccDeadline" hidden>
+          <span class="cc-deadline-k">Fecha límite</span>
+          <strong id="ccDeadlineVal"></strong>
+          <small class="cc-deadline-aviso">Verifica esta fecha directamente en la carta. Si la ves cerca, guíate por el papel original, no por esta pantalla.</small>
+        </div>
+
+        <div class="cc-meta" id="ccMeta" hidden>
+          <div class="cc-meta-item" id="ccFromItem" hidden><span>Quién la envía</span><strong id="ccFrom"></strong></div>
+          <div class="cc-meta-item" id="ccAmountItem" hidden><span>Monto</span><strong id="ccAmount"></strong></div>
+          <div class="cc-meta-item" id="ccLangItem" hidden><span>Idioma original</span><strong id="ccLang"></strong></div>
+        </div>
+
+        <div class="cc-panel">
+          <h4>Qué dice, en corto</h4>
+          <p id="ccExplicacion"></p>
+          <p id="ccAccion" hidden></p>
+        </div>
+
+        <div class="cc-panel cc-panel-warn" id="ccNothingPanel" hidden>
+          <h4>Si no haces nada</h4>
+          <p id="ccNothing"></p>
+        </div>
+
+        <div class="cc-panel" id="ccOptionsPanel" hidden>
+          <h4>Tus opciones</h4>
+          <p class="cc-panel-note">Estos son los caminos que existen. Cuál te conviene lo decides tú — nosotros no podemos decidirlo por ti.</p>
+          <ul class="cc-list" id="ccOptions"></ul>
+        </div>
+
+        <div class="cc-panel" id="ccRightsPanel" hidden>
+          <h4>Tus derechos</h4>
+          <p class="cc-panel-note">Esto te lo da la ley. Nadie te lo puede quitar.</p>
+          <ul class="cc-list cc-list-rights" id="ccRights"></ul>
+        </div>
+
+        <div class="cc-panel" id="ccPhrasesPanel" hidden>
+          <h4>Qué decir si llamas</h4>
+          <p class="cc-panel-note">Frases exactas en inglés, con su significado. Puedes leerlas tal cual por teléfono o copiarlas en un correo.</p>
+          <ul class="cc-phrases" id="ccPhrases"></ul>
+        </div>
+
+        <div class="cc-lawyer" id="ccLawyer" hidden>
+          <div class="cc-lawyer-head">
+            <span class="cc-lawyer-icon" aria-hidden="true">§</span>
+            <h4 id="ccLawyerTitle"></h4>
+          </div>
+          <p id="ccLawyerWhy"></p>
+          <p class="cc-lawyer-free"><strong>Hay ayuda legal gratis.</strong> LawHelp.org es un directorio sin fines de lucro de asistencia legal gratuita en los 50 estados. No cuesta nada usarlo, y tienen una guía sobre tu derecho a que te atiendan en tu idioma.</p>
+          <a class="btn btn-gold" href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer" data-umami-event="carta-ayuda-legal">Buscar ayuda legal gratis en mi estado ↗</a>
+        </div>
+
+        <details class="cc-translation" id="ccTranslationBox" hidden>
+          <summary>Leer la traducción completa de la carta</summary>
+          <p id="ccTranslation"></p>
+        </details>
+
+        <!-- Verificar al remitente: la defensa más útil contra una carta falsa,
+             y también contra una verdadera que uno confunde con falsa. Nunca el
+             teléfono que trae la carta. -->
+        <div class="cc-verificar" id="ccVerificar" hidden>
+          <div class="cc-verificar-head">
+            <span class="cc-verificar-icon" aria-hidden="true">☎</span>
+            <h4>Antes de llamar o pagar: verifica quién te escribió</h4>
+          </div>
+          <p id="ccVerificarTexto"></p>
+          <ul class="cc-verificar-lista">
+            <li><strong>No uses el teléfono ni el enlace que trae la carta.</strong> Si es falsa, ese número contesta igual.</li>
+            <li>Busca tú mismo el sitio oficial, o usa el número que sale al reverso de tu tarjeta o en tu estado de cuenta.</li>
+            <li>Ten a mano la carta cuando llames, pero no des tu número de seguro social ni datos de tu cuenta a quien te llamó a ti.</li>
+          </ul>
+          <div class="cc-verificar-links" id="ccVerificarLinks"></div>
+        </div>
+
+        <div class="cc-scam-alert" id="ccScamAlert" hidden>
+          <b>⚠</b>
+          <div>
+            <h4>Esto tiene señales de ser una estafa</h4>
+            <p id="ccScamReason"></p>
+            <div class="cc-scam-links">
+              <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener noreferrer">Reportar a la FTC ↗</a>
+              <a href="https://www.identitytheft.gov/" target="_blank" rel="noopener noreferrer">IdentityTheft.gov ↗</a>
+              <a href="https://www.consumerfinance.gov/complaint/" target="_blank" rel="noopener noreferrer">Quejarme ante el CFPB ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cc-crosslink" id="ccCrosslink" hidden>
+          <p id="ccCrosslinkText"></p>
+          <a class="btn btn-gold" id="ccCrosslinkBtn" href="#">Continuar →</a>
+        </div>
+
+        <p class="cc-source-note" id="ccSourceNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Preguntas frecuentes</span>
+        <h2>Antes de empezar</h2>
+      </div>
+      <div class="qa-list">
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No, y es importante que quede claro. Te dice <strong>qué dice</strong> tu carta, qué fecha límite tiene, qué pasa si no haces nada, qué opciones existen y qué derechos te da la ley. Lo que <strong>no</strong> hace es decidir por ti cuál opción tomar en tu caso — eso es asesoría legal y solo un abogado puede darla. Cuando la carta lo amerita, te lo decimos y te mandamos a <a href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer">LawHelp.org</a>, un directorio de asistencia legal <strong>gratuita</strong> en los 50 estados.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer, y en qué idioma?</h3><p>Cartas de cobradores, bancos, burós de crédito, el IRS, cortes, documentos médicos y de seguro, avisos de gobierno, de empleo y de vivienda. También identifica señales de estafa. Nuestro lector local entiende <strong>inglés y español</strong>. Para otros idiomas —portugués, francés, criollo, chino— hace falta el análisis con inteligencia artificial, que te pedimos permiso antes de usar. La respuesta siempre sale en español. Y si el papel no es de los que explicamos a fondo —un permiso, un recibo, un reglamento del trabajo— igual te decimos <strong>qué es</strong> y qué trae escrito, en vez de dejarte con las manos vacías.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social, de cuenta y de expediente o póliza médica que aparezcan en el texto.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué hago si es una foto y no se lee bien?</h3><p>Intenta con buena luz, sin sombras y con la carta lo más plana posible. Si el texto sigue sin leerse bien, usa la pestaña "Pegar el texto" y escribe o copia el contenido directamente.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Cómo sé si es una estafa?</h3><p>Buscamos señales conocidas: exigencias de pago con tarjetas de regalo o transferencias, amenazas de arresto inmediato, presión para no decirle a nadie, plazos de solo horas, o solicitudes de tu número de seguro social sin verificación. Si detectamos estas señales, te lo advertimos de inmediato — pero ante cualquier duda, nunca envíes dinero ni información personal sin verificar primero por un medio oficial.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Ya revisaste tu reporte de crédito?</h2>
+      <p>Cartas Claras te ayuda a entender una carta puntual. Nuestro analizador de reportes te da una vista completa de tu situación crediticia — y genera las cartas de disputa o validación que necesites.</p>
+      <a href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte de crédito</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="doc-paginas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.12.1/mammoth.browser.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  const $=(id)=>document.getElementById(id);
+  const MAX_SIZE=20*1024*1024;
+  const allowedExt=['pdf','docx','png','jpg','jpeg','webp'];
+
+  const dropzone=$('crDropzone'), fileInput=$('crFileInput'), selectButton=$('crSelectButton'),
+        changeButton=$('crChangeButton'), empty=$('crUploadEmpty'), ready=$('crFileReady'),
+        analyzeButton=$('crAnalyzeButton'), progress=$('crProgress'), progressTitle=$('crProgressTitle'),
+        progressText=$('crProgressText'), errorBox=$('crError'), results=$('ccResults'),
+        tabFile=$('ccTabFile'), tabPaste=$('ccTabPaste'), panelFile=$('ccPanelFile'), panelPaste=$('ccPanelPaste'),
+        pasteText=$('ccPasteText');
+
+  let selectedFiles=[];
+  let activeTab='file';
+
+  /* ===== Utilidades ===== */
+  function bytes(n){
+    if(n>=1048576)return (n/1048576).toFixed(1)+' MB';
+    if(n>=1024)return Math.round(n/1024)+' KB';
+    return n+' B';
+  }
+
+  function showError(message){
+    clearScopeChips();
+    results.hidden=true;
+    errorBox.hidden=false;
+    $('crErrorText').textContent=message;
+    errorBox.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function showProgress(title,text){
+    errorBox.hidden=true;
+    progress.hidden=false;
+    progressTitle.textContent=title;
+    progressText.textContent=text;
+    analyzeButton.disabled=true;
+  }
+
+  function hideProgress(){
+    progress.hidden=true;
+    analyzeButton.disabled=false;
+  }
+
+  /* ===== Pestañas subir / pegar ===== */
+  function setTab(tab){
+    activeTab=tab;
+    const isFile=tab==='file';
+    tabFile.classList.toggle('is-active',isFile);
+    tabPaste.classList.toggle('is-active',!isFile);
+    tabFile.setAttribute('aria-selected',String(isFile));
+    tabPaste.setAttribute('aria-selected',String(!isFile));
+    panelFile.hidden=!isFile;
+    panelPaste.hidden=isFile;
+    errorBox.hidden=true;
+  }
+  tabFile.addEventListener('click',()=>setTab('file'));
+  tabPaste.addEventListener('click',()=>setTab('paste'));
+
+  /* ===== Selección de archivo (igual patrón que credito.html) ===== */
+  selectButton.addEventListener('click',(e)=>{e.stopPropagation();fileInput.click();});
+  dropzone.addEventListener('click',()=>fileInput.click());
+  dropzone.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();}});
+  dropzone.addEventListener('dragover',(e)=>{e.preventDefault();dropzone.classList.add('is-dragging');});
+  dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
+  dropzone.addEventListener('drop',(e)=>{
+    e.preventDefault();dropzone.classList.remove('is-dragging');
+    if(e.dataTransfer.files&&e.dataTransfer.files[0])selectFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change',()=>{if(fileInput.files&&fileInput.files.length)selectFile(fileInput.files);});
+  changeButton.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    selectedFiles=[];fileInput.value='';
+    ready.hidden=true;empty.hidden=false;dropzone.classList.remove('has-file');
+  });
+
+  /* Acepta VARIOS archivos. La mayoria de los documentos reales tienen mas de
+     una hoja: el aviso de derechos de un cobrador va al reverso, y un contrato
+     trae lo importante repartido. Leer solo la primera pagina es leer mal. */
+  const MAX_ARCHIVOS=8;
+
+  function selectFile(lista){
+    const archivos=Array.prototype.slice.call(lista||[]);
+    if(!archivos.length)return;
+    const panelPermiso=$('ccPermiso'); if(panelPermiso)panelPermiso.hidden=true;
+    errorBox.hidden=true;
+
+    for(const file of archivos){
+      const extension=(file.name.split('.').pop()||'').toLowerCase();
+      if(!allowedExt.includes(extension)){
+        selectedFiles=[];
+        return showError('"'+file.name+'" no se puede leer. Usa fotos (JPG, PNG), PDF o Word (.docx). El formato .doc antiguo o .heic de iPhone no sirve — si tu foto se guardo como .heic, compartela como JPG.');
+      }
+      if(file.size>MAX_SIZE){
+        selectedFiles=[];
+        return showError('"'+file.name+'" supera 20 MB. Usa una version mas ligera e intentalo de nuevo.');
+      }
+    }
+    if(archivos.length>MAX_ARCHIVOS){
+      selectedFiles=[];
+      return showError('Son demasiados archivos de una vez. Sube hasta '+MAX_ARCHIVOS+' paginas.');
+    }
+
+    selectedFiles=archivos;
+    clearScopeChips();
+    results.hidden=true;empty.hidden=true;ready.hidden=false;dropzone.classList.add('has-file');
+
+    const pesoTotal=archivos.reduce((s,f)=>s+f.size,0);
+    const primera=archivos[0];
+    const ext=(primera.name.split('.').pop()||'').toLowerCase();
+    $('crFileType').textContent=archivos.length>1?(archivos.length+' PAGS'):ext.toUpperCase();
+    $('crFileName').textContent=archivos.length>1
+      ? archivos.length+' archivos: '+archivos.map(f=>f.name).join(', ')
+      : primera.name;
+    $('crFileMeta').textContent=bytes(pesoTotal)+' · Listo para analizar';
+  }
+
+  /* ===== Extracción de texto ===== */
+  async function extractPdf(file){
+    if(!window.pdfjsLib)throw new Error('No se pudo cargar el lector de PDF. Revisa tu conexión e inténtalo nuevamente.');
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf=await window.pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+    const parts=[];
+    for(let pageNumber=1;pageNumber<=Math.min(pdf.numPages,30);pageNumber++){
+      const page=await pdf.getPage(pageNumber);
+      const content=await page.getTextContent();
+      parts.push(content.items.map(item=>(item.str||'')+(item.hasEOL?'\n':' ')).join(''));
+    }
+    return {text:parts.join('\n'),detail:'PDF · '+pdf.numPages+' página'+(pdf.numPages===1?'':'s')};
+  }
+
+  async function extractWord(file){
+    if(!window.mammoth)throw new Error('No se pudo cargar el lector de Word. Revisa tu conexión e inténtalo nuevamente.');
+    const result=await window.mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});
+    return {text:result.value,detail:'Documento Word'};
+  }
+
+  let tesseractLoadPromise=null;
+  function loadTesseract(){
+    if(window.Tesseract)return Promise.resolve();
+    if(tesseractLoadPromise)return tesseractLoadPromise;
+    tesseractLoadPromise=new Promise((resolve,reject)=>{
+      const s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/7.0.0/tesseract.min.js';
+      s.onload=()=>resolve();
+      s.onerror=()=>reject(new Error('No se pudo cargar el lector de imágenes. Revisa tu conexión e inténtalo nuevamente.'));
+      document.head.appendChild(s);
+    });
+    return tesseractLoadPromise;
+  }
+
+  async function extractImage(file){
+    showProgress('Cargando el lector de imágenes…','La primera vez tarda unos segundos');
+    await loadTesseract();
+    if(!window.Tesseract)throw new Error('No se pudo cargar el lector de imágenes. Revisa tu conexión e inténtalo nuevamente.');
+    const worker=await window.Tesseract.createWorker('eng+spa',1,{
+      logger:(m)=>{
+        if(m&&m.status==='recognizing text'&&typeof m.progress==='number'){
+          showProgress('Leyendo el texto de la foto…',Math.round(m.progress*100)+'% completado');
+        }
+      }
+    });
+    try{
+      const {data}=await worker.recognize(file);
+      return {
+        text:data.text,
+        detail:'Foto (texto leído automáticamente)',
+        confianza:typeof data.confidence==='number'?data.confidence:null,
+        esFoto:true
+      };
+    }finally{
+      await worker.terminate();
+    }
+  }
+
+  /* ¿El lector del teléfono entendió la foto, o sacó basura?
+     Tesseract está configurado en inglés+español. Una carta en chino, árabe,
+     vietnamita o criollo sale como caracteres sueltos sin sentido. Esto lo
+     detecta para poder ofrecer el otro camino en vez de dar un error seco. */
+  function lecturaConfiable(extracted){
+    if(!extracted||!extracted.esFoto)return true;          // PDF y Word no pasan por aquí
+    const texto=String(extracted.text||'').trim();
+    const sinEspacios=texto.replace(/\s+/g,'');
+    if(sinEspacios.length<100)return false;                 // apenas sacó nada
+    if(typeof extracted.confianza==='number'&&extracted.confianza<55)return false;
+    // Proporción de letras reales frente a signos raros
+    const letras=(texto.match(/[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g)||[]).length;
+    if(letras/sinEspacios.length<0.55)return false;
+    // Palabras de 3+ letras: el texto basura casi no tiene
+    const palabras=(texto.match(/[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]{3,}/g)||[]).length;
+    if(palabras<15)return false;
+    return true;
+  }
+
+  /* Reduce la foto antes de mandarla: 1568 px de lado mayor es el tamaño que
+     mejor equilibra lectura y costo. Sale en JPEG para que pese poco. */
+  function reducirFoto(file,maxLado=1568,calidad=0.85){
+    return new Promise((resolve,reject)=>{
+      const url=URL.createObjectURL(file);
+      const img=new Image();
+      img.onload=()=>{
+        URL.revokeObjectURL(url);
+        let{width:w,height:h}=img;
+        if(Math.max(w,h)>maxLado){
+          const f=maxLado/Math.max(w,h);
+          w=Math.round(w*f);h=Math.round(h*f);
+        }
+        const c=document.createElement('canvas');
+        c.width=w;c.height=h;
+        const ctx=c.getContext('2d');
+        ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);   // fondo blanco por si es PNG transparente
+        ctx.drawImage(img,0,0,w,h);
+        const dataUrl=c.toDataURL('image/jpeg',calidad);
+        resolve({base64:dataUrl.split(',')[1],mediaType:'image/jpeg'});
+      };
+      img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('No se pudo abrir la foto.'));};
+      img.src=url;
+    });
+  }
+
+  async function extractFromFile(file){
+    const extension=(file.name.split('.').pop()||'').toLowerCase();
+    if(extension==='pdf')return extractPdf(file);
+    if(extension==='docx')return extractWord(file);
+    if(['png','jpg','jpeg','webp'].includes(extension)||file.type.indexOf('image/')===0)return extractImage(file);
+    throw new Error('Formato no compatible. Usa una foto (JPG, PNG), un PDF o un Word (.docx).');
+  }
+
+  /* ===== Ocultar datos sensibles antes de cualquier análisis con IA ===== */
+  function redactSensitive(text){
+    let out=String(text||'');
+    out=out.replace(/\b\d{3}[-\s]\d{2}[-\s]\d{4}\b/g,'[NÚMERO DE SEGURO SOCIAL OCULTO]');
+    // Identificadores médicos: número de expediente, de miembro o de póliza.
+    // Van antes del barrido general porque suelen mezclar letras y números.
+    out=out.replace(/\b(mrn|member\s*id|policy\s*(?:no|number|#)|group\s*(?:no|number|#)|patient\s*(?:id|account)|numero\s+de\s+(?:poliza|miembro|expediente))\b\s*[:#]?\s*[A-Z0-9-]{4,}/gi,'[IDENTIFICADOR MÉDICO OCULTO]');
+    /* OJO con la clase [ \t-]: antes decía [\s-], que incluye el salto de línea.
+       Eso hacía que dos números de líneas distintas se leyeran como uno solo y
+       se tapara texto legítimo: "$38.42" seguido de "09-01-2026" terminaba como
+       "$38.[NÚMERO OCULTO]". Un número de cuenta nunca cruza un renglón. */
+    out=out.replace(/\b(?:\d[ \t-]?){7,19}\d\b/g,(match)=>{
+      /* Una fecha NO es un número de cuenta. "09-04-2026" tiene 8 dígitos y
+         caía en este barrido: la fecha límite, que es el dato más importante de
+         toda la carta, se borraba antes de que nadie la leyera. */
+      if(/^\d{1,2}[-\/]\d{1,2}[-\/]\d{2,4}$/.test(match))return match;
+      if(/^\d{4}-\d{1,2}-\d{1,2}$/.test(match))return match;
+      const digits=match.replace(/[^\d]/g,'');
+      return digits.length>=8?'[NÚMERO OCULTO]':match;
+    });
+    return out;
+  }
+
+  /* ===== Clasificador local (sin IA, siempre disponible y gratis) ===== */
+  /* Cada categoría tiene señales "fuertes" (muy específicas — casi nunca aparecen por accidente,
+     así que una sola es suficiente) y señales "débiles" (palabras sueltas o ambiguas — como "corte"
+     o "banco", que en español también significan "cut"/"bench", o "irs", que como texto de 3 letras
+     puede aparecer dentro de palabras comunes en inglés como "first"). Una señal débil sola NUNCA
+     alcanza para clasificar una carta; necesita otra señal débil o una fuerte que la respalde. Esto
+     es intencional: preferimos decir "no estamos seguros" (categoría "otro") a inventar con
+     confianza el tipo de carta equivocado. */
+  const CATEGORY_KEYWORDS={
+    estafa:{
+      strong:['gift card','tarjeta de regalo','wire transfer','western union','moneygram','arrest warrant','orden de arresto','do not tell anyone','no le digas a nadie','suspend your social security','suspender tu numero de seguro social','pay immediately or','call this number immediately','llama a este numero de inmediato','irs will never call','claim your prize','you have won','ganaste un premio'],
+      weak:['bitcoin','criptomoneda','crypto','act immediately','actua de inmediato']
+    },
+    cobrador:{
+      // Las tres primeras son el aviso que la FDCPA obliga a incluir en toda
+      // carta de cobro ("mini-Miranda"): son la señal más confiable que existe.
+      strong:['attempt to collect a debt','information obtained will be used for that purpose','communication is from a debt collector','debt collector','collection agency','fair debt collection practices act','fdcpa','validation notice','placed for collection','agencia de cobro','cobrador de deuda','intento de cobrar una deuda'],
+      weak:['collections','amount owed','balance due','validate this debt','settle your debt','account has been placed','original creditor','acreedor original','cobranza','deuda pendiente','saldo adeudado']
+    },
+    buro:{
+      strong:['equifax','experian','transunion','fair credit reporting act','fcra','buro de credito'],
+      weak:['credit bureau','credit report','consumer report','dispute this','information on your file','reporte de credito']
+    },
+    corte:{
+      strong:['summons','civil action','case number','plaintiff','defendant','small claims','citacion judicial','demanda civil'],
+      weak:['court','lawsuit','hearing date','corte','demanda','juzgado','audiencia','caso numero']
+    },
+    irs:{
+      strong:['internal revenue service','form 1040','notice of deficiency','cp2000','servicio de impuestos internos'],
+      weak:['irs','tax return','impuesto','declaracion de impuestos','hacienda']
+    },
+    banco:{
+      strong:['account statement','routing number','bank of america','wells fargo','chase bank','estado de cuenta bancario'],
+      weak:['overdraft','wire','your checking account','your savings account','banco','sobregiro','cuenta corriente','cuenta de ahorros']
+    },
+    // Cartas médicas y de seguro de salud. Las señales fuertes son términos que
+    // prácticamente solo aparecen en documentos de salud, para que una carta de
+    // cobro común que solo mencione un hospital siga clasificándose como cobrador.
+    salud:{
+      strong:['explanation of benefits','this is not a bill','esto no es una factura','prior authorization','autorizacion previa','out-of-network','in-network','fuera de la red','deductible','coinsurance','copay','copago','deducible','medicare','medicaid','hipaa','no surprises act','factura medica','aseguranza medica','seguro medico','plan de salud','health plan','claim denied','reclamo denegado','patient responsibility','responsabilidad del paciente'],
+      weak:['hospital','clinic','clinica','medical center','centro medico','physician','doctor','patient','paciente','medical','medico','sala de emergencia','emergency room','laboratorio','laboratory','prescription','receta']
+    }
+  };
+  const MIN_CATEGORY_SCORE=2; // mínimo de puntos (fuerte=2, débil=1) para comprometernos con una categoría
+
+  const CATEGORY_LABELS={
+    cobrador:'Cobrador de deuda',buro:'Buró de crédito',corte:'Corte o proceso legal',
+    irs:'IRS (impuestos)',banco:'Banco o institución financiera',salud:'Médica o de seguro de salud',
+    gobierno:'Aviso del gobierno',empleo:'Trabajo o empleo',vivienda:'Vivienda o renta',
+    inmigracion:'Inmigración',reglas_trabajo:'Reglamento de trabajo',informativo:'Informativo',
+    estafa:'Posible estafa',otro:'Otro / no identificado'
+  };
+
+  const URGENCY_LABELS={alta:'Urgente — actúa pronto',media:'Atiéndela esta semana',baja:'Sin prisa, pero revísala'};
+
+  const CATEGORY_EXPLANATIONS={
+    cobrador:'Este documento parece venir de un cobrador de deuda o una agencia de cobranza. Suelen enviarse cuando una cuenta no se ha pagado y fue transferida o vendida para su cobro.',
+    buro:'Este documento parece venir de un buró de crédito (como Equifax, Experian o TransUnion) o mencionar tu reporte de crédito.',
+    corte:'Este documento hace referencia a un proceso legal, una corte o un caso — puede tratarse de una demanda, una citación o un aviso de audiencia.',
+    irs:'Este documento parece ser del IRS o tratar sobre impuestos.',
+    banco:'Este documento parece venir de un banco o institución financiera, o tratar sobre una cuenta bancaria.',
+    salud:'Este documento parece ser médico o de tu seguro de salud — puede ser una factura de un hospital o clínica, un resumen de beneficios (EOB), o una decisión de tu aseguranza sobre un reclamo.',
+    otro:'No reconocimos con seguridad de qué tipo de documento se trata, así que no vamos a inventarte una interpretación.'
+  };
+
+  /* Lo que se le dice a alguien cuyo papel no es de los que interpretamos a fondo.
+     Directo, pero sin dejarlo con las manos vacías. */
+  const FUERA_DE_ALCANCE='Ahora bien, este no es de los documentos que Cartas Claras explica a fondo: '+
+    'nos concentramos en cartas de cobradores, bancos, burós de crédito, el IRS, cortes y documentos de '+
+    'salud, porque ahí es donde la gente pierde dinero y plazos. Arriba te dejamos lo que sí pudimos leer '+
+    'de tu papel. Guárdalo, y si te pide algo que no entiendes, mejor pregúntale a alguien del área antes '+
+    'de responder o pagar.';
+
+  const CATEGORY_ACTIONS={
+    cobrador:'Tienes derecho, bajo la Fair Debt Collection Practices Act (FDCPA), a pedir por escrito que el cobrador valide la deuda dentro de los 30 días de haber recibido el aviso — esto los obliga a demostrar que la deuda es tuya y el monto correcto antes de seguir cobrando. Guarda una copia de la carta y de todo lo que envíes.',
+    buro:'Bajo la Fair Credit Reporting Act (FCRA), tienes derecho a disputar información inexacta en tu reporte de crédito. Solicita tus tres reportes gratis en AnnualCreditReport.com y compáralos con esta carta antes de responder.',
+    corte:'Anota la fecha límite o de audiencia que aparezca en el documento — perder un plazo legal puede tener consecuencias serias. Te recomendamos consultar a un abogado o a una organización de asistencia legal gratuita en tu área lo antes posible.',
+    irs:'No ignores un aviso del IRS, pero tampoco actúes solo por miedo: verifica cualquier aviso llamando directamente al número oficial en irs.gov (nunca al número que aparece en un correo o mensaje de texto sospechoso). Un contador o preparador de impuestos de confianza puede ayudarte a responder.',
+    banco:'Revisa que los datos de la cuenta y los montos coincidan con tus propios registros. Si algo no cuadra, contacta a tu banco directamente usando el número oficial que aparece en tu tarjeta o en su sitio web — no el que venga en la carta si tienes dudas sobre su autenticidad.',
+    salud:'Antes de pagar, revisa dos cosas. Primero: si el papel dice "Explanation of Benefits" o "This is not a bill", NO es una factura — es el resumen de lo que tu seguro cubrió, y la factura real llega aparte del hospital o la clínica. Segundo: pide siempre la factura detallada (itemized bill) y compárala con ese resumen, porque los errores de facturación médica son comunes. Casi todos los hospitales tienen programas de ayuda financiera (financial assistance o charity care) aunque no los anuncien — pregunta por ellos. Sobre tu crédito: una deuda médica no aparece de inmediato en tu reporte (los burós esperan al menos 12 meses), las que ya pagaste deben desaparecer, y las de menos de $500 no se reportan. La regla federal que iba a eliminarlas todas fue anulada por una corte en julio de 2025, así que una deuda médica grande y sin pagar sí puede terminar en tu reporte.',
+    otro:''
+  };
+
+  /* ===== Identificador de documentos, SIN inteligencia artificial =====
+     Esto no interpreta: reconoce. Antes, un papel que no caía en ninguna de
+     nuestras seis categorías salía con las manos vacías ("no queremos adivinar
+     de qué se trata"). Eso no le sirve a nadie: la persona ya sabe que no
+     entiende el papel — para eso vino.
+
+     Ahora, aunque el documento esté fuera de lo que interpretamos a fondo,
+     decimos QUÉ ES y QUÉ TRAE ESCRITO.
+
+     Las descripciones explican qué es ESE TIPO de documento en general. Nunca
+     dicen lo que dice el papel de esta persona en particular. Esa es la línea
+     entre informar e inventar, y no se cruza. */
+  const DOC_TYPES=[
+    {re:/certificate of occupancy|certificado de ocupacion/i,cat:'gobierno',
+     tipo:'Es un certificado de ocupación — el permiso con el que la ciudad autoriza usar un local.',
+     que_es:'Un certificado de ocupación ("Certificate of Occupancy") es el papel con el que la ciudad o el condado autoriza que un edificio o un local se use para algo específico: un negocio, una vivienda, un taller. Normalmente se exige antes de abrir, dice para qué uso quedó aprobado y cuánta gente cabe, y suele tener que estar colgado cerca de la entrada. Si el uso del local cambia, hay que sacar uno nuevo.'},
+    {re:/business licen[cs]e|licencia de negocio|licencia comercial|business license tax/i,cat:'gobierno',
+     tipo:'Es una licencia de negocio emitida por una ciudad, condado o estado.',
+     que_es:'Una licencia de negocio es el permiso que da un gobierno local para operar. Casi siempre se renueva cada año y se paga una cuota. Es distinta del registro de la empresa (la LLC) y del número EIN: se pueden tener esos y aun así faltar la licencia local.'},
+    {re:/building permit|zoning permit|permiso de construccion|permit application/i,cat:'gobierno',
+     tipo:'Es un permiso o solicitud de permiso de construcción o de zonificación.',
+     que_es:'Un permiso de construcción o de zonificación autoriza hacer obra o usar un terreno de cierta forma. Suele traer un número de permiso, la dirección del inmueble y las condiciones bajo las que se aprobó. Trabajar sin él puede traer multas y problemas al vender.'},
+    {re:/explanation of benefits|this is not a bill|esto no es una factura|\beob\b/i,cat:'salud',
+     tipo:'Es un resumen de beneficios del seguro médico (EOB). NO es una factura.',
+     que_es:'Un "Explanation of Benefits" es el resumen que manda tu seguro después de una consulta o un procedimiento: qué cobró el doctor, cuánto pagó el seguro y cuánto quedaría a tu cargo. No es una factura y no se paga. La factura real, si la hay, llega aparte del hospital o la clínica, y conviene comparar las dos.'},
+    {re:/\bw-?2\b|wage and tax statement|\b1099-?(misc|nec|int|div|r|g)?\b/i,cat:'irs',
+     tipo:'Es un formulario de impuestos con lo que ganaste en el año (W-2 o 1099).',
+     que_es:'Un W-2 lo manda tu empleador y dice cuánto te pagó y cuánto te retuvo de impuestos. Un 1099 dice lo mismo pero para trabajo por cuenta propia o pagos que no vienen de un empleo fijo. Se usan para llenar la declaración de impuestos, y el IRS recibe una copia, así que los montos tienen que coincidir.'},
+    {re:/attempt to collect a debt|debt collector|validation notice|agencia de cobranza|cobrador de deuda/i,cat:'cobrador',
+     tipo:'Es una carta de cobro de una deuda.',
+     que_es:'Es una carta de cobranza: una empresa te está reclamando una deuda. Muchas veces no es el banco original, sino una agencia que compró esa deuda o que cobra por encargo. Suelen traer un plazo corto, y ese plazo es lo que más conviene no dejar pasar.'},
+    {re:/(cp\d{2,4}|ltr\s?\d{3,4})\b|notice of deficiency|internal revenue service|aviso del irs/i,cat:'irs',
+     tipo:'Es un aviso del IRS (impuestos).',
+     que_es:'Es una notificación del IRS. Casi todas traen un número de aviso arriba a la derecha (por ejemplo CP2000) que dice exactamente de qué se trata. El IRS se comunica primero por correo postal, nunca exige pago con tarjetas de regalo y nunca amenaza con arresto por teléfono.'},
+    {re:/equifax|experian|transunion|credit report|reporte de credito|annualcreditreport/i,cat:'buro',
+     tipo:'Es un documento de un buró de crédito o sobre tu reporte de crédito.',
+     que_es:'Viene de un buró de crédito o habla de tu historial. Los burós no deciden si te prestan: solo guardan el historial que los bancos les reportan, y ese historial es el que después mira quien te va a prestar.'},
+    {re:/statement period|account statement|estado de cuenta|beginning balance|ending balance/i,cat:'banco',
+     tipo:'Es un estado de cuenta de un banco o una tarjeta.',
+     que_es:'Es el resumen de movimientos de una cuenta o tarjeta en un periodo: lo que entró, lo que salió y el saldo. Conviene revisarlo contra tus propios registros, porque los cargos que no reconoces se disputan con plazos cortos.'},
+    {re:/summons|unlawful detainer|citacion judicial|subpoena|notice of hearing|aviso de audiencia/i,cat:'corte',
+     tipo:'Es un documento de una corte: una citación, una demanda o un aviso de audiencia.',
+     que_es:'Una citación judicial ("summons") avisa que alguien inició un caso en tu contra o que tienes que presentarte ante una corte en una fecha. Lo más importante de estos papeles siempre es la fecha: no presentarse suele significar perder automáticamente.'},
+    {re:/jury (duty|summons)|deber de jurado/i,cat:'corte',
+     tipo:'Es un llamado para servir como jurado.',
+     que_es:'Un llamado de jurado ("jury duty") convoca a presentarse en una corte en una fecha. Existen formas de pedir ser excusado o de cambiar la fecha, y el papel normalmente explica cómo. Ignorarlo puede traer una multa.'},
+    {re:/notice to (quit|vacate)|eviction|pay or quit|desalojo|aviso de desalojo/i,cat:'vivienda',
+     tipo:'Es un aviso relacionado con un desalojo de una vivienda.',
+     que_es:'Un aviso de desalojo ("notice to quit" o "pay or quit") es el paso previo a que un arrendador lleve el caso a una corte. Trae un plazo, casi siempre corto. Los inquilinos tienen derechos que cambian mucho de un estado a otro, y este es de los papeles donde vale más buscar ayuda legal gratis rápido.'},
+    {re:/lease agreement|rental agreement|contrato de arrendamiento|contrato de renta/i,cat:'vivienda',
+     tipo:'Es un contrato de renta o arrendamiento.',
+     que_es:'Un contrato de arrendamiento fija cuánto se paga, por cuánto tiempo, qué pasa si se paga tarde y bajo qué condiciones se puede terminar. Lo que se firma manda, así que conviene leer la letra chica sobre depósito, multas por retraso y renovación automática antes de firmar.'},
+    {re:/i-?797|uscis|notice of action|receipt notice/i,cat:'inmigracion',
+     tipo:'Es un aviso de inmigración (USCIS).',
+     que_es:'Es un aviso oficial de inmigración. Estos papeles no se interpretan por internet: un error puede tener consecuencias permanentes, y hay "notarios" que estafan justamente a quien recibe uno. Lo correcto es llevarlo a un abogado de inmigración acreditado.'},
+    {re:/earnings statement|pay ?stub|pay statement|talon de pago|comprobante de pago/i,cat:'empleo',
+     tipo:'Es un talón de pago de un trabajo.',
+     que_es:'Un talón de pago ("pay stub") desglosa lo que ganaste en un periodo y todo lo que te descontaron: impuestos, seguro, retiro. Vale la pena guardarlos: sirven para comprobar ingresos al rentar, al pedir un préstamo o al sacar una hipoteca.'},
+    {re:/employee handbook|company policy|policy no|\bcpol-|codigo de conducta|reglamento interno|all employees/i,cat:'reglas_trabajo',
+     tipo:'Es un reglamento o política interna de una empresa, dirigido a todos los empleados.',
+     que_es:'Es una norma interna del lugar de trabajo, escrita para todo el personal y no para una persona en particular. No es una carta dirigida a ti, no trae una fecha límite tuya y no hay nada que responder. Sirve para saber qué se permite y qué no en ese trabajo.'},
+    {re:/declarations page|insurance polic|poliza de seguro|policy number/i,cat:'banco',
+     tipo:'Es una póliza de seguro o su hoja de resumen.',
+     que_es:'La hoja de declaraciones de una póliza resume qué cubre el seguro, por cuánto, qué deducible tiene y en qué fechas está vigente. Es la página que piden cuando alguien necesita comprobar que tienes seguro.'},
+    {re:/utility bill|electric bill|water bill|gas bill|recibo de luz|recibo de agua|factura de servicio/i,cat:'otro',
+     tipo:'Es un recibo de servicios (luz, agua o gas).',
+     que_es:'Es la cuenta de un servicio del hogar. Trae el consumo del periodo, el monto y la fecha de vencimiento. Muchas compañías tienen planes de pago y programas de ayuda para quien se atrasa, aunque casi nunca los anuncian en el recibo.'},
+    {re:/traffic citation|uniform summons|infraccion de transito|traffic ticket/i,cat:'corte',
+     tipo:'Es una multa o infracción de tránsito.',
+     que_es:'Una infracción de tránsito trae una fecha para pagar o para presentarse ante la corte. Pagarla suele contar como admitir la falta, lo que puede sumar puntos a la licencia y subir el seguro. No hacer nada casi siempre empeora las cosas.'},
+    {re:/report card|school notice|parent notice|boleta de calificaciones|aviso escolar/i,cat:'informativo',
+     tipo:'Es un documento de una escuela.',
+     que_es:'Es un papel de la escuela: calificaciones, un aviso a los padres o información de un programa. Las escuelas públicas están obligadas a comunicarse contigo en tu idioma y a darte un intérprete si lo pides, sin costo.'},
+    {re:/^\s*invoice\b|\binvoice (no|number|#)|\bfactura\b|remit to/im,cat:'otro',
+     tipo:'Es una factura de un negocio o proveedor.',
+     que_es:'Una factura pide el pago de un producto o servicio. Trae quién cobra, qué se cobra, el monto y la fecha de pago. Antes de pagar conviene revisar que los conceptos y las cantidades coincidan con lo que realmente se recibió.'},
+    /* Ojo: "receipt" a secas NO sirve como señal. Las cartas de cobradores dicen
+       "within 30 days of receipt of this notice" todo el tiempo. */
+    {re:/^\s*receipt\b|\brecibo de (compra|pago)\b|thank you for your (purchase|payment)|sales receipt/im,cat:'informativo',
+     tipo:'Es un recibo de una compra o de un pago.',
+     que_es:'Es el comprobante de que algo se pagó. Sirve para devoluciones, garantías y para llevar cuentas. No hay nada que responder ni ninguna fecha límite.'},
+    {re:/owner'?s manual|user manual|warranty|instrucciones de uso|garantia limitada/i,cat:'informativo',
+     tipo:'Es un manual o una garantía de un producto.',
+     que_es:'Es la documentación de un producto: cómo usarlo o qué cubre su garantía. Vale la pena guardarlo junto con el recibo, porque casi todas las garantías exigen el comprobante de compra.'},
+    {re:/(please )?(complete|fill out) (this|the) (form|application)|solicitud de|application for/i,cat:'informativo',
+     tipo:'Es un formulario o una solicitud para llenar.',
+     que_es:'Es un formulario que alguien tiene que llenar. Todavía no dice nada sobre una decisión ni sobre una deuda: es el paso de pedir algo. Conviene revisar qué documentos pide adjuntar antes de entregarlo.'}
+  ];
+
+  /* Etiquetas que aparecen a la derecha en formularios de dos columnas. Sirven
+     para saber dónde termina el valor de la etiqueta anterior: pdf.js junta las
+     dos columnas en una sola línea y sin esto se mezclarían. */
+  const ETIQUETAS_CORTE=['tax map','permit','date issued','usbc code edition','zone','ordinance',
+    'type construction','occupant load','automatic sprinkler system','required','fire alarm system',
+    'building size','elevators','of exits','of stories','zoning use class','use group','account number',
+    'amount due','due date','policy number','case number','claim number','invoice','total','balance',
+    'effective date','expiration','patient','employer','phone','fecha','monto','total a pagar'];
+  const RE_CORTE=new RegExp('\\b(?:'+ETIQUETAS_CORTE.join('|').replace(/ /g,'\\s+')+')\\s*#?\\s*:','i');
+
+  function valorDeEtiqueta(texto,etiqueta){
+    const m=texto.match(new RegExp(etiqueta+'\\s*#?\\s*:\\s*([^\\n]{1,120})','i'));
+    if(!m)return '';
+    let v=m[1];
+    const sig=v.search(RE_CORTE);
+    if(sig>0)v=v.slice(0,sig);
+    return v.replace(/\s+/g,' ').trim().replace(/[,;:]+$/,'').slice(0,80);
+  }
+
+  const RE_FECHA='(\\d{1,2}[-\\/]\\d{1,2}[-\\/]\\d{2,4}|\\d{4}-\\d{2}-\\d{2}|(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|january|february|march|april|may|june|july|august|september|october|november|december)\\s+\\d{1,2},?\\s+\\d{4}|\\d{1,2}\\s+de\\s+\\w+\\s+de\\s+\\d{4})';
+
+  /* Saca hechos concretos del papel. Todo lo que sale de aquí está escrito en el
+     documento: no se deduce nada, no se completa nada. */
+  function extraerDatosClave(texto,doc){
+    const datos=[];
+    const agregar=(t)=>{if(t&&datos.length<5&&!datos.includes(t))datos.push(t);};
+
+    /* Un solo espacio entre palabras, a propósito. Con \s+ el nombre se comía la
+       columna de al lado: "City of Roanoke          Tax Map" salía completo. */
+    const emisor=texto.match(/\b(?:City|Town|County|Commonwealth|State)\s?of [A-Z][A-Za-z.'-]+(?: [A-Z][A-Za-z.'-]+){0,2}/)
+      ||texto.match(/\b(?:Internal Revenue Service|Social Security Administration|Department of [A-Z][A-Za-z]+(?: [A-Z][A-Za-z]+){0,2})/)
+      ||texto.match(/\b[A-Z][A-Za-z.'&-]+(?: [A-Z][A-Za-z.'&-]+){0,3} (?:Corporation|Corp\.?|Incorporated|Inc\.?|L\.?L\.?C\.?|Company|Bank|Hospital|Clinic)\b/);
+    if(emisor)agregar('Lo emite '+emisor[0].replace(/\s+/g,' ').trim());
+
+    const negocio=valorDeEtiqueta(texto,'business name')||valorDeEtiqueta(texto,'nombre del negocio');
+    if(negocio)agregar('Negocio: '+negocio);
+
+    const titular=valorDeEtiqueta(texto,'owner of certificate')||valorDeEtiqueta(texto,'owner of building')
+      ||valorDeEtiqueta(texto,'account holder');
+    if(titular)agregar('A nombre de: '+titular);
+
+    /* El valor puede empezar por letras ("CPOL-27", "CO26-0053") pero tiene que
+       contener al menos un dígito: si no, estaríamos capturando otra palabra. */
+    const ref=texto.match(/\b(permit|certificate|case|account|policy|claim|invoice|licen[cs]e|reference|file)\s*(?:#|no\.?|number|num\.?)\s*:?\s*([A-Z0-9][A-Z0-9\-\/]{2,19})\b/i);
+    if(ref&&/\d/.test(ref[2])){
+      // "policy" es póliza en un seguro, pero es reglamento en un papel de trabajo.
+      const esReglamento=doc&&doc.cat==='reglas_trabajo';
+      agregar('Número de '+({permit:'permiso',certificate:'certificado',case:'caso',account:'cuenta',
+        policy:esReglamento?'política interna':'póliza',claim:'reclamo',invoice:'factura',
+        license:'licencia',licence:'licencia',reference:'referencia',
+        file:'expediente'}[ref[1].toLowerCase()]||'referencia')+': '+ref[2]);
+    }
+
+    const fechaEtiquetada=texto.match(new RegExp('(date issued|issue date|due date|expiration date|expires|effective date|fecha de emision|fecha de vencimiento|vence)\\s*:?\\s*'+RE_FECHA,'i'));
+    if(fechaEtiquetada)agregar(({'date issued':'Fecha de emisión','issue date':'Fecha de emisión',
+      'due date':'Fecha de pago','expiration date':'Fecha de vencimiento','expires':'Vence',
+      'effective date':'Entra en vigor','fecha de emision':'Fecha de emisión',
+      'fecha de vencimiento':'Fecha de vencimiento','vence':'Vence'}[fechaEtiquetada[1].toLowerCase()]||'Fecha')+': '+fechaEtiquetada[2]);
+
+    const monto=texto.match(/\$\s?\d{1,3}(?:,\d{3})*(?:\.\d{2})?/);
+    if(monto)agregar('Aparece la cantidad '+monto[0].replace(/\s/g,''));
+
+    const dir=texto.match(/\b\d{1,6}\s+[A-Z0-9][A-Za-z0-9.'-]*(?:\s+[A-Za-z0-9.'-]+){0,4}\s+(?:RD|ROAD|ST|STREET|AVE|AVENUE|DR|DRIVE|BLVD|LN|LANE|WAY|CT|COURT|PL|PLACE|HWY|CIR|CIRCLE|PKWY|TER)\b\.?(?:\s+(?:NW|NE|SW|SE|N|S|E|W))?/i);
+    if(dir)agregar('Dirección que aparece: '+dir[0].replace(/\s+/g,' ').trim());
+
+    if(!datos.length){
+      const fecha=texto.match(new RegExp(RE_FECHA,'i'));
+      if(fecha)agregar('Aparece la fecha '+fecha[0]);
+      const palabras=(texto.match(/\S+/g)||[]).length;
+      if(palabras)agregar('El documento tiene alrededor de '+palabras+' palabras de texto');
+    }
+    return datos;
+  }
+
+  function identificarDocumento(texto){
+    for(const d of DOC_TYPES){if(d.re.test(texto))return d;}
+    return null;
+  }
+
+  function escapeRegex(str){
+    return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  }
+
+  // Coincidencia por palabra completa (con \b), no por subcadena — así "irs" no coincide dentro de
+  // "first", ni "corte" dentro de "cortesía". Se permite una "s" final opcional para cubrir el
+  // plural más común ("gift card"/"gift cards", "banco"/"bancos") sin duplicar cada palabra clave.
+  // Se cachea el RegExp por palabra clave para no reconstruirlo en cada llamada.
+  const _keywordRegexCache={};
+  // Quita los acentos para que "citación judicial" coincida con la palabra clave
+  // "citacion judicial". Sin esto, TODA palabra clave en español con acento era
+  // letra muerta: el texto real venía acentuado y nunca coincidía.
+  const _normCache=new WeakMap();
+  function stripAccents(str){return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function keywordMatches(text,keyword){
+    let re=_keywordRegexCache[keyword];
+    if(!re){re=new RegExp('\\b'+escapeRegex(stripAccents(keyword))+'s?\\b','i');_keywordRegexCache[keyword]=re;}
+    return re.test(stripAccents(text));
+  }
+
+  function detectScam(text){
+    const strongHits=CATEGORY_KEYWORDS.estafa.strong.filter((kw)=>keywordMatches(text,kw));
+    const weakHits=CATEGORY_KEYWORDS.estafa.weak.filter((kw)=>keywordMatches(text,kw));
+    // Una señal fuerte de estafa basta; dos señales débiles también — evita marcar como estafa por
+    // una sola palabra ambigua como "crypto" mencionada de pasada.
+    const isScam=strongHits.length>=1||weakHits.length>=2;
+    return {isScam,hits:strongHits.concat(weakHits)};
+  }
+
+  // Puntaje ponderado: cada señal fuerte vale 2 puntos, cada débil vale 1. Se necesita un mínimo de
+  // MIN_CATEGORY_SCORE para comprometernos con esa categoría — así una sola palabra suelta y
+  // ambigua (como "banco" o "corte", que también tienen otro significado común en español) nunca
+  // alcanza por sí sola para decidir de qué trata la carta.
+  function scoreCategory(text,cat){
+    const def=CATEGORY_KEYWORDS[cat];
+    let score=0;
+    def.strong.forEach((kw)=>{if(keywordMatches(text,kw))score+=2;});
+    def.weak.forEach((kw)=>{if(keywordMatches(text,kw))score+=1;});
+    return score;
+  }
+
+  function classifyLetterLocally(text){
+    const scam=detectScam(text);
+    let bestCat='otro',bestScore=0;
+    ['cobrador','buro','corte','irs','banco','salud'].forEach((cat)=>{
+      const score=scoreCategory(text,cat);
+      if(score>bestScore){bestScore=score;bestCat=cat;}
+    });
+    if(bestScore<MIN_CATEGORY_SCORE)bestCat='otro';
+
+    /* Aquí está la lección del reglamento de Virginia Transformer. Ese papel
+       decía "medical hearing devices ... doctor's note" dentro de una sección de
+       excepciones, sumaba 2 puntos débiles y salía clasificado como carta MÉDICA.
+
+       El tipo de documento manda sobre el conteo de palabras. Reconocer el
+       encabezado "POLICY NO." o "All Employees" es evidencia mucho más fuerte que
+       tropezarse con dos palabras sueltas en la letra chica. Solo se respeta el
+       puntaje cuando es contundente (PUNTAJE_CONTUNDENTE), es decir cuando hay
+       varias señales fuertes y no una coincidencia de paso.
+
+       Con un límite: si el tipo reconocido cae en una de las seis categorías que
+       el puntaje sí sabe medir (cobrador, buró, corte, IRS, banco, salud), se
+       respeta el puntaje. El tipo solo manda cuando aporta algo que el puntaje no
+       puede ver — un reglamento, un permiso, un recibo, un aviso de vivienda. */
+    const PUNTAJE_CONTUNDENTE=6;
+    const CATS_PUNTUADAS=['cobrador','buro','corte','irs','banco','salud'];
+    const doc=identificarDocumento(text);
+    if(doc&&doc.cat&&(bestCat==='otro'||
+       (!CATS_PUNTUADAS.includes(doc.cat)&&bestScore<PUNTAJE_CONTUNDENTE)))bestCat=doc.cat;
+
+    const isScam=scam.isScam;
+    const categoria=isScam?'estafa':bestCat;
+    const datos=extraerDatosClave(text,doc);
+
+    const deadlineHint=/\b(24\s*hours|immediately|inmediatamente|within\s*hours|antes de hoy)\b/i.test(text);
+    let urgencia='baja';
+    if(isScam||categoria==='corte'||deadlineHint)urgencia='alta';
+    /* "Atiéndela esta semana" solo tiene sentido cuando alguien te está pidiendo
+       algo. Un certificado ya emitido, un recibo o un reglamento no piden nada. */
+    else if(['cobrador','buro','irs','banco','salud','vivienda','inmigracion','empleo'].includes(categoria))urgencia='media';
+
+    /* Qué se le dice a la persona cuando el papel está fuera de lo que
+       interpretamos a fondo. Antes era un "no queremos adivinar" a secas, que
+       sonaba a puerta cerrada. Ahora: qué es el documento, qué es ese tipo de
+       documento en general, y con franqueza hasta dónde llegamos. */
+    const fueraDeAlcance=!isScam&&!CATEGORY_EXPLANATIONS[bestCat];
+    let explicacion;
+    if(isScam){
+      explicacion='Este documento tiene una o más señales típicas de fraude financiero. '+
+        (doc?doc.que_es+' ':'')+CATEGORY_EXPLANATIONS.otro;
+    }else if(fueraDeAlcance||bestCat==='otro'){
+      explicacion=doc
+        ? doc.que_es+' '+FUERA_DE_ALCANCE
+        : 'No reconocimos con seguridad qué tipo de documento es este, así que no vamos a inventarte una interpretación. '+
+          'Arriba te dejamos los datos que sí pudimos leer del papel. '+FUERA_DE_ALCANCE;
+    }else{
+      explicacion=(doc?doc.que_es+' ':'')+CATEGORY_EXPLANATIONS[bestCat];
+    }
+
+    const accion=isScam
+      ?'No envíes dinero, tarjetas de regalo ni información personal hasta verificar quién te contactó por un medio oficial (llamando directamente a la institución con el número que tú busques, no el que aparece en la carta). Si ya diste información o dinero, repórtalo de inmediato a la FTC.'
+      :(CATEGORY_ACTIONS[bestCat]||CATEGORY_ACTIONS.otro);
+
+    return {
+      tipo_documento:doc?doc.tipo:'',
+      datos_clave:datos,
+      dirigido_a_ti:doc&&(doc.cat==='reglas_trabajo'||doc.cat==='informativo')?'no':'no_claro',
+      categoria,
+      urgencia,
+      explicacion,
+      accion,
+      alerta_estafa:isScam?'si':'no',
+      razon_estafa:isScam?('Detectamos frases asociadas a estafas comunes, como: "'+scam.hits.slice(0,3).join('", "')+'".'):'ninguna'
+    };
+  }
+
+  /* ===== Análisis con IA real (solo con sesión activa — mismo patrón que Mr. Credit Coach) ===== */
+  /* "paginas" es un arreglo [{base64,mediaType}]. Van TODAS en una sola llamada:
+     si se mandaran por separado, el modelo no podría relacionar la fecha de una
+     página con el monto de otra, que es justo lo que hay que interpretar. */
+  async function callExplainLetter(redactedText, paginas){
+    if(!window.CCAuth||!window.CCAuth.isConfigured)return null;
+    const user=window.CCAuth.getUser&&window.CCAuth.getUser();
+    if(!user)return null;
+    const accessToken=window.CCAuth.getAccessToken?window.CCAuth.getAccessToken():null;
+    if(!accessToken)return null;
+
+    const res=await fetch('/.netlify/functions/explain-letter',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(paginas&&paginas.length
+        ? {paginas:paginas.map(p=>({base64:p.base64,mediaType:p.mediaType})),accessToken}
+        : {letterText:redactedText,accessToken})
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok||!data||!data.result)return null;
+    return data.result;
+  }
+
+  /* ===== Enlaces cruzados hacia las otras herramientas del sitio ===== */
+  function crosslinkFor(categoria,isScam){
+    if(isScam)return null;
+    if(categoria==='cobrador'){
+      return {
+        text:'¿Quieres que dejen de contactarte? Prepara una carta gratuita de cese de comunicación, o analiza tu reporte de crédito para generar una carta de validación de deuda con tus propios datos.',
+        href:'herramientas.html#carta-cese-comunicacion',
+        label:'Preparar mi carta →'
+      };
+    }
+    if(categoria==='buro'){
+      return {
+        text:'Si después de revisarla ves un dato que de verdad está equivocado, puedes analizar tu reporte de crédito y preparar una carta de disputa. Disputar información que sí es correcta no la borra y puede perjudicarte.',
+        href:'credito.html#analizar-reporte',
+        label:'Analizar mi reporte →'
+      };
+    }
+    return null;
+  }
+
+  /* ===== Encender el chip de la categoría detectada =====
+     Los chips de arriba dejan de ser decorativos: al terminar el análisis se
+     enciende el de la categoría que se detectó y los demás se atenúan. Si no
+     se reconoció el tipo ("otro"), no se enciende ninguno — preferimos no
+     señalar una categoría equivocada. */
+  function highlightScopeChip(categoria){
+    const chips=document.querySelector('.cc-scope-chips');
+    if(!chips)return;
+    const objetivo=chips.querySelector('[data-cat="'+categoria+'"]');
+    chips.querySelectorAll('.cc-scope-chip').forEach(c=>c.classList.remove('is-detected'));
+    if(!objetivo){chips.classList.remove('has-detection');return;}
+    chips.classList.add('has-detection');
+    objetivo.classList.add('is-detected');
+  }
+
+  function clearScopeChips(){
+    const chips=document.querySelector('.cc-scope-chips');
+    if(!chips)return;
+    chips.classList.remove('has-detection');
+    chips.querySelectorAll('.cc-scope-chip').forEach(c=>c.classList.remove('is-detected'));
+  }
+
+  /* Muestra u oculta un bloque y, si se muestra, lo llena. */
+  function mostrar(id, condicion, llenar){
+    const el=$(id);
+    if(!el) return;
+    el.hidden=!condicion;
+    if(condicion && typeof llenar==='function') llenar();
+  }
+
+  function escapeHtml(t){
+    return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+
+  /* ===== Renderizar resultados ===== */
+  function renderResults(result,source,detail){
+    const categoria=result.categoria||'otro';
+    const urgencia=(result.urgencia||'media').toLowerCase();
+    const isScam=String(result.alerta_estafa||'no').toLowerCase()==='si';
+    highlightScopeChip(isScam?'estafa':categoria);
+
+    /* Analítica: solo la etiqueta de la categoría y si se detectó estafa.
+       NUNCA el contenido de la carta ni ningún dato de la persona. */
+    if(window.ThemoraStats){
+      window.ThemoraStats.evento('carta-explicada',{
+        categoria: categoria,
+        urgencia: urgencia,
+        estafa: isScam ? 'si' : 'no',
+        origen: source === 'paste' ? 'texto' : 'archivo',
+        idioma: (result.idioma || 'no detectado').toLowerCase().slice(0, 20),
+        tenia_fecha: (result.fecha_limite || '').trim() ? 'si' : 'no',
+        abogado: String(result.necesitas_abogado || 'no').toLowerCase(),
+        dirigido: String(result.dirigido_a_ti || 'no_claro').toLowerCase()
+      });
+    }
+
+    $('ccCatBadge').textContent=CATEGORY_LABELS[categoria]||CATEGORY_LABELS.otro;
+
+    /* --- Lo primero: qué es este papel. Va siempre, sea carta o no. --- */
+    const tipo=(result.tipo_documento||'').trim();
+    $('ccTipoVal').textContent = tipo ||
+      'No reconocimos el tipo exacto de documento. Abajo está lo que sí pudimos leer de él.';
+
+    /* --- Los datos que sí se pudieron sacar, aunque no sea una carta --- */
+    const datos=Array.isArray(result.datos_clave)?result.datos_clave:[];
+    mostrar('ccDatosPanel', datos.length>0, ()=>{
+      $('ccDatos').innerHTML=datos.map(d=>'<li>'+escapeHtml(d)+'</li>').join('');
+    });
+
+    /* --- ¿Va dirigido a esta persona? Si no, bajarle el susto de una vez. --- */
+    const dirigido=String(result.dirigido_a_ti||'no_claro').toLowerCase();
+    const esGeneral = dirigido==='no' ||
+      (dirigido==='no_claro' && (categoria==='reglas_trabajo'||categoria==='informativo'));
+    mostrar('ccGeneral', esGeneral && !isScam, ()=>{
+      $('ccGeneralTitle').textContent = categoria==='reglas_trabajo'
+        ? 'Esto es un reglamento, no una carta para ti'
+        : 'Este papel no va dirigido a ti en particular';
+      $('ccGeneralText').textContent = categoria==='reglas_trabajo'
+        ? 'Es información general de un lugar de trabajo, escrita para todos. No trae una fecha límite para ti, no te están cobrando nada y no hay nada que tengas que responder. Abajo te explicamos qué dice.'
+        : 'Es información general, no algo que te estén pidiendo a ti. No tiene fecha límite ni consecuencias para ti. Abajo te explicamos qué dice.';
+    });
+    $('ccResultsTitle').textContent = esGeneral && !isScam
+      ? 'Esto es lo que dice tu documento'
+      : 'Esto es lo que dice tu carta';
+
+    /* La etiqueta de urgencia dice "revísala" / "actúa pronto". En un papel que
+       no le pide nada a nadie eso sobra y confunde, así que no se pinta. */
+    const urgBadge=$('ccUrgBadge');
+    urgBadge.hidden = esGeneral && !isScam;
+    urgBadge.className='cc-badge cc-badge-urg-'+(['alta','media','baja'].includes(urgencia)?urgencia:'media');
+    urgBadge.textContent=URGENCY_LABELS[urgencia]||URGENCY_LABELS.media;
+
+    /* --- Fecha límite: lo primero que tiene que ver --- */
+    const fecha=(result.fecha_limite||'').trim();
+    mostrar('ccDeadline', !!fecha, ()=>{ $('ccDeadlineVal').textContent=fecha; });
+
+    /* --- Datos de cabecera --- */
+    const remitente=(result.remitente||'').trim();
+    const monto=(result.monto||'').trim();
+    const idioma=(result.idioma||'').trim();
+    const hayRemitente = remitente && !/^no identificado$/i.test(remitente);
+    mostrar('ccFromItem', !!hayRemitente, ()=>{ $('ccFrom').textContent=remitente; });
+    mostrar('ccAmountItem', !!monto, ()=>{ $('ccAmount').textContent=monto; });
+    mostrar('ccLangItem', !!idioma, ()=>{ $('ccLang').textContent=idioma; });
+    mostrar('ccMeta', !!(hayRemitente||monto||idioma));
+
+    /* --- Qué dice / si no haces nada --- */
+    $('ccExplicacion').textContent=result.que_dice||result.explicacion||'No fue posible generar una explicación.';
+    /* El análisis local traía un segundo párrafo con derechos y pasos concretos
+       que nunca se pintaba en pantalla. Estaba escrito y nadie lo veía. */
+    const accion=(result.accion||'').trim();
+    mostrar('ccAccion', !!accion, ()=>{ $('ccAccion').textContent=accion; });
+    const nada=(result.si_no_haces_nada||'').trim();
+    mostrar('ccNothingPanel', !!nada, ()=>{ $('ccNothing').textContent=nada; });
+
+    /* --- Listas --- */
+    const opciones=Array.isArray(result.tus_opciones)?result.tus_opciones:[];
+    mostrar('ccOptionsPanel', opciones.length>0, ()=>{
+      $('ccOptions').innerHTML=opciones.map(o=>'<li>'+escapeHtml(o)+'</li>').join('');
+    });
+
+    const derechos=Array.isArray(result.tus_derechos)?result.tus_derechos:[];
+    mostrar('ccRightsPanel', derechos.length>0, ()=>{
+      $('ccRights').innerHTML=derechos.map(d=>'<li>'+escapeHtml(d)+'</li>').join('');
+    });
+
+    /* Las frases vienen como: Frase en inglés. (Significado en español.) */
+    const frases=Array.isArray(result.frases_en_ingles)?result.frases_en_ingles:[];
+    mostrar('ccPhrasesPanel', frases.length>0, ()=>{
+      $('ccPhrases').innerHTML=frases.map(f=>{
+        const m=String(f).match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+        const en=m?m[1].trim():String(f).trim();
+        const es=m?m[2].trim():'';
+        return '<li><span class="cc-phrase-en">'+escapeHtml(en)+'</span>'+
+               (es?'<span class="cc-phrase-es">'+escapeHtml(es)+'</span>':'')+'</li>';
+      }).join('');
+    });
+
+    /* --- Abogado: el puente a ayuda real --- */
+    const nivel=String(result.necesitas_abogado||'no').toLowerCase();
+    mostrar('ccLawyer', nivel==='recomendable'||nivel==='urgente', ()=>{
+      $('ccLawyerTitle').textContent = nivel==='urgente'
+        ? 'Esto puede tener consecuencias legales o una fecha próxima'
+        : 'Puede convenir que un abogado la revise';
+      $('ccLawyerWhy').textContent = (result.por_que_abogado||'').trim() ||
+        'Por el tipo de documento, considera hablar pronto con un abogado o con asistencia legal de tu área antes de responder.';
+    });
+
+    /* --- Traducción completa, plegada --- */
+    const trad=(result.traduccion||'').trim();
+    mostrar('ccTranslationBox', !!trad, ()=>{ $('ccTranslation').textContent=trad; });
+
+    /* --- Verificación del remitente --- */
+    const OFICIALES={
+      irs:[['IRS — cómo verificar un aviso','https://www.irs.gov/individuals/understanding-your-irs-notice-or-letter'],['IRS — estafas y avisos falsos','https://www.irs.gov/es/help/tax-scams-consumer-alerts']],
+      cobrador:[['CFPB — qué hacer con un cobrador','https://www.consumerfinance.gov/es/obtener-respuestas/temas/deudas-y-cobro-de-deudas/'],['FTC — cobradores falsos','https://consumidor.ftc.gov/articulos/como-lidiar-con-cobradores-de-deudas']],
+      banco:[['FDIC — verificar si un banco es real','https://banks.data.fdic.gov/bankfind-suite/bankfind'],['CFPB — presentar una queja','https://www.consumerfinance.gov/es/presentar-una-queja/']],
+      buro:[['Equifax, Experian y TransUnion — sitio oficial','https://www.annualcreditreport.com/'],['CFPB — burós de crédito','https://www.consumerfinance.gov/es/obtener-respuestas/temas/reportes-y-puntajes-de-credito/']],
+      corte:[['Directorio oficial de cortes estatales','https://www.ncsc.org/information-and-resources/state-court-websites'],['LawHelp.org — ayuda legal gratis','https://www.lawhelp.org/find-help']],
+      salud:[['Medicare — avisos y estafas','https://www.medicare.gov/basics/reporting-medicare-fraud-and-abuse']],
+      estafa:[['FTC — reportar fraude','https://reportfraud.ftc.gov/'],['USA.gov — estafas comunes','https://www.usa.gov/espanol/estafas-fraudes']]
+    };
+    const listaOfi=OFICIALES[isScam?'estafa':categoria]||null;
+    mostrar('ccVerificar', !!listaOfi, ()=>{
+      $('ccVerificarTexto').textContent = hayRemitente
+        ? 'Esta carta dice venir de ' + remitente + '. Confírmalo por tu cuenta antes de responder, llamar o pagar algo.'
+        : 'Confirma por tu cuenta quién te escribió antes de responder, llamar o pagar algo.';
+      $('ccVerificarLinks').innerHTML = listaOfi.map(function(o){
+        return '<a href="'+o[1]+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(o[0])+' \u2197</a>';
+      }).join('');
+    });
+
+    const scamBox=$('ccScamAlert');
+    if(isScam){
+      scamBox.hidden=false;
+      $('ccScamReason').textContent=result.razon_estafa&&result.razon_estafa!=='ninguna'?result.razon_estafa:'El contenido de esta carta coincide con patrones comunes de fraude.';
+    }else{
+      scamBox.hidden=true;
+    }
+
+    const cross=crosslinkFor(categoria,isScam);
+    const crossBox=$('ccCrosslink');
+    if(cross){
+      crossBox.hidden=false;
+      $('ccCrosslinkText').textContent=cross.text;
+      const btn=$('ccCrosslinkBtn');
+      btn.href=cross.href;btn.textContent=cross.label;
+    }else{
+      crossBox.hidden=true;
+    }
+
+    $('ccSourceNote').innerHTML=(source==='ai'
+      ?'<strong>Análisis generado con inteligencia artificial.</strong> '
+      :'<strong>Análisis automático basado en palabras clave</strong> — ')
+      +(source==='ai'?'Revisado con el texto que leímos de tu documento ('+detail+'). ':'sin necesidad de iniciar sesión ('+detail+'). ')
+      +'Esto es información educativa, no asesoría legal ni financiera profesional.';
+
+    results.hidden=false;
+    results.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  /* ===== Flujo principal ===== */
+  async function handleAnalyze(){
+    errorBox.hidden=true;
+
+    let raw='',detail='';
+    try{
+      if(activeTab==='paste'){
+        raw=(pasteText.value||'').trim();
+        if(!raw)return showError('Pega el texto de la carta antes de continuar.');
+        detail='Texto pegado';
+      }else{
+        if(!selectedFiles.length)return showError('Selecciona una foto o un documento antes de continuar.');
+        showProgress('Leyendo el documento…', selectedFiles.length>1
+          ? 'Leyendo '+selectedFiles.length+' páginas en tu propio navegador'
+          : 'Esto se hace en tu propio navegador');
+
+        /* Se leen todas las hojas y se pegan en un solo texto, marcando dónde
+           empieza cada una. Así la fecha de una página y el monto de otra se
+           interpretan como lo que son: el mismo documento. */
+        const partes=[]; const detalles=[]; let confianzaMin=null; let algunaFoto=false;
+        for(let i=0;i<selectedFiles.length;i++){
+          const ex=await extractFromFile(selectedFiles[i]);
+          const txt=(ex.text||'').trim();
+          if(txt) partes.push(selectedFiles.length>1?('--- Página '+(i+1)+' ---\n'+txt):txt);
+          detalles.push(ex.detail);
+          if(ex.esFoto){
+            algunaFoto=true;
+            if(typeof ex.confianza==='number') confianzaMin=confianzaMin===null?ex.confianza:Math.min(confianzaMin,ex.confianza);
+          }
+        }
+        raw=partes.join('\n\n');
+        detail=selectedFiles.length>1?(selectedFiles.length+' páginas · '+detalles[0]):detalles[0];
+        const extracted={text:raw,detail:detail,esFoto:algunaFoto,confianza:confianzaMin};
+
+        /* No se pudo leer aquí. En vez de un error seco, ofrecemos el otro
+           camino — pero pidiendo permiso, porque implica mandar la imagen sin
+           poder tapar los números.
+
+           Ojo con el segundo caso: un PDF ESCANEADO no trae texto, así que
+           antes caía en el error de más abajo y la persona se quedaba sin
+           salida, aunque sus páginas sí se pueden mandar como imagen. */
+        const textoUtil=raw.replace(/\s+/g,'').length;
+        const sePuedeMandarComoImagen=selectedFiles.some(f=>
+          window.ThemoraPaginas&&(window.ThemoraPaginas.esImagen(f)||window.ThemoraPaginas.esPdf(f)));
+        if(!lecturaConfiable(extracted)||(textoUtil<15&&sePuedeMandarComoImagen)){
+          hideProgress();
+          return pedirPermisoFoto(!algunaFoto&&sePuedeMandarComoImagen);
+        }
+      }
+
+      if(!raw||raw.replace(/\s+/g,'').length<15){
+        hideProgress();
+        return showError('No pudimos leer suficiente texto. Si es una foto, inténtalo con mejor luz y sin sombras; si prefieres, usa la pestaña "Pegar el texto".');
+      }
+      if(raw.length>8000)raw=raw.slice(0,8000);
+
+      showProgress('Analizando el contenido…','Buscando de qué se trata la carta');
+      const redacted=redactSensitive(raw);
+
+      let result=null,source='local';
+      try{
+        const aiResult=await callExplainLetter(redacted);
+        if(aiResult){result=aiResult;source='ai';}
+      }catch(err){
+        console.warn('[cartas-claras] Análisis con IA no disponible, usando análisis local:',err);
+      }
+      if(!result){
+        result=classifyLetterLocally(redacted);
+        source='local';
+      }
+
+      hideProgress();
+      renderResults(result,source,detail);
+    }catch(err){
+      hideProgress();
+      showError(err&&err.message?err.message:'Ocurrió un error inesperado. Intenta de nuevo.');
+    }
+  }
+
+  /* ===== Camino de la foto, con permiso explícito ===== */
+  /* esPdfSinTexto: el documento es un PDF escaneado, no una foto mal leída.
+     El motivo es distinto y el texto que ve la persona también debe serlo. */
+  function pedirPermisoFoto(esPdfSinTexto){
+    errorBox.hidden=true;
+    const panel=$('ccPermiso');
+    if(esPdfSinTexto){
+      $('ccPermisoTitulo').textContent='Este PDF es una foto por dentro';
+      $('ccPermisoMotivo').textContent='Tu PDF no tiene texto: por dentro es la imagen de un escáner, así que aquí en tu teléfono no hay nada que leer. Se puede convertir cada página en imagen y mandarlas para que la IA las lea.';
+    }else{
+      $('ccPermisoTitulo').textContent='No pude leer esta foto aquí en tu dispositivo';
+      $('ccPermisoMotivo').textContent='Nuestro lector local entiende inglés y español. Si tu carta está en otro idioma —chino, árabe, vietnamita, criollo— no puede leerla.';
+    }
+    panel.hidden=false;
+    panel.scrollIntoView({behavior:'smooth',block:'center'});
+    if(window.ThemoraStats)window.ThemoraStats.evento('carta-foto-permiso-pedido',{motivo:esPdfSinTexto?'pdf-escaneado':'ocr-fallo'});
+    $('ccPermisoSi').focus();
+  }
+
+  $('ccPermisoNo').addEventListener('click',()=>{
+    $('ccPermiso').hidden=true;
+    showError('Sin problema. Puedes tomar la foto de nuevo tapando lo que no quieras mandar, o usar la pestaña "Pegar el texto" y escribir lo que dice la carta.');
+  });
+
+  $('ccPermisoSi').addEventListener('click',async()=>{
+    $('ccPermiso').hidden=true;
+    if(!selectedFiles.length)return showError('Vuelve a seleccionar la foto.');
+    try{
+      showProgress('Preparando las páginas…','Se reduce el tamaño antes de enviarlas');
+      /* ThemoraPaginas convierte fotos Y PDFs en páginas. Esto además arregla
+         un fallo que estaba escondido: antes, un PDF escaneado por este camino
+         reventaba, porque un PDF no se puede meter en una etiqueta <img>. */
+      const prep=await window.ThemoraPaginas.preparar(selectedFiles);
+      const n=prep.paginas.length;
+
+      showProgress('Leyendo la carta…', n>1
+        ? 'La inteligencia artificial está leyendo las '+n+' páginas juntas'
+        : 'La inteligencia artificial está interpretando la imagen');
+      const result=await callExplainLetter('',prep.paginas);
+      hideProgress();
+
+      if(!result){
+        return showError('No se pudo leer la foto en este momento. Intenta de nuevo en unos minutos, o usa la pestaña "Pegar el texto".');
+      }
+      renderResults(result,'ai',(n>1?n+' páginas leídas':'Foto leída')+' directamente (con tu permiso)');
+    }catch(err){
+      hideProgress();
+      showError(err&&err.message?err.message:'No se pudo procesar la foto. Intenta de nuevo.');
+    }
+  });
+
+  analyzeButton.addEventListener('click',handleAnalyze);
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="site-search-index.js"></script>
+<script src="zyron-brain.js"></script>
+  <script src="credit-coach.js"></script>
+
+  <script src="nav.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

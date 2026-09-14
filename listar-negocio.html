@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listar tu negocio en Google Maps y Apple Maps | Themora</title>
+<meta name="description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Listar tu negocio en Google Maps y Apple Maps | Themora">
+<meta property="og:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
+<meta property="og:url" content="https://mithemora.com/listar-negocio.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Listar tu negocio en Google Maps y Apple Maps | Themora">
+<meta name="twitter:description" content="Te ayudo a poner tu negocio en Google Maps y Apple Maps, sin que tengas que compartir contraseñas. Envíame los datos y yo me encargo.">
+<meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
+<link rel="canonical" href="https://mithemora.com/listar-negocio.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ln-hero{
+    background:
+      linear-gradient(100deg, rgba(24,18,12,.93) 0%, rgba(24,18,12,.8) 38%, rgba(24,18,12,.42) 100%),
+      url('images/listar-negocio-hero.jpg') center 38%/cover no-repeat;
+  }
+  .ln-hero::before,.ln-hero::after{display:none}
+  .ln-steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:ln-step}
+  .ln-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .ln-step::before{counter-increment:ln-step;content:counter(ln-step);flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;display:grid;place-items:center;font-size:.9rem}
+  .ln-step h3{margin:0 0 4px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ln-step p{margin:0;color:var(--muted);font-size:.9rem}
+  .ln-includes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .ln-include-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+  .ln-include-card h3{margin:0 0 8px;font:700 .95rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ln-include-card p{margin:0;color:var(--muted);font-size:.87rem}
+  .ln-price-wrap{background:var(--navy-deep);border-radius:14px;padding:32px 28px;color:#fff;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+  .ln-price-tag{font:700 2.6rem 'Fraunces',serif;color:#fff}
+  .ln-price-tag small{display:block;font:700 .68rem 'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+  .ln-price-note{max-width:420px;font-size:.85rem;color:rgba(255,255,255,.75)}
+  .ln-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:10px}
+  .ln-trust{display:flex;gap:16px;align-items:flex-start;background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:8px;padding:18px 20px;margin-top:26px}
+  .ln-trust p{margin:0;color:var(--muted);font-size:.87rem}
+  .ln-trust strong{display:block;color:var(--navy-deep);font-size:.85rem;margin-bottom:3px}
+  .ln-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .ln-form-grid .form-group.full{grid-column:1/-1}
+  .ln-verification-block{background:var(--paper-dim);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:4px}
+  .ln-verification-note{font-size:.82rem;color:var(--muted);margin:6px 0 14px}
+  .ln-radio-group{display:flex;flex-direction:column;gap:10px}
+  .ln-radio-option{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--ink);cursor:pointer}
+  .ln-radio-option input[type="radio"]{appearance:auto;width:16px;height:16px;flex:none;margin-top:3px;padding:0;border:0;border-radius:0;background:none;accent-color:var(--gold)}
+  .ln-doc-upload{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .ln-doc-upload[hidden]{display:none!important}
+  .ln-doc-upload input[type="file"]{font-size:.82rem;padding:8px 0}
+  .ln-doc-helper{display:block;font-size:.7rem;color:var(--muted);margin-top:6px;line-height:1.5}
+
+  /* Verificación: encabezados de cada parte */
+  .ln-verif-part{margin:20px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal)}
+  .ln-verif-part b{color:var(--navy-deep)}
+  .ln-verif-apple{margin-bottom:4px}
+  /* Los dos métodos que pide Apple, numerados */
+  .ln-verif-step{display:flex;gap:12px;align-items:flex-start;margin-top:14px}
+  .ln-verif-num{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.76rem;display:grid;place-items:center;margin-top:2px}
+  .ln-verif-body{flex:1;min-width:0}
+  .ln-verif-body>strong{display:block;font-size:.88rem;color:var(--navy-deep)}
+  .ln-verif-body>.ln-doc-helper{margin:2px 0 4px}
+  .ln-verif-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:8px}
+  .ln-verif-fields input[type="file"]{font-size:.8rem;padding:8px 0}
+  .ln-optional{font-weight:400;color:var(--muted)}
+  .ln-warn{color:#8a2b2b}
+  .ln-warn b{color:#8a2b2b}
+  /* Aviso por archivo (logo muy chico, foto muy pesada, etc.) */
+  .ln-file-msg{display:block;font-size:.72rem;font-weight:600;line-height:1.5;margin-top:6px;padding:8px 10px;border-radius:6px}
+  .ln-file-msg[hidden]{display:none}
+  .ln-file-msg.is-error{background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .ln-file-msg.is-ok{background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
+  .ln-form-status{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;display:none}
+  .ln-form-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
+  .ln-form-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
+  .ln-form-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
+  @media(max-width:640px){
+    .ln-form-grid{grid-template-columns:1fr}
+    .ln-verif-fields{grid-template-columns:1fr}
+    .ln-price-wrap{flex-direction:column;align-items:flex-start;text-align:left}
+  }
+</style>
+</head>
+<body data-cms-page="listar-negocio">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegación principal">
+      
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="aparezco.html"><strong>¿Aparece mi negocio?</strong><span>Revisa gratis si sales en Google y Apple Maps</span></a>
+          <a href="listar-negocio.html" class="active"><strong>Ponerlo en el mapa</strong><span>Google Maps y Apple Maps, hecho por nosotros</span></a>
+          <a href="formar-negocio.html"><strong>Abrir mi negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          <a href="agendar.html"><strong>Hablar con alguien</strong><span>Agenda una cita, sin compromiso</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas del IRS, cobradores, bancos o corte</span></a>
+          <a href="contrato-auto.html"><strong>Contrato del dealer</strong><span>Revisa los números antes de firmar en el concesionario</span></a>
+          <a href="credito.html"><strong>Mi reporte de crédito</strong><span>Súbelo y te lo explicamos, sin que salga de tu teléfono</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Guías<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="herramientas.html"><strong>Calculadoras</strong><span>Hipoteca, pagos adelantados y cartas de disputa</span></a>
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero ln-hero">
+    <div class="wrap">
+      <span class="eyebrow">Nuevo servicio</span>
+      <h1>¿Tu negocio no aparece en Google Maps ni en Apple Maps?</h1>
+      <p>Muchos negocios hispanos pierden clientes todos los días simplemente porque no aparecen cuando alguien busca &quot;cerca de mí&quot;. Yo me encargo de configurarlo por ti — tú me envías los datos, yo hago el trabajo técnico.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Cómo funciona</span>
+        <h2>Tres pasos, sin complicaciones</h2>
+        <p>No necesitas saber nada de tecnología. Solo llena el formulario y yo hago el resto.</p>
+      </div>
+      <ol class="ln-steps">
+        <li class="ln-step">
+          <div>
+            <h3>Me envías los datos de tu negocio</h3>
+            <p>Nombre, dirección, teléfono, horario y una breve descripción — todo por el formulario de esta página. Toma unos minutos.</p>
+          </div>
+        </li>
+        <li class="ln-step">
+          <div>
+            <h3>Yo creo y verifico tu perfil</h3>
+            <p>Configuro tu ficha de negocio en Google Business Profile y en Apple Business (antes Apple Business Connect) con la información que me diste, lista para que aparezcas en los mapas y en las búsquedas.</p>
+          </div>
+        </li>
+        <li class="ln-step">
+          <div>
+            <h3>Te confirmo cuando esté listo</h3>
+            <p>Te escribo al correo o teléfono que me diste para confirmar que tu negocio ya está visible, y te explico cómo mantenerlo actualizado.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Qué incluye</span>
+        <h2>Presencia en los dos mapas más usados</h2>
+      </div>
+      <div class="ln-includes">
+        <div class="ln-include-card">
+          <h3>Google Maps / Google Business Profile</h3>
+          <p>Tu negocio visible en Google Maps y en la búsqueda de Google, con dirección, teléfono, horario y categoría correctos.</p>
+        </div>
+        <div class="ln-include-card">
+          <h3>Apple Maps / Apple Business</h3>
+          <p>La misma información configurada en Apple Maps, para que también aparezcas a quienes buscan desde un iPhone.</p>
+        </div>
+        <div class="ln-include-card">
+          <h3>Sin costo de las plataformas</h3>
+          <p>Google Business Profile y Apple Business son completamente gratis — el único costo es mi trabajo de configurarlo por ti.</p>
+        </div>
+      </div>
+
+      <div class="ln-trust">
+        <div>
+          <strong>Tu contraseña nunca me la das</strong>
+          <p>No necesito ni te voy a pedir la contraseña de tu cuenta de Gmail o de tu negocio. Si ya tienes un perfil creado, te pido que me agregues como &quot;administrador&quot; o &quot;gerente&quot; con tu correo — así puedo trabajar en tu ficha sin tener acceso a tu cuenta personal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="ln-price-wrap">
+        <div>
+          <span class="ln-launch-badge">Precio de lanzamiento</span>
+          <div class="ln-price-tag"><small>Los dos mapas, un solo pago</small>$49.99</div>
+        </div>
+        <p class="ln-price-note">Incluye configuración en Google Maps y Apple Maps. Este es un precio especial de lanzamiento — llena el formulario y te confirmo los detalles antes de empezar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--paper-dim);">
+    <div class="wrap" style="max-width:720px;">
+      <div class="section-head">
+        <span class="eyebrow-dark">Empecemos</span>
+        <h2>Cuéntame de tu negocio</h2>
+        <p>Llena este formulario con la información de tu negocio. Te voy a escribir para confirmar el pago y los próximos pasos antes de hacer cualquier cambio en tus perfiles.</p>
+      </div>
+
+      <form id="lnForm" novalidate>
+        <div class="ln-form-grid">
+          <div class="form-group">
+            <label for="lnNombre">Tu nombre</label>
+            <input type="text" id="lnNombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="lnCorreo">Tu correo electrónico</label>
+            <input type="email" id="lnCorreo" name="correo" required>
+          </div>
+          <div class="form-group">
+            <label for="lnTelefono">Tu teléfono</label>
+            <input type="tel" id="lnTelefono" name="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="lnGmail">¿Ya tienes cuenta de Gmail para el negocio?</label>
+            <select id="lnGmail" name="tiene_gmail">
+              <option value="Sí">Sí</option>
+              <option value="No">No</option>
+              <option value="No estoy seguro">No estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="lnNegocio">Nombre del negocio</label>
+            <input type="text" id="lnNegocio" name="negocio" required>
+          </div>
+          <div class="form-group">
+            <label for="lnCategoria">Categoría del negocio</label>
+            <input type="text" id="lnCategoria" name="categoria" placeholder="Ej: restaurante, taller mecánico, salón" required>
+          </div>
+          <div class="form-group">
+            <label for="lnTelNegocio">Teléfono del negocio</label>
+            <input type="tel" id="lnTelNegocio" name="telefono_negocio" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnDireccion">Dirección completa del negocio</label>
+            <input type="text" id="lnDireccion" name="direccion" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnHorario">Horario de atención</label>
+            <input type="text" id="lnHorario" name="horario" placeholder="Ej: Lunes a viernes 9am–6pm, sábado 9am–2pm" required>
+          </div>
+          <div class="form-group full">
+            <label for="lnWeb">Sitio web o redes sociales (opcional)</label>
+            <input type="text" id="lnWeb" name="web">
+          </div>
+          <div class="form-group full">
+            <label for="lnDescripcion">Breve descripción del negocio</label>
+            <textarea id="lnDescripcion" name="descripcion" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group full ln-verification-block">
+            <label>Verificación del negocio</label>
+            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. <strong>Todo lo de abajo es opcional</strong> — si no tienes algo a la mano, envía el formulario igual y te lo pido después. Entre más me mandes ahora, más rápido sale.</p>
+
+            <p class="ln-verif-part">Cómo prefieres que <b>Google</b> lo confirme</p>
+            <div class="ln-radio-group">
+              <label class="ln-radio-option">
+                <input type="radio" name="verificacion_metodo" value="Llamada telefónica" checked>
+                <span>Puedo contestar una llamada corta al teléfono del negocio para recibir un código</span>
+              </label>
+              <label class="ln-radio-option">
+                <input type="radio" name="verificacion_metodo" value="Documento">
+                <span>Prefiero que usemos un documento del negocio</span>
+              </label>
+            </div>
+
+            <!-- Apple pide DOS métodos distintos dentro de 60 días. Las dos
+                 partes de abajo son justamente esos dos métodos. -->
+            <p class="ln-verif-part ln-verif-apple">Para <b>Apple</b> hacen falta dos cosas distintas</p>
+
+            <div class="ln-verif-step">
+              <span class="ln-verif-num">1</span>
+              <div class="ln-verif-body">
+                <strong>Número de identificación del negocio</strong>
+                <p class="ln-doc-helper">Con uno de los dos basta. Si no tienes ninguno, sáltalo.</p>
+                <div class="ln-verif-fields">
+                  <div class="form-group">
+                    <label for="lnEin">EIN (número federal del negocio)</label>
+                    <input type="text" id="lnEin" name="ein" inputmode="numeric" autocomplete="off" placeholder="12-3456789">
+                    <span class="ln-doc-helper ln-warn">Solo el EIN del negocio. <b>Nunca escribas aquí tu número de seguro social</b> — si no tienes EIN, deja esto vacío y lo vemos por otro camino.</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="lnDuns">Número DUNS <span class="ln-optional">(si ya lo tienes)</span></label>
+                    <input type="text" id="lnDuns" name="duns" inputmode="numeric" autocomplete="off" placeholder="123456789">
+                    <span class="ln-doc-helper">Desde abril de 2026 Apple ya no lo exige en EE.&nbsp;UU. Si no lo tienes, no hace falta sacarlo.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ln-verif-step">
+              <span class="ln-verif-num">2</span>
+              <div class="ln-verif-body">
+                <strong>Un documento oficial del negocio</strong>
+                <p class="ln-doc-helper">Tiene que verse el <b>nombre del negocio</b> y la <b>dirección</b>, y estar vigente.</p>
+                <div class="ln-verif-fields">
+                  <div class="form-group">
+                    <label for="lnDocTipo">¿Qué documento vas a mandar?</label>
+                    <select id="lnDocTipo" name="documento_tipo">
+                      <option value="">Elige uno…</option>
+                      <option>Licencia de negocio (Business License)</option>
+                      <option>Permiso de impuestos sobre ventas (Sales Tax Permit)</option>
+                      <option>Permiso de comida, salud o alcohol (Food / Health / Alcohol Permit)</option>
+                      <option>Contrato de renta o de propiedad (Lease / Property Agreement)</option>
+                      <option>Recibo de servicios: luz, agua, gas o internet (Utility Bill)</option>
+                      <option>Carta del banco con la dirección y los dueños</option>
+                      <option>Otro documento oficial</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="lnVerificacionDoc">Sube el documento</label>
+                    <input type="file" id="lnVerificacionDoc" name="verificacion_documento" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,image/jpeg,image/png,image/heic,image/heif,application/pdf">
+                    <span class="ln-doc-helper">PDF o foto (JPG, PNG, HEIC).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="ln-verif-part">Imágenes para tu ficha</p>
+            <div class="ln-verif-fields">
+              <div class="form-group">
+                <label for="lnLogo">Logo del negocio</label>
+                <input type="file" id="lnLogo" name="logo" accept=".jpg,.jpeg,.png,.svg,.heic,.heif,image/jpeg,image/png,image/svg+xml,image/heic,image/heif">
+                <span class="ln-doc-helper">Apple lo exige <b>cuadrado</b> y de <b>1024 × 1024 píxeles como mínimo</b>. JPG, PNG o SVG. Si es más chico, Apple lo rechaza — te aviso aquí mismo.</span>
+                <span class="ln-file-msg" id="lnLogoMsg" hidden></span>
+              </div>
+              <div class="form-group">
+                <label for="lnFoto">Foto del negocio</label>
+                <input type="file" id="lnFoto" name="foto" accept=".jpg,.jpeg,.png,.heic,.heif,image/jpeg,image/png,image/heic,image/heif">
+                <span class="ln-doc-helper">La fachada o el interior. Mínimo 720 × 960 píxeles. JPG, PNG o HEIC — si pesa mucho, la reduzco yo antes de enviarla.</span>
+                <span class="ln-file-msg" id="lnFotoMsg" hidden></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="lnMensaje">Mensaje adicional (opcional)</label>
+            <textarea id="lnMensaje" name="mensaje" rows="3"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold" id="lnSubmitBtn" data-umami-event="listar-negocio-enviar">Enviar mis datos</button>
+        <p class="ln-form-status" id="lnFormStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>¿Prefieres primero hacer una pregunta?</h2>
+      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente.</p>
+      <a href="contacto.html" class="btn btn-gold">Ir a contacto</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+  </div>
+</footer>
+
+<!-- Formulario compatible con Netlify Forms (igual que en contacto.html y credito.html):
+     al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
+     enviemos por JavaScript, sin necesitar backend propio. -->
+<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="sr-only" id="lnStaticForm">
+  <input type="hidden" name="form-name" value="listar-negocio" />
+  <input name="bot-field" />
+  <input type="text" name="nombre" />
+  <input type="email" name="correo" />
+  <input type="tel" name="telefono" />
+  <input type="text" name="tiene_gmail" />
+  <input type="text" name="negocio" />
+  <input type="text" name="categoria" />
+  <input type="tel" name="telefono_negocio" />
+  <input type="text" name="direccion" />
+  <input type="text" name="horario" />
+  <input type="text" name="web" />
+  <input type="text" name="descripcion" />
+  <input type="text" name="verificacion_metodo" />
+  <input type="text" name="ein" />
+  <input type="text" name="duns" />
+  <input type="text" name="documento_tipo" />
+  <input type="file" name="verificacion_documento" />
+  <input type="file" name="logo" />
+  <input type="file" name="foto" />
+  <input type="text" name="mensaje" />
+</form>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+
+<script>
+(function(){
+  'use strict';
+  const form=document.getElementById('lnForm');
+  const status=document.getElementById('lnFormStatus');
+  const submitBtn=document.getElementById('lnSubmitBtn');
+  if(!form)return;
+
+  /* ===== Archivos =====
+     Netlify acepta como máximo 8 MB por envío COMPLETO (es un límite de su
+     red, no se arregla pagando un plan mayor). Por eso las fotos se reducen
+     aquí, en el navegador, antes de enviarlas — cuidando de no bajar del
+     mínimo que exige Apple. */
+  const LIMITE_TOTAL = 7.2 * 1024 * 1024;   // margen bajo los 8 MB del envío
+  const APPLE_LOGO_MIN = 1024;              // Apple: logo cuadrado, mín. 1024x1024
+  const APPLE_FOTO_MIN_ANCHO = 720;         // Apple: foto mín. 720x960
+  const APPLE_FOTO_MIN_ALTO = 960;
+
+  const logoInput=document.getElementById('lnLogo');
+  const fotoInput=document.getElementById('lnFoto');
+  const docInput=document.getElementById('lnVerificacionDoc');
+  const logoMsg=document.getElementById('lnLogoMsg');
+  const fotoMsg=document.getElementById('lnFotoMsg');
+
+  // Archivos ya procesados (reducidos si hizo falta), listos para enviar.
+  const listos={logo:null,foto:null};
+  let logoInvalido=false;
+
+  function mb(bytes){ return (bytes/1024/1024).toFixed(1)+' MB'; }
+
+  function mostrar(el,texto,tipo){
+    if(!el)return;
+    el.textContent=texto;
+    el.className='ln-file-msg '+(tipo||'');
+    el.hidden=!texto;
+  }
+
+  function medirImagen(file){
+    return new Promise(resolve=>{
+      const url=URL.createObjectURL(file);
+      const img=new Image();
+      img.onload=()=>{ URL.revokeObjectURL(url); resolve({w:img.naturalWidth,h:img.naturalHeight,img:img}); };
+      img.onerror=()=>{ URL.revokeObjectURL(url); resolve(null); }; // HEIC u otro formato que el navegador no abre
+      img.src=url;
+    });
+  }
+
+  /* Reduce una imagen sin bajar de minLado, y sin cambiar de formato cuando
+     es PNG (para no perder el fondo transparente de un logo). */
+  async function reducir(file,maxLado,minLado){
+    const medida=await medirImagen(file);
+    if(!medida)return file;                       // no se pudo abrir: va tal cual
+    const {w,h,img}=medida;
+    const mayor=Math.max(w,h);
+    if(mayor<=maxLado && file.size<=1.6*1024*1024)return file;  // ya está bien
+    let escala=Math.min(1,maxLado/mayor);
+    if(Math.min(w,h)*escala<minLado)escala=Math.min(1,minLado/Math.min(w,h)); // nunca por debajo del mínimo de Apple
+    const nw=Math.round(w*escala), nh=Math.round(h*escala);
+    const canvas=document.createElement('canvas');
+    canvas.width=nw; canvas.height=nh;
+    canvas.getContext('2d').drawImage(img,0,0,nw,nh);
+    const png=/png$/i.test(file.type);
+    const blob=await new Promise(r=>canvas.toBlob(r,png?'image/png':'image/jpeg',png?undefined:0.82));
+    if(!blob||blob.size>=file.size)return file;   // si no mejoró, se queda el original
+    const nombre=file.name.replace(/\.[^.]+$/,'')+(png?'.png':'.jpg');
+    return new File([blob],nombre,{type:blob.type});
+  }
+
+  if(logoInput)logoInput.addEventListener('change',async()=>{
+    listos.logo=null; logoInvalido=false;
+    const file=logoInput.files&&logoInput.files[0];
+    if(!file){ mostrar(logoMsg,''); return; }
+    if(/svg/i.test(file.type)){ listos.logo=file; mostrar(logoMsg,'Logo en SVG: perfecto, ese sirve a cualquier tamaño.','is-ok'); return; }
+    const medida=await medirImagen(file);
+    if(!medida){ listos.logo=file; mostrar(logoMsg,'No pude revisar las medidas de este archivo en tu navegador. Lo envío igual y yo lo reviso.',''); return; }
+    const {w,h}=medida;
+    const cuadrado=Math.abs(w-h)<=Math.max(w,h)*0.02;
+    if(w<APPLE_LOGO_MIN||h<APPLE_LOGO_MIN){
+      logoInvalido=true;
+      mostrar(logoMsg,'Este logo mide '+w+' × '+h+' y Apple lo va a rechazar: necesita mínimo 1024 × 1024. Busca el archivo original más grande, o déjalo vacío y lo vemos después.','is-error');
+      return;
+    }
+    if(!cuadrado){
+      logoInvalido=true;
+      mostrar(logoMsg,'Este logo mide '+w+' × '+h+', y Apple lo pide cuadrado (mismo ancho que alto). Mándalo cuadrado, o déjalo vacío y yo lo ajusto.','is-error');
+      return;
+    }
+    listos.logo=await reducir(file,2048,APPLE_LOGO_MIN);
+    mostrar(logoMsg,'Logo correcto ('+w+' × '+h+').'+(listos.logo!==file?' Lo reduje a '+mb(listos.logo.size)+' para que quepa en el envío.':''),'is-ok');
+  });
+
+  if(fotoInput)fotoInput.addEventListener('change',async()=>{
+    listos.foto=null;
+    const file=fotoInput.files&&fotoInput.files[0];
+    if(!file){ mostrar(fotoMsg,''); return; }
+    const medida=await medirImagen(file);
+    if(!medida){ listos.foto=file; mostrar(fotoMsg,'No pude abrir este archivo aquí (pasa con fotos HEIC del iPhone). Lo envío tal cual.',''); return; }
+    const {w,h}=medida;
+    if(w<APPLE_FOTO_MIN_ANCHO||h<APPLE_FOTO_MIN_ALTO){
+      listos.foto=file;
+      mostrar(fotoMsg,'Esta foto mide '+w+' × '+h+'. Apple pide al menos 720 × 960, así que puede que no la acepte. La envío igual por si sirve.','is-error');
+      return;
+    }
+    listos.foto=await reducir(file,2000,APPLE_FOTO_MIN_ANCHO);
+    mostrar(fotoMsg,'Foto lista ('+w+' × '+h+').'+(listos.foto!==file?' La reduje de '+mb(file.size)+' a '+mb(listos.foto.size)+'.':''),'is-ok');
+  });
+
+  async function submitListing(formData){
+    const response=await fetch('/',{method:'POST',body:formData});
+    if(!response.ok)throw new Error('No se pudo enviar el formulario');
+  }
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    // El logo es opcional, pero si adjuntaron uno que Apple va a rechazar,
+    // mejor decirlo ahora que descubrirlo a mitad del trámite.
+    if(logoInvalido){
+      status.className='ln-form-status is-error';
+      status.textContent='El logo que subiste no cumple lo que pide Apple (cuadrado y de 1024 × 1024 como mínimo). Cámbialo o quítalo — puedes enviar el formulario sin logo y me lo mandas después.';
+      logoInput.focus();
+      return;
+    }
+    const correo=form.correo.value.trim();
+    const formData=new FormData();
+    formData.append('form-name','listar-negocio');
+    formData.append('nombre',form.nombre.value.trim());
+    formData.append('correo',correo);
+    formData.append('telefono',form.telefono.value.trim());
+    formData.append('tiene_gmail',form.tiene_gmail.value);
+    formData.append('negocio',form.negocio.value.trim());
+    formData.append('categoria',form.categoria.value.trim());
+    formData.append('telefono_negocio',form.telefono_negocio.value.trim());
+    formData.append('direccion',form.direccion.value.trim());
+    formData.append('horario',form.horario.value.trim());
+    formData.append('web',form.web.value.trim());
+    formData.append('descripcion',form.descripcion.value.trim());
+    const verifSelected=form.querySelector('input[name="verificacion_metodo"]:checked');
+    formData.append('verificacion_metodo',verifSelected?verifSelected.value:'');
+    formData.append('ein',form.ein.value.trim());
+    formData.append('duns',form.duns.value.trim());
+    formData.append('documento_tipo',form.documento_tipo.value);
+
+    const adjuntos=[];
+    if(docInput&&docInput.files&&docInput.files[0])adjuntos.push(['verificacion_documento',docInput.files[0],'el documento']);
+    const logoFinal=listos.logo||(logoInput&&logoInput.files&&logoInput.files[0]);
+    if(logoFinal)adjuntos.push(['logo',logoFinal,'el logo']);
+    const fotoFinal=listos.foto||(fotoInput&&fotoInput.files&&fotoInput.files[0]);
+    if(fotoFinal)adjuntos.push(['foto',fotoFinal,'la foto']);
+
+    // Los archivos de más de 8 MB en total los rechaza la red de Netlify sin
+    // explicación, así que aquí se avisa antes y se dice cuál es el culpable.
+    const total=adjuntos.reduce((s,[,f])=>s+f.size,0);
+    if(total>LIMITE_TOTAL){
+      const mayor=adjuntos.slice().sort((a,b)=>b[1].size-a[1].size)[0];
+      status.className='ln-form-status is-error';
+      status.textContent='Los archivos suman '+mb(total)+' y el máximo son 8 MB por envío. El más pesado es '+mayor[2]+' ('+mb(mayor[1].size)+'). Quítalo y mándamelo aparte por correo, o súbelo más liviano.';
+      return;
+    }
+    adjuntos.forEach(([campo,file])=>formData.append(campo,file));
+    formData.append('mensaje',form.mensaje.value.trim());
+
+    submitBtn.disabled=true;
+    const original=submitBtn.textContent;
+    submitBtn.textContent='Enviando…';
+    status.className='ln-form-status is-loading';
+    status.textContent='Enviando tu información…';
+    try{
+      await submitListing(formData);
+      status.className='ln-form-status is-success';
+      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
+      form.reset();
+      listos.logo=null; listos.foto=null; logoInvalido=false;
+      mostrar(logoMsg,''); mostrar(fotoMsg,'');
+    }catch(error){
+      status.className='ln-form-status is-error';
+      status.textContent='No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento, o escríbeme desde la página de contacto.';
+    }finally{
+      submitBtn.disabled=false;
+      submitBtn.textContent=original;
+    }
+  });
+})();
+</script>
+
+  <script src="site-search-index.js"></script>
+  <script src="zyron-brain.js"></script>
+  <script src="credit-coach.js"></script>
+  <script src="nav.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

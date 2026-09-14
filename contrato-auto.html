@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisa el contrato del dealer antes de firmar | Themora</title>
+  <meta name="description" content="Antes de firmar en el dealer: mete los números de tu contrato y te decimos cuánto cuestan de verdad la garantía extendida, el GAP y los extras — con intereses, durante todo el préstamo.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Revisa el contrato del dealer antes de firmar | Themora">
+<meta property="og:description" content="Mete los números de tu contrato y te decimos cuánto cuestan de verdad los extras, con intereses, durante todo el préstamo.">
+<meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
+<meta property="og:url" content="https://mithemora.com/contrato-auto.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Revisa el contrato del dealer antes de firmar | Themora">
+<meta name="twitter:description" content="Mete los números de tu contrato y te decimos cuánto cuestan de verdad los extras, con intereses.">
+<meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
+<link rel="canonical" href="https://mithemora.com/contrato-auto.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Formulario del contrato ===== */
+  .ct-intro-note{background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 22px;margin:0 0 26px}
+  .ct-intro-note p{margin:0;line-height:1.68;color:var(--ink);font-size:.95rem}
+  .ct-intro-note p + p{margin-top:10px}
+
+  .ct-foto{border:1px dashed var(--line);border-radius:14px;padding:20px 22px;background:var(--paper-dim);margin-bottom:24px}
+  .ct-foto-head h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy-deep)}
+  .ct-foto-head p{margin:0 0 14px;font-size:.88rem;line-height:1.62;color:var(--muted)}
+  .ct-foto-estado{font-size:.86rem;color:var(--muted);line-height:1.5}
+  .ct-revisar{background:#fff6e6;border:1.5px solid var(--gold);border-radius:12px;padding:15px 18px;margin-top:14px}
+  .ct-revisar[hidden]{display:none}
+  .ct-revisar h4{margin:0 0 6px;font:700 .96rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ct-revisar p{margin:0;font-size:.87rem;line-height:1.6;color:var(--ink)}
+  .ct-revisar ul{margin:8px 0 0;padding-left:18px;font-size:.86rem;line-height:1.62;color:var(--ink)}
+
+  .ct-paginas{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+  .ct-paginas[hidden]{display:none}
+  .ct-pagina{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .ct-pagina img{width:44px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--line);flex:none;background:#fff}
+  .ct-pagina .ct-pag-n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--navy-deep);color:#fff;display:grid;place-items:center;font:800 .72rem 'Public Sans',sans-serif}
+  .ct-pagina .ct-pag-nombre{flex:1;min-width:0;font-size:.84rem;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ct-pagina .ct-extra-del{height:32px;width:32px;flex:none}
+  .ct-avisos{margin:10px 0 0;padding-left:18px;font-size:.83rem;line-height:1.6;color:var(--muted)}
+  .ct-avisos:empty{display:none}
+
+  .ct-form{display:grid;gap:26px}
+  .ct-block{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fff}
+  .ct-block > h3{margin:0 0 4px;font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy-deep)}
+  .ct-block > .ct-hint{margin:0 0 16px;font-size:.85rem;color:var(--muted);line-height:1.55}
+
+  .ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .ct-field label{display:block;font-size:.78rem;font-weight:700;color:var(--navy-deep);margin-bottom:5px;line-height:1.35}
+  .ct-field label small{display:block;font-weight:500;color:var(--muted);font-size:.72rem;margin-top:2px}
+  .ct-input-wrap{position:relative;display:flex;align-items:center}
+  .ct-input-wrap .ct-sign{position:absolute;left:12px;color:var(--muted);font-weight:700;font-size:.9rem;pointer-events:none}
+  .ct-input-wrap .ct-suffix{position:absolute;right:12px;color:var(--muted);font-weight:700;font-size:.85rem;pointer-events:none}
+  .ct-field input,.ct-field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font:600 1rem 'Public Sans',sans-serif;color:var(--ink);background:#fff}
+  .ct-field input.has-sign{padding-left:26px}
+  .ct-field input.has-suffix{padding-right:38px}
+  .ct-field input:focus,.ct-field select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+
+  /* Lista de productos agregados */
+  .ct-extras{display:grid;gap:10px;margin-bottom:14px}
+  .ct-extra-row{display:grid;grid-template-columns:1fr 130px 40px;gap:9px;align-items:center}
+  .ct-extra-row select,.ct-extra-row input{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font:600 .95rem 'Public Sans',sans-serif;color:var(--ink);background:#fff}
+  .ct-extra-row .ct-money{position:relative}
+  .ct-extra-del{border:1px solid var(--line);background:#fff;border-radius:9px;height:40px;cursor:pointer;color:var(--danger);font-size:1.1rem;line-height:1;font-weight:700}
+  .ct-extra-del:hover{background:#fff0ed;border-color:rgba(179,64,42,.4)}
+  @media(max-width:620px){.ct-extra-row{grid-template-columns:1fr 110px 40px;gap:7px}}
+
+  .ct-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .ct-error{background:#fff0ed;border:1px solid rgba(179,64,42,.35);border-radius:10px;padding:13px 16px;color:#8a2b2b;font-size:.9rem;line-height:1.55}
+  .ct-error[hidden]{display:none}
+
+  /* ===== Resultado ===== */
+  .ct-results{margin-top:34px}
+  .ct-results[hidden]{display:none}
+
+  .ct-headline{background:var(--navy-deep);border-radius:16px;padding:26px 28px;margin-bottom:18px}
+  .ct-headline small{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.6);margin-bottom:8px}
+  .ct-headline strong{display:block;font-family:'Fraunces',serif;font-size:1.9rem;line-height:1.18;color:var(--gold-light)}
+  .ct-headline p{margin:10px 0 0;color:rgba(255,255,255,.78);line-height:1.65;font-size:.93rem}
+
+  .ct-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-bottom:20px}
+  .ct-card{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:#fff}
+  .ct-card span{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:5px;line-height:1.3}
+  .ct-card strong{display:block;font-family:'Fraunces',serif;font-size:1.3rem;color:var(--navy-deep);line-height:1.2}
+  .ct-card em{display:block;font-style:normal;font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.45}
+
+  .ct-panel{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fff;margin-bottom:16px}
+  .ct-panel h4{margin:0 0 4px;font-family:'Fraunces',serif;font-size:1.08rem;color:var(--navy-deep)}
+  .ct-panel .ct-panel-note{margin:0 0 14px;font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.55}
+  .ct-panel[hidden]{display:none}
+
+  table.ct-table{width:100%;border-collapse:collapse;font-size:.92rem}
+  table.ct-table th{text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:0 0 9px;font-weight:800}
+  table.ct-table th.num,table.ct-table td.num{text-align:right;white-space:nowrap}
+  table.ct-table td{padding:9px 0;border-top:1px solid var(--line);line-height:1.5;vertical-align:top}
+  table.ct-table tr.ct-total td{font-weight:700;color:var(--navy-deep);border-top:2px solid var(--navy-deep)}
+  .ct-table-wrap{overflow-x:auto}
+
+  .ct-flags{display:grid;gap:10px}
+  .ct-flag{display:flex;gap:12px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 11px 11px 0;padding:14px 16px;background:var(--paper-dim)}
+  .ct-flag.is-hot{border-left-color:var(--danger);background:#fff0ed}
+  .ct-flag b{flex:none;font-size:1rem;color:var(--gold);line-height:1.4}
+  .ct-flag.is-hot b{color:var(--danger)}
+  .ct-flag div{min-width:0}
+  .ct-flag h5{margin:0 0 4px;font:700 .95rem 'Public Sans',sans-serif;color:var(--navy-deep)}
+  .ct-flag p{margin:0;font-size:.88rem;line-height:1.6;color:var(--ink)}
+
+  .ct-say{border:1px solid rgba(31,110,115,.3);background:rgba(79,107,87,.07);border-radius:14px;padding:22px 24px;margin-bottom:16px}
+  .ct-say h4{margin:0 0 4px;font-family:'Fraunces',serif;font-size:1.08rem;color:var(--navy-deep)}
+  .ct-say .ct-panel-note{margin:0 0 14px;font-size:.85rem;color:var(--muted);font-style:italic}
+  .ct-say ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+  .ct-say li{background:#fff;border-radius:10px;padding:13px 16px;border-left:3px solid var(--teal)}
+  .ct-say .en{display:block;font-weight:700;color:var(--navy-deep);line-height:1.5}
+  .ct-say .es{display:block;font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.5}
+
+  .ct-legal{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--paper-dim);font-size:.84rem;line-height:1.65;color:var(--muted);margin-top:18px}
+  .ct-legal strong{color:var(--navy-deep)}
+
+  .ct-print{margin-top:18px}
+  @media print{
+    header,footer,.ct-form,.ct-print,.skip-link,.credit-coach-launcher{display:none!important}
+    .ct-results{margin:0}
+  }
+  @media(max-width:620px){
+    .ct-headline{padding:20px 19px}
+    .ct-headline strong{font-size:1.5rem}
+    .ct-block{padding:18px 17px}
+  }
+
+  .ct-fuente{font-size:.78rem!important;color:var(--muted)!important;line-height:1.55;margin-top:10px!important}
+  .ct-fuente a{color:var(--navy)}
+  .ct-limite-ia{font-size:.8rem;color:var(--muted);line-height:1.5;flex:1;min-width:180px}
+
+  .ct-escenario{display:grid;gap:9px;margin-bottom:16px}
+  .ct-esc-item{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;cursor:pointer}
+  .ct-esc-item input{width:19px;height:19px;flex:none;accent-color:var(--teal);cursor:pointer}
+  .ct-esc-item .ct-esc-nombre{flex:1;min-width:0;font-size:.89rem;color:var(--ink);line-height:1.4}
+  .ct-esc-item .ct-esc-monto{font-weight:700;color:var(--navy-deep);font-size:.89rem;white-space:nowrap}
+  .ct-esc-item.is-off{background:var(--paper-dim);opacity:.6}
+  .ct-esc-item.is-off .ct-esc-nombre{text-decoration:line-through}
+
+  .ct-escenario-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:14px}
+  .ct-escenario-res > div{background:var(--paper-dim);border-radius:11px;padding:13px 15px}
+  .ct-escenario-res span{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px;line-height:1.3}
+  .ct-escenario-res strong{font-family:'Fraunces',serif;font-size:1.22rem;color:var(--navy-deep)}
+  .ct-escenario-frase{margin:0;background:rgba(79,107,87,.09);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:13px 16px;font-size:.89rem;line-height:1.6;color:var(--ink)}
+  .ct-escenario-frase b{color:var(--navy-deep)}
+
+  .ct-sello{font-size:.8rem;line-height:1.62;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:14px 16px;margin:18px 0 0}
+</style>
+</head>
+<body data-cms-page="contrato-auto">
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="links" id="navLinks" aria-label="Navegación principal">
+
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="aparezco.html"><strong>¿Aparece mi negocio?</strong><span>Revisa gratis si sales en Google y Apple Maps</span></a>
+          <a href="listar-negocio.html"><strong>Ponerlo en el mapa</strong><span>Google Maps y Apple Maps, hecho por nosotros</span></a>
+          <a href="formar-negocio.html"><strong>Abrir mi negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          <a href="agendar.html"><strong>Hablar con alguien</strong><span>Agenda una cita, sin compromiso</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas del IRS, cobradores, bancos o corte</span></a>
+          <a href="contrato-auto.html" class="active"><strong>Contrato del dealer</strong><span>Revisa los números antes de firmar en el concesionario</span></a>
+          <a href="credito.html"><strong>Mi reporte de crédito</strong><span>Súbelo y te lo explicamos, sin que salga de tu teléfono</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Guías<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="herramientas.html"><strong>Calculadoras</strong><span>Hipoteca, pagos adelantados y cartas de disputa</span></a>
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="hero hero-dark">
+      <div class="wrap">
+        <span class="eyebrow">Nuevo · Antes de firmar</span>
+        <h1>Estás sentado en el dealer.<br>Antes de firmar, saca la cuenta.</h1>
+        <p class="hero-sub">En la oficina del fondo se agregan cargos y productos opcionales que suben el monto financiado y el costo total, casi siempre repartidos en el pago mensual. Mete aquí los números de tu contrato y te decimos, en español, cuánto suman esos renglones: <strong>con intereses, durante todo el préstamo.</strong></p>
+        <p class="hero-sub"><strong>Las cuentas se hacen en tu propio teléfono</strong> y no se guardan. No hay que crear cuenta ni dar tu nombre. Si eliges subir fotos del contrato, esas sí salen de tu dispositivo para poder leerlas — te lo explicamos antes de mandarlas.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+
+        <div class="ct-intro-note">
+          <p><strong>Por qué importa:</strong> los grupos de concesionarios que cotizan en bolsa reportaron un promedio de <strong>$2,534 de utilidad bruta por vehículo en la oficina de financiamiento y seguros</strong> — no en el precio del carro ni en el taller. Esa cifra sale de lo que paga el comprador, y normalmente se presenta repartida en el pago mensual, donde se nota menos.</p>
+          <p class="ct-fuente">Fuente: <a href="https://haigpartners.com/resources/q3-2025-haig-report-fi-gross-profits-climb-toward-new-highs/" target="_blank" rel="noopener noreferrer">Haig Report, tercer trimestre de 2025</a> · promedio de los grupos públicos de venta minorista de autos en EE.UU. Consultado el 13 de septiembre de 2026. Es un promedio de la industria, no una estimación de tu contrato.</p>
+          <p>Un vendedor te dice “son solo $40 más al mes”. Cuarenta dólares al mes durante 72 meses, con interés, no son $40. Aquí se ve el número completo.</p>
+        </div>
+
+        <div class="ct-foto" id="ctFotoBlock">
+          <div class="ct-foto-head">
+            <h3>¿Prefieres tomarle fotos?</h3>
+            <p>Un contrato de dealer casi nunca cabe en una hoja: el precio está en una página, la tasa en otra y los productos agregados casi siempre en una aparte. <strong>Súbelas todas juntas</strong> — hasta 8 — o el PDF completo, y llenamos el formulario por ti.</p>
+            <p><strong>Después tú revisas cada número contra tu papel</strong> antes de que se calcule nada. Nunca confíes en que una máquina leyó bien una cifra de miles de dólares.</p>
+          </div>
+          <div class="ct-actions">
+            <label class="btn btn-outline" for="ctFotoInput">Subir las páginas del contrato</label>
+            <input type="file" id="ctFotoInput" accept="image/*,application/pdf" multiple hidden>
+            <span class="ct-foto-estado" id="ctFotoEstado"></span>
+          </div>
+          <ol class="ct-paginas" id="ctPaginas" hidden></ol>
+          <div class="ct-actions" id="ctLeerAcciones" hidden>
+            <button type="button" class="btn btn-gold" id="ctLeerPaginas" data-umami-event="contrato-auto-foto-enviada">Leer estas páginas</button>
+            <span class="ct-limite-ia">Es una extracción preliminar y puede equivocarse. Lo que manda es tu contrato firmado.</span>
+            <button type="button" class="btn btn-outline" id="ctQuitarTodas">Quitar todas</button>
+          </div>
+          <ul class="ct-avisos" id="ctAvisos"></ul>
+          <div class="ct-error" id="ctFotoError" role="alert" hidden></div>
+        </div>
+
+        <form class="ct-form" id="ctForm" autocomplete="off">
+
+          <div class="ct-block">
+            <h3>1. El carro y el trato</h3>
+            <p class="ct-hint">Busca estos renglones en tu contrato. En inglés suelen llamarse <em>Cash Price of Vehicle</em>, <em>Down Payment</em> y <em>Trade-in Allowance</em>.</p>
+            <div class="ct-grid">
+              <div class="ct-field">
+                <label for="ctPrecio">Precio del vehículo <small>Cash Price of Vehicle</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctPrecio" inputmode="decimal" min="0" step="0.01" placeholder="24000"></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctEnganche">Enganche en efectivo <small>Cash Down Payment</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctEnganche" inputmode="decimal" min="0" step="0.01" placeholder="2000"></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctTrade">Tu carro entregado, neto <small>Si debes más de lo que vale, pon el número en negativo</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctTrade" inputmode="decimal" step="0.01" placeholder="0"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ct-block">
+            <h3>2. El préstamo</h3>
+            <p class="ct-hint">La tasa aparece como <em>ANNUAL PERCENTAGE RATE</em> en el recuadro federal, arriba del contrato. El plazo es <em>Number of Payments</em>.</p>
+            <div class="ct-grid">
+              <div class="ct-field">
+                <label for="ctTasa">Tasa anual (APR) <small>Annual Percentage Rate</small></label>
+                <div class="ct-input-wrap"><input class="has-suffix" type="number" id="ctTasa" inputmode="decimal" min="0" max="40" step="0.01" placeholder="11.9"><span class="ct-suffix">%</span></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctPlazo">Plazo <small>Number of Payments</small></label>
+                <div class="ct-input-wrap"><input class="has-suffix" type="number" id="ctPlazo" inputmode="numeric" min="6" max="120" step="1" placeholder="72"><span class="ct-suffix">meses</span></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctPagoContrato">Pago mensual que dice el contrato <small>Opcional — para comprobar que cuadra</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctPagoContrato" inputmode="decimal" min="0" step="0.01" placeholder="489.32"></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctTasaBanco">Tasa que te aprobó tu banco <small>Opcional — si traías preaprobación</small></label>
+                <div class="ct-input-wrap"><input class="has-suffix" type="number" id="ctTasaBanco" inputmode="decimal" min="0" max="40" step="0.01" placeholder="8.5"><span class="ct-suffix">%</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ct-block">
+            <h3>3. Cargos e impuestos</h3>
+            <p class="ct-hint">El cargo del dealer aparece como <em>Processing Fee</em>, <em>Doc Fee</em> o <em>Documentary Fee</em>. Los impuestos y placas suelen venir juntos como <em>Taxes, Title and License</em>.</p>
+            <div class="ct-grid">
+              <div class="ct-field">
+                <label for="ctDocFee">Cargo del dealer <small>Doc / Processing Fee</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctDocFee" inputmode="decimal" min="0" step="0.01" placeholder="799"></div>
+              </div>
+              <div class="ct-field">
+                <label for="ctImpuestos">Impuestos, placas y título <small>Taxes, Title &amp; License</small></label>
+                <div class="ct-input-wrap"><span class="ct-sign">$</span><input class="has-sign" type="number" id="ctImpuestos" inputmode="decimal" min="0" step="0.01" placeholder="1350"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ct-block">
+            <h3>4. Los extras que te agregaron</h3>
+            <p class="ct-hint">Esto es lo más importante de toda la página. Busca en el contrato cada renglón que no sea el carro, los impuestos ni las placas, y ponlo aquí con su precio. Si no ves ninguno, déjalo vacío.</p>
+            <div class="ct-extras" id="ctExtras"></div>
+            <div class="ct-actions">
+              <button type="button" class="btn btn-outline" id="ctAddExtra">+ Agregar otro extra</button>
+            </div>
+          </div>
+
+          <div class="ct-actions">
+            <button type="submit" class="btn btn-gold" id="ctCalcular" data-umami-event="contrato-auto-calculado">Ver qué estoy pagando de verdad</button>
+            <button type="button" class="btn btn-outline" id="ctEjemplo">Ver un ejemplo</button>
+            <button type="button" class="btn btn-outline" id="ctLimpiar">Limpiar</button>
+          </div>
+          <div class="ct-error" id="ctError" role="alert" hidden></div>
+          <div class="ct-revisar" id="ctRevisar" hidden>
+            <h4>Revisa estos números contra tu contrato antes de seguir</h4>
+            <p id="ctRevisarTexto"></p>
+          </div>
+        </form>
+
+        <div class="ct-results" id="ctResults" hidden>
+
+          <div class="ct-headline">
+            <small>Lo que no se ve en el pago mensual</small>
+            <strong id="ctHeadline"></strong>
+            <p id="ctHeadlineSub"></p>
+          </div>
+
+          <div class="ct-cards">
+            <div class="ct-card"><span>Monto financiado</span><strong id="ctMontoFin"></strong><em>Lo que realmente te prestan</em></div>
+            <div class="ct-card"><span>Pago mensual</span><strong id="ctPagoCalc"></strong><em id="ctPagoNota"></em></div>
+            <div class="ct-card"><span>Interés total</span><strong id="ctInteres"></strong><em id="ctInteresNota"></em></div>
+            <div class="ct-card"><span>Costo de los extras</span><strong id="ctTotal"></strong><em id="ctTotalNota">Con intereses, todo el plazo</em></div>
+          </div>
+
+          <div class="ct-panel" id="ctDineroPanel">
+            <h4>A dónde va cada dólar</h4>
+            <p class="ct-panel-note">Separado por tipo, porque "el total" mezcla cosas distintas: lo que sale de tu bolsillo hoy, lo que vale tu carro entregado, y lo que le vas a pagar al banco durante años.</p>
+            <div class="ct-table-wrap">
+              <table class="ct-table">
+                <tbody id="ctDineroBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="ct-panel" id="ctExtrasPanel" hidden>
+            <h4>Cada extra, con su costo real</h4>
+            <p class="ct-panel-note">La columna de la derecha es lo que ese producto termina costando después de pagarle intereses durante todo el plazo. Es el número que nadie te dice en el dealer.</p>
+            <div class="ct-table-wrap">
+              <table class="ct-table">
+                <thead><tr><th>Producto</th><th class="num">Precio</th><th class="num">Con intereses</th><th class="num">Al mes</th></tr></thead>
+                <tbody id="ctExtrasBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="ct-panel" id="ctEscenarioPanel" hidden>
+            <h4>¿Y si me quedo solo con algunos?</h4>
+            <p class="ct-panel-note">Desmarca lo que no quieras y mira cómo cambia el pago. Sirve para llegar a la mesa con una cifra concreta en vez de un "es que está muy caro".</p>
+            <div class="ct-escenario" id="ctEscenario"></div>
+            <div class="ct-escenario-res">
+              <div><span>Pago mensual así</span><strong id="ctEscPago"></strong></div>
+              <div><span>Diferencia contra el contrato</span><strong id="ctEscDif"></strong></div>
+              <div><span>Costo total de lo que conservas</span><strong id="ctEscTotal"></strong></div>
+            </div>
+            <p class="ct-escenario-frase" id="ctEscFrase"></p>
+          </div>
+
+          <div class="ct-panel" id="ctSinPanel" hidden>
+            <h4>El mismo carro, sin los extras</h4>
+            <p class="ct-panel-note">Mismo precio, mismo enganche, misma tasa, mismo plazo. Lo único que cambia es que se quitan los productos agregados.</p>
+            <div class="ct-table-wrap">
+              <table class="ct-table">
+                <thead><tr><th></th><th class="num">Como está</th><th class="num">Sin extras</th><th class="num">Diferencia</th></tr></thead>
+                <tbody id="ctSinBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="ct-panel" id="ctFlagsPanel" hidden>
+            <h4>Cosas que vale la pena mirar dos veces</h4>
+            <p class="ct-panel-note">Esto no quiere decir que el contrato esté mal ni que sea ilegal. Son señales de que conviene preguntar antes de firmar.</p>
+            <div class="ct-flags" id="ctFlags"></div>
+          </div>
+
+          <div class="ct-say">
+            <h4>Qué decir en la oficina, palabra por palabra</h4>
+            <p class="ct-panel-note">Puedes leerlas tal cual. Son preguntas normales y educadas: cualquier vendedor honesto las contesta sin problema.</p>
+            <ul id="ctSayList"></ul>
+          </div>
+
+          <div class="ct-legal">
+            <p><strong>Esto no es asesoría legal ni financiera, y no te dice si firmar o no.</strong> Es aritmética sobre los números que tú escribiste: si un número está mal, el resultado estará mal. La decisión es tuya, y solo tú conoces tu situación.</p>
+            <p style="margin:10px 0 0"><strong>Sobre los extras:</strong> la garantía extendida, el GAP, la protección de pintura y demás productos son <strong>opcionales</strong> en la enorme mayoría de los casos, y su precio es negociable. Si alguien te dice que son obligatorios para aprobarte el préstamo, pide que te lo enseñe por escrito y con el nombre del prestamista que lo exige.</p>
+            <p style="margin:10px 0 0"><strong>Si algo no cuadra:</strong> tienes derecho a llevarte una copia del contrato para leerlo con calma. Nadie puede obligarte a firmar el mismo día. Para quejas sobre un financiamiento puedes acudir a la <a href="https://www.consumerfinance.gov/es/" target="_blank" rel="noopener noreferrer">CFPB</a> o a la <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener noreferrer">FTC</a>, y hay ayuda legal gratis en <a href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer">LawHelp.org</a>.</p>
+          </div>
+
+          <p class="ct-sello" id="ctSello"></p>
+
+          <div class="ct-actions ct-print">
+            <button type="button" class="btn btn-outline" id="ctImprimir" data-umami-event="contrato-auto-impreso">Guardar o imprimir este desglose</button>
+            <a class="btn btn-outline" href="comprar-auto.html">Leer la guía de compra de auto</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap">
+        <span class="eyebrow-dark">Antes de ir</span>
+        <h2>Los seis extras que más aparecen</h2>
+        <p class="lede">Ninguno es una estafa por sí solo, y algunos le sirven a alguna gente. El problema no es que existan: es el precio, y que casi siempre se presentan como si vinieran incluidos.</p>
+
+        <div class="qa-list">
+          <div class="qa-item"><h3><span class="q-mark">1</span>Garantía extendida (Extended Warranty / VSC)</h3><p>Cubre reparaciones después de que se acaba la garantía de fábrica. Es de los productos con más margen del dealer y <strong>su precio es negociable</strong>, a veces por mucho. También se puede comprar después, y no tiene que ser la del concesionario. Lee qué cubre y qué no: muchas excluyen justo las piezas que más fallan.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">2</span>GAP</h3><p>Si el carro se pierde por choque o robo, paga la diferencia entre lo que vale y lo que debes. Tiene sentido real cuando debes más de lo que el carro vale — enganche chico, plazo largo o deuda arrastrada. Tu aseguranza o tu cooperativa de crédito suelen venderlo <strong>mucho más barato</strong> que el dealer.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">3</span>Protección de pintura y telas</h3><p>Un tratamiento en la pintura y los asientos. Es el que menos defensa tiene: cuesta cientos o miles y el trabajo equivalente en un taller de detallado cuesta una fracción. Si aparece ya aplicado y cobrado sin que lo pidieras, se puede discutir.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">4</span>Grabado de vidrios (VIN Etching)</h3><p>Graban el número de serie en los cristales, supuestamente contra robo. Cuesta unos dólares hacerlo uno mismo con un kit. Es de los cargos que más se agregan sin avisar.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">5</span>Seguro de vida o incapacidad del préstamo</h3><p>Paga el préstamo si el comprador muere o queda incapacitado. Un seguro de vida a término normal suele cubrir lo mismo y más, por menos dinero. Ojo: aquí el seguro protege al prestamista, no a tu familia.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">6</span>Puntos de más en la tasa</h3><p>Este no aparece como un renglón: está escondido en la tasa. El banco aprueba al comprador a cierto porcentaje y el contrato sale con uno más alto; la diferencia se la queda el concesionario. Por eso la mejor defensa es simple: <strong>llega con una preaprobación de tu banco o tu cooperativa de crédito</strong> y que el dealer tenga que mejorarla.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <span class="eyebrow">Preguntas</span>
+        <h2>Dudas comunes</h2>
+        <div class="qa-list">
+          <div class="qa-item"><h3><span class="q-mark">?</span>¿Me pueden obligar a comprar la garantía o el GAP?</h3><p>Lo que sí puedes hacer siempre es <strong>preguntar</strong>: cuáles son opcionales, cuáles exige el prestamista por escrito, y cuáles puedes comprar por separado más barato. Las reglas cambian según el estado, el prestamista, el vehículo y el tipo de operación, así que no te podemos decir qué aplica a tu caso — pero sí que tienes derecho a que te lo respondan antes de firmar.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">?</span>Ya firmé. ¿Puedo arrepentirme?</h3><p>Aquí hay que tener cuidado con un mito muy común: <strong>no existe una regla federal de “tres días para devolver el carro”.</strong> Esa idea viene de otra ley, la de ventas a domicilio, y no cubre la compra de un vehículo en un concesionario. Algunas cosas se pueden cancelar después —ciertas garantías extendidas y pólizas de GAP se cancelan con reembolso proporcional— pero eso depende del contrato que firmaste. Léelo, y si no lo entiendes, <a href="cartas-claras.html">súbelo a Cartas Claras</a>.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">?</span>Me dejaron llevarme el carro y días después me llamaron para refirmar</h3><p>Eso tiene nombre: <em>spot delivery</em> o financiamiento “yo-yo”. Te entregan el carro antes de que el financiamiento esté cerrado y luego te llaman diciendo que no se aprobó y hay que firmar otra vez, casi siempre con peores condiciones. Antes de firmar de nuevo, pide el contrato nuevo por escrito, compáralo con el primero y consulta con alguien. <strong>El contrato original no desaparece porque ellos lo digan.</strong></p></div>
+          <div class="qa-item"><h3><span class="q-mark">?</span>¿Por qué el plazo largo me sale más caro si el pago es más bajo?</h3><p>Porque pagas intereses durante más tiempo. Un plazo de 84 meses baja el pago mensual y sube el total, y además te deja muchos meses debiendo más de lo que el carro vale. Esa es precisamente la situación que después te obliga a comprar GAP.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">?</span>¿Guardan mi contrato?</h3><p>No lo guardamos, pero hay que separar dos caminos y decirlo claro.</p><p><strong>Si escribes los números a mano:</strong> nada sale de tu dispositivo. Todas las cuentas se hacen dentro de tu teléfono o computadora, y al cerrar la página no queda nada.</p><p><strong>Si subes fotos del contrato:</strong> esas imágenes <strong>sí salen de tu dispositivo</strong>. Viajan cifradas a nuestro servidor y de ahí al proveedor de inteligencia artificial que las lee. No las almacenamos ni las usamos para nada más, pero sería falso decirte que no salen. Por eso ese camino es opcional: la calculadora funciona completa sin subir ninguna foto. Los detalles están en nuestra <a href="privacidad.html">política de privacidad</a>.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="brand">Themora</span>
+      <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+      <span><a href="comprar-casa.html">Compra de casa</a> · <a href="comprar-auto.html">Compra de auto</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+    if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="doc-paginas.js"></script>
+<script>
+(function(){
+  'use strict';
+  const $=(id)=>document.getElementById(id);
+
+  /* ===================================================================
+     Toda la aritmética corre aquí, en el navegador de la persona.
+     Ningún número sale del teléfono. No hay servidor, no hay cuenta,
+     no hay costo por consulta — por eso funciona siempre y es gratis.
+     =================================================================== */
+
+  const EXTRAS_COMUNES=[
+    'Garantía extendida (Extended Warranty / VSC)',
+    'GAP',
+    'Protección de pintura y telas',
+    'Grabado de vidrios (VIN Etching)',
+    'Protección de llantas y rines',
+    'Plan de mantenimiento prepagado',
+    'Seguro de vida o incapacidad del préstamo',
+    'Alarma o rastreo GPS',
+    'Otro'
+  ];
+
+  const dinero=(v)=>'$'+(Math.round(v*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const dineroCorto=(v)=>'$'+Math.round(v).toLocaleString('en-US');
+  const num=(id)=>{const v=parseFloat(($(id)||{}).value);return isFinite(v)?v:0;};
+
+  /* Pago mensual de un préstamo con amortización estándar.
+     r = tasa mensual. Con tasa 0 se reparte el capital en partes iguales. */
+  function pagoMensual(capital,tasaAnual,meses){
+    if(!(meses>0))return 0;
+    if(capital<=0)return 0;
+    const r=tasaAnual/100/12;
+    if(r===0)return capital/meses;
+    return capital*r/(1-Math.pow(1+r,-meses));
+  }
+
+  /* ===== Lista de extras ===== */
+  function filaExtra(nombre,monto){
+    const fila=document.createElement('div');
+    fila.className='ct-extra-row';
+    const opciones=EXTRAS_COMUNES.map(o=>'<option'+(o===nombre?' selected':'')+'>'+o+'</option>').join('');
+    fila.innerHTML=
+      '<select class="ct-extra-nombre" aria-label="Nombre del extra">'+opciones+'</select>'+
+      '<div class="ct-money"><input class="ct-extra-monto" type="number" inputmode="decimal" min="0" step="0.01" placeholder="$0" aria-label="Precio del extra"></div>'+
+      '<button type="button" class="ct-extra-del" aria-label="Quitar este extra">×</button>';
+    if(monto!==undefined)fila.querySelector('.ct-extra-monto').value=monto;
+    fila.querySelector('.ct-extra-del').addEventListener('click',()=>fila.remove());
+    return fila;
+  }
+  function agregarExtra(nombre,monto){ $('ctExtras').appendChild(filaExtra(nombre,monto)); }
+
+  function leerExtras(){
+    return [...document.querySelectorAll('.ct-extra-row')].map(f=>{
+      const v=parseFloat(f.querySelector('.ct-extra-monto').value);
+      return { nombre:f.querySelector('.ct-extra-nombre').value, monto:isFinite(v)&&v>0?v:0 };
+    }).filter(e=>e.monto>0);
+  }
+
+  /* ===== Cálculo ===== */
+  function calcular(){
+    const precio=num('ctPrecio'), enganche=num('ctEnganche'), trade=num('ctTrade');
+    const tasa=num('ctTasa'), plazo=Math.round(num('ctPlazo'));
+    const docFee=num('ctDocFee'), impuestos=num('ctImpuestos');
+    const pagoContrato=num('ctPagoContrato'), tasaBanco=num('ctTasaBanco');
+    const extras=leerExtras();
+
+    if(precio<=0) return { error:'Falta el precio del vehículo. Búscalo en el contrato como "Cash Price of Vehicle".' };
+    if(plazo<6||plazo>120) return { error:'El plazo tiene que estar entre 6 y 120 meses. En el contrato aparece como "Number of Payments".' };
+    if(tasa<0||tasa>40) return { error:'Revisa la tasa: tiene que ser un porcentaje entre 0 y 40. Es el "ANNUAL PERCENTAGE RATE" del recuadro federal.' };
+
+    const totalExtras=extras.reduce((s,e)=>s+e.monto,0);
+    const montoFinanciado=precio+docFee+impuestos+totalExtras-enganche-trade;
+
+    if(montoFinanciado<=0) return { error:'Con esos números no queda nada por financiar. Revisa el enganche y el valor de tu carro entregado.' };
+
+    const pago=pagoMensual(montoFinanciado,tasa,plazo);
+    const totalPagado=pago*plazo;
+    const interes=totalPagado-montoFinanciado;
+
+    // El mismo trato sin los extras
+    const finSinExtras=montoFinanciado-totalExtras;
+    const pagoSinExtras=pagoMensual(finSinExtras,tasa,plazo);
+    const totalSinExtras=pagoSinExtras*plazo;
+
+    // Cada extra, con su parte de intereses. Se reparte proporcionalmente:
+    // cada dólar financiado paga la misma tasa, así que el costo real de un
+    // extra es su precio multiplicado por el factor del préstamo.
+    const factor=plazo>0&&montoFinanciado>0?(pago*plazo)/montoFinanciado:1;
+    const detalleExtras=extras.map(e=>({
+      nombre:e.nombre, precio:e.monto,
+      conInteres:e.monto*factor,
+      alMes:pagoMensual(e.monto,tasa,plazo)
+    }));
+
+    // Puntos de más en la tasa, si trae preaprobación
+    let ahorroTasa=null;
+    if(tasaBanco>0&&tasaBanco<tasa){
+      const pagoBanco=pagoMensual(montoFinanciado,tasaBanco,plazo);
+      ahorroTasa={ tasaBanco, diferenciaMes:pago-pagoBanco, diferenciaTotal:(pago-pagoBanco)*plazo };
+    }
+
+    // ¿Cuadra con el pago que dice el contrato?
+    let descuadre=null;
+    if(pagoContrato>0&&Math.abs(pagoContrato-pago)>2){
+      descuadre={ contrato:pagoContrato, calculado:pago, diferencia:pagoContrato-pago };
+    }
+
+    return { precio,enganche,trade,tasa,plazo,docFee,impuestos,tasaBanco,
+             extras:detalleExtras,totalExtras,montoFinanciado,pago,totalPagado,interes,
+             finSinExtras,pagoSinExtras,totalSinExtras,ahorroTasa,descuadre };
+  }
+
+  /* ===== Banderas =====
+     Cada una describe un HECHO del contrato y explica qué significa.
+     Ninguna dice "no firmes": eso no nos toca a nosotros. */
+  function banderas(r){
+    const b=[];
+    if(r.descuadre){
+      b.push({hot:true,titulo:'Los números no cuadran con el pago del contrato',
+        texto:'Según estas cifras el pago debería ser '+dinero(r.pago)+', pero el contrato dice '+dinero(r.descuadre.contrato)+
+              ' — una diferencia de '+dinero(Math.abs(r.descuadre.diferencia))+' al mes. Esto no significa que el contrato esté mal: casi siempre falta algún dato por anotar. Revisa si el contrato incluye impuestos o placas que no escribiste, algún producto agregado en una hoja aparte, un seguro de vida o incapacidad del préstamo, un primer pago con fecha distinta, o si la tasa del recuadro federal no es la que anotaste. Si después de revisarlo sigue sin cuadrar, pide el desglose renglón por renglón.'});
+    }
+    if(r.totalExtras>0&&r.totalExtras>=r.precio*0.10){
+      b.push({hot:true,titulo:'Los extras son '+Math.round(r.totalExtras/r.precio*100)+'% del precio del carro',
+        texto:'Estás financiando '+dinero(r.totalExtras)+' en productos que no son el vehículo, sobre un carro de '+dinero(r.precio)+
+              '. Pregunta cuáles son opcionales, cuáles exige el prestamista por escrito y cuáles puedes comprar por separado.'});
+    }
+    if(r.plazo>=72){
+      b.push({hot:r.plazo>=84,titulo:'Plazo de '+r.plazo+' meses',
+        texto:'Un plazo largo baja el pago mensual y sube el total. Con este contrato pagarás '+dinero(r.interes)+' de interés a lo largo de '+
+              (r.plazo/12).toFixed(1).replace('.0','')+' años, y estarás muchos meses debiendo más de lo que el carro vale.'});
+    }
+    if(r.trade<0){
+      b.push({hot:true,titulo:'Vienes arrastrando deuda de tu carro anterior',
+        texto:'Se están sumando '+dinero(Math.abs(r.trade))+' de la deuda vieja al préstamo nuevo. Eso significa que empiezas debiendo más de lo que vale el carro desde el primer día, y vas a pagar intereses sobre un carro que ya no tienes.'});
+    }
+    if(r.montoFinanciado>r.precio){
+      b.push({hot:false,titulo:'Te están prestando más de lo que cuesta el carro',
+        texto:'El carro cuesta '+dinero(r.precio)+' y el préstamo es de '+dinero(r.montoFinanciado)+'. La diferencia son impuestos, cargos y extras. Es normal que pase, pero conviene saber exactamente de qué se compone.'});
+    }
+    if(r.ahorroTasa){
+      b.push({hot:true,titulo:'La tasa del contrato es más alta que la de tu banco',
+        texto:'Tu banco te aprobó al '+r.ahorroTasa.tasaBanco+'% y el contrato dice '+r.tasa+'%. Esa diferencia son '+dinero(r.ahorroTasa.diferenciaMes)+
+              ' más al mes, o '+dinero(r.ahorroTasa.diferenciaTotal)+' durante todo el préstamo. Puedes pedir que igualen la tasa de tu preaprobación.'});
+    }
+    if(r.docFee>0){
+      b.push({hot:false,titulo:'Cargo del dealer de '+dinero(r.docFee),
+        texto:'Es lo que cobra el concesionario por el papeleo. Las reglas sobre este cargo cambian de un estado a otro y nosotros no llevamos esa lista, así que no te podemos decir si el tuyo es normal. Lo que sí puedes hacer es preguntar cómo se calcula y si hay un tope en tu estado.'});
+    }
+    return b;
+  }
+
+  /* ===== Frases para la oficina ===== */
+  function frases(r){
+    const f=[
+      ['Can I see the itemization of the amount financed, line by line?',
+       '¿Me puede mostrar el desglose del monto financiado, renglón por renglón?'],
+      ['What is the out-the-door price with no add-ons?',
+       '¿Cuál es el precio final sin ningún producto agregado?'],
+      ['I want to take a copy of the contract home to read it before I sign.',
+       'Quiero llevarme una copia del contrato a casa para leerlo antes de firmar.']
+    ];
+    if(r.totalExtras>0){
+      f.splice(1,0,['Please remove the optional products and show me the new payment.',
+                    'Por favor quite los productos opcionales y muéstreme el pago nuevo.']);
+    }
+    if(r.ahorroTasa){
+      f.splice(1,0,['My credit union already approved me at '+r.ahorroTasa.tasaBanco+'%. Can you beat that rate?',
+                    'Mi cooperativa ya me aprobó al '+r.ahorroTasa.tasaBanco+'%. ¿Puede mejorar esa tasa?']);
+    } else {
+      f.push(['What is the buy rate from the lender, before your markup?',
+              '¿Cuál es la tasa que dio el banco, antes del margen del concesionario?']);
+    }
+    return f;
+  }
+
+  /* ===== Pintar ===== */
+  function pintar(r){
+    const ahorroTotal=r.totalPagado-r.totalSinExtras;
+    const hayExtras=r.extras.length>0;
+
+    if(r.totalExtras>0){
+      $('ctHeadline').textContent=dineroCorto(ahorroTotal)+' de más por los extras';
+      $('ctHeadlineSub').textContent='Te los presentaron como '+dinero(r.pago-r.pagoSinExtras)+
+        ' más al mes. Durante los '+r.plazo+' meses del préstamo, con intereses, son '+dinero(ahorroTotal)+'.';
+    }else{
+      $('ctHeadline').textContent=dineroCorto(r.interes)+' de intereses';
+      $('ctHeadlineSub').textContent='No anotaste ningún producto agregado, así que este contrato es el carro y sus cargos. '+
+        'Vas a pagar '+dinero(r.totalPagado)+' por un préstamo de '+dinero(r.montoFinanciado)+'.';
+    }
+
+    $('ctMontoFin').textContent=dinero(r.montoFinanciado);
+    $('ctPagoCalc').textContent=dinero(r.pago);
+    $('ctPagoNota').textContent=r.descuadre?'El contrato dice '+dinero(r.descuadre.contrato):'Durante '+r.plazo+' meses';
+    $('ctInteres').textContent=dinero(r.interes);
+    $('ctInteresNota').textContent='Al '+r.tasa+'% anual';
+    $('ctTotal').textContent=hayExtras?dinero(ahorroTotal):'$0';
+    $('ctTotalNota').textContent=hayExtras?'Con intereses, todo el plazo':'No anotaste productos agregados';
+
+    /* A dónde va cada dólar. "El total" mezclaba efectivo, carro entregado y
+       pagos al banco, que son cosas distintas y confundían más de lo que
+       aclaraban. Aquí van separadas, y la deuda arrastrada se ve como lo que
+       es: dinero que ya debías y que ahora financias otra vez. */
+    var filasDinero=[
+      ['Efectivo que entregas hoy', dineroCorto(r.enganche), 'Sale de tu bolsillo el día de la firma'],
+      ['Valor neto de tu carro entregado',
+        r.trade===0?'$0':(r.trade>0?dineroCorto(r.trade):'−'+dineroCorto(Math.abs(r.trade))),
+        r.trade>0?'Se descuenta del préstamo'
+                 :(r.trade<0?'Debías más de lo que vale: esa deuda se suma al préstamo nuevo'
+                            :'No entregaste carro, o no tenía valor neto')],
+      ['Impuestos, placas y título', dineroCorto(r.impuestos), 'Los cobra el estado, no el dealer'],
+      ['Cargo administrativo del dealer', dineroCorto(r.docFee), 'Por el papeleo'],
+      ['Productos opcionales', dineroCorto(r.totalExtras), hayExtras?(r.extras.length+(r.extras.length===1?' producto':' productos')):'Ninguno anotado'],
+      ['Monto financiado', dineroCorto(r.montoFinanciado), 'Lo que realmente te presta el banco'],
+      ['Interés del préstamo', dineroCorto(r.interes), 'Al '+r.tasa+'% durante '+r.plazo+' meses'],
+      ['Pagos al banco en total', dineroCorto(r.totalPagado), r.plazo+' pagos de '+dinero(r.pago)]
+    ];
+    $('ctDineroBody').innerHTML=filasDinero.map(function(f,i){
+      return '<tr'+(i>=5?' class="ct-total"':'')+'><td>'+f[0]+'<br><span style="font-size:.78rem;color:var(--muted)">'+f[2]+'</span></td><td class="num">'+f[1]+'</td></tr>';
+    }).join('');
+
+    // Tabla de extras
+    $('ctExtrasPanel').hidden=!hayExtras;
+    if(hayExtras){
+      $('ctExtrasBody').innerHTML=r.extras.map(e=>
+        '<tr><td>'+e.nombre+'</td><td class="num">'+dinero(e.precio)+'</td><td class="num">'+dinero(e.conInteres)+'</td><td class="num">'+dinero(e.alMes)+'</td></tr>'
+      ).join('')+
+      '<tr class="ct-total"><td>Total de extras</td><td class="num">'+dinero(r.totalExtras)+'</td><td class="num">'+
+        dinero(r.extras.reduce((s,e)=>s+e.conInteres,0))+'</td><td class="num">'+dinero(r.pago-r.pagoSinExtras)+'</td></tr>';
+    }
+
+    // Comparación sin extras
+    $('ctSinPanel').hidden=!hayExtras;
+    if(hayExtras){
+      const filas=[
+        ['Monto financiado',r.montoFinanciado,r.finSinExtras],
+        ['Pago mensual',r.pago,r.pagoSinExtras],
+        ['Total pagado al banco',r.totalPagado,r.totalSinExtras]
+      ];
+      $('ctSinBody').innerHTML=filas.map(([k,a,b])=>
+        '<tr><td>'+k+'</td><td class="num">'+dinero(a)+'</td><td class="num">'+dinero(b)+'</td><td class="num">'+dinero(a-b)+'</td></tr>'
+      ).join('');
+    }
+
+    // Escenarios: qué pasa si conservo solo algunos
+    $('ctEscenarioPanel').hidden=!hayExtras;
+    if(hayExtras) montarEscenario(r);
+
+    // Banderas
+    const bs=banderas(r);
+    $('ctFlagsPanel').hidden=bs.length===0;
+    $('ctFlags').innerHTML=bs.map(b=>
+      '<div class="ct-flag'+(b.hot?' is-hot':'')+'"><b>'+(b.hot?'!':'i')+'</b><div><h5>'+b.titulo+'</h5><p>'+b.texto+'</p></div></div>'
+    ).join('');
+
+    // Frases
+    $('ctSayList').innerHTML=frases(r).map(([en,es])=>
+      '<li><span class="en">'+en+'</span><span class="es">'+es+'</span></li>'
+    ).join('');
+
+    var hoy=new Date();
+    $('ctSello').textContent='Estimación educativa basada en los datos que escribiste, generada el '+
+      hoy.toLocaleDateString('es-US',{day:'numeric',month:'long',year:'numeric'})+
+      '. No es una oferta de crédito, ni asesoría legal o financiera, ni una auditoría de tu contrato. '+
+      'Themora no es prestamista, concesionario ni agencia de reparación de crédito. Verifica cada cifra contra tu contrato firmado, que es el que manda.';
+
+    $('ctResults').hidden=false;
+
+    if(window.ThemoraStats){
+      // Solo señales agregadas. Nunca los montos del contrato de la persona.
+      window.ThemoraStats.evento('contrato-auto-analizado',{
+        tenia_extras: hayExtras?'si':'no',
+        cuantos_extras: String(r.extras.length),
+        plazo_largo: r.plazo>=72?'si':'no',
+        trade_negativo: r.trade<0?'si':'no',
+        traia_preaprobacion: r.tasaBanco>0?'si':'no'
+      });
+    }
+  }
+
+  /* ===== "¿Y si me quedo solo con algunos?" =====
+     Deja probar combinaciones antes de firmar. No dice qué quitar — eso lo
+     decide la persona; solo pone el número de cada combinación. */
+  let ultimoResultado=null;
+
+  function montarEscenario(r){
+    ultimoResultado=r;
+    $('ctEscenario').innerHTML=r.extras.map(function(e,i){
+      return '<label class="ct-esc-item" data-i="'+i+'">'+
+        '<input type="checkbox" checked data-esc="'+i+'">'+
+        '<span class="ct-esc-nombre">'+escapeHtml(e.nombre)+'</span>'+
+        '<span class="ct-esc-monto">'+dinero(e.precio)+'</span></label>';
+    }).join('');
+    $('ctEscenario').querySelectorAll('input[data-esc]').forEach(function(cb){
+      cb.addEventListener('change',recalcularEscenario);
+    });
+    recalcularEscenario();
+  }
+
+  function recalcularEscenario(){
+    const r=ultimoResultado; if(!r)return;
+    const marcados=[...$('ctEscenario').querySelectorAll('input[data-esc]')];
+    marcados.forEach(function(cb){
+      cb.closest('.ct-esc-item').classList.toggle('is-off',!cb.checked);
+    });
+    const conservados=r.extras.filter(function(e,i){return marcados[i]&&marcados[i].checked;});
+    const sumaConservada=conservados.reduce(function(s,e){return s+e.precio;},0);
+
+    const finEsc=r.montoFinanciado-r.totalExtras+sumaConservada;
+    const pagoEsc=pagoMensual(finEsc,r.tasa,r.plazo);
+    const dif=r.pago-pagoEsc;
+    const factor=finEsc>0?(pagoEsc*r.plazo)/finEsc:1;
+
+    $('ctEscPago').textContent=dinero(pagoEsc);
+    $('ctEscDif').textContent=dif>0.005?('−'+dinero(dif)+' al mes'):'Igual que el contrato';
+    $('ctEscTotal').textContent=dinero(sumaConservada*factor);
+
+    const quitados=r.extras.length-conservados.length;
+    if(quitados===0){
+      $('ctEscFrase').innerHTML='Así está el contrato ahora. Desmarca algo para ver cuánto cambiaría el pago.';
+    }else{
+      $('ctEscFrase').innerHTML='Si el contrato saliera sin '+quitados+(quitados===1?' de esos productos':' de esos productos')+
+        ', el pago bajaría a <b>'+dinero(pagoEsc)+'</b> — <b>'+dinero(dif)+' menos al mes</b>, y <b>'+
+        dinero(dif*r.plazo)+' menos</b> en los '+r.plazo+' meses. Para pedirlo: <i>"Could you show me the numbers without those products?"</i> ("¿Me puede mostrar los números sin esos productos?")';
+    }
+  }
+
+  /* ===== Eventos ===== */
+  $('ctAddExtra').addEventListener('click',()=>agregarExtra());
+
+  $('ctForm').addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const r=calcular();
+    const err=$('ctError');
+    if(r.error){ err.textContent=r.error; err.hidden=false; $('ctResults').hidden=true; err.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    err.hidden=true;
+    pintar(r);
+    $('ctResults').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  $('ctLimpiar').addEventListener('click',()=>{
+    $('ctForm').reset();
+    $('ctExtras').innerHTML='';
+    agregarExtra();
+    $('ctResults').hidden=true;
+    $('ctError').hidden=true;
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  /* Un contrato de ejemplo, para que se entienda de un vistazo qué hace
+     la herramienta sin tener que teclear nada. */
+  $('ctEjemplo').addEventListener('click',()=>{
+    $('ctPrecio').value=24000; $('ctEnganche').value=2000; $('ctTrade').value=-1800;
+    $('ctTasa').value=12.9; $('ctPlazo').value=75; $('ctPagoContrato').value='';
+    $('ctTasaBanco').value=8.5; $('ctDocFee').value=799; $('ctImpuestos').value=1350;
+    $('ctExtras').innerHTML='';
+    agregarExtra('Garantía extendida (Extended Warranty / VSC)',2795);
+    agregarExtra('GAP',895);
+    agregarExtra('Protección de pintura y telas',1195);
+    agregarExtra('Grabado de vidrios (VIN Etching)',299);
+    $('ctForm').dispatchEvent(new Event('submit'));
+  });
+
+  $('ctImprimir').addEventListener('click',()=>window.print());
+
+  /* ===== Camino de las fotos =====
+     Un contrato de dealer tiene varias hojas y lo importante está repartido.
+     Se preparan todas las páginas aquí (ver doc-paginas.js), la persona ve la
+     lista y decide, y se mandan JUNTAS en una sola llamada.
+
+     La IA solo LEE: llena el formulario y se detiene. La persona revisa,
+     corrige y aprieta el botón. La aritmética nunca sale de este archivo. */
+  const fotoEstado=$('ctFotoEstado'), fotoError=$('ctFotoError');
+  let paginasListas=[];
+
+  function ponerSiHay(id,valor){ if(valor!==null&&valor!==undefined) $(id).value=valor; }
+
+  function pintarPaginas(){
+    const cont=$('ctPaginas');
+    cont.innerHTML=paginasListas.map((p,i)=>
+      '<li class="ct-pagina">'+
+        '<span class="ct-pag-n">'+(i+1)+'</span>'+
+        '<img src="data:'+p.mediaType+';base64,'+p.base64+'" alt="Página '+(i+1)+'">'+
+        '<span class="ct-pag-nombre">'+escapeHtml(p.nombre)+'</span>'+
+        '<button type="button" class="ct-extra-del" data-i="'+i+'" aria-label="Quitar la página '+(i+1)+'">×</button>'+
+      '</li>').join('');
+    cont.querySelectorAll('.ct-extra-del').forEach(b=>b.addEventListener('click',()=>{
+      paginasListas.splice(parseInt(b.dataset.i,10),1); pintarPaginas();
+    }));
+    const hay=paginasListas.length>0;
+    cont.hidden=!hay;
+    $('ctLeerAcciones').hidden=!hay;
+  }
+
+  function escapeHtml(t){
+    return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+
+  $('ctFotoInput').addEventListener('change',async(e)=>{
+    const files=e.target.files;
+    if(!files||!files.length)return;
+    fotoError.hidden=true; $('ctRevisar').hidden=true; $('ctAvisos').innerHTML='';
+    fotoEstado.textContent='Preparando las páginas…';
+    try{
+      const r=await window.ThemoraPaginas.preparar(files);
+      // Se agregan a las que ya hubiera, por si las sube en varias tandas.
+      paginasListas=paginasListas.concat(r.paginas).slice(0,window.ThemoraPaginas.MAX_PAGINAS);
+      pintarPaginas();
+      $('ctAvisos').innerHTML=r.avisos.map(a=>'<li>'+escapeHtml(a)+'</li>').join('');
+      fotoEstado.textContent=paginasListas.length+(paginasListas.length===1?' página lista':' páginas listas');
+    }catch(err){
+      fotoEstado.textContent='';
+      fotoError.textContent=(err&&err.message)||'No se pudieron preparar las páginas.';
+      fotoError.hidden=false;
+    }finally{ e.target.value=''; }
+  });
+
+  $('ctQuitarTodas').addEventListener('click',()=>{
+    paginasListas=[]; pintarPaginas(); fotoEstado.textContent=''; $('ctAvisos').innerHTML='';
+  });
+
+  $('ctLeerPaginas').addEventListener('click',async()=>{
+    if(!paginasListas.length)return;
+    fotoError.hidden=true;
+
+    if(!window.CCAuth||!window.CCAuth.isConfigured||!(window.CCAuth.getUser&&window.CCAuth.getUser())){
+      fotoError.innerHTML='Para leer las fotos hay que iniciar sesión. <a href="login.html">Entrar</a> — o escribe los números a mano, la calculadora funciona igual de bien.';
+      fotoError.hidden=false; return;
+    }
+
+    fotoEstado.textContent='Leyendo '+paginasListas.length+(paginasListas.length===1?' página…':' páginas…');
+    try{
+      const res=await fetch('/.netlify/functions/explain-auto-contract',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ paginas:paginasListas.map(p=>({base64:p.base64,mediaType:p.mediaType})),
+                              accessToken:window.CCAuth.getAccessToken&&window.CCAuth.getAccessToken() })
+      });
+      const data=await res.json();
+      fotoEstado.textContent='';
+      if(!res.ok||!data.result){ fotoError.textContent=data.error||'No se pudieron leer las fotos. Escribe los números a mano.'; fotoError.hidden=false; return; }
+
+      const r=data.result;
+      if(r.es_contrato_auto!=='si'){
+        fotoError.textContent=(r.que_es||'Esto no parece un contrato de compra de auto.')+' Si es otro tipo de papel, puedes subirlo a Cartas Claras.';
+        fotoError.hidden=false; return;
+      }
+
+      ponerSiHay('ctPrecio',r.precio_vehiculo); ponerSiHay('ctEnganche',r.enganche);
+      ponerSiHay('ctTrade',r.trade_neto); ponerSiHay('ctDocFee',r.doc_fee);
+      ponerSiHay('ctImpuestos',r.impuestos); ponerSiHay('ctTasa',r.tasa);
+      ponerSiHay('ctPlazo',r.plazo); ponerSiHay('ctPagoContrato',r.pago_mensual);
+
+      if(Array.isArray(r.extras)&&r.extras.length){
+        $('ctExtras').innerHTML='';
+        r.extras.forEach(x=>agregarExtra(EXTRAS_COMUNES.includes(x.nombre)?x.nombre:'Otro',x.monto));
+      }
+
+      let texto='Llenamos el formulario con lo que se alcanza a leer en '+
+        (paginasListas.length===1?'la página':'las '+paginasListas.length+' páginas')+'. '+
+        'Compara cada casilla con tu papel y corrige lo que haga falta — después aprieta el botón.';
+      if(r.no_pude_leer) texto+=' No se pudo leer: '+r.no_pude_leer;
+      $('ctRevisarTexto').textContent=texto;
+      $('ctRevisar').hidden=false;
+      $('ctRevisar').scrollIntoView({behavior:'smooth',block:'center'});
+
+      if(window.ThemoraStats)window.ThemoraStats.evento('contrato-auto-foto-leida',{paginas:String(paginasListas.length)});
+    }catch(err){
+      fotoEstado.textContent='';
+      fotoError.textContent='No se pudieron leer las fotos. Escribe los números a mano — la calculadora funciona igual.';
+      fotoError.hidden=false;
+    }
+  });
+
+  agregarExtra();
+})();
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js"></script>
+  <script src="cms.js"></script>
+  <script src="site-search-index.js"></script>
+  <script src="zyron-brain.js"></script>
+  <script src="credit-coach.js"></script>
+  <script src="nav.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

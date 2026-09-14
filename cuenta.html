@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cuenta | Themora</title>
+<meta name="description" content="Tu plan, tu progreso en Themora y la configuración de tu cuenta, todo en un solo lugar.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2a2118">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Themora">
+<meta property="og:locale" content="es_US">
+<meta property="og:title" content="Mi cuenta | Themora">
+<meta property="og:description" content="Tu plan, tu progreso en Themora y la configuración de tu cuenta, todo en un solo lugar.">
+<meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
+<meta property="og:url" content="https://mithemora.com/cuenta.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mi cuenta | Themora">
+<meta name="twitter:description" content="Tu plan, tu progreso en Themora y la configuración de tu cuenta, todo en un solo lugar.">
+<meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
+<link rel="canonical" href="https://mithemora.com/cuenta.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  #accountContent{padding:0}
+  /* ---- Mi cuenta: identidad + plan ---- */
+  .acct-identity{padding:56px 0 46px;background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+  .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-200px;top:-210px}
+  .acct-identity-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .acct-identity-left{display:flex;align-items:center;gap:20px}
+  .acct-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem 'Fraunces',serif;flex:none}
+  .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+  .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:'Fraunces',serif}
+  .acct-meta{margin:6px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
+  .acct-identity-right{display:flex;align-items:center;gap:12px}
+  .acct-plan-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .acct-plan-pill{background:var(--gold);color:var(--navy-deep);padding:7px 14px;border-radius:999px;font:800 .74rem 'Public Sans',sans-serif;letter-spacing:.02em}
+  .acct-plan-pill.is-empty{background:rgba(255,255,255,.14);color:#fff}
+  .acct-plan-pill.is-trial{background:rgba(90,190,214,.22);color:#bdeaf5}
+  .acct-plan-desc{color:rgba(255,255,255,.55);font-size:.78rem}
+
+  /* ---- Tu progreso ---- */
+  .acct-progress{padding:54px 0 10px}
+  .acct-section-lead{max-width:680px;margin-bottom:30px}
+  .acct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:980px){.acct-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.acct-grid{grid-template-columns:1fr}}
+  .acct-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:20px;box-shadow:0 6px 18px rgba(8,47,73,.05);display:flex;flex-direction:column;gap:10px}
+  .acct-card.is-good{border-left-color:var(--good)}
+  .acct-card.is-gold{border-left-color:var(--gold)}
+  .acct-card.is-teal{border-left-color:var(--teal)}
+  .acct-card.is-navy{border-left-color:var(--navy)}
+  .acct-card-kicker{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .acct-card h3{font-size:1.02rem;color:var(--navy-deep);font-family:'Fraunces',serif}
+  .acct-card p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.55;flex-grow:1}
+  .acct-card-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:700;font-size:.78rem;text-decoration:none}
+  .acct-card-link:hover{color:var(--gold)}
+  .acct-bar{height:5px;border-radius:99px;background:var(--paper-dim);overflow:hidden}
+  .acct-bar span{display:block;height:100%;background:var(--gold)}
+
+  .acct-nudge{display:flex;gap:18px;align-items:center;margin-top:26px;border-left:3px solid var(--gold);background:var(--paper-dim);padding:18px 22px}
+  .acct-nudge p{margin:0;color:rgba(12,37,56,.72);font-size:.88rem;flex-grow:1}
+  .acct-nudge[hidden]{display:none}
+
+  /* ---- Configuración ---- */
+  .acct-config{padding:54px 0 80px;background:var(--paper-dim)}
+  .acct-config-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.acct-config-grid{grid-template-columns:1fr}}
+  .acct-config-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .acct-config-card.is-navy{border-left-color:var(--navy)}
+  .acct-config-card.is-gold{border-left-color:var(--gold)}
+  .acct-config-card.is-good{border-left-color:var(--good)}
+  .acct-config-card h3{font-size:1.02rem;color:var(--navy-deep);margin-bottom:6px;font-family:'Fraunces',serif}
+  .acct-config-card>.acct-note{margin-bottom:10px}
+  .acct-field{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .acct-field:last-child{border-bottom:0;padding-bottom:0}
+  .acct-field-label{display:block;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+  .acct-field-value{font-size:.88rem;color:var(--ink);font-weight:600}
+  .acct-field-sub{font-size:.76rem;color:var(--muted);display:block;margin-top:2px}
+  .acct-link-btn{border:0;background:none;color:var(--teal);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;text-decoration:none}
+  .acct-link-btn:hover{color:var(--gold)}
+  .acct-link-btn:disabled{color:var(--muted);cursor:not-allowed}
+  .acct-note{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+  .acct-toggle{width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;flex:none;border:0;cursor:pointer;padding:0}
+  .acct-toggle::after{content:"";position:absolute;top:2.5px;left:2.5px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:.15s ease}
+  .acct-toggle.is-on{background:var(--gold)}
+  .acct-toggle.is-on::after{left:19.5px}
+  .acct-toggle:disabled{opacity:.5;cursor:not-allowed}
+  .acct-soon{font-size:.62rem;font-weight:800;color:var(--muted);background:var(--line);padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;flex:none}
+  .acct-saved-flash{font-size:.7rem;color:var(--good);font-weight:700;margin-left:8px;opacity:0;transition:opacity .2s ease}
+  .acct-saved-flash.is-visible{opacity:1}
+
+  .acct-danger{margin-top:16px;background:#fff;border:1px solid rgba(179,64,42,.3);border-left:4px solid var(--danger);border-radius:8px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .acct-danger h3{font-size:1rem;color:var(--danger);margin-bottom:4px;font-family:'Fraunces',serif}
+  .acct-danger p{margin:0;color:var(--muted);font-size:.82rem;max-width:520px}
+
+  /* ---- Modal reutilizable ---- */
+  .acct-modal-overlay{position:fixed;inset:0;background:rgba(20,14,8,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+  .acct-modal-overlay[hidden]{display:none}
+  .acct-modal{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);max-width:420px;width:100%;padding:26px}
+  .acct-modal h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--navy-deep);margin-bottom:6px}
+  .acct-modal-desc{color:var(--muted);font-size:.84rem;margin-bottom:16px;line-height:1.5}
+  .acct-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+
+  /* ---- Espacio personal: barra lateral plegable ---- */
+  .account-sidebar{position:fixed;z-index:50;left:0;top:72px;bottom:0;width:264px;padding:22px 14px;background:#151b27;color:#fff;border-right:1px solid rgba(255,255,255,.08);transition:width .2s ease;overflow-y:auto}
+  .account-sidebar-head{display:flex;align-items:center;gap:11px;padding:4px 8px 22px;border-bottom:1px solid rgba(255,255,255,.11)}
+  .account-sidebar-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--gold);color:var(--navy-deep);font:700 1rem 'Fraunces',serif;flex:none}
+  .account-sidebar-avatar img{width:100%;height:100%;object-fit:cover}
+  .account-sidebar-person{min-width:0}.account-sidebar-person strong,.account-sidebar-person small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.account-sidebar-person strong{font-size:.86rem}.account-sidebar-person small{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.55)}
+  .account-sidebar-toggle{margin-left:auto;width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:1rem;flex:none}
+  .account-sidebar-nav{display:grid;gap:5px;padding-top:20px}.account-sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;color:rgba(255,255,255,.7);border-radius:9px;text-decoration:none;font-size:.83rem;font-weight:700}.account-sidebar-nav a:hover,.account-sidebar-nav a.is-active{background:rgba(255,255,255,.1);color:#fff}.account-sidebar-nav i{width:19px;font-style:normal;text-align:center;font-size:1rem}.account-sidebar-nav span{white-space:nowrap}
+  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:10px;background:rgba(201,162,77,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
+  #accountContent{padding-left:264px;transition:padding-left .2s ease}.sidebar-collapsed #accountContent{padding-left:72px}.sidebar-collapsed .account-sidebar{width:72px;padding-inline:14px}.sidebar-collapsed .account-sidebar-person,.sidebar-collapsed .account-sidebar-nav span,.sidebar-collapsed .account-sidebar-footer{display:none}.sidebar-collapsed .account-sidebar-head{padding-inline:0}.sidebar-collapsed .account-sidebar-toggle{margin-left:0}.sidebar-collapsed .account-sidebar-nav a{justify-content:center;padding-inline:8px}
+  .account-signed-in .page-hero{display:none}
+  .acct-profile-card{grid-column:span 2;border-left-color:var(--gold)}.acct-profile-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}.acct-profile-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--gold-light);display:grid;place-items:center;color:var(--navy-deep);font:700 1.8rem 'Fraunces',serif;flex:none}.acct-profile-avatar img{width:100%;height:100%;object-fit:cover}.acct-avatar-action{position:relative;overflow:hidden;cursor:pointer;color:var(--teal);font-weight:800;font-size:.8rem}.acct-avatar-action input{position:absolute;inset:0;opacity:0;cursor:pointer}.acct-profile-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.acct-profile-fields .form-group{margin:0}.acct-profile-fields .form-group.full{grid-column:1/-1}.acct-profile-actions{display:flex;align-items:center;gap:12px;margin-top:20px}.acct-profile-status{font-size:.8rem;color:var(--good);font-weight:700}
+  @media(max-width:900px){.account-sidebar{position:sticky;top:0;width:100%;height:auto;bottom:auto;padding:10px 16px;display:flex;align-items:center;gap:14px;overflow:visible}.account-sidebar-head{padding:0;border:0;flex:1}.account-sidebar-nav{display:flex;padding:0;gap:2px}.account-sidebar-nav a{padding:8px}.account-sidebar-nav a span,.account-sidebar-footer,.account-sidebar-toggle{display:none}#accountContent,.sidebar-collapsed #accountContent{padding-left:0}.acct-profile-card{grid-column:auto}.acct-identity{padding-top:36px}}
+  @media(max-width:620px){.account-sidebar-nav a:nth-child(n+4){display:none}.acct-profile-fields{grid-template-columns:1fr}.acct-profile-fields .form-group.full{grid-column:auto}.acct-profile-top{align-items:flex-start}}
+</style>
+</head>
+<body data-cms-page="cuenta">
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegación principal">
+      
+      <a href="index.html">Inicio</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu negocio<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="aparezco.html"><strong>¿Aparece mi negocio?</strong><span>Revisa gratis si sales en Google y Apple Maps</span></a>
+          <a href="listar-negocio.html"><strong>Ponerlo en el mapa</strong><span>Google Maps y Apple Maps, hecho por nosotros</span></a>
+          <a href="formar-negocio.html"><strong>Abrir mi negocio</strong><span>Registra tu LLC y saca tu número EIN</span></a>
+          <a href="agendar.html"><strong>Hablar con alguien</strong><span>Agenda una cita, sin compromiso</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Tu crédito<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="cartas-claras.html"><strong>Cartas Claras</strong><span>Entiende cartas del IRS, cobradores, bancos o corte</span></a>
+          <a href="contrato-auto.html"><strong>Contrato del dealer</strong><span>Revisa los números antes de firmar en el concesionario</span></a>
+          <a href="credito.html"><strong>Mi reporte de crédito</strong><span>Súbelo y te lo explicamos, sin que salga de tu teléfono</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-group-btn" aria-expanded="false" aria-haspopup="true">Guías<svg class="nav-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.5 5 7.5 9 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="herramientas.html"><strong>Calculadoras</strong><span>Hipoteca, pagos adelantados y cartas de disputa</span></a>
+          <a href="comprar-casa.html"><strong>Comprar casa</strong><span>Hipotecas FHA, VA, USDA y convencionales</span></a>
+          <a href="comprar-auto.html"><strong>Comprar auto</strong><span>Tasas por estado y cómo leer el contrato del dealer</span></a>
+        </div>
+      </div>
+      <a href="quienes-somos.html">Quiénes somos</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Tu cuenta</span>
+      <h1 id="accountGreeting">Todo tu progreso, en un solo lugar</h1>
+      <p>Tu plan, lo que has guardado en cada herramienta y la configuración de tu cuenta.</p>
+    </div>
+  </section>
+
+  <!-- Se muestra si no hay sesión activa -->
+  <section id="signedOutNotice" hidden>
+    <div class="wrap" style="max-width:560px;text-align:center;">
+      <p>Necesitas iniciar sesión para ver esta página.</p>
+      <a href="login.html" class="btn btn-gold">Iniciar sesión</a>
+    </div>
+  </section>
+
+  <!-- Contenido de la cuenta -->
+  <section id="accountContent" hidden>
+
+    <aside class="account-sidebar" id="accountSidebar" aria-label="Menú de tu cuenta">
+      <div class="account-sidebar-head">
+        <div class="account-sidebar-avatar" id="sidebarAvatar">?</div>
+        <div class="account-sidebar-person"><strong id="sidebarName">Mi cuenta</strong><small id="sidebarEmail">Cargando…</small></div>
+        <button class="account-sidebar-toggle" id="sidebarToggle" type="button" aria-label="Contraer menú" aria-expanded="true">‹</button>
+      </div>
+      <nav class="account-sidebar-nav" aria-label="Secciones de tu cuenta">
+        <a class="is-active" href="#resumen"><i>⌂</i><span>Resumen</span></a>
+        <a href="#perfil"><i>◉</i><span>Mi perfil</span></a>
+        <a href="#historial"><i>◷</i><span>Mi historial</span></a>
+        <a href="#configuracion"><i>⚙</i><span>Configuración</span></a>
+        <a href="#seguridad"><i>⌑</i><span>Seguridad</span></a>
+      </nav>
+      <p class="account-sidebar-footer">Tu información de perfil es opcional. Nunca guardamos tus documentos originales.</p>
+    </aside>
+
+    <!-- IDENTIDAD + PLAN -->
+    <div class="acct-identity">
+      <div class="wrap acct-identity-inner">
+        <div class="acct-identity-left">
+          <div class="acct-avatar" id="acctAvatar">•</div>
+          <div>
+            <span class="acct-kicker">Tu cuenta</span>
+            <h2 class="acct-name" id="acctName">Tu cuenta</h2>
+            <p class="acct-meta" id="acctEmailMeta"></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <!-- Solo visible si tu cuenta tiene la marca de administrador — invisible para cualquier cliente normal. -->
+          <a href="admin.html" class="btn btn-outline-dark" id="acctAdminLink" style="border-color:rgba(255,255,255,.35);color:#fff;" hidden>Panel de administrador</a>
+          <button type="button" class="btn btn-outline-dark" id="signOutBtn" style="border-color:rgba(255,255,255,.35);color:#fff;">Cerrar sesión</button>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="acct-plan-row">
+          <span class="acct-plan-pill" id="acctPlanPill">Sin plan activo</span>
+          <span class="acct-plan-desc" id="acctPlanDesc">Elige un plan para acceso a cartas de disputa y validación de deuda.</span>
+          <a href="contacto.html" class="btn btn-outline-dark" style="margin-left:auto;border-color:var(--gold-light);color:var(--gold-light);">Gestionar plan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TU PROGRESO -->
+    <div class="acct-progress" id="resumen">
+      <div class="wrap">
+        <div class="acct-section-lead">
+          <span class="eyebrow-dark">Tu progreso</span>
+          <h2>Todo lo que has hecho en Themora, en un solo lugar</h2>
+        </div>
+
+        <div class="acct-grid">
+
+          <article class="acct-card" id="acctCardCredito">
+            <span class="acct-card-kicker" id="acctCreditoKicker" style="color:var(--muted);">Crédito</span>
+            <h3 id="acctCreditoTitle">Cargando…</h3>
+            <p id="acctCreditoBody"></p>
+            <a href="#analysesList" class="acct-card-link" id="acctCreditoLink">Ver detalle →</a>
+          </article>
+
+          <article class="acct-card" id="acctCardCasa">
+            <span class="acct-card-kicker" id="acctCasaKicker" style="color:var(--muted);">Comprar casa</span>
+            <h3 id="acctCasaTitle">Cargando…</h3>
+            <p id="acctCasaBody"></p>
+            <a href="#mortgagesList" class="acct-card-link" id="acctCasaLink">Ver detalle →</a>
+          </article>
+
+          <article class="acct-card is-teal">
+            <span class="acct-card-kicker" style="color:var(--teal);">Cartas Claras</span>
+            <h3>Aún no has revisado ninguna carta</h3>
+            <p>Sube una carta de un cobrador o buró y te decimos, en lenguaje claro, qué significa y si es legítima.</p>
+            <a href="cartas-claras.html" class="acct-card-link">Revisar una carta →</a>
+          </article>
+
+          <article class="acct-card is-navy">
+            <span class="acct-card-kicker" style="color:var(--navy);">Comprar auto</span>
+            <h3>Aún no has calculado tu pago</h3>
+            <p>Estima el pago mensual de tu próximo auto según el precio, tu enganche y la tasa.</p>
+            <a href="comprar-auto.html" class="acct-card-link">Calcular pago →</a>
+          </article>
+
+        </div>
+
+        <div class="acct-nudge" id="acctNudge">
+          <p><strong style="color:var(--navy-deep);">¿Ya calculaste tu enganche?</strong> Todavía no has usado la calculadora hipotecaria — te ayuda a saber cuánto necesitas ahorrar antes de hablar con un prestamista.</p>
+          <a href="herramientas.html#calculadora-hipoteca" class="btn btn-gold" style="flex:none;">Calcular ahora</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL COMPLETO -->
+    <div class="wrap" id="historial">
+      <div class="section-head" style="margin-top:64px;">
+        <span class="eyebrow-dark">Historial completo</span>
+        <h2>Todos tus análisis y cálculos guardados</h2>
+      </div>
+
+      <div class="section-head" style="margin-top:48px;">
+        <span class="eyebrow-dark">Analizador de reporte</span>
+        <h2>Tus análisis de crédito guardados</h2>
+        <p>Resúmenes de las evaluaciones que guardaste desde la sección Crédito. El documento original nunca se almacena.</p>
+      </div>
+      <div id="analysesList" class="saved-list">
+        <p class="cr-empty">Cargando…</p>
+      </div>
+      <a href="credito.html#analizar-reporte" class="btn btn-outline-dark" style="margin-top:18px;">Analizar un nuevo reporte</a>
+
+      <div class="section-head" style="margin-top:64px;">
+        <span class="eyebrow-dark">Calculadora hipotecaria</span>
+        <h2>Tus cálculos guardados</h2>
+        <p>Estimaciones de pago mensual que guardaste desde Herramientas.</p>
+      </div>
+      <div id="mortgagesList" class="saved-list">
+        <p class="cr-empty">Cargando…</p>
+      </div>
+      <a href="herramientas.html#calculadora-hipoteca" class="btn btn-outline-dark" style="margin-top:18px;">Hacer un nuevo cálculo</a>
+    </div>
+
+    <!-- CONFIGURACIÓN -->
+    <div class="acct-config" id="configuracion" style="margin-top:70px;">
+      <div class="wrap">
+        <div class="acct-section-lead">
+          <span class="eyebrow-dark">Configuración</span>
+          <h2>Ajusta tu cuenta a tu manera</h2>
+        </div>
+
+        <div class="acct-config-grid">
+
+          <!-- Datos personales -->
+          <form class="acct-config-card acct-profile-card" id="perfil">
+            <div class="acct-profile-top">
+              <div class="acct-profile-avatar" id="acctProfileAvatar">?</div>
+              <div><h3>Mi perfil</h3><p class="acct-note">Estos datos son opcionales y solo se usan para personalizar tu cuenta.</p><label class="acct-avatar-action">Cambiar foto<input id="acctPhotoInput" type="file" accept="image/png,image/jpeg,image/webp"></label></div>
+            </div>
+            <div class="acct-profile-fields">
+              <div class="form-group"><label for="profileName">Nombre</label><input id="profileName" autocomplete="name" placeholder="Tu nombre"></div>
+              <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" autocomplete="tel" placeholder="Opcional"></div>
+              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional"></div>
+              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional"></div>
+              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional"></div>
+            </div>
+            <div class="acct-profile-actions"><button class="btn btn-gold" type="submit">Guardar perfil</button><button class="acct-link-btn" type="button" id="acctClearProfile">Borrar datos de perfil</button><span class="acct-profile-status" id="acctProfileStatus" role="status"></span></div>
+          </form>
+
+          <!-- Seguridad -->
+          <div class="acct-config-card is-navy" id="seguridad">
+            <h3>Seguridad</h3>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Contraseña</span><span class="acct-field-value">••••••••</span></div>
+              <button type="button" class="acct-link-btn" id="acctChangePasswordBtn">Cambiar →</button>
+            </div>
+            <div class="acct-field">
+              <div><span class="acct-field-value">Verificación en dos pasos</span><span class="acct-field-sub">Un código extra al iniciar sesión</span></div>
+              <span class="acct-soon">Próximamente</span>
+            </div>
+          </div>
+
+          <!-- Notificaciones -->
+          <div class="acct-config-card is-gold">
+            <h3>Notificaciones</h3>
+            <p class="acct-note">Guardamos tu preferencia para cuando activemos los avisos automáticos — por ahora seguimos revisando tu cuenta manualmente.</p>
+            <div class="acct-field">
+              <span class="acct-field-value">Alertas por correo</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleEmail" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashEmail">Guardado ✓</span></span>
+            </div>
+            <div class="acct-field">
+              <span class="acct-field-value">Alertas por SMS</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleSms" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashSms">Guardado ✓</span></span>
+            </div>
+            <div class="acct-field">
+              <span class="acct-field-value">Resumen semanal de tu crédito</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleWeekly" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashWeekly">Guardado ✓</span></span>
+            </div>
+          </div>
+
+          <!-- Plan y facturación -->
+          <div class="acct-config-card is-good">
+            <h3>Plan y facturación</h3>
+            <div class="acct-field">
+              <div><span class="acct-field-label">Plan actual</span><span class="acct-field-value" id="acctFieldPlan">Sin plan activo</span></div>
+              <a href="contacto.html" class="acct-link-btn">Cambiar →</a>
+            </div>
+            <p class="acct-note" style="margin-top:10px;">Activamos y cambiamos los planes manualmente después de confirmar tu pago — escríbenos desde Contacto y lo resolvemos contigo.</p>
+          </div>
+
+        </div>
+
+        <!-- ZONA DE PELIGRO -->
+        <div class="acct-danger">
+          <div>
+            <h3>Eliminar mi cuenta</h3>
+            <p><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>No borra tu correo y contraseña de acceso</strong>: eso lo cerramos a mano. Al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>. Mientras tanto tu cuenta queda vacía pero puedes seguir entrando.</p>
+          </div>
+          <button type="button" class="btn" style="flex:none;border:1.5px solid var(--danger);background:transparent;color:var(--danger);" id="acctDeleteBtn">Eliminar cuenta</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- Modal reutilizable -->
+<div class="acct-modal-overlay" id="acctModalOverlay" hidden>
+  <div class="acct-modal" role="dialog" aria-modal="true" aria-labelledby="acctModalTitle">
+    <h3 id="acctModalTitle">Título</h3>
+    <p class="acct-modal-desc" id="acctModalDesc"></p>
+    <div class="form-group" id="acctModalFieldWrap">
+      <label for="acctModalInput" id="acctModalLabel">Campo</label>
+      <input id="acctModalInput" type="text">
+    </div>
+    <p class="auth-message" id="acctModalMessage" hidden></p>
+    <div class="acct-modal-actions">
+      <button type="button" class="btn btn-outline-dark" id="acctModalCancel">Cancelar</button>
+      <button type="button" class="btn btn-gold" id="acctModalSubmit">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
+  if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script src="cms.js"></script>
+<script>
+(function(){
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const money = value => value == null ? '—' : '$' + Number(value).toLocaleString('en-US', {maximumFractionDigits:0});
+  const dateFmt = value => { try { return new Date(value).toLocaleDateString('es-US', {year:'numeric',month:'short',day:'numeric'}); } catch(e){ return ''; } };
+  const monthYearFmt = value => { try { return new Date(value).toLocaleDateString('es-US', {year:'numeric',month:'long'}); } catch(e){ return ''; } };
+
+  const PLAN_LABELS = { basico:'Básico', estandar:'Estándar', premium:'Premium' };
+  const PLAN_DESCRIPTIONS = {
+    basico:'Incluye cartas de validación de deuda ilimitadas.',
+    estandar:'Incluye cartas de disputa y validación de deuda.',
+    premium:'Incluye todas las herramientas y prioridad de soporte.'
+  };
+
+  function setAvatar(id, name, photo){
+    const avatar = $(id);
+    if(!avatar) return;
+    if(photo){
+      avatar.innerHTML = '';
+      const image = new Image();
+      image.src = photo;
+      image.alt = 'Foto de perfil';
+      avatar.appendChild(image);
+    } else {
+      avatar.textContent = (name || '?').trim().charAt(0).toUpperCase() || '?';
+    }
+  }
+
+  function analysisCard(row){
+    const tone = row.tono || 'stable';
+    return '<article class="saved-item saved-item-'+tone+'">' +
+      '<div class="saved-item-head">' +
+        '<div><strong>'+(row.salud || 'Análisis guardado')+'</strong><span class="saved-item-date">'+dateFmt(row.created_at)+'</span></div>' +
+        '<button type="button" class="saved-item-delete" data-table="analisis_credito" data-id="'+row.id+'" aria-label="Eliminar este análisis">Eliminar</button>' +
+      '</div>' +
+      '<p>'+(row.conclusion || '')+'</p>' +
+      '<div class="saved-item-meta">' +
+        '<span>Puntaje: '+(row.puntaje != null ? row.puntaje : 'No visible')+'</span>' +
+        '<span>Utilización: '+(row.utilizacion != null ? row.utilizacion+'%' : 'No visible')+'</span>' +
+        '<span>Negativos: '+(row.negativos != null ? row.negativos : '0')+'</span>' +
+        '<span>Positivos: '+(row.positivos != null ? row.positivos : '0')+'</span>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function mortgageCard(row){
+    return '<article class="saved-item">' +
+      '<div class="saved-item-head">' +
+        '<div><strong>'+money(row.pago_mensual)+' / mes</strong><span class="saved-item-date">'+dateFmt(row.created_at)+'</span></div>' +
+        '<button type="button" class="saved-item-delete" data-table="calculos_hipoteca" data-id="'+row.id+'" aria-label="Eliminar este cálculo">Eliminar</button>' +
+      '</div>' +
+      '<div class="saved-item-meta">' +
+        '<span>Precio: '+money(row.precio)+'</span>' +
+        '<span>Pronto inicial: '+(row.pronto_pct != null ? row.pronto_pct+'%' : '—')+'</span>' +
+        '<span>Tasa: '+(row.tasa != null ? row.tasa+'%' : '—')+'</span>' +
+        '<span>Plazo: '+(row.plazo != null ? row.plazo+' años' : '—')+'</span>' +
+        '<span>Monto financiado: '+money(row.monto_financiado)+'</span>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function renderCreditoCard(analyses){
+    const latest = analyses[0];
+    if(!latest){
+      $('acctCardCredito').className = 'acct-card';
+      $('acctCreditoKicker').textContent = 'Crédito';
+      $('acctCreditoKicker').style.color = 'var(--muted)';
+      $('acctCreditoTitle').textContent = 'Aún no has analizado tu reporte';
+      $('acctCreditoBody').textContent = 'Sube tu reporte de crédito y te explicamos, en español claro, qué significa cada parte.';
+      $('acctCreditoLink').textContent = 'Analizar ahora →';
+      $('acctCreditoLink').href = 'credito.html#analizar-reporte';
+      return;
+    }
+    $('acctCardCredito').className = 'acct-card is-good';
+    $('acctCreditoKicker').textContent = 'Crédito · ' + (latest.salud || 'Analizado');
+    $('acctCreditoKicker').style.color = 'var(--good)';
+    $('acctCreditoTitle').textContent = 'Tu último análisis';
+    $('acctCreditoBody').textContent = 'Analizado el ' + dateFmt(latest.created_at) + (latest.utilizacion != null ? '. Utilización ' + latest.utilizacion + '%.' : '.');
+    $('acctCreditoLink').textContent = 'Ver detalle →';
+    $('acctCreditoLink').href = '#analysesList';
+  }
+
+  function renderCasaCard(mortgages){
+    const latest = mortgages[0];
+    if(!latest){
+      $('acctCardCasa').className = 'acct-card';
+      $('acctCasaKicker').textContent = 'Comprar casa';
+      $('acctCasaKicker').style.color = 'var(--muted)';
+      $('acctCasaTitle').textContent = 'Empieza tu guía de compra';
+      $('acctCasaBody').textContent = 'Sigue los 8 pasos para comprar casa en EE.UU., pensados para quien empieza de cero.';
+      $('acctCasaLink').textContent = 'Ver los 8 pasos →';
+      $('acctCasaLink').href = 'comprar-casa.html#pasos';
+      return;
+    }
+    $('acctCardCasa').className = 'acct-card is-gold';
+    $('acctCasaKicker').textContent = 'Comprar casa';
+    $('acctCasaKicker').style.color = 'var(--gold)';
+    $('acctCasaTitle').textContent = money(latest.pago_mensual) + ' / mes estimado';
+    $('acctCasaBody').textContent = 'Casa de ' + money(latest.precio) + ', calculado el ' + dateFmt(latest.created_at) + '.';
+    $('acctCasaLink').textContent = 'Ver detalle →';
+    $('acctCasaLink').href = '#mortgagesList';
+  }
+
+  async function loadLists(){
+    let analyses = [];
+    let mortgages = [];
+    try{
+      analyses = await window.CCAuth.listAnalyses();
+      $('analysesList').innerHTML = analyses.length
+        ? analyses.map(analysisCard).join('')
+        : '<p class="cr-empty">Todavía no has guardado ningún análisis.</p>';
+    }catch(err){
+      $('analysesList').innerHTML = '<p class="cr-empty">No pudimos cargar tus análisis guardados.</p>';
+    }
+    try{
+      mortgages = await window.CCAuth.listMortgages();
+      $('mortgagesList').innerHTML = mortgages.length
+        ? mortgages.map(mortgageCard).join('')
+        : '<p class="cr-empty">Todavía no has guardado ningún cálculo hipotecario.</p>';
+    }catch(err){
+      $('mortgagesList').innerHTML = '<p class="cr-empty">No pudimos cargar tus cálculos guardados.</p>';
+    }
+    renderCreditoCard(analyses);
+    renderCasaCard(mortgages);
+    $('acctNudge').hidden = mortgages.length > 0;
+  }
+
+  function renderIdentity(user){
+    const metadata = user.user_metadata || {};
+    const name = metadata.full_name || '';
+    const email = user.email || '';
+    const phone = metadata.contact_phone || user.phone || '';
+    const photo = metadata.profile_photo || '';
+    const initialSource = name || email || phone || '?';
+    setAvatar('acctAvatar', initialSource, photo);
+    setAvatar('acctProfileAvatar', initialSource, photo);
+    setAvatar('sidebarAvatar', initialSource, photo);
+    $('acctName').textContent = name || (email || phone || 'Tu cuenta');
+    $('sidebarName').textContent = name || 'Mi cuenta';
+    $('sidebarEmail').textContent = email || phone || 'Perfil personal';
+    const metaParts = [];
+    if(email) metaParts.push(email);
+    if(user.created_at) metaParts.push('Cliente desde ' + monthYearFmt(user.created_at));
+    $('acctEmailMeta').textContent = metaParts.join(' · ');
+
+    const isAdmin = !!(user.app_metadata && user.app_metadata.is_admin);
+    $('acctAdminLink').hidden = !isAdmin;
+
+    $('profileName').value = name;
+    $('profilePhone').value = phone;
+    $('profileAddress').value = metadata.address || '';
+    $('profileCity').value = metadata.city || '';
+    $('profileState').value = metadata.state_zip || '';
+
+    const plan = window.CCAuth.getPlan();
+    const trialDaysLeft = window.CCAuth.getTrialDaysLeft ? window.CCAuth.getTrialDaysLeft() : 0;
+    const planPill = $('acctPlanPill');
+    planPill.classList.remove('is-empty', 'is-trial');
+    if(plan && PLAN_LABELS[plan]){
+      planPill.textContent = 'Plan ' + PLAN_LABELS[plan];
+      $('acctPlanDesc').textContent = PLAN_DESCRIPTIONS[plan] || '';
+      $('acctFieldPlan').textContent = 'Plan ' + PLAN_LABELS[plan];
+    } else if(trialDaysLeft > 0){
+      planPill.textContent = 'Prueba gratis · ' + trialDaysLeft + (trialDaysLeft === 1 ? ' día' : ' días');
+      planPill.classList.add('is-trial');
+      $('acctPlanDesc').textContent = 'Tu prueba gratis de 7 días incluye cartas de disputa y validación de deuda. Elige un plan antes de que termine para no perder el acceso.';
+      $('acctFieldPlan').textContent = 'Prueba gratis (' + trialDaysLeft + (trialDaysLeft === 1 ? ' día restante)' : ' días restantes)');
+    } else {
+      planPill.textContent = 'Sin plan activo';
+      planPill.classList.add('is-empty');
+      $('acctPlanDesc').textContent = 'Elige un plan para acceso a cartas de disputa y validación de deuda.';
+      $('acctFieldPlan').textContent = 'Sin plan activo';
+    }
+  }
+
+  async function loadPreferences(){
+    try{
+      const prefs = await window.CCAuth.getPreferences();
+      $('acctToggleEmail').classList.toggle('is-on', !!prefs.alertas_correo);
+      $('acctToggleEmail').setAttribute('aria-pressed', !!prefs.alertas_correo);
+      $('acctToggleSms').classList.toggle('is-on', !!prefs.alertas_sms);
+      $('acctToggleSms').setAttribute('aria-pressed', !!prefs.alertas_sms);
+      $('acctToggleWeekly').classList.toggle('is-on', !!prefs.resumen_semanal);
+      $('acctToggleWeekly').setAttribute('aria-pressed', !!prefs.resumen_semanal);
+    }catch(err){
+      // Si la tabla de preferencias todavía no existe en Supabase, no rompemos la página.
+      console.warn('[Themora] No pudimos cargar preferencias de notificación.', err);
+    }
+  }
+
+  function flash(id){
+    const el = $(id);
+    el.classList.add('is-visible');
+    setTimeout(()=> el.classList.remove('is-visible'), 1400);
+  }
+
+  async function toggleAndSave(btn, flashId){
+    const nowOn = !btn.classList.contains('is-on');
+    btn.classList.toggle('is-on', nowOn);
+    btn.setAttribute('aria-pressed', nowOn);
+    try{
+      await window.CCAuth.savePreferences({
+        alertas_correo: $('acctToggleEmail').classList.contains('is-on'),
+        alertas_sms: $('acctToggleSms').classList.contains('is-on'),
+        resumen_semanal: $('acctToggleWeekly').classList.contains('is-on'),
+      });
+      flash(flashId);
+    }catch(err){
+      btn.classList.toggle('is-on', !nowOn);
+      btn.setAttribute('aria-pressed', !nowOn);
+      alert('No pudimos guardar tu preferencia. Intenta de nuevo.');
+    }
+  }
+
+  $('acctToggleEmail').addEventListener('click', ()=> toggleAndSave($('acctToggleEmail'), 'acctFlashEmail'));
+  $('acctToggleSms').addEventListener('click', ()=> toggleAndSave($('acctToggleSms'), 'acctFlashSms'));
+  $('acctToggleWeekly').addEventListener('click', ()=> toggleAndSave($('acctToggleWeekly'), 'acctFlashWeekly'));
+
+  // ---- Modal genérico ----
+  const overlay = $('acctModalOverlay');
+  let modalHandler = null;
+
+  function openModal(opts){
+    $('acctModalTitle').textContent = opts.title;
+    $('acctModalDesc').textContent = opts.desc || '';
+    $('acctModalDesc').hidden = !opts.desc;
+    $('acctModalLabel').textContent = opts.label;
+    $('acctModalInput').type = opts.inputType || 'text';
+    $('acctModalInput').value = opts.value || '';
+    $('acctModalInput').placeholder = opts.placeholder || '';
+    $('acctModalMessage').hidden = true;
+    $('acctModalMessage').className = 'auth-message';
+    $('acctModalSubmit').textContent = opts.submitLabel || 'Guardar';
+    $('acctModalSubmit').disabled = false;
+    modalHandler = opts.onSubmit;
+    overlay.hidden = false;
+    document.body.classList.add('modal-open');
+    setTimeout(()=> $('acctModalInput').focus(), 30);
+  }
+
+  function closeModal(){
+    overlay.hidden = true;
+    document.body.classList.remove('modal-open');
+    modalHandler = null;
+  }
+
+  function showModalMessage(text, type){
+    const el = $('acctModalMessage');
+    el.textContent = text;
+    el.className = 'auth-message ' + (type || 'info');
+    el.hidden = false;
+  }
+
+  $('acctModalCancel').addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+
+  $('acctModalSubmit').addEventListener('click', async ()=>{
+    if(!modalHandler) return;
+    const value = $('acctModalInput').value.trim();
+    $('acctModalSubmit').disabled = true;
+    try{
+      await modalHandler(value, { showModalMessage, close: closeModal });
+    }catch(err){
+      showModalMessage(err && err.message ? err.message : 'Algo salió mal. Intenta de nuevo.', 'error');
+    }
+    $('acctModalSubmit').disabled = false;
+  });
+
+  let selectedProfilePhoto = '';
+  async function shrinkPhoto(file){
+    if(!file) return '';
+    if(file.size > 5 * 1024 * 1024) throw new Error('Elige una foto de menos de 5 MB.');
+    const source = await new Promise((resolve, reject)=>{
+      const reader = new FileReader();
+      reader.onload = ()=> resolve(reader.result);
+      reader.onerror = ()=> reject(new Error('No pudimos leer esa foto.'));
+      reader.readAsDataURL(file);
+    });
+    const image = await new Promise((resolve, reject)=>{ const img = new Image(); img.onload=()=>resolve(img); img.onerror=()=>reject(new Error('Elige una imagen válida.')); img.src=source; });
+    const size = 256, scale = Math.max(size / image.width, size / image.height);
+    const canvas = document.createElement('canvas'); canvas.width=size; canvas.height=size;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, (size - image.width * scale) / 2, (size - image.height * scale) / 2, image.width * scale, image.height * scale);
+    return canvas.toDataURL('image/jpeg', .8);
+  }
+
+  $('acctPhotoInput').addEventListener('change', async event=>{
+    const status = $('acctProfileStatus');
+    try{
+      status.textContent = 'Preparando foto…';
+      selectedProfilePhoto = await shrinkPhoto(event.target.files[0]);
+      const user = window.CCAuth.getUser();
+      const name = $('profileName').value || (user && user.email) || '';
+      setAvatar('acctProfileAvatar', name, selectedProfilePhoto);
+      status.textContent = 'Foto lista para guardar.';
+    }catch(err){ status.textContent = err.message || 'No pudimos preparar la foto.'; }
+  });
+
+  $('perfil').addEventListener('submit', async event=>{
+    event.preventDefault();
+    const status = $('acctProfileStatus');
+    const user = window.CCAuth.getUser();
+    if(!user) return;
+    const profile = {
+      full_name: $('profileName').value.trim(),
+      contact_phone: $('profilePhone').value.trim(),
+      address: $('profileAddress').value.trim(),
+      city: $('profileCity').value.trim(),
+      state_zip: $('profileState').value.trim()
+    };
+    if(selectedProfilePhoto) profile.profile_photo = selectedProfilePhoto;
+    status.textContent = 'Guardando…';
+    try{
+      const data = await window.CCAuth.updateProfile(profile);
+      selectedProfilePhoto = '';
+      renderIdentity(data.user || window.CCAuth.getUser());
+      status.textContent = 'Perfil guardado ✓';
+    }catch(err){ status.textContent = err.message || 'No pudimos guardar el perfil.'; }
+  });
+
+  $('acctClearProfile').addEventListener('click', async ()=>{
+    const status = $('acctProfileStatus');
+    if(!confirm('¿Borrar foto, nombre, teléfono y dirección de tu perfil? Esto no borra tus análisis ni tu cuenta.')) return;
+    status.textContent = 'Borrando…';
+    try{
+      const data = await window.CCAuth.updateProfile({ full_name:'', contact_phone:'', address:'', city:'', state_zip:'', profile_photo:null });
+      selectedProfilePhoto = '';
+      $('acctPhotoInput').value = '';
+      renderIdentity(data.user || window.CCAuth.getUser());
+      status.textContent = 'Datos de perfil borrados ✓';
+    }catch(err){ status.textContent = err.message || 'No pudimos borrar el perfil.'; }
+  });
+
+  $('acctChangePasswordBtn').addEventListener('click', ()=>{
+    openModal({
+      title: 'Cambiar tu contraseña',
+      desc: 'Usa al menos 6 caracteres.',
+      label: 'Contraseña nueva',
+      inputType: 'password',
+      value: '',
+      placeholder: '••••••••',
+      submitLabel: 'Actualizar',
+      onSubmit: async (value, ctx)=>{
+        if(!value || value.length < 6){ ctx.showModalMessage('Debe tener al menos 6 caracteres.', 'error'); return; }
+        await window.CCAuth.updatePassword(value);
+        ctx.showModalMessage('Contraseña actualizada ✓', 'success');
+        setTimeout(ctx.close, 900);
+      }
+    });
+  });
+
+  $('acctDeleteBtn').addEventListener('click', ()=>{
+    openModal({
+      title: 'Eliminar mi cuenta',
+      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
+      label: 'Escribe ELIMINAR para confirmar',
+      value: '',
+      placeholder: 'ELIMINAR',
+      submitLabel: 'Borrar mis datos',
+      onSubmit: async (value, ctx)=>{
+        if(value.trim().toUpperCase() !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+        await window.CCAuth.deleteAllMyData();
+        ctx.showModalMessage('Listo, tus datos guardados se borraron. Te llevamos a Contacto para pedir el cierre de tu acceso — respondemos dentro de 7 días.', 'success');
+        setTimeout(async ()=>{
+          try{ await window.CCAuth.signOut(); }catch(e){}
+          window.location.href = 'contacto.html';
+        }, 1400);
+      }
+    });
+  });
+
+  document.addEventListener('click', async event=>{
+    const btn = event.target.closest('.saved-item-delete');
+    if(!btn) return;
+    btn.disabled = true;
+    try{
+      await window.CCAuth.deleteRecord(btn.dataset.table, btn.dataset.id);
+      btn.closest('.saved-item').remove();
+    }catch(err){
+      btn.disabled = false;
+      alert('No pudimos eliminar este elemento. Intenta de nuevo.');
+    }
+  });
+
+  $('signOutBtn').addEventListener('click', async ()=>{
+    await window.CCAuth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  const sidebarToggle = $('sidebarToggle');
+  const sidebarState = localStorage.getItem('themora-sidebar-collapsed') === 'true';
+  function setSidebar(collapsed){
+    document.body.classList.toggle('sidebar-collapsed', collapsed);
+    sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+    sidebarToggle.setAttribute('aria-label', collapsed ? 'Expandir menú' : 'Contraer menú');
+    sidebarToggle.textContent = collapsed ? '›' : '‹';
+    localStorage.setItem('themora-sidebar-collapsed', String(collapsed));
+  }
+  setSidebar(sidebarState);
+  sidebarToggle.addEventListener('click', ()=> setSidebar(!document.body.classList.contains('sidebar-collapsed')));
+  document.querySelectorAll('.account-sidebar-nav a').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      document.querySelectorAll('.account-sidebar-nav a').forEach(item=>item.classList.remove('is-active'));
+      link.classList.add('is-active');
+    });
+  });
+
+  if(window.CCAuth){
+    window.CCAuth.onChange((user, ready)=>{
+      if(!ready) return;
+      if(user){
+        document.body.classList.add('account-signed-in');
+        $('signedOutNotice').hidden = true;
+        $('accountContent').hidden = false;
+        renderIdentity(user);
+        loadLists();
+        loadPreferences();
+      } else {
+        document.body.classList.remove('account-signed-in');
+        $('signedOutNotice').hidden = false;
+        $('accountContent').hidden = true;
+      }
+    });
+  } else {
+    $('signedOutNotice').hidden = false;
+  }
+})();
+</script>
+
+  <script src="nav.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>
