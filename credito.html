@@ -158,6 +158,23 @@
   .cr-solution-toggle{margin-top:12px;border:0;border-radius:var(--radius);background:var(--teal);color:#fff;padding:10px 14px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
   .cr-solution-toggle:hover{filter:brightness(.94);}
   .cr-solution-toggle:focus-visible,.cr-solution-submit:focus-visible,.cr-copy-solution:focus-visible,.cr-google-address:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
+  .cr-trial-banner{margin:0 0 16px;padding:11px 15px;background:rgba(212,163,72,.14);border:1px solid var(--gold);border-radius:8px;font-size:.85rem;color:var(--navy);}
+  .cr-trial-link{border:0;background:none;padding:0;margin-left:4px;color:var(--teal);font-weight:700;text-decoration:underline;cursor:pointer;font:inherit;}
+  .cr-plan-modal-overlay{position:fixed;inset:0;background:rgba(20,14,8,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .cr-plan-modal-overlay[hidden]{display:none;}
+  .cr-plan-modal{position:relative;background:#fff;border-radius:var(--radius);box-shadow:0 18px 45px rgba(42,33,24,.25);max-width:640px;width:100%;padding:32px;max-height:90vh;overflow:auto;}
+  .cr-plan-modal h3{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--navy);margin:0 0 8px;}
+  .cr-plan-modal>div>p{color:rgba(27,27,24,.7);margin:0 0 18px;line-height:1.55;}
+  .cr-plan-modal-close{position:absolute;top:14px;right:14px;border:0;background:none;font-size:1.4rem;line-height:1;cursor:pointer;color:rgba(27,27,24,.5);}
+  .cr-plan-modal-close:hover{color:var(--navy);}
+  .cr-plan-modal-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .cr-plan-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;}
+  .cr-plan-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .cr-plan-card h4{font-family:'Fraunces',serif;color:var(--navy);margin:0 0 6px;}
+  .cr-plan-price{font-size:1.3rem;font-weight:700;color:var(--navy);margin:0 0 8px;}
+  .cr-plan-price span{font-size:.75rem;font-weight:400;color:rgba(27,27,24,.55);}
+  .cr-plan-card>p:not(.cr-plan-price){font-size:.82rem;color:rgba(27,27,24,.65);margin:0 0 14px;min-height:2.6em;}
+  .cr-plan-card .btn{width:100%;}
   .cr-solution-form{margin-top:14px;padding:16px;background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius);}
   .cr-solution-form[hidden],.cr-solution-result[hidden]{display:none!important;}
   .cr-solution-form>p{margin:0 0 13px;color:rgba(27,27,24,.72);}
@@ -443,6 +460,7 @@
 
         <article class="cr-strategy">
           <div class="cr-strategy-head"><div><span class="eyebrow-dark">Estrategia recomendada</span><h4>Qué hacer y en qué orden</h4></div><p>Ataca primero lo que puede causar más daño; protege al mismo tiempo lo que ya está funcionando.</p></div>
+          <p class="cr-trial-banner" id="crTrialBanner" hidden></p>
           <ol class="cr-strategy-list" id="crStrategyList"></ol>
         </article>
 
@@ -793,6 +811,55 @@
   </div>
 </footer>
 
+<!-- Ventana de planes: aparece al pedir una carta sin cuenta o sin plan activo.
+     Ver INSTRUCCIONES-PLANES.md para el flujo completo. Va antes de los <script>
+     de la página para que exista en el DOM cuando el analizador la busca. -->
+<div class="cr-plan-modal-overlay" id="crPlanModalOverlay" hidden>
+  <div class="cr-plan-modal" role="dialog" aria-modal="true" aria-labelledby="crPlanModalTitle">
+    <button type="button" class="cr-plan-modal-close" id="crPlanModalClose" aria-label="Cerrar">&times;</button>
+
+    <div id="crPlanGateAuth">
+      <h3 id="crPlanModalTitle">Necesitas una cuenta gratis</h3>
+      <p>Para generar esta carta primero crea una cuenta gratis o inicia sesión — así sabemos a quién activarle el plan cuando lo elijas.</p>
+      <div class="cr-plan-modal-actions">
+        <a href="login.html#signin" target="_blank" rel="noopener" class="btn btn-outline-dark">Iniciar sesión</a>
+        <a href="login.html" target="_blank" rel="noopener" class="btn btn-gold">Crear cuenta gratis</a>
+      </div>
+      <p class="cr-note" style="margin-top:14px;">Se abre en una pestaña nueva para que no pierdas este análisis. Cuando termines, vuelve a esta pestaña y haz clic de nuevo en "Solucionar este problema".</p>
+    </div>
+
+    <div id="crPlanGatePlans" hidden>
+      <h3 id="crPlanModalTitleB">Elige un plan para generar cartas</h3>
+      <p>El análisis del reporte, las calculadoras y Mr. Credit Coach siguen siendo gratis. Generar cartas de disputa, validación de deuda o corrección de identidad requiere un plan activo.</p>
+      <div class="cr-plan-cards">
+        <article class="cr-plan-card">
+          <h4>Básico</h4><p class="cr-plan-price">$4.99<span>/mes</span></p>
+          <p>Incluye cartas de validación de deuda ilimitadas.</p>
+          <button type="button" class="btn btn-outline-dark cr-plan-choose" data-plan="basico">Elegir Básico</button>
+        </article>
+        <article class="cr-plan-card">
+          <h4>Estándar</h4><p class="cr-plan-price">$9.99<span>/mes</span></p>
+          <p>Incluye cartas de disputa y validación de deuda.</p>
+          <button type="button" class="btn btn-outline-dark cr-plan-choose" data-plan="estandar">Elegir Estándar</button>
+        </article>
+        <article class="cr-plan-card">
+          <h4>Premium</h4><p class="cr-plan-price">$14.99<span>/mes</span></p>
+          <p>Incluye todas las herramientas y prioridad de soporte.</p>
+          <button type="button" class="btn btn-gold cr-plan-choose" data-plan="premium">Elegir Premium</button>
+        </article>
+      </div>
+      <p class="auth-message" id="crPlanMessage" hidden></p>
+    </div>
+  </div>
+</div>
+
+<!-- Formulario oculto solo para que Netlify lo detecte al desplegar (igual que
+     el honeypot de contacto.html); se envía por fetch, nunca se muestra. -->
+<form name="plan-interes" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="bot-field" />
+  <input type="email" name="email" />
+  <input type="text" name="plan" />
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.12.1/mammoth.browser.min.js"></script>
@@ -1361,6 +1428,8 @@
     }
     const toggle=event.target.closest('.cr-solution-toggle');
     if(!toggle)return;
+    const access=checkLetterAccess();
+    if(!access.allowed){openPlanModal(access.reason);return;}
     const form=$(toggle.getAttribute('aria-controls'));
     const willOpen=form.hidden;
     form.hidden=!willOpen;
@@ -1595,8 +1664,88 @@
   analyzeButton.addEventListener('click',runAnalysis);
   $('crResetButton').addEventListener('click',()=>{selectedFile=null;input.value='';results.hidden=true;progress.hidden=true;errorBox.hidden=true;analyzeButton.hidden=true;ready.hidden=true;empty.hidden=false;dropzone.classList.remove('has-file');dropzone.scrollIntoView({behavior:'smooth',block:'center'});});
   $('crPrintButton').addEventListener('click',()=>window.print());
+
+  // ---- Acceso a generación de cartas (planes) — ver INSTRUCCIONES-PLANES.md ----
+  const planOverlay=$('crPlanModalOverlay');
+  const planGateAuth=$('crPlanGateAuth');
+  const planGatePlans=$('crPlanGatePlans');
+  const planMessage=$('crPlanMessage');
+  const trialBanner=$('crTrialBanner');
+  const PLAN_NAMES={basico:'Básico',estandar:'Estándar',premium:'Premium'};
+
+  function checkLetterAccess(){
+    if(!window.CCAuth||!window.CCAuth.isConfigured)return{allowed:true};
+    const user=window.CCAuth.getUser();
+    if(!user)return{allowed:false,reason:'no-auth'};
+    if(window.CCAuth.getPlan())return{allowed:true};
+    if(window.CCAuth.isInTrial())return{allowed:true,trial:true};
+    return{allowed:false,reason:'no-plan'};
+  }
+
+  function openPlanModal(reason){
+    if(!planOverlay)return;
+    const showAuth=reason==='no-auth';
+    planGateAuth.hidden=!showAuth;
+    planGatePlans.hidden=showAuth;
+    planGatePlans.querySelectorAll('.cr-plan-card').forEach(card=>card.hidden=false);
+    planGatePlans.querySelectorAll('.cr-plan-choose').forEach(btn=>{btn.disabled=false;btn.textContent='Elegir '+PLAN_NAMES[btn.dataset.plan];});
+    if(planMessage){planMessage.hidden=true;planMessage.textContent='';}
+    planOverlay.hidden=false;
+    document.body.classList.add('modal-open');
+  }
+  function closePlanModal(){
+    if(!planOverlay)return;
+    planOverlay.hidden=true;
+    document.body.classList.remove('modal-open');
+  }
+
+  if(planOverlay){
+    $('crPlanModalClose').addEventListener('click',closePlanModal);
+    planOverlay.addEventListener('click',e=>{if(e.target===planOverlay)closePlanModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!planOverlay.hidden)closePlanModal();});
+    planGatePlans.querySelectorAll('.cr-plan-choose').forEach(btn=>{
+      btn.addEventListener('click',async()=>{
+        const user=window.CCAuth&&window.CCAuth.getUser();
+        if(!user)return;
+        const plan=btn.dataset.plan;
+        btn.disabled=true;
+        btn.textContent='Enviando…';
+        try{
+          const response=await fetch('/',{
+            method:'POST',
+            headers:{'Content-Type':'application/x-www-form-urlencoded'},
+            body:new URLSearchParams({'form-name':'plan-interes',email:user.email,plan:plan}).toString()
+          });
+          if(!response.ok)throw new Error('Netlify Forms respondió '+response.status);
+          planGatePlans.querySelectorAll('.cr-plan-card').forEach(card=>card.hidden=true);
+          planMessage.hidden=false;
+          planMessage.className='auth-message success';
+          planMessage.textContent='Listo — te contactaremos a '+user.email+' para activar tu plan '+PLAN_NAMES[plan]+'.';
+        }catch(err){
+          btn.disabled=false;
+          btn.textContent='Elegir '+PLAN_NAMES[plan];
+          planMessage.hidden=false;
+          planMessage.className='auth-message error';
+          planMessage.textContent='No pudimos enviar tu selección. Intenta de nuevo o escríbenos desde Contacto.';
+        }
+      });
+    });
+  }
+
+  // Llamado desde el bloque de auth.js más abajo (ya con CCAuth listo) cada
+  // vez que cambia la sesión, para mostrar/ocultar el aviso de prueba gratis.
+  window.__crUpdateTrialBanner=function(user){
+    if(!trialBanner)return;
+    if(!user||!window.CCAuth||window.CCAuth.getPlan()||!window.CCAuth.isInTrial()){trialBanner.hidden=true;return;}
+    const days=window.CCAuth.getTrialDaysLeft();
+    trialBanner.hidden=false;
+    trialBanner.innerHTML='Estás usando tu prueba gratis de 7 días — te quedan '+days+(days===1?' día':' días')+'. <button type="button" class="cr-trial-link" id="crTrialPlansBtn">Ver planes</button>';
+    const link=$('crTrialPlansBtn');
+    if(link)link.addEventListener('click',()=>openPlanModal('no-plan'));
+  };
 })();
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
 <script src="cms.js"></script>
@@ -1611,6 +1760,7 @@
     const loggedIn=!!user;
     saveBtn.hidden=!loggedIn;
     saveHint.hidden=loggedIn;
+    if(window.__crUpdateTrialBanner)window.__crUpdateTrialBanner(user);
   });
 
   saveBtn.addEventListener('click', async function(){

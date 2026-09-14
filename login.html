@@ -330,6 +330,7 @@
   }
   tabSignIn.addEventListener('click', ()=>switchTab('signin'));
   tabSignUp.addEventListener('click', ()=>switchTab('signup'));
+  if(window.location.hash === '#signin') switchTab('signin');
 
   function friendlyError(error){
     const msg = (error && error.message) || '';
