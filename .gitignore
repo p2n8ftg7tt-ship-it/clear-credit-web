@@ -1,0 +1,12 @@
+# Borradores y capturas de sesiones de IA — no forman parte del sitio
+Claude outputs/
+
+# Papelera local del script de limpieza
+_papelera/
+
+# Artefactos de sesión ajenos al proyecto
+.Rhistory
+
+# Editor / SO
+.DS_Store
+Thumbs.db

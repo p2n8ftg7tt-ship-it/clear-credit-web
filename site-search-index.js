@@ -57,6 +57,8 @@
       keywords:['listar mi negocio','google maps','apple maps','negocio no aparece','aparecer en mapas']},
     {title:'¿Quieres abrir tu negocio pero no sabes por dónde empezar?',url:'formar-negocio.html',
       keywords:['formar negocio','abrir negocio','registrar negocio','llc','ein','empezar mi negocio']},
+    {title:'Los pasos generales para registrar una LLC en Estados Unidos',url:'formar-negocio.html#pasos-llc',
+      keywords:['pasos para registrar una llc','como registrar una llc','articles of organization','agente registrado','registered agent','operating agreement','acuerdo operativo','delaware','wyoming','nevada','reporte anual','annual report','boi','fincen','beneficiarios finales','como abrir una llc yo mismo','hacerlo yo mismo']},
     {title:'Quiénes somos',url:'quienes-somos.html',
       keywords:['quienes son','quien hizo esta pagina','sobre themora','mision']},
     {title:'Contacto',url:'contacto.html',

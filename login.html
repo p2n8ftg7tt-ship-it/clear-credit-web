@@ -131,8 +131,8 @@
   <section class="page-hero login-hero">
     <div class="wrap">
       <span class="eyebrow" id="heroEyebrow">Tu cuenta</span>
-      <h1 id="heroTitle">Guarda tu progreso</h1>
-      <p id="heroSubtitle">Crea una cuenta gratuita para guardar tus análisis de reporte de crédito y tus cálculos hipotecarios, y consultarlos cuando quieras.</p>
+      <h1 id="heroTitle">Guarda lo importante. No tus documentos.</h1>
+      <p id="heroSubtitle">Crea una cuenta gratuita para volver a ver tus resúmenes y tus cálculos. No guardamos el reporte, la carta ni tus datos personales.</p>
     </div>
   </section>
 
@@ -159,7 +159,20 @@
           </button>
         </div>
 
+        <ul class="auth-benefits">
+          <li>Guarda el resumen de tu análisis y tus cálculos.</li>
+          <li>Vuelve a ver tus cifras y tus próximos pasos.</li>
+          <li>Borra lo que guardaste cuando quieras, una cosa a la vez.</li>
+        </ul>
+
         <p class="auth-switch-line">¿Ya tienes cuenta? <button type="button" class="auth-link-btn" id="tabSignIn" role="tab" aria-selected="false" aria-controls="panelSignIn">Iniciar sesión aquí</button></p>
+
+        <!-- La cuenta nunca debe ser el peaje para recibir ayuda: las
+             herramientas dan su resultado completo sin registrarse. -->
+        <p class="auth-sin-cuenta">
+          <a href="herramientas.html">Usar las herramientas sin cuenta →</a>
+          <small>El analizador, las calculadoras y Cartas Claras funcionan sin registrarte. La cuenta solo sirve para volver a ver lo que ya viste.</small>
+        </p>
 
         <div class="auth-message" id="authMessage" hidden></div>
 
@@ -205,6 +218,12 @@
               <p class="pass-match" id="signUpMatch" hidden></p>
             </div>
 
+            <label class="auth-terminos">
+              <input type="checkbox" id="signUpTerms" name="terms" required>
+              <span>Acepto los <a href="terminos.html" target="_blank" rel="noopener">Términos de uso</a> y la <a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span>
+            </label>
+            <p class="auth-nota-marketing">No te mandamos publicidad. Si algún día te ofrecemos avisos por correo, te lo preguntaremos aparte.</p>
+
             <button type="submit" class="btn btn-gold" id="signUpSubmit" data-umami-event="crear-cuenta" style="width:100%;justify-content:center;">Crear cuenta</button>
             <p class="auth-phone-hint" style="margin-top:14px;">¿Prefieres una cuenta de Google, Facebook o Microsoft? Están arriba — no necesitas llenar este formulario para eso; la cuenta se crea sola la primera vez que las uses.</p>
           </form>
@@ -221,6 +240,7 @@
               <div class="form-group">
                 <label for="signInPassword">Contraseña</label>
                 <input type="password" id="signInPassword" name="password" required autocomplete="current-password" minlength="6">
+                <small class="form-hint">Si creaste tu cuenta antes y tu contraseña es más corta que 10 caracteres, sigue funcionando. Las cuentas nuevas piden 10.</small>
               </div>
               <button type="submit" class="btn btn-gold" id="signInSubmit" data-umami-event="iniciar-sesion" style="width:100%;justify-content:center;">Iniciar sesión</button>
               <button type="button" class="auth-link-btn" id="forgotPasswordBtn">¿Olvidaste tu contraseña?</button>
@@ -257,7 +277,7 @@
 
       </div>
 
-      <p class="disclaimer" style="margin-top:18px;">No guardamos números de cuenta, seguro social ni el documento que subes al analizador — solo un resumen de resultados (puntaje detectado, cantidad de señales positivas/negativas y la estrategia) ligado a tu cuenta.</p>
+      <p class="disclaimer" style="margin-top:18px;"><strong>Qué se guarda exactamente si aprietas «Guardar».</strong> Del analizador de reporte: el puntaje, la utilización, el total de deuda, cuántas cuentas y consultas hay, y el título de cada señal encontrada. De la calculadora: las cifras que escribiste. <strong>No se guarda</strong> el documento que subiste, ni tu nombre, teléfono o dirección, ni los fragmentos del reporte que la página usa en pantalla para justificar cada hallazgo. Nada se guarda si no aprietas «Guardar». Puedes borrar cada cosa por separado desde <a href="cuenta.html">Mi cuenta</a>.</p>
     </div>
   </section>
 
@@ -310,6 +330,7 @@
   }
   tabSignIn.addEventListener('click', ()=>switchTab('signin'));
   tabSignUp.addEventListener('click', ()=>switchTab('signup'));
+  if(window.location.hash === '#signin') switchTab('signin');
 
   function friendlyError(error){
     const msg = (error && error.message) || '';
@@ -368,6 +389,15 @@
     const password = $('signUpPassword').value;
     const password2 = $('signUpPassword2').value;
 
+    // El atributo `required` de la casilla ya lo impide en el navegador; esto
+    // es la segunda comprobación, por si el formulario se envía por código.
+    const terms = $('signUpTerms');
+    if(terms && !terms.checked){
+      showMessage('Para crear la cuenta hace falta aceptar los Términos de uso y la Política de privacidad.', 'error');
+      terms.focus();
+      return;
+    }
+
     // Se revisa la contraseña ANTES que la conexión con Supabase: si el
     // problema es la contraseña, decirle "el sitio no está configurado"
     // mandaría a la persona a buscar un error que no existe.
@@ -410,7 +440,9 @@
     if(!email){ showMessage('Escribe tu correo arriba y vuelve a intentar.', 'error'); return; }
     try{
       await window.CCAuth.resetPassword(email);
-      showMessage('Te enviamos un enlace para restablecer tu contraseña.', 'success');
+      /* A propósito no confirmamos si el correo tiene cuenta: hacerlo deja
+         que cualquiera pruebe correos hasta descubrir quién está registrado. */
+      showMessage('Si existe una cuenta con ese correo, te enviaremos instrucciones para restablecer la contraseña. Revisa también la carpeta de correo no deseado.', 'success');
     }catch(error){
       showMessage(friendlyError(error), 'error');
     }
@@ -541,6 +573,24 @@
       submitBtn.disabled = false;
     }
   });
+
+  /* Si el enlace del correo ya venció, Supabase no abre ninguna sesión: deja
+     el motivo en el fragmento de la dirección y se va. Sin esto, la persona
+     aterriza en una pantalla de login normal sin entender por qué no pasó
+     nada, y vuelve a pedir el enlace una y otra vez. */
+  (function avisarEnlaceVencido(){
+    const h = window.location.hash || '';
+    if(h.indexOf('error') === -1) return;
+    const p = new URLSearchParams(h.replace(/^#/, ''));
+    const code = p.get('error_code') || '';
+    const vencido = /expired|invalid/i.test(code) || /expired/i.test(p.get('error_description') || '');
+    if(!p.get('error')) return;
+    showMessage(vencido
+      ? 'Ese enlace ya venció o ya se usó. Los enlaces del correo duran poco tiempo por seguridad. Pide uno nuevo con «¿Olvidaste tu contraseña?».'
+      : 'No pudimos abrir ese enlace. Pide uno nuevo con «¿Olvidaste tu contraseña?», o escríbenos si vuelve a pasar.', 'error');
+    /* Se limpia la dirección para que recargar no repita el aviso. */
+    try{ history.replaceState(null, '', window.location.pathname + window.location.search); }catch(e){}
+  })();
 
   if(window.CCAuth){
     window.CCAuth.onPasswordRecovery(enterRecoveryMode);

@@ -45,6 +45,69 @@
   let ready = false;
   const listeners = [];
   const recoveryListeners = [];
+  let sessionRevision = 0;
+
+  // Una misma identidad para la cabecera y la página de cuenta.
+  function getProfileIdentity(user = currentUser) {
+    const metadata = (user && user.user_metadata) || {};
+    const text = value => typeof value === "string" ? value.trim() : "";
+    const username = text(metadata.username) || text(metadata.preferred_username);
+    const displayName = username || text(metadata.full_name) || text(metadata.name) ||
+      text(user && user.email).split("@")[0] || "Usuario";
+    let initial;
+    if (typeof Intl.Segmenter === "function") {
+      initial = Array.from(new Intl.Segmenter("es", { granularity: "grapheme" }).segment(displayName))[0].segment;
+    } else {
+      initial = Array.from(displayName)[0];
+    }
+    // null/vacío significa que la persona quitó su foto, incluso con login social.
+    const candidate = Object.prototype.hasOwnProperty.call(metadata, "profile_photo")
+      ? text(metadata.profile_photo)
+      : text(metadata.avatar_url) || text(metadata.picture);
+    let photo = "";
+    if (/^data:image\/(?:jpeg|png|webp);base64,[a-z0-9+/=]+$/i.test(candidate)) {
+      photo = candidate;
+    } else if (candidate) {
+      try {
+        const url = new URL(candidate);
+        if (url.protocol === "https:" && !url.username && !url.password) photo = url.href;
+      } catch (_) { /* Una foto inválida conserva la inicial. */ }
+    }
+    return { displayName, username, initial: initial.toLocaleUpperCase("es"), photo };
+  }
+
+  function renderAvatar(element, identity) {
+    if (!element) return;
+    element.classList.add("profile-avatar");
+    element.textContent = identity.initial;
+    if (!identity.photo) return;
+    const image = document.createElement("img");
+    image.alt = ""; // El enlace o el perfil ya proporciona el nombre accesible.
+    image.decoding = "async";
+    image.referrerPolicy = "no-referrer";
+    image.addEventListener("error", () => image.remove(), { once: true });
+    image.src = identity.photo;
+    element.appendChild(image);
+  }
+
+  const navLink = document.getElementById("navAuthLink");
+  const navLinkParent = navLink && navLink.parentElement;
+  const navLinkNext = navLink && navLink.nextSibling;
+  const mobileNav = window.matchMedia("(max-width: 720px)");
+
+  function positionNavLink() {
+    if (!navLink || !navLinkParent) return;
+    const nav = document.querySelector("header .nav");
+    const toggle = document.getElementById("navToggle");
+    if (currentUser && mobileNav.matches && nav && toggle && toggle.parentElement === nav) {
+      nav.insertBefore(navLink, toggle);
+      navLink.classList.add("nav-auth-mobile");
+    } else {
+      navLinkParent.insertBefore(navLink, navLinkNext && navLinkNext.parentNode === navLinkParent ? navLinkNext : null);
+      navLink.classList.remove("nav-auth-mobile");
+    }
+  }
+  mobileNav.addEventListener("change", positionNavLink);
 
   // Días de prueba gratis que le quedan a la cuenta (0 si ya expiró, no hay
   // sesión, o la fecha de creación no se pudo leer).
@@ -71,19 +134,43 @@
     const link = document.getElementById("navAuthLink");
     if (!link) return;
     if (currentUser) {
-      link.textContent = "Mi cuenta";
+      const identity = getProfileIdentity();
+      link.replaceChildren();
+      const avatar = document.createElement("span");
+      avatar.className = "nav-profile-avatar";
+      avatar.setAttribute("aria-hidden", "true");
+      renderAvatar(avatar, identity);
+      link.appendChild(avatar);
+      link.setAttribute("aria-label", "Mi cuenta: " + identity.displayName);
+      link.title = "Mi cuenta · " + identity.displayName;
       link.href = "cuenta.html";
       link.classList.add("is-logged-in");
+      if (window.location.pathname.endsWith("/cuenta.html")) link.setAttribute("aria-current", "page");
     } else {
       link.textContent = "Iniciar sesión";
       link.href = "login.html";
       link.classList.remove("is-logged-in");
+      link.removeAttribute("aria-label");
+      link.removeAttribute("aria-current");
+      link.removeAttribute("title");
     }
+    positionNavLink();
+  }
+
+  function applyUpdatedUser(user) {
+    // Un guardado pendiente no debe restaurar una sesión que ya se cerró.
+    if (!user || !currentUser || user.id !== currentUser.id) return;
+    currentUser = user;
+    if (currentSession) currentSession = { ...currentSession, user };
+    sessionRevision++;
+    notify();
   }
 
   const CCAuth = {
     isConfigured: !notConfigured,
     client: client,
+    getProfileIdentity,
+    renderAvatar,
 
     onChange(fn) {
       listeners.push(fn);
@@ -196,7 +283,60 @@
       if (error) throw error;
     },
 
-    // Guarda un resumen del analizador de reporte de crédito (credito.html)
+    // Guarda un resumen del analizador de reporte de crédito (credito.html).
+    //
+    // IMPORTANTE — no cambiar sin volver a leer esto:
+    // El objeto que produce el analizador trae el nombre, el teléfono y la
+    // dirección de la persona tal como aparecen en su reporte de crédito,
+    // más fragmentos literales del documento (los campos `evidence` y
+    // `detectedValues`, que en pantalla sirven para justificar cada hallazgo).
+    // Nada de eso se guarda. `resumenSeguro()` es una lista blanca: solo pasa
+    // lo que está nombrado ahí, así que un campo nuevo del analizador NO
+    // llega a la base de datos hasta que alguien lo agregue a propósito.
+    // Es lo contrario de una lista negra, que se rompe sola en cuanto el
+    // analizador aprende a extraer un dato más.
+    resumenSeguro(summary) {
+      const s = summary || {};
+      const num = v => (v == null ? null : v);
+      return {
+        // Cifras del análisis (no identifican a nadie)
+        score: num(s.score),
+        utilization: num(s.utilization),
+        inquiries: num(s.inquiries),
+        totalDebt: num(s.totalDebt),
+        dti: num(s.dti),
+        health: s.health || null,
+        tone: s.tone || null,
+        conclusion: s.conclusion || null,
+        bureauKey: s.bureauKey || null,
+        // "5 páginas", "Documento Word" — describe el archivo, no su contenido
+        detail: s.detail || null,
+        // Solo el título y la prioridad. Sin `evidence` ni `detectedValues`.
+        negatives: (s.negatives || []).map(n => ({
+          priority: n.priority || null,
+          title: n.title || null,
+          solutionType: n.solutionType || null
+        })),
+        positives: (s.positives || []).map(p => ({ title: p.title || null })),
+        // Conteos, no las cuentas ni los acreedores
+        accountsSummary: s.accountsSummary
+          ? {
+              count: num(s.accountsSummary.count),
+              cardCount: num(s.accountsSummary.cardCount),
+              byType: s.accountsSummary.byType || []
+            }
+          : null,
+        inquiriesSummary: s.inquiriesSummary
+          ? {
+              hard: num(s.inquiriesSummary.hard),
+              soft: num(s.inquiriesSummary.soft),
+              total: num(s.inquiriesSummary.total)
+            }
+          : null,
+        version: 2
+      };
+    },
+
     async saveAnalysis(summary) {
       if (!currentUser) throw new Error("Debes iniciar sesión para guardar tu resultado.");
       const { error } = await client.from("analisis_credito").insert({
@@ -208,7 +348,7 @@
         negativos: summary.negatives ? summary.negatives.length : null,
         positivos: summary.positives ? summary.positives.length : null,
         conclusion: summary.conclusion || null,
-        resumen_json: summary,
+        resumen_json: CCAuth.resumenSeguro(summary),
       });
       if (error) throw error;
     },
@@ -259,6 +399,20 @@
     async updateName(name) {
       const { data, error } = await client.auth.updateUser({ data: { full_name: name } });
       if (error) throw error;
+      applyUpdatedUser(data && data.user);
+      return data;
+    },
+
+    // Perfil opcional de la página Mi cuenta. Se conserva cualquier metadato
+    // existente para que una edición de dirección o foto no borre el nombre.
+    async updateProfile(profile) {
+      if (!currentUser) throw new Error("Inicia sesión para guardar tu perfil.");
+      const existing = (currentUser && currentUser.user_metadata) || {};
+      const { data, error } = await client.auth.updateUser({
+        data: { ...existing, ...profile }
+      });
+      if (error) throw error;
+      applyUpdatedUser(data && data.user);
       return data;
     },
 
@@ -320,14 +474,21 @@
   CCAuth.onChange(updateNavLink);
   window.CCAuth = CCAuth;
 
+  const initialRevision = sessionRevision;
   client.auth.getSession().then(({ data }) => {
+    if (initialRevision !== sessionRevision) return;
     currentSession = data && data.session ? data.session : null;
     currentUser = currentSession ? currentSession.user : null;
+    ready = true;
+    notify();
+  }).catch(() => {
+    if (initialRevision !== sessionRevision) return;
     ready = true;
     notify();
   });
 
   client.auth.onAuthStateChange((event, session) => {
+    sessionRevision++;
     // Si viene del enlace de "restablecer contraseña", avisa primero a los
     // listeners dedicados (onPasswordRecovery) — así la página puede
     // prepararse (mostrar el formulario de nueva contraseña) antes de que

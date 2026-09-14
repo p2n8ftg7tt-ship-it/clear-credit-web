@@ -167,6 +167,7 @@
   .cc-deadline[hidden]{display:none}
   .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#8a2b2b;flex:none}
   .cc-deadline strong{font-family:'Fraunces',serif;font-size:1.3rem;line-height:1.2;color:#8a2b2b}
+  .cc-deadline-aviso{flex:1 0 100%;font-size:.82rem;line-height:1.5;color:#6b4a3f}
 
   .cc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
   .cc-meta[hidden]{display:none}
@@ -188,6 +189,16 @@
   .cc-phrase-en{display:block;font-weight:700;color:var(--navy-deep);line-height:1.5}
   .cc-phrase-es{display:block;font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.5}
 
+  .cc-verificar{border:1px solid rgba(31,110,115,.28);background:#fff;border-radius:16px;padding:20px 22px;margin-top:18px}
+  .cc-verificar[hidden]{display:none}
+  .cc-verificar-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+  .cc-verificar-icon{flex:none;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:.95rem}
+  .cc-verificar h4{margin:0;font-family:'Fraunces',serif;font-size:1.08rem;line-height:1.3;color:var(--navy-deep)}
+  .cc-verificar p{margin:0 0 10px;line-height:1.65;font-size:.93rem}
+  .cc-verificar-lista{margin:0;padding-left:20px}
+  .cc-verificar-lista li{margin-bottom:7px;line-height:1.6;font-size:.9rem}
+  .cc-verificar-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}
+  .cc-verificar-links a{font-size:.86rem;font-weight:700;color:var(--teal);text-decoration:underline}
   .cc-lawyer{border:1px solid rgba(31,110,115,.3);background:rgba(31,110,115,.06);border-radius:16px;padding:22px 24px;margin-top:18px}
   .cc-lawyer[hidden]{display:none}
   .cc-lawyer-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
@@ -284,13 +295,13 @@
       <div class="cc-privacy-row">
         <div class="cc-privacy-item">
           <span>🔒</span>
-          <strong>Tu carta no se guarda</strong>
-          <small>Leemos el documento en tu propio navegador. Nunca lo almacenamos en nuestros servidores.</small>
+          <strong>Qué sale de tu dispositivo</strong>
+          <small>La lectura empieza en tu propio navegador. Si pides el análisis con inteligencia artificial (hace falta iniciar sesión), el texto —o las páginas como imagen— <strong>sí salen</strong>: viajan cifrados a nuestro servidor y de ahí al proveedor de IA que los lee. No guardamos tu carta.</small>
         </div>
         <div class="cc-privacy-item">
           <span>🕶️</span>
-          <strong>Ocultamos números sensibles</strong>
-          <small>Antes de cualquier análisis más profundo, tapamos automáticamente números de seguro social, de cuenta y de expediente médico.</small>
+          <strong>Intentamos ocultar números sensibles</strong>
+          <small>Antes de mandar el texto tapamos automáticamente números de seguro social, de cuenta y de expediente médico. No es infalible, y en una foto no hay texto que tapar: revisa y cubre tú mismo cualquier dato que no quieras compartir.</small>
         </div>
         <div class="cc-privacy-item">
           <span>⚖️</span>
@@ -307,7 +318,7 @@
       <div class="section-head">
         <span class="eyebrow-dark" id="como-funciona-cartas">Cómo funciona</span>
         <h2>Tres pasos para entender tu carta</h2>
-        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes, y facturas o avisos médicos y de seguro de salud — y te avisa si algo huele a estafa.</p>
+        <p>Funciona con cartas de cobradores de deuda, bancos, burós de crédito (Equifax, Experian, TransUnion), el IRS, cortes, y facturas o avisos médicos y de seguro de salud — y te señala lo que conviene verificar si algo huele a estafa.</p>
       </div>
 
       <div class="cr-process" aria-label="Cómo funciona Cartas Claras">
@@ -317,7 +328,7 @@
       </div>
 
       <div class="cr-upload-card">
-        <div class="cr-privacy">● Procesamiento en tu navegador · La carta no se almacena</div>
+        <div class="cr-privacy">● La lectura empieza en tu navegador · No guardamos tu carta</div>
 
         <p class="cc-scope-label">Funciona con cartas de:</p>
         <div class="cc-scope-chips">
@@ -327,7 +338,7 @@
           <span class="cc-scope-chip" data-cat="irs">IRS</span>
           <span class="cc-scope-chip" data-cat="corte">Cortes</span>
           <span class="cc-scope-chip" data-cat="salud">Médicas y de seguro</span>
-          <span class="cc-scope-chip cc-scope-chip-alert" data-cat="estafa">⚠ Detecta estafas</span>
+          <span class="cc-scope-chip cc-scope-chip-alert" data-cat="estafa">⚠ Señales de posible estafa</span>
         </div>
 
         <div class="cc-tabs" role="tablist" aria-label="Forma de analizar la carta">
@@ -374,7 +385,7 @@
         <div class="cc-permiso" id="ccPermiso" hidden role="alertdialog" aria-labelledby="ccPermisoTitulo">
           <h4 id="ccPermisoTitulo">No pude leer esta foto aquí en tu dispositivo</h4>
           <p id="ccPermisoMotivo">Nuestro lector local entiende inglés y español. Si tu carta está en otro idioma —chino, árabe, vietnamita, criollo— no puede leerla.</p>
-          <p><strong>Sí puedo mandar las páginas para que las lea la inteligencia artificial, que sí entiende cualquier idioma.</strong> Pero necesito tu permiso, porque hay una diferencia importante:</p>
+          <p><strong>Puedo mandar las páginas para que las lea la inteligencia artificial, que entiende muchos más idiomas.</strong> Pero necesito tu permiso, porque hay una diferencia importante:</p>
           <ul class="cc-permiso-lista">
             <li><span class="si">✓</span> Normalmente tapamos tu número de seguro social y los números de cuenta <em>antes</em> de que el texto salga de tu teléfono.</li>
             <li><span class="no">✕</span> Si mandamos las páginas como imagen, no hay texto que tapar — van tal como se ven, con todo lo que tengan escrito.</li>
@@ -421,6 +432,7 @@
         <div class="cc-deadline" id="ccDeadline" hidden>
           <span class="cc-deadline-k">Fecha límite</span>
           <strong id="ccDeadlineVal"></strong>
+          <small class="cc-deadline-aviso">Verifica esta fecha directamente en la carta. Si la ves cerca, guíate por el papel original, no por esta pantalla.</small>
         </div>
 
         <div class="cc-meta" id="ccMeta" hidden>
@@ -473,6 +485,23 @@
           <p id="ccTranslation"></p>
         </details>
 
+        <!-- Verificar al remitente: la defensa más útil contra una carta falsa,
+             y también contra una verdadera que uno confunde con falsa. Nunca el
+             teléfono que trae la carta. -->
+        <div class="cc-verificar" id="ccVerificar" hidden>
+          <div class="cc-verificar-head">
+            <span class="cc-verificar-icon" aria-hidden="true">☎</span>
+            <h4>Antes de llamar o pagar: verifica quién te escribió</h4>
+          </div>
+          <p id="ccVerificarTexto"></p>
+          <ul class="cc-verificar-lista">
+            <li><strong>No uses el teléfono ni el enlace que trae la carta.</strong> Si es falsa, ese número contesta igual.</li>
+            <li>Busca tú mismo el sitio oficial, o usa el número que sale al reverso de tu tarjeta o en tu estado de cuenta.</li>
+            <li>Ten a mano la carta cuando llames, pero no des tu número de seguro social ni datos de tu cuenta a quien te llamó a ti.</li>
+          </ul>
+          <div class="cc-verificar-links" id="ccVerificarLinks"></div>
+        </div>
+
         <div class="cc-scam-alert" id="ccScamAlert" hidden>
           <b>⚠</b>
           <div>
@@ -504,7 +533,7 @@
       </div>
       <div class="qa-list">
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Cartas Claras reemplaza a un abogado?</h3><p>No, y es importante que quede claro. Te dice <strong>qué dice</strong> tu carta, qué fecha límite tiene, qué pasa si no haces nada, qué opciones existen y qué derechos te da la ley. Lo que <strong>no</strong> hace es decidir por ti cuál opción tomar en tu caso — eso es asesoría legal y solo un abogado puede darla. Cuando la carta lo amerita, te lo decimos y te mandamos a <a href="https://www.lawhelp.org/find-help" target="_blank" rel="noopener noreferrer">LawHelp.org</a>, un directorio de asistencia legal <strong>gratuita</strong> en los 50 estados.</p></div>
-        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer, y en qué idioma?</h3><p>Cartas de cobradores, bancos, burós de crédito, el IRS, cortes, documentos médicos y de seguro, avisos de gobierno, de empleo y de vivienda. También identifica señales de estafa. <strong>La carta puede venir en cualquier idioma</strong> — inglés casi siempre, pero también portugués, francés, criollo, chino o el que sea: la respuesta siempre sale en español. Y si el papel no es de los que explicamos a fondo —un permiso, un recibo, un reglamento del trabajo— igual te decimos <strong>qué es</strong> y qué trae escrito, en vez de dejarte con las manos vacías.</p></div>
+        <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué tipos de carta puede leer, y en qué idioma?</h3><p>Cartas de cobradores, bancos, burós de crédito, el IRS, cortes, documentos médicos y de seguro, avisos de gobierno, de empleo y de vivienda. También identifica señales de estafa. Nuestro lector local entiende <strong>inglés y español</strong>. Para otros idiomas —portugués, francés, criollo, chino— hace falta el análisis con inteligencia artificial, que te pedimos permiso antes de usar. La respuesta siempre sale en español. Y si el papel no es de los que explicamos a fondo —un permiso, un recibo, un reglamento del trabajo— igual te decimos <strong>qué es</strong> y qué trae escrito, en vez de dejarte con las manos vacías.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Es seguro subir una carta con mi información personal?</h3><p>El documento se lee dentro de tu propio navegador — nunca sale de tu dispositivo para la lectura inicial, y nunca se guarda en nuestros servidores. Antes de cualquier paso adicional, ocultamos automáticamente números de seguro social, de cuenta y de expediente o póliza médica que aparezcan en el texto.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Qué hago si es una foto y no se lee bien?</h3><p>Intenta con buena luz, sin sombras y con la carta lo más plana posible. Si el texto sigue sin leerse bien, usa la pestaña "Pegar el texto" y escribe o copia el contenido directamente.</p></div>
         <div class="qa-item"><h3><span class="q-mark">?</span>¿Cómo sé si es una estafa?</h3><p>Buscamos señales conocidas: exigencias de pago con tarjetas de regalo o transferencias, amenazas de arresto inmediato, presión para no decirle a nadie, plazos de solo horas, o solicitudes de tu número de seguro social sin verificación. Si detectamos estas señales, te lo advertimos de inmediato — pero ante cualquier duda, nunca envíes dinero ni información personal sin verificar primero por un medio oficial.</p></div>
@@ -1187,7 +1216,7 @@
     }
     if(categoria==='buro'){
       return {
-        text:'Si crees que esta información es incorrecta, analiza tu reporte de crédito para generar una carta de disputa dirigida al buró correspondiente, con los datos exactos de tu caso.',
+        text:'Si después de revisarla ves un dato que de verdad está equivocado, puedes analizar tu reporte de crédito y preparar una carta de disputa. Disputar información que sí es correcta no la borra y puede perjudicarte.',
         href:'credito.html#analizar-reporte',
         label:'Analizar mi reporte →'
       };
@@ -1337,15 +1366,35 @@
     const nivel=String(result.necesitas_abogado||'no').toLowerCase();
     mostrar('ccLawyer', nivel==='recomendable'||nivel==='urgente', ()=>{
       $('ccLawyerTitle').textContent = nivel==='urgente'
-        ? 'Esta carta necesita un abogado, y no conviene esperar'
-        : 'Conviene que un abogado la revise';
+        ? 'Esto puede tener consecuencias legales o una fecha próxima'
+        : 'Puede convenir que un abogado la revise';
       $('ccLawyerWhy').textContent = (result.por_que_abogado||'').trim() ||
-        'Por el tipo de documento, una persona con licencia debería revisarlo antes de que respondas.';
+        'Por el tipo de documento, considera hablar pronto con un abogado o con asistencia legal de tu área antes de responder.';
     });
 
     /* --- Traducción completa, plegada --- */
     const trad=(result.traduccion||'').trim();
     mostrar('ccTranslationBox', !!trad, ()=>{ $('ccTranslation').textContent=trad; });
+
+    /* --- Verificación del remitente --- */
+    const OFICIALES={
+      irs:[['IRS — cómo verificar un aviso','https://www.irs.gov/individuals/understanding-your-irs-notice-or-letter'],['IRS — estafas y avisos falsos','https://www.irs.gov/es/help/tax-scams-consumer-alerts']],
+      cobrador:[['CFPB — qué hacer con un cobrador','https://www.consumerfinance.gov/es/obtener-respuestas/temas/deudas-y-cobro-de-deudas/'],['FTC — cobradores falsos','https://consumidor.ftc.gov/articulos/como-lidiar-con-cobradores-de-deudas']],
+      banco:[['FDIC — verificar si un banco es real','https://banks.data.fdic.gov/bankfind-suite/bankfind'],['CFPB — presentar una queja','https://www.consumerfinance.gov/es/presentar-una-queja/']],
+      buro:[['Equifax, Experian y TransUnion — sitio oficial','https://www.annualcreditreport.com/'],['CFPB — burós de crédito','https://www.consumerfinance.gov/es/obtener-respuestas/temas/reportes-y-puntajes-de-credito/']],
+      corte:[['Directorio oficial de cortes estatales','https://www.ncsc.org/information-and-resources/state-court-websites'],['LawHelp.org — ayuda legal gratis','https://www.lawhelp.org/find-help']],
+      salud:[['Medicare — avisos y estafas','https://www.medicare.gov/basics/reporting-medicare-fraud-and-abuse']],
+      estafa:[['FTC — reportar fraude','https://reportfraud.ftc.gov/'],['USA.gov — estafas comunes','https://www.usa.gov/espanol/estafas-fraudes']]
+    };
+    const listaOfi=OFICIALES[isScam?'estafa':categoria]||null;
+    mostrar('ccVerificar', !!listaOfi, ()=>{
+      $('ccVerificarTexto').textContent = hayRemitente
+        ? 'Esta carta dice venir de ' + remitente + '. Confírmalo por tu cuenta antes de responder, llamar o pagar algo.'
+        : 'Confirma por tu cuenta quién te escribió antes de responder, llamar o pagar algo.';
+      $('ccVerificarLinks').innerHTML = listaOfi.map(function(o){
+        return '<a href="'+o[1]+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(o[0])+' \u2197</a>';
+      }).join('');
+    });
 
     const scamBox=$('ccScamAlert');
     if(isScam){
@@ -1518,7 +1567,8 @@
   if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
 </script>
 <script src="site-search-index.js"></script>
-<script src="credit-coach.js"></script>
+<script src="zyron-brain.js"></script>
+  <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
 <script src="analytics.js"></script>

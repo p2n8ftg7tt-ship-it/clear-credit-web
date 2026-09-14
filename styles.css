@@ -371,6 +371,17 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 
 .auth-otp-input{letter-spacing:.5em;font-size:1.3rem;text-align:center;font-weight:700}
 .auth-phone-hint{font-size:.72rem;color:var(--muted);margin:-8px 0 16px}
+.auth-benefits{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:7px}
+.auth-benefits li{position:relative;padding-left:20px;font-size:.82rem;line-height:1.5;color:var(--muted)}
+.auth-benefits li::before{content:'';position:absolute;left:4px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.auth-sin-cuenta{text-align:center;margin:14px 0 0}
+.auth-sin-cuenta a{font-size:.84rem;font-weight:700;color:var(--teal,#1f6e73);text-decoration:underline}
+.auth-sin-cuenta small{display:block;margin-top:5px;font-size:.72rem;line-height:1.5;color:var(--muted)}
+.auth-terminos{display:flex;align-items:flex-start;gap:9px;margin:0 0 10px;font-size:.8rem;line-height:1.5;color:var(--muted);cursor:pointer}
+.auth-terminos input{flex:none;width:16px;height:16px;margin-top:2px;accent-color:var(--gold)}
+.auth-terminos a{text-decoration:underline;color:inherit}
+.auth-nota-marketing{font-size:.72rem;line-height:1.5;color:var(--muted);margin:0 0 16px}
+.form-hint{display:block;margin-top:6px;font-size:.72rem;line-height:1.5;color:var(--muted)}
 
 /* Selector de código de país + número (login.html) */
 .auth-phone-group{position:relative;display:flex;border:1.5px solid var(--line);border-radius:8px;background:#fff}

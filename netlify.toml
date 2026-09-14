@@ -81,3 +81,42 @@
   to = "/index.html"
   status = 404
   force = true
+
+# Copias de trabajo y borradores: se quedan en tu computadora para las IAs,
+# pero nadie puede verlas ni descargarlas desde el sitio publicado.
+# (Netlify compara la ruta ya decodificada, así que el espacio va literal.)
+[[redirects]]
+  from = "/Claude outputs/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+# La propia carpeta, si alguien la pide sin archivo dentro
+[[redirects]]
+  from = "/Claude outputs"
+  to = "/index.html"
+  status = 404
+  force = true
+
+# Variante con el espacio codificado, por si acaso
+[[redirects]]
+  from = "/Claude%20outputs/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# Cabeceras de seguridad para todas las páginas.
+# Permitimos solo los servicios que el sitio ya usa (Supabase, Google
+# Fonts, Umami, jsdelivr, cdnjs). Si algún día añades otro servicio
+# externo y algo deja de funcionar, revisa la línea de Content-Security-Policy.
+# ─────────────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://cloud.umami.is; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"

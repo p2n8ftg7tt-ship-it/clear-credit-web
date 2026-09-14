@@ -27,70 +27,105 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* ===== HERO ===== */
     .home-hero{padding:96px 0 88px;overflow:hidden;position:relative;
       background:
         linear-gradient(100deg, rgba(7,10,16,.93) 0%, rgba(9,12,20,.82) 42%, rgba(9,12,20,.5) 100%),
         url('images/hero-familia.jpg') center/cover no-repeat;
     }
-    .home-hero-copy{max-width:620px;}
+    .home-hero-copy{max-width:660px;}
     .home-hero-copy .eyebrow{color:var(--gold-light);}
-    .home-hero-copy h1{font:600 clamp(2.3rem,4.2vw,3.5rem)/1.08 'Fraunces',serif;color:#fff;letter-spacing:-.025em;max-width:560px;}
-    .home-hero-copy p{max-width:520px;margin-top:20px;color:rgba(255,255,255,.72);font-size:1.02rem;}
+    .home-hero-copy h1{font:600 clamp(2.2rem,4.2vw,3.5rem)/1.08 'Fraunces',serif;color:#fff;letter-spacing:-.025em;max-width:600px;}
+    .home-hero-copy p{max-width:540px;margin-top:20px;color:rgba(255,255,255,.76);font-size:1.02rem;}
     .home-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
     .home-hero-actions .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
     .home-hero-actions .btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7);}
+    .home-hero-nota{margin-top:18px;font-size:.8rem;color:rgba(255,255,255,.62);}
 
-    .why-section{padding:76px 0;background:var(--paper);}
-    .why-grid{display:grid;grid-template-columns:.4fr 1fr;gap:44px;align-items:start;}
-    .why-grid img{width:100%;max-width:220px;border-radius:16px;display:block;margin-inline:auto;}
-    .why-grid h2{max-width:640px;}
-    .why-grid p{margin-top:16px;max-width:640px;color:var(--muted);}
+    /* ===== TRES DATOS ===== */
+    .tres-section{padding:64px 0 0;background:var(--paper);}
+    .tres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+    .tres-item{background:var(--paper-dim);padding:28px 26px;}
+    .tres-item b{display:block;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);
+      display:grid;place-items:center;font:800 .82rem 'Fraunces',serif;margin-bottom:12px;}
+    .tres-item strong{display:block;font:600 1.08rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
+    .tres-item span{font-size:.84rem;line-height:1.6;color:var(--muted);}
+    .tres-pie{margin-top:16px;font-size:.8rem;color:var(--muted);max-width:720px;}
 
-    .trust-strip{padding:0 0 76px;background:var(--paper);}
-    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
-    .trust-item{background:var(--paper-dim);padding:26px 24px;}
-    .trust-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
-    .trust-item span{font-size:.78rem;color:var(--muted);}
+    /* ===== PAPELES (herramientas gratis) ===== */
+    .papeles-section{padding:70px 0;background:var(--paper);}
+    .papeles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .papel-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;
+      padding:28px 26px 26px;text-decoration:none;box-shadow:0 14px 34px rgba(42,33,24,.07);transition:transform .18s ease;}
+    .papel-card:hover{transform:translateY(-4px);}
+    .papel-card .papel-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);}
+    .papel-card h3{font:600 1.32rem 'Fraunces',serif;margin:9px 0 10px;color:var(--ink);}
+    .papel-card p{color:var(--muted);font-size:.87rem;line-height:1.6;flex:1;}
+    .papel-card .papel-cta{display:inline-block;margin-top:18px;color:var(--navy);font-weight:800;font-size:.8rem;}
 
-    .routes-section{padding:76px 0;background:#eef2ec;}
-    .routes-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-    .route-card{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(42,33,24,.08);text-decoration:none;transition:transform .18s ease;}
-    .route-card:hover{transform:translateY(-4px);}
-    .route-card .route-img{height:190px;overflow:hidden;}
-    .route-card .route-img img{width:100%;height:100%;object-fit:cover;}
-    .route-card .route-body{padding:26px 28px 30px;}
-    .route-card .route-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);}
-    .route-card h3{font:600 1.55rem 'Fraunces',serif;margin:8px 0 10px;color:var(--ink);}
-    .route-card p{color:var(--muted);font-size:.88rem;}
-    .route-card .route-cta{display:inline-block;margin-top:20px;color:var(--navy);font-weight:800;font-size:.8rem;}
+    /* ===== NEGOCIO ===== */
+    .negocio-section{padding:76px 0;}
+    .negocio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+    .negocio-card{display:flex;flex-direction:column;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+      border-radius:16px;padding:26px 24px;text-decoration:none;transition:background .18s ease,transform .18s ease;}
+    .negocio-card:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);}
+    .negocio-card.is-primero{background:rgba(201,162,77,.16);border-color:rgba(201,162,77,.5);}
+    .negocio-card .negocio-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-light);}
+    .negocio-card h3{font:600 1.22rem 'Fraunces',serif;margin:9px 0 9px;color:#fff;}
+    .negocio-card p{color:rgba(255,255,255,.72);font-size:.85rem;line-height:1.6;flex:1;}
+    .negocio-card .negocio-cta{display:inline-block;margin-top:17px;color:var(--gold-light);font-weight:800;font-size:.8rem;}
+    .negocio-honesto{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(255,255,255,.06);
+      border-radius:0 12px 12px 0;font-size:.87rem;line-height:1.65;color:rgba(255,255,255,.82);max-width:760px;}
 
-    .tools-section{padding:76px 0;background:#fff;}
-    .tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-    .tool-card{background:var(--paper-dim);border-radius:14px;padding:28px;}
-    .tool-card h3{font:600 1.15rem 'Fraunces',serif;margin-bottom:8px;color:var(--ink);}
-    .tool-card p{color:var(--muted);font-size:.85rem;}
+    /* ===== POR QUÉ CREERNOS ===== */
+    .creer-section{padding:76px 0;background:#fff;}
+    .creer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .creer-item{background:var(--paper-dim);border-radius:14px;padding:24px 26px;}
+    .creer-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:7px;color:var(--ink);}
+    .creer-item span{color:var(--muted);font-size:.85rem;line-height:1.6;}
 
-    .faq-section{padding:76px 0;background:var(--paper-dim);}
+    /* ===== LO QUE NO SOMOS ===== */
+    .nosomos-section{padding:70px 0;background:var(--paper-dim);}
+    .nosomos-wrap{max-width:820px;}
+    .nosomos-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:11px;}
+    .nosomos-list li{position:relative;padding-left:30px;font-size:.93rem;line-height:1.6;color:var(--ink);}
+    .nosomos-list li::before{content:'✕';position:absolute;left:4px;top:0;font-weight:800;color:var(--danger);font-size:.88rem;}
+    .nosomos-cierre{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);border-radius:14px;
+      font:600 1.05rem/1.5 'Fraunces',serif;color:var(--navy-deep);}
+
+    /* ===== GUÍAS ===== */
+    .guias-section{padding:70px 0;background:#eef2ec;}
+    .guias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .guia-card{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+      text-decoration:none;box-shadow:0 14px 34px rgba(42,33,24,.07);transition:transform .18s ease;}
+    .guia-card:hover{transform:translateY(-4px);}
+    .guia-card .guia-img{height:150px;overflow:hidden;background:var(--paper-dim);}
+    .guia-card .guia-img img{width:100%;height:100%;object-fit:cover;}
+    .guia-card .guia-body{padding:22px 24px 24px;}
+    .guia-card h3{font:600 1.2rem 'Fraunces',serif;margin-bottom:8px;color:var(--ink);}
+    .guia-card p{color:var(--muted);font-size:.84rem;line-height:1.6;}
+    .guia-card .guia-cta{display:inline-block;margin-top:15px;color:var(--navy);font-weight:800;font-size:.78rem;}
+
+    /* ===== FAQ Y CUENTA ===== */
+    .faq-section{padding:76px 0;background:var(--paper);}
     .faq-wrap{max-width:760px;}
     .faq-wrap h2{margin-bottom:30px;}
     .faq-list{border-top:1px solid var(--line);}
     .faq-item{padding:20px 0;border-bottom:1px solid var(--line);}
     .faq-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
-    .faq-item span{color:var(--muted);font-size:.86rem;}
+    .faq-item span{color:var(--muted);font-size:.86rem;line-height:1.6;}
 
     .account-cta{padding:70px 0;background:#fff;}
-    .account-cta-box{background:var(--ink);border-radius:18px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
-    .account-cta-box h2{font-size:1.6rem;color:#fff;}
-    .account-cta-box p{margin-top:10px;color:rgba(255,255,255,.68);font-size:.88rem;max-width:520px;}
+    .account-cta-box{background:var(--ink);border-radius:18px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+    .account-cta-box h2{font-size:1.55rem;color:#fff;}
+    .account-cta-box p{margin-top:10px;color:rgba(255,255,255,.68);font-size:.88rem;max-width:540px;}
 
     @media(max-width:900px){
-      .why-grid,.routes-grid,.tools-grid{grid-template-columns:1fr;}
-      .trust-grid{grid-template-columns:1fr 1fr;}
-      .why-grid img{max-width:140px;}
+      .tres-grid,.papeles-grid,.negocio-grid,.creer-grid,.guias-grid{grid-template-columns:1fr;}
     }
     @media(max-width:560px){
-      .trust-grid{grid-template-columns:1fr;}
-      .account-cta-box{flex-direction:column;align-items:flex-start;}
+      .home-hero{padding:72px 0 64px;}
+      .account-cta-box{flex-direction:column;align-items:flex-start;padding:34px 28px;}
     }
   </style>
 </head>
@@ -138,99 +173,194 @@
 
   <main id="contenido">
 
-    <!-- HERO -->
+    <!-- HERO — la promesa: el papel que tienes en la mano -->
     <section class="home-hero">
       <div class="wrap">
         <div class="home-hero-copy">
           <span class="eyebrow">Para la comunidad hispana en EE. UU.</span>
-          <h1 data-cms="index_hero_titulo">Tu crédito, explicado como se lo explicarías a un amigo.</h1>
-          <p data-cms="index_hero_texto">Nadie debería tomar la decisión más grande de su vida —comprar casa o auto— sin entender los números detrás. Aquí los desglosamos en español claro, sin letra pequeña y sin venderte nada.</p>
+          <h1 data-cms="index_hero_titulo">Te explicamos en español el papel que tienes en la mano.</h1>
+          <p data-cms="index_hero_texto">Una carta del IRS, un contrato del dealer, un permiso de la ciudad, tu reporte de crédito. Te decimos qué es, qué fecha importa y qué opciones tienes — antes de que lo firmes, lo pagues o se te pase la fecha.</p>
           <div class="home-hero-actions">
-            <a data-umami-event="inicio-analizar-reporte" href="credito.html#analizar-reporte" class="btn btn-gold">Analizar mi reporte gratis</a>
-            <a data-umami-event="inicio-por-que" href="#por-que" class="btn btn-outline">¿Por qué existe este sitio?</a>
+            <a data-umami-event="inicio-carta" href="cartas-claras.html" class="btn btn-gold">Explicar mi carta gratis</a>
+            <a data-umami-event="inicio-negocio" href="aparezco.html" class="btn btn-outline">Tengo un negocio →</a>
+          </div>
+          <p class="home-hero-nota">Gratis, sin crear cuenta y sin dar tu correo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ HACEMOS CON UN PAPEL -->
+    <section class="tres-section">
+      <div class="wrap">
+        <div class="tres-grid">
+          <div class="tres-item">
+            <b aria-hidden="true">1</b>
+            <strong>Qué es este papel</strong>
+            <span>En una frase, en español. Y si no lo reconocemos, te lo decimos en vez de adivinar.</span>
+          </div>
+          <div class="tres-item">
+            <b aria-hidden="true">2</b>
+            <strong>Qué fecha importa</strong>
+            <span>El dato por el que se pierde un caso. Te lo ponemos primero, y te decimos que lo verifiques en el papel original.</span>
+          </div>
+          <div class="tres-item">
+            <b aria-hidden="true">3</b>
+            <strong>Qué opciones existen</strong>
+            <span>Lo que la ley te permite hacer, y qué conviene verificar. Nunca te decimos qué debes hacer: esa decisión es tuya.</span>
           </div>
         </div>
+        <p class="tres-pie">Tres datos. Ni uno más. Si alguna vez te damos un cuarto, pregúntanos de dónde salió.</p>
       </div>
     </section>
 
-    <!-- POR QUÉ -->
-    <section class="why-section" id="por-que">
-      <div class="wrap why-grid">
-        <div><img src="images/compass.jpg" alt="Brújula, símbolo de guía"></div>
-        <div>
-          <span class="eyebrow-dark">Por qué existe Themora</span>
-          <h2>El sistema de crédito en EE. UU. no fue diseñado en español.</h2>
-          <p>Términos como "utilización", "hard inquiry" o "PMI" rara vez se explican bien, y mucho menos en el idioma en que piensas. Este sitio nació para cerrar esa brecha: mismas fuentes oficiales que usa cualquier prestamista —CFPB, Experian, HUD, Regulation Z— pero traducidas a decisiones que puedes entender y tomar tú mismo.</p>
-          <p>No vendemos préstamos ni cobramos por "arreglar" tu crédito. Te damos las herramientas y la explicación; la decisión siempre es tuya.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONFIANZA -->
-    <section class="trust-strip">
-      <div class="wrap trust-grid">
-        <div class="trust-item"><strong>100% privado</strong><span>Tu documento se analiza en tu navegador. Nunca se sube a un servidor.</span></div>
-        <div class="trust-item"><strong>Siempre gratis</strong><span>El analizador, la calculadora y el mapa de tasas no cuestan nada, sin letra pequeña.</span></div>
-        <div class="trust-item"><strong>Fuentes oficiales</strong><span>CFPB, Experian, HUD y Regulation Z citados en cada sección.</span></div>
-        <div class="trust-item"><strong>Sin presión</strong><span>No vendemos productos financieros ni compartimos tu información con dealers.</span></div>
-      </div>
-    </section>
-
-    <!-- DOS RUTAS -->
-    <section class="routes-section">
+    <!-- EMPIEZA POR EL PAPEL -->
+    <section class="papeles-section">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow-dark">Dos decisiones, dos rutas</span>
-          <h2>¿Qué quieres comprar?</h2>
-          <p>Cada ruta tiene sus propios requisitos, tasas y contratos — por eso las separamos, para que profundices sin mezclar información.</p>
+          <span class="eyebrow-dark">Gratis y sin cuenta</span>
+          <h2>Empieza por el papel que tienes</h2>
+          <p>Las tres funcionan completas sin registrarte, sin pagar y desde el teléfono. Si el papel tiene varias páginas, súbelas todas.</p>
         </div>
-        <div class="routes-grid">
-          <a data-umami-event="inicio-ruta-casa" class="route-card" href="comprar-casa.html">
-            <div class="route-img"><img src="images/hero-compra-casa.jpg" alt="Comprar una casa"></div>
-            <div class="route-body">
-              <span class="route-kicker">Vivienda</span>
-              <h3>Comprar una casa</h3>
-              <p>Compara FHA, VA, USDA y convencional con recorridos paso a paso que te muestran enganche, seguro hipotecario y pago mensual real — no solo el anuncio.</p>
-              <span class="route-cta">Entrar a la ruta de casa →</span>
-            </div>
+        <div class="papeles-grid">
+          <a class="papel-card" href="cartas-claras.html" data-umami-event="inicio-tarjeta-cartas">
+            <span class="papel-kicker">Cartas Claras</span>
+            <h3>Una carta en inglés</h3>
+            <p>Del cobrador, del banco, del IRS, de una corte, del buró de crédito o del hospital. Súbele una foto o pega el texto y te decimos qué dice y qué fecha trae.</p>
+            <span class="papel-cta">Explicar mi carta →</span>
           </a>
-          <a data-umami-event="inicio-ruta-auto" class="route-card" href="comprar-auto.html">
-            <div class="route-img"><img src="images/hero-compra-auto.jpg" alt="Comprar un auto"></div>
-            <div class="route-body">
-              <span class="route-kicker">Vehículo</span>
-              <h3>Comprar un auto</h3>
-              <p>Mapa de tasas promedio por estado, cómo tu categoría de crédito cambia el APR, y una guía para leer el contrato del dealer antes de firmar.</p>
-              <span class="route-cta">Entrar a la ruta de auto →</span>
-            </div>
+          <a class="papel-card" href="contrato-auto.html" data-umami-event="inicio-tarjeta-contrato">
+            <span class="papel-kicker">Contrato del dealer</span>
+            <h3>Antes de firmar el carro</h3>
+            <p>Escribe los números del contrato y te mostramos a dónde va cada dólar: cuánto cuesta de verdad cada producto agregado, con intereses, y cuánto bajaría tu pago sin ellos.</p>
+            <span class="papel-cta">Revisar mi contrato →</span>
+          </a>
+          <a class="papel-card" href="credito.html#analizar-reporte" data-umami-event="inicio-tarjeta-reporte">
+            <span class="papel-kicker">Reporte de crédito</span>
+            <h3>Tu reporte, explicado</h3>
+            <p>Súbelo y te decimos qué encontramos, qué se puede disputar y qué no. Este análisis ocurre entero dentro de tu teléfono: el archivo no sale de ahí.</p>
+            <span class="papel-cta">Analizar mi reporte →</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- HERRAMIENTAS -->
-    <section class="tools-section">
+    <!-- NEGOCIO — lo que se cobra -->
+    <section class="negocio-section band-dark">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow-dark">Herramientas gratuitas</span>
-          <h2>Todo lo que necesitas, en un solo lugar</h2>
+          <span class="eyebrow-dark" style="color:var(--gold-light);">¿Tienes un negocio?</span>
+          <h2>Que te encuentren, y que estés en regla.</h2>
+          <p>Si alguien te recomienda y no te encuentra en el mapa, esa venta no llega. Empieza por ver cómo estás hoy — eso no cuesta nada.</p>
         </div>
-        <div class="tools-grid">
-          <div class="tool-card">
-            <h3>Analizador de reporte</h3>
-            <p>Sube tu PDF, Word o Excel y recibe, en segundos, tus fortalezas, señales negativas y una estrategia priorizada para mejorar tu puntaje.</p>
+        <div class="negocio-grid">
+          <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco">
+            <span class="negocio-kicker">Empieza aquí · gratis</span>
+            <h3>¿Aparece mi negocio?</h3>
+            <p>En cuatro pasos y desde tu teléfono, comprueba con tus propios ojos si sales en Google Maps y en Apple Maps, y qué te falta.</p>
+            <span class="negocio-cta">Revisar mi negocio →</span>
+          </a>
+          <a class="negocio-card" href="listar-negocio.html" data-umami-event="inicio-listar">
+            <span class="negocio-kicker">Servicio</span>
+            <h3>Ponerlo en el mapa</h3>
+            <p>Te creamos y verificamos la ficha en Google Maps y en Apple Maps, con tus horarios, tus fotos y tu dirección correcta.</p>
+            <span class="negocio-cta">Ver cómo funciona →</span>
+          </a>
+          <a class="negocio-card" href="formar-negocio.html" data-umami-event="inicio-formar">
+            <span class="negocio-kicker">Servicio</span>
+            <h3>Abrir mi negocio</h3>
+            <p>Registramos tu LLC y tramitamos tu número EIN, y te explicamos cada papel del camino — permisos, licencias y avisos del estado.</p>
+            <span class="negocio-cta">Ver cómo funciona →</span>
+          </a>
+        </div>
+        <p class="negocio-honesto"><strong>Lo decimos antes de que preguntes:</strong> Google Business, Apple Business y el número EIN del IRS son <strong>gratis</strong>. Nadie tiene que pagarle a nadie por tenerlos. Lo que se cobra aquí es el trabajo de hacerlo bien y en tu idioma — y si prefieres hacerlo tú mismo, en cada página te dejamos los pasos completos y los enlaces oficiales.</p>
+      </div>
+    </section>
+
+    <!-- POR QUÉ CREERNOS -->
+    <section class="creer-section" id="por-que">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark">Por qué puedes creernos</span>
+          <h2>No te pedimos confianza. Te la enseñamos.</h2>
+          <p>En un sector lleno de promesas que nadie cumple, lo único que vale es lo que se puede comprobar. Esto es lo que puedes comprobar tú mismo, hoy.</p>
+        </div>
+        <div class="creer-grid">
+          <div class="creer-item">
+            <strong>Decimos cuando no sabemos</strong>
+            <span>Si no reconocemos un documento, la respuesta es «no estamos seguros» más lo que sí alcanzamos a leer. Preferimos quedarnos cortos a inventarte una respuesta con cara de certeza.</span>
           </div>
-          <div class="tool-card">
-            <h3>Calculadora hipotecaria</h3>
-            <p>Ajusta precio, pronto inicial, tasa, impuestos y HOA para ver tu pago mensual completo, no solo principal e interés.</p>
+          <div class="creer-item">
+            <strong>Decimos qué sale de tu teléfono</strong>
+            <span>No solo lo que se queda. El reporte de crédito nunca sale. En Cartas Claras, si pides el análisis con inteligencia artificial, el texto o las páginas sí salen — cifrados, y te lo decimos antes.</span>
           </div>
-          <div class="tool-card">
-            <h3>Mapa de tasas de auto</h3>
-            <p>Promedios de APR nuevo y usado por estado, actualizados automáticamente cada mañana con fuentes verificadas.</p>
+          <div class="creer-item">
+            <strong>Te decimos qué cuesta cero</strong>
+            <span>El EIN es gratis con el IRS. Google Business y Apple Business son gratis. Te lo decimos aunque podríamos cobrarlo y tú no te enterarías.</span>
           </div>
-          <div class="tool-card">
-            <h3>Mr. Credit Coach</h3>
-            <p>Un asistente que responde tus dudas sobre crédito, hipoteca o compra de auto y te dirige a la sección exacta que necesitas.</p>
+          <div class="creer-item">
+            <strong>La computadora hace las cuentas</strong>
+            <span>En el contrato del dealer, la inteligencia artificial solo <em>lee</em> los números de la foto; la multiplicación la hace una fórmula fija. Un error ahí son miles de dólares.</span>
           </div>
+          <div class="creer-item">
+            <strong>Cada cifra con su fuente y su fecha</strong>
+            <span>CFPB, HUD, FTC, el IRS, la FDCPA y la FCRA, citadas donde se usan. Si un dato se nos queda viejo, queremos que lo veas.</span>
+          </div>
+          <div class="creer-item">
+            <strong>Sin cuenta, sin correo, sin pagar</strong>
+            <span>Todas las herramientas dan su resultado completo a alguien que llegó de Google y nunca nos dijo su nombre. La cuenta solo sirve para volver a ver lo que ya viste.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LO QUE NO SOMOS -->
+    <section class="nosomos-section">
+      <div class="wrap nosomos-wrap">
+        <span class="eyebrow-dark">Con claridad</span>
+        <h2 style="font:600 clamp(1.8rem,3.4vw,2.6rem)/1.1 'Fraunces',serif;color:var(--navy-deep);">Lo que no somos</h2>
+        <ul class="nosomos-list">
+          <li><strong>No somos abogados.</strong> Te decimos qué opciones existen; nunca qué debes hacer en tu caso.</li>
+          <li><strong>No somos prestamistas ni asesores hipotecarios con licencia.</strong> No aprobamos préstamos ni te conseguimos una tasa.</li>
+          <li><strong>No somos una empresa de reparación de crédito.</strong> Nadie puede borrar información correcta de tu reporte — quien te diga lo contrario te está mintiendo.</li>
+          <li><strong>No somos una bóveda de documentos.</strong> No guardamos tu carta, tu reporte ni tus datos personales.</li>
+        </ul>
+        <p class="nosomos-cierre">Themora te ayuda a recordar lo que entendiste, no a almacenar tu vida financiera.</p>
+      </div>
+    </section>
+
+    <!-- GUÍAS -->
+    <section class="guias-section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark">Para decisiones grandes</span>
+          <h2>Guías y calculadoras</h2>
+          <p>Cuando el papel todavía no llega y lo que quieres es entender los números antes de meterte.</p>
+        </div>
+        <div class="guias-grid">
+          <a data-umami-event="inicio-ruta-casa" class="guia-card" href="comprar-casa.html">
+            <div class="guia-img"><img src="images/hero-compra-casa.jpg" alt="Comprar una casa" loading="lazy"></div>
+            <div class="guia-body">
+              <h3>Comprar casa</h3>
+              <p>FHA contra convencional lado a lado, con el seguro hipotecario que casi nadie te explica, y los 8 pasos del proceso completo.</p>
+              <span class="guia-cta">Ver la guía de casa →</span>
+            </div>
+          </a>
+          <a data-umami-event="inicio-ruta-auto" class="guia-card" href="comprar-auto.html">
+            <div class="guia-img"><img src="images/hero-compra-auto.jpg" alt="Comprar un auto" loading="lazy"></div>
+            <div class="guia-body">
+              <h3>Comprar auto</h3>
+              <p>Tasas promedio por estado, cómo tu crédito cambia el APR, y las trampas del concesionario que cuestan más caro.</p>
+              <span class="guia-cta">Ver la guía de auto →</span>
+            </div>
+          </a>
+          <a data-umami-event="inicio-calculadoras" class="guia-card" href="herramientas.html">
+            <div class="guia-img"><img src="images/compass.jpg" alt="Calculadoras" loading="lazy"></div>
+            <div class="guia-body">
+              <h3>Calculadoras</h3>
+              <p>Cuánto antes puedes terminar de pagar tu casa, tu utilización de crédito, tu relación deuda-ingreso y cuánto interés te cuesta una tarjeta.</p>
+              <span class="guia-cta">Abrir las calculadoras →</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -241,9 +371,10 @@
         <span class="eyebrow-dark">Antes de empezar</span>
         <h2>Preguntas frecuentes</h2>
         <div class="faq-list">
-          <div class="faq-item"><strong>¿Suben mi reporte de crédito a algún servidor?</strong><span>No. El análisis ocurre por completo dentro de tu navegador; el archivo nunca se envía a ningún lado.</span></div>
-          <div class="faq-item"><strong>¿Necesito crear una cuenta para usar las herramientas?</strong><span>No. La cuenta es opcional y solo sirve para guardar un resumen de tus resultados y consultarlos después.</span></div>
-          <div class="faq-item"><strong>¿Esto sustituye asesoría financiera o legal?</strong><span>No. Es contenido educativo para que entiendas tus opciones. Para tu caso particular, consulta siempre con un profesional certificado.</span></div>
+          <div class="faq-item"><strong>¿Necesito crear una cuenta?</strong><span>No. Todas las herramientas dan su resultado completo sin registrarte y sin darnos tu correo. La cuenta solo sirve para volver a ver un resumen de lo que ya viste.</span></div>
+          <div class="faq-item"><strong>¿Mi documento sale de mi teléfono?</strong><span>Depende de la herramienta, y por eso lo decimos en cada una. El reporte de crédito se analiza entero dentro de tu navegador y el archivo nunca se envía a ningún lado. En Cartas Claras, si pides el análisis con inteligencia artificial —que requiere iniciar sesión—, el texto o las páginas sí viajan cifradas a nuestro servidor y de ahí al proveedor que las lee. No guardamos ninguno de los dos.</span></div>
+          <div class="faq-item"><strong>¿Cuánto cuesta?</strong><span>Entender un papel no cuesta nada, y no va a costar nada. Se cobran solo los servicios de negocio —poner tu ficha en el mapa y registrar tu LLC—, y el precio está escrito en cada página antes de que llenes nada.</span></div>
+          <div class="faq-item"><strong>¿Esto sustituye a un abogado o a un asesor financiero?</strong><span>No, y nunca va a hacerlo. Es contenido educativo para que entiendas tus opciones y llegues preparado a hablar con un profesional. Cuando un papel tenga consecuencias legales o una fecha cerca, te lo decimos y te enlazamos a ayuda legal gratuita.</span></div>
         </div>
       </div>
     </section>
@@ -252,8 +383,8 @@
     <section class="account-cta">
       <div class="wrap account-cta-box">
         <div>
-          <h2>Guarda tu progreso con una cuenta gratuita</h2>
-          <p>Guarda un resumen de tus análisis y cálculos hipotecarios para consultarlos cuando quieras. Nunca guardamos tu documento original.</p>
+          <h2>Guarda lo importante. No tus documentos.</h2>
+          <p>Una cuenta gratuita te deja volver a ver el resumen de tu análisis y tus cálculos. No guardamos el reporte, la carta ni tus datos personales — y puedes borrar cada cosa por separado cuando quieras.</p>
         </div>
         <a href="login.html" class="btn btn-gold">Crear cuenta gratis</a>
       </div>
@@ -282,6 +413,7 @@
   <script src="auth.js"></script>
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
+  <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
 <script src="analytics.js"></script>

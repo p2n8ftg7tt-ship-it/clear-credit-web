@@ -107,6 +107,21 @@
   .acct-modal h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--navy-deep);margin-bottom:6px}
   .acct-modal-desc{color:var(--muted);font-size:.84rem;margin-bottom:16px;line-height:1.5}
   .acct-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+
+  /* ---- Espacio personal: barra lateral plegable ---- */
+  .account-sidebar{position:fixed;z-index:50;left:0;top:72px;bottom:0;width:264px;padding:22px 14px;background:#151b27;color:#fff;border-right:1px solid rgba(255,255,255,.08);transition:width .2s ease;overflow-y:auto}
+  .account-sidebar-head{display:flex;align-items:center;gap:11px;padding:4px 8px 22px;border-bottom:1px solid rgba(255,255,255,.11)}
+  .account-sidebar-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--gold);color:var(--navy-deep);font:700 1rem 'Fraunces',serif;flex:none}
+  .account-sidebar-avatar img{width:100%;height:100%;object-fit:cover}
+  .account-sidebar-person{min-width:0}.account-sidebar-person strong,.account-sidebar-person small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.account-sidebar-person strong{font-size:.86rem}.account-sidebar-person small{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.55)}
+  .account-sidebar-toggle{margin-left:auto;width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:1rem;flex:none}
+  .account-sidebar-nav{display:grid;gap:5px;padding-top:20px}.account-sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;color:rgba(255,255,255,.7);border-radius:9px;text-decoration:none;font-size:.83rem;font-weight:700}.account-sidebar-nav a:hover,.account-sidebar-nav a.is-active{background:rgba(255,255,255,.1);color:#fff}.account-sidebar-nav i{width:19px;font-style:normal;text-align:center;font-size:1rem}.account-sidebar-nav span{white-space:nowrap}
+  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:10px;background:rgba(201,162,77,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
+  #accountContent{padding-left:264px;transition:padding-left .2s ease}.sidebar-collapsed #accountContent{padding-left:72px}.sidebar-collapsed .account-sidebar{width:72px;padding-inline:14px}.sidebar-collapsed .account-sidebar-person,.sidebar-collapsed .account-sidebar-nav span,.sidebar-collapsed .account-sidebar-footer{display:none}.sidebar-collapsed .account-sidebar-head{padding-inline:0}.sidebar-collapsed .account-sidebar-toggle{margin-left:0}.sidebar-collapsed .account-sidebar-nav a{justify-content:center;padding-inline:8px}
+  .account-signed-in .page-hero{display:none}
+  .acct-profile-card{grid-column:span 2;border-left-color:var(--gold)}.acct-profile-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}.acct-profile-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--gold-light);display:grid;place-items:center;color:var(--navy-deep);font:700 1.8rem 'Fraunces',serif;flex:none}.acct-profile-avatar img{width:100%;height:100%;object-fit:cover}.acct-avatar-action{position:relative;overflow:hidden;cursor:pointer;color:var(--teal);font-weight:800;font-size:.8rem}.acct-avatar-action input{position:absolute;inset:0;opacity:0;cursor:pointer}.acct-profile-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.acct-profile-fields .form-group{margin:0}.acct-profile-fields .form-group.full{grid-column:1/-1}.acct-profile-actions{display:flex;align-items:center;gap:12px;margin-top:20px}.acct-profile-status{font-size:.8rem;color:var(--good);font-weight:700}
+  @media(max-width:900px){.account-sidebar{position:sticky;top:0;width:100%;height:auto;bottom:auto;padding:10px 16px;display:flex;align-items:center;gap:14px;overflow:visible}.account-sidebar-head{padding:0;border:0;flex:1}.account-sidebar-nav{display:flex;padding:0;gap:2px}.account-sidebar-nav a{padding:8px}.account-sidebar-nav a span,.account-sidebar-footer,.account-sidebar-toggle{display:none}#accountContent,.sidebar-collapsed #accountContent{padding-left:0}.acct-profile-card{grid-column:auto}.acct-identity{padding-top:36px}}
+  @media(max-width:620px){.account-sidebar-nav a:nth-child(n+4){display:none}.acct-profile-fields{grid-template-columns:1fr}.acct-profile-fields .form-group.full{grid-column:auto}.acct-profile-top{align-items:flex-start}}
 </style>
 </head>
 <body data-cms-page="cuenta">
@@ -173,6 +188,22 @@
   <!-- Contenido de la cuenta -->
   <section id="accountContent" hidden>
 
+    <aside class="account-sidebar" id="accountSidebar" aria-label="Menú de tu cuenta">
+      <div class="account-sidebar-head">
+        <div class="account-sidebar-avatar" id="sidebarAvatar">?</div>
+        <div class="account-sidebar-person"><strong id="sidebarName">Mi cuenta</strong><small id="sidebarEmail">Cargando…</small></div>
+        <button class="account-sidebar-toggle" id="sidebarToggle" type="button" aria-label="Contraer menú" aria-expanded="true">‹</button>
+      </div>
+      <nav class="account-sidebar-nav" aria-label="Secciones de tu cuenta">
+        <a class="is-active" href="#resumen"><i>⌂</i><span>Resumen</span></a>
+        <a href="#perfil"><i>◉</i><span>Mi perfil</span></a>
+        <a href="#historial"><i>◷</i><span>Mi historial</span></a>
+        <a href="#configuracion"><i>⚙</i><span>Configuración</span></a>
+        <a href="#seguridad"><i>⌑</i><span>Seguridad</span></a>
+      </nav>
+      <p class="account-sidebar-footer">Tu información de perfil es opcional. Nunca guardamos tus documentos originales.</p>
+    </aside>
+
     <!-- IDENTIDAD + PLAN -->
     <div class="acct-identity">
       <div class="wrap acct-identity-inner">
@@ -200,7 +231,7 @@
     </div>
 
     <!-- TU PROGRESO -->
-    <div class="acct-progress">
+    <div class="acct-progress" id="resumen">
       <div class="wrap">
         <div class="acct-section-lead">
           <span class="eyebrow-dark">Tu progreso</span>
@@ -247,7 +278,7 @@
     </div>
 
     <!-- HISTORIAL COMPLETO -->
-    <div class="wrap">
+    <div class="wrap" id="historial">
       <div class="section-head" style="margin-top:64px;">
         <span class="eyebrow-dark">Historial completo</span>
         <h2>Todos tus análisis y cálculos guardados</h2>
@@ -275,7 +306,7 @@
     </div>
 
     <!-- CONFIGURACIÓN -->
-    <div class="acct-config" style="margin-top:70px;">
+    <div class="acct-config" id="configuracion" style="margin-top:70px;">
       <div class="wrap">
         <div class="acct-section-lead">
           <span class="eyebrow-dark">Configuración</span>
@@ -285,24 +316,24 @@
         <div class="acct-config-grid">
 
           <!-- Datos personales -->
-          <div class="acct-config-card">
-            <h3>Datos personales</h3>
-            <div class="acct-field">
-              <div><span class="acct-field-label">Nombre</span><span class="acct-field-value" id="acctFieldName">—</span></div>
-              <button type="button" class="acct-link-btn" id="acctEditNameBtn">Editar →</button>
+          <form class="acct-config-card acct-profile-card" id="perfil">
+            <div class="acct-profile-top">
+              <div class="acct-profile-avatar" id="acctProfileAvatar">?</div>
+              <div><h3>Mi perfil</h3><p class="acct-note">Estos datos son opcionales y solo se usan para personalizar tu cuenta.</p><div class="acct-photo-actions"><label class="acct-avatar-action">Cambiar foto<input id="acctPhotoInput" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="acctPhotoHint"></label><button class="acct-link-btn" type="button" id="acctRemovePhoto">Quitar foto</button></div><p class="acct-note" id="acctPhotoHint">JPG, PNG o WebP · hasta 5 MB. Los cambios se aplican al guardar.</p></div>
             </div>
-            <div class="acct-field">
-              <div><span class="acct-field-label">Teléfono</span><span class="acct-field-value" id="acctFieldPhone">—</span></div>
-              <a href="contacto.html" class="acct-link-btn">Contáctanos →</a>
+            <div class="acct-profile-fields">
+              <div class="form-group"><label for="profileName">Nombre</label><input id="profileName" autocomplete="name" placeholder="Tu nombre"></div>
+              <div class="form-group"><label for="profileUsername">Nombre de usuario</label><input id="profileUsername" autocomplete="nickname" maxlength="64" placeholder="Cómo quieres aparecer" aria-describedby="profileUsernameHint"><p class="acct-note" id="profileUsernameHint">Se muestra en tu cuenta. Seguirás entrando con tu correo o proveedor habitual.</p></div>
+              <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" autocomplete="tel" placeholder="Opcional"></div>
+              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional"></div>
+              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional"></div>
+              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional"></div>
             </div>
-            <div class="acct-field">
-              <div><span class="acct-field-label">Correo</span><span class="acct-field-value" id="acctFieldEmail">—</span></div>
-              <button type="button" class="acct-link-btn" id="acctEditEmailBtn">Editar →</button>
-            </div>
-          </div>
+            <div class="acct-profile-actions"><button class="btn btn-gold" id="acctSaveProfile" type="submit">Guardar perfil</button><button class="acct-link-btn" type="button" id="acctCancelProfile">Cancelar cambios</button><button class="acct-link-btn" type="button" id="acctClearProfile">Borrar datos de perfil</button><span class="acct-profile-status" id="acctProfileStatus" role="status" aria-live="polite"></span></div>
+          </form>
 
           <!-- Seguridad -->
-          <div class="acct-config-card is-navy">
+          <div class="acct-config-card is-navy" id="seguridad">
             <h3>Seguridad</h3>
             <div class="acct-field">
               <div><span class="acct-field-label">Contraseña</span><span class="acct-field-value">••••••••</span></div>
@@ -348,7 +379,7 @@
         <div class="acct-danger">
           <div>
             <h3>Eliminar mi cuenta</h3>
-            <p>Esto borra permanentemente tus análisis, cálculos y preferencias guardadas. Para cerrar también tu acceso, nuestro equipo lo confirma contigo por Contacto.</p>
+            <p><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>No borra tu correo y contraseña de acceso</strong>: eso lo cerramos a mano. Al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>. Mientras tanto tu cuenta queda vacía pero puedes seguir entrando.</p>
           </div>
           <button type="button" class="btn" style="flex:none;border:1.5px solid var(--danger);background:transparent;color:var(--danger);" id="acctDeleteBtn">Eliminar cuenta</button>
         </div>
@@ -404,6 +435,20 @@
     estandar:'Incluye cartas de disputa y validación de deuda.',
     premium:'Incluye todas las herramientas y prioridad de soporte.'
   };
+
+  function setAvatar(id, name, photo){
+    const avatar = $(id);
+    if(!avatar) return;
+    if(photo){
+      avatar.innerHTML = '';
+      const image = new Image();
+      image.src = photo;
+      image.alt = 'Foto de perfil';
+      avatar.appendChild(image);
+    } else {
+      avatar.textContent = (name || '?').trim().charAt(0).toUpperCase() || '?';
+    }
+  }
 
   function analysisCard(row){
     const tone = row.tono || 'stable';
@@ -505,12 +550,18 @@
   }
 
   function renderIdentity(user){
-    const name = user.user_metadata && user.user_metadata.full_name ? user.user_metadata.full_name : '';
+    const metadata = user.user_metadata || {};
+    const name = metadata.full_name || '';
     const email = user.email || '';
-    const phone = user.phone || '';
+    const phone = metadata.contact_phone || user.phone || '';
+    const photo = metadata.profile_photo || '';
     const initialSource = name || email || phone || '?';
-    $('acctAvatar').textContent = initialSource.trim().charAt(0).toUpperCase() || '?';
+    setAvatar('acctAvatar', initialSource, photo);
+    setAvatar('acctProfileAvatar', initialSource, photo);
+    setAvatar('sidebarAvatar', initialSource, photo);
     $('acctName').textContent = name || (email || phone || 'Tu cuenta');
+    $('sidebarName').textContent = name || 'Mi cuenta';
+    $('sidebarEmail').textContent = email || phone || 'Perfil personal';
     const metaParts = [];
     if(email) metaParts.push(email);
     if(user.created_at) metaParts.push('Cliente desde ' + monthYearFmt(user.created_at));
@@ -519,10 +570,11 @@
     const isAdmin = !!(user.app_metadata && user.app_metadata.is_admin);
     $('acctAdminLink').hidden = !isAdmin;
 
-    $('acctFieldName').textContent = name || 'Agrega tu nombre';
-    $('acctEditNameBtn').textContent = name ? 'Editar →' : 'Agregar →';
-    $('acctFieldPhone').textContent = phone || '—';
-    $('acctFieldEmail').textContent = email || '—';
+    $('profileName').value = name;
+    $('profilePhone').value = phone;
+    $('profileAddress').value = metadata.address || '';
+    $('profileCity').value = metadata.city || '';
+    $('profileState').value = metadata.state_zip || '';
 
     const plan = window.CCAuth.getPlan();
     const trialDaysLeft = window.CCAuth.getTrialDaysLeft ? window.CCAuth.getTrialDaysLeft() : 0;
@@ -638,44 +690,69 @@
     $('acctModalSubmit').disabled = false;
   });
 
-  $('acctEditNameBtn').addEventListener('click', ()=>{
-    const user = window.CCAuth.getUser();
-    const current = user && user.user_metadata ? user.user_metadata.full_name : '';
-    openModal({
-      title: 'Tu nombre',
-      label: 'Nombre completo',
-      value: current || '',
-      placeholder: 'Ej. Ana Martínez',
-      submitLabel: 'Guardar',
-      onSubmit: async (value, ctx)=>{
-        if(!value){ ctx.showModalMessage('Escribe tu nombre.', 'error'); return; }
-        await window.CCAuth.updateName(value);
-        $('acctFieldName').textContent = value;
-        $('acctName').textContent = value;
-        $('acctAvatar').textContent = value.trim().charAt(0).toUpperCase();
-        $('acctEditNameBtn').textContent = 'Editar →';
-        ctx.showModalMessage('Guardado ✓', 'success');
-        setTimeout(ctx.close, 900);
-      }
+  let selectedProfilePhoto = '';
+  async function shrinkPhoto(file){
+    if(!file) return '';
+    if(file.size > 5 * 1024 * 1024) throw new Error('Elige una foto de menos de 5 MB.');
+    const source = await new Promise((resolve, reject)=>{
+      const reader = new FileReader();
+      reader.onload = ()=> resolve(reader.result);
+      reader.onerror = ()=> reject(new Error('No pudimos leer esa foto.'));
+      reader.readAsDataURL(file);
     });
+    const image = await new Promise((resolve, reject)=>{ const img = new Image(); img.onload=()=>resolve(img); img.onerror=()=>reject(new Error('Elige una imagen válida.')); img.src=source; });
+    const size = 256, scale = Math.max(size / image.width, size / image.height);
+    const canvas = document.createElement('canvas'); canvas.width=size; canvas.height=size;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, (size - image.width * scale) / 2, (size - image.height * scale) / 2, image.width * scale, image.height * scale);
+    return canvas.toDataURL('image/jpeg', .8);
+  }
+
+  $('acctPhotoInput').addEventListener('change', async event=>{
+    const status = $('acctProfileStatus');
+    try{
+      status.textContent = 'Preparando foto…';
+      selectedProfilePhoto = await shrinkPhoto(event.target.files[0]);
+      const user = window.CCAuth.getUser();
+      const name = $('profileName').value || (user && user.email) || '';
+      setAvatar('acctProfileAvatar', name, selectedProfilePhoto);
+      status.textContent = 'Foto lista para guardar.';
+    }catch(err){ status.textContent = err.message || 'No pudimos preparar la foto.'; }
   });
 
-  $('acctEditEmailBtn').addEventListener('click', ()=>{
+  $('perfil').addEventListener('submit', async event=>{
+    event.preventDefault();
+    const status = $('acctProfileStatus');
     const user = window.CCAuth.getUser();
-    openModal({
-      title: 'Cambiar tu correo',
-      desc: 'Te enviaremos un enlace de confirmación a tu correo nuevo. Tu correo actual sigue activo hasta que lo confirmes.',
-      label: 'Correo nuevo',
-      inputType: 'email',
-      value: '',
-      placeholder: user && user.email ? user.email : 'tu@correo.com',
-      submitLabel: 'Enviar confirmación',
-      onSubmit: async (value, ctx)=>{
-        if(!value || value.indexOf('@') === -1){ ctx.showModalMessage('Escribe un correo válido.', 'error'); return; }
-        await window.CCAuth.updateEmail(value);
-        ctx.showModalMessage('Revisa tu bandeja de entrada en ' + value + ' para confirmar el cambio.', 'success');
-      }
-    });
+    if(!user) return;
+    const profile = {
+      full_name: $('profileName').value.trim(),
+      contact_phone: $('profilePhone').value.trim(),
+      address: $('profileAddress').value.trim(),
+      city: $('profileCity').value.trim(),
+      state_zip: $('profileState').value.trim()
+    };
+    if(selectedProfilePhoto) profile.profile_photo = selectedProfilePhoto;
+    status.textContent = 'Guardando…';
+    try{
+      const data = await window.CCAuth.updateProfile(profile);
+      selectedProfilePhoto = '';
+      renderIdentity(data.user || window.CCAuth.getUser());
+      status.textContent = 'Perfil guardado ✓';
+    }catch(err){ status.textContent = err.message || 'No pudimos guardar el perfil.'; }
+  });
+
+  $('acctClearProfile').addEventListener('click', async ()=>{
+    const status = $('acctProfileStatus');
+    if(!confirm('¿Borrar foto, nombre, teléfono y dirección de tu perfil? Esto no borra tus análisis ni tu cuenta.')) return;
+    status.textContent = 'Borrando…';
+    try{
+      const data = await window.CCAuth.updateProfile({ full_name:'', contact_phone:'', address:'', city:'', state_zip:'', profile_photo:null });
+      selectedProfilePhoto = '';
+      $('acctPhotoInput').value = '';
+      renderIdentity(data.user || window.CCAuth.getUser());
+      status.textContent = 'Datos de perfil borrados ✓';
+    }catch(err){ status.textContent = err.message || 'No pudimos borrar el perfil.'; }
   });
 
   $('acctChangePasswordBtn').addEventListener('click', ()=>{
@@ -699,7 +776,7 @@
   $('acctDeleteBtn').addEventListener('click', ()=>{
     openModal({
       title: 'Eliminar mi cuenta',
-      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas. No se puede deshacer. Para cerrar también tu acceso, escribe "ELIMINAR" y luego contáctanos para confirmarlo.',
+      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
       label: 'Escribe ELIMINAR para confirmar',
       value: '',
       placeholder: 'ELIMINAR',
@@ -707,7 +784,7 @@
       onSubmit: async (value, ctx)=>{
         if(value.trim().toUpperCase() !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
         await window.CCAuth.deleteAllMyData();
-        ctx.showModalMessage('Listo. Te llevamos a Contacto para cerrar tu acceso.', 'success');
+        ctx.showModalMessage('Listo, tus datos guardados se borraron. Te llevamos a Contacto para pedir el cierre de tu acceso — respondemos dentro de 7 días.', 'success');
         setTimeout(async ()=>{
           try{ await window.CCAuth.signOut(); }catch(e){}
           window.location.href = 'contacto.html';
@@ -734,16 +811,36 @@
     window.location.href = 'index.html';
   });
 
+  const sidebarToggle = $('sidebarToggle');
+  const sidebarState = localStorage.getItem('themora-sidebar-collapsed') === 'true';
+  function setSidebar(collapsed){
+    document.body.classList.toggle('sidebar-collapsed', collapsed);
+    sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+    sidebarToggle.setAttribute('aria-label', collapsed ? 'Expandir menú' : 'Contraer menú');
+    sidebarToggle.textContent = collapsed ? '›' : '‹';
+    localStorage.setItem('themora-sidebar-collapsed', String(collapsed));
+  }
+  setSidebar(sidebarState);
+  sidebarToggle.addEventListener('click', ()=> setSidebar(!document.body.classList.contains('sidebar-collapsed')));
+  document.querySelectorAll('.account-sidebar-nav a').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      document.querySelectorAll('.account-sidebar-nav a').forEach(item=>item.classList.remove('is-active'));
+      link.classList.add('is-active');
+    });
+  });
+
   if(window.CCAuth){
     window.CCAuth.onChange((user, ready)=>{
       if(!ready) return;
       if(user){
+        document.body.classList.add('account-signed-in');
         $('signedOutNotice').hidden = true;
         $('accountContent').hidden = false;
         renderIdentity(user);
         loadLists();
         loadPreferences();
       } else {
+        document.body.classList.remove('account-signed-in');
         $('signedOutNotice').hidden = false;
         $('accountContent').hidden = true;
       }

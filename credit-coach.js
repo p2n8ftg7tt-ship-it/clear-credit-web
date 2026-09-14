@@ -41,19 +41,57 @@
       <button class="credit-coach-close" type="button" aria-label="Cerrar asistente">×</button>
     </div>
     <div class="credit-coach-messages" role="log" aria-live="polite" aria-relevant="additions">
-      <div class="coach-message bot">¡Hola! Soy Zyron. Puedo orientarte sobre crédito, reportes, compra de casa o auto, y buscar la sección exacta del sitio que necesitas. ¿Qué quieres lograr?</div>
+      <div class="coach-message bot" id="coachSaludoInicial">Hola. Soy Zyron. Te explico cartas, contratos, crédito y trámites en palabras normales. También puedo ayudarte a preparar qué preguntarle a un banco, dealer o cobrador. Hablo inglés, portugués, italiano y francés — solo pídemelo. ¿En qué andas?</div>
     </div>
     <div class="credit-coach-suggestions" aria-label="Preguntas sugeridas">
       ${currentPageSuggestions().map(s=>`<button class="coach-suggestion" type="button">${s}</button>`).join('')}
     </div>
     <form class="credit-coach-form">
       <label class="sr-only" for="creditCoachInput">Escribe tu pregunta</label>
-      <input class="credit-coach-input" id="creditCoachInput" maxlength="300" autocomplete="off" placeholder="Escribe tu pregunta…">
+      <input class="credit-coach-input" id="creditCoachInput" maxlength="700" autocomplete="off" placeholder="Escribe tu pregunta…">
       <button class="credit-coach-send" type="submit" aria-label="Enviar pregunta">➜</button>
     </form>
-    <p class="credit-coach-legal">Orientación educativa; no sustituye asesoría financiera, legal o crediticia profesional.</p>`;
+    <p class="credit-coach-legal" id="coachLegal">Orientación educativa; no sustituye asesoría financiera, legal o crediticia profesional.</p>`;
 
   document.body.append(launcher,panel);
+
+  /* Textos de la interfaz por idioma. Cuando la conversación cambia de idioma,
+     los botones de sugerencia, el marcador de escritura y el aviso legal
+     cambian con ella: un panel que responde en italiano con los botones en
+     español se siente a medio hacer. */
+  const UI={
+    es:{sugerencias:['Explicar mi carta','Revisar mi negocio'],placeholder:'Escribe tu pregunta…',
+        legal:'Orientación educativa; no sustituye asesoría financiera, legal o crediticia profesional.',
+        estado:'Asistente · en línea'},
+    en:{sugerencias:['Explain my letter','Check my business'],placeholder:'Type your question…',
+        legal:'Educational guidance; not a substitute for professional financial, legal or credit advice.',
+        estado:'Assistant · online'},
+    pt:{sugerencias:['Explicar minha carta','Revisar meu negócio'],placeholder:'Escreva sua pergunta…',
+        legal:'Orientação educativa; não substitui aconselhamento profissional.',
+        estado:'Assistente · online'},
+    it:{sugerencias:['Spiegami la lettera','Controlla la mia attività'],placeholder:'Scrivi la tua domanda…',
+        legal:'Orientamento educativo; non sostituisce una consulenza professionale.',
+        estado:'Assistente · online'},
+    fr:{sugerencias:['Expliquer ma lettre','Vérifier mon entreprise'],placeholder:'Écrivez votre question…',
+        legal:'Information éducative ; ne remplace pas un conseil professionnel.',
+        estado:'Assistant · en ligne'}
+  };
+
+  function aplicarIdiomaUI(idioma){
+    const t=UI[idioma]||UI.es;
+    const chips=panel.querySelectorAll('.coach-suggestion');
+    // Los chips específicos de la página solo existen en español; al cambiar
+    // de idioma se usan los generales, que sí están traducidos.
+    if(idioma!=='es'){
+      chips.forEach((b,i)=>{ if(t.sugerencias[i]) b.textContent=t.sugerencias[i]; });
+    }
+    const legal=panel.querySelector('#coachLegal');
+    if(legal)legal.textContent=t.legal;
+    const campo=panel.querySelector('.credit-coach-input');
+    if(campo)campo.placeholder=t.placeholder;
+    const sub=panel.querySelector('.credit-coach-title small');
+    if(sub)sub.textContent=t.estado;
+  }
 
   const close=panel.querySelector('.credit-coach-close');
   const messages=panel.querySelector('.credit-coach-messages');
@@ -68,6 +106,38 @@
   }
 
   const conversationHistory=[];
+
+  // zyron-brain.js no depende de ningún servicio externo: cargarlo aquí hace
+  // que Zyron conserve su conversación, idiomas y respuestas humanas incluso
+  // en páginas que solo incluyen credit-coach.js o cuando no hay sesión.
+  let brainPromise=null;
+  function ensureBrain(){
+    if(window.ZyronBrain)return Promise.resolve(true);
+    if(brainPromise)return brainPromise;
+    brainPromise=new Promise(resolve=>{
+      const script=document.createElement('script');
+      script.src='zyron-brain.js';
+      script.async=true;
+      script.onload=()=>resolve(!!window.ZyronBrain);
+      script.onerror=()=>resolve(false);
+      document.head.appendChild(script);
+    });
+    return brainPromise;
+  }
+
+  function containsSensitive(text){
+    const raw=String(text||'');
+    return /\b\d{3}[\s-]?\d{2}[\s-]?\d{4}\b/.test(raw) ||
+      /\b(?:\d[ -]?){13,19}\b/.test(raw) ||
+      /\b(?:cuenta|account|routing|aba)\b[^\n]{0,30}\d{6,}/i.test(raw) ||
+      /\b(?:ssn|social security|seguro social)\b/i.test(raw) && /\d{3}/.test(raw);
+  }
+
+  /* Estado de la conversación: idioma en curso, si ya saludamos, el último
+     tema y qué redacciones se usaron. El cerebro lo lee y lo actualiza, y por
+     eso Zyron no vuelve a presentarse en el tercer mensaje ni repite la misma
+     frase dos veces. Vive solo en memoria: al recargar la página se olvida. */
+  const estado={idioma:'es',saludado:false,ultimoTema:null,usadas:{}};
 
   function addMessage(text,who='bot',links=null){
     const bubble=document.createElement('div');
@@ -113,7 +183,9 @@
       const res=await fetch('/.netlify/functions/coach',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({question,accessToken:token,history:conversationHistory})
+        body:JSON.stringify({question,accessToken:token,history:conversationHistory,
+          pagina:(location.pathname.split('/').pop()||'index.html'),
+          idioma:estado.idioma})
       });
       if(!res.ok)return null;
       const data=await res.json();
@@ -135,7 +207,19 @@
       .slice(0,limit||3);
   }
 
-  function answer(raw){
+  /* El asistente local vive en zyron-brain.js. Si por alguna razón ese archivo
+     no cargó, se usa el motor viejo de palabras clave que queda más abajo — el
+     chat nunca se queda mudo. */
+  function answerLocal(raw){
+    if(window.ZyronBrain){
+      const r=window.ZyronBrain.responder(raw,estado);
+      return {text:r.texto,links:r.enlaces||[],tema:r.tema,idioma:r.idioma};
+    }
+    const viejo=answerFallback(raw);
+    return viejo?{text:viejo.text,links:viejo.link?[viejo.link]:[],tema:'legacy'}:null;
+  }
+
+  function answerFallback(raw){
     const question=raw.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
     if(/mortgage|hipoteca|pago mensual|cuota|casa/.test(question)){
       return {text:'Para estimar una hipoteca necesitas el precio, pronto inicial, interés, plazo, impuestos, seguro y HOA. La calculadora suma esos componentes y separa principal e interés.',link:{href:'herramientas.html#calculadora-hipoteca',label:'Abrir calculadora hipotecaria →'}};
@@ -164,44 +248,71 @@
     return null;
   }
 
+  const dormir=ms=>new Promise(r=>setTimeout(r,ms));
+
+  /* Una respuesta larga que aparece instantánea se siente a máquina; una
+     pausa proporcional al largo se siente a alguien escribiendo. Se acota
+     para que nadie espere de más. */
+  function ritmoDeEscritura(texto){
+    const ms=380+String(texto||'').length*11;
+    return Math.min(ms,1900);
+  }
+
+  /* Hay respuestas donde NO se deben sugerir otras páginas: si alguien
+     saluda, pregunta si eres un robot o te da las gracias, empapelarlo con
+     tarjetas de secciones es exactamente lo que hace que un chat se sienta
+     un folleto. */
+  const SIN_SUGERENCIAS=['saludo','comoEstas','gracias','adios','robot','quienEres',
+    'groseria','sensible','idioma','fuera','glosario','frases','noEntiendo','vacio'];
+
   async function submitQuestion(value){
     const clean=String(value||'').trim();
     if(!clean)return;
-    addMessage(clean,'user');
-    conversationHistory.push({role:'user',content:clean});
+    const sensitive=containsSensitive(clean);
+    // No dejamos un identificador sensible visible ni en el historial del
+    // navegador. Zyron sí recibe el texto localmente para advertir a la persona.
+    addMessage(sensitive?'[Dato sensible oculto]':clean,'user');
+    if(!sensitive)conversationHistory.push({role:'user',content:clean});
     input.value='';
 
     const typingBubble=addTyping();
-    const aiAnswer=await askAI(clean);
-    typingBubble.remove();
+    await ensureBrain();
+    // Primero dejamos que el cerebro local detecte idioma, emoción y datos
+    // sensibles. Así un SSN o número de tarjeta jamás llega al proveedor de IA.
+    const local=answerLocal(clean);
+    if(local&&local.idioma)aplicarIdiomaUI(local.idioma);
+    const aiAnswer=sensitive ? null : await askAI(clean);
 
     if(aiAnswer){
+      await dormir(Math.max(0,ritmoDeEscritura(aiAnswer)-400));
+      typingBubble.remove();
       const links=searchSiteSuggestions(clean,null,2);
       addMessage(aiAnswer,'bot',links);
       conversationHistory.push({role:'assistant',content:aiAnswer});
       return;
     }
 
-    const matched=answer(clean);
-    if(matched){
-      const links=searchSiteSuggestions(clean,matched.link?[matched.link]:null,2);
-      const allLinks=matched.link?[matched.link,...links]:links;
-      addMessage(matched.text,'bot',allLinks);
-      conversationHistory.push({role:'assistant',content:matched.text});
+    const texto=local?local.text:'';
+    await dormir(ritmoDeEscritura(texto));
+    typingBubble.remove();
+
+    if(local){
+      let links=local.links||[];
+      if(SIN_SUGERENCIAS.indexOf(local.tema)===-1){
+        links=links.concat(searchSiteSuggestions(clean,links,2));
+      }
+      addMessage(local.text,'bot',links);
+      aplicarIdiomaUI(estado.idioma);
+      conversationHistory.push({role:'assistant',content:local.text});
       return;
     }
 
     const suggestions=searchSiteSuggestions(clean,null,3);
-    if(suggestions.length){
-      const text='No tengo una respuesta exacta preparada para eso, pero esto del sitio podría ayudarte:';
-      addMessage(text,'bot',suggestions);
-      conversationHistory.push({role:'assistant',content:text});
-      return;
-    }
-
-    const fallback='Para darte una orientación útil, dime si tu pregunta es sobre puntaje, reporte de crédito, deudas, compra de casa, compra de auto o cálculo de mortgage. No incluyas números de cuenta ni información sensible.';
-    addMessage(fallback,'bot');
-    conversationHistory.push({role:'assistant',content:fallback});
+    const texto2=suggestions.length
+      ? 'No tengo una respuesta preparada para eso y prefiero no inventarte. Esto del sitio podría acercarse:'
+      : 'Ahí me perdí, y prefiero decírtelo. ¿Me lo cuentas de otra forma? Si es por un papel que te llegó, dime de quién viene.';
+    addMessage(texto2,'bot',suggestions.length?suggestions:null);
+    conversationHistory.push({role:'assistant',content:texto2});
   }
 
   launcher.addEventListener('click',()=>toggle(panel.hidden));
