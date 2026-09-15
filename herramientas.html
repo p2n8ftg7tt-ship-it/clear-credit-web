@@ -261,7 +261,7 @@
             </div>
             <div class="mortgage-field">
               <label for="mortgageHoa">HOA mensual</label>
-              <div class="mortgage-input-wrap has-prefix"><span class="prefix">$</span><input id="mortgageHoa" type="number" min="0" step="25" value="0" inputmode="decimal"></div>
+              <div class="mortgage-input-wrap has-prefix"><span class="prefix">$</span><input id="mortgageHoa" type="number" min="0" step="25" value="0" inputmode="decimal" placeholder="Ej.: 150 · si no tienes HOA, déjalo en 0"></div>
             </div>
           </div>
         </form>
@@ -312,7 +312,7 @@
           </div>
           <div class="qc-field">
             <label for="utilPayment">Si pagas esto antes de la fecha de corte</label>
-            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilPayment" type="number" min="0" step="25" value="0" inputmode="decimal"></div>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilPayment" type="number" min="0" step="25" value="0" inputmode="decimal" placeholder="Ej.: 400 · lo que piensas abonar antes del corte"></div>
           </div>
           <div class="qc-result band-green" id="utilResultBox">
             <div class="qc-big" id="utilCurrentPct">0%<span>uso actual</span></div>
@@ -414,11 +414,11 @@
               </div>
               <div class="acc-field" id="accFieldMonthly">
                 <div class="acc-label-row"><label for="accExtraMonthly">Adicional al mes</label><span class="acc-tag">calculado</span></div>
-                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraMonthly" type="number" min="0" step="25" inputmode="decimal" placeholder="0"></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraMonthly" type="number" min="0" step="25" inputmode="decimal" placeholder="Ej.: 200"></div>
               </div>
               <div class="acc-field" id="accFieldWeekly">
                 <div class="acc-label-row"><label for="accExtraWeekly">Adicional a la semana</label><span class="acc-tag">calculado</span></div>
-                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraWeekly" type="number" min="0" step="5" inputmode="decimal" placeholder="0"></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraWeekly" type="number" min="0" step="5" inputmode="decimal" placeholder="Ej.: 50"></div>
               </div>
             </div>
             <p class="acc-warning" id="accWarning" hidden></p>

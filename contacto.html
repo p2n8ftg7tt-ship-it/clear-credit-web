@@ -87,6 +87,10 @@
         <!-- Formulario compatible con Netlify Forms:
              al desplegar en Netlify, este formulario se conecta solo
              (no requiere backend ni servidor propio). -->
+        <!-- Correo y teléfono salen de whatsapp.js; si están vacíos, no se pinta
+             nada. Publicar un contacto que nadie atiende es peor que no tenerlo. -->
+        <div class="canales-directos" id="canalesDirectos" hidden></div>
+        <div class="wa-caja" data-whatsapp-label="Escríbenos por WhatsApp" hidden></div>
         <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contacto" />
           <p style="display:none;">
@@ -168,6 +172,7 @@
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="whatsapp.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

@@ -435,3 +435,37 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .saved-item-meta span{font-size:.76rem;color:var(--navy);background:var(--paper-dim);padding:4px 10px;border-radius:999px}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Canal de WhatsApp — solo se ve si el número está puesto en whatsapp.js */
+.wa-caja[hidden]{display:none}
+.wa-caja{margin-top:18px}
+.wa-btn{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#0b3d24;
+  font-weight:800;font-size:.9rem;padding:12px 20px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 20px rgba(37,211,102,.28);transition:transform .16s ease}
+.wa-btn:hover{transform:translateY(-2px);color:#0b3d24}
+.wa-nota{display:block;margin-top:9px;font-size:.74rem;line-height:1.5;color:var(--muted);max-width:460px}
+.band-dark .wa-nota,.page-hero .wa-nota{color:rgba(255,255,255,.62)}
+
+/* Fecha de revisión del contenido legal. Solo se pone donde de verdad se
+   revisó: una fecha inventada convierte una señal de rigor en una mentira. */
+.revision-legal{font-size:.76rem;line-height:1.6;color:rgba(255,255,255,.55);
+  padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.revision-legal strong{color:rgba(255,255,255,.75)}
+.revision-legal a{color:var(--gold-light);text-decoration:underline}
+
+/* Canales directos de la página de Contacto — se pintan desde whatsapp.js.
+   Si el correo y el teléfono están vacíos, esta caja nunca se muestra. */
+.canales-directos[hidden]{display:none}
+.canales-directos{margin-bottom:22px;padding:18px 20px;background:var(--paper-dim);
+  border:1px solid var(--line);border-radius:12px}
+.cd-titulo{margin:0 0 12px;font-size:.82rem;font-weight:700;color:var(--navy-deep)}
+.cd-lista{display:flex;flex-wrap:wrap;gap:10px}
+.cd-item{display:inline-flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:11px 16px;text-decoration:none;transition:transform .16s ease,border-color .16s ease}
+.cd-item:hover{transform:translateY(-2px);border-color:var(--gold)}
+.cd-ico{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--navy-deep);
+  display:grid;place-items:center;font-size:.92rem}
+.cd-item strong{display:block;font-size:.78rem;color:var(--navy-deep)}
+.cd-item small{display:block;font-size:.84rem;color:var(--muted)}
+.cd-horario{display:block;margin-top:11px;font-size:.76rem;color:var(--muted)}
+.auth-recuperar-nota{display:block;margin-top:10px;font-size:.74rem;line-height:1.55;color:var(--muted)}
