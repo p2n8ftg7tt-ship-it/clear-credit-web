@@ -469,3 +469,54 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .cd-item small{display:block;font-size:.84rem;color:var(--muted)}
 .cd-horario{display:block;margin-top:11px;font-size:.76rem;color:var(--muted)}
 .auth-recuperar-nota{display:block;margin-top:10px;font-size:.74rem;line-height:1.55;color:var(--muted)}
+
+/* =========================================================================
+   Foto de perfil — el CSS que faltaba
+   =========================================================================
+   auth.js (renderAvatar) mete la clase .profile-avatar y le cuelga un <img>
+   dentro. Esa clase NO tenía una sola regla en todo el sitio, así que la foto
+   se pintaba a su tamaño natural: una imagen de teléfono de 3000px reventaba
+   el encabezado y dejaba la inicial ("D") suelta al lado.
+
+   Las tres reglas que lo sostienen y que no se pueden quitar:
+     1. tamaño fijo en el contenedor
+     2. overflow:hidden en el contenedor  ← sin esto la foto se sale del círculo
+     3. la <img> a 100% con object-fit:cover ← sin esto se deforma o desborda
+   ========================================================================= */
+.profile-avatar{display:grid;place-items:center;flex:none;background:var(--gold);
+  color:var(--navy-deep);font-family:'Fraunces',serif;font-weight:700;line-height:1;
+  text-transform:uppercase;border-radius:50%}
+
+/* Una sola regla para TODOS los contenedores de avatar del sitio.
+   Ojo con el detalle que costó encontrar: dentro de un contenedor `grid` con
+   `place-items:center`, una <img> con `height:100%` NO se estira — se queda
+   con su alto natural. Una foto de teléfono de 3:4 salía 42x56 dentro de una
+   caja de 42x42. Posicionarla absoluta con inset:0 la obliga a llenar la caja
+   exacta, sin importar si el contenedor es flex, grid o bloque. */
+.profile-avatar,
+.acct-avatar,
+.acct-profile-avatar,
+.account-sidebar-avatar{position:relative;overflow:hidden}
+.profile-avatar > img,
+.acct-avatar > img,
+.acct-profile-avatar > img,
+.account-sidebar-avatar > img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;border-radius:inherit;max-width:none}
+
+/* Avatar del encabezado. El botón deja de ser una píldora con texto y pasa a
+   ser el círculo, así que se le quita el relleno y el borde de "Iniciar sesión". */
+.nav-profile-avatar{width:34px;height:34px;font-size:.88rem}
+.links .nav-auth-btn.is-logged-in{padding:0;border:none;background:none;
+  display:inline-flex;align-items:center;line-height:0}
+.links .nav-auth-btn.is-logged-in:hover{background:none;border:none}
+.links .nav-auth-btn.is-logged-in .profile-avatar{
+  box-shadow:0 0 0 2px rgba(201,162,77,.45);transition:box-shadow .16s ease}
+.links .nav-auth-btn.is-logged-in:hover .profile-avatar{
+  box-shadow:0 0 0 2px var(--navy-deep)}
+
+/* En el menú de hamburguesa el avatar se mueve junto al botón ☰. */
+.links .nav-auth-btn.nav-auth-mobile{margin:0 10px 0 auto;border-bottom:none;padding:0}
+@media(max-width:900px){
+  .links .nav-auth-btn.is-logged-in{margin:14px 0 4px;border-bottom:none}
+  .nav-profile-avatar{width:38px;height:38px}
+}
