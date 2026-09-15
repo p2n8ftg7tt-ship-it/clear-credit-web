@@ -87,6 +87,19 @@
     return mapa[pagina] || 'Hola, vi la página de Themora y tengo una pregunta.';
   }
 
+  /* Un texto que RECOMIENDA WhatsApp no puede quedarse visible cuando el botón
+     de WhatsApp no existe. Antes pasaba: la caja se ocultaba sola, pero la frase
+     "por WhatsApp suele ser lo más rápido" seguía ahí, mandando a la gente a un
+     canal que no está. Ahora el texto tiene dos versiones y se enciende la que
+     corresponde:
+       [data-si-whatsapp]  → solo si hay número
+       [data-sin-whatsapp] → solo si no lo hay  */
+  (function alternarTextos() {
+    var hay = !!WHATSAPP_NUMERO;
+    document.querySelectorAll('[data-si-whatsapp]').forEach(function (el) { el.hidden = !hay; });
+    document.querySelectorAll('[data-sin-whatsapp]').forEach(function (el) { el.hidden = hay; });
+  })();
+
   // Se busca por la clase, no por [data-whatsapp]: las cajas llevan solo
   // data-whatsapp-label, y ese atributo NO coincide con ese selector.
   document.querySelectorAll('.wa-caja').forEach(function (caja) {

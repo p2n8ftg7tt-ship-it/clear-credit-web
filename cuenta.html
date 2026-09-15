@@ -381,7 +381,11 @@
         <div class="acct-danger">
           <div>
             <h3>Eliminar mi cuenta</h3>
-            <p><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>No borra tu correo y contraseña de acceso</strong>: eso lo cerramos a mano. Al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>. Mientras tanto tu cuenta queda vacía pero puedes seguir entrando.</p>
+            <!-- El texto se ajusta solo según si el borrado automático está
+                 configurado en el servidor. Prometer "se borra al instante"
+                 cuando en realidad hay que escribir a Contacto es la clase de
+                 mentira pequeña que destruye la confianza de golpe. -->
+            <p id="acctDeleteDesc"><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>Tu correo y contraseña de acceso</strong> se cierran a mano: al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>.</p>
           </div>
           <button type="button" class="btn" style="flex:none;border:1.5px solid var(--danger);background:transparent;color:var(--danger);" id="acctDeleteBtn">Eliminar cuenta</button>
         </div>
@@ -414,6 +418,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -775,22 +780,67 @@
     });
   });
 
+  /* ¿Está configurado el borrado automático?
+     La función solo acepta POST. Si le mandamos un cuerpo SIN la palabra de
+     confirmación, no puede borrar nada: contesta 400 cuando está lista y 503
+     cuando le falta la llave. Es una pregunta sin consecuencias, y sirve para
+     que el texto del botón diga la verdad antes de que nadie lo apriete. */
+  var borradoAutomatico = false;
+  (async function sondearBorrado(){
+    try{
+      const res = await fetch('/.netlify/functions/eliminar-cuenta', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'
+      });
+      borradoAutomatico = res.status !== 503;
+    }catch(e){ borradoAutomatico = false; }
+
+    if(borradoAutomatico){
+      const d = $('acctDeleteDesc');
+      if(d) d.innerHTML = '<strong>Este botón borra tu cuenta entera</strong>: tus análisis, tus cálculos, tus preferencias y tu acceso. Es inmediato y no se puede deshacer. No tienes que escribirle a nadie ni esperar respuesta.';
+    }
+  })();
+
   $('acctDeleteBtn').addEventListener('click', ()=>{
     openModal({
       title: 'Eliminar mi cuenta',
-      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
+      desc: borradoAutomatico
+        ? 'Esto borra permanentemente tu cuenta y todo lo que guardaste en ella —análisis, cálculos y preferencias— y no se puede deshacer. Escribe "ELIMINAR" para confirmar.'
+        : 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
       label: 'Escribe ELIMINAR para confirmar',
       value: '',
       placeholder: 'ELIMINAR',
-      submitLabel: 'Borrar mis datos',
+      submitLabel: 'Eliminar mi cuenta',
       onSubmit: async (value, ctx)=>{
-        if(value.trim().toUpperCase() !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+        const palabra = value.trim().toUpperCase();
+        if(palabra !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+
+        // Primero los datos guardados, que sí puede borrar el navegador.
         await window.CCAuth.deleteAllMyData();
-        ctx.showModalMessage('Listo, tus datos guardados se borraron. Te llevamos a Contacto para pedir el cierre de tu acceso — respondemos dentro de 7 días.', 'success');
+
+        // Después la cuenta de acceso, que necesita el servidor. Si la llave
+        // de administrador no está puesta en Netlify, esto devuelve
+        // noConfigurado y caemos al camino manual — sin decirle a nadie que
+        // se borró algo que sigue ahí.
+        let resultado = { noConfigurado: true };
+        try{
+          resultado = await window.CCAuth.eliminarCuenta(palabra);
+        }catch(err){
+          ctx.showModalMessage('Tus datos guardados sí se borraron, pero no pudimos cerrar el acceso: ' + (err.message || 'error inesperado') + ' Te llevamos a Contacto para hacerlo a mano.', 'error');
+          setTimeout(()=>{ window.location.href = 'contacto.html'; }, 2600);
+          return;
+        }
+
+        if(resultado && resultado.ok){
+          ctx.showModalMessage('Listo. Tu cuenta y todo lo que tenía quedaron borrados. No hace falta que escribas a nadie.', 'success');
+          setTimeout(()=>{ window.location.href = 'index.html'; }, 1800);
+          return;
+        }
+
+        ctx.showModalMessage('Tus datos guardados se borraron. El cierre del acceso todavía se hace a mano: te llevamos a Contacto para pedirlo — respondemos dentro de 7 días.', 'success');
         setTimeout(async ()=>{
           try{ await window.CCAuth.signOut(); }catch(e){}
           window.location.href = 'contacto.html';
-        }, 1400);
+        }, 2200);
       }
     });
   });
@@ -854,6 +904,7 @@
 </script>
 
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

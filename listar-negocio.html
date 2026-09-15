@@ -143,6 +143,9 @@
       <span class="eyebrow">Nuevo servicio</span>
       <h1>¿Tu negocio no aparece en Google Maps ni en Apple Maps?</h1>
       <p>Muchos negocios hispanos pierden clientes todos los días simplemente porque no aparecen cuando alguien busca &quot;cerca de mí&quot;. Yo me encargo de configurarlo por ti — tú me envías los datos, yo hago el trabajo técnico.</p>
+      <!-- El precio arriba, no al final. Quien no puede pagarlo se entera en
+           tres segundos en vez de leer la página entera para descubrirlo. -->
+      <p class="hero-precio">Cuesta <b data-precio-de="listar" hidden></b>. No se cobra nada hasta que te confirmemos por escrito que podemos hacerlo y tú digas que sí.</p>
     </div>
   </section>
 
@@ -211,9 +214,9 @@
       <div class="ln-price-wrap">
         <div>
           <span class="ln-launch-badge">Precio de lanzamiento</span>
-          <div class="ln-price-tag"><small>Los dos mapas, un solo pago</small>$49.99</div>
+          <div class="ln-price-tag"><small>Los dos mapas, un solo pago</small><span data-precio-de="listar" data-precio-formato="monto">$49.99</span></div>
         </div>
-        <p class="ln-price-note">Incluye configuración en Google Maps y Apple Maps. Este es un precio especial de lanzamiento — llena el formulario y te confirmo los detalles antes de empezar.</p>
+        <p class="ln-price-note"><strong>Precio en dólares estadounidenses (USD), pago único.</strong> Incluye la configuración en Google Maps y en Apple Maps y el seguimiento de la verificación.<br><br><strong>Qué NO incluye:</strong> lo que Google o Apple decidan (ellos aprueban, nosotros no), fotografía profesional, ni el mantenimiento mensual de la ficha.<br><br>Es un precio de lanzamiento. <strong>El precio que te confirmemos por escrito es el que se respeta hasta terminar tu trámite</strong>, aunque el de la página suba después.</p>
       </div>
     </div>
   </section>
@@ -223,8 +226,13 @@
       <div class="section-head">
         <span class="eyebrow-dark">Empecemos</span>
         <h2>Cuéntame de tu negocio</h2>
-        <p>Llena este formulario con la información de tu negocio. Te voy a escribir para confirmar el pago y los próximos pasos antes de hacer cualquier cambio en tus perfiles.</p>
+        <p><strong>Solo tres cosas son obligatorias:</strong> tu nombre, tu correo y el nombre del negocio. Con eso te puedo escribir y decirte si se puede hacer y cuánto cuesta. Todo lo demás lo puedes llenar ahora si lo tienes a mano, o dejarlo para después — no retrasa nada.</p>
       </div>
+
+      <!-- El pago se explica ANTES del formulario, no después. Alguien que
+           llena un formulario de $49.99 sin saber cuándo ni cómo le van a
+           cobrar asume lo peor. -->
+      <div class="pago-caja" data-precio-de="listar" hidden></div>
 
       <form id="lnForm" novalidate>
         <div class="ln-form-grid">
@@ -237,8 +245,8 @@
             <input type="email" id="lnCorreo" name="correo" required>
           </div>
           <div class="form-group">
-            <label for="lnTelefono">Tu teléfono</label>
-            <input type="tel" id="lnTelefono" name="telefono" required>
+            <label for="lnTelefono">Tu teléfono <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="tel" id="lnTelefono" name="telefono">
           </div>
           <div class="form-group">
             <label for="lnGmail">¿Ya tienes cuenta de Gmail para el negocio?</label>
@@ -253,33 +261,42 @@
             <input type="text" id="lnNegocio" name="negocio" required>
           </div>
           <div class="form-group">
-            <label for="lnCategoria">Categoría del negocio</label>
-            <input type="text" id="lnCategoria" name="categoria" placeholder="Ej: restaurante, taller mecánico, salón" required>
+            <label for="lnCategoria">Categoría del negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="text" id="lnCategoria" name="categoria" placeholder="Ej: restaurante, taller mecánico, salón">
           </div>
           <div class="form-group">
-            <label for="lnTelNegocio">Teléfono del negocio</label>
-            <input type="tel" id="lnTelNegocio" name="telefono_negocio" required>
+            <label for="lnTelNegocio">Teléfono del negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="tel" id="lnTelNegocio" name="telefono_negocio">
           </div>
           <div class="form-group full">
-            <label for="lnDireccion">Dirección completa del negocio</label>
-            <input type="text" id="lnDireccion" name="direccion" required>
+            <label for="lnDireccion">Dirección completa del negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="text" id="lnDireccion" name="direccion">
           </div>
           <div class="form-group full">
-            <label for="lnHorario">Horario de atención</label>
-            <input type="text" id="lnHorario" name="horario" placeholder="Ej: Lunes a viernes 9am–6pm, sábado 9am–2pm" required>
+            <label for="lnHorario">Horario de atención <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="text" id="lnHorario" name="horario" placeholder="Ej: Lunes a viernes 9am–6pm, sábado 9am–2pm">
           </div>
           <div class="form-group full">
             <label for="lnWeb">Sitio web o redes sociales (opcional)</label>
             <input type="text" id="lnWeb" name="web">
           </div>
           <div class="form-group full">
-            <label for="lnDescripcion">Breve descripción del negocio</label>
-            <textarea id="lnDescripcion" name="descripcion" rows="3" required></textarea>
+            <label for="lnDescripcion">Breve descripción del negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <textarea id="lnDescripcion" name="descripcion" rows="3"></textarea>
           </div>
 
           <div class="form-group full ln-verification-block">
             <label>Verificación del negocio</label>
-            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. <strong>Todo lo de abajo es opcional</strong> — si no tienes algo a la mano, envía el formulario igual y te lo pido después. Entre más me mandes ahora, más rápido sale.</p>
+            <!-- Esta parte va CERRADA por defecto, y a propósito. Pedir la
+                 licencia, el EIN y fotos del negocio a alguien que todavía no
+                 sabe el precio ni ha decidido nada es pedirle demasiado a un
+                 desconocido — y además deja a Themora guardando documentos de
+                 alguien con quien no hay ninguna relación todavía. Quien quiera
+                 adelantar, la abre. El resto manda el formulario sin nada. -->
+            <p class="ln-verification-note">Antes de publicar tu ficha, Google y Apple piden confirmar que el negocio es tuyo. <strong>Nada de esto hace falta ahora.</strong> Lo normal es mandar el formulario sin documentos, y que te los pida después, cuando ya sepas el precio exacto y hayas decidido.</p>
+            <details class="ln-docs-opcional">
+              <summary>Adelantar los documentos ahora <span>(opcional — solo si ya hablamos)</span></summary>
+              <p class="ln-docs-aviso">Si los mandas aquí, viajan cifrados y quedan guardados en el panel de formularios de Netlify hasta que se borran a mano. Si prefieres esperar, el trámite <strong>no se retrasa</strong>: te los pedimos cuando toque, por el mismo canal por el que estemos hablando.</p>
 
             <p class="ln-verif-part">Cómo prefieres que <b>Google</b> lo confirme</p>
             <div class="ln-radio-group">
@@ -360,6 +377,7 @@
                 <span class="ln-file-msg" id="lnFotoMsg" hidden></span>
               </div>
             </div>
+            </details>
           </div>
 
           <div class="form-group full">
@@ -368,8 +386,9 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-gold" id="lnSubmitBtn" data-umami-event="listar-negocio-enviar">Enviar mis datos</button>
+        <button type="submit" class="btn btn-gold" id="lnSubmitBtn" data-umami-event="listar-negocio-enviar">Pedir mi presupuesto</button>
         <p class="ln-form-status" id="lnFormStatus" role="status"></p>
+        <p class="pago-ref" id="lnRef" hidden></p>
       </form>
     </div>
   </section>
@@ -377,7 +396,8 @@
   <section class="cta-final">
     <div class="wrap">
       <h2>¿Prefieres primero hacer una pregunta?</h2>
-      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente. Por WhatsApp suele ser lo más rápido.</p>
+      <p data-si-whatsapp hidden>Si tienes dudas antes de enviar tus datos, escríbeme directamente. Por WhatsApp suele ser lo más rápido.</p>
+      <p data-sin-whatsapp>Si tienes dudas antes de enviar tus datos, escríbeme por el formulario de contacto y te respondo yo mismo.</p>
       <div class="wa-caja" data-whatsapp-label="Preguntar por WhatsApp" hidden></div>
       <p style="margin-top:16px;"><a href="contacto.html">o usa el formulario de contacto →</a></p>
     </div>
@@ -390,12 +410,14 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y credito.html):
      al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
      enviemos por JavaScript, sin necesitar backend propio. -->
 <form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="sr-only" id="lnStaticForm">
+  <input type="text" name="referencia" />
   <input type="hidden" name="form-name" value="listar-negocio" />
   <input name="bot-field" />
   <input type="text" name="nombre" />
@@ -432,6 +454,18 @@
   'use strict';
   const form=document.getElementById('lnForm');
   const status=document.getElementById('lnFormStatus');
+  /* Número de referencia: se genera al enviar, viaja DENTRO del envío y se le
+     muestra a la persona. Es el rastro común que hoy no existe — si mañana hay
+     una discusión, los dos tienen el mismo número. */
+  function mostrarReferencia(cajaId, ref, correo){
+    const c = document.getElementById(cajaId);
+    if(!c) return;
+    c.innerHTML = 'Tu número de referencia:<b>' + ref + '</b>' +
+      'Guárdalo o toma una captura. Cítalo en cualquier mensaje sobre este trámite.' +
+      '<small>Te escribimos a ' + (correo || 'tu correo') + ' con el precio exacto antes de cobrarte nada.</small>';
+    c.hidden = false;
+  }
+
   const submitBtn=document.getElementById('lnSubmitBtn');
   if(!form)return;
 
@@ -554,8 +588,11 @@
       return;
     }
     const correo=form.correo.value.trim();
+    const referencia=(window.ThemoraPago&&window.ThemoraPago.nuevaReferencia)
+      ? window.ThemoraPago.nuevaReferencia() : '';
     const formData=new FormData();
     formData.append('form-name','listar-negocio');
+    formData.append('referencia',referencia);
     formData.append('nombre',form.nombre.value.trim());
     formData.append('correo',correo);
     formData.append('telefono',form.telefono.value.trim());
@@ -600,7 +637,8 @@
     try{
       await submitListing(formData);
       status.className='ln-form-status is-success';
-      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(correo||'tu correo')+' para confirmar el pago y los próximos pasos.';
+      status.textContent='¡Listo! Recibí los datos de tu negocio.';
+      mostrarReferencia('lnRef',referencia,correo);
       form.reset();
       listos.logo=null; listos.foto=null; logoInvalido=false;
       mostrar(logoMsg,''); mostrar(fotoMsg,'');
@@ -619,7 +657,9 @@
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="whatsapp.js"></script>
+<script src="pago.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

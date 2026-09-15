@@ -520,3 +520,154 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
   .links .nav-auth-btn.is-logged-in{margin:14px 0 4px;border-bottom:none}
   .nav-profile-avatar{width:38px;height:38px}
 }
+
+/* Cómo se cobra — se explica antes del formulario, no después. */
+.pago-caja[hidden]{display:none}
+.pago-caja{background:var(--paper-dim);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:12px;padding:24px 26px;margin-bottom:28px}
+.pago-titulo{margin:0 0 14px;font:600 1.12rem 'Fraunces',serif;color:var(--navy-deep)}
+.pago-pasos{margin:0;padding-left:20px;display:grid;gap:9px}
+.pago-pasos li{font-size:.9rem;line-height:1.65;color:var(--muted)}
+.pago-pasos strong{color:var(--ink)}
+.pago-nota{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  font-size:.83rem;line-height:1.65;color:var(--muted)}
+.pago-nota strong{color:var(--navy-deep)}
+.pago-nota a{color:var(--teal);text-decoration:underline}
+/* Número de referencia: el rastro que hoy no existe si hay una discusión. */
+.pago-ref[hidden]{display:none}
+.pago-ref{margin-top:14px;padding:16px 18px;background:var(--navy-deep);color:#fff;
+  border-radius:10px;font-size:.88rem;line-height:1.6}
+.pago-ref b{display:block;font:700 1.35rem/1.2 'Fraunces',serif;color:var(--gold-light);
+  letter-spacing:.06em;margin:6px 0 8px;user-select:all}
+.pago-ref small{display:block;color:rgba(255,255,255,.66);font-size:.78rem;margin-top:6px}
+
+/* Los documentos van cerrados por defecto: pedirle la licencia y el EIN a
+   alguien que todavía no sabe el precio es pedirle demasiado, y deja a Themora
+   guardando papeles de alguien con quien no hay relación todavía. */
+.ln-docs-opcional{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.ln-docs-opcional > summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:.88rem;
+  color:var(--navy-deep);list-style:none;display:flex;align-items:center;gap:8px}
+.ln-docs-opcional > summary::-webkit-details-marker{display:none}
+.ln-docs-opcional > summary::before{content:'+';font:700 1.1rem 'Fraunces',serif;color:var(--gold);width:16px}
+.ln-docs-opcional[open] > summary::before{content:'−'}
+.ln-docs-opcional > summary span{font-weight:400;color:var(--muted);font-size:.82rem}
+.ln-docs-aviso{margin:0 16px 14px;padding:12px 14px;background:var(--paper-dim);border-radius:8px;
+  font-size:.8rem;line-height:1.6;color:var(--muted)}
+.ln-docs-opcional .ln-verif-part,.ln-docs-opcional .ln-radio-group,
+.ln-docs-opcional .ln-doc-grid,.ln-docs-opcional .form-group{margin-inline:16px}
+.ln-docs-opcional > *:last-child{margin-bottom:16px}
+
+/* =========================================================================
+   REVISIÓN DE SEPTIEMBRE — precio visible, identidad legal y avisos de envío
+   ========================================================================= */
+
+/* --- Precio en las tarjetas de la portada -------------------------------
+   El precio va antes del "Ver cómo funciona", con peso propio: quien no
+   puede pagarlo se entera aquí y no después de leer la página entera. */
+.negocio-precio{display:inline-block;margin-top:14px;font:800 .92rem 'Public Sans',sans-serif;
+  color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:5px 13px;align-self:flex-start}
+.negocio-precio[hidden]{display:none}
+
+/* --- Precio en el héroe de cada servicio -------------------------------- */
+.hero-precio{margin-top:18px;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.9);
+  border-left:3px solid var(--gold);padding-left:14px;max-width:560px}
+.hero-precio b{color:#fff;font-weight:800}
+.hero-precio[hidden]{display:none}
+
+/* --- Precios en Términos ------------------------------------------------ */
+.tm-precios b{color:var(--navy-deep)}
+
+/* --- Identidad legal ---------------------------------------------------- */
+.tm-identidad{background:var(--paper-dim);border:1px solid var(--line);border-radius:12px;
+  padding:18px 22px;margin:16px 0;line-height:1.7;font-size:.95rem}
+.tm-identidad strong{color:var(--navy-deep)}
+.tm-identidad[hidden]{display:none}
+.tm-identidad-falta[hidden]{display:none}
+.footer-legal{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);
+  font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.6)}
+.footer-legal a{color:rgba(255,255,255,.78)}
+.footer-legal[hidden]{display:none}
+
+/* --- Aviso de envío: la misma etiqueta en todas las herramientas ---------
+   Dos estados y dos colores, siempre en el mismo sitio (pegado al botón que
+   elige el archivo). La persona aprende a leer la etiqueta de un vistazo:
+   verde = no sale de aquí, ámbar = sí sale. Un párrafo largo tres pantallas
+   antes no consigue eso. */
+.aviso-envio{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;
+  background:rgba(184,134,48,.08);border:1px solid rgba(184,134,48,.3);
+  border-radius:12px;padding:16px 18px;margin:0 0 16px}
+.aviso-envio-local{background:rgba(74,124,89,.08);border-color:rgba(74,124,89,.32)}
+.aviso-envio-etiqueta{flex:0 0 auto;display:inline-block;font:800 .66rem 'Public Sans',sans-serif;
+  text-transform:uppercase;letter-spacing:.08em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.aviso-envio-sale{background:#8a5a12;color:#fff}
+.aviso-envio-queda{background:var(--good,#4a7c59);color:#fff}
+.aviso-envio-cuerpo{flex:1;min-width:220px}
+.aviso-envio-cuerpo p{margin:0 0 7px;font-size:.85rem;line-height:1.62;color:var(--ink)}
+.aviso-envio-cuerpo p:last-child{margin-bottom:0;color:var(--muted)}
+.aviso-envio-cuerpo b,.aviso-envio-cuerpo strong{color:var(--navy-deep)}
+.aviso-envio-cuerpo a{color:var(--teal);text-decoration:underline}
+
+/* El aviso dentro de un bloque oscuro (contrato del dealer) */
+.ct-foto .aviso-envio{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo p{color:rgba(255,255,255,.84)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo p:last-child{color:rgba(255,255,255,.62)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo b,
+.ct-foto .aviso-envio .aviso-envio-cuerpo strong{color:#fff}
+.ct-foto .aviso-envio .aviso-envio-cuerpo a{color:var(--gold-light)}
+
+/* --- Contacto: el aviso antes del formulario ---------------------------- */
+.ct-aviso-previo{background:var(--paper-dim);border-left:3px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:16px 20px;margin:0 0 22px}
+.ct-aviso-previo>strong{display:block;font:700 .95rem 'Public Sans',sans-serif;
+  color:var(--navy-deep);margin-bottom:9px}
+.ct-aviso-previo ul{margin:0;padding-left:18px;display:grid;gap:7px}
+.ct-aviso-previo li{font-size:.86rem;line-height:1.6;color:var(--ink)}
+.ct-aviso-previo li b{color:var(--navy-deep)}
+.ct-aviso-limite{margin:12px 0 0;padding-top:11px;border-top:1px solid var(--line);
+  font-size:.81rem;line-height:1.6;color:var(--muted)}
+.ct-aviso-limite a{color:var(--teal);text-decoration:underline}
+.ct-tema-nota{display:block;margin-top:6px;font-size:.76rem;color:var(--muted);line-height:1.5}
+
+/* --- Tabla de plazos en Privacidad --------------------------------------
+   Cinco columnas no caben en un teléfono: se desplaza sola en su propia
+   caja en vez de reventar el ancho de la página. */
+.legal-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+.legal-table-plazos{margin:0;min-width:640px;font-size:.84rem}
+.legal-table-plazos td{padding:11px 14px 11px 0}
+.legal-table-plazos td:first-child{white-space:normal;min-width:150px}
+.legal-table-plazos td strong{color:var(--navy-deep)}
+
+/* --- Resumen de privacidad de una pantalla ------------------------------ */
+.priv-resumen{background:var(--navy-deep);border-radius:16px;padding:26px 28px;margin:30px 0 8px;color:#fff}
+.priv-resumen h2{margin:0 0 4px;font:600 1.24rem 'Fraunces',serif;color:#fff}
+.priv-resumen>p{margin:0 0 18px;font-size:.86rem;color:rgba(255,255,255,.66)}
+.priv-resumen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.priv-resumen-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:11px;padding:15px 17px}
+.priv-resumen-item strong{display:block;font:700 .84rem 'Public Sans',sans-serif;color:#fff;margin-bottom:5px}
+.priv-resumen-item span{display:block;font-size:.81rem;line-height:1.6;color:rgba(255,255,255,.74)}
+.priv-resumen-item a{color:var(--gold-light);text-decoration:underline}
+.priv-resumen-pie{margin:18px 0 0;font-size:.83rem;line-height:1.65;color:rgba(255,255,255,.74)}
+.priv-resumen-pie a{color:var(--gold-light);text-decoration:underline}
+
+@media (max-width:640px){
+  .priv-resumen-grid{grid-template-columns:1fr}
+  .priv-resumen{padding:22px 20px}
+  .aviso-envio{flex-direction:column;gap:10px}
+}
+
+/* --- Informe de Raquel: quién cobra, dentro del bloque de pago --------- */
+.pago-quien{margin:14px 0 0;padding:12px 15px;border-radius:9px;
+  background:rgba(184,134,48,.1);border:1px solid rgba(184,134,48,.28);
+  font-size:.84rem;line-height:1.6;color:var(--ink)}
+.pago-quien b,.pago-quien strong{color:var(--navy-deep)}
+.pago-quien a{color:var(--teal);text-decoration:underline}
+
+/* --- Aviso de suplantación en formar-negocio -------------------------- */
+.fn-suplantacion{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
+  font-size:.84rem;line-height:1.62}
+.fn-suplantacion a{color:var(--teal);text-decoration:underline}
+
+/* --- Textos que dependen de si hay WhatsApp configurado --------------- */
+[data-si-whatsapp][hidden],[data-sin-whatsapp][hidden]{display:none!important}

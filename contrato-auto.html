@@ -228,6 +228,18 @@
             <p>Un contrato de dealer casi nunca cabe en una hoja: el precio está en una página, la tasa en otra y los productos agregados casi siempre en una aparte. <strong>Súbelas todas juntas</strong> — hasta 8 — o el PDF completo, y llenamos el formulario por ti.</p>
             <p><strong>Después tú revisas cada número contra tu papel</strong> antes de que se calcule nada. Nunca confíes en que una máquina leyó bien una cifra de miles de dólares.</p>
           </div>
+          <!-- El aviso de qué pasa con el documento va AQUÍ, pegado al botón
+               que lo elige, no al principio de la página donde nadie lo asocia
+               con el momento de subirlo. Un contrato de dealer trae nombre,
+               dirección, ingresos y a veces el número de licencia: quien lo
+               sube merece saber a dónde va antes de elegirlo, no después. -->
+          <div class="aviso-envio">
+            <span class="aviso-envio-etiqueta aviso-envio-sale">Se envía cifrado</span>
+            <div class="aviso-envio-cuerpo">
+              <p><strong>Qué pasa con tus páginas si aprietas "Leer estas páginas":</strong> salen de tu dispositivo cifradas hacia <b>Anthropic</b>, que es quien las lee, solo para sacar los números y llenar el formulario. <b>No se guarda copia</b> — ni ahí ni aquí — y nadie de Themora las ve.</p>
+              <p>Si prefieres que no salga nada, <a href="#ctForm">escribe los números a mano</a>: el cálculo es exactamente el mismo. Elegir el archivo todavía no envía nada; el envío ocurre cuando aprietas el botón dorado.</p>
+            </div>
+          </div>
           <div class="ct-actions">
             <label class="btn btn-outline" for="ctFotoInput">Subir las páginas del contrato</label>
             <input type="file" id="ctFotoInput" accept="image/*,application/pdf" multiple hidden>
@@ -434,7 +446,7 @@
         <h2>Dudas comunes</h2>
         <div class="qa-list">
           <div class="qa-item"><h3><span class="q-mark">?</span>¿Me pueden obligar a comprar la garantía o el GAP?</h3><p>Lo que sí puedes hacer siempre es <strong>preguntar</strong>: cuáles son opcionales, cuáles exige el prestamista por escrito, y cuáles puedes comprar por separado más barato. Las reglas cambian según el estado, el prestamista, el vehículo y el tipo de operación, así que no te podemos decir qué aplica a tu caso — pero sí que tienes derecho a que te lo respondan antes de firmar.</p></div>
-          <div class="qa-item"><h3><span class="q-mark">?</span>Ya firmé. ¿Puedo arrepentirme?</h3><p>Aquí hay que tener cuidado con un mito muy común: <strong>no existe una regla federal de “tres días para devolver el carro”.</strong> Esa idea viene de otra ley, la de ventas a domicilio, y no cubre la compra de un vehículo en un concesionario. Algunas cosas se pueden cancelar después —ciertas garantías extendidas y pólizas de GAP se cancelan con reembolso proporcional— pero eso depende del contrato que firmaste. Léelo, y si no lo entiendes, <a href="cartas-claras.html">súbelo a Cartas Claras</a>.</p></div>
+          <div class="qa-item"><h3><span class="q-mark">?</span>Ya firmé. ¿Puedo arrepentirme?</h3><p>Aquí hay que tener cuidado con un mito muy común: <strong>no existe una regla federal de “tres días para devolver el carro”.</strong> Esa idea viene de otra regla distinta, la <a href="https://consumer.ftc.gov/articles/buyers-remorse-ftcs-cooling-rule-may-help" target="_blank" rel="noopener">Cooling-Off Rule de la FTC</a>, que solo cubre ventas hechas <strong>fuera del local del vendedor</strong> —en tu casa, en tu trabajo— y que además <strong>excluye expresamente los vehículos</strong> vendidos en lugares temporales cuando el vendedor tiene un local fijo. Una compra en el lote del dealer no entra por ninguna de las dos puertas.</p><p><strong>Tu estado puede ser distinto, y esto cambia por estado.</strong> California, por ejemplo, obliga al dealer a <em>ofrecerte</em> un contrato de cancelación de dos días en autos usados por debajo de cierto precio — pero <strong>ese contrato se compra aparte, no es gratis</strong>, y sin comprarlo no hay periodo de arrepentimiento (<a href="https://www.dmv.ca.gov/portal/car-buyers-bill-of-rights-ffvr-35/" target="_blank" rel="noopener">DMV de California</a>; a partir del 1 de octubre de 2026 el límite sube y el plazo pasa a tres días). Busca la regla de tu estado por el nombre de tu estado más “<em>attorney general auto purchase</em>”, o pregúntanos. Algunas cosas se pueden cancelar después —ciertas garantías extendidas y pólizas de GAP se cancelan con reembolso proporcional— pero eso depende del contrato que firmaste. Léelo, y si no lo entiendes, <a href="cartas-claras.html">súbelo a Cartas Claras</a>.</p></div>
           <div class="qa-item"><h3><span class="q-mark">?</span>Me dejaron llevarme el carro y días después me llamaron para refirmar</h3><p>Eso tiene nombre: <em>spot delivery</em> o financiamiento “yo-yo”. Te entregan el carro antes de que el financiamiento esté cerrado y luego te llaman diciendo que no se aprobó y hay que firmar otra vez, casi siempre con peores condiciones. Antes de firmar de nuevo, pide el contrato nuevo por escrito, compáralo con el primero y consulta con alguien. <strong>El contrato original no desaparece porque ellos lo digan.</strong></p></div>
           <div class="qa-item"><h3><span class="q-mark">?</span>¿Por qué el plazo largo me sale más caro si el pago es más bajo?</h3><p>Porque pagas intereses durante más tiempo. Un plazo de 84 meses baja el pago mensual y sube el total, y además te deja muchos meses debiendo más de lo que el carro vale. Esa es precisamente la situación que después te obliga a comprar GAP.</p></div>
           <div class="qa-item"><h3><span class="q-mark">?</span>¿Guardan mi contrato?</h3><p>No lo guardamos, pero hay que separar dos caminos y decirlo claro.</p><p><strong>Si escribes los números a mano:</strong> nada sale de tu dispositivo. Todas las cuentas se hacen dentro de tu teléfono o computadora, y al cerrar la página no queda nada.</p><p><strong>Si subes fotos del contrato:</strong> esas imágenes <strong>sí salen de tu dispositivo</strong>. Viajan cifradas a nuestro servidor y de ahí al proveedor de inteligencia artificial que las lee. No las almacenamos ni las usamos para nada más, pero sería falso decirte que no salen. Por eso ese camino es opcional: la calculadora funciona completa sin subir ninguna foto. Los detalles están en nuestra <a href="privacidad.html">política de privacidad</a>.</p></div>
@@ -446,7 +458,7 @@
 
   <footer>
     <div class="wrap revision-legal">
-      <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-13">13 de septiembre de 2026</time>, contrastando Regulation Z (TILA) y la CARS Rule, anulada por el Quinto Circuito en enero de 2025.
+      <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-13">13 de septiembre de 2026</time>, contrastando <a href="https://www.ecfr.gov/current/title-12/chapter-X/part-1026" target="_blank" rel="noopener">Regulation Z (TILA)</a> y la CARS Rule, que el Quinto Circuito <strong>anuló</strong> el 27 de enero de 2025 — <a href="https://www.ca5.uscourts.gov/opinions/pub/24/24-60013-CV0.pdf" target="_blank" rel="noopener">sentencia completa, caso No. 24-60013 (PDF)</a>. Por eso esta página no cita esa regla como si estuviera vigente.
       Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
     </div>
     <div class="wrap footer-inner">
@@ -454,6 +466,7 @@
       <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
       <span><a href="comprar-casa.html">Compra de casa</a> · <a href="comprar-auto.html">Compra de auto</a></span>
     </div>
+  <div class="wrap footer-legal" data-empresa="corta" hidden></div>
   </footer>
 
   <script>
@@ -948,6 +961,7 @@
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="whatsapp.js"></script>
 <script src="analytics.js"></script>
 </body>

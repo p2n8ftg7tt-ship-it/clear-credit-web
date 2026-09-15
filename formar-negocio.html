@@ -162,6 +162,9 @@
            Assistant ante el condado y constituir una fianza. Prometer
            cobertura nacional sin cumplir eso es un riesgo real, así que la
            página ahora dice lo que de verdad se puede sostener. -->
+      <!-- El precio arriba, no al final. Quien no puede pagarlo se entera en
+           tres segundos en vez de leer la página entera para descubrirlo. -->
+      <p class="hero-precio">Cuesta <b data-precio-de="formar" hidden></b>. No se cobra nada hasta que te confirmemos por escrito que podemos hacerlo en tu estado y tú digas que sí.</p>
       <p class="fn-guia-libre"><a href="#pasos-llc">¿Prefieres hacerlo tú mismo? Aquí están los pasos completos, gratis →</a></p>
     </div>
   </section>
@@ -195,7 +198,7 @@
         <li class="fn-step">
           <div>
             <h3>Confirmamos el pago y los datos</h3>
-            <p>Te contactamos para confirmar el pago y para pedirte, de forma privada (nunca por este formulario), cualquier dato sensible que haga falta — como el número de seguro social del dueño para el EIN.</p>
+            <p>Te escribimos para confirmar el precio exacto y lo que hace falta. <strong>Tu número de seguro social o ITIN no nos lo das a nosotros ni aquí ni por ningún otro canal:</strong> el IRS lo pide al final del trámite del EIN y <strong>lo escribes tú mismo</strong> en la página del IRS, con nosotros acompañándote por teléfono si quieres. Así ese número no pasa por nuestras manos, no se guarda en ningún lado nuestro, y no hay nada que se nos pueda perder.</p>
           </div>
         </li>
         <li class="fn-step">
@@ -245,8 +248,9 @@
 
       <div class="fn-trust">
         <div>
-          <strong>Nunca pedimos tu número de seguro social por este formulario</strong>
-          <p>El formulario de esta página solo pide datos generales del negocio. Si tu trámite requiere tu número de seguro social o ITIN (por ejemplo, para el EIN), te lo pedimos después, de forma privada y directa — nunca por un formulario público del sitio.</p>
+          <strong>Nunca te pedimos tu número de seguro social. Nunca, por ningún canal.</strong>
+          <p>Ni en este formulario, ni por WhatsApp, ni por correo, ni por teléfono. Si tu trámite del EIN necesita tu seguro social o tu ITIN, <strong>lo escribes tú directamente en el sitio del IRS</strong> — nosotros te acompañamos en la pantalla, pero el número nunca pasa por nosotros. Esto no es solo una política: es que no queremos tenerlo. Un número que no guardamos es un número que no se nos puede perder.</p>
+          <p class="fn-suplantacion"><strong>Por eso, esta regla te sirve siempre:</strong> si alguien te escribe diciendo que es de Themora y te pide tu seguro social, <strong>no es Themora</strong>, por muy parecido que se vea el mensaje. No hay excepción, no hay "solo esta vez" y no hay ningún trámite que lo justifique. Cuelga o no respondas, y <a href="contacto.html">avísanos por la página de Contacto</a>.</p>
         </div>
       </div>
     </div>
@@ -367,7 +371,7 @@
             <p>En Virginia son $100 — se la pagas directo al estado o te la cobramos junto con nuestra tarifa, como prefieras. En otros estados puede variar; te lo confirmamos antes de empezar.</p>
           </div>
         </div>
-        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);">El EIN en sí siempre es gratis con el IRS — nuestra tarifa es solo por el trabajo de hacer el trámite por ti. Este es un precio de lanzamiento; llena el formulario y te confirmamos el total exacto antes de cobrarte nada.</p>
+        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);"><strong>Honorarios en dólares estadounidenses (USD).</strong> El EIN en sí siempre es gratis con el IRS: nuestra tarifa es solo por el trabajo de hacer el trámite por ti.<br><br><strong>Qué NO incluye:</strong> la cuota que cobra tu estado (en Virginia son $100 USD, que se pagan al estado, no a nosotros), la cuota anual de mantenimiento ($50 USD al año en Virginia), el servicio de agente registrado si decides contratar uno, y las licencias o permisos que pida tu ciudad o condado. De todo eso te decimos el costo antes, pero no va dentro de esta tarifa.<br><br>Es un precio de lanzamiento. <strong>El precio que te confirmemos por escrito es el que se respeta hasta terminar tu trámite</strong>, aunque el de la página suba después.</p>
       </div>
     </div>
   </section>
@@ -377,8 +381,10 @@
       <div class="section-head">
         <span class="eyebrow-dark">Empecemos</span>
         <h2>Cuéntame de tu negocio</h2>
-        <p>Con esto es suficiente para empezar — nada de números de seguro social ni información sensible por aquí.</p>
+        <p><strong>Solo cuatro cosas son obligatorias:</strong> tu nombre, tu correo, el estado y el nombre que quieres para la empresa. Con eso te puedo decir si el nombre está libre, si se puede hacer en tu estado y cuánto cuesta en total. Lo demás es opcional ahora.</p>
       </div>
+
+      <div class="pago-caja" data-precio-de="formar" hidden></div>
 
       <form id="fnForm" novalidate>
         <div class="fn-form-grid">
@@ -391,8 +397,8 @@
             <input type="email" id="fnCorreo" name="correo" required>
           </div>
           <div class="form-group">
-            <label for="fnTelefono">Tu teléfono</label>
-            <input type="tel" id="fnTelefono" name="telefono" required>
+            <label for="fnTelefono">Tu teléfono <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="tel" id="fnTelefono" name="telefono">
           </div>
           <div class="form-group">
             <label for="fnEstado">¿En qué estado será tu negocio?</label>
@@ -403,8 +409,8 @@
             <input type="text" id="fnNegocioNombre" name="negocio_nombre" placeholder="Ej: Hernández Construcción LLC" required>
           </div>
           <div class="form-group">
-            <label for="fnGiro">¿A qué se va a dedicar el negocio?</label>
-            <input type="text" id="fnGiro" name="giro" placeholder="Ej: construcción, limpieza, comida" required>
+            <label for="fnGiro">¿A qué se va a dedicar el negocio? <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="text" id="fnGiro" name="giro" placeholder="Ej: construcción, limpieza, comida">
           </div>
           <div class="form-group">
             <label for="fnDuenos">¿Cuántos dueños tendrá?</label>
@@ -415,8 +421,8 @@
             </select>
           </div>
           <div class="form-group full">
-            <label for="fnDescripcion">Cuéntanos un poco más de tu idea de negocio</label>
-            <textarea id="fnDescripcion" name="descripcion" rows="3" required></textarea>
+            <label for="fnDescripcion">Cuéntanos un poco más de tu idea de negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <textarea id="fnDescripcion" name="descripcion" rows="3"></textarea>
           </div>
           <div class="form-group full">
             <label for="fnMensaje">Mensaje adicional (opcional)</label>
@@ -424,8 +430,9 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-gold" id="fnSubmitBtn" data-umami-event="formar-negocio-enviar">Enviar mis datos</button>
+        <button type="submit" class="btn btn-gold" id="fnSubmitBtn" data-umami-event="formar-negocio-enviar">Pedir mi presupuesto</button>
         <p class="fn-form-status" id="fnFormStatus" role="status"></p>
+        <p class="pago-ref" id="fnRef" hidden></p>
       </form>
     </div>
   </section>
@@ -433,7 +440,8 @@
   <section class="cta-final">
     <div class="wrap">
       <h2>¿Prefieres primero hacer una pregunta?</h2>
-      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente. Por WhatsApp suele ser lo más rápido.</p>
+      <p data-si-whatsapp hidden>Si tienes dudas antes de enviar tus datos, escríbeme directamente. Por WhatsApp suele ser lo más rápido.</p>
+      <p data-sin-whatsapp>Si tienes dudas antes de enviar tus datos, escríbeme por el formulario de contacto y te respondo yo mismo.</p>
       <div class="wa-caja" data-whatsapp-label="Preguntar por WhatsApp" hidden></div>
       <p style="margin-top:16px;"><a href="contacto.html">o usa el formulario de contacto →</a></p>
     </div>
@@ -450,6 +458,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y listar-negocio.html):
@@ -457,6 +466,7 @@
      enviemos por JavaScript, sin necesitar backend propio. A propósito NO incluye ningún
      campo sensible (seguro social, ITIN, etc.) -- ese dato se pide después, en privado. -->
 <form name="formar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="fnStaticForm">
+  <input type="text" name="referencia" />
   <input type="hidden" name="form-name" value="formar-negocio" />
   <input name="bot-field" />
   <input type="text" name="nombre" />
@@ -483,6 +493,18 @@
   'use strict';
   const form=document.getElementById('fnForm');
   const status=document.getElementById('fnFormStatus');
+  /* Número de referencia: se genera al enviar, viaja DENTRO del envío y se le
+     muestra a la persona. Es el rastro común que hoy no existe — si mañana hay
+     una discusión, los dos tienen el mismo número. */
+  function mostrarReferencia(cajaId, ref, correo){
+    const c = document.getElementById(cajaId);
+    if(!c) return;
+    c.innerHTML = 'Tu número de referencia:<b>' + ref + '</b>' +
+      'Guárdalo o toma una captura. Cítalo en cualquier mensaje sobre este trámite.' +
+      '<small>Te escribimos a ' + (correo || 'tu correo') + ' con el precio exacto antes de cobrarte nada.</small>';
+    c.hidden = false;
+  }
+
   const submitBtn=document.getElementById('fnSubmitBtn');
   if(!form)return;
 
@@ -498,7 +520,10 @@
       form.reportValidity();
       return;
     }
+    const referencia=(window.ThemoraPago&&window.ThemoraPago.nuevaReferencia)
+      ? window.ThemoraPago.nuevaReferencia() : '';
     const data={
+      referencia:referencia,
       nombre:form.nombre.value.trim(),
       correo:form.correo.value.trim(),
       telefono:form.telefono.value.trim(),
@@ -517,7 +542,8 @@
     try{
       await submitFormation(data);
       status.className='fn-form-status is-success';
-      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(data.correo||'tu correo')+' para confirmar el pago, el estado exacto de tu trámite y los próximos pasos.';
+      status.textContent='¡Listo! Recibí los datos de tu negocio.';
+      mostrarReferencia('fnRef',referencia,data.correo);
       form.reset();
     }catch(error){
       status.className='fn-form-status is-error';
@@ -534,7 +560,9 @@
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="whatsapp.js"></script>
+<script src="pago.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

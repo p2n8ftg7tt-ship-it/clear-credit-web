@@ -457,7 +457,7 @@
     },
 
     // Borra todo lo que el cliente guardó (análisis, cálculos y preferencias).
-    // No elimina la cuenta de acceso en sí (eso requiere confirmación manual del equipo).
+    // No elimina la cuenta de acceso en sí — para eso está eliminarCuenta().
     async deleteAllMyData() {
       if (!currentUser) throw new Error("Debes iniciar sesión.");
       const uid = currentUser.id;
@@ -468,6 +468,47 @@
       ]);
       const failed = results.find((r) => r.status === "rejected" || (r.value && r.value.error));
       if (failed) throw (failed.reason || (failed.value && failed.value.error));
+    },
+
+    /* Borra la cuenta de acceso (correo y contraseña), no solo los datos.
+       El navegador NO puede hacerlo: solo la API de administrador de
+       Supabase puede, y esa llave nunca puede vivir aquí. Por eso llama a
+       la función del servidor, que verifica el token y borra a ESE usuario
+       — el id sale de la verificación, nunca del cliente.
+
+       Devuelve:
+         { ok: true }            → la cuenta ya no existe
+         { noConfigurado: true } → falta la llave en Netlify; quien llama
+                                   debe caer al camino manual, y sobre todo
+                                   NO debe decirle a la persona que se borró.
+       Lanza error si algo falla de verdad. */
+    async eliminarCuenta(confirmacion) {
+      if (!currentUser) throw new Error("Debes iniciar sesión.");
+      const token = currentSession && currentSession.access_token;
+      if (!token) throw new Error("Tu sesión venció. Vuelve a entrar e inténtalo otra vez.");
+
+      let res;
+      try {
+        res = await fetch("/.netlify/functions/eliminar-cuenta", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken: token, confirmacion: confirmacion }),
+        });
+      } catch (err) {
+        // Sin red, o la función no existe (sitio servido fuera de Netlify).
+        // No es lo mismo que "se borró", así que se dice tal cual.
+        return { noConfigurado: true };
+      }
+
+      let data = {};
+      try { data = await res.json(); } catch (err) { data = {}; }
+
+      if (res.status === 503 || data.noConfigurado) return { noConfigurado: true };
+      if (!res.ok) throw new Error(data.error || "No pudimos completar el borrado.");
+
+      // La cuenta ya no existe: la sesión que quede en este navegador es un fantasma.
+      try { await client.auth.signOut(); } catch (err) { /* el usuario ya no está */ }
+      return { ok: true };
     },
   };
 

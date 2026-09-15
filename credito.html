@@ -392,7 +392,17 @@
       </div>
 
       <div class="cr-upload-card">
-        <div class="cr-privacy">● Procesamiento local · El documento no se almacena</div>
+        <!-- Misma etiqueta y mismo lugar que en Cartas Claras y en el contrato
+             del dealer, pero con el color contrario. Que la persona reconozca
+             de un vistazo cuál de las dos cosas está pasando importa más que
+             cualquier párrafo: aquí NO sale nada, allá SÍ sale. -->
+        <div class="aviso-envio aviso-envio-local">
+          <span class="aviso-envio-etiqueta aviso-envio-queda">Se queda en tu dispositivo</span>
+          <div class="aviso-envio-cuerpo">
+            <p><strong>Este archivo no se sube a ningún lado.</strong> El programa que lo lee corre dentro de tu propio navegador. No lo recibimos, no lo vemos y no podríamos recuperarlo aunque quisiéramos.</p>
+            <p>Compruébalo tú: pon el teléfono en modo avión y úsalo igual. Si se estuviera enviando, sin internet no funcionaría.</p>
+          </div>
+        </div>
         <div class="cr-dropzone" id="crDropzone" role="button" tabindex="0" aria-label="Seleccionar documento para evaluar">
           <input id="crFileInput" class="cr-file-input" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
           <div class="cr-upload-empty" id="crUploadEmpty">
@@ -795,6 +805,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 
@@ -1642,6 +1653,7 @@
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>
