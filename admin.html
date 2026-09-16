@@ -164,6 +164,54 @@
         <div id="priceRows"></div>
       </div>
 
+      <!-- Cobrar con tarjeta. Crea la factura EN BORRADOR en Stripe: se revisa
+           y se manda desde Stripe, nunca desde aquí. El importe no sale de este
+           formulario — sale del catálogo del servidor, para que un error de
+           tecleo no pueda crear una factura absurda. -->
+      <div class="admin-factura" id="facturaPanel">
+        <div class="admin-table-head">
+          <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Cobrar con tarjeta</h2>
+          <span style="font-size:.78rem;color:var(--muted);">Crea el borrador en Stripe. Tú lo revisas y lo mandas desde ahí.</span>
+        </div>
+
+        <div class="admin-factura-grid">
+          <div class="form-group">
+            <label for="facCorreo">Correo del cliente</label>
+            <input type="email" id="facCorreo" placeholder="cliente@ejemplo.com" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="facNombre">Nombre <span style="font-weight:400;color:var(--muted);">(opcional)</span></label>
+            <input type="text" id="facNombre" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="facServicio">Servicio</label>
+            <select id="facServicio">
+              <option value="listar">Ficha en los dos mapas — $49.99</option>
+              <option value="formar">LLC y EIN — $149.00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="facReferencia">Referencia del formulario</label>
+            <input type="text" id="facReferencia" placeholder="TH-260915-NVWL" autocomplete="off" style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label for="facTasas">Tasas oficiales <span style="font-weight:400;color:var(--muted);">(dólares, si aplican)</span></label>
+            <input type="number" id="facTasas" min="0" step="0.01" placeholder="100.00">
+          </div>
+          <div class="form-group">
+            <label for="facTasasConcepto">De qué son esas tasas</label>
+            <input type="text" id="facTasasConcepto" placeholder="Cuota de formación de Virginia" autocomplete="off">
+          </div>
+        </div>
+
+        <p class="admin-factura-nota">Las tasas oficiales van en una línea aparte de la factura, para que el cliente vea claramente qué es trabajo tuyo y qué cobra el gobierno.</p>
+
+        <div class="admin-factura-acciones">
+          <button type="button" class="btn btn-gold" id="facCrearBtn">Crear borrador en Stripe</button>
+          <span class="admin-factura-estado" id="facEstado" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+
       <div class="admin-table-head">
         <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Clientes</h2>
         <input type="search" class="admin-search" id="clientSearch" placeholder="Buscar por correo, nombre o teléfono…">
@@ -564,6 +612,73 @@
       applyPreview(f.key, 'color', f.default);
     });
   });
+
+  /* ---------- Cobrar con tarjeta: crear el borrador en Stripe ----------
+     El importe NO se manda desde aquí. Este panel solo dice qué servicio es;
+     el precio lo pone el servidor. Lo único que viaja como número son las
+     tasas oficiales, y allá se validan con tope. */
+  (function facturas(){
+    const panel = $('facturaPanel');
+    if(!panel) return;
+    const estado = $('facEstado');
+    const btn = $('facCrearBtn');
+
+    function decir(texto, tipo){
+      estado.textContent = texto;
+      estado.className = 'admin-factura-estado' + (tipo ? ' is-' + tipo : '');
+    }
+
+    btn.addEventListener('click', async ()=>{
+      const correo = $('facCorreo').value.trim();
+      const referencia = $('facReferencia').value.trim().toUpperCase();
+      const tasasDolares = parseFloat($('facTasas').value || '0') || 0;
+      const tasasConcepto = $('facTasasConcepto').value.trim();
+
+      if(!correo){ decir('Falta el correo del cliente.', 'error'); return; }
+      if(referencia && !/^TH-\d{6}-[A-Z2-9]{4}$/.test(referencia)){
+        decir('La referencia debe verse así: TH-260915-NVWL', 'error'); return;
+      }
+      if(tasasDolares > 0 && !tasasConcepto){
+        decir('Di de qué son las tasas — el cliente tiene que poder leerlo en la factura.', 'error'); return;
+      }
+
+      btn.disabled = true;
+      decir('Creando el borrador en Stripe…', 'loading');
+
+      try{
+        const res = await fetch('/.netlify/functions/crear-factura', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            accessToken: window.CCAuth.getAccessToken(),
+            correo,
+            nombre: $('facNombre').value.trim(),
+            servicio: $('facServicio').value,
+            referencia,
+            tasasCentavos: Math.round(tasasDolares * 100),
+            tasasConcepto
+          })
+        });
+        const datos = await res.json().catch(()=>({}));
+
+        if(res.status === 503 || datos.noConfigurado){
+          decir('Stripe todavía no está configurado. Pon STRIPE_SECRET_KEY en Netlify — mira INSTRUCCIONES-PAGOS.md.', 'error');
+          return;
+        }
+        if(!res.ok){ decir(datos.error || 'No se pudo crear la factura.', 'error'); return; }
+
+        const total = (datos.totalCentavos/100).toFixed(2);
+        estado.className = 'admin-factura-estado is-ok';
+        estado.innerHTML = 'Borrador creado por <b>$' + total + ' USD</b>. ' +
+          '<a href="' + datos.panel + '" target="_blank" rel="noopener">Ábrelo en Stripe</a>, ' +
+          'revísalo y mándalo desde ahí. <b>Todavía no le ha llegado nada al cliente.</b>';
+      }catch(err){
+        decir('No se pudo hablar con el servidor: ' + (err.message || 'error de red'), 'error');
+      }finally{
+        btn.disabled = false;
+      }
+    });
+  })();
 
   $('adminRetryBtn').addEventListener('click', loadAdminData);
   $('adminSignOutBtn').addEventListener('click', async ()=>{

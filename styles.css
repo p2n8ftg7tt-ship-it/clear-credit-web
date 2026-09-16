@@ -671,3 +671,48 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 
 /* --- Textos que dependen de si hay WhatsApp configurado --------------- */
 [data-si-whatsapp][hidden],[data-sin-whatsapp][hidden]{display:none!important}
+
+/* =========================================================================
+   COBRO CON TARJETA — comparación honesta de medios y panel de facturas
+   ========================================================================= */
+
+/* --- Las dos opciones, una al lado de la otra -------------------------
+   El color hace el trabajo que el texto solo no alcanza: verde = tu banco
+   te respalda, ámbar = aquí estás confiando en nosotros. Alguien que solo
+   mira por encima se lleva igualmente la información correcta. */
+.pago-opciones{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 0}
+.pago-opcion{border-radius:11px;padding:15px 17px;border:1px solid}
+.pago-opcion-con{background:rgba(74,124,89,.09);border-color:rgba(74,124,89,.34)}
+.pago-opcion-sin{background:rgba(184,134,48,.09);border-color:rgba(184,134,48,.32)}
+.pago-op-etiqueta{display:inline-block;font:800 .6rem 'Public Sans',sans-serif;
+  text-transform:uppercase;letter-spacing:.09em;padding:4px 9px;border-radius:999px;margin-bottom:9px}
+.pago-op-con{background:var(--good,#4a7c59);color:#fff}
+.pago-op-sin{background:#8a5a12;color:#fff}
+.pago-opcion>strong{display:block;font:700 .98rem 'Public Sans',sans-serif;
+  color:var(--navy-deep);margin-bottom:6px}
+.pago-opcion p{margin:0;font-size:.82rem;line-height:1.6;color:var(--ink)}
+.pago-opcion p strong{color:var(--navy-deep)}
+.pago-opcion a{color:var(--teal);text-decoration:underline}
+
+.pago-consejo{margin:13px 0 0;padding:13px 16px;border-left:3px solid var(--gold);
+  background:var(--paper-dim);border-radius:0 10px 10px 0;
+  font-size:.85rem;line-height:1.62;color:var(--ink)}
+.pago-consejo strong{color:var(--navy-deep)}
+
+/* --- Panel de facturas en administración ------------------------------ */
+.admin-factura{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;margin:26px 0}
+.admin-factura-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.admin-factura-nota{margin:4px 0 0;font-size:.78rem;line-height:1.55;color:var(--muted)}
+.admin-factura-acciones{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.admin-factura-acciones .btn{flex:none}
+.admin-factura-estado{font-size:.83rem;line-height:1.55;font-weight:600;flex:1;min-width:220px}
+.admin-factura-estado.is-loading{color:var(--muted)}
+.admin-factura-estado.is-error{color:#8a2b2b}
+.admin-factura-estado.is-ok{color:#1e5b34;font-weight:500}
+.admin-factura-estado a{color:var(--teal);text-decoration:underline;font-weight:700}
+
+@media(max-width:700px){
+  .pago-opciones{grid-template-columns:1fr}
+  .admin-factura-grid{grid-template-columns:1fr}
+}
