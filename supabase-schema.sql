@@ -139,3 +139,27 @@ create policy "sitio-imagenes: solo admin actualiza"
 create policy "sitio-imagenes: solo admin borra"
   on storage.objects for delete
   using (bucket_id = 'sitio-imagenes' and (auth.jwt() -> 'app_metadata' ->> 'is_admin')::boolean is true);
+
+-- =========================================================
+-- Añadido: límite de gasto para la búsqueda automática de
+-- "¿Aparezco?" (netlify/functions/revisar-negocio.js)
+-- Cada consulta a Google Maps cuesta dinero real. Esta tabla
+-- cuenta cuántas búsquedas hizo cada dirección IP por día, para
+-- poder cortar en 5 y que la herramienta siga siendo gratis y
+-- sin cuenta para el visitante normal, sin exponerte a que un
+-- script la use miles de veces.
+-- Solo la llave de servicio (SUPABASE_SERVICE_ROLE_KEY) toca esta
+-- tabla — por eso no lleva políticas públicas de lectura/escritura.
+-- =========================================================
+create table if not exists public.aparezco_contador (
+  ip text not null,
+  dia date not null,
+  veces integer not null default 1,
+  primary key (ip, dia)
+);
+
+alter table public.aparezco_contador enable row level security;
+-- Sin "create policy": con RLS activado y ninguna política, nadie
+-- puede leer ni escribir aquí salvo la llave de servicio, que
+-- siempre pasa por encima de RLS. Es la misma protección que ya
+-- usa contenido_sitio para las escrituras de administrador.

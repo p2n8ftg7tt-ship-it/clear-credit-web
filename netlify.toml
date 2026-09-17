@@ -28,6 +28,12 @@
   force = true
 
 [[redirects]]
+  from = "/INSTRUCCIONES-APARIENCIA.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/INSTRUCCIONES-CUENTAS.md"
   to = "/index.html"
   status = 404

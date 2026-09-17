@@ -98,6 +98,31 @@
   .ap-privacy{display:flex;align-items:flex-start;gap:9px;margin-top:20px;font-size:.82rem;color:var(--muted);line-height:1.58}
   .ap-privacy svg{flex:none;margin-top:2px}
 
+  /* Paso de carga, mientras se consulta Google/Apple/IA */
+  .ap-loading{text-align:center;padding:36px 10px}
+  .ap-spinner{width:34px;height:34px;margin:0 auto 18px;border:3px solid var(--line);border-top-color:var(--teal);border-radius:50%;animation:apSpin .8s linear infinite}
+  @keyframes apSpin{to{transform:rotate(360deg)}}
+  .ap-loading p{color:var(--muted);font-size:.94rem}
+
+  /* Aviso de límite diario (cae a modo manual) */
+  .ap-notice{border:1px solid rgba(184,134,48,.3);background:rgba(184,134,48,.09);border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.86rem;line-height:1.55;color:#8a5a20}
+
+  /* Ficha encontrada: dirección, estrellas, reseñas reales */
+  .ap-found{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:#fff;margin-bottom:20px}
+  .ap-found h3{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--navy-deep);margin:0 0 4px}
+  .ap-found .addr{font-size:.88rem;color:var(--muted);margin:0 0 12px;line-height:1.5}
+  .ap-stars-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+  .ap-stars{color:var(--gold);font-size:1.05rem;letter-spacing:1px}
+  .ap-stars .num{font-weight:800;color:var(--navy-deep);font-size:.98rem;letter-spacing:0}
+  .ap-stars .count{font-size:.84rem;color:var(--muted)}
+  .ap-badge{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:20px;margin-top:6px}
+  .ap-badge.pos-bien{background:rgba(74,124,89,.13);color:var(--good)}
+  .ap-badge.pos-mal{background:rgba(179,64,42,.12);color:#8a2b2b}
+  .ap-quotes{display:grid;gap:8px;margin-top:16px}
+  .ap-quote{border-left:3px solid var(--line);padding:6px 0 6px 12px;font-size:.86rem;line-height:1.55;color:var(--navy-deep);font-style:italic}
+  .ap-quote span{display:block;margin-top:3px;font-style:normal;font-size:.78rem;color:var(--muted)}
+  .ap-found a.maps-link{display:inline-block;margin-top:14px;font-size:.85rem;font-weight:700;color:var(--teal)}
+
   @media print{
     header,footer,.ap-offer,.ap-back,.credit-coach-launcher{display:none!important}
     .ap-card{box-shadow:none;border:0;margin-top:0;background:#fff}
@@ -180,17 +205,26 @@
             <input type="text" id="apGiro" placeholder="comida mexicana" autocomplete="off">
           </div>
 
-          <button type="button" class="btn btn-gold" id="apIr1" style="width:100%;justify-content:center;">Empezar la revisión</button>
+          <button type="button" class="btn btn-gold" id="apIr1" style="width:100%;justify-content:center;">Buscar mi negocio</button>
 
           <div class="ap-privacy">
             <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l5.5 2.4v4c0 3.4-2.3 6.6-5.5 7.6C4.8 14 2.5 10.8 2.5 7.4v-4L8 1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            <span>Esta herramienta no manda nada a internet. Las búsquedas las haces tú, en tu propio teléfono, y las respuestas se quedan en esta pestaña. Si la cierras, se borran.</span>
+            <span>Buscamos tu negocio por ti en Google Maps con estos tres datos — se mandan a Google para eso, y a nadie más. Nada se guarda en tu cuenta. Si además inicias sesión, las sugerencias las escribe una IA leyendo esos mismos resultados.</span>
           </div>
         </div>
 
-        <!-- PASO 2 -->
+        <!-- CARGANDO -->
+        <div class="ap-step" id="pasoCargando">
+          <div class="ap-loading">
+            <div class="ap-spinner" aria-hidden="true"></div>
+            <p id="apCargandoTexto">Buscando tu negocio en Google Maps…</p>
+          </div>
+        </div>
+
+        <!-- PASO 2 (modo manual — se usa si la búsqueda automática no está disponible) -->
         <div class="ap-step" id="paso2">
           <p class="ap-count">Paso 2 de 4</p>
+          <div class="ap-notice" id="apAvisoManual" hidden></div>
           <h2 class="ap-q">Busca tu negocio por su nombre</h2>
           <p class="ap-help">Toca el botón. Se abre en otra pestaña, miras el resultado, y regresas aquí.</p>
 
@@ -255,6 +289,7 @@
         <div class="ap-step" id="pasoResultado">
           <p class="ap-count">Tu resultado</p>
           <div id="apVerdict"></div>
+          <div id="apFound"></div>
           <div class="ap-findings" id="apFindings"></div>
 
           <div class="ap-evidence">
@@ -305,7 +340,7 @@
   // Todo vive en memoria. Si cierras la pestaña, desaparece.
   const datos = { nombre:'', ciudad:'', giro:'', nombreR:null, giroR:null, appleR:null };
 
-  const PASOS = ['paso1','paso2','paso3','paso4','pasoResultado'];
+  const PASOS = ['paso1','pasoCargando','paso2','paso3','paso4','pasoResultado'];
   function mostrar(id){
     PASOS.forEach(p => $(p).classList.toggle('is-on', p === id));
     document.querySelector('.ap-card').scrollIntoView({behavior:'smooth', block:'start'});
@@ -314,14 +349,10 @@
   const stat = (n,d) => { if(window.ThemoraStats) window.ThemoraStats.evento(n,d); };
 
   /* ---- Paso 1 ---- */
-  $('apIr1').addEventListener('click', () => {
-    datos.nombre = $('apNombre').value.trim();
-    datos.ciudad = $('apCiudad').value.trim();
-    datos.giro   = $('apGiro').value.trim();
-
-    if(!datos.nombre){ $('apNombre').focus(); $('apNombre').style.borderColor='#b3402a'; return; }
-    $('apNombre').style.borderColor='';
-
+  // Los enlaces manuales se preparan siempre, aunque la búsqueda automática
+  // funcione: son el plan B si la función de servidor falla, tarda demasiado,
+  // o si GOOGLE_PLACES_API_KEY todavía no está configurada en Netlify.
+  function prepararEnlacesManuales(){
     const q1 = datos.nombre + (datos.ciudad ? ' ' + datos.ciudad : '');
     const q2 = (datos.giro || datos.nombre) + (datos.ciudad ? ' en ' + datos.ciudad : ' cerca de mí');
 
@@ -333,9 +364,54 @@
 
     $('apTextoApple').textContent = q1;
     $('apLinkApple').href = 'https://maps.apple.com/?q=' + encodeURIComponent(q1);
+  }
+
+  function irAModoManual(mensaje){
+    prepararEnlacesManuales();
+    const aviso = $('apAvisoManual');
+    if(mensaje){ aviso.textContent = mensaje; aviso.hidden = false; }
+    else { aviso.hidden = true; }
+    mostrar('paso2');
+  }
+
+  $('apIr1').addEventListener('click', async () => {
+    datos.nombre = $('apNombre').value.trim();
+    datos.ciudad = $('apCiudad').value.trim();
+    datos.giro   = $('apGiro').value.trim();
+
+    if(!datos.nombre){ $('apNombre').focus(); $('apNombre').style.borderColor='#b3402a'; return; }
+    $('apNombre').style.borderColor='';
 
     stat('aparezco-empezar', { tiene_giro: datos.giro ? 'si' : 'no' });
-    mostrar('paso2');
+
+    $('apCargandoTexto').textContent = 'Buscando "' + datos.nombre + '" en Google Maps…';
+    mostrar('pasoCargando');
+
+    try{
+      const token = window.CCAuth && window.CCAuth.getAccessToken && window.CCAuth.getAccessToken();
+      const controlador = new AbortController();
+      const corte = setTimeout(() => controlador.abort(), 12000);
+      const res = await fetch('/.netlify/functions/revisar-negocio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre: datos.nombre, ciudad: datos.ciudad, giro: datos.giro, accessToken: token || null }),
+        signal: controlador.signal,
+      });
+      clearTimeout(corte);
+      const data = await res.json();
+
+      if(data && data.ok){ resultadoAuto(data); return; }
+      if(data && data.limitado){
+        irAModoManual(data.error || 'Ya hiciste varias búsquedas gratis hoy desde esta conexión. Aquí puedes seguir buscándolo tú mismo mientras tanto.');
+        return;
+      }
+      // noConfigurado (todavía no pusiste la llave de Google), o cualquier otra
+      // respuesta inesperada: cae al modo manual, sin asustar a nadie con un error.
+      irAModoManual();
+    }catch(err){
+      // Sin conexión, tiempo agotado, o la función no está desplegada todavía.
+      irAModoManual();
+    }
   });
 
   /* ---- Respuestas ---- */
@@ -352,7 +428,95 @@
     b.addEventListener('click', () => mostrar('paso' + b.dataset.atras));
   });
 
-  /* ---- Resultado ---- */
+  /* ---- Resultado automático (búsqueda real en Google/Apple) ---- */
+  function estrellasHTML(cal){
+    if(cal == null) return '<span class="count">Todavía sin reseñas en Google</span>';
+    const llenas = Math.round(cal);
+    let s = '';
+    for(let i=0;i<5;i++) s += i < llenas ? '★' : '☆';
+    return '<span class="ap-stars">'+s+'</span><span class="num">'+cal.toFixed(1)+'</span>';
+  }
+
+  function resultadoAuto(data){
+    const g = data.google || {};
+    const a = data.apple || {};
+    const negocio = g.nombre || datos.nombre;
+
+    /* Ficha encontrada: dirección, estrellas, reseñas reales */
+    if(g.encontrado){
+      let html = '<div class="ap-found"><h3>'+esc(negocio)+'</h3>';
+      if(g.direccion) html += '<p class="addr">'+esc(g.direccion)+(g.telefono?' · '+esc(g.telefono):'')+'</p>';
+      html += '<div class="ap-stars-row">'+estrellasHTML(g.calificacion);
+      if(g.calificacion != null) html += '<span class="count">('+(g.totalResenas||0)+' reseñas en Google)</span>';
+      html += '</div>';
+      html += g.enGiroTop
+        ? '<span class="ap-badge pos-bien">Apareces buscando "'+esc(datos.giro||'lo que vendes')+'" — posición '+g.posicion+' de 10</span>'
+        : '<span class="ap-badge pos-mal">No apareces buscando "'+esc(datos.giro||'lo que vendes')+'", solo tu nombre exacto</span>';
+      if(g.resenas && g.resenas.length){
+        html += '<div class="ap-quotes">' + g.resenas.map(r =>
+          '<div class="ap-quote">“'+esc(r.texto)+'”'+(r.autor?'<span>— '+esc(r.autor)+(r.calificacion!=null?', '+r.calificacion+'★':'')+'</span>':'')+'</div>'
+        ).join('') + '</div>';
+      }
+      if(g.mapsUri) html += '<a class="maps-link" href="'+esc(g.mapsUri)+'" target="_blank" rel="noopener">Ver tu ficha completa en Google Maps →</a>';
+      html += '</div>';
+      $('apFound').innerHTML = html;
+    } else {
+      $('apFound').innerHTML = '';
+    }
+
+    /* Veredicto, a partir de datos reales, no de lo que alguien recuerde haber visto */
+    let problemas = 0;
+    if(g.estado && g.estado !== 'OPERATIONAL') problemas += 2;
+    if(g.calificacion == null || (g.totalResenas||0) < 5) problemas++;
+    else if(g.calificacion < 4.0) problemas++;
+    if(!g.horarioCompleto) problemas++;
+    if(g.enGiroTop === false) problemas++;
+    if(a.configurado && a.encontrado === false) problemas++;
+
+    let clase, titulo, texto;
+    if(!g.encontrado){
+      clase='malo'; titulo='Hoy tu negocio es casi invisible en los mapas';
+      texto='No lo encontramos en Google Maps ni buscando tu nombre exacto. No es tu culpa ni es algo que hiciste mal — es un trámite que nadie te dijo que existía. Y tiene arreglo.';
+    } else if(problemas >= 3){
+      clase='malo'; titulo='Estás ahí, pero con huecos grandes';
+      texto='Tu ficha existe, pero le faltan varias cosas que sí mueven clientes. Vale la pena arreglarlas pronto.';
+    } else if(problemas >= 1){
+      clase='medio'; titulo='Vas bien, pero hay algo que arreglar';
+      texto='Lo importante ya está. Falta afinar uno o dos puntos — y esos detalles son los que hacen que alguien decida entrar o seguir de largo.';
+    } else {
+      clase='bien'; titulo='Tu negocio está bien puesto en los mapas';
+      texto='En serio: la mayoría no está así. Ya tienes lo básico. Lo siguiente que mueve la aguja son las reseñas y mantener la información al día.';
+    }
+    $('apVerdict').innerHTML = '<div class="ap-verdict '+clase+'"><h3>'+esc(titulo)+'</h3><p>'+esc(texto)+'</p></div>';
+
+    /* Hallazgos, solo con lo que sí pudimos confirmar */
+    const F = [];
+    if(g.encontrado){
+      if(g.enGiroTop != null){
+        const [c,s] = g.enGiroTop ? ['si','✓'] : ['no','✕'];
+        F.push('<div class="ap-finding '+c+'"><span class="mark">'+s+'</span><div>'+(g.enGiroTop
+          ? '<b>Apareces buscando lo que vendes.</b> Es lo más difícil de lograr y ya lo tienes.'
+          : '<b>No apareces cuando alguien busca lo que vendes</b> sin conocer tu nombre. Ese es el hueco que más dinero cuesta.')+'</div></div>');
+      }
+      if(a.configurado && a.encontrado != null){
+        const [c,s] = a.encontrado ? ['si','✓'] : ['no','✕'];
+        F.push('<div class="ap-finding '+c+'"><span class="mark">'+s+'</span><div>'+(a.encontrado
+          ? '<b>También estás en Apple Maps.</b> Bien — muchos negocios no lo revisan nunca.'
+          : '<b>No te encontramos en Apple Maps.</b> Es un mapa aparte, con su propia base de datos: estar en Google no te pone ahí.')+'</div></div>');
+      }
+    }
+    $('apFindings').innerHTML = F.join('');
+
+    /* Qué hacer: con IA real si había sesión iniciada, si no con reglas fijas
+       sobre estos mismos datos — nunca inventado, siempre viene del servidor. */
+    $('apTodo').innerHTML = (data.sugerencias || []).map(s => '<li>'+esc(s)+'</li>').join('');
+
+    stat('aparezco-resultado-auto', { veredicto: clase, con_ia: data.conIA ? 'si' : 'no', encontrado: g.encontrado ? 'si' : 'no' });
+    mostrar('pasoResultado');
+    if(negocio) document.title = '¿Aparece ' + negocio + '? | Themora';
+  }
+
+  /* ---- Resultado manual (cuando la búsqueda automática no está disponible) ---- */
   function resultado(){
     const malos = [datos.nombreR, datos.giroR, datos.appleR].filter(v => v === 'no').length;
     const medios = [datos.nombreR, datos.giroR, datos.appleR].filter(v => v === 'medio').length;
@@ -419,6 +583,8 @@
   $('apImprimir').addEventListener('click', () => { stat('aparezco-guardar'); window.print(); });
   $('apReiniciar').addEventListener('click', () => {
     datos.nombreR = datos.giroR = datos.appleR = null;
+    $('apFound').innerHTML = '';
+    $('apAvisoManual').hidden = true;
     mostrar('paso1');
   });
 
