@@ -1,14 +1,16 @@
 # Cómo activar la búsqueda automática en "¿Aparezco?"
 
-`aparezco.html` ya funciona sin configuración adicional: la persona busca su
-negocio ella misma en Google Maps y Apple Maps, abre el enlace, y nos cuenta
-qué vio. Este documento explica cómo hacer que el sitio **busque por ella**
-y muestre la dirección, la calificación en estrellas, el número de reseñas
-y hasta 3 reseñas de verdad — con sugerencias sobre qué mejorar escritas a
-partir de esos datos reales.
+`aparezco.html` busca el negocio por la persona: nombre, ciudad y giro, y
+muestra la dirección, la calificación en estrellas, el número de reseñas,
+hasta 3 reseñas de verdad, un scorecard con parámetros de "negocio bien
+puesto" (calificación, reseñas, horario, fotos, sitio web, posición en su
+categoría) comparado contra el promedio real de su competencia, un puntaje
+de 0 a 100, y sugerencias sobre qué mejorar.
 
-Si no completas estos pasos, el sitio sigue funcionando exactamente igual
-que hoy: la herramienta cae sola al modo manual, sin ningún error visible.
+**Esta llave ya no es opcional.** Sin `GOOGLE_PLACES_API_KEY` configurada,
+la herramienta no tiene ningún modo manual de respaldo — le muestra a la
+persona un aviso de "vuelve más tarde o agenda una cita". Termina de
+configurarla antes de anunciar o enlazar esta página.
 
 ## Cómo funciona
 
@@ -16,13 +18,14 @@ que hoy: la herramienta cae sola al modo manual, sin ningún error visible.
   (`netlify/functions/revisar-negocio.js`), que consulta la API de Google
   Places, y si están configuradas, la de Apple Maps y la de Claude
   (Anthropic).
-- Si falta la llave de Google, si la búsqueda falla, o si tarda más de 12
-  segundos, `aparezco.html` cae automáticamente al modo manual de siempre
-  — la persona nunca ve un error, solo sigue el camino de antes.
+- Si falta la llave de Google, si la búsqueda falla, o si tarda demasiado,
+  `aparezco.html` muestra un aviso honesto ("no pudimos completar la
+  búsqueda" / "vuelve más tarde") con un botón para reintentar y otro para
+  agendar una cita — nunca manda a la persona a buscar en Google o Apple
+  Maps por su cuenta.
 - Cada dirección IP puede hacer **5 búsquedas automáticas por día**. Al
-  llegar al límite, la herramienta avisa y cae al modo manual (sigue siendo
-  gratis y sin cuenta, solo que a partir de ahí la persona busca ella
-  misma). Esto evita que un script te genere gasto ilimitado.
+  llegar al límite, la herramienta avisa que vuelva mañana. Esto evita que
+  un script te genere gasto ilimitado.
 
 ## Paso 1 — Consigue una llave de la API de Google Places
 
@@ -113,15 +116,17 @@ inventa nada, con o sin IA.
 
 ## Notas importantes
 
-- **Nada se rompe si no configuras nada de esto.** Sin
-  `GOOGLE_PLACES_API_KEY`, la herramienta funciona exactamente como antes.
-- **Privacidad:** en modo automático, el nombre, ciudad y giro del negocio
-  sí se mandan a Google (y a Apple/Anthropic si los configuraste).
-  `aparezco.html` lo dice con claridad antes de que la persona toque el
-  botón "Buscar mi negocio".
-- **Puedes desactivar la búsqueda automática en cualquier momento**
-  borrando `GOOGLE_PLACES_API_KEY` en Netlify — el sitio vuelve al modo
-  manual sin tocar ningún archivo.
+- **Sin `GOOGLE_PLACES_API_KEY` la página no puede buscar nada** — muestra
+  el aviso de "vuelve más tarde / agenda una cita". No hay modo manual de
+  respaldo, así que no enlaces ni promociones `aparezco.html` hasta que
+  esta llave esté puesta y probada en producción.
+- **Privacidad:** el nombre, ciudad y giro del negocio sí se mandan a
+  Google (y a Apple/Anthropic si los configuraste). `aparezco.html` lo dice
+  con claridad antes de que la persona toque el botón "Buscar mi negocio".
+- Si necesitas apagar la herramienta temporalmente, quita el enlace del
+  menú (`nav.js`/el bloque `<nav>` de cada página) en vez de borrar la
+  llave — sin la llave, cualquiera que llegue a la página ve el aviso de
+  "no disponible" en vez de un resultado.
 - Si algún nombre de campo de la API de Google cambia con el tiempo (Google
   actualiza su API de vez en cuando), revisa los "Function logs" de
   Netlify: `revisar-negocio.js` registra el error exacto ahí sin romper la
