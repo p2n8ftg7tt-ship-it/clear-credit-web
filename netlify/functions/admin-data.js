@@ -56,8 +56,28 @@ async function verifyCaller(accessToken) {
   }
 }
 
+/* Arma las cabeceras para hablar con Supabase usando la llave de servicio.
+
+   Supabase tiene DOS formatos de llave secreta y NO se mandan igual:
+
+   - Heredada ("service_role"): es un JWT, empieza por "eyJ". Va en las dos
+     cabeceras, apikey y Authorization: Bearer. Así funcionó siempre.
+   - Nueva ("secret"): empieza por "sb_secret_". La documentación de Supabase
+     dice que va SOLO en apikey — si además se manda en Authorization: Bearer,
+     la plataforma intenta leerla como JWT, no puede, y RECHAZA la petición.
+
+   Por eso aquí se decide según el formato de la llave, en vez de asumir uno.
+   Así el panel funciona con cualquiera de las dos, y seguirá funcionando
+   cuando Supabase apague las heredadas a finales de 2026.                    */
+function cabecerasServicio(serviceKey) {
+  const esNueva = String(serviceKey || "").startsWith("sb_");
+  return esNueva
+    ? { apikey: serviceKey }
+    : { apikey: serviceKey, Authorization: "Bearer " + serviceKey };
+}
+
 async function fetchAllUsers(baseUrl, serviceKey) {
-  const headers = { apikey: serviceKey, Authorization: "Bearer " + serviceKey };
+  const headers = cabecerasServicio(serviceKey);
   const all = [];
   for (let page = 1; page <= MAX_USER_PAGES; page++) {
     const res = await fetch(
@@ -81,7 +101,7 @@ const MAX_ROW_PAGES = 10; // hasta 10,000 filas por tabla; suficiente para arran
 // de 1000 en 1000. Se usa para analisis_credito y calculos_hipoteca — así
 // podemos calcular promedios y distribuciones reales, no solo un conteo.
 async function fetchAllRows(baseUrl, serviceKey, table, select) {
-  const headers = { apikey: serviceKey, Authorization: "Bearer " + serviceKey };
+  const headers = cabecerasServicio(serviceKey);
   const all = [];
   for (let page = 0; page < MAX_ROW_PAGES; page++) {
     const offset = page * 1000;
@@ -168,8 +188,15 @@ exports.handler = async (event) => {
   }
 
   const supabaseUrl = process.env.SUPABASE_URL;
+  const anonKey = process.env.SUPABASE_ANON_KEY;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !serviceKey) {
+
+  // Sin estas dos no se puede ni comprobar quién está llamando, así que aquí
+  // el mensaje se queda genérico a propósito: todavía no sabemos si quien
+  // pregunta es el administrador.
+  if (!supabaseUrl || !anonKey) {
+    const faltan = [!supabaseUrl && "SUPABASE_URL", !anonKey && "SUPABASE_ANON_KEY"].filter(Boolean);
+    console.error("[admin-data] faltan variables de entorno en Netlify:", faltan.join(", "));
     return jsonResponse(503, {
       error: "El panel de administrador todavía no está configurado en este sitio.",
       notConfigured: true,
@@ -191,6 +218,22 @@ exports.handler = async (event) => {
   const isAdmin = !!(caller.app_metadata && caller.app_metadata.is_admin);
   if (!isAdmin) {
     return jsonResponse(403, { error: "Tu cuenta no tiene acceso al panel de administrador." });
+  }
+
+  // A partir de aquí ya sabemos que quien pregunta ES el administrador, así
+  // que el mensaje puede decirle exactamente qué le falta por configurar
+  // (a un visitante cualquiera nunca le llega este detalle).
+  if (!serviceKey) {
+    console.error("[admin-data] falta la variable de entorno SUPABASE_SERVICE_ROLE_KEY en Netlify");
+    return jsonResponse(503, {
+      error:
+        "Falta la llave secreta del panel. En Netlify: Site configuration → " +
+        "Environment variables → agrega SUPABASE_SERVICE_ROLE_KEY con la llave " +
+        "\"secret\" (service_role) de Supabase → Settings → API Keys, y vuelve a " +
+        "publicar el sitio (Deploys → Trigger deploy). Ver INSTRUCCIONES-ADMIN.md, paso 2 y 3.",
+      notConfigured: true,
+      missing: "SUPABASE_SERVICE_ROLE_KEY",
+    });
   }
 
   try {
