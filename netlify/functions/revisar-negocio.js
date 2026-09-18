@@ -12,8 +12,10 @@
 
    VARIABLES DE ENTORNO EN NETLIFY
 
-     GOOGLE_PLACES_API_KEY   ← REQUERIDA. Sin ella, esta función
-                                responde "noConfigurado" y
+     GOOGLE_PLACES_API_KEY   ← REQUERIDA (o GOOGLE_MAPS_API_KEY, se acepta
+                                cualquiera de los dos nombres). Sin ninguna
+                                de las dos, esta función responde
+                                "noConfigurado" y
                                 aparezco.html muestra un aviso de
                                 "vuelve más tarde / agenda una cita"
                                 — la búsqueda automática es la única
@@ -59,6 +61,14 @@
    a Apple y a Anthropic). aparezco.html lo dice con todas sus letras
    antes de que la persona toque el botón.
    ========================================================= */
+
+// Acepta cualquiera de los dos nombres de variable de entorno — algunos
+// paneles de Netlify quedan configurados como GOOGLE_MAPS_API_KEY en vez de
+// GOOGLE_PLACES_API_KEY, y con solo uno de los dos la búsqueda se veía como
+// "no configurada" aunque la llave sí estuviera puesta.
+function googleApiKey() {
+  return process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY || "";
+}
 
 const MAX_TEXTO = 140;
 const LIMITE_DIARIO_POR_IP = 5;
@@ -175,7 +185,7 @@ async function buscarGoogle(query, fieldMask, pageSize) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Goog-Api-Key": process.env.GOOGLE_PLACES_API_KEY,
+      "X-Goog-Api-Key": googleApiKey(),
       "X-Goog-FieldMask": fieldMask,
     },
     body: JSON.stringify({ textQuery: query, pageSize: pageSize || 5 }),
@@ -193,7 +203,7 @@ async function detalleGoogle(placeId) {
     "https://places.googleapis.com/v1/places/" + encodeURIComponent(placeId),
     {
       headers: {
-        "X-Goog-Api-Key": process.env.GOOGLE_PLACES_API_KEY,
+        "X-Goog-Api-Key": googleApiKey(),
         "X-Goog-FieldMask": GOOGLE_FIELDS_DETALLE,
       },
     }
@@ -485,7 +495,7 @@ async function generarSugerenciasIA(datos) {
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return respuesta(405, { error: "Método no permitido." });
 
-  if (!process.env.GOOGLE_PLACES_API_KEY) {
+  if (!googleApiKey()) {
     return respuesta(200, { noConfigurado: true });
   }
 
