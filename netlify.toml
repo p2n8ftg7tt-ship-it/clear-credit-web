@@ -97,6 +97,13 @@
   status = 404
   force = true
 
+# Las pruebas automáticas (node --test tests/) son de tu computadora, no del sitio
+[[redirects]]
+  from = "/tests/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
 # La propia carpeta, si alguien la pide sin archivo dentro
 [[redirects]]
   from = "/Claude outputs"

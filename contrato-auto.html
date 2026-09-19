@@ -160,6 +160,26 @@
 
   .ct-sello{font-size:.8rem;line-height:1.62;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:14px 16px;margin:18px 0 0}
 
+  /* ===== Antes de firmar: lista para el celular, sentado en el dealer ===== */
+  .ct-ir-antes{margin:0 0 16px;font-size:.9rem}
+  .ct-ir-antes a{color:var(--navy-deep);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .ct-antes-barra{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:2px 0 14px}
+  .ct-antes-barra i{display:block;height:100%;width:0;background:var(--teal);border-radius:99px;transition:width .25s}
+  .ct-antes-estado{border-left:3px solid var(--gold);background:#fff6e6;border-radius:0 12px 12px 0;padding:14px 16px;margin-bottom:18px;font-size:.9rem;line-height:1.6;color:var(--ink)}
+  .ct-antes-estado strong{display:block;font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy-deep);margin-bottom:3px}
+  .ct-antes-estado.is-ok{border-left-color:var(--teal);background:rgba(79,107,87,.09)}
+  .ct-antes-estado ul{margin:6px 0 0;padding-left:18px}
+  .ct-antes-grupo{margin-bottom:18px}
+  .ct-antes-grupo h5{margin:0 0 3px;font:800 .72rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .ct-antes-grupo > p{margin:0 0 10px;font-size:.84rem;line-height:1.55;color:var(--muted)}
+  .ct-antes-item{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:10px;padding:13px 14px;background:#fff;cursor:pointer;min-height:52px;margin-bottom:8px}
+  .ct-antes-item input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--teal);cursor:pointer}
+  .ct-antes-txt{flex:1;min-width:0;display:block;font-size:.9rem;line-height:1.45;color:var(--ink)}
+  .ct-antes-txt b{color:var(--navy-deep)}
+  .ct-antes-txt em{display:block;font-style:normal;font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy-deep);margin-top:2px}
+  .ct-antes-txt small{display:block;font-size:.78rem;line-height:1.5;color:var(--muted);margin-top:3px}
+  .ct-antes-item.is-ok{background:rgba(79,107,87,.07);border-color:rgba(31,110,115,.3)}
+
   /* ===== Hero — sentado en el dealer, con el contrato enfrente =====
      .hero / .hero-dark no tenían ninguna regla en el sitio: por eso se veía
      como un bloque blanco sin estilo. Se le da el mismo tratamiento oscuro
@@ -388,6 +408,8 @@
             <div class="ct-card"><span>Costo de los extras</span><strong id="ctTotal"></strong><em id="ctTotalNota">Con intereses, todo el plazo</em></div>
           </div>
 
+          <p class="ct-ir-antes"><a href="#ctAntes">Ir a la lista «Antes de firmar» ↓</a></p>
+
           <div class="ct-panel" id="ctDineroPanel">
             <h4>A dónde va cada dólar</h4>
             <p class="ct-panel-note">Separado por tipo, porque "el total" mezcla cosas distintas: lo que sale de tu bolsillo hoy, lo que vale tu carro entregado, y lo que le vas a pagar al banco durante años.</p>
@@ -436,6 +458,14 @@
             <h4>Cosas que vale la pena mirar dos veces</h4>
             <p class="ct-panel-note">Esto no quiere decir que el contrato esté mal ni que sea ilegal. Son señales de que conviene preguntar antes de firmar.</p>
             <div class="ct-flags" id="ctFlags"></div>
+          </div>
+
+          <div class="ct-panel ct-antes" id="ctAntes">
+            <h4>Antes de firmar</h4>
+            <p class="ct-panel-note">Ve marcando cada casilla cuando la compares con tu papel. Las casillas no se guardan: si cierras la página, se borran.</p>
+            <div class="ct-antes-barra" aria-hidden="true"><i id="ctAntesBarra"></i></div>
+            <div class="ct-antes-estado" id="ctAntesEstado" role="status" aria-live="polite"></div>
+            <div id="ctAntesLista"></div>
           </div>
 
           <div class="ct-say">
@@ -770,6 +800,9 @@
       '<div class="ct-flag'+(b.hot?' is-hot':'')+'"><b>'+(b.hot?'!':'i')+'</b><div><h5>'+b.titulo+'</h5><p>'+b.texto+'</p></div></div>'
     ).join('');
 
+    // Lista "Antes de firmar"
+    pintarAntes(r,bs);
+
     // Frases
     $('ctSayList').innerHTML=frases(r).map(([en,es])=>
       '<li><span class="en">'+en+'</span><span class="es">'+es+'</span></li>'
@@ -792,6 +825,150 @@
         trade_negativo: r.trade<0?'si':'no',
         traia_preaprobacion: r.tasaBanco>0?'si':'no'
       });
+    }
+  }
+
+  /* ===== "Antes de firmar" =====
+     Una lista para revisar con el papel enfrente. Tres grupos:
+       1. Las señales graves de arriba, para que no se pierdan.
+       2. Cada cifra del contrato, con el valor que debería aparecer en el papel.
+       3. Lo que no se calcula: espacios en blanco, copias, entender lo que se firma.
+     Las casillas NO se marcan solas: la herramienta no puede saber que la
+     persona comparó con el papel. Tampoco dice "firma" ni "no firmes": al
+     terminar dice que se marcó todo, y la decisión sigue siendo de la persona.
+     Las marcas viven solo en memoria (se pierden al cerrar la página) y van
+     ligadas al valor: si cambia una cifra, esa casilla vuelve a pedirse. */
+  const antesMarcados=new Set();
+  const antesControl={inicio:false,fin:false,conSenales:'no'};
+  let antesItems=[];
+
+  function gruposAntes(r,bs){
+    const grupos=[];
+    const graves=bs.filter(b=>b.hot);
+    if(graves.length){
+      grupos.push({titulo:'Aclara esto primero',
+        nota:'Salieron arriba como señales. Marca cada una cuando la hayas preguntado o aclarado.',
+        items:graves.map(b=>({id:'senal',titulo:b.titulo,valor:'',nota:''}))});
+    }
+
+    const cifras=[
+      {id:'precio',titulo:'Precio del vehículo',valor:dinero(r.precio),
+        nota:'Cash Price of Vehicle. Es el carro solo, sin impuestos ni cargos.'},
+      {id:'tasa',titulo:'Tasa anual (APR)',valor:r.tasa+'%',
+        nota:'ANNUAL PERCENTAGE RATE, en el recuadro federal. Si no es la que te dijeron, pregunta por qué.'},
+      {id:'plazo',titulo:'Número de pagos',valor:String(r.plazo),
+        nota:'Number of Payments. Son meses: mientras más pagos, más interés en total.'},
+      {id:'monto',titulo:'Monto financiado',valor:dinero(r.montoFinanciado),
+        nota:'Amount Financed. Es un cálculo con tus números: en el papel debe salir casi igual (puede variar unos dólares).'},
+      {id:'cargo',titulo:'Cargo por financiamiento',valor:dinero(r.interes),
+        nota:'Finance Charge. Lo que pagas de más por el préstamo, en dólares. Puede variar un poco por redondeo o por la fecha del primer pago.'},
+      {id:'total',titulo:'Total de pagos',valor:dinero(r.totalPagado),
+        nota:'Total of Payments. Todo lo que le pagarás al banco. Debe ser casi igual al monto financiado más el cargo por financiamiento.'},
+      {id:'pago',titulo:'Pago mensual',valor:dinero(r.pago),
+        nota:'Debe coincidir con el pago que dice el contrato. Si no coincide, mira la alerta de arriba.'}
+    ];
+    if(r.enganche>0){
+      cifras.splice(1,0,{id:'enganche',titulo:'Enganche en efectivo',valor:dinero(r.enganche),
+        nota:'Cash Down Payment. Es lo que entregas hoy de tu bolsillo.'});
+    }
+    if(r.trade!==0){
+      cifras.push({id:'trade',
+        titulo:r.trade>0?'Valor de tu carro entregado':'Deuda de tu carro anterior que se suma',
+        valor:dinero(Math.abs(r.trade)),
+        nota:r.trade>0?'Trade-In Allowance, neto de lo que aún debes. Debe ser el valor que acordaron.'
+                       :'Se está sumando al préstamo nuevo. Confirma que el papel dice lo mismo y que sabes por qué.'});
+    }
+    if(r.impuestos>0){
+      cifras.push({id:'impuestos',titulo:'Impuestos, placas y título',valor:dinero(r.impuestos),
+        nota:'Los cobra el estado. Pide el desglose si está todo en un solo renglón.'});
+    }
+    if(r.docFee>0){
+      cifras.push({id:'docfee',titulo:'Cargo del dealer',valor:dinero(r.docFee),
+        nota:'Doc / Processing Fee. Pregunta cómo se calcula.'});
+    }
+    r.extras.forEach(function(e,i){
+      cifras.push({id:'extra'+i,titulo:e.nombre,valor:dinero(e.precio),
+        nota:'Confirma que lo pediste tú y que sabes que es opcional. Con intereses termina costando '+dinero(e.conInteres)+'.'});
+    });
+    grupos.push({titulo:'Compara con tu contrato',
+      nota:'Busca cada cifra en el papel. Si algo no coincide, pide que te expliquen la diferencia antes de firmar.',
+      items:cifras});
+
+    grupos.push({titulo:'Antes de poner tu firma',
+      nota:'Lo que la herramienta no puede calcular.',
+      items:[
+        {id:'m-blanco',titulo:'No hay espacios en blanco en ningún documento',valor:'',
+          nota:'Pregunta por cada espacio vacío: se puede llenar o tachar antes de firmar.'},
+        {id:'m-total',titulo:'El precio final coincide con el que me dijeron',valor:'',
+          nota:'Si te dieron un precio total por mensaje o por escrito, compáralo con el desglose de arriba.'},
+        {id:'m-entiendo',titulo:'Entiendo cada documento que voy a firmar',valor:'',
+          nota:'Si algo no lo entiendes, pide que te lo expliquen despacio o llévate una copia para leerla con calma.'},
+        {id:'m-copia',titulo:'Me van a dar una copia de todo lo que firme',valor:'',nota:''}
+      ]});
+    return grupos;
+  }
+
+  function pintarAntes(r,bs){
+    const grupos=gruposAntes(r,bs);
+    antesItems=[];
+    let html='';
+    grupos.forEach(function(g){
+      html+='<div class="ct-antes-grupo"><h5>'+escapeHtml(g.titulo)+'</h5><p>'+escapeHtml(g.nota)+'</p>';
+      g.items.forEach(function(it){
+        it.k=it.id+'|'+(it.valor||it.titulo);
+        const n=antesItems.push(it)-1;
+        const marcado=antesMarcados.has(it.k);
+        html+='<label class="ct-antes-item'+(marcado?' is-ok':'')+'">'+
+          '<input type="checkbox" data-antes="'+n+'"'+(marcado?' checked':'')+'>'+
+          '<span class="ct-antes-txt"><b>'+escapeHtml(it.titulo)+'</b>'+
+          (it.valor?'<em>'+escapeHtml(it.valor)+'</em>':'')+
+          (it.nota?'<small>'+escapeHtml(it.nota)+'</small>':'')+'</span></label>';
+      });
+      html+='</div>';
+    });
+    $('ctAntesLista').innerHTML=html;
+    $('ctAntesLista').querySelectorAll('input[data-antes]').forEach(function(cb){
+      cb.addEventListener('change',function(){
+        const it=antesItems[+cb.dataset.antes];
+        if(cb.checked)antesMarcados.add(it.k); else antesMarcados.delete(it.k);
+        cb.closest('.ct-antes-item').classList.toggle('is-ok',cb.checked);
+        actualizarAntes();
+      });
+    });
+    antesControl.conSenales=bs.some(b=>b.hot)?'si':'no';
+    actualizarAntes();
+  }
+
+  function actualizarAntes(){
+    const total=antesItems.length;
+    const pendientes=antesItems.filter(i=>!antesMarcados.has(i.k));
+    const hechos=total-pendientes.length;
+    $('ctAntesBarra').style.width=(total?Math.round(hechos/total*100):0)+'%';
+
+    const caja=$('ctAntesEstado');
+    if(pendientes.length===0){
+      caja.className='ct-antes-estado is-ok';
+      caja.innerHTML='<strong>Marcaste todo lo de la lista</strong>'+
+        'Eso no dice si el trato es bueno o malo: la decisión de firmar sigue siendo tuya. '+
+        'Si algo cambia en el papel, vuelve a comparar las cifras.';
+    }else{
+      caja.className='ct-antes-estado';
+      const primeros=pendientes.slice(0,4).map(i=>'<li>'+escapeHtml(i.titulo)+'</li>').join('');
+      caja.innerHTML='<strong>Llevas '+hechos+' de '+total+'. Revisa esto primero:</strong>'+
+        '<ul>'+primeros+'</ul>'+
+        (pendientes.length>4?'<div style="margin-top:6px">…y '+(pendientes.length-4)+' más.</div>':'');
+    }
+
+    // Solo señales agregadas, una vez por cálculo. Nunca cifras del contrato.
+    if(window.ThemoraStats){
+      if(hechos>0&&!antesControl.inicio){
+        antesControl.inicio=true;
+        window.ThemoraStats.evento('antes-de-firmar-iniciado',{con_senales:antesControl.conSenales});
+      }
+      if(pendientes.length===0&&!antesControl.fin){
+        antesControl.fin=true;
+        window.ThemoraStats.evento('antes-de-firmar-completo',{con_senales:antesControl.conSenales});
+      }
     }
   }
 
@@ -861,6 +1038,8 @@
     agregarExtra();
     $('ctResults').hidden=true;
     $('ctError').hidden=true;
+    antesMarcados.clear();
+    antesControl.inicio=false; antesControl.fin=false;
     window.scrollTo({top:0,behavior:'smooth'});
   });
 
@@ -996,6 +1175,7 @@
   <script src="auth.js"></script>
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
+  <script src="zyron-leyes.js"></script>
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
