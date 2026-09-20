@@ -1194,7 +1194,7 @@
       '<div class="cr-solution-field"><label for="'+formId+'City">Ciudad</label><input id="'+formId+'City" name="city" type="text" autocomplete="address-level2" maxlength="70" required></div>'+
       '<div class="cr-solution-field"><label for="'+formId+'State">Estado</label><input id="'+formId+'State" name="state" type="text" list="'+formId+'States" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
       '<div class="cr-solution-field"><label for="'+formId+'PostalCode">Código postal</label><input id="'+formId+'PostalCode" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="[0-9]{5}(?:-[0-9]{4})?" title="Usa 5 dígitos o el formato 12345-6789" required></div>'+
-      '<div class="cr-address-tools"><button class="cr-google-address" type="button">Verificar dirección en Google Maps ↗</button><small>La dirección solo se comparte con Google cuando presionas este botón.</small></div>';
+      '<div class="cr-address-tools"><button class="cr-google-address" type="button">Verificar dirección en Google Maps ↗</button><small>Este botón abre Google Maps con tu dirección solo cuando lo presionas. Aparte, el autocompletado de arriba solo envía algo si tú lo activas.</small></div>';
   }
 
   function renderIdentityForm(item,formId,bureauKey){
@@ -1343,6 +1343,13 @@
   dropzone.addEventListener('dragover',event=>{event.preventDefault();dropzone.classList.add('is-dragging');});
   dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
   dropzone.addEventListener('drop',event=>{event.preventDefault();dropzone.classList.remove('is-dragging');selectFile(event.dataTransfer.files[0]);});
+  /* Autocompletado de direcciones. Se conecta la primera vez que la persona
+     entra a un formulario de carta; no envía nada hasta que ella escribe en
+     «Calle y número». Escribir a mano siempre funciona. Ver direccion-autocompletar.js. */
+  results.addEventListener('focusin',event=>{
+    const carta=event.target.closest&&event.target.closest('.cr-solution-form');
+    if(carta&&window.ThemoraDireccion)window.ThemoraDireccion.conectar(carta);
+  });
   results.addEventListener('click',async event=>{
     const mapButton=event.target.closest('.cr-google-address');
     if(mapButton){
@@ -1648,6 +1655,7 @@
   });
 })();
 </script>
+<script src="direccion-autocompletar.js"></script>
 <script src="site-search-index.js"></script>
 <script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
