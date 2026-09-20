@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/credito.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ===== HERO ===== */
@@ -301,6 +301,218 @@
     .cr-summary{border:1px solid #ddd;}
     .cr-summary-head span{color:#333;background:#eee;}
   }
+
+  /* =====================================================================
+     LOOK "GALERÍA BLANCA" (referencia: apple.DESIGN.md)
+     Solo esta página. Se apoya en variables y en el prefijo «main» para no
+     tocar styles.css ni las demás páginas. Reglas del estilo:
+     · Lienzo #f5f5f7 y tarjetas blancas de 28px. Sin sombras ni degradados:
+       la profundidad sale del contraste entre superficies y de líneas finas.
+     · Titulares peso 600 (nunca más), alineados a la izquierda, con UNA
+       palabra teñida (#03aa49, #0066cc…).
+     · Solo dos botones: píldora azul #0071e3 (la acción principal) y píldora
+       neutra #e2e2e5 (todo lo demás). Enlaces en #0066cc con subrayado fino.
+     · Tipografía: Inter en lugar de SF Pro (que no se puede servir en web).
+     ===================================================================== */
+  @media screen{
+    body[data-cms-page="credito"]{
+      --navy-deep:#1d1d1f;--navy:#1d1d1f;--teal:#03873a;--good:#03873a;--gold:#ed6300;--gold-light:#0071e3;
+      --paper:#fff;--paper-dim:#f5f5f7;--ink:#1d1d1f;--muted:#707070;--line:#d6d6d6;--shadow:none;--radius:10px;
+      --ap-display:'SF Pro Display','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      --ap-text:'SF Pro Text','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      font-family:var(--ap-text);font-size:17px;line-height:1.47;letter-spacing:-.016em;background:#fff;
+    }
+    body[data-cms-page="credito"] button,body[data-cms-page="credito"] input,body[data-cms-page="credito"] select,body[data-cms-page="credito"] textarea{font-family:inherit;letter-spacing:inherit}
+    body[data-cms-page="credito"] main h1,body[data-cms-page="credito"] main h2,body[data-cms-page="credito"] main h3,body[data-cms-page="credito"] main h4{font-family:var(--ap-display);font-weight:600;color:#1d1d1f}
+    main b,main strong,main th{font-weight:600}
+    main section{padding:96px 0}
+    .tint-green{color:#03aa49}.tint-blue{color:#0066cc}.tint-violet{color:#8668ff}
+
+    /* ---- Cabecera y pie: claros, con línea fina ---- */
+    body[data-cms-page="credito"] header{background:rgba(255,255,255,.88);border-bottom:1px solid #d6d6d6}
+    body[data-cms-page="credito"] .brand{font-family:var(--ap-display)!important;font-weight:600;color:#1d1d1f}
+    body[data-cms-page="credito"] .links>a,body[data-cms-page="credito"] .nav-group-btn{font-size:13px;font-weight:400;color:#1d1d1f;border-bottom:0}
+    body[data-cms-page="credito"] .links>a:hover,body[data-cms-page="credito"] .nav-group-btn:hover,body[data-cms-page="credito"] .nav-group.is-open .nav-group-btn{color:#000;opacity:.72}
+    body[data-cms-page="credito"] .links>a.active,body[data-cms-page="credito"] .nav-group-btn.is-active{font-weight:600;opacity:1}
+    body[data-cms-page="credito"] .nav-menu{border:1px solid #d6d6d6;border-radius:28px;box-shadow:none;padding:10px}
+    body[data-cms-page="credito"] .nav-menu a{border-radius:10px}
+    body[data-cms-page="credito"] .nav-menu strong{font-size:14px;font-weight:600}
+    body[data-cms-page="credito"] .nav-menu span{font-size:12px}
+    body[data-cms-page="credito"] .links .nav-auth-btn{border:0;border-radius:980px;background:#0071e3;color:#fff;padding:8px 16px;font-size:13px;font-weight:600}
+    body[data-cms-page="credito"] .links .nav-auth-btn:hover{background:#0077ed;color:#fff}
+    body[data-cms-page="credito"] .links .nav-auth-btn.is-logged-in{background:#e2e2e5;color:#333336}
+    body[data-cms-page="credito"] .nav-toggle{border-radius:980px}
+    body[data-cms-page="credito"] footer{background:#f5f5f7;color:#707070;border-top:1px solid #d6d6d6}
+    body[data-cms-page="credito"] .revision-legal{color:#707070;border-color:#d6d6d6}
+    body[data-cms-page="credito"] .revision-legal strong,body[data-cms-page="credito"] .footer-inner .brand{color:#1d1d1f}
+    body[data-cms-page="credito"] .revision-legal a,body[data-cms-page="credito"] .footer-legal a{color:#0066cc}
+    body[data-cms-page="credito"] .footer-inner .brand{font-family:var(--ap-display)!important}
+    body[data-cms-page="credito"] .footer-legal{border-top-color:#d6d6d6}
+
+    /* ---- Títulos de sección, kickers, botones, enlaces ---- */
+    main .eyebrow,main .eyebrow-dark,main .cr-analyzer-section .eyebrow-dark{color:#1d1d1f;font-size:12px;font-weight:600;letter-spacing:.06em;margin-bottom:12px}
+    main .section-head{max-width:820px;margin-bottom:48px}
+    main .section-head h2,main .cta-final h2{font-size:clamp(2rem,4.4vw,3rem);line-height:1.07;letter-spacing:-.02em;color:#1d1d1f}
+    main .section-head p{font-size:17px;color:#707070}
+    main .btn,main .official-report-btn{border-radius:980px;padding:11px 20px;font:600 17px/1.24 var(--ap-text);letter-spacing:-.022em;box-shadow:none;transform:none}
+    main .btn-gold,main .official-report-btn{background:#0071e3;color:#fff}
+    main .btn-gold:hover,main .official-report-btn:hover{background:#0077ed;transform:none;box-shadow:none}
+    main .btn-outline{background:#e2e2e5;color:#333336;border:0}
+    main .btn-outline:hover{background:#d6d6d6}
+    main .source-links a,main .cr-change-btn{color:#0066cc;font-size:14px;font-weight:400;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+    main .cr-note a{color:#0066cc!important}
+    main .example-note,main .range-caption,main .cr-note,main .cr-summary-note{color:#707070;font-size:14px}
+    main a:focus-visible,main button:focus-visible,main [role="button"]:focus-visible{outline:2px solid #0071e3;outline-offset:3px}
+
+    /* ---- Portada: blanca, titular a la izquierda y foto en tarjeta ---- */
+    main .cr-hero{background:#fff;color:#1d1d1f;padding:88px 0 96px}
+    main .cr-hero-bg{inset:auto;top:56px;bottom:56px;right:max(20px,calc((100% - 1160px)/2));width:min(440px,36%);border-radius:28px;background:#f5f5f7}
+    main .cr-hero-bg::after{display:none}
+    main .cr-hero h1{max-width:58%;font-size:clamp(2.6rem,5.6vw,4rem);line-height:1.06;letter-spacing:-.024em;color:#1d1d1f}
+    main .cr-hero p{max-width:58%;margin-top:22px;font-size:21px;line-height:1.33;letter-spacing:.011em;color:#1d1d1f}
+    main .cr-hero .hero-actions{gap:10px;margin-top:32px}
+
+    /* ---- Aviso de reporte oficial ---- */
+    main .credit-report-callout{background:#fff;color:#1d1d1f;padding:44px 0;border-top:1px solid #d6d6d6;border-bottom:1px solid #d6d6d6}
+    main .credit-report-row h2{font-size:28px;line-height:1.14;letter-spacing:-.01em;color:#1d1d1f}
+    main .credit-report-row p{color:#707070}
+
+    /* ---- Analizador ---- */
+    main .cr-analyzer-section{background:#f5f5f7;color:#1d1d1f}
+    main .cr-analyzer-section::before{display:none}
+    main .cr-analyzer-section .section-head h2{color:#1d1d1f}
+    main .cr-analyzer-section .section-head p{color:#707070}
+    main .cr-process{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid #d6d6d6;border-radius:980px;box-shadow:none;padding:6px 10px}
+    main .cr-process-item + .cr-process-item::before{background:#d6d6d6}
+    main .cr-process-item>span{background:#1d1d1f;color:#fff;font:600 .74rem var(--ap-text)}
+    main .cr-process-item strong{color:#1d1d1f;font-size:14px}
+    main .cr-process-item small{color:#707070;font-size:12px}
+    main .cr-upload-card{background:#fff;border-radius:28px;box-shadow:none;padding:28px}
+    main .aviso-envio{background:#f5f5f7;border:0;border-radius:28px;padding:20px 24px;margin-bottom:16px}
+    main .aviso-envio-etiqueta{border-radius:980px;padding:5px 12px;font:600 12px var(--ap-text);letter-spacing:.02em;text-transform:none}
+    main .aviso-envio-queda{background:#03873a;color:#fff}
+    main .aviso-envio-cuerpo p{font-size:14px;line-height:1.43;color:#1d1d1f}
+    main .aviso-envio-cuerpo p:last-child{color:#707070}
+    main .cr-dropzone{background:#f5f5f7;border:1.5px dashed #d6d6d6;border-radius:28px}
+    main .cr-dropzone:hover,main .cr-dropzone.is-dragging{background:#f5f5f7;border-color:#1d1d1f}
+    main .cr-upload-icon{background:#1d1d1f}
+    main .cr-upload-empty h3{color:#1d1d1f;font-size:24px;line-height:1.17;letter-spacing:-.01em}
+    main .cr-upload-empty p{color:#707070}
+    main .cr-upload-empty small{color:#707070;font-size:14px}
+    main .cr-select-btn,main .cr-analyze-btn{border-radius:980px;background:#0071e3;color:#fff;font:600 17px/1.24 var(--ap-text);letter-spacing:-.022em;padding:11px 20px}
+    main .cr-select-btn:hover,main .cr-analyze-btn:hover{background:#0077ed;transform:none;box-shadow:none}
+    main .cr-analyze-btn{padding:14px 24px}
+    main .cr-file-type{background:#f5f5f7;color:#1d1d1f;font-weight:600}
+    main .cr-file-copy strong{color:#1d1d1f}
+    main .cr-file-copy small,main .cr-progress-copy small{color:#707070}
+    main .cr-progress{background:#f5f5f7;color:#1d1d1f;border-radius:10px}
+    main .cr-spinner{border-color:#d6d6d6;border-top-color:#1d1d1f}
+    main .cr-error{border-left:0;border-radius:10px}
+
+    /* ---- Resultados ---- */
+    main .cr-results-head h3{color:#1d1d1f}
+    main .cr-results-head p{color:#707070}
+    main .cr-health{background:#fff;border:0;border-radius:28px;padding:16px 24px}
+    main .cr-health small{color:#707070;letter-spacing:.06em}
+    main .cr-health strong{color:#1d1d1f}
+    main .cr-health.critical{background:#fff0ed}
+    main .cr-health.attention{background:#fff4e5}
+    main .cr-health.stable{background:#e8f6ed}
+    main .cr-kpis{background:none;border:0;gap:12px}
+    main .cr-kpi{background:#fff;border-radius:28px;padding:22px 24px}
+    main .cr-kpi span{color:#707070;letter-spacing:.06em}
+    main .cr-kpi strong{font:600 2rem/1.1 var(--ap-display);letter-spacing:-.02em;color:#1d1d1f}
+    main .cr-kpi small{color:#707070}
+    main .cr-group,main .cr-summary{background:#fff;border-radius:28px;padding:28px}
+    main .cr-group-head,main .cr-summary-head{border-bottom:1px solid #d6d6d6}
+    main .cr-group-head span,main .cr-summary-head span{border-radius:980px;font-weight:600;padding:4px 12px}
+    main .cr-summary-head h4{color:#1d1d1f}
+    main .cr-summary-head span{background:#e8f6ed;color:#03873a}
+    main .cr-summary-item span{color:#707070}
+    main .cr-summary-item strong{font-family:var(--ap-display);font-weight:600;color:#1d1d1f}
+    main .cr-summary-item small{color:#707070}
+    main .cr-finding{border-bottom-color:#d6d6d6}
+    main .cr-finding strong{color:#1d1d1f}
+    main .cr-finding p{color:#707070}
+    main .cr-evidence{color:#707070;font-weight:600}
+    main .cr-strategy{background:#fff;border-radius:28px;padding:32px}
+    main .cr-strategy h4{color:#1d1d1f}
+    main .cr-strategy-head p{color:#707070}
+    main .cr-strategy-list li{background:#f5f5f7;border-left:0;border-radius:10px}
+    main .cr-step-number{background:#1d1d1f;font-family:var(--ap-display);font-weight:600}
+    main .cr-strategy-list strong{color:#1d1d1f}
+    main .cr-strategy-list p{color:#707070}
+    main .cr-outline-btn,main .cr-solution-toggle,main .cr-copy-solution,main .cr-google-address{background:#e2e2e5;color:#333336;border:0;border-radius:980px;padding:11px 20px;font:600 14px/1.24 var(--ap-text);letter-spacing:-.01em}
+    main .cr-outline-btn:hover,main .cr-solution-toggle:hover,main .cr-copy-solution:hover,main .cr-google-address:hover{background:#d6d6d6;color:#333336;filter:none}
+    main .cr-solution-submit{background:#0071e3;color:#fff;border-radius:980px;padding:11px 20px;font:600 17px/1.24 var(--ap-text);letter-spacing:-.022em}
+    main .cr-solution-submit:hover{background:#0077ed}
+    main .cr-result-actions{gap:10px}
+
+    /* ---- Formulario de carta y sugerencias de dirección ---- */
+    main .cr-solution-form{background:#fff;border:1px solid #d6d6d6;border-radius:28px;padding:24px}
+    main .cr-solution-field label,main .cr-detected-data legend{font-size:12px;font-weight:600;color:#1d1d1f}
+    main .cr-solution-field input,main .cr-solution-field select{background:#f5f5f7;border:1px solid transparent;border-radius:10px;padding:11px 12px;font-size:17px;letter-spacing:-.016em}
+    main .cr-solution-field input:focus,main .cr-solution-field select:focus{background:#fff;border-color:#1d1d1f;outline:2px solid rgba(0,113,227,.35)}
+    main .cr-detected-data{background:#f5f5f7;border:0;border-radius:10px}
+    main .cr-detected-help,main .cr-address-tools small{color:#707070;font-size:14px}
+    main .cr-solution-letter{background:#f5f5f7;border:1px solid transparent;border-radius:10px}
+    main .cr-solution-result{border-top-color:#d6d6d6}
+    main .cr-solution-form .tda-lista{border:1px solid #d6d6d6;border-radius:10px;box-shadow:none;background:#fff}
+    main .cr-solution-form .tda-lista li b{font-weight:600}
+    main .cr-solution-form .tda-lista li[aria-selected="true"],main .cr-solution-form .tda-lista li[role="option"]:hover{background:#f5f5f7}
+    main .cr-solution-form .tda-optin small,main .cr-solution-form .tda-estado{font-size:14px}
+    main .cr-solution-form .tda-optin small{color:#707070}
+
+    /* ---- Contenido educativo ---- */
+    main .qa-list{border:0;background:transparent;max-width:980px;border-top:1px solid #d6d6d6}
+    main .qa-item{padding:28px 0;border-bottom:1px solid #d6d6d6}
+    main .qa-item h3{font-size:24px;line-height:1.17;letter-spacing:-.012em;color:#1d1d1f;margin-bottom:10px}
+    main .qa-item p{color:#707070}
+    main .q-mark{color:#707070;margin-right:4px}
+    main .range-strip{border-radius:28px;box-shadow:none}
+    main .range-seg.r3{background:#c98a3e}
+    main .range-seg .num{font-family:var(--ap-display);font-weight:600}
+    main .range-seg .lbl{font-weight:600}
+    main .factor-track{background:#e2e2e5}
+    main .factor-fill{background:#1d1d1f}
+    main .factor-pct{font-family:var(--ap-display);font-weight:600;color:#1d1d1f}
+    main .factor-desc strong{color:#1d1d1f}
+    main .factor-desc span{color:#707070}
+    main .bureau-card{background:#fff;border:0;border-radius:28px;padding:28px}
+    main .bureau-card:hover{transform:none;box-shadow:none}
+    main .bureau-card .bureau-badge{box-shadow:none;font-family:var(--ap-display);font-weight:600}
+    main .bureau-card h4{color:#1d1d1f}
+    main .bureau-card p,main .score-model-card p,main .score-product p{color:#707070;font-size:17px}
+    main .score-model-card{background:#fff;border:0;border-radius:28px;padding:28px}
+    main .score-model-card h3{color:#1d1d1f;font-size:24px}
+    main .score-model-card .model-tag{background:#1d1d1f;font-family:var(--ap-display);font-weight:600}
+    main .model-stats{border-top-color:#d6d6d6}
+    main .model-stats li{font-size:14px}
+    main .model-stats li span:last-child{color:#1d1d1f;font-weight:600}
+    main .score-product{background:#fff;border:0;border-radius:28px;box-shadow:none;padding:28px}
+    main .score-product h3{color:#1d1d1f;font-size:21px}
+    main .score-product strong{color:#1d1d1f}
+    main .score-product .score-chip{background:#f5f5f7;color:#707070;font-weight:600;letter-spacing:.02em}
+    main .score-caution{background:#fff;border:1px solid #d6d6d6;border-radius:28px;padding:20px 24px;color:#1d1d1f;font-size:14px}
+    main .decision-table-wrap{border:1px solid #d6d6d6;border-radius:28px}
+    main .decision-table th{background:#f5f5f7;color:#1d1d1f;font-family:var(--ap-text);font-weight:600;letter-spacing:.04em}
+    main .decision-table td{color:#707070}
+    main .decision-table .tier{color:#1d1d1f;font-weight:600}
+    main .decision-table .tier small{color:#03873a}
+    main .decision-table strong{color:#1d1d1f}
+    main #derechos-cobradores{background:#fff!important}
+    main .cta-final{text-align:left;background:#f5f5f7}
+    main .cta-final>div>p{margin:14px 0 28px;max-width:660px;color:#707070}
+  }
+  @media screen and (max-width:760px){
+    main section{padding:64px 0}
+    main .cr-hero{padding:28px 0 64px}
+    main .cr-hero-bg{position:relative;top:auto;bottom:auto;right:auto;width:calc(100% - 40px);height:220px;margin:0 auto 32px}
+    main .cr-hero h1,main .cr-hero p{max-width:100%}
+    main .cr-hero p{font-size:17px}
+    main .cr-process{border-radius:28px}
+    main .qa-item h3{font-size:21px}
+  }
 </style>
 </head>
 <body data-cms-page="credito">
@@ -357,11 +569,11 @@
     </div>
     <div class="wrap">
       <span class="eyebrow">Fundamentos</span>
-      <h1>Todo lo que necesitas saber sobre tu crédito</h1>
+      <h1>Todo lo que necesitas saber sobre tu <span class="tint-green">crédito</span></h1>
       <p>Desde qué significa la palabra "crédito" hasta quién decide tu puntaje — y una herramienta para analizar tu propio reporte, gratis y en privado. Sin tecnicismos innecesarios.</p>
       <div class="hero-actions">
         <a href="#analizar-reporte" class="btn btn-gold">Analizar mi reporte ahora</a>
-        <a href="#basicos" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">Aprender los fundamentos</a>
+        <a href="#basicos" class="btn btn-outline">Aprender los fundamentos</a>
       </div>
     </div>
   </section>
@@ -381,7 +593,7 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow-dark">Evaluación privada</span>
-        <h2>Sube tu reporte y conviértelo en un plan</h2>
+        <h2>Sube tu reporte y conviértelo en un <span class="tint-blue">plan</span></h2>
         <p>Acepta reportes en PDF, Word y Excel. El archivo se procesa en este navegador para identificar señales positivas, riesgos y una estrategia clara de corrección.</p>
       </div>
 
@@ -509,7 +721,7 @@
 
       <div class="section-head" style="margin-bottom:18px;">
         <span class="eyebrow-dark">Qué pesa más</span>
-        <h3 style="font-family:'Fraunces',serif;color:var(--navy-deep);font-size:1.4rem;">De qué está hecho tu puntaje</h3>
+        <h3 style="font-size:1.75rem;">De qué está hecho tu puntaje</h3>
       </div>
       <div class="factor-grid">
         <div class="factor-row">
