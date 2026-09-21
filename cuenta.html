@@ -327,9 +327,9 @@
               <div class="form-group"><label for="profileName">Nombre</label><input id="profileName" autocomplete="name" placeholder="Tu nombre"></div>
               <div class="form-group"><label for="profileUsername">Nombre de usuario</label><input id="profileUsername" autocomplete="nickname" maxlength="64" placeholder="Cómo quieres aparecer" aria-describedby="profileUsernameHint"><p class="acct-note" id="profileUsernameHint">Se muestra en tu cuenta. Seguirás entrando con tu correo o proveedor habitual.</p></div>
               <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" autocomplete="tel" placeholder="Opcional"></div>
-              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional"></div>
-              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional"></div>
-              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional"></div>
+              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional" data-dir-calle="persona" data-dir-tipo="persona"></div>
+              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional" data-dir-ciudad="persona"></div>
+              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional" data-dir-estado-cp="persona"></div>
             </div>
             <div class="acct-profile-actions"><button class="btn btn-gold" id="acctSaveProfile" type="submit">Guardar perfil</button><button class="acct-link-btn" type="button" id="acctCancelProfile">Cancelar cambios</button><button class="acct-link-btn" type="button" id="acctClearProfile">Borrar datos de perfil</button><span class="acct-profile-status" id="acctProfileStatus" role="status" aria-live="polite"></span></div>
           </form>
@@ -428,6 +428,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
 <script src="cms.js"></script>
+<script src="direccion-autocompletar.js"></script>
 <script>
 (function(){
   'use strict';

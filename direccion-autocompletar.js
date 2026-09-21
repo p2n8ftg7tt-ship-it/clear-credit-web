@@ -2,25 +2,49 @@
    Autocompletado de direcciones — lado del navegador
    =========================================================================
 
-   Se conecta a un formulario de carta (credito.html). Está activo desde que
-   la persona entra al formulario, sin casilla: al escribir en «Calle y número»
-   aparecen sugerencias de Google. Un aviso de texto, siempre visible junto al
-   campo, dice qué se consulta. Reglas que no se pueden romper:
+   Está activo desde que la persona escribe en un campo de calle marcado,
+   sin casilla: aparecen sugerencias de Google. Un aviso de texto, siempre
+   visible junto al campo, dice qué se consulta. Reglas que no se pueden romper:
 
-   1. NO SALE NINGUNA PETICIÓN hasta que la persona escribe en «Calle y número».
-      Ni al cargar la página, ni al enfocar el campo, ni al escribir en otro.
-   2. Lo escrito en «Calle y número» va a
+   1. NO SALE NINGUNA PETICIÓN hasta que la persona escribe en el campo de la
+      calle. Ni al cargar la página, ni al enfocar el campo, ni al escribir en
+      otro. (Conectar un campo tampoco pide nada.)
+   2. Lo escrito en el campo de la calle va a
       /.netlify/functions/autocompletar-direccion (nuestro servidor), nunca
       directo a Google. La llave de Google no está en el navegador.
    3. Solo la calle viaja. Nombre, teléfono, ciudad, estado y código postal
       nunca se envían: esos se RECIBEN al elegir una sugerencia.
-   4. Si algo falla (sin llave, sin cuota, sin conexión), el autocompletado se
-      apaga solo y la persona sigue escribiendo a mano. El formulario nunca
-      depende de esto, y escribir a mano funciona siempre.
+   4. Si algo falla (sin llave, sin cuota, sin conexión, servicio sin publicar),
+      el autocompletado se apaga solo y la persona sigue escribiendo a mano.
+      El formulario nunca depende de esto, y escribir a mano funciona siempre.
 
-   Uso:  ThemoraDireccion.conectar(formulario)
-   El formulario debe tener campos name="street", "city", "state" y
-   "postalCode" (o pasar otros nombres en opciones.campos).
+   CÓMO SE CONECTA UN FORMULARIO (solo marcar los campos, sin JavaScript propio):
+
+     <input name="street"  data-dir-calle="persona" data-dir-tipo="persona">
+     <input name="city"    data-dir-ciudad="persona">
+     <input name="state"   data-dir-estado="persona">
+     <input name="zip"     data-dir-cp="persona">
+
+   - data-dir-calle="<grupo>"  marca el campo de la calle (o el de la dirección
+     completa) y le pone nombre al grupo; el grupo debe ser único dentro del
+     formulario. Con dos direcciones en el mismo formulario (la de la persona y la
+     de la agencia) se usan dos grupos y cada uno se rellena por separado.
+   - data-dir-tipo="persona" | "cobrador" | "negocio"  cambia el texto del aviso.
+   - Los demás campos del grupo llevan data-dir-ciudad / data-dir-estado /
+     data-dir-cp con el mismo nombre de grupo, o data-dir-estado-cp si estado y
+     código postal comparten un solo campo. Los que falten se omiten.
+   - Forma que se deduce: con data-dir-estado-cp → "estado-cp"; con ciudad,
+     estado o cp → "separado"; sin ninguno → "unico" (la dirección completa va
+     en el mismo campo de la calle: «123 Main St, Roanoke, VA 24016»).
+   - La búsqueda de los campos hermanos se hace dentro del [data-dir-scope] más
+     cercano, o del <form>, o del contenedor directo del campo.
+
+   Se conecta la primera vez que la persona enfoca un campo marcado (un solo
+   escuchador en document), así que también funciona con formularios que se
+   dibujan después. Compatibilidad: ThemoraDireccion.conectar(formulario) sigue
+   funcionando con campos llamados street, city, state y postalCode.
+
+   Detalle completo en specs/003-address-autocomplete-bilingual-letters/
    ========================================================================= */
 
 (function () {
@@ -29,6 +53,12 @@
   var ENDPOINT = '/.netlify/functions/autocompletar-direccion';
   var MINIMO = 4;      // caracteres antes de pedir sugerencias (el servidor no acepta menos)
   var ESPERA = 350;    // ms sin teclear antes de pedir
+  var COMPLEMENTO = 'te sugerimos direcciones con Google: solo eso que escribes se consulta, y también puedes escribir todo a mano.';
+  var AVISOS = {
+    persona: 'Al escribir tu calle y número ' + COMPLEMENTO,
+    cobrador: 'Al escribir la dirección de la agencia ' + COMPLEMENTO,
+    negocio: 'Al escribir la dirección de tu negocio ' + COMPLEMENTO
+  };
 
   var CSS = [
     '.tda-optin{grid-column:1/-1;display:flex;flex-direction:column;gap:3px}',
@@ -36,11 +66,12 @@
     '.tda-estado{font-size:.82rem;line-height:1.45;color:var(--teal,#2f6f62);min-height:1.2em}',
     '.tda-lista{position:absolute;left:0;right:0;top:100%;z-index:30;margin:2px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid rgba(11,39,72,.28);border-radius:6px;box-shadow:0 10px 26px rgba(11,39,72,.16);max-height:300px;overflow:auto}',
     '.tda-lista[hidden]{display:none}',
-    '.tda-lista li{padding:10px 11px;border-radius:4px;cursor:pointer;line-height:1.35}',
+    // Doble clase a propósito: en credito.html la lista vive dentro de un <li> de otra lista y heredaría su diseño de cuadrícula.
+    '.tda-lista.tda-lista li{display:block;grid-template-columns:none;gap:0;margin:0;background:transparent;border:0;padding:10px 11px;border-radius:4px;cursor:pointer;line-height:1.35}',
     '.tda-lista li b{display:block;font-weight:700;color:var(--ink,#1b1b18);font-size:.93rem}',
     '.tda-lista li span{display:block;font-size:.8rem;color:rgba(27,27,24,.62)}',
     '.tda-lista li[aria-selected="true"],.tda-lista li[role="option"]:hover{background:rgba(47,111,98,.13)}',
-    '.tda-lista .tda-pie{font-size:.7rem;color:rgba(27,27,24,.5);cursor:default;padding:6px 11px 3px;text-align:right}'
+    '.tda-lista.tda-lista .tda-pie{font-size:.7rem;color:rgba(27,27,24,.5);cursor:default;padding:6px 11px 3px;text-align:right}'
   ].join('\n');
 
   function inyectarCss() {
@@ -62,32 +93,61 @@
     if (window.ThemoraStats) window.ThemoraStats.evento(nombre);
   }
 
-  function conectar(form, opciones) {
-    if (!form || form.dataset.tdaListo === '1') return;
-    var cfg = opciones || {};
-    var nombres = { calle: 'street', ciudad: 'city', estado: 'state', cp: 'postalCode' };
-    Object.keys(cfg.campos || {}).forEach(function (k) { nombres[k] = cfg.campos[k]; });
-    var campos = {};
-    Object.keys(nombres).forEach(function (k) { campos[k] = form.elements[nombres[k]]; });
-    if (!campos.calle) return;
+  function limpio(x) {
+    return String(x == null ? '' : x).replace(/\s+/g, ' ').trim();
+  }
 
-    form.dataset.tdaListo = '1';
+  /* Qué valor va en cada campo cuando se elige una sugerencia. Función pura: la
+     prueba está en tests/direccion-formas.test.js. Nunca devuelve valores vacíos,
+     para no borrar lo que la persona ya escribió. */
+  function valoresParaBloque(dir, forma) {
+    var d = dir || {};
+    var calle = limpio(d.calle), ciudad = limpio(d.ciudad), estado = limpio(d.estado), cp = limpio(d.cp);
+    var estadoCp = [estado, cp].filter(Boolean).join(' ');
+    var salida = {};
+    function poner(clave, valor) { if (valor) salida[clave] = valor; }
+    if (forma === 'unico') {
+      poner('calle', [calle, ciudad, estadoCp].filter(Boolean).join(', '));
+    } else if (forma === 'estado-cp') {
+      poner('calle', calle);
+      poner('ciudad', ciudad);
+      poner('estadoCp', estadoCp);
+    } else {
+      poner('calle', calle);
+      poner('ciudad', ciudad);
+      poner('estado', estado);
+      poner('cp', cp);
+    }
+    return salida;
+  }
+
+  /* campos: { calle, ciudad?, estado?, cp?, estadoCp? }  (elementos)
+     cfg:    { tipo: 'persona' | 'cobrador' | 'negocio', forma: 'separado' | 'estado-cp' | 'unico' } */
+  function montarBloque(campos, cfg) {
+    var calle = campos.calle;
+    if (!calle || calle.dataset.tdaListo === '1') return;
+    calle.dataset.tdaListo = '1';
     inyectarCss();
 
+    var forma = cfg.forma;
     var uid = 'tda' + Math.random().toString(36).slice(2, 8);
-    var calle = campos.calle;
-    var contenedorCalle = calle.closest('.cr-solution-field') || calle.parentNode;
+    var contenedorCalle = (calle.closest && calle.closest('.cr-solution-field, .cd-field, .form-group')) || calle.parentNode;
 
     /* ---- aviso de qué se consulta (sin casilla: solo informa) ---- */
     var bloque = document.createElement('div');
     bloque.className = 'tda-optin';
-    bloque.innerHTML =
-      '<small id="' + uid + '-aviso">Al escribir tu calle y número te sugerimos direcciones con Google: ' +
-      'solo eso que escribes se consulta, y también puedes escribir todo a mano.</small>' +
-      '<span class="tda-estado" role="status" aria-live="polite"></span>';
+    var small = document.createElement('small');
+    small.id = uid + '-aviso';
+    small.textContent = AVISOS[cfg.tipo] || AVISOS.persona;
+    var estadoEl = document.createElement('span');
+    estadoEl.className = 'tda-estado';
+    estadoEl.setAttribute('role', 'status');
+    estadoEl.setAttribute('aria-live', 'polite');
+    bloque.appendChild(small);
+    bloque.appendChild(estadoEl);
     // Justo encima del campo de la calle, donde se escribe.
     contenedorCalle.parentNode.insertBefore(bloque, contenedorCalle);
-    var aviso = bloque.querySelector('.tda-estado');
+    var aviso = estadoEl;
 
     /* ---- lista de sugerencias ---- */
     var lista = document.createElement('ul');
@@ -113,7 +173,7 @@
 
     function cerrar() {
       lista.hidden = true;
-      lista.innerHTML = '';
+      lista.textContent = '';
       sugerencias = [];
       indice = -1;
       calle.setAttribute('aria-expanded', 'false');
@@ -158,11 +218,27 @@
       decir(lista_.length + (lista_.length === 1 ? ' sugerencia' : ' sugerencias') + '. Usa las flechas y Enter.');
     }
 
-    // Sin llave, sin cuota o Google caído: se apaga para esta visita y la persona
-    // sigue a mano. No se reintenta en cada tecla.
+    // Sin llave, sin cuota, servicio sin publicar o Google caído: se apaga para esta
+    // visita y la persona sigue a mano. No se reintenta en cada tecla.
     function apagarPorFalla(mensaje) {
       desactivar();
       decir(mensaje);
+    }
+
+    var NO_DISPONIBLE = 'El autocompletado no está disponible ahora. Escribe la dirección a mano.';
+
+    // 404 = la función no está publicada; 403 = origen no permitido; 405 = método.
+    // Ninguno se arregla reintentando: se apaga para esta visita.
+    function faltaElServicio(res, d) {
+      var st = res.status;
+      return st === 404 || st === 403 || st === 405 || st >= 500 || !!(d && (d.noConfigurado || d.noDisponible));
+    }
+
+    function avisarAlDueno(res) {
+      // Mensaje fijo, nunca lo que la persona escribió.
+      if (res.status === 404 && typeof console !== 'undefined' && console.warn) {
+        console.warn('[direccion] El servicio de direcciones no está publicado (404). Ver INSTRUCCIONES-DIRECCIONES.md');
+      }
     }
 
     function llamar(cuerpo) {
@@ -185,9 +261,7 @@
       llamar({ accion: 'sugerir', texto: texto }).then(function (r) {
         if (mio !== turno || !activo) return;
         if (r.res.status === 429) { cerrar(); decir('Hiciste muchas búsquedas seguidas. Escribe la dirección a mano.'); return; }
-        if (r.d.noConfigurado || r.d.noDisponible || r.res.status >= 500) {
-          apagarPorFalla('El autocompletado no está disponible ahora. Escribe la dirección a mano.'); return;
-        }
+        if (faltaElServicio(r.res, r.d)) { avisarAlDueno(r.res); apagarPorFalla(NO_DISPONIBLE); return; }
         if (!r.res.ok) { cerrar(); decir(r.d.error || 'Escribe la dirección a mano.'); return; }
         abrir(Array.isArray(r.d.sugerencias) ? r.d.sugerencias : []);
       }).catch(function (err) {
@@ -215,12 +289,15 @@
       llamar({ accion: 'detalle', id: s.id }).then(function (r) {
         if (mio !== turno || !activo) return;
         var d = r.d && r.d.direccion;
+        if (faltaElServicio(r.res, r.d)) { avisarAlDueno(r.res); apagarPorFalla(NO_DISPONIBLE); return; }
         if (!r.res.ok || !d) { decir('No pudimos completar esa dirección. Escríbela a mano.'); return; }
+        var v = valoresParaBloque(d, forma);
         rellenando = true;
-        poner(campos.calle, d.calle);
-        poner(campos.ciudad, d.ciudad);
-        poner(campos.estado, d.estado);
-        poner(campos.cp, d.cp);
+        poner(campos.calle, v.calle);
+        poner(campos.ciudad, v.ciudad);
+        poner(campos.estado, v.estado);
+        poner(campos.cp, v.cp);
+        poner(campos.estadoCp, v.estadoCp);
         rellenando = false;
         sesion = nuevaSesion(); // una sesión por dirección
         decir(d.completa
@@ -282,5 +359,52 @@
     activar();
   }
 
-  window.ThemoraDireccion = { conectar: conectar };
+  /* Busca los campos hermanos de un campo marcado con data-dir-calle y monta el bloque. */
+  function conectarBloque(calle) {
+    if (!calle || !calle.getAttribute || calle.dataset.tdaListo === '1') return;
+    var grupo = calle.getAttribute('data-dir-calle') || 'persona';
+    var tipo = calle.getAttribute('data-dir-tipo') || 'persona';
+    if (!AVISOS[tipo]) tipo = 'persona';
+    var raiz = (calle.closest && (calle.closest('[data-dir-scope]') || calle.closest('form'))) || calle.parentNode;
+    var seguro = String(grupo).replace(/[^\w-]/g, '');
+    function buscar(atributo) { return raiz.querySelector('[' + atributo + '="' + seguro + '"]') || undefined; }
+    var campos = {
+      calle: calle,
+      ciudad: buscar('data-dir-ciudad'),
+      estado: buscar('data-dir-estado'),
+      cp: buscar('data-dir-cp'),
+      estadoCp: buscar('data-dir-estado-cp')
+    };
+    var forma = campos.estadoCp ? 'estado-cp' : (campos.ciudad || campos.estado || campos.cp) ? 'separado' : 'unico';
+    montarBloque(campos, { tipo: tipo, forma: forma });
+  }
+
+  /* Compatibilidad: formulario con campos llamados street, city, state y postalCode
+     (o los nombres que se pasen en opciones.campos). */
+  function conectar(form, opciones) {
+    if (!form || !form.elements) return;
+    var cfg = opciones || {};
+    var nombres = { calle: 'street', ciudad: 'city', estado: 'state', cp: 'postalCode' };
+    Object.keys(cfg.campos || {}).forEach(function (k) { nombres[k] = cfg.campos[k]; });
+    var campos = {};
+    Object.keys(nombres).forEach(function (k) { campos[k] = form.elements[nombres[k]] || undefined; });
+    if (!campos.calle) return;
+    montarBloque(campos, { tipo: 'persona', forma: 'separado' });
+  }
+
+  var API = {
+    conectar: conectar,
+    conectarBloque: conectarBloque,
+    __prueba: { valoresParaBloque: valoresParaBloque }
+  };
+  window.ThemoraDireccion = API;
+  if (typeof module !== 'undefined' && module.exports) module.exports = API;
+
+  // Un solo escuchador: conecta el bloque la primera vez que se enfoca un campo marcado.
+  if (typeof document !== 'undefined') {
+    document.addEventListener('focusin', function (e) {
+      var t = e.target;
+      if (t && t.matches && t.matches('[data-dir-calle]')) conectarBloque(t);
+    });
+  }
 })();

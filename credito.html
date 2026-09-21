@@ -184,6 +184,36 @@
   .cr-solution-result{margin-top:14px;border-top:1px solid var(--line);padding-top:14px;}
   .cr-solution-result strong{margin-bottom:7px;}
   .cr-solution-letter{width:100%;min-height:210px;resize:vertical;box-sizing:border-box;border:1px solid rgba(11,39,72,.2);background:#fff;padding:12px;color:var(--ink);font:inherit;font-size:.82rem;line-height:1.5;}
+  /* Carta en dos columnas: español (para entenderla) a la izquierda, inglés (la que se envía) a la
+     derecha. Cada bloque de una queda alineado con su equivalente de la otra. En pantallas angostas se
+     apilan: primero todo el español y luego todo el inglés. El textarea con el inglés está oculto a la
+     vista (no con display:none, para que siga pudiendo seleccionarse si falla el botón de copiar). */
+  .cr-solution-result{position:relative;}
+  .cr-letter-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;align-items:stretch;margin-top:8px;}
+  .cr-letter-row{display:contents;}
+  .cr-letter-head{margin:0 0 8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);}
+  .cr-letter-head.en{color:var(--ink);}
+  .cr-letter-cell{min-width:0;margin-bottom:8px;padding:10px 12px;background:#fff;border:1px solid rgba(11,39,72,.2);border-radius:6px;font-size:.84rem;line-height:1.55;color:var(--ink);overflow-wrap:anywhere;}
+  .cr-letter-cell p{margin:0;}
+  .cr-letter-cell.en{border-color:rgba(47,111,98,.55);}
+  .cr-letter-note{margin:6px 0 0;padding:9px 12px;border-left:3px solid var(--gold);background:rgba(200,146,62,.10);font-size:.84rem;line-height:1.5;}
+  .cr-letter-note[hidden]{display:none;}
+  .cr-letter-disclaimer{margin:8px 0 0;font-size:.78rem;line-height:1.5;opacity:.75;}
+  .cr-solution-result .cr-solution-letter{position:absolute;width:1px;height:1px;min-height:0;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .cr-solution-result .cr-solution-letter.is-visible{position:static;width:100%;height:auto;min-height:210px;margin:8px 0 0;padding:12px;border:1px solid rgba(11,39,72,.2);clip:auto;white-space:pre-wrap;}
+  @media(max-width:720px){
+    .cr-letter-pair{grid-template-columns:1fr;}
+    .cr-letter-head.es{order:1;}
+    .cr-letter-cell.es{order:2;}
+    .cr-letter-head.en{order:3;margin-top:14px;}
+    .cr-letter-cell.en{order:4;}
+    .cr-letter-cell{padding:8px 9px;font-size:.8rem;}
+  }
+  @media print{
+    .cr-letter-head,.cr-letter-cell.es,.cr-letter-note,.cr-letter-disclaimer,.cr-copy-solution{display:none!important;}
+    .cr-letter-pair{display:block;}
+    .cr-letter-cell.en{border:0;padding:0 0 10px;margin:0;}
+  }
   .cr-result-actions{display:flex;justify-content:center;gap:10px;margin-top:20px;}
   .cr-outline-btn{background:transparent;border:1px solid rgba(246,242,232,.38);color:#fff;padding:10px 16px;}
   .cr-outline-btn:hover{border-color:var(--gold-light);color:var(--gold-light);}
@@ -1284,7 +1314,7 @@
     const negatives=[];
     const positives=[];
     const bureauKey=detectCreditBureau(source);
-    const addNegative=(priority,title,description,action,evidence,solutionType=null,detectedValues=[])=>negatives.push({priority,title,description,action,evidence,solutionType,detectedValues});
+    const addNegative=(priority,title,description,action,evidence,solutionType=null,detectedValues=[],issueKey=null,issueArg='')=>negatives.push({priority,title,description,action,evidence,solutionType,detectedValues,issueKey,issueArg});
     const addPositive=(title,description,evidence)=>positives.push({title,description,evidence});
 
     const score=firstNumber(text,[/(?:fico|vantagescore|credit score|puntaje(?: de credito)?|score)[^0-9]{0,28}([3-8][0-9]{2})/i,/([3-8][0-9]{2})[^a-z0-9]{0,14}(?:fico|vantagescore|credit score)/i]);
@@ -1335,16 +1365,16 @@
     const accountsSummary=extractAccountsSummary(text);
     const inquiriesSummary=extractInquiriesSummary(text);
 
-    if(hasBankruptcy)addNegative('Crítica','Bancarrota reportada','El documento contiene una referencia a bancarrota o a un capítulo judicial.','Verifica tribunal, tipo de caso, estado y fechas. Disputa solo datos inexactos y consulta a un profesional autorizado para decisiones legales.','Registro público','bureau-dispute');
-    if(hasForeclosure)addNegative('Crítica','Ejecución hipotecaria detectada','Aparece una referencia a foreclosure o ejecución hipotecaria.','Comprueba propiedad, préstamo, estado y fechas. Reúne documentos antes de contactar al acreedor o presentar una disputa.','Vivienda','bureau-dispute');
-    if(hasRepossession)addNegative('Crítica','Reposesión detectada','El documento parece incluir una recuperación de vehículo u otro bien.','Verifica saldo, fechas y venta del bien. Solicita un desglose escrito de cualquier saldo restante.','Cuenta garantizada','bureau-dispute');
-    if(hasChargeOff||(chargeOffAmount!==null&&chargeOffAmount>0))addNegative('Alta','Cuenta castigada o charge-off','El acreedor parece haber marcado una cuenta como pérdida contable.','Confirma acreedor, saldo y fecha de primera morosidad. Disputa errores; si es correcta, negocia únicamente con términos escritos.','Cuenta negativa','bureau-dispute');
-    if(hasCollection&&!hasNoCollections)addNegative('Alta','Cuenta en cobranza','El documento contiene señales de una cuenta enviada o vendida a cobros.','No pagues todavía: la ley federal (FDCPA) te da derecho a exigirle al cobrador que pruebe que la deuda es tuya y el monto correcto antes de seguir cobrando.','Cobranza','debt-validation');
-    if(late30>0||hasPastDue)addNegative('Alta','Pagos atrasados o saldo vencido','Se encontraron referencias a morosidad que pueden afectar considerablemente el historial de pagos.','Compara cuenta, mes, categoría del atraso y monto con tus estados. Corrige errores o lleva la cuenta al día cuanto antes.','Historial de pagos','bureau-dispute');
-    if(pastDueAmount!==null&&pastDueAmount>0)addNegative('Alta','Monto vencido visible: '+money(pastDueAmount),'El documento muestra un saldo identificado como vencido.','Confirma que el monto sea actual y solicita por escrito las opciones para poner la cuenta al día.','Saldo vencido','bureau-dispute');
+    if(hasBankruptcy)addNegative('Crítica','Bancarrota reportada','El documento contiene una referencia a bancarrota o a un capítulo judicial.','Verifica tribunal, tipo de caso, estado y fechas. Disputa solo datos inexactos y consulta a un profesional autorizado para decisiones legales.','Registro público','bureau-dispute',[],'bankruptcy');
+    if(hasForeclosure)addNegative('Crítica','Ejecución hipotecaria detectada','Aparece una referencia a foreclosure o ejecución hipotecaria.','Comprueba propiedad, préstamo, estado y fechas. Reúne documentos antes de contactar al acreedor o presentar una disputa.','Vivienda','bureau-dispute',[],'foreclosure');
+    if(hasRepossession)addNegative('Crítica','Reposesión detectada','El documento parece incluir una recuperación de vehículo u otro bien.','Verifica saldo, fechas y venta del bien. Solicita un desglose escrito de cualquier saldo restante.','Cuenta garantizada','bureau-dispute',[],'repossession');
+    if(hasChargeOff||(chargeOffAmount!==null&&chargeOffAmount>0))addNegative('Alta','Cuenta castigada o charge-off','El acreedor parece haber marcado una cuenta como pérdida contable.','Confirma acreedor, saldo y fecha de primera morosidad. Disputa errores; si es correcta, negocia únicamente con términos escritos.','Cuenta negativa','bureau-dispute',[],'charge-off');
+    if(hasCollection&&!hasNoCollections)addNegative('Alta','Cuenta en cobranza','El documento contiene señales de una cuenta enviada o vendida a cobros.','No pagues todavía: la ley federal (FDCPA) te da derecho a exigirle al cobrador que pruebe que la deuda es tuya y el monto correcto antes de seguir cobrando.','Cobranza','debt-validation',[],'collection');
+    if(late30>0||hasPastDue)addNegative('Alta','Pagos atrasados o saldo vencido','Se encontraron referencias a morosidad que pueden afectar considerablemente el historial de pagos.','Compara cuenta, mes, categoría del atraso y monto con tus estados. Corrige errores o lleva la cuenta al día cuanto antes.','Historial de pagos','bureau-dispute',[],'late-payments');
+    if(pastDueAmount!==null&&pastDueAmount>0)addNegative('Alta','Monto vencido visible: '+money(pastDueAmount),'El documento muestra un saldo identificado como vencido.','Confirma que el monto sea actual y solicita por escrito las opciones para poner la cuenta al día.','Saldo vencido','bureau-dispute',[],'past-due-amount',money(pastDueAmount));
     if(utilization!==null&&utilization>=50)addNegative('Alta','Utilización elevada: '+utilization+'%','Usar la mitad o más del crédito disponible puede presionar el puntaje aunque los pagos estén al día.','Prioriza la tarjeta con mayor porcentaje; paga antes del cierre y baja primero de 50%, después de 30% y finalmente de 10%.','Uso del crédito');
     else if(utilization!==null&&utilization>=30)addNegative('Media','Utilización por encima de 30%: '+utilization+'%','Existe margen para mejorar el perfil reduciendo los saldos reportados.','Haz pagos antes de la fecha de cierre y evita concentrar la deuda en una sola tarjeta.','Uso del crédito');
-    if(inquiries!==null&&inquiries>=5)addNegative('Media','Muchas consultas recientes: '+inquiries,'Varias solicitudes en poco tiempo pueden transmitir necesidad urgente de crédito.','Confirma cada empresa y fecha; si alguna no la autorizaste, puedes disputarla directamente con el buró.','Crédito nuevo','bureau-dispute');
+    if(inquiries!==null&&inquiries>=5)addNegative('Media','Muchas consultas recientes: '+inquiries,'Varias solicitudes en poco tiempo pueden transmitir necesidad urgente de crédito.','Confirma cada empresa y fecha; si alguna no la autorizaste, puedes disputarla directamente con el buró.','Crédito nuevo','bureau-dispute',[],'inquiries',String(inquiries));
     if(dti!==null&&dti>43)addNegative('Media','Relación deuda/ingreso elevada: '+dti+'%','Una carga mensual alta puede dificultar nuevas aprobaciones incluso con buen puntaje.','Reduce pagos mensuales o aumenta ingresos documentables antes de solicitar una obligación grande.','Capacidad de pago');
     if(hasFraud)addNegative('Alta','Alerta de fraude o identidad','El documento menciona una alerta de fraude o posible robo de identidad.','Revisa cuentas y consultas desconocidas; contacta a los burós y acreedores mediante sus canales oficiales.','Seguridad');
     if(reportedNames.size>=2)addNegative('Alta','Varios nombres o alias detectados: '+reportedNames.size,'El bloque de información personal incluye más de un nombre asociado a tu identidad. No se usan nombres de bancos ni acreedores para este cálculo.','Compara cada nombre personal con tu identificación oficial y solicita que se elimine cualquier variante que no te pertenezca.','Identidad','identity-names',detectedNames);
@@ -1370,7 +1400,7 @@
     const priorityOrder={Crítica:0,Alta:1,Media:2,Baja:3};
     negatives.sort((a,b)=>priorityOrder[a.priority]-priorityOrder[b.priority]);
     const strategies=[];
-    negatives.forEach(item=>strategies.push({title:item.title,description:item.action,solutionType:item.solutionType,detectedValues:item.detectedValues}));
+    negatives.forEach(item=>strategies.push({title:item.title,description:item.action,solutionType:item.solutionType,detectedValues:item.detectedValues,issueKey:item.issueKey,issueArg:item.issueArg}));
     if(strategies.length<4)strategies.push({title:'Proteger lo positivo',description:'Mantén pagos automáticos, saldos bajos y evita cerrar cuentas antiguas sin evaluar el impacto.'});
     if(strategies.length<4)strategies.push({title:'Comparar los tres burós',description:'Revisa Equifax, Experian y TransUnion: una cuenta o error puede aparecer solo en uno de ellos.'});
     if(strategies.length<4)strategies.push({title:'Documentar cada gestión',description:'Guarda reportes, cartas, comprobantes, capturas y números de caso. Disputa únicamente información incorrecta o que no te pertenezca.'});
@@ -1397,16 +1427,28 @@
     'bureau-dispute':'Disputar esta información','debt-validation':'Exigir validación de la deuda'
   };
 
+  /* Resultado de una carta: la carta en dos columnas (español para entenderla, inglés para enviarla).
+     Las columnas se llenan en renderLetter() con cartas-bilingues.js; el textarea oculto guarda SOLO el
+     inglés y es lo que copia el botón. */
+  function letterResultHtml(title){
+    return '<div class="cr-solution-result" hidden><strong>'+title+'</strong>'+
+      '<div class="cr-letter-pair" role="group" aria-label="Carta en español y en inglés"></div>'+
+      '<p class="cr-letter-note" role="note" hidden>La línea «Detalle adicional» está en tus propias palabras. Revísala o escríbela en inglés antes de enviar.</p>'+
+      '<p class="cr-letter-disclaimer">Borrador educativo, no es asesoría legal. La versión en inglés es la que se envía y tú eres responsable de revisarla antes de enviarla.</p>'+
+      '<textarea class="cr-solution-letter" lang="en" readonly aria-label="Carta en inglés para enviar"></textarea>'+
+      '<button class="cr-copy-solution" type="button">Copiar carta en inglés</button></div>';
+  }
+
   function personalFieldsHtml(formId){
     return '<div class="cr-solution-field"><label for="'+formId+'GivenNames">Nombre o nombres</label><input id="'+formId+'GivenNames" name="givenNames" type="text" autocomplete="given-name" maxlength="70" required></div>'+
       '<div class="cr-solution-field"><label for="'+formId+'FirstSurname">Primer apellido</label><input id="'+formId+'FirstSurname" name="firstSurname" type="text" autocomplete="family-name" maxlength="60" required></div>'+
       '<div class="cr-solution-field"><label for="'+formId+'SecondSurname">Segundo apellido <span aria-hidden="true">(si aplica)</span></label><input id="'+formId+'SecondSurname" name="secondSurname" type="text" maxlength="60"></div>'+
       '<div class="cr-solution-field"><label for="'+formId+'Phone">Número de teléfono actual</label><input id="'+formId+'Phone" name="currentPhone" type="tel" autocomplete="tel" maxlength="30" required></div>'+
-      '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Street">Calle y número</label><input id="'+formId+'Street" name="street" type="text" autocomplete="street-address" maxlength="120" required></div>'+
-      '<div class="cr-solution-field"><label for="'+formId+'City">Ciudad</label><input id="'+formId+'City" name="city" type="text" autocomplete="address-level2" maxlength="70" required></div>'+
-      '<div class="cr-solution-field"><label for="'+formId+'State">Estado</label><input id="'+formId+'State" name="state" type="text" list="'+formId+'States" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
-      '<div class="cr-solution-field"><label for="'+formId+'PostalCode">Código postal</label><input id="'+formId+'PostalCode" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="[0-9]{5}(?:-[0-9]{4})?" title="Usa 5 dígitos o el formato 12345-6789" required></div>'+
-      '<div class="cr-address-tools"><button class="cr-google-address" type="button">Verificar dirección en Google Maps ↗</button><small>Este botón abre Google Maps con tu dirección solo cuando lo presionas. Aparte, el autocompletado de arriba solo envía algo si tú lo activas.</small></div>';
+      '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'Street">Calle y número</label><input id="'+formId+'Street" name="street" type="text" autocomplete="street-address" maxlength="120" data-dir-calle="persona" data-dir-tipo="persona" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'City">Ciudad</label><input id="'+formId+'City" name="city" type="text" autocomplete="address-level2" maxlength="70" data-dir-ciudad="persona" required></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'State">Estado</label><input id="'+formId+'State" name="state" type="text" list="'+formId+'States" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" data-dir-estado="persona" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
+      '<div class="cr-solution-field"><label for="'+formId+'PostalCode">Código postal</label><input id="'+formId+'PostalCode" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" data-dir-cp="persona" pattern="[0-9]{5}(?:-[0-9]{4})?" title="Usa 5 dígitos o el formato 12345-6789" required></div>'+
+      '<div class="cr-address-tools"><button class="cr-google-address" type="button">Verificar dirección en Google Maps ↗</button><small>Este botón abre Google Maps con tu dirección solo cuando lo presionas. Aparte, mientras escribes la calle te sugerimos direcciones con Google; solo se consulta lo que escribes ahí.</small></div>';
   }
 
   function renderIdentityForm(item,formId,bureauKey){
@@ -1418,7 +1460,7 @@
         '<p class="cr-form-alert" role="alert" hidden></p>'+
       '</div>'+
       '<button class="cr-solution-submit" type="submit">Preparar solicitud de corrección</button>'+
-      '<div class="cr-solution-result" hidden><strong>Borrador de solicitud</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de solicitud de corrección"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+      letterResultHtml('Borrador de solicitud');
   }
 
   function renderBureauDisputeForm(item,formId,bureauKey){
@@ -1439,23 +1481,23 @@
         '<p class="cr-form-alert" role="alert" hidden></p>'+
       '</div>'+
       '<button class="cr-solution-submit" type="submit">Preparar carta de disputa</button>'+
-      '<div class="cr-solution-result" hidden><strong>Borrador de disputa</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de carta de disputa"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+      letterResultHtml('Borrador de disputa');
   }
 
   function renderDebtValidationForm(item,formId){
     return '<p>Esta carta se envía directo a la agencia de cobranza — no al buró — exigiendo, bajo la Fair Debt Collection Practices Act, que prueben que la deuda es tuya y el monto es correcto antes de que puedan seguir cobrándote.</p>'+
       '<div class="cr-solution-fields">'+
         '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'CollectorName">Nombre de la agencia de cobranza</label><input id="'+formId+'CollectorName" name="collectorName" type="text" maxlength="120" required></div>'+
-        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'CollectorStreet">Dirección de la agencia (calle y número)</label><input id="'+formId+'CollectorStreet" name="collectorStreet" type="text" maxlength="120" required></div>'+
-        '<div class="cr-solution-field"><label for="'+formId+'CollectorCity">Ciudad</label><input id="'+formId+'CollectorCity" name="collectorCity" type="text" maxlength="70" required></div>'+
-        '<div class="cr-solution-field"><label for="'+formId+'CollectorState">Estado</label><input id="'+formId+'CollectorState" name="collectorState" type="text" list="'+formId+'States" maxlength="40" placeholder="Ej.: FL" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
-        '<div class="cr-solution-field"><label for="'+formId+'CollectorPostalCode">Código postal</label><input id="'+formId+'CollectorPostalCode" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" required></div>'+
+        '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'CollectorStreet">Dirección de la agencia (calle y número)</label><input id="'+formId+'CollectorStreet" name="collectorStreet" type="text" maxlength="120" data-dir-calle="cobrador" data-dir-tipo="cobrador" required></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorCity">Ciudad</label><input id="'+formId+'CollectorCity" name="collectorCity" type="text" maxlength="70" data-dir-ciudad="cobrador" required></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorState">Estado</label><input id="'+formId+'CollectorState" name="collectorState" type="text" list="'+formId+'States" maxlength="40" placeholder="Ej.: FL" data-dir-estado="cobrador" required><datalist id="'+formId+'States">'+stateOptionsHtml()+'</datalist></div>'+
+        '<div class="cr-solution-field"><label for="'+formId+'CollectorPostalCode">Código postal</label><input id="'+formId+'CollectorPostalCode" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" data-dir-cp="cobrador" required></div>'+
         '<div class="cr-solution-field cr-solution-field-wide"><label for="'+formId+'AccountRef">Número de cuenta o referencia <span aria-hidden="true">(opcional, si aparece en el reporte o en una carta que recibiste)</span></label><input id="'+formId+'AccountRef" name="accountReference" type="text" maxlength="60"></div>'+
         personalFieldsHtml(formId)+
         '<p class="cr-form-alert" role="alert" hidden></p>'+
       '</div>'+
       '<button class="cr-solution-submit" type="submit">Preparar carta de validación</button>'+
-      '<div class="cr-solution-result" hidden><strong>Borrador de validación</strong><textarea class="cr-solution-letter" readonly aria-label="Borrador de carta de validación de deuda"></textarea><button class="cr-copy-solution" type="button">Copiar borrador</button></div>';
+      letterResultHtml('Borrador de validación');
   }
 
   function renderStrategy(item,index,bureauKey){
@@ -1467,29 +1509,10 @@
     const label=SOLUTION_LABELS[item.solutionType]||'Solucionar este problema';
     const solution=item.solutionType
       ?'<button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="'+formId+'" data-open-label="Ocultar formulario" data-closed-label="'+escapeHtml(label)+'">'+escapeHtml(label)+'</button>'+
-       '<form class="cr-solution-form" id="'+formId+'" data-solution-type="'+escapeHtml(item.solutionType)+'" data-issue-title="'+escapeHtml(item.title)+'" hidden>'+inner+'</form>'
+       '<form class="cr-solution-form" id="'+formId+'" data-solution-type="'+escapeHtml(item.solutionType)+'" data-issue-title="'+escapeHtml(item.title)+'" data-issue-key="'+escapeHtml(item.issueKey||'')+'" data-issue-arg="'+escapeHtml(item.issueArg||'')+'" hidden>'+inner+'</form>'
       :'';
     return '<li><span class="cr-step-number">'+(index+1)+'</span><div><strong>'+escapeHtml(item.title)+'</strong><p>'+escapeHtml(item.description)+'</p>'+solution+'</div></li>';
   }
-
-  function identityCorrectionSubject(type){
-    const subjects={
-      'identity-names':'los nombres o alias que no corresponden a mi identidad',
-      'identity-phones':'los números de teléfono incorrectos o desactualizados',
-      'identity-addresses':'las direcciones que no corresponden a mi historial personal',
-      'identity-mixed':'la información personal que no me pertenece o está desactualizada'
-    };
-    return subjects[type]||'la información personal incorrecta';
-  }
-
-  const DISPUTE_REASON_TEXT={
-    'not-mine':'Esta cuenta no es mía y no la reconozco como una obligación que yo haya contraído.',
-    'wrong-amount':'El monto reportado para esta cuenta es incorrecto.',
-    'wrong-date':'La fecha del atraso, del evento o de apertura de esta cuenta es incorrecta.',
-    'already-resolved':'Esta cuenta ya fue pagada o resuelta y no debería seguir apareciendo con este estatus.',
-    'wrong-status':'El estatus actual de esta cuenta, tal como aparece en el reporte, es incorrecto.',
-    'other':'La información reportada sobre esta cuenta es inexacta.'
-  };
 
   function render(data){
     window.__ccLastAnalysis=data;
@@ -1555,13 +1578,8 @@
   dropzone.addEventListener('dragover',event=>{event.preventDefault();dropzone.classList.add('is-dragging');});
   dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
   dropzone.addEventListener('drop',event=>{event.preventDefault();dropzone.classList.remove('is-dragging');selectFile(event.dataTransfer.files[0]);});
-  /* Autocompletado de direcciones. Se conecta la primera vez que la persona
-     entra a un formulario de carta; no envía nada hasta que ella escribe en
-     «Calle y número». Escribir a mano siempre funciona. Ver direccion-autocompletar.js. */
-  results.addEventListener('focusin',event=>{
-    const carta=event.target.closest&&event.target.closest('.cr-solution-form');
-    if(carta&&window.ThemoraDireccion)window.ThemoraDireccion.conectar(carta);
-  });
+  /* El autocompletado de direcciones se conecta solo con los atributos data-dir-*
+     de los campos (ver direccion-autocompletar.js); aquí no hace falta código. */
   results.addEventListener('click',async event=>{
     const mapButton=event.target.closest('.cr-google-address');
     if(mapButton){
@@ -1587,10 +1605,11 @@
       const textarea=copyButton.closest('.cr-solution-result').querySelector('.cr-solution-letter');
       try{
         if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(textarea.value);
-        else{textarea.focus();textarea.select();document.execCommand('copy');}
-        copyButton.textContent='Borrador copiado';
-        setTimeout(()=>{copyButton.textContent='Copiar borrador';},1800);
-      }catch(error){textarea.focus();textarea.select();copyButton.textContent='Selecciona y copia el texto';}
+        else{textarea.classList.add('is-visible');textarea.focus();textarea.select();if(!document.execCommand('copy'))throw new Error('copy');textarea.classList.remove('is-visible');}
+        copyButton.textContent='Carta en inglés copiada';
+        if(window.ThemoraStats)window.ThemoraStats.evento('carta-ingles-copiada');
+        setTimeout(()=>{copyButton.textContent='Copiar carta en inglés';},1800);
+      }catch(error){textarea.classList.add('is-visible');textarea.focus();textarea.select();copyButton.textContent='Selecciona y copia el texto';}
       return;
     }
     const toggle=event.target.closest('.cr-solution-toggle');
@@ -1620,6 +1639,65 @@
     };
   }
 
+  function letterBureau(bureau){
+    return {nombre:bureau.name,destinatario:bureau.recipient,direccion:bureau.address};
+  }
+
+  function letterIssue(form){
+    return {clave:form.dataset.issueKey||'',arg:form.dataset.issueArg||'',titulo:form.dataset.issueTitle||''};
+  }
+
+  /* Pinta las dos columnas con el mismo resultado y deja el inglés en el textarea oculto. Todo con
+     textContent: lo que escribió la persona o dice su reporte nunca se interpreta como HTML. */
+  function renderLetter(form,letter,type){
+    const result=form.querySelector('.cr-solution-result');
+    const pair=result.querySelector('.cr-letter-pair');
+    const cell=(className,lang,lines)=>{
+      const box=document.createElement('div');
+      box.className=className;
+      box.lang=lang;
+      const p=document.createElement('p');
+      lines.forEach((line,index)=>{
+        if(index)p.appendChild(document.createElement('br'));
+        p.appendChild(document.createTextNode(line));
+      });
+      box.appendChild(p);
+      return box;
+    };
+    const head=(className,text)=>{
+      const box=document.createElement('p');
+      box.className=className;
+      box.lang='es';
+      box.textContent=text;
+      return box;
+    };
+    pair.textContent='';
+    pair.appendChild(head('cr-letter-head es','Para que la entiendas — español'));
+    pair.appendChild(head('cr-letter-head en','Para enviar — English'));
+    letter.bloques.forEach(block=>{
+      const row=document.createElement('div');
+      row.className='cr-letter-row';
+      row.appendChild(cell('cr-letter-cell es','es',block.es));
+      row.appendChild(cell('cr-letter-cell en','en',block.en));
+      pair.appendChild(row);
+    });
+    const textarea=result.querySelector('.cr-solution-letter');
+    textarea.value=letter.textoEn;
+    textarea.classList.remove('is-visible');
+    result.querySelector('.cr-letter-note').hidden=!letter.hayTextoLibre;
+    const copyButton=result.querySelector('.cr-copy-solution');
+    copyButton.textContent='Copiar carta en inglés';
+    result.hidden=false;
+    if(window.ThemoraStats)window.ThemoraStats.evento('carta-generada',{tipo:type});
+  }
+
+  function lettersUnavailable(formAlert){
+    if(window.ThemoraCartas)return false;
+    formAlert.textContent='No pudimos preparar la carta. Recarga la página e inténtalo de nuevo.';
+    formAlert.hidden=false;
+    return true;
+  }
+
   function submitIdentityCorrection(form){
     const formData=new FormData(form);
     const formAlert=form.querySelector('.cr-form-alert');
@@ -1639,62 +1717,14 @@
       return;
     }
     formAlert.hidden=true;
-    const givenNames=String(formData.get('givenNames')||'').trim();
-    const firstSurname=String(formData.get('firstSurname')||'').trim();
-    const secondSurname=String(formData.get('secondSurname')||'').trim();
-    const street=String(formData.get('street')||'').trim();
-    const city=String(formData.get('city')||'').trim();
-    const state=String(formData.get('state')||'').trim();
-    const postalCode=String(formData.get('postalCode')||'').trim();
-    const currentPhone=String(formData.get('currentPhone')||'').trim();
-    const legalName=[givenNames,firstSurname,secondSurname].filter(Boolean).join(' ');
-    const currentAddress=street+', '+city+', '+state+' '+postalCode;
-    const subject=identityCorrectionSubject(form.dataset.solutionType);
-    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
-    const disputedLines=disputedValues.map(item=>'- '+item.type+': '+item.value);
-    const letter=[
-      legalName,
-      currentAddress,
-      'Teléfono: '+currentPhone,
-      '',
-      currentDate,
-      '',
-      bureau.recipient,
-      ...bureau.address,
-      '',
-      'Asunto: Solicitud formal de corrección de información personal en mi reporte de '+bureau.name,
-      '',
-      'Estimado equipo de disputas de '+bureau.name+':',
-      '',
-      'Al revisar el reporte de crédito emitido por '+bureau.name+', detecté '+subject+'. Solicito formalmente que investiguen los datos indicados a continuación y que eliminen o corrijan toda información que sea inexacta, esté desactualizada o no me pertenezca.',
-      '',
-      'INFORMACIÓN QUE DISPUTO:',
-      ...disputedLines,
-      '',
-      'MI INFORMACIÓN CORRECTA:',
-      'Nombre legal: '+legalName,
-      'Nombre(s): '+givenNames,
-      'Primer apellido: '+firstSurname,
-      'Segundo apellido: '+(secondSurname||'No aplica'),
-      'Dirección actual: '+currentAddress,
-      'Calle y número: '+street,
-      'Ciudad: '+city,
-      'Estado: '+state,
-      'Código postal: '+postalCode,
-      'Teléfono actual: '+currentPhone,
-      '',
-      'Adjunto copias de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada. Solicito que me envíen por escrito el resultado de la investigación y una copia actualizada de mi reporte de crédito a la dirección indicada arriba.',
-      '',
-      'Declaro que esta solicitud se refiere únicamente a información que considero incorrecta o que no me pertenece.',
-      '',
-      'Atentamente,',
-      '',
-      'Firma: ______________________________',
-      legalName
-    ].join('\n');
-    const result=form.querySelector('.cr-solution-result');
-    result.querySelector('.cr-solution-letter').value=letter;
-    result.hidden=false;
+    if(lettersUnavailable(formAlert))return;
+    renderLetter(form,window.ThemoraCartas.armar('identity',{
+      fecha:new Date(),
+      remitente:readPersonalInfo(formData),
+      buro:letterBureau(bureau),
+      subtipo:form.dataset.solutionType,
+      valoresDisputados:disputedValues
+    }),'identity');
   }
 
   function submitBureauDispute(form){
@@ -1708,113 +1738,47 @@
       formAlert.hidden=false;
       return;
     }
-    if(!DISPUTE_REASON_TEXT[reasonKey]){
+    if(lettersUnavailable(formAlert))return;
+    if(!window.ThemoraCartas.MOTIVOS[reasonKey]){
       formAlert.textContent='Selecciona el motivo de tu disputa.';
       formAlert.hidden=false;
       return;
     }
     formAlert.hidden=true;
-    const info=readPersonalInfo(formData);
-    const detail=String(formData.get('disputeDetail')||'').trim();
-    const issueTitle=form.dataset.issueTitle||'esta cuenta';
-    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
-    const letter=[
-      info.legalName,
-      info.currentAddress,
-      'Teléfono: '+info.currentPhone,
-      '',
-      currentDate,
-      '',
-      bureau.recipient,
-      ...bureau.address,
-      '',
-      'Asunto: Solicitud formal de investigación de información inexacta en mi reporte de '+bureau.name,
-      '',
-      'Estimado equipo de disputas de '+bureau.name+':',
-      '',
-      'Al revisar mi reporte de crédito emitido por '+bureau.name+', identifiqué la siguiente cuenta o información que considero inexacta: "'+issueTitle+'".',
-      '',
-      'Motivo de la disputa: '+DISPUTE_REASON_TEXT[reasonKey],
-      ...(detail?['Detalle adicional: '+detail]:[]),
-      '',
-      'De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito.',
-      '',
-      'Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo.',
-      '',
-      'MI INFORMACIÓN:',
-      'Nombre legal: '+info.legalName,
-      'Dirección actual: '+info.currentAddress,
-      'Teléfono actual: '+info.currentPhone,
-      '',
-      'Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada.',
-      '',
-      'Declaro que esta solicitud se refiere únicamente a información que considero inexacta.',
-      '',
-      'Atentamente,',
-      '',
-      'Firma: ______________________________',
-      info.legalName
-    ].join('\n');
-    const result=form.querySelector('.cr-solution-result');
-    result.querySelector('.cr-solution-letter').value=letter;
-    result.hidden=false;
+    renderLetter(form,window.ThemoraCartas.armar('bureau-dispute',{
+      fecha:new Date(),
+      remitente:readPersonalInfo(formData),
+      buro:letterBureau(bureau),
+      motivo:reasonKey,
+      detalle:String(formData.get('disputeDetail')||'').trim(),
+      hallazgo:letterIssue(form)
+    }),'bureau-dispute');
   }
 
   function submitDebtValidation(form){
     const formData=new FormData(form);
     const formAlert=form.querySelector('.cr-form-alert');
-    const collectorName=String(formData.get('collectorName')||'').trim();
-    const collectorStreet=String(formData.get('collectorStreet')||'').trim();
-    const collectorCity=String(formData.get('collectorCity')||'').trim();
-    const collectorState=String(formData.get('collectorState')||'').trim();
-    const collectorPostalCode=String(formData.get('collectorPostalCode')||'').trim();
-    if(!collectorName||!collectorStreet||!collectorCity||!collectorState||!collectorPostalCode){
+    const collector={
+      nombre:String(formData.get('collectorName')||'').trim(),
+      calle:String(formData.get('collectorStreet')||'').trim(),
+      ciudad:String(formData.get('collectorCity')||'').trim(),
+      estado:String(formData.get('collectorState')||'').trim(),
+      cp:String(formData.get('collectorPostalCode')||'').trim()
+    };
+    if(!collector.nombre||!collector.calle||!collector.ciudad||!collector.estado||!collector.cp){
       formAlert.textContent='Completa el nombre y la dirección completa de la agencia de cobranza.';
       formAlert.hidden=false;
       return;
     }
     formAlert.hidden=true;
-    const info=readPersonalInfo(formData);
-    const accountReference=String(formData.get('accountReference')||'').trim();
-    const issueTitle=form.dataset.issueTitle||'esta cuenta';
-    const currentDate=new Intl.DateTimeFormat('es-US',{day:'numeric',month:'long',year:'numeric'}).format(new Date());
-    const letter=[
-      info.legalName,
-      info.currentAddress,
-      'Teléfono: '+info.currentPhone,
-      '',
-      currentDate,
-      '',
-      collectorName,
-      collectorStreet,
-      collectorCity+', '+collectorState+' '+collectorPostalCode,
-      '',
-      'Asunto: Solicitud de validación de deuda — '+issueTitle+(accountReference?' (referencia de cuenta: '+accountReference+')':''),
-      '',
-      'Estimado(a) '+collectorName+':',
-      '',
-      'Recibí información de que su empresa está intentando cobrarme una deuda'+(accountReference?' con referencia de cuenta '+accountReference:'')+'. De acuerdo con la Fair Debt Collection Practices Act (15 U.S.C. § 1692g), solicito formalmente que me envíen validación por escrito de esta deuda, incluyendo:',
-      '',
-      '- El monto exacto que alegan que debo y cómo se calculó.',
-      '- El nombre del acreedor original.',
-      '- Prueba de que soy la persona legalmente obligada a pagar esta deuda.',
-      '- Confirmación de que su empresa tiene derecho a cobrarla.',
-      '',
-      'Esta carta no es un reconocimiento de que la deuda es válida ni una promesa de pago. Mientras espero esta validación, les solicito que suspendan todo intento de cobro, incluyendo llamadas y reportes adicionales a las agencias de crédito, tal como exige la ley mientras la deuda está en disputa.',
-      '',
-      'MI INFORMACIÓN:',
-      'Nombre legal: '+info.legalName,
-      'Dirección actual: '+info.currentAddress,
-      'Teléfono actual: '+info.currentPhone,
-      '',
-      'Atentamente,',
-      '',
-      'Firma: ______________________________',
-      info.legalName
-    ].join('\n');
-    const result=form.querySelector('.cr-solution-result');
-    result.querySelector('.cr-solution-letter').value=letter;
-    result.hidden=false;
+    if(lettersUnavailable(formAlert))return;
+    renderLetter(form,window.ThemoraCartas.armar('debt-validation',{
+      fecha:new Date(),
+      remitente:readPersonalInfo(formData),
+      cobrador:collector,
+      referencia:String(formData.get('accountReference')||'').trim(),
+      hallazgo:letterIssue(form)
+    }),'debt-validation');
   }
 
   results.addEventListener('submit',event=>{
@@ -1868,6 +1832,7 @@
 })();
 </script>
 <script src="direccion-autocompletar.js"></script>
+<script src="cartas-bilingues.js"></script>
 <script src="site-search-index.js"></script>
 <script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>

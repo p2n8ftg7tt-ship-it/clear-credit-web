@@ -118,6 +118,63 @@
   status = 404
   force = true
 
+# Todo lo que está en la raíz se publica. Estas carpetas y notas son de trabajo
+# (especificaciones, herramientas de IA, mapa del código, instrucciones internas):
+# se quedan en tu computadora y en GitHub, pero nadie las descarga del sitio.
+[[redirects]]
+  from = "/specs/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.specify/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/graphify-out/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/skills-lock.json"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-PAGOS.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-DIRECCIONES.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-CARTAS-BILINGUES.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
 # ─────────────────────────────────────────────────────────────────────
 # Cabeceras de seguridad para todas las páginas.
 # Permitimos solo los servicios que el sitio ya usa (Supabase, Google

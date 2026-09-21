@@ -751,17 +751,17 @@
             <p class="cd-alert" id="cdAlert" hidden></p>
             <div class="cd-field"><label for="cdGivenNames">Nombre o nombres</label><input id="cdGivenNames" name="givenNames" type="text" autocomplete="given-name" maxlength="70" required></div>
             <div class="cd-field"><label for="cdSurname">Apellido(s)</label><input id="cdSurname" name="surname" type="text" autocomplete="family-name" maxlength="80" required></div>
-            <div class="cd-field full"><label for="cdStreet">Tu calle y número</label><input id="cdStreet" name="street" type="text" autocomplete="street-address" maxlength="120" required></div>
-            <div class="cd-field"><label for="cdCity">Ciudad</label><input id="cdCity" name="city" type="text" autocomplete="address-level2" maxlength="70" required></div>
-            <div class="cd-field"><label for="cdState">Estado</label><input id="cdState" name="state" type="text" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" required></div>
-            <div class="cd-field"><label for="cdZip">Código postal</label><input id="cdZip" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" required></div>
+            <div class="cd-field full"><label for="cdStreet">Tu calle y número</label><input id="cdStreet" name="street" type="text" autocomplete="street-address" maxlength="120" data-dir-calle="persona" data-dir-tipo="persona" required></div>
+            <div class="cd-field"><label for="cdCity">Ciudad</label><input id="cdCity" name="city" type="text" autocomplete="address-level2" maxlength="70" data-dir-ciudad="persona" required></div>
+            <div class="cd-field"><label for="cdState">Estado</label><input id="cdState" name="state" type="text" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" data-dir-estado="persona" required></div>
+            <div class="cd-field"><label for="cdZip">Código postal</label><input id="cdZip" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" data-dir-cp="persona" required></div>
             <div class="cd-field"><label for="cdPhone">Tu teléfono <span aria-hidden="true">(opcional)</span></label><input id="cdPhone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
 
             <div class="cd-field full"><label for="cdCollectorName">Nombre de la agencia de cobranza o acreedor</label><input id="cdCollectorName" name="collectorName" type="text" maxlength="120" required></div>
-            <div class="cd-field full"><label for="cdCollectorStreet">Dirección de la agencia (calle y número)</label><input id="cdCollectorStreet" name="collectorStreet" type="text" maxlength="120" required></div>
-            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" maxlength="70" required></div>
-            <div class="cd-field"><label for="cdCollectorState">Estado</label><input id="cdCollectorState" name="collectorState" type="text" maxlength="40" placeholder="Ej.: FL" required></div>
-            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" required></div>
+            <div class="cd-field full"><label for="cdCollectorStreet">Dirección de la agencia (calle y número)</label><input id="cdCollectorStreet" name="collectorStreet" type="text" maxlength="120" data-dir-calle="cobrador" data-dir-tipo="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" maxlength="70" data-dir-ciudad="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorState">Estado</label><input id="cdCollectorState" name="collectorState" type="text" maxlength="40" placeholder="Ej.: FL" data-dir-estado="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" data-dir-cp="cobrador" required></div>
             <div class="cd-field"><label for="cdAccountRef">Número de cuenta o referencia <span aria-hidden="true">(opcional)</span></label><input id="cdAccountRef" name="accountReference" type="text" maxlength="60"></div>
 
             <div class="cd-field full"><label for="cdReason">¿Por qué quieres que dejen de contactarte? <span aria-hidden="true">(opcional)</span></label>
@@ -951,6 +951,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
+<script src="direccion-autocompletar.js"></script>
 <script src="cms.js"></script>
 <script src="mortgage-calculator.js"></script>
 <script src="quick-calculators.js"></script>

@@ -270,7 +270,7 @@
           </div>
           <div class="form-group full">
             <label for="lnDireccion">Dirección completa del negocio <span class="ln-optional">(opcional ahora)</span></label>
-            <input type="text" id="lnDireccion" name="direccion">
+            <input type="text" id="lnDireccion" name="direccion" data-dir-calle="negocio" data-dir-tipo="negocio">
           </div>
           <div class="form-group full">
             <label for="lnHorario">Horario de atención <span class="ln-optional">(opcional ahora)</span></label>
@@ -448,6 +448,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
 <script src="cms.js"></script>
+<script src="direccion-autocompletar.js"></script>
 
 <script>
 (function(){
