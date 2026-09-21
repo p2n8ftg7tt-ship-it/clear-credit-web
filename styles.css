@@ -60,6 +60,14 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
 .links .nav-auth-btn:hover{background:var(--navy-deep);color:#fff;border-color:var(--navy-deep)}
 .links .nav-auth-btn.is-logged-in{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
 .links .nav-auth-btn.is-logged-in:hover{background:var(--navy-deep);border-color:var(--navy-deep);color:#fff}
+/* Identidad compartida: foto recortada y una inicial mientras carga. */
+.profile-avatar{position:relative;overflow:hidden;isolation:isolate}
+.profile-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+header .nav #navAuthLink.is-logged-in{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;min-width:44px;padding:3px;margin-block:0;border:1.5px solid var(--gold);border-radius:50%;background:var(--paper-dim);color:var(--ink);text-decoration:none}
+.nav-profile-avatar{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;font:700 1rem 'Public Sans',sans-serif}
+header .nav #navAuthLink.is-logged-in:hover{border-color:var(--navy);box-shadow:0 0 0 3px var(--paper-dim)}
+header .nav #navAuthLink:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+header .nav #navAuthLink.nav-auth-mobile{margin-left:auto;margin-right:-12px}
 
 @media(prefers-reduced-motion:reduce){.nav-menu,.nav-caret{transition:none}}
 .nav-toggle{display:none;border:0;background:var(--paper-dim);color:var(--navy);width:42px;height:42px;border-radius:7px;cursor:pointer}
