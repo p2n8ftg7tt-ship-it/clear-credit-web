@@ -294,44 +294,8 @@
       </div>
     </section>
 
-    <!-- NEGOCIO — lo que se cobra -->
-    <section class="negocio-section band-dark">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow-dark" style="color:var(--gold-light);">¿Tienes un negocio?</span>
-          <h2>Que te encuentren, y que estés en regla.</h2>
-          <p>Si alguien te recomienda y no te encuentra en el mapa, esa venta no llega. Empieza por ver cómo estás hoy — eso no cuesta nada.</p>
-        </div>
-        <div class="negocio-grid">
-          <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco" data-reveal>
-            <span class="negocio-kicker">Empieza aquí · gratis</span>
-            <h3>¿Aparece mi negocio?</h3>
-            <p>En cuatro pasos y desde tu teléfono, comprueba con tus propios ojos si sales en Google Maps y en Apple Maps, y qué te falta.</p>
-            <span class="negocio-cta">Revisar mi negocio →</span>
-          </a>
-          <!-- El precio va en la tarjeta, no escondido dentro de la página.
-               Quien no puede pagarlo tiene derecho a saberlo aquí y no después
-               de leer tres pantallas. El número sale de PRECIOS en pago.js. -->
-          <a class="negocio-card" href="listar-negocio.html" data-umami-event="inicio-listar" data-reveal>
-            <span class="negocio-kicker">Servicio</span>
-            <h3>Ponerlo en el mapa</h3>
-            <p>Te creamos y verificamos la ficha en Google Maps y en Apple Maps, con tus horarios, tus fotos y tu dirección correcta.</p>
-            <span class="negocio-precio" data-precio-de="listar" hidden></span>
-            <span class="negocio-cta">Ver cómo funciona →</span>
-          </a>
-          <a class="negocio-card" href="formar-negocio.html" data-umami-event="inicio-formar" data-reveal>
-            <span class="negocio-kicker">Servicio</span>
-            <h3>Abrir mi negocio</h3>
-            <p>Registramos tu LLC y tramitamos tu número EIN, y te explicamos cada papel del camino — permisos, licencias y avisos del estado.</p>
-            <span class="negocio-precio" data-precio-de="formar" data-precio-formato="etiqueta" hidden></span>
-            <span class="negocio-cta">Ver cómo funciona →</span>
-          </a>
-        </div>
-        <p class="negocio-honesto"><strong>Lo decimos antes de que preguntes:</strong> Google Business, Apple Business y el número EIN del IRS son <strong>gratis</strong>. Nadie tiene que pagarle a nadie por tenerlos. Lo que se cobra aquí es el trabajo de hacerlo bien y en tu idioma — y si prefieres hacerlo tú mismo, en cada página te dejamos los pasos completos y los enlaces oficiales.</p>
-      </div>
-    </section>
-
-    <!-- POR QUÉ CREERNOS -->
+    <!-- POR QUÉ CREERNOS — la confianza va antes del servicio que se cobra,
+         no después: quien está a punto de pagar algo lee esto primero. -->
     <section class="creer-section" id="por-que">
       <div class="wrap">
         <div class="section-head">
@@ -372,7 +336,7 @@
     <section class="nosomos-section">
       <div class="wrap nosomos-wrap">
         <span class="eyebrow-dark">Con claridad</span>
-        <h2 style="font:600 clamp(1.8rem,3.4vw,2.6rem)/1.1 'Fraunces',serif;color:var(--navy-deep);">Lo que no somos</h2>
+        <h2 style="font:600 clamp(1.8rem,3.4vw,2.6rem)/1.1 var(--font-display);color:var(--navy-deep);">Lo que no somos</h2>
         <ul class="nosomos-list">
           <li><strong>No somos abogados.</strong> Te decimos qué opciones existen; nunca qué debes hacer en tu caso.</li>
           <li><strong>No somos prestamistas ni asesores hipotecarios con licencia.</strong> No aprobamos préstamos ni te conseguimos una tasa.</li>
@@ -380,6 +344,44 @@
           <li><strong>No somos una bóveda de documentos.</strong> Tu carta, tu contrato y tu reporte <strong>no se guardan</strong> en ningún lado, ni aquí ni con quien los lee. Lo que sí queda, porque no hay otra forma, es lo que tú escribes: tu correo si nos escribes, y lo que pongas en tu perfil o guardes en tu cuenta — y todo eso lo borras tú cuando quieras. <a href="privacidad.html#cuanto-tiempo">Qué se guarda y cuánto dura</a>.</li>
         </ul>
         <p class="nosomos-cierre">Themora te ayuda a recordar lo que entendiste, no a almacenar tu vida financiera.</p>
+      </div>
+    </section>
+
+    <!-- NEGOCIO — lo que se cobra. Va después de la confianza, no antes:
+         a quien va a pagar algo se le convence primero, se le cobra después. -->
+    <section class="negocio-section band-dark">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark" style="color:var(--gold-light);">¿Tienes un negocio?</span>
+          <h2>Que te encuentren, y que estés en regla.</h2>
+          <p>Si alguien te recomienda y no te encuentra en el mapa, esa venta no llega. Empieza por ver cómo estás hoy — eso no cuesta nada.</p>
+        </div>
+        <div class="negocio-grid">
+          <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco" data-reveal>
+            <span class="negocio-kicker">Empieza aquí · gratis</span>
+            <h3>¿Aparece mi negocio?</h3>
+            <p>En cuatro pasos y desde tu teléfono, comprueba con tus propios ojos si sales en Google Maps y en Apple Maps, y qué te falta.</p>
+            <span class="negocio-cta">Revisar mi negocio →</span>
+          </a>
+          <!-- El precio va en la tarjeta, no escondido dentro de la página.
+               Quien no puede pagarlo tiene derecho a saberlo aquí y no después
+               de leer tres pantallas. El número sale de PRECIOS en pago.js. -->
+          <a class="negocio-card" href="listar-negocio.html" data-umami-event="inicio-listar" data-reveal>
+            <span class="negocio-kicker">Servicio</span>
+            <h3>Ponerlo en el mapa</h3>
+            <p>Te creamos y verificamos la ficha en Google Maps y en Apple Maps, con tus horarios, tus fotos y tu dirección correcta.</p>
+            <span class="negocio-precio" data-precio-de="listar" hidden></span>
+            <span class="negocio-cta">Ver cómo funciona →</span>
+          </a>
+          <a class="negocio-card" href="formar-negocio.html" data-umami-event="inicio-formar" data-reveal>
+            <span class="negocio-kicker">Servicio</span>
+            <h3>Abrir mi negocio</h3>
+            <p>Registramos tu LLC y tramitamos tu número EIN, y te explicamos cada papel del camino — permisos, licencias y avisos del estado.</p>
+            <span class="negocio-precio" data-precio-de="formar" data-precio-formato="etiqueta" hidden></span>
+            <span class="negocio-cta">Ver cómo funciona →</span>
+          </a>
+        </div>
+        <p class="negocio-honesto"><strong>Lo decimos antes de que preguntes:</strong> Google Business, Apple Business y el número EIN del IRS son <strong>gratis</strong>. Nadie tiene que pagarle a nadie por tenerlos. Lo que se cobra aquí es el trabajo de hacerlo bien y en tu idioma — y si prefieres hacerlo tú mismo, en cada página te dejamos los pasos completos y los enlaces oficiales.</p>
       </div>
     </section>
 
