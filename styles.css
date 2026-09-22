@@ -18,6 +18,7 @@
   --radius-sm:10px;
   --radius-lg:28px;
   --radius-xl:40px;
+  --radius-2xl:56px;
   --radius-pill:999px;
   --ease:cubic-bezier(.16,1,.3,1);
   --dur:.22s;
@@ -28,10 +29,30 @@
   --wash-sage:#eef2e7;
   /* Tokens del sistema de diseño: tipografía y foco, para no repetir el
      mismo string de fuente o el mismo outline suelto en cada regla nueva. */
-  --font-display:var(--font-display);
-  --font-body:var(--font-body);
+  --font-display:'Fraunces',serif;
+  --font-body:'Public Sans',Arial,sans-serif;
   --focus-color:var(--gold);
   --focus-ring:3px solid var(--focus-color);
+  /* Escala tipográfica y de espaciado con la misma disciplina de base-8
+     (referencia: Sauce Labs) pero con nuestra tipografía y paleta. Quedan
+     como tokens disponibles para componentes nuevos; no se reescribió cada
+     regla existente para no arriesgar el sitio en producción de un jalón. */
+  --text-body-sm:.85rem;
+  --text-body:1rem;
+  --text-body-lg:1.125rem;
+  --text-subheading:1.5rem;
+  --text-heading-sm:2rem;
+  --text-heading:2.5rem;
+  --text-heading-lg:3rem;
+  --text-display:4rem;
+  --space-1:.5rem;
+  --space-2:1rem;
+  --space-3:1.5rem;
+  --space-4:2rem;
+  --space-5:2.5rem;
+  --space-6:3rem;
+  --space-7:3.5rem;
+  --space-8:4rem;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -792,7 +813,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .bento-grid--3 .bento-tile:nth-child(1){grid-column:span 3}
 .bento-grid--3 .bento-tile:nth-child(2){grid-column:span 3}
 .bento-grid--3 .bento-tile:nth-child(3){grid-column:span 6}
-.bento-tile{border-radius:var(--radius-xl);padding:30px 30px 28px;border:1px solid var(--line);
+.bento-tile{border-radius:var(--radius-2xl);padding:30px 30px 28px;border:1px solid var(--line);
   background:#fff;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .bento-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .bento-tile--wash-teal{background:var(--wash-teal);border-color:transparent}
