@@ -1,0 +1,338 @@
+{
+  "al-dia": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "al_dia",
+      "publicadoEn": "2026-09-21T13:00:05Z",
+      "ultimaRevisionEn": "__AHORA_MENOS_2H__",
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": {
+        "15": {
+          "valor": 6.26,
+          "previo": 6.09,
+          "cambioPp": 0.17,
+          "fechaFuente": "2026-09-17"
+        },
+        "30": {
+          "valor": 6.95,
+          "previo": 6.76,
+          "cambioPp": 0.19,
+          "fechaFuente": "2026-09-17"
+        }
+      },
+      "alertas": [],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "alerta-30": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "al_dia",
+      "publicadoEn": "2026-09-21T13:00:05Z",
+      "ultimaRevisionEn": "__AHORA_MENOS_2H__",
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": {
+        "15": {
+          "valor": 6.26,
+          "previo": 6.09,
+          "cambioPp": 0.17,
+          "fechaFuente": "2026-09-17"
+        },
+        "30": {
+          "valor": 6.95,
+          "previo": 6.76,
+          "cambioPp": 0.19,
+          "fechaFuente": "2026-09-17"
+        }
+      },
+      "alertas": [
+        {
+          "id": 41,
+          "tipo": "movimiento_semanal",
+          "termino": "30",
+          "direccion": "sube",
+          "magnitudPp": 0.19,
+          "detectadaEn": "2026-09-18T13:00:07Z",
+          "fechaFuente": "2026-09-17",
+          "fuente": {
+            "id": "freddie-pmms",
+            "nombre": "Freddie Mac PMMS",
+            "url": "https://www.freddiemac.com/pmms"
+          },
+          "semanalPendiente": false,
+          "datos": null
+        }
+      ],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "alerta-fed": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "al_dia",
+      "publicadoEn": "2026-09-21T13:00:05Z",
+      "ultimaRevisionEn": "__AHORA_MENOS_2H__",
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": {
+        "15": {
+          "valor": 6.26,
+          "previo": 6.09,
+          "cambioPp": 0.17,
+          "fechaFuente": "2026-09-17"
+        },
+        "30": {
+          "valor": 6.95,
+          "previo": 6.76,
+          "cambioPp": 0.19,
+          "fechaFuente": "2026-09-17"
+        }
+      },
+      "alertas": [
+        {
+          "id": 42,
+          "tipo": "fed_objetivo",
+          "termino": null,
+          "direccion": "baja",
+          "magnitudPp": 0.25,
+          "detectadaEn": "2026-09-18T13:00:07Z",
+          "fechaFuente": "2026-09-17",
+          "fuente": {
+            "id": "nyfed-objetivo",
+            "nombre": "Reserva Federal",
+            "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+          },
+          "semanalPendiente": true,
+          "datos": {
+            "desde": "3.75–4.00",
+            "hasta": "3.50–3.75"
+          }
+        }
+      ],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "sin-actualizar": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "sin_actualizar",
+      "publicadoEn": "2026-09-08T13:00:05Z",
+      "ultimaRevisionEn": "__AHORA_MENOS_2H__",
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": {
+        "15": {
+          "valor": 6.26,
+          "previo": 6.09,
+          "cambioPp": 0.17,
+          "fechaFuente": "2026-09-17"
+        },
+        "30": {
+          "valor": 6.95,
+          "previo": 6.76,
+          "cambioPp": 0.19,
+          "fechaFuente": "2026-09-17"
+        }
+      },
+      "alertas": [],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "revision-vieja": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "al_dia",
+      "publicadoEn": "2026-09-21T13:00:05Z",
+      "ultimaRevisionEn": "__AHORA_MENOS_72H__",
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": {
+        "15": {
+          "valor": 6.26,
+          "previo": 6.09,
+          "cambioPp": 0.17,
+          "fechaFuente": "2026-09-17"
+        },
+        "30": {
+          "valor": 6.95,
+          "previo": 6.76,
+          "cambioPp": 0.19,
+          "fechaFuente": "2026-09-17"
+        }
+      },
+      "alertas": [],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "sin-datos": {
+    "estado": 200,
+    "cuerpo": {
+      "version": 1,
+      "activo": true,
+      "generadoEn": "2026-09-21T13:04:11Z",
+      "frescura": "sin_datos",
+      "publicadoEn": null,
+      "ultimaRevisionEn": null,
+      "proximaActualizacion": "2026-09-22T13:00:00Z",
+      "fuente": {
+        "id": "freddie-pmms",
+        "nombre": "Freddie Mac · Primary Mortgage Market Survey",
+        "url": "https://www.freddiemac.com/pmms",
+        "atribucion": "Fuente: Freddie Mac PMMS",
+        "frecuencia": "Semanal, los jueves",
+        "mide": "Promedio nacional semanal de las tasas que ofrecen los prestamistas, para hipotecas fijas a 30 y 15 años"
+      },
+      "terminos": null,
+      "alertas": [],
+      "fuentesSenal": [
+        {
+          "id": "tesoro-10a",
+          "nombre": "Tesoro de EE. UU. · rendimiento a 10 años",
+          "mide": "Rendimiento diario del bono a 10 años, la referencia que siguen las tasas hipotecarias",
+          "frecuencia": "Diaria, días hábiles",
+          "url": "https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics"
+        },
+        {
+          "id": "nyfed-objetivo",
+          "nombre": "Reserva Federal · rango objetivo",
+          "mide": "Rango objetivo de la tasa de fondos federales",
+          "frecuencia": "Cuando la Reserva Federal decide",
+          "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+        }
+      ]
+    }
+  },
+  "caido": {
+    "estado": 503,
+    "cuerpo": {
+      "estado": "no_disponible"
+    }
+  }
+}

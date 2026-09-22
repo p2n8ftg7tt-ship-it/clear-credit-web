@@ -15,10 +15,12 @@
       dice honestamente que no se entendió, en vez de contestar lo primero que
       hizo "match" — que es como un reglamento de trabajo terminó clasificado
       como carta médica en Cartas Claras.
-   2. IDIOMA. Detecta español, inglés, portugués, italiano y francés, y obedece
-      "habla en italiano". Lo que está escrito a fondo es español e inglés; en
-      los otros tres se contesta corto y se dice con franqueza que el detalle
-      está en esos dos.
+   2. IDIOMA. Detecta español, inglés, portugués, criollo haitiano, italiano y
+      francés, y obedece "habla en italiano". La conversación y las leyes de
+      zyron-leyes.js (cobranza y reportes de crédito) están escritas a fondo en
+      español, inglés, portugués y criollo. El resto de los temas está a fondo
+      en español e inglés; en los demás idiomas se contesta corto y se dice con
+      franqueza que el detalle está en esos dos.
    3. VARIACIÓN. Cada intención tiene varias redacciones y no repite la misma
       dos veces seguidas. Un asistente que contesta idéntico se siente máquina.
    4. LA EMOCIÓN VA PRIMERO. Si alguien escribe "me van a quitar la casa", se
@@ -66,13 +68,15 @@
   var MARCAS = {
     es: ['que', 'como', 'para', 'porque', 'mi', 'me', 'tengo', 'quiero', 'esto', 'una', 'del', 'con', 'muy', 'pero', 'donde', 'cuanto', 'gracias', 'hola', 'si', 'no', 'y', 'es'],
     en: ['the', 'what', 'how', 'my', 'i', 'do', 'can', 'is', 'about', 'help', 'need', 'want', 'you', 'with', 'and', 'for', 'thanks', 'hello', 'hi'],
-    pt: ['nao', 'voce', 'obrigado', 'obrigada', 'como', 'para', 'meu', 'minha', 'quero', 'preciso', 'ola', 'sim', 'muito', 'esta'],
+    pt: ['nao', 'voce', 'voces', 'obrigado', 'obrigada', 'como', 'para', 'meu', 'minha', 'quero', 'preciso', 'ola', 'sim', 'muito', 'esta',
+      'uma', 'um', 'os', 'em', 'dos', 'das', 'ao', 'pelo', 'pela', 'seu', 'sua', 'tem', 'tenho', 'pode', 'podem', 'fica', 'quem', 'quanto', 'tempo'],
+    ht: ['mwen', 'ou', 'nou', 'pa', 'sa', 'ki', 'nan', 'pou', 'gen', 'ak', 'se', 'ap', 'te', 'kote', 'kijan', 'poukisa', 'tanpri', 'lajan', 'lwa', 'yo', 'm', 'w'],
     it: ['non', 'sono', 'grazie', 'come', 'per', 'mio', 'mia', 'voglio', 'ciao', 'che', 'una', 'questo', 'bene', 'dove', 'quanto'],
     fr: ['pas', 'je', 'vous', 'merci', 'comment', 'pour', 'mon', 'ma', 'veux', 'bonjour', 'oui', 'est', 'une', 'avec', 'ou']
   };
 
   // Palabras que existen igual en varios idiomas y no deben decidir nada.
-  var AMBIGUAS = ['como', 'para', 'una', 'no', 'si', 'que', 'mi', 'ma'];
+  var AMBIGUAS = ['como', 'para', 'una', 'no', 'si', 'que', 'mi', 'ma', 'ou', 'pa', 'sa', 'se', 'te', 'le', 'nan', 'ak', 'yo', 'm', 'w', 'um', 'em', 'os', 'ao'];
 
   // Palabras que pertenecen a un solo idioma sin discusión. Bastan ellas
   // solas: alguien que escribe "hola" después de dos mensajes en italiano
@@ -81,7 +85,8 @@
   var UNIVOCAS = {
     es: ['hola', 'buenas', 'gracias', 'adios', 'oye', 'disculpe', 'necesito', 'quiero'],
     en: ['hello', 'hi', 'hey', 'thanks', 'goodbye', 'please', 'sorry'],
-    pt: ['oi', 'obrigado', 'obrigada', 'tchau', 'preciso'],
+    pt: ['oi', 'obrigado', 'obrigada', 'tchau', 'preciso', 'nao', 'voce', 'voces', 'relatorio', 'divida', 'dividas', 'pelo', 'pela', 'quero', 'tenho', 'minha', 'meu', 'podem', 'ligar', 'ligam'],
+    ht: ['bonjou', 'bonswa', 'mesi', 'alo', 'mwen', 'tanpri', 'kijan', 'poukisa', 'konprann', 'kredi', 'det', 'kolekte', 'rapo', 'ede', 'lajan', 'lwa', 'nou', 'kote', 'idantite', 'vole', 'fwod', 'dwa', 'peye', 'avoka', 'kolekte', 'sispann', 'rele', 'ajans'],
     it: ['ciao', 'grazie', 'buongiorno', 'arrivederci', 'scusi'],
     fr: ['bonjour', 'merci', 'salut', 'bonsoir', 'excusez']
   };
@@ -109,6 +114,7 @@
     es: ['espanol', 'castellano', 'spanish', 'spagnolo', 'espanhol', 'espagnol'],
     en: ['ingles', 'english', 'inglese', 'anglais', 'inglês'],
     pt: ['portugues', 'portuguese', 'portoghese', 'portugais', 'brasileiro'],
+    ht: ['criollo', 'kreyol', 'creole', 'haitiano', 'haitian', 'haitien'],
     it: ['italiano', 'italian', 'italien'],
     fr: ['frances', 'french', 'francese', 'francais']
   };
@@ -122,13 +128,15 @@
     'speak', 'talk', 'write', 'answer', 'reply', 'say',
     'parla', 'parlare', 'scrivi', 'rispondi',
     'fale', 'falar', 'escreva', 'responda',
+    'pale', 'ekri', 'reponn', 'chanje',
     'parle', 'parler', 'ecris', 'repond', 'repondez',
     'cambia', 'cambiar', 'change', 'switch', 'traduce', 'traducir'];
 
   // Frases que hablan de un documento: si aparecen, "inglés" describe el papel,
   // no es una petición de idioma.
   var SOBRE_DOCUMENTO = ['carta', 'papel', 'documento', 'contrato', 'aviso', 'reporte', 'factura',
-    'sobre', 'notificacion', 'letter', 'document', 'contract', 'notice', 'bill', 'lettera'];
+    'sobre', 'notificacion', 'letter', 'document', 'contract', 'notice', 'bill', 'lettera',
+    'papye', 'dokiman', 'kontra', 'avi', 'fakti'];
 
   function pedidoDeIdioma(texto) {
     var encontrado = null;
@@ -296,9 +304,27 @@
       fuera: ['Isso está fora do que eu faço. Pergunte sobre cartas, crédito, casa, carro ou negócio.'],
       groseria: ['Entendo a frustração. Me conta o que aconteceu.'],
       cambio: 'Certo, seguimos em português.',
-      soloDos: 'Sendo sincero: o conteúdo detalhado está em espanhol e inglês. Em português eu te dou o essencial e te levo à página certa.',
+      soloDos: 'Sendo sincero: as leis de cobrança de dívidas (FDCPA) e de relatórios de crédito (FCRA) eu tenho em detalhe em português. Nos outros assuntos, o conteúdo detalhado está em espanhol e inglês, e aqui te dou o essencial.',
       sensible: 'Um momento — não escreva aqui seu número de documento, conta ou cartão. Não preciso deles.',
       humano: 'Se preferir falar com uma pessoa, dá para marcar uma conversa.'
+    },
+    ht: {
+      saludo: ['Bonjou. Mwen se Zyron, asistan Themora a. Kijan mwen ka ede w?', 'Alo. Se Zyron. Di m sa w bezwen epi n ap kòmanse la.', 'Bonjou. Zyron isit la. Èske yon papye rive lakay ou, oswa w ap chèche konnen yon bagay?'],
+      comoEstas: ['Mwen byen, mèsi paske w mande. E ou menm, kijan w ye? Èske gen yon papye ki rive ou pa konprann?'],
+      eresRobot: ['Mwen se yon pwogram, se pa yon moun — mwen pito di w sa dirèkteman. Si w bezwen pale ak yon moun vre, ou ka pran yon randevou.'],
+      quienEres: ['Mwen se Zyron, nan Themora. Themora eksplike nan lang ou papye ki nan men w — yon lèt, yon kontra, yon rapò kredi — epi li ede ti biznis parèt sou kat la epi rete alafwa.'],
+      queHaces: ['Mwen ka ede w ak: yon lèt ann anglè, yon kontra machin anvan w siyen l, rapò kredi w, dèt ak kolektè, ak fòmalite pou yon biznis. Di m ka w la.'],
+      gratis: ['Konprann yon papye pa koute anyen isit la. Se sèlman sèvis pou biznis yo ki peye, epi pri a ekri sou paj la anvan w ranpli anyen.'],
+      privacidad: ['Nou pa kenbe dokiman ou yo. Rapò kredi a analize andedan navigatè pa w la. Epi pa janm ekri isit la nimewo kont ou, kat ou, ni nimewo sekirite sosyal ou.'],
+      gracias: ['Pa dekwa. Mwen la si w gen yon lòt kesyon.', 'Avèk plezi. Retounen si yon lòt papye rive.'],
+      adios: ['Ale ak Bondye. Pran swen tèt ou.', 'N ap wè. Retounen si gen yon bagay ou pa konprann.'],
+      noEntiendo: ['Mwen pa byen konprann, epi mwen pito di w sa pase m envante yon repons. Ou ka di l yon lòt jan? Si se sou yon papye, di m ki moun ki voye l.'],
+      fuera: ['Sa a pa nan sa mwen fè, epi mwen p ap envante yon repons. Mande m sou lèt, kontra, kredi, kolektè, oswa biznis ou.'],
+      groseria: ['Mwen konprann fristrasyon w — bagay sa yo ka fè moun fache. Di m sa ki pase epi n ap wè si mwen ka ede w.'],
+      cambio: 'Dakò, n ap kontinye an kreyòl.',
+      soloDos: 'Kite m di w franchman: mwen gen lwa sou kolektè dèt (FDCPA) ak rapò kredi (FCRA) an detay an kreyòl. Sou lòt sijè yo, mwen ba w sèlman sa ki esansyèl, epi detay yo pi konplè an panyòl ak anglè.',
+      sensible: 'Yon ti moman — pa ekri isit la nimewo sekirite sosyal ou, nimewo kont ou, ni nimewo kat ou. Mwen pa bezwen yo pou ede w.',
+      humano: 'Si w pito pale ak yon moun, ou ka pran yon randevou san okenn angajman.'
     },
     it: {
       saludo: ['Ciao. Sono Zyron, l\'assistente di Themora. Di cosa hai bisogno?', 'Ciao. Qui Zyron. Dimmi pure.'],
@@ -362,59 +388,72 @@
     {
       id: 'miedo',
       claves: ['asustado', 'asustada', 'miedo', 'panico', 'nervioso', 'nerviosa', 'angustiado', 'angustia',
-        'preocupado', 'preocupada', 'desesperado', 'desesperada', 'scared', 'afraid', 'panic', 'worried', 'anxious'],
+        'preocupado', 'preocupada', 'desesperado', 'desesperada', 'scared', 'afraid', 'panic', 'worried', 'anxious',
+        'assustado', 'assustada', 'medo', 'nervoso', 'nervosa',
+        'mwen pe', 'm pe', 'pe anpil', 'enkyet', 'enkyete', 'estrese', 'panike'],
       prefijo: {
         es: 'Respira. Que dé miedo es normal — casi todo lo que llega en un sobre está escrito para que dé miedo. Vamos por partes.',
         en: 'Take a breath. Being scared is normal — most of what arrives in an envelope is written to be scary. Let\'s go step by step.',
         pt: 'Respira. É normal ficar assustado. Vamos por partes.',
         it: 'Respira. È normale avere paura. Andiamo con ordine.',
+        ht: 'Respire. Nòmal pou w pè — prèske tout sa ki rive nan yon anvlòp ekri pou fè w pè. Ann ale etap pa etap.',
         fr: 'Respirez. Avoir peur est normal. Allons-y étape par étape.'
       }
     },
     {
       id: 'perder',
       claves: ['quitar', 'quitarme', 'perder', 'perdiendo', 'embargo', 'embargar', 'desalojo', 'desalojar',
-        'sacar', 'lose', 'losing', 'evict', 'eviction', 'foreclosure', 'repossess', 'garnish'],
+        'sacar', 'lose', 'losing', 'evict', 'eviction', 'foreclosure', 'repossess', 'garnish',
+        'despejo', 'penhora', 'perder a casa', 'perder o carro',
+        'degepi', 'saisi', 'pran kay', 'pran machin'],
       prefijo: {
         es: 'Eso es serio y lo trato como serio. Lo primero es la fecha: casi todos estos procesos tienen un plazo, y mientras el plazo no venza hay opciones. Busca la fecha en el papel.',
         en: 'That\'s serious and I\'ll treat it as serious. First thing is the date: almost all of these have a deadline, and while it hasn\'t passed there are options. Find the date on the document.',
         pt: 'Isso é sério. A primeira coisa é a data: enquanto o prazo não vence, existem opções.',
         it: 'È una cosa seria. La prima cosa è la data: finché non scade, ci sono opzioni.',
+        ht: 'Sa a serye, epi mwen pran l an seryè. Premye bagay la se dat la: pandan delè a poko pase, gen opsyon. Chèche dat la sou papye a.',
         fr: 'C\'est sérieux. La première chose est la date : tant que le délai n\'est pas passé, il y a des options.'
       }
     },
     {
       id: 'acoso',
       claves: ['llaman', 'llamando', 'llamadas', 'acosan', 'acoso', 'molestan', 'amenazan', 'amenaza',
-        'calling', 'harass', 'harassing', 'threaten', 'threatening'],
+        'calling', 'harass', 'harassing', 'threaten', 'threatening',
+        'ligam', 'ligando', 'ameacam', 'assedio',
+        'rele m', 'rele mwen', 'rele san rete', 'anmede', 'menase'],
       prefijo: {
         es: 'Que te llamen sin parar no es algo que tengas que aguantar en silencio — la ley federal de cobranza pone límites a cuándo y cómo pueden contactarte.',
         en: 'Constant calls are not something you just have to endure — federal collection law limits when and how they can contact you.',
         pt: 'Ligações constantes não são algo que você tenha que aguentar calado: a lei federal de cobrança tem limites.',
         it: 'Le chiamate continue non sono qualcosa da subire in silenzio: la legge federale pone dei limiti.',
+        ht: 'Apèl ki pa janm sispann se pa yon bagay ou dwe sipòte an silans — lwa federal sou koleksyon dèt mete limit sou lè ak fason yo ka kontakte w.',
         fr: 'Les appels incessants ne sont pas une fatalité : la loi fédérale encadre les contacts.'
       }
     },
     {
       id: 'verguenza',
       claves: ['pena', 'verguenza', 'apenado', 'apenada', 'tonto', 'tonta', 'bruto', 'ignorante',
-        'embarrassed', 'ashamed', 'stupid', 'dumb'],
+        'embarrassed', 'ashamed', 'stupid', 'dumb',
+        'vergonha', 'wont', 'mwen wont'],
       prefijo: {
         es: 'No hay nada de qué apenarse. Estos papeles están escritos en un inglés que muchas personas nacidas aquí tampoco entienden — no es cosa tuya, es cosa del papel.',
         en: 'Nothing to be embarrassed about. These documents are written in English that plenty of people born here don\'t understand either — it\'s the paper\'s fault, not yours.',
         pt: 'Não há do que se envergonhar. Esses papéis são escritos de um jeito que muita gente daqui também não entende.',
         it: 'Non c\'è nulla di cui vergognarsi. Questi documenti non li capiscono nemmeno molti madrelingua.',
+        ht: 'Pa gen okenn wont ladan l. Papye sa yo ekri nan yon anglè ke anpil moun ki fèt isit la pa konprann tou — se pa fòt ou, se fòt papye a.',
         fr: 'Il n\'y a pas de honte à avoir. Beaucoup de natifs ne comprennent pas ces documents non plus.'
       }
     },
     {
       id: 'sin_ingles',
-      claves: ['no hablo ingles', 'no entiendo ingles', 'no se ingles', 'mi ingles', 'poco ingles'],
+      claves: ['no hablo ingles', 'no entiendo ingles', 'no se ingles', 'mi ingles', 'poco ingles',
+        'nao falo ingles', 'meu ingles', 'mwen pa pale angle', 'mwen pa konn angle', 'pa pale angle'],
       prefijo: {
         es: 'Para eso existe este sitio. Y algo que casi nadie sabe: en muchos trámites tienes derecho a que te atiendan en tu idioma o con intérprete, sin costo.',
         en: 'That\'s exactly why this site exists. And something few people know: in many proceedings you have the right to be served in your language or with an interpreter, at no cost.',
         pt: 'É para isso que este site existe. E em muitos processos você tem direito a intérprete sem custo.',
         it: 'È esattamente per questo che esiste questo sito. In molte procedure hai diritto a un interprete gratuito.',
+        ht: 'Se pou sa sit sa a egziste. Epi anpil moun pa konnen: nan anpil pwosedi ou gen dwa a yon entèprèt gratis.',
         fr: 'C\'est précisément pour cela que ce site existe. Dans beaucoup de démarches, vous avez droit à un interprète gratuit.'
       }
     }
@@ -535,7 +574,7 @@
       claves: ['cobrador', 'cobranza', 'coleccion', 'collection', 'collector', 'debt', 'deuda'],
       pistas: ['llaman', 'validacion', 'validar', 'fdcpa', 'cobrar', 'pagar', 'debo'],
       es: ['Dos derechos que casi nadie usa: puedes pedir por escrito que te validen la deuda —monto, acreedor original y prueba de que es tuya—, y puedes pedir por escrito que dejen de contactarte. La ley federal de cobranza te da los dos. Lo que no puedo decirte es si conviene pagar o no: eso depende de tu caso.',
-        'Antes de pagar nada, vale la pena pedir la validación por escrito. Mientras la deuda no esté validada, la cobranza debe detenerse. Y si las llamadas son el problema, existe la carta de cese de comunicación.'],
+        'Antes de pagar nada, vale la pena pedir la validación por escrito. Si la disputas por escrito dentro de los 30 días de recibir el aviso, el cobrador debe dejar de cobrar esa deuda hasta mandarte la verificación. Y si las llamadas son el problema, existe la carta de cese de comunicación.'],
       en: ['Two rights almost nobody uses: you can request written validation of the debt —amount, original creditor, proof it\'s yours— and you can request in writing that they stop contacting you. Federal collection law gives you both.'],
       pt: 'Você pode pedir por escrito a validação da dívida e também que parem de te contatar.',
       it: 'Puoi chiedere per iscritto la validazione del debito e che smettano di contattarti.',
@@ -733,7 +772,10 @@
   'use strict';
 
   var U = window.ZyronIdioma, SHELL = window.ZyronShell,
-      D = window.ZyronDatos, TEMAS = window.ZyronTemas;
+      D = window.ZyronDatos;
+  // zyron-leyes.js (opcional) aporta los temas de leyes federales. Si el
+  // archivo no carga, Zyron sigue funcionando con los temas del sitio.
+  var TEMAS = window.ZyronTemas.concat(Array.isArray(window.ZyronLeyes) ? window.ZyronLeyes : []);
   var norm = U.normalizar, tiene = U.tienePalabra;
 
   var MINIMO = 3;           // puntaje mínimo para comprometerse con un tema
@@ -763,26 +805,26 @@
   /* ---------- detectores de la capa humana ---------- */
 
   var SALUDOS = ['hola', 'holaa', 'ola', 'buenas', 'buenos dias', 'buenas tardes', 'buenas noches',
-    'hello', 'hi', 'hey', 'good morning', 'ciao', 'bonjour', 'oi', 'ola', 'saludos', 'que tal', 'qué onda', 'que onda'];
+    'hello', 'hi', 'hey', 'good morning', 'ciao', 'bonjour', 'bonjou', 'bonswa', 'alo', 'oi', 'ola', 'saludos', 'que tal', 'qué onda', 'que onda'];
   var COMO_ESTAS = ['como estas', 'como esta', 'como te va', 'como andas', 'que tal estas', 'how are you',
-    'how are u', 'how you doing', 'come stai', 'comment allez vous', 'ca va', 'tudo bem', 'como vai'];
+    'how are u', 'how you doing', 'come stai', 'comment allez vous', 'ca va', 'tudo bem', 'como vai', 'kijan ou ye', 'kijan w ye', 'sak pase', 'kouman ou ye'];
   var ES_ROBOT = ['eres un robot', 'eres robot', 'eres una maquina', 'eres humano', 'eres una persona',
     'eres real', 'eres un bot', 'are you a robot', 'are you human', 'are you real', 'are you a bot',
-    'sei un robot', 'es tu un robot', 'eres ia', 'eres inteligencia artificial'];
+    'sei un robot', 'es tu un robot', 'eres ia', 'eres inteligencia artificial', 'ou se yon robo', 'ou se yon moun'];
   var QUIEN_ERES = ['quien eres', 'como te llamas', 'que es themora', 'quien te hizo', 'quien te creo',
-    'who are you', 'what is themora', 'what\'s your name', 'chi sei', 'qui es tu', 'quem e voce', 'tu nombre'];
+    'who are you', 'what is themora', 'what\'s your name', 'chi sei', 'qui es tu', 'quem e voce', 'tu nombre', 'ki moun ou ye', 'kisa themora ye'];
   var QUE_HACES = ['que haces', 'que puedes hacer', 'en que me ayudas', 'para que sirves', 'que sabes',
-    'what can you do', 'what do you do', 'how can you help', 'cosa sai fare', 'ayuda', 'help', 'aiuto'];
+    'what can you do', 'what do you do', 'how can you help', 'cosa sai fare', 'ayuda', 'help', 'aiuto', 'ede m', 'kisa ou ka fe'];
   var ES_GRATIS = ['es gratis', 'cuesta', 'cuanto cuesta', 'tengo que pagar', 'me van a cobrar', 'precio',
-    'is it free', 'how much', 'do i pay', 'e gratis', 'c\'est gratuit', 'gratuito', 'cobran'];
+    'is it free', 'how much', 'do i pay', 'e gratis', 'c\'est gratuit', 'gratuito', 'cobran', 'konbyen li koute', 'li koute'];
   // Nada de palabras sueltas y ambiguas aquí: "seguro" a secas hacía que
   // "¿puedo comprar casa sin seguro social?" se contestara como privacidad.
   var PRIVACIDAD = ['guardan mis datos', 'guardan mi informacion', 'guardan mis documentos', 'mis datos',
     'privacidad', 'es seguro', 'me graban', 'me estas grabando', 'grabando', 'venden mi informacion',
-    'quien ve mis', 'que hacen con mi', 'privacy', 'do you store', 'is it safe', 'my data', 'recording me'];
-  var GRACIAS = ['gracias', 'muchas gracias', 'thank you', 'thanks', 'grazie', 'merci', 'obrigado', 'obrigada', 'ty'];
+    'quien ve mis', 'que hacen con mi', 'privacy', 'do you store', 'is it safe', 'my data', 'recording me', 'done m yo', 'enfomasyon mwen'];
+  var GRACIAS = ['gracias', 'muchas gracias', 'thank you', 'thanks', 'grazie', 'merci', 'mesi', 'obrigado', 'obrigada', 'ty'];
   var ADIOS = ['adios', 'bye', 'hasta luego', 'nos vemos', 'chao', 'chau', 'goodbye', 'arrivederci',
-    'au revoir', 'tchau', 'me voy'];
+    'au revoir', 'tchau', 'me voy', 'orevwa', 'babay', 'n ap we'];
   var GROSERIAS = ['mierda', 'estupido', 'estupida', 'inutil', 'pendejo', 'idiota', 'basura', 'porqueria',
     'no sirves', 'stupid', 'useless', 'garbage', 'you suck', 'damn', 'shit'];
   var FUERA_TEMA = ['chiste', 'chistes', 'clima', 'tiempo hace', 'que hora', 'futbol', 'receta', 'pelicula',
@@ -851,31 +893,47 @@
   function puntuarTemas(texto) {
     var res = [];
     TEMAS.forEach(function (tema) {
-      var p = 0;
+      var p = 0, porClaves = 0;
       tema.claves.forEach(function (k) {
         // Una clave de varias palabras es mucho más específica que una suelta
         // y pesa más. Sin esto, "¿puedo comprar casa sin seguro social?"
         // empataba entre "casa" y "sin seguro social", y ganaba la genérica.
-        if (k.indexOf(' ') === -1) { if (tiene(texto, k)) p += 3; }
-        else if (texto.indexOf(k) !== -1) p += 5;
+        if (k.indexOf(' ') === -1) { if (tiene(texto, k)) { p += 3; porClaves += 3; } }
+        else if (texto.indexOf(k) !== -1) { p += 5; porClaves += 5; }
       });
       (tema.pistas || []).forEach(function (k) {
         if (k.indexOf(' ') === -1 ? tiene(texto, k) : texto.indexOf(k) !== -1) p += 1;
       });
       // Desempate por especificidad: un tema que responde una situación
-      // concreta le gana al tema ancho que la contendría.
-      if (p > 0 && tema.prioridad) p += tema.prioridad;
+      // concreta le gana al tema ancho que la contendría. El bono solo cuenta
+      // si hubo una clave real: con una sola pista suelta ("carta", "gratis")
+      // el bono bastaba para llegar al mínimo y el tema contestaba sin razón.
+      if (porClaves > 0 && tema.prioridad) p += tema.prioridad;
       if (p > 0) res.push({ tema: tema, puntos: p });
     });
     res.sort(function (a, b) { return b.puntos - a.puntos; });
     return res;
   }
 
+  /* Un tema está "completo" en un idioma cuando ahí trae una lista de
+     redacciones (arreglo); si trae una sola línea corta (texto), se contesta
+     corto y se avisa. Así las leyes de zyron-leyes.js, escritas a fondo en
+     portugués y criollo, se dicen completas sin que el resto de los temas
+     finja tener un detalle que no tiene. */
   function respuestaDeTema(tema, idioma, estado) {
-    if (IDIOMAS_COMPLETOS.indexOf(idioma) !== -1) {
-      return { texto: variar(tema[idioma], idioma + ':' + tema.id, estado), completo: true };
+    var v = tema[idioma];
+    if (Array.isArray(v) && v.length) {
+      return { texto: variar(v, idioma + ':' + tema.id, estado), completo: true };
     }
-    return { texto: tema[idioma] || tema.es[0], completo: false };
+    if (typeof v === 'string' && v) return { texto: v, completo: false };
+    return { texto: tema.es[0], completo: false };
+  }
+
+  function etiquetaEnlace(tema, idioma) {
+    var e = tema.enlace;
+    if (!e) return null;
+    var etiquetas = tema.enlaceEtiqueta || {};
+    return { href: e.href, label: etiquetas[idioma] || e.label };
   }
 
   /* =======================================================================
@@ -951,7 +1009,8 @@
 
     // 6. Glosario y frases — las dos cosas que nadie espera de un chat así.
     var frases = buscarFrases(texto);
-    if (frases) {
+    var frasesSeSuman = !!(frases && ganador && ganador.ley && IDIOMAS_COMPLETOS.indexOf(idioma) !== -1);
+    if (frases && !(ganador && ganador.ley)) {
       return { texto: pintarFrases(frases, idioma), enlaces: [], idioma: idioma, tema: 'frases', estado: estado };
     }
     var glo = buscarGlosario(texto);
@@ -961,6 +1020,7 @@
       // de soltar un párrafo en español sin explicación.
       var aviso = { es: '', en: '(This glossary explains English paperwork terms in Spanish — that\'s what the site is for.) ',
         pt: '(Este glossário explica termos em inglês, em espanhol.) ',
+        ht: '(Glosè sa a eksplike tèm anglè yo an panyòl.) ',
         it: '(Questo glossario spiega i termini inglesi in spagnolo.) ',
         fr: '(Ce glossaire explique les termes anglais en espagnol.) ' };
       return { texto: (aviso[idioma] || '') + '"' + glo.termino.toUpperCase() + '": ' + glo.texto, enlaces: [], idioma: idioma, tema: 'glosario', estado: estado };
@@ -975,10 +1035,13 @@
     if (ganador) {
       var r = respuestaDeTema(ganador, idioma, estado);
       var partes = [];
+      // Si además pidió "cómo se lo digo", después de la respuesta legal van
+      // las palabras exactas para el teléfono (solo en español e inglés).
+      if (frasesSeSuman) r.texto += '\n\n' + pintarFrases(frases, idioma);
       if (emocion) partes.push(emocion.prefijo[idioma] || emocion.prefijo.es);
       if (!r.completo) partes.push(txt(idioma, 'soloDos', estado));
       partes.push(r.texto);
-      if (ganador.enlace) enlaces.push(ganador.enlace);
+      if (ganador.enlace) enlaces.push(etiquetaEnlace(ganador, idioma));
       estado.ultimoTema = ganador.id;
       return { texto: partes.join(' '), enlaces: enlaces, idioma: idioma, tema: ganador.id, estado: estado };
     }

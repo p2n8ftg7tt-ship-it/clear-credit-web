@@ -34,28 +34,28 @@
   .fn-disclaimer p{margin:0 0 8px;color:var(--muted);font-size:.87rem;line-height:1.65;}
   .fn-disclaimer p:last-child{margin-bottom:0;}
   .fn-steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:fn-step}
-  .fn-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .fn-step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 20px}
   .fn-step::before{counter-increment:fn-step;content:counter(fn-step);flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;display:grid;place-items:center;font-size:.9rem}
   .fn-step h3{margin:0 0 4px;font:700 1rem 'Public Sans',sans-serif;color:var(--navy-deep)}
   .fn-step p{margin:0;color:var(--muted);font-size:.9rem}
   .fn-includes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-  .fn-include-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+  .fn-include-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px}
   .fn-include-card h3{margin:0 0 8px;font:700 .95rem 'Public Sans',sans-serif;color:var(--navy-deep)}
   .fn-include-card p{margin:0;color:var(--muted);font-size:.87rem}
   .fn-include-card .tag{display:inline-block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:rgba(79,107,87,.1);padding:3px 9px;border-radius:12px;margin-bottom:9px;}
-  .fn-va-panel{background:var(--navy-deep);border-radius:14px;padding:34px 30px;color:#fff;}
+  .fn-va-panel{background:var(--navy-deep);border-radius:var(--radius-xl);padding:34px 30px;color:#fff;}
   .fn-va-panel .eyebrow{color:var(--gold-light);}
   .fn-va-panel h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.4vw,2.4rem);margin:6px 0 14px;letter-spacing:-.025em;}
   .fn-va-panel > p{color:rgba(255,255,255,.75);max-width:640px;margin:0 0 26px;}
   .fn-va-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
-  .fn-va-fact{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:16px 18px;}
+  .fn-va-fact{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:16px 18px;}
   .fn-va-fact .amt{font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;}
   .fn-va-fact .lbl{display:block;font-size:.72rem;color:rgba(255,255,255,.6);margin-top:3px;}
-  .fn-other-states{margin-top:18px;padding:16px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;font-size:.85rem;color:rgba(255,255,255,.78);}
-  .fn-price-wrap{background:#fff;border:1.5px solid var(--gold);border-radius:14px;padding:32px 28px;}
+  .fn-other-states{margin-top:18px;padding:16px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);font-size:.85rem;color:rgba(255,255,255,.78);}
+  .fn-price-wrap{background:#fff;border:1.5px solid var(--gold);border-radius:var(--radius-xl);padding:32px 28px;}
   .fn-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:14px;}
   .fn-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
-  .fn-price-item{background:var(--paper-dim);border-radius:10px;padding:18px 20px;}
+  .fn-price-item{background:var(--paper-dim);border-radius:var(--radius);padding:18px 20px;}
   .fn-price-item .amt{font:700 2rem 'Fraunces',serif;color:var(--navy-deep);}
   .fn-price-item .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800;color:var(--teal);margin-bottom:6px;}
   .fn-price-item p{margin:8px 0 0;font-size:.82rem;color:var(--muted);}
@@ -72,6 +72,32 @@
     .fn-form-grid{grid-template-columns:1fr}
     .fn-price-grid{grid-template-columns:1fr}
   }
+  .llc-pasos{list-style:none;margin:0;padding:0;display:grid;gap:16px;}
+  .llc-paso{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 26px;}
+  .llc-paso-cab{display:flex;align-items:center;gap:13px;margin-bottom:12px;}
+  .llc-num{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font:800 .92rem 'Fraunces',serif;display:grid;place-items:center;}
+  .llc-paso h3{margin:0;font:700 1.06rem 'Public Sans',sans-serif;color:var(--navy-deep);}
+  .llc-paso p{margin:0 0 11px;color:var(--muted);font-size:.9rem;line-height:1.68;}
+  .llc-paso p:last-child{margin-bottom:0;}
+  .llc-paso strong{color:var(--ink);}
+  .llc-ojo{background:rgba(179,64,42,.06);border-left:3px solid var(--danger);border-radius:0 10px 10px 0;padding:15px 18px;margin:0 0 11px;font-size:.87rem;line-height:1.65;color:var(--muted);}
+  .llc-ojo strong{display:block;color:var(--navy-deep);margin-bottom:5px;}
+  .llc-ojo a{display:inline-block;margin-top:9px;color:var(--teal);font-weight:700;text-decoration:underline;}
+  .llc-gratis{background:rgba(79,107,87,.1);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:15px 18px;margin:0 0 11px;font-size:.87rem;line-height:1.65;color:var(--muted);}
+  .llc-gratis strong{display:block;color:var(--navy-deep);margin-bottom:5px;}
+  .llc-verdad{margin-top:26px;background:var(--navy-deep);border-radius:var(--radius-xl);padding:30px 30px 26px;color:#fff;}
+  .llc-verdad h3{margin:0 0 14px;font:600 1.4rem 'Fraunces',serif;color:#fff;}
+  .llc-verdad p{margin:0 0 12px;color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7;}
+  .llc-verdad strong{color:var(--gold-light);}
+  .llc-verdad-pie{font-size:.82rem!important;color:rgba(255,255,255,.6)!important;border-top:1px solid rgba(255,255,255,.16);padding-top:14px;margin-bottom:0!important;}
+  .llc-fuentes{margin-top:20px;padding:18px 20px;background:var(--paper-dim);border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.82rem;}
+  .llc-fuentes strong{flex:1 0 100%;color:var(--navy-deep);margin-bottom:4px;}
+  .llc-fuentes a{color:var(--teal);font-weight:700;text-decoration:underline;}
+  .llc-fecha{flex:1 0 100%;color:var(--muted);font-size:.76rem;margin-top:5px;}
+  @media(max-width:560px){.llc-paso{padding:20px 18px;}.llc-verdad{padding:24px 20px;}}
+  .fn-guia-libre{margin-top:18px;}
+  .fn-guia-libre a{color:var(--gold-light);font-weight:700;font-size:.9rem;text-decoration:underline;text-underline-offset:3px;}
+  .fn-guia-libre a:hover{color:#fff;}
 </style>
 </head>
 <body data-cms-page="formar-negocio">
@@ -125,9 +151,21 @@
       <h1>¿Quieres abrir tu negocio pero no sabes por dónde empezar?</h1>
       <p>Formar tu compañía (LLC) y sacar tu número federal de identificación (EIN) es puro papeleo — pero papeleo que hay que hacer bien. Yo me encargo del trámite por ti, en español, paso a paso.</p>
       <div class="fn-badge-row">
-        <span class="fn-badge">📍 Disponible en los 50 estados</span>
+        <span class="fn-badge">📍 Enfoque en Virginia · otros estados, según el caso</span>
         <span class="fn-badge">⭐ Atención especial en Virginia</span>
       </div>
+      <!-- Reciprocidad honesta: los pasos completos, gratis, antes de pedir nada.
+           Si alguien decide hacerlo solo, se lleva algo real. -->
+      <!-- Antes decía "disponible en los 50 estados". Preparar documentos
+           legales por un precio está regulado y no es igual en todas partes:
+           California, por ejemplo, exige registrarse como Legal Document
+           Assistant ante el condado y constituir una fianza. Prometer
+           cobertura nacional sin cumplir eso es un riesgo real, así que la
+           página ahora dice lo que de verdad se puede sostener. -->
+      <!-- El precio arriba, no al final. Quien no puede pagarlo se entera en
+           tres segundos en vez de leer la página entera para descubrirlo. -->
+      <p class="hero-precio">Cuesta <b data-precio-de="formar" hidden></b>. No se cobra nada hasta que te confirmemos por escrito que podemos hacerlo en tu estado y tú digas que sí.</p>
+      <p class="fn-guia-libre"><a href="#pasos-llc">¿Prefieres hacerlo tú mismo? Aquí están los pasos completos, gratis →</a></p>
     </div>
   </section>
 
@@ -137,6 +175,7 @@
         <strong>No somos un despacho de abogados</strong>
         <p>Este es un servicio de preparación y presentación de trámites (paperwork) — no asesoría legal. Preparamos y presentamos tus documentos de formación ante el estado y tramitamos tu EIN con la información que tú nos das. No te decimos qué tipo de entidad te conviene legalmente, ni te representamos ante ninguna corte o agencia.</p>
         <p>Si tu situación es más compleja (varios socios, inversionistas, un negocio regulado, temas de inmigración, etc.), te recomendamos hablar primero con un abogado o contador. Con gusto seguimos ayudándote con el papeleo después.</p>
+        <p><strong>Sobre en qué estados trabajamos.</strong> El trámite es parecido en todo el país, pero <em>quién puede preparar documentos legales por un precio</em> no lo es: varios estados lo regulan. California, por ejemplo, exige registrarse como <em>Legal Document Assistant</em> ante el condado y constituir una fianza. Hoy trabajamos con enfoque en Virginia. Si tu negocio es en otro estado, confirmamos primero si podemos hacerlo nosotros — y si no, te decimos exactamente cómo hacerlo tú, con los pasos y los enlaces oficiales que están más abajo en esta página, sin cobrarte nada.</p>
         <p><strong style="display:inline;">Importante sobre licencias profesionales:</strong> una licencia de contratista, de salón de belleza, o cualquier licencia profesional similar es personal e intransferible — el examen, los años de experiencia y el historial los tiene que cumplir la persona misma. Nosotros no podemos sacarte esa licencia; sí podemos darte la lista de lo que necesitas y ayudarte a registrar la empresa detrás de ese negocio.</p>
       </div>
     </div>
@@ -150,25 +189,25 @@
         <p>Tú nos cuentas qué negocio quieres abrir, nosotros preparamos y presentamos el papeleo.</p>
       </div>
       <ol class="fn-steps">
-        <li class="fn-step">
+        <li class="fn-step" data-reveal>
           <div>
             <h3>Nos cuentas de tu negocio</h3>
             <p>Nombre que quieres para tu empresa, en qué estado, a qué se va a dedicar, y quiénes son los dueños — todo por el formulario de esta página.</p>
           </div>
         </li>
-        <li class="fn-step">
+        <li class="fn-step" data-reveal>
           <div>
             <h3>Confirmamos el pago y los datos</h3>
-            <p>Te contactamos para confirmar el pago y para pedirte, de forma privada (nunca por este formulario), cualquier dato sensible que haga falta — como el número de seguro social del dueño para el EIN.</p>
+            <p>Te escribimos para confirmar el precio exacto y lo que hace falta. <strong>Tu número de seguro social o ITIN no nos lo das a nosotros ni aquí ni por ningún otro canal:</strong> el IRS lo pide al final del trámite del EIN y <strong>lo escribes tú mismo</strong> en la página del IRS, con nosotros acompañándote por teléfono si quieres. Así ese número no pasa por nuestras manos, no se guarda en ningún lado nuestro, y no hay nada que se nos pueda perder.</p>
           </div>
         </li>
-        <li class="fn-step">
+        <li class="fn-step" data-reveal>
           <div>
             <h3>Preparamos y presentamos tus documentos</h3>
             <p>Presentamos la formación de tu LLC ante el estado, tramitamos tu EIN directo con el IRS (es gratis — nunca pagas por el número en sí), y te damos una plantilla de acuerdo operativo.</p>
           </div>
         </li>
-        <li class="fn-step">
+        <li class="fn-step" data-reveal>
           <div>
             <h3>Te confirmamos cuando esté listo</h3>
             <p>Te mandamos tus documentos aprobados y una guía de los próximos pasos (cuenta bancaria del negocio, licencias locales, y cuándo vence tu reporte anual).</p>
@@ -209,9 +248,89 @@
 
       <div class="fn-trust">
         <div>
-          <strong>Nunca pedimos tu número de seguro social por este formulario</strong>
-          <p>El formulario de esta página solo pide datos generales del negocio. Si tu trámite requiere tu número de seguro social o ITIN (por ejemplo, para el EIN), te lo pedimos después, de forma privada y directa — nunca por un formulario público del sitio.</p>
+          <strong>Nunca te pedimos tu número de seguro social. Nunca, por ningún canal.</strong>
+          <p>Ni en este formulario, ni por WhatsApp, ni por correo, ni por teléfono. Si tu trámite del EIN necesita tu seguro social o tu ITIN, <strong>lo escribes tú directamente en el sitio del IRS</strong> — nosotros te acompañamos en la pantalla, pero el número nunca pasa por nosotros. Esto no es solo una política: es que no queremos tenerlo. Un número que no guardamos es un número que no se nos puede perder.</p>
+          <p class="fn-suplantacion"><strong>Por eso, esta regla te sirve siempre:</strong> si alguien te escribe diciendo que es de Themora y te pide tu seguro social, <strong>no es Themora</strong>, por muy parecido que se vea el mensaje. No hay excepción, no hay "solo esta vez" y no hay ningún trámite que lo justifique. Cuelga o no respondas, y <a href="contacto.html">avísanos por la página de Contacto</a>.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOS PASOS GENERALES — educativo, para quien quiera hacerlo solo -->
+  <section id="pasos-llc">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Guía educativa · sirve lo contrates o no</span>
+        <h2>Los pasos generales para registrar una LLC en Estados Unidos</h2>
+        <p>El procedimiento es parecido en los 50 estados: cambian la agencia, las cuotas y algunos plazos. Aquí está completo, con los enlaces oficiales, para que puedas hacerlo tú mismo si prefieres. Es información general con fines educativos, no asesoría legal ni fiscal para tu caso.</p>
+      </div>
+
+      <ol class="llc-pasos">
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">1</span><h3>Elegir el estado y el nombre</h3></div>
+          <p><strong>El estado.</strong> Por regla general, una LLC se registra en el estado donde el negocio opera físicamente. Si tu taquería, tu cuadrilla o tu salón están en Virginia, la LLC va en Virginia.</p>
+          <div class="llc-ojo">
+            <strong>Cuidado con el consejo de "regístrala en Delaware, Wyoming o Nevada".</strong>
+            Es buen consejo para una empresa que no tiene local físico o que va a levantar inversión — y mal consejo para un negocio local. Si registras en Wyoming pero trabajas en Virginia, casi siempre tienes que registrarte <em>otra vez</em> en Virginia como empresa de fuera (<em>foreign LLC</em>): dos cuotas, dos reportes anuales y dos agentes registrados. Sale más caro, no más barato.
+          </div>
+          <p><strong>El nombre.</strong> Tiene que ser único en la base de datos de ese estado y llevar la designación legal: <em>LLC</em>, <em>L.L.C.</em> o <em>Limited Liability Company</em>. Se comprueba gratis en el buscador de nombres de la agencia estatal antes de pagar nada.</p>
+        </li>
+
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">2</span><h3>Designar un agente registrado</h3></div>
+          <p>Es obligatorio en todos los estados. Es la persona o empresa que recibe las notificaciones legales y la correspondencia oficial del gobierno en nombre de tu negocio.</p>
+          <p><strong>Requisitos:</strong> dirección física real en el estado de registro —no se acepta apartado postal (P.O. Box)— y estar disponible en horario laboral.</p>
+          <p><strong>Algo que casi nadie te dice:</strong> en la mayoría de los estados puedes ser tu propio agente registrado si vives ahí y no te importa que tu dirección quede en un registro público. Contratar el servicio es cómodo y da privacidad, pero es opcional, no un requisito.</p>
+        </li>
+
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">3</span><h3>Presentar los Articles of Organization</h3></div>
+          <p>Es el documento que crea legalmente la empresa. En algunos estados se llama <em>Certificate of Formation</em>. Se presenta ante la agencia estatal —la <em>Secretary of State</em> en la mayoría, la <em>State Corporation Commission</em> en Virginia— por internet o en papel, pagando la cuota del estado.</p>
+          <p>El monto cambia mucho de un estado a otro. En Virginia son $100. La presentación en línea suele procesarse mucho más rápido que la de papel.</p>
+        </li>
+
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">4</span><h3>Redactar el acuerdo operativo</h3></div>
+          <p>El <em>operating agreement</em> es un documento interno: define quién es dueño de qué porcentaje, cómo se reparten las ganancias, quién decide qué, y qué pasa si alguien se sale o el negocio se cierra.</p>
+          <p>En casi todos los estados <strong>no se manda al gobierno</strong> — se guarda. Pero conviene tenerlo aunque seas el único dueño: es lo que sostiene la separación entre tú y la empresa, y los bancos suelen pedirlo para abrir la cuenta del negocio.</p>
+        </li>
+
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">5</span><h3>Solicitar el EIN ante el IRS</h3></div>
+          <p>El <em>Employer Identification Number</em> es el número federal con el que el negocio paga impuestos, abre cuenta de banco y contrata empleados.</p>
+          <div class="llc-gratis">
+            <strong>El EIN es gratis.</strong> Lo da el IRS directamente y no cuesta un centavo. Si alguien te lo cobra como si fuera un permiso especial que hay que comprar, te está cobrando por un trámite gratuito. (Cobrar por <em>hacerte el trámite</em> es otra cosa y es legítimo — pero debe decirse así.)
+          </div>
+          <p><strong>Con número de seguro social o ITIN:</strong> se solicita en línea en el sitio del IRS y sale al instante.<br>
+          <strong>Sin número de seguro social ni ITIN:</strong> se usa el formulario <em>SS-4</em> por fax o por correo, y tarda más. No es un impedimento, es otro camino.</p>
+        </li>
+
+        <li class="llc-paso">
+          <div class="llc-paso-cab"><span class="llc-num">6</span><h3>Licencias, permisos y reportes que mantienen viva la LLC</h3></div>
+          <p><strong>Licencias locales.</strong> Según el giro y la ciudad, puede hacer falta una licencia de negocio municipal, permisos de zonificación, de salud o de alcohol, o una licencia profesional. Ojo con esta última: una licencia profesional —de contratista, de electricista, de cosmetología— es <strong>personal e intransferible</strong>. Nadie puede sacártela, y registrar la LLC no la reemplaza.</p>
+          <p><strong>Reportes anuales.</strong> Casi todos los estados piden un <em>annual report</em>, un impuesto de franquicia o una cuota de registro. En Virginia son $50 al año. Dejar de pagarlo hace que la LLC pierda su estatus activo, y recuperarlo cuesta más que mantenerlo.</p>
+          <div class="llc-ojo">
+            <strong>Sobre el reporte BOI de FinCEN, que cambió hace poco.</strong>
+            Durante 2024 y 2025 se exigió a casi todas las empresas presentar el reporte de beneficiarios finales (<em>Beneficial Ownership Information</em>). En <strong>2026 FinCEN eliminó esa obligación para las empresas formadas en Estados Unidos y para las personas estadounidenses</strong>; el alcance quedó reducido a ciertas entidades extranjeras registradas para operar en el país. Muchas guías que circulan todavía dicen que es obligatorio para todos — ya no lo es. Como esta regla se movió varias veces en poco tiempo, verifica el estado actual en la fuente oficial antes de presentar o de pagarle a alguien por presentarlo.
+            <a href="https://www.fincen.gov/boi" target="_blank" rel="noopener noreferrer">Ver el estado actual en FinCEN.gov ↗</a>
+          </div>
+        </li>
+      </ol>
+
+      <div class="llc-verdad">
+        <h3>Lo que una LLC sí hace, y lo que no</h3>
+        <p><strong>Sí:</strong> separa el dinero y los bienes del negocio de los tuyos, de modo que una deuda o una demanda del negocio normalmente no alcance tu casa ni tu cuenta personal. Y da una cara formal para abrir cuenta de banco, firmar contratos y facturar.</p>
+        <p><strong>No:</strong> no te protege si mezclas el dinero personal con el del negocio —cuando eso pasa, un juez puede ignorar la separación—; no te protege de tus propios actos negligentes ni de una garantía personal que tú firmaste; no sustituye a un seguro de responsabilidad; y no te exime de impuestos. Una LLC es una estructura, no un escudo mágico.</p>
+        <p class="llc-verdad-pie">Esto es información general. Qué estructura conviene a tu caso —LLC, corporación S, trabajar por tu cuenta— depende de tus ingresos, tus socios y tu estado, y esa conversación es con un contador o un abogado con licencia.</p>
+      </div>
+
+      <div class="llc-fuentes">
+        <strong>Fuentes oficiales para hacerlo tú mismo:</strong>
+        <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" rel="noopener noreferrer">IRS — solicitar el EIN gratis ↗</a>
+        <a href="https://www.sba.gov/business-guide/launch-your-business/register-your-business" target="_blank" rel="noopener noreferrer">SBA — registrar tu negocio ↗</a>
+        <a href="https://cis.scc.virginia.gov/" target="_blank" rel="noopener noreferrer">Virginia SCC — presentar en línea ↗</a>
+        <a href="https://www.fincen.gov/boi" target="_blank" rel="noopener noreferrer">FinCEN — estado del reporte BOI ↗</a>
+        <span class="llc-fecha">Consultado el 14 de septiembre de 2026.</span>
       </div>
     </div>
   </section>
@@ -229,7 +348,7 @@
           <div class="fn-va-fact"><span class="amt">Obligatorio</span><span class="lbl">Agente registrado con dirección física en Virginia — te ayudamos a resolverlo</span></div>
         </div>
         <div class="fn-other-states">
-          <strong style="color:#fff;">¿Tu negocio es en otro estado?</strong> El trámite sigue el mismo patrón general en todo el país — cada estado tiene su propia agencia y su propia cuota, y el EIN siempre es federal, directo con el IRS. Cuéntanos tu estado en el formulario y te confirmamos los montos exactos antes de cobrarte nada.
+          <strong style="color:#fff;">¿Tu negocio es en otro estado?</strong> El trámite sigue el mismo patrón general en todo el país — cada estado tiene su propia agencia y su propia cuota, y el EIN siempre es federal, directo con el IRS. Cuéntanos tu estado en el formulario y te confirmamos dos cosas antes de cobrarte nada: los montos exactos, y si en ese estado podemos hacer el trámite nosotros o te conviene más hacerlo tú con la guía de esta página.
         </div>
       </div>
     </div>
@@ -252,7 +371,7 @@
             <p>En Virginia son $100 — se la pagas directo al estado o te la cobramos junto con nuestra tarifa, como prefieras. En otros estados puede variar; te lo confirmamos antes de empezar.</p>
           </div>
         </div>
-        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);">El EIN en sí siempre es gratis con el IRS — nuestra tarifa es solo por el trabajo de hacer el trámite por ti. Este es un precio de lanzamiento; llena el formulario y te confirmamos el total exacto antes de cobrarte nada.</p>
+        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);"><strong>Honorarios en dólares estadounidenses (USD).</strong> El EIN en sí siempre es gratis con el IRS: nuestra tarifa es solo por el trabajo de hacer el trámite por ti.<br><br><strong>Qué NO incluye:</strong> la cuota que cobra tu estado (en Virginia son $100 USD, que se pagan al estado, no a nosotros), la cuota anual de mantenimiento ($50 USD al año en Virginia), el servicio de agente registrado si decides contratar uno, y las licencias o permisos que pida tu ciudad o condado. De todo eso te decimos el costo antes, pero no va dentro de esta tarifa.<br><br>Es un precio de lanzamiento. <strong>El precio que te confirmemos por escrito es el que se respeta hasta terminar tu trámite</strong>, aunque el de la página suba después.</p>
       </div>
     </div>
   </section>
@@ -262,8 +381,10 @@
       <div class="section-head">
         <span class="eyebrow-dark">Empecemos</span>
         <h2>Cuéntame de tu negocio</h2>
-        <p>Con esto es suficiente para empezar — nada de números de seguro social ni información sensible por aquí.</p>
+        <p><strong>Solo cuatro cosas son obligatorias:</strong> tu nombre, tu correo, el estado y el nombre que quieres para la empresa. Con eso te puedo decir si el nombre está libre, si se puede hacer en tu estado y cuánto cuesta en total. Lo demás es opcional ahora.</p>
       </div>
+
+      <div class="pago-caja" data-precio-de="formar" hidden></div>
 
       <form id="fnForm" novalidate>
         <div class="fn-form-grid">
@@ -276,8 +397,8 @@
             <input type="email" id="fnCorreo" name="correo" required>
           </div>
           <div class="form-group">
-            <label for="fnTelefono">Tu teléfono</label>
-            <input type="tel" id="fnTelefono" name="telefono" required>
+            <label for="fnTelefono">Tu teléfono <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="tel" id="fnTelefono" name="telefono">
           </div>
           <div class="form-group">
             <label for="fnEstado">¿En qué estado será tu negocio?</label>
@@ -288,8 +409,8 @@
             <input type="text" id="fnNegocioNombre" name="negocio_nombre" placeholder="Ej: Hernández Construcción LLC" required>
           </div>
           <div class="form-group">
-            <label for="fnGiro">¿A qué se va a dedicar el negocio?</label>
-            <input type="text" id="fnGiro" name="giro" placeholder="Ej: construcción, limpieza, comida" required>
+            <label for="fnGiro">¿A qué se va a dedicar el negocio? <span class="ln-optional">(opcional ahora)</span></label>
+            <input type="text" id="fnGiro" name="giro" placeholder="Ej: construcción, limpieza, comida">
           </div>
           <div class="form-group">
             <label for="fnDuenos">¿Cuántos dueños tendrá?</label>
@@ -300,8 +421,8 @@
             </select>
           </div>
           <div class="form-group full">
-            <label for="fnDescripcion">Cuéntanos un poco más de tu idea de negocio</label>
-            <textarea id="fnDescripcion" name="descripcion" rows="3" required></textarea>
+            <label for="fnDescripcion">Cuéntanos un poco más de tu idea de negocio <span class="ln-optional">(opcional ahora)</span></label>
+            <textarea id="fnDescripcion" name="descripcion" rows="3"></textarea>
           </div>
           <div class="form-group full">
             <label for="fnMensaje">Mensaje adicional (opcional)</label>
@@ -309,8 +430,9 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-gold" id="fnSubmitBtn" data-umami-event="formar-negocio-enviar">Enviar mis datos</button>
+        <button type="submit" class="btn btn-gold" id="fnSubmitBtn" data-umami-event="formar-negocio-enviar">Pedir mi presupuesto</button>
         <p class="fn-form-status" id="fnFormStatus" role="status"></p>
+        <p class="pago-ref" id="fnRef" hidden></p>
       </form>
     </div>
   </section>
@@ -318,18 +440,25 @@
   <section class="cta-final">
     <div class="wrap">
       <h2>¿Prefieres primero hacer una pregunta?</h2>
-      <p>Si tienes dudas antes de enviar tus datos, escríbeme directamente.</p>
-      <a href="contacto.html" class="btn btn-gold">Ir a contacto</a>
+      <p data-si-whatsapp hidden>Si tienes dudas antes de enviar tus datos, escríbeme directamente. Por WhatsApp suele ser lo más rápido.</p>
+      <p data-sin-whatsapp>Si tienes dudas antes de enviar tus datos, escríbeme por el formulario de contacto y te respondo yo mismo.</p>
+      <div class="wa-caja" data-whatsapp-label="Preguntar por WhatsApp" hidden></div>
+      <p style="margin-top:16px;"><a href="contacto.html">o usa el formulario de contacto →</a></p>
     </div>
   </section>
 
 </main>
 
 <footer>
+  <div class="wrap revision-legal">
+    <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-14">14 de septiembre de 2026</time>, contrastando los pasos de registro estatal, el EIN federal y el reporte BOI de FinCEN.
+    Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
+  </div>
   <div class="wrap footer-inner">
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y listar-negocio.html):
@@ -337,6 +466,7 @@
      enviemos por JavaScript, sin necesitar backend propio. A propósito NO incluye ningún
      campo sensible (seguro social, ITIN, etc.) -- ese dato se pide después, en privado. -->
 <form name="formar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="fnStaticForm">
+  <input type="text" name="referencia" />
   <input type="hidden" name="form-name" value="formar-negocio" />
   <input name="bot-field" />
   <input type="text" name="nombre" />
@@ -363,6 +493,18 @@
   'use strict';
   const form=document.getElementById('fnForm');
   const status=document.getElementById('fnFormStatus');
+  /* Número de referencia: se genera al enviar, viaja DENTRO del envío y se le
+     muestra a la persona. Es el rastro común que hoy no existe — si mañana hay
+     una discusión, los dos tienen el mismo número. */
+  function mostrarReferencia(cajaId, ref, correo){
+    const c = document.getElementById(cajaId);
+    if(!c) return;
+    c.innerHTML = 'Tu número de referencia:<b>' + ref + '</b>' +
+      'Guárdalo o toma una captura. Cítalo en cualquier mensaje sobre este trámite.' +
+      '<small>Te escribimos a ' + (correo || 'tu correo') + ' con el precio exacto antes de cobrarte nada.</small>';
+    c.hidden = false;
+  }
+
   const submitBtn=document.getElementById('fnSubmitBtn');
   if(!form)return;
 
@@ -378,7 +520,10 @@
       form.reportValidity();
       return;
     }
+    const referencia=(window.ThemoraPago&&window.ThemoraPago.nuevaReferencia)
+      ? window.ThemoraPago.nuevaReferencia() : '';
     const data={
+      referencia:referencia,
       nombre:form.nombre.value.trim(),
       correo:form.correo.value.trim(),
       telefono:form.telefono.value.trim(),
@@ -397,7 +542,8 @@
     try{
       await submitFormation(data);
       status.className='fn-form-status is-success';
-      status.textContent='¡Listo! Recibí los datos de tu negocio. Te voy a escribir a '+(data.correo||'tu correo')+' para confirmar el pago, el estado exacto de tu trámite y los próximos pasos.';
+      status.textContent='¡Listo! Recibí los datos de tu negocio.';
+      mostrarReferencia('fnRef',referencia,data.correo);
       form.reset();
     }catch(error){
       status.className='fn-form-status is-error';
@@ -411,9 +557,16 @@
 </script>
 
   <script src="site-search-index.js"></script>
+  <script src="zyron-leyes.js"></script>
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="reveal.js" defer></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
+<script src="whatsapp.js"></script>
+<script src="pago.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

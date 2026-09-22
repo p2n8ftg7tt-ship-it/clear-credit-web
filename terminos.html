@@ -35,7 +35,7 @@
   .legal-body p,.legal-body li{line-height:1.72;color:var(--ink)}
   .legal-body ul{padding-left:20px;display:grid;gap:8px;margin:12px 0}
   .legal-body a{color:var(--teal);text-decoration:underline}
-  .legal-toc{background:var(--paper-dim);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:34px 0 8px}
+  .legal-toc{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;margin:34px 0 8px}
   .legal-toc strong{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
   .legal-toc ol{margin:0;padding-left:20px;display:grid;gap:6px}
   .legal-toc a{color:var(--navy);text-decoration:none;font-weight:600}
@@ -45,7 +45,7 @@
   .legal-stop{border-left:3px solid #b3402a;background:rgba(179,64,42,.07);border-radius:0 10px 10px 0;padding:16px 20px;margin:22px 0}
   .legal-stop p{margin:0;font-size:.94rem}
   .legal-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0}
-  .legal-col{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:#fff}
+  .legal-col{border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 22px;background:#fff}
   .legal-col h4{margin:0 0 12px;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
   .legal-col.si h4{color:var(--good)}
   .legal-col.no h4{color:#b3402a}
@@ -179,12 +179,98 @@
 
       <p>Ofrecemos dos servicios de pago: <strong>listar tu negocio</strong> en Google Maps y Apple Maps, y ayudarte con el <strong>papeleo de formar tu negocio</strong> (LLC y EIN).</p>
 
+      <h3>Cuánto cuestan</h3>
+
+      <!-- Los precios salen de PRECIOS en pago.js, igual que la portada y las
+           páginas de servicio. Escritos a mano aquí, tarde o temprano dirían
+           una cosa distinta de la que dice la portada — y quien lo note deja
+           de creer todo lo demás de esta página. -->
+      <ul class="tm-precios">
+        <li><strong>Poner tu ficha en los dos mapas:</strong> <b data-precio-de="listar" hidden></b>, pago único.</li>
+        <li><strong>Formar tu LLC y tramitar tu EIN:</strong> <b data-precio-de="formar" hidden></b>.</li>
+      </ul>
+
+      <p>Esos precios están publicados en la portada y en la página de cada servicio, <strong>antes de que llenes ningún formulario</strong>. Si alguna vez cambian, cambian para quien contrate después — nunca para un trabajo ya acordado.</p>
+
       <h3>Cómo funciona el cobro</h3>
 
       <ul>
-        <li>El precio se acuerda contigo <strong>por escrito antes de empezar</strong>. No hay cargos sorpresa ni suscripciones automáticas.</li>
-        <li>Las tarifas del gobierno o de terceros (por ejemplo, lo que cobra tu estado por registrar una LLC) <strong>van aparte</strong> y se te dicen desde el principio.</li>
-        <li>Si no podemos completar lo que acordamos, te devolvemos lo que pagaste por esa parte.</li>
+        <li><strong>Llenar el formulario no te cobra nada</strong> y no te compromete a nada. En el sitio no hay pasarela de pago y no se piden datos de tarjeta.</li>
+        <li>Te confirmamos <strong>por escrito</strong> si podemos hacer el trámite y el precio exacto. Solo si respondes que sí, se cobra.</li>
+        <li>Las tarifas del gobierno o de terceros (por ejemplo, lo que cobra tu estado por registrar una LLC) <strong>van aparte</strong>, las paga el estado directamente y se te dicen desde el principio.</li>
+        <li>Al enviar el formulario recibes un <strong>número de referencia</strong> (<code>TH-…</code>). Ese mismo número va en la factura, así que el formulario, el cobro y el recibo quedan unidos por un solo código. Guárdalo.</li>
+      </ul>
+
+      <h3 id="medios">Cómo puedes pagar, y qué protección te da cada forma</h3>
+
+      <!-- Esta sección dice en los términos lo mismo que dice el bloque de pago
+           en la página del servicio. Si las dos no coinciden, la que vale es la
+           que el cliente leyó primero — y por eso conviene que digan lo mismo. -->
+      <p>No todas las formas de pagar protegen igual, y creemos que tienes que saberlo <strong>antes</strong> de elegir:</p>
+
+      <ul>
+        <li><strong>Con tarjeta, por factura.</strong> Te llega una factura a tu correo y pagas ahí. Nosotros nunca vemos el número de tu tarjeta: lo procesa <strong>Stripe</strong>. Si pagas con <strong>tarjeta de crédito</strong> y no recibes lo que pagaste, la ley federal te da derecho a disputar el cargo con tu banco dentro de los 60 días siguientes al estado de cuenta donde aparece (<a href="https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges" target="_blank" rel="noopener">FTC</a>). Esa protección no te la damos nosotros y no te la podemos quitar.</li>
+        <li><strong>Con Zelle, Cash App o efectivo.</strong> Es como entregar dinero en mano: <strong>una vez enviado no hay disputa posible</strong> ni forma de revertirlo, ni por nosotros ni por tu banco. Si eliges este camino, tu garantía es lo que promete este documento: el precio por escrito antes de pagar, tu número de referencia y las etapas de reembolso de abajo.</li>
+      </ul>
+
+      <p><strong>Si acabas de conocernos, te conviene la tarjeta</strong>, y lo decimos aunque nos cueste la comisión. La otra opción existe porque no todo el mundo tiene tarjeta de crédito, no porque nos convenga más.</p>
+
+      <p>Cualquiera que sea el medio, <strong>el reembolso se devuelve por el mismo camino por el que pagaste</strong>. Nunca te vamos a pedir que aceptes un reembolso por un medio distinto del que usaste, ni que nos des datos nuevos para devolverte tu dinero — si alguien te lo pide en nuestro nombre, no somos nosotros.</p>
+
+      <ul>
+        <li>Los documentos se piden <strong>después</strong> de que sepas el precio y hayas aceptado, nunca antes.</li>
+        <li>Si no podemos completar lo que acordamos, te devolvemos lo que pagaste por esa parte — y aquí abajo está exactamente cuánto es.</li>
+      </ul>
+
+      <h3 id="etapas">Qué se considera entregado, y cuánto se devuelve</h3>
+
+      <!-- "Te devolvemos la parte no completada" no sirve de nada si nadie sabe
+           cuánto vale cada parte. Sin esta tabla, una discusión sobre un trabajo
+           a medias se resuelve por quien insista más — y esa nunca es la persona
+           que acaba de llegar al país y no discute en inglés. -->
+      <p>El trabajo se divide en etapas. Si se detiene, se devuelve <strong>todo lo correspondiente a las etapas que no se hicieron</strong>. Las etapas ya hechas no se devuelven, porque el trabajo ya se hizo.</p>
+
+      <p><strong>Poner tu ficha en los dos mapas</strong> (<b data-precio-de="listar" data-precio-formato="monto" hidden></b> USD):</p>
+
+      <div class="legal-table-scroll">
+      <table class="legal-table legal-table-plazos">
+        <thead><tr><th>Etapa</th><th>Se considera hecha cuando&hellip;</th><th>Parte del precio</th></tr></thead>
+        <tbody>
+          <tr><td>1. Revisión y preparación</td><td>Revisamos tus datos y te confirmamos por escrito que se puede hacer</td><td>20&nbsp;%</td></tr>
+          <tr><td>2. Ficha de Google</td><td>La ficha está creada y enviada a verificar</td><td>40&nbsp;%</td></tr>
+          <tr><td>3. Ficha de Apple</td><td>La ficha está creada y enviada a verificar</td><td>40&nbsp;%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p><strong>Formar tu LLC y tramitar tu EIN</strong> (<b data-precio-de="formar" data-precio-formato="monto" hidden></b> USD de honorarios, aparte de la cuota del estado):</p>
+
+      <div class="legal-table-scroll">
+      <table class="legal-table legal-table-plazos">
+        <thead><tr><th>Etapa</th><th>Se considera hecha cuando&hellip;</th><th>Parte de los honorarios</th></tr></thead>
+        <tbody>
+          <tr><td>1. Revisión del nombre y preparación</td><td>Comprobamos que el nombre está libre y preparamos los documentos</td><td>25&nbsp;%</td></tr>
+          <tr><td>2. Presentación ante el estado</td><td>Los documentos quedan presentados</td><td>45&nbsp;%</td></tr>
+          <tr><td>3. EIN y acuerdo operativo</td><td>Te acompañamos a sacar el EIN y te entregamos la plantilla del acuerdo</td><td>30&nbsp;%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Lo que hay que decir aunque no guste</h3>
+
+      <ul>
+        <li><strong>La cuota del estado no se devuelve</strong> una vez presentada. No la cobramos nosotros: la cobra el estado, y ya no la tiene nadie a quien podamos pedírsela. Por eso la etapa 2 marca la frontera: antes de presentar se devuelve entera; después, no.</li>
+        <li><strong>Si Google, Apple, el IRS o el estado rechazan el trámite</strong> y el rechazo se puede arreglar, lo arreglamos sin cobrarte otra vez. Si no hay forma de arreglarlo, se devuelven las etapas no completadas.</li>
+        <li><strong>Si el rechazo viene de datos que no eran correctos</strong> y hay que volver a presentar, la nueva cuota del estado corre por tu cuenta — pero nuestro trabajo de rehacerlo, no.</li>
+      </ul>
+
+      <h3>Cómo se pide, y en cuánto se responde</h3>
+
+      <ul>
+        <li><strong>Para cancelar o pedir un reembolso</strong>, escríbenos desde <a href="contacto.html">Contacto</a> con tu número de referencia (el <code>TH-…</code> que recibiste al enviar el formulario). No hace falta que expliques por qué.</li>
+        <li><strong>Respondemos en 3 días hábiles</strong> diciéndote en qué etapa está tu trámite y cuánto corresponde devolver.</li>
+        <li><strong>El dinero se devuelve dentro de los 10 días hábiles</strong> siguientes a esa respuesta, por el mismo medio por el que pagaste.</li>
+        <li><strong>Si no estás de acuerdo con la etapa que decimos</strong>, dilo: te mandamos lo que hicimos con su fecha y lo revisamos contigo. No es un trámite cerrado.</li>
       </ul>
 
       <h3>Lo que no podemos prometerte</h3>
@@ -229,7 +315,22 @@
 
       <p>Si cambiamos algo, cambiamos la fecha de arriba. Si el cambio es importante, lo avisamos de forma visible en el sitio. Seguir usando Themora después de un cambio significa que lo aceptas.</p>
 
-      <h2 id="contacto-terminos">12. Contacto</h2>
+      <h2 id="contacto-terminos">12. Quién responde por este sitio</h2>
+
+      <!-- Los datos salen de empresa.js. Mientras Eddie no los llene, este
+           bloque dice la verdad incómoda en vez de esconderla: es peor que un
+           sitio que maneja documentos y dinero no diga quién está detrás. -->
+      <div class="tm-identidad" data-empresa hidden></div>
+      <p class="tm-identidad-falta" id="tmIdentidadFalta">Themora está en proceso de registro como empresa. En cuanto el registro esté hecho publicamos aquí la razón social, el estado donde está registrada y la dirección postal. Mientras tanto, el responsable del sitio responde por <a href="contacto.html">la página de Contacto</a> y por los canales que aparecen ahí.</p>
+      <script>
+        /* Si empresa.js ya tiene datos, sobra la explicación de que faltan. */
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.ThemoraEmpresa && window.ThemoraEmpresa.hayDatos) {
+            var f = document.getElementById('tmIdentidadFalta');
+            if (f) f.hidden = true;
+          }
+        });
+      </script>
 
       <p>¿Dudas sobre estos términos? ¿Algo no se entiende? Escríbenos desde <a href="contacto.html">la página de Contacto</a>. Si una parte de estos términos resultara no ser válida, el resto sigue en pie.</p>
 
@@ -245,6 +346,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html" class="active">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -255,9 +357,12 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 <script src="nav.js"></script>
+<script src="empresa.js"></script>
+<script src="pago.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

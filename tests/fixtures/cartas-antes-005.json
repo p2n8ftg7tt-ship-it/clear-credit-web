@@ -1,0 +1,1072 @@
+{
+  "disputa/not-mine": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: Esta cuenta no es mía y no la reconozco como una obligación que yo haya contraído."
+      ],
+      "en": [
+        "Reason for the dispute: This account is not mine and I do not recognize it as an obligation that I incurred."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "disputa/wrong-amount": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: El monto reportado para esta cuenta es incorrecto."
+      ],
+      "en": [
+        "Reason for the dispute: The amount reported for this account is incorrect."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "disputa/wrong-date": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: La fecha del atraso, del evento o de apertura de esta cuenta es incorrecta."
+      ],
+      "en": [
+        "Reason for the dispute: The date of the delinquency, event, or opening of this account is incorrect."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "disputa/already-resolved": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: Esta cuenta ya fue pagada o resuelta y no debería seguir apareciendo con este estatus."
+      ],
+      "en": [
+        "Reason for the dispute: This account has already been paid or resolved and should no longer appear with this status."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "disputa/wrong-status": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: El estatus actual de esta cuenta, tal como aparece en el reporte, es incorrecto."
+      ],
+      "en": [
+        "Reason for the dispute: The current status of this account, as it appears on the report, is incorrect."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "disputa/other": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "destinatario",
+      "es": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ],
+      "en": [
+        "Experian — Dispute by Mail",
+        "P.O. Box 4500",
+        "Allen, TX 75013"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud formal de investigación de información inexacta en mi reporte de Experian"
+      ],
+      "en": [
+        "Subject: Formal request to investigate inaccurate information in my Experian credit report"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado equipo de disputas de Experian:"
+      ],
+      "en": [
+        "Dear Experian Dispute Team:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Al revisar mi reporte de crédito emitido por Experian, identifiqué la siguiente cuenta o información que considero inexacta: \"Cuenta en cobranza\"."
+      ],
+      "en": [
+        "While reviewing my credit report issued by Experian, I identified the following account or information that I believe is inaccurate: \"Collection account\"."
+      ]
+    },
+    {
+      "id": "motivo",
+      "es": [
+        "Motivo de la disputa: La información reportada sobre esta cuenta es inexacta."
+      ],
+      "en": [
+        "Reason for the dispute: The information reported about this account is inaccurate."
+      ]
+    },
+    {
+      "id": "fcra-investigacion",
+      "es": [
+        "De acuerdo con la Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 de la ley), solicito formalmente que reinvestiguen esta información con el acreedor o la fuente que la reportó, dentro del plazo de 30 días que exige la ley. Si no pueden verificar que la información es exacta y completa dentro de ese plazo, están obligados a eliminarla o corregirla de mi reporte. Les pido que me envíen por escrito, dentro de los 5 días hábiles posteriores a que terminen la investigación, el resultado y una copia actualizada y gratuita de mi reporte de crédito."
+      ],
+      "en": [
+        "Under the Fair Credit Reporting Act (15 U.S.C. § 1681i, § 611 of the Act), I formally request that you reinvestigate this information with the creditor or source that reported it, within the 30-day period the law requires. If you cannot verify that the information is accurate and complete within that period, you are required to delete it or correct it in my report. Please send me in writing, within 5 business days after you complete the investigation, the result and a free, updated copy of my credit report."
+      ]
+    },
+    {
+      "id": "fcra-notificacion",
+      "es": [
+        "Si la información se corrige o se elimina, también solicito, conforme a la § 611(d) de la misma ley, que notifiquen de este cambio a cualquier persona o empresa a la que le hayan entregado mi reporte en los últimos 6 meses — o en los últimos 2 años, si fue para fines de empleo."
+      ],
+      "en": [
+        "If the information is corrected or deleted, I also request, under § 611(d) of the same Act, that you notify of this change any person or company to whom you have provided my report in the last 6 months — or in the last 2 years, if it was for employment purposes."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "adjuntos",
+      "es": [
+        "Adjunto copia de mi identificación, comprobante de domicilio y las páginas del reporte donde aparece la información cuestionada."
+      ],
+      "en": [
+        "I am enclosing a copy of my identification, proof of address, and the pages of the report where the questioned information appears."
+      ]
+    },
+    {
+      "id": "declaracion",
+      "es": [
+        "Declaro que esta solicitud se refiere únicamente a información que considero inexacta."
+      ],
+      "en": [
+        "I declare that this request refers only to information that I believe is inaccurate."
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "validacion/sin-ref": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "cobrador",
+      "es": [
+        "Acme Recovery LLC",
+        "100 Collector Way",
+        "Dallas, TX 75201"
+      ],
+      "en": [
+        "Acme Recovery LLC",
+        "100 Collector Way",
+        "Dallas, TX 75201"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud de validación de deuda — Cuenta en cobranza"
+      ],
+      "en": [
+        "Subject: Debt validation request — Collection account"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado(a) Acme Recovery LLC:"
+      ],
+      "en": [
+        "Dear Acme Recovery LLC:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Recibí información de que su empresa está intentando cobrarme una deuda. De acuerdo con la Fair Debt Collection Practices Act (15 U.S.C. § 1692g), solicito formalmente que me envíen validación por escrito de esta deuda, incluyendo:"
+      ],
+      "en": [
+        "I have received information that your company is attempting to collect a debt from me. Under the Fair Debt Collection Practices Act (15 U.S.C. § 1692g), I formally request that you send me written validation of this debt, including:"
+      ]
+    },
+    {
+      "id": "lista-validacion",
+      "es": [
+        "- El monto exacto que alegan que debo y cómo se calculó.",
+        "- El nombre del acreedor original.",
+        "- Prueba de que soy la persona legalmente obligada a pagar esta deuda.",
+        "- Confirmación de que su empresa tiene derecho a cobrarla."
+      ],
+      "en": [
+        "- The exact amount you claim I owe and how it was calculated.",
+        "- The name of the original creditor.",
+        "- Proof that I am the person legally obligated to pay this debt.",
+        "- Confirmation that your company has the right to collect it."
+      ]
+    },
+    {
+      "id": "no-reconocimiento",
+      "es": [
+        "Esta carta no es un reconocimiento de que la deuda es válida ni una promesa de pago. Mientras espero esta validación, les solicito que suspendan todo intento de cobro, incluyendo llamadas y reportes adicionales a las agencias de crédito, tal como exige la ley mientras la deuda está en disputa."
+      ],
+      "en": [
+        "This letter is not an acknowledgment that the debt is valid, nor a promise to pay. While I await this validation, I ask that you suspend all collection efforts, including calls and any additional reports to the credit bureaus, as the law requires while a debt is in dispute."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ],
+  "validacion/AB-123456": [
+    {
+      "id": "remitente",
+      "es": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono: 540-555-0142"
+      ],
+      "en": [
+        "Maria Elena Garcia Lopez",
+        "742 Evergreen Terrace, Roanoke, VA 24016",
+        "Phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "fecha",
+      "es": [
+        "20 de septiembre de 2026"
+      ],
+      "en": [
+        "September 20, 2026"
+      ]
+    },
+    {
+      "id": "cobrador",
+      "es": [
+        "Acme Recovery LLC",
+        "100 Collector Way",
+        "Dallas, TX 75201"
+      ],
+      "en": [
+        "Acme Recovery LLC",
+        "100 Collector Way",
+        "Dallas, TX 75201"
+      ]
+    },
+    {
+      "id": "asunto",
+      "es": [
+        "Asunto: Solicitud de validación de deuda — Cuenta en cobranza (referencia de cuenta: AB-123456)"
+      ],
+      "en": [
+        "Subject: Debt validation request — Collection account (account reference: AB-123456)"
+      ]
+    },
+    {
+      "id": "saludo",
+      "es": [
+        "Estimado(a) Acme Recovery LLC:"
+      ],
+      "en": [
+        "Dear Acme Recovery LLC:"
+      ]
+    },
+    {
+      "id": "apertura",
+      "es": [
+        "Recibí información de que su empresa está intentando cobrarme una deuda con referencia de cuenta AB-123456. De acuerdo con la Fair Debt Collection Practices Act (15 U.S.C. § 1692g), solicito formalmente que me envíen validación por escrito de esta deuda, incluyendo:"
+      ],
+      "en": [
+        "I have received information that your company is attempting to collect a debt from me with account reference AB-123456. Under the Fair Debt Collection Practices Act (15 U.S.C. § 1692g), I formally request that you send me written validation of this debt, including:"
+      ]
+    },
+    {
+      "id": "lista-validacion",
+      "es": [
+        "- El monto exacto que alegan que debo y cómo se calculó.",
+        "- El nombre del acreedor original.",
+        "- Prueba de que soy la persona legalmente obligada a pagar esta deuda.",
+        "- Confirmación de que su empresa tiene derecho a cobrarla."
+      ],
+      "en": [
+        "- The exact amount you claim I owe and how it was calculated.",
+        "- The name of the original creditor.",
+        "- Proof that I am the person legally obligated to pay this debt.",
+        "- Confirmation that your company has the right to collect it."
+      ]
+    },
+    {
+      "id": "no-reconocimiento",
+      "es": [
+        "Esta carta no es un reconocimiento de que la deuda es válida ni una promesa de pago. Mientras espero esta validación, les solicito que suspendan todo intento de cobro, incluyendo llamadas y reportes adicionales a las agencias de crédito, tal como exige la ley mientras la deuda está en disputa."
+      ],
+      "en": [
+        "This letter is not an acknowledgment that the debt is valid, nor a promise to pay. While I await this validation, I ask that you suspend all collection efforts, including calls and any additional reports to the credit bureaus, as the law requires while a debt is in dispute."
+      ]
+    },
+    {
+      "id": "mi-informacion",
+      "es": [
+        "MI INFORMACIÓN:",
+        "Nombre legal: Maria Elena Garcia Lopez",
+        "Dirección actual: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Teléfono actual: 540-555-0142"
+      ],
+      "en": [
+        "MY INFORMATION:",
+        "Legal name: Maria Elena Garcia Lopez",
+        "Current address: 742 Evergreen Terrace, Roanoke, VA 24016",
+        "Current phone: 540-555-0142"
+      ]
+    },
+    {
+      "id": "firma",
+      "es": [
+        "Atentamente,",
+        "",
+        "Firma: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ],
+      "en": [
+        "Sincerely,",
+        "",
+        "Signature: ______________________________",
+        "Maria Elena Garcia Lopez"
+      ]
+    }
+  ]
+}

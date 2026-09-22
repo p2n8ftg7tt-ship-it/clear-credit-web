@@ -75,8 +75,8 @@
   <section class="page-hero">
     <div class="wrap">
       <span class="eyebrow">Hablemos</span>
-      <h1>¿Tienes una pregunta sobre tu crédito?</h1>
-      <p>Escríbeme y te respondo directamente. No necesitas crear cuenta ni compartir tu reporte completo — solo cuéntame tu situación.</p>
+      <h1>¿Tienes una pregunta? Escríbeme.</h1>
+      <p>Un papel que no entiendes, un trámite de tu negocio, una duda del sitio. Te respondo yo, directamente. No necesitas crear cuenta.</p>
     </div>
   </section>
 
@@ -87,6 +87,21 @@
         <!-- Formulario compatible con Netlify Forms:
              al desplegar en Netlify, este formulario se conecta solo
              (no requiere backend ni servidor propio). -->
+        <!-- Correo y teléfono salen de whatsapp.js; si están vacíos, no se pinta
+             nada. Publicar un contacto que nadie atiende es peor que no tenerlo. -->
+        <div class="canales-directos" id="canalesDirectos" hidden></div>
+        <div class="wa-caja" data-whatsapp-label="Escríbenos por WhatsApp" hidden></div>
+        <!-- Este aviso estaba en la columna de al lado, DESPUÉS del formulario.
+             Ahí llega tarde: la persona ya escribió su número de seguro social
+             en el cuadro de texto. Ahora va antes, pegado al formulario. -->
+        <div class="ct-aviso-previo">
+          <strong>Antes de escribir, dos cosas</strong>
+          <ul>
+            <li><b>No mandes por aquí</b> tu número de seguro social completo, números de cuenta o de tarjeta, ni contraseñas. No hacen falta para responderte, y este formulario no es un canal seguro para eso.</li>
+            <li>Si tienes un papel con <b>fecha límite</b> —una carta de corte, un aviso de desalojo, algo del IRS— dime la fecha en el mensaje y ponlo en el tema. Eso cambia el orden en que respondo.</li>
+          </ul>
+          <p class="ct-aviso-limite">Te respondo como alguien que entiende de papeleo, no como abogado ni como asesor financiero: te puedo explicar qué dice tu documento y qué opciones existen, no decirte qué debes hacer. Para eso hay ayuda legal gratuita en los 50 estados en <a href="https://www.lawhelp.org" target="_blank" rel="noopener">LawHelp.org</a>.</p>
+        </div>
         <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contacto" />
           <p style="display:none;">
@@ -106,12 +121,18 @@
           <div class="form-group">
             <label for="tema">Tema</label>
             <select id="tema" name="tema">
-              <option>Crédito en general</option>
+              <option>Tengo un papel que no entiendo</option>
+              <option>Un papel CON FECHA LÍMITE (corte, IRS, desalojo)</option>
+              <option>Mi negocio en Google Maps o Apple Maps</option>
+              <option>Formar una LLC o sacar el EIN</option>
+              <option>Contrato del dealer / compra de auto</option>
               <option>Compra de casa</option>
-              <option>Compra de auto</option>
-              <option>Reparación de crédito</option>
+              <option>Mi reporte de crédito</option>
+              <option>Mi cuenta o mis datos (borrar, corregir, copia)</option>
+              <option>Algo del sitio no funciona</option>
               <option>Otro</option>
             </select>
+            <span class="ct-tema-nota">Si tu papel tiene fecha límite, elige esa opción — esos se responden primero.</span>
           </div>
 
           <div class="form-group">
@@ -133,13 +154,13 @@
         <div class="item">
           <div>
             <span class="k">Antes de escribir</span>
-            <p>Revisa la sección de <a href="credito.html" style="color:var(--teal); text-decoration:underline;">Crédito</a> — tu pregunta podría estar ya resuelta ahí.</p>
+            <p>Puede que ya esté resuelto: <a href="cartas-claras.html" style="color:var(--teal); text-decoration:underline;">Cartas Claras</a> explica cartas, y <a href="herramientas.html" style="color:var(--teal); text-decoration:underline;">las calculadoras</a> resuelven casi todas las dudas de números.</p>
           </div>
         </div>
         <div class="item">
           <div>
-            <span class="k">Privacidad</span>
-            <p>No compartas números completos de cuenta, seguro social o contraseñas por este formulario.</p>
+            <span class="k">Qué pasa con lo que escribas</span>
+            <p>Tu mensaje llega al panel de formularios de Netlify y se guarda <strong>24 meses</strong>. Puedes pedir que se borre antes — mira la <a href="privacidad.html#cuanto-tiempo" style="color:var(--teal); text-decoration:underline;">tabla de plazos</a>.</p>
           </div>
         </div>
       </div>
@@ -154,6 +175,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -164,10 +186,15 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
+<script src="whatsapp.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

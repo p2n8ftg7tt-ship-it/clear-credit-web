@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Themora | Tu crédito, explicado en español</title>
-  <meta name="description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+  <title>Themora | Te explicamos en español el papel que tienes en la mano</title>
+  <meta name="description" content="Una carta del IRS, un contrato del dealer, un permiso, tu reporte de crédito: te decimos qué es, qué fecha importa y qué opciones tienes. Gratis y sin cuenta. Y si tienes un negocio, te ponemos en el mapa y en regla.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -13,13 +13,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
-<meta property="og:title" content="Themora | Tu crédito, explicado en español">
-<meta property="og:description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+<meta property="og:title" content="Themora | Te explicamos en español el papel que tienes en la mano">
+<meta property="og:description" content="Una carta del IRS, un contrato del dealer, un permiso, tu reporte de crédito: te decimos qué es, qué fecha importa y qué opciones tienes. Gratis y sin cuenta. Y si tienes un negocio, te ponemos en el mapa y en regla.">
 <meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
 <meta property="og:url" content="https://mithemora.com/index.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Themora | Tu crédito, explicado en español">
-<meta name="twitter:description" content="Analiza tu reporte de crédito, compara opciones para comprar casa o auto y calcula tu pago mensual — gratis, en español claro y 100% privado.">
+<meta name="twitter:title" content="Themora | Te explicamos en español el papel que tienes en la mano">
+<meta name="twitter:description" content="Una carta del IRS, un contrato del dealer, un permiso, tu reporte de crédito: te decimos qué es, qué fecha importa y qué opciones tienes. Gratis y sin cuenta. Y si tienes un negocio, te ponemos en el mapa y en regla.">
 <meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
 <link rel="canonical" href="https://mithemora.com/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,33 @@
         linear-gradient(100deg, rgba(7,10,16,.93) 0%, rgba(9,12,20,.82) 42%, rgba(9,12,20,.5) 100%),
         url('images/hero-familia.jpg') center/cover no-repeat;
     }
+    .home-hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:center;}
     .home-hero-copy{max-width:660px;}
+    /* La muestra solo aparece cuando hay sitio de verdad. Por debajo de 1040px
+       compite con el mensaje en vez de acompañarlo. */
+    .home-hero-muestra{display:none;}
+    @media(min-width:1040px){
+      .home-hero .wrap{grid-template-columns:minmax(0,1.15fr) minmax(300px,380px);}
+      .home-hero-muestra{display:block;position:relative;}
+    }
+    .hm-rotulo{position:absolute;top:-11px;left:16px;z-index:2;background:var(--gold);color:var(--ink);
+      font:800 .6rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.12em;
+      padding:4px 10px;border-radius:999px;}
+    .hm-tarjeta{background:#fdfcfa;border-radius:28px;padding:22px 22px 20px;
+      box-shadow:0 22px 50px rgba(0,0,0,.4);transform:rotate(-1.1deg);}
+    .hm-cabeza{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+      padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e7e2d9;}
+    .hm-tipo{font:700 .88rem 'Public Sans',sans-serif;color:var(--navy-deep);}
+    .hm-urgencia{font:800 .6rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.09em;
+      background:#8a5a12;color:#fff;padding:4px 9px;border-radius:999px;white-space:nowrap;}
+    .hm-tarjeta p{margin:0 0 9px;font-size:.81rem;line-height:1.58;color:#4a4238;}
+    .hm-tarjeta p b{color:var(--navy-deep);}
+    .hm-opciones{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px;}
+    .hm-opciones li{position:relative;padding-left:17px;font-size:.79rem;line-height:1.5;color:#4a4238;}
+    .hm-opciones li::before{content:'';position:absolute;left:2px;top:7px;width:6px;height:6px;
+      border-radius:50%;background:var(--gold);}
+    .hm-limite{margin:14px 0 0!important;padding-top:11px;border-top:1px solid #e7e2d9;
+      font-size:.74rem!important;font-style:italic;color:#7a7266!important;}
     .home-hero-copy .eyebrow{color:var(--gold-light);}
     .home-hero-copy h1{font:600 clamp(2.2rem,4.2vw,3.5rem)/1.08 'Fraunces',serif;color:#fff;letter-spacing:-.025em;max-width:600px;}
     .home-hero-copy p{max-width:540px;margin-top:20px;color:rgba(255,255,255,.76);font-size:1.02rem;}
@@ -52,12 +78,11 @@
     .tres-item span{font-size:.84rem;line-height:1.6;color:var(--muted);}
     .tres-pie{margin-top:16px;font-size:.8rem;color:var(--muted);max-width:720px;}
 
-    /* ===== PAPELES (herramientas gratis) ===== */
+    /* ===== PAPELES (herramientas gratis) =====
+       Primer momento bento del sitio: dos teselas arriba, una entera abajo,
+       cada una con su propio fondo tinta — no tres cajas blancas iguales. */
     .papeles-section{padding:70px 0;background:var(--paper);}
-    .papeles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-    .papel-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;
-      padding:28px 26px 26px;text-decoration:none;box-shadow:0 14px 34px rgba(42,33,24,.07);transition:transform .18s ease;}
-    .papel-card:hover{transform:translateY(-4px);}
+    .papel-card{display:flex;flex-direction:column;text-decoration:none;}
     .papel-card .papel-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);}
     .papel-card h3{font:600 1.32rem 'Fraunces',serif;margin:9px 0 10px;color:var(--ink);}
     .papel-card p{color:var(--muted);font-size:.87rem;line-height:1.6;flex:1;}
@@ -67,7 +92,7 @@
     .negocio-section{padding:76px 0;}
     .negocio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
     .negocio-card{display:flex;flex-direction:column;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
-      border-radius:16px;padding:26px 24px;text-decoration:none;transition:background .18s ease,transform .18s ease;}
+      border-radius:var(--radius-lg);padding:26px 24px;text-decoration:none;transition:background .18s ease,transform .18s ease;}
     .negocio-card:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);}
     .negocio-card.is-primero{background:rgba(201,162,77,.16);border-color:rgba(201,162,77,.5);}
     .negocio-card .negocio-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-light);}
@@ -78,13 +103,16 @@
       border-radius:0 12px 12px 0;font-size:.87rem;line-height:1.65;color:rgba(255,255,255,.82);max-width:760px;}
 
     /* ===== POR QUÉ CREERNOS ===== */
-    .creer-section{padding:76px 0;background:#fff;}
+    .creer-section{padding:76px 0;background:var(--paper);}
     .creer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-    .creer-item{background:var(--paper-dim);border-radius:14px;padding:24px 26px;}
+    .creer-item{background:var(--paper-dim);border-radius:var(--radius-lg);padding:24px 26px;}
     .creer-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:7px;color:var(--ink);}
     .creer-item span{color:var(--muted);font-size:.85rem;line-height:1.6;}
 
     /* ===== LO QUE NO SOMOS ===== */
+    /* Con solo dos tonos claros, lo que separa las secciones es una línea
+       fina, no un cambio de color. Menos ruido y se lee como un solo sitio. */
+    .creer-section,.guias-section{border-top:1px solid var(--line);}
     .nosomos-section{padding:70px 0;background:var(--paper-dim);}
     .nosomos-wrap{max-width:820px;}
     .nosomos-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:11px;}
@@ -94,9 +122,9 @@
       font:600 1.05rem/1.5 'Fraunces',serif;color:var(--navy-deep);}
 
     /* ===== GUÍAS ===== */
-    .guias-section{padding:70px 0;background:#eef2ec;}
+    .guias-section{padding:70px 0;background:var(--paper);}
     .guias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-    .guia-card{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    .guia-card{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
       text-decoration:none;box-shadow:0 14px 34px rgba(42,33,24,.07);transition:transform .18s ease;}
     .guia-card:hover{transform:translateY(-4px);}
     .guia-card .guia-img{height:150px;overflow:hidden;background:var(--paper-dim);}
@@ -107,7 +135,7 @@
     .guia-card .guia-cta{display:inline-block;margin-top:15px;color:var(--navy);font-weight:800;font-size:.78rem;}
 
     /* ===== FAQ Y CUENTA ===== */
-    .faq-section{padding:76px 0;background:var(--paper);}
+    .faq-section{padding:76px 0;background:var(--paper-dim);}
     .faq-wrap{max-width:760px;}
     .faq-wrap h2{margin-bottom:30px;}
     .faq-list{border-top:1px solid var(--line);}
@@ -115,13 +143,13 @@
     .faq-item strong{display:block;font:600 1.05rem 'Fraunces',serif;margin-bottom:6px;color:var(--ink);}
     .faq-item span{color:var(--muted);font-size:.86rem;line-height:1.6;}
 
-    .account-cta{padding:70px 0;background:#fff;}
-    .account-cta-box{background:var(--ink);border-radius:18px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+    .account-cta{padding:70px 0;background:var(--paper);}
+    .account-cta-box{background:var(--ink);border-radius:var(--radius-xl);padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
     .account-cta-box h2{font-size:1.55rem;color:#fff;}
     .account-cta-box p{margin-top:10px;color:rgba(255,255,255,.68);font-size:.88rem;max-width:540px;}
 
     @media(max-width:900px){
-      .tres-grid,.papeles-grid,.negocio-grid,.creer-grid,.guias-grid{grid-template-columns:1fr;}
+      .tres-grid,.negocio-grid,.creer-grid,.guias-grid{grid-template-columns:1fr;}
     }
     @media(max-width:560px){
       .home-hero{padding:72px 0 64px;}
@@ -186,6 +214,28 @@
           </div>
           <p class="home-hero-nota">Gratis, sin crear cuenta y sin dar tu correo.</p>
         </div>
+
+        <!-- H12: a la derecha del mensaje solo había foto oscurecida. Lo que
+             mejor explica este sitio no es otro párrafo, es VER el resultado.
+             Es un ejemplo inventado y va rotulado como tal: nunca una carta
+             real ni el membrete de ninguna organización. -->
+        <aside class="home-hero-muestra" aria-label="Ejemplo de lo que devuelve Cartas Claras">
+          <span class="hm-rotulo">Ejemplo</span>
+          <div class="hm-tarjeta">
+            <div class="hm-cabeza">
+              <span class="hm-tipo">Carta de un cobrador</span>
+              <span class="hm-urgencia">Tienes 30 días</span>
+            </div>
+            <p class="hm-que"><b>Qué es:</b> una empresa de cobranza dice que compró una deuda tuya y te pide pagarla.</p>
+            <p class="hm-fecha"><b>La fecha que importa:</b> 30 días desde que recibiste la carta para pedir por escrito que te prueben que la deuda es tuya.</p>
+            <ul class="hm-opciones">
+              <li>Pedir la validación de la deuda por escrito</li>
+              <li>Pedir que dejen de llamarte</li>
+              <li>Pagar, si compruebas que es correcta</li>
+            </ul>
+            <p class="hm-limite">No te decimos cuál elegir. Te decimos que las tres existen.</p>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -219,22 +269,22 @@
         <div class="section-head">
           <span class="eyebrow-dark">Gratis y sin cuenta</span>
           <h2>Empieza por el papel que tienes</h2>
-          <p>Las tres funcionan completas sin registrarte, sin pagar y desde el teléfono. Si el papel tiene varias páginas, súbelas todas.</p>
+          <p>Las tres te dan su resultado sin registrarte, sin pagar y desde el teléfono. Si el papel tiene varias páginas, súbelas todas. <strong>La única excepción</strong>, y la decimos de frente: en Cartas Claras, leer un documento en un idioma que no sea inglés o español necesita el análisis con inteligencia artificial, y ese pide iniciar sesión.</p>
         </div>
-        <div class="papeles-grid">
-          <a class="papel-card" href="cartas-claras.html" data-umami-event="inicio-tarjeta-cartas">
+        <div class="papeles-grid bento-grid bento-grid--3">
+          <a class="papel-card bento-tile bento-tile--wash-teal" href="cartas-claras.html" data-umami-event="inicio-tarjeta-cartas" data-reveal>
             <span class="papel-kicker">Cartas Claras</span>
             <h3>Una carta en inglés</h3>
             <p>Del cobrador, del banco, del IRS, de una corte, del buró de crédito o del hospital. Súbele una foto o pega el texto y te decimos qué dice y qué fecha trae.</p>
             <span class="papel-cta">Explicar mi carta →</span>
           </a>
-          <a class="papel-card" href="contrato-auto.html" data-umami-event="inicio-tarjeta-contrato">
+          <a class="papel-card bento-tile bento-tile--wash-gold" href="contrato-auto.html" data-umami-event="inicio-tarjeta-contrato" data-reveal>
             <span class="papel-kicker">Contrato del dealer</span>
             <h3>Antes de firmar el carro</h3>
             <p>Escribe los números del contrato y te mostramos a dónde va cada dólar: cuánto cuesta de verdad cada producto agregado, con intereses, y cuánto bajaría tu pago sin ellos.</p>
             <span class="papel-cta">Revisar mi contrato →</span>
           </a>
-          <a class="papel-card" href="credito.html#analizar-reporte" data-umami-event="inicio-tarjeta-reporte">
+          <a class="papel-card bento-tile bento-tile--wash-clay" href="credito.html#analizar-reporte" data-umami-event="inicio-tarjeta-reporte" data-reveal>
             <span class="papel-kicker">Reporte de crédito</span>
             <h3>Tu reporte, explicado</h3>
             <p>Súbelo y te decimos qué encontramos, qué se puede disputar y qué no. Este análisis ocurre entero dentro de tu teléfono: el archivo no sale de ahí.</p>
@@ -253,22 +303,27 @@
           <p>Si alguien te recomienda y no te encuentra en el mapa, esa venta no llega. Empieza por ver cómo estás hoy — eso no cuesta nada.</p>
         </div>
         <div class="negocio-grid">
-          <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco">
+          <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco" data-reveal>
             <span class="negocio-kicker">Empieza aquí · gratis</span>
             <h3>¿Aparece mi negocio?</h3>
             <p>En cuatro pasos y desde tu teléfono, comprueba con tus propios ojos si sales en Google Maps y en Apple Maps, y qué te falta.</p>
             <span class="negocio-cta">Revisar mi negocio →</span>
           </a>
-          <a class="negocio-card" href="listar-negocio.html" data-umami-event="inicio-listar">
+          <!-- El precio va en la tarjeta, no escondido dentro de la página.
+               Quien no puede pagarlo tiene derecho a saberlo aquí y no después
+               de leer tres pantallas. El número sale de PRECIOS en pago.js. -->
+          <a class="negocio-card" href="listar-negocio.html" data-umami-event="inicio-listar" data-reveal>
             <span class="negocio-kicker">Servicio</span>
             <h3>Ponerlo en el mapa</h3>
             <p>Te creamos y verificamos la ficha en Google Maps y en Apple Maps, con tus horarios, tus fotos y tu dirección correcta.</p>
+            <span class="negocio-precio" data-precio-de="listar" hidden></span>
             <span class="negocio-cta">Ver cómo funciona →</span>
           </a>
-          <a class="negocio-card" href="formar-negocio.html" data-umami-event="inicio-formar">
+          <a class="negocio-card" href="formar-negocio.html" data-umami-event="inicio-formar" data-reveal>
             <span class="negocio-kicker">Servicio</span>
             <h3>Abrir mi negocio</h3>
             <p>Registramos tu LLC y tramitamos tu número EIN, y te explicamos cada papel del camino — permisos, licencias y avisos del estado.</p>
+            <span class="negocio-precio" data-precio-de="formar" data-precio-formato="etiqueta" hidden></span>
             <span class="negocio-cta">Ver cómo funciona →</span>
           </a>
         </div>
@@ -322,7 +377,7 @@
           <li><strong>No somos abogados.</strong> Te decimos qué opciones existen; nunca qué debes hacer en tu caso.</li>
           <li><strong>No somos prestamistas ni asesores hipotecarios con licencia.</strong> No aprobamos préstamos ni te conseguimos una tasa.</li>
           <li><strong>No somos una empresa de reparación de crédito.</strong> Nadie puede borrar información correcta de tu reporte — quien te diga lo contrario te está mintiendo.</li>
-          <li><strong>No somos una bóveda de documentos.</strong> No guardamos tu carta, tu reporte ni tus datos personales.</li>
+          <li><strong>No somos una bóveda de documentos.</strong> Tu carta, tu contrato y tu reporte <strong>no se guardan</strong> en ningún lado, ni aquí ni con quien los lee. Lo que sí queda, porque no hay otra forma, es lo que tú escribes: tu correo si nos escribes, y lo que pongas en tu perfil o guardes en tu cuenta — y todo eso lo borras tú cuando quieras. <a href="privacidad.html#cuanto-tiempo">Qué se guarda y cuánto dura</a>.</li>
         </ul>
         <p class="nosomos-cierre">Themora te ayuda a recordar lo que entendiste, no a almacenar tu vida financiera.</p>
       </div>
@@ -337,7 +392,7 @@
           <p>Cuando el papel todavía no llega y lo que quieres es entender los números antes de meterte.</p>
         </div>
         <div class="guias-grid">
-          <a data-umami-event="inicio-ruta-casa" class="guia-card" href="comprar-casa.html">
+          <a data-umami-event="inicio-ruta-casa" class="guia-card" href="comprar-casa.html" data-reveal>
             <div class="guia-img"><img src="images/hero-compra-casa.jpg" alt="Comprar una casa" loading="lazy"></div>
             <div class="guia-body">
               <h3>Comprar casa</h3>
@@ -345,7 +400,7 @@
               <span class="guia-cta">Ver la guía de casa →</span>
             </div>
           </a>
-          <a data-umami-event="inicio-ruta-auto" class="guia-card" href="comprar-auto.html">
+          <a data-umami-event="inicio-ruta-auto" class="guia-card" href="comprar-auto.html" data-reveal>
             <div class="guia-img"><img src="images/hero-compra-auto.jpg" alt="Comprar un auto" loading="lazy"></div>
             <div class="guia-body">
               <h3>Comprar auto</h3>
@@ -353,7 +408,7 @@
               <span class="guia-cta">Ver la guía de auto →</span>
             </div>
           </a>
-          <a data-umami-event="inicio-calculadoras" class="guia-card" href="herramientas.html">
+          <a data-umami-event="inicio-calculadoras" class="guia-card" href="herramientas.html" data-reveal>
             <div class="guia-img"><img src="images/compass.jpg" alt="Calculadoras" loading="lazy"></div>
             <div class="guia-body">
               <h3>Calculadoras</h3>
@@ -373,7 +428,7 @@
         <div class="faq-list">
           <div class="faq-item"><strong>¿Necesito crear una cuenta?</strong><span>No. Todas las herramientas dan su resultado completo sin registrarte y sin darnos tu correo. La cuenta solo sirve para volver a ver un resumen de lo que ya viste.</span></div>
           <div class="faq-item"><strong>¿Mi documento sale de mi teléfono?</strong><span>Depende de la herramienta, y por eso lo decimos en cada una. El reporte de crédito se analiza entero dentro de tu navegador y el archivo nunca se envía a ningún lado. En Cartas Claras, si pides el análisis con inteligencia artificial —que requiere iniciar sesión—, el texto o las páginas sí viajan cifradas a nuestro servidor y de ahí al proveedor que las lee. No guardamos ninguno de los dos.</span></div>
-          <div class="faq-item"><strong>¿Cuánto cuesta?</strong><span>Entender un papel no cuesta nada, y no va a costar nada. Se cobran solo los servicios de negocio —poner tu ficha en el mapa y registrar tu LLC—, y el precio está escrito en cada página antes de que llenes nada.</span></div>
+          <div class="faq-item"><strong>¿Cuánto cuesta?</strong><span>Entender un papel no cuesta nada, y no va a costar nada. Se cobran solo los dos servicios de negocio: poner tu ficha en el mapa (<b data-precio-de="listar" data-precio-formato="monto" hidden></b>) y registrar tu LLC (<b data-precio-de="formar" hidden></b>). El precio está aquí arriba, en la tarjeta de cada servicio y en su página — antes de que llenes nada. Y no se cobra hasta que te confirmemos por escrito que podemos hacer el trámite y tú digas que sí.</span></div>
           <div class="faq-item"><strong>¿Esto sustituye a un abogado o a un asesor financiero?</strong><span>No, y nunca va a hacerlo. Es contenido educativo para que entiendas tus opciones y llegues preparado a hablar con un profesional. Cuando un papel tenga consecuencias legales o una fecha cerca, te lo decimos y te enlazamos a ayuda legal gratuita.</span></div>
         </div>
       </div>
@@ -384,7 +439,7 @@
       <div class="wrap account-cta-box">
         <div>
           <h2>Guarda lo importante. No tus documentos.</h2>
-          <p>Una cuenta gratuita te deja volver a ver el resumen de tu análisis y tus cálculos. No guardamos el reporte, la carta ni tus datos personales — y puedes borrar cada cosa por separado cuando quieras.</p>
+          <p>Una cuenta gratuita te deja volver a ver el resumen de tu análisis y tus cálculos. El reporte y la carta <strong>no se guardan</strong>: lo que queda es el resumen —cifras y hallazgos, sin tu nombre ni tu dirección— y lo que tú pongas en tu perfil. Puedes borrar cada cosa por separado, o la cuenta entera, cuando quieras.</p>
         </div>
         <a href="login.html" class="btn btn-gold">Crear cuenta gratis</a>
       </div>
@@ -403,6 +458,7 @@
       <span data-cms="global_contacto_correo"></span>
       <span data-cms="global_contacto_redes"></span>
     </div>
+  <div class="wrap footer-legal" data-empresa="corta" hidden></div>
   </footer>
 
   <script>
@@ -413,9 +469,15 @@
   <script src="auth.js"></script>
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
+  <script src="zyron-leyes.js"></script>
   <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="reveal.js" defer></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
+<script src="pago.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

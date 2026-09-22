@@ -29,7 +29,7 @@
 <style>
   /* Calculadora hipotecaria */
   .mortgage-calculator{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:22px;align-items:start}
-  .mortgage-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
+  .mortgage-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg,28px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
   .mortgage-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .mortgage-field{display:flex;flex-direction:column;gap:6px}
   .mortgage-field.full{grid-column:1/-1}
@@ -42,7 +42,7 @@
   .mortgage-input-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
   .mortgage-input-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
   .mortgage-helper{font-size:.68rem;color:var(--muted)}
-  .mortgage-result{background:var(--navy-deep);color:#fff;border-radius:var(--radius,10px);padding:28px;position:sticky;top:92px}
+  .mortgage-result{background:var(--navy-deep);color:#fff;border-radius:var(--radius-lg,28px);padding:28px;position:sticky;top:92px}
   .mortgage-result h3{font:600 1.5rem 'Fraunces',serif;margin:4px 0 14px}
   .mortgage-total{font:700 2.4rem 'Fraunces',serif;color:var(--gold-light);margin-bottom:16px}
   .mortgage-total span{font:400 .85rem 'Public Sans',sans-serif;color:rgba(255,255,255,.6)}
@@ -80,7 +80,8 @@
 
   /* Tarjetas de recursos y herramientas */
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-  .info-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:24px;box-shadow:0 10px 28px rgba(8,47,73,.06)}
+  .info-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius,16px);padding:24px;box-shadow:0 10px 28px rgba(8,47,73,.06);transition:transform var(--dur,.22s) var(--ease,ease),box-shadow var(--dur,.22s) var(--ease,ease)}
+  .info-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
   .info-card h3{font:600 1.15rem 'Fraunces',serif;color:var(--navy-deep);margin:14px 0 8px}
   .info-card p{font-size:.85rem;color:var(--muted);flex:1}
   .icon-tag{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper-dim);color:var(--navy);font:700 .85rem 'Fraunces',serif;border:1px solid var(--line)}
@@ -91,7 +92,7 @@
 
   /* Acelerador de hipoteca */
   .acc-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr);gap:22px;align-items:start}
-  .acc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
+  .acc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg,28px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
   .acc-step{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:var(--teal);margin:0 0 4px}
   .acc-step-desc{font-size:.8rem;color:var(--muted);margin:0 0 16px;line-height:1.55}
   .acc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -261,7 +262,7 @@
             </div>
             <div class="mortgage-field">
               <label for="mortgageHoa">HOA mensual</label>
-              <div class="mortgage-input-wrap has-prefix"><span class="prefix">$</span><input id="mortgageHoa" type="number" min="0" step="25" value="0" inputmode="decimal"></div>
+              <div class="mortgage-input-wrap has-prefix"><span class="prefix">$</span><input id="mortgageHoa" type="number" min="0" step="25" value="0" inputmode="decimal" placeholder="Ej.: 150 · si no tienes HOA, déjalo en 0"></div>
             </div>
           </div>
         </form>
@@ -312,7 +313,7 @@
           </div>
           <div class="qc-field">
             <label for="utilPayment">Si pagas esto antes de la fecha de corte</label>
-            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilPayment" type="number" min="0" step="25" value="0" inputmode="decimal"></div>
+            <div class="qc-input-wrap has-prefix"><span class="prefix">$</span><input id="utilPayment" type="number" min="0" step="25" value="0" inputmode="decimal" placeholder="Ej.: 400 · lo que piensas abonar antes del corte"></div>
           </div>
           <div class="qc-result band-green" id="utilResultBox">
             <div class="qc-big" id="utilCurrentPct">0%<span>uso actual</span></div>
@@ -414,11 +415,11 @@
               </div>
               <div class="acc-field" id="accFieldMonthly">
                 <div class="acc-label-row"><label for="accExtraMonthly">Adicional al mes</label><span class="acc-tag">calculado</span></div>
-                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraMonthly" type="number" min="0" step="25" inputmode="decimal" placeholder="0"></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraMonthly" type="number" min="0" step="25" inputmode="decimal" placeholder="Ej.: 200"></div>
               </div>
               <div class="acc-field" id="accFieldWeekly">
                 <div class="acc-label-row"><label for="accExtraWeekly">Adicional a la semana</label><span class="acc-tag">calculado</span></div>
-                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraWeekly" type="number" min="0" step="5" inputmode="decimal" placeholder="0"></div>
+                <div class="acc-wrap has-prefix"><span class="prefix">$</span><input id="accExtraWeekly" type="number" min="0" step="5" inputmode="decimal" placeholder="Ej.: 50"></div>
               </div>
             </div>
             <p class="acc-warning" id="accWarning" hidden></p>
@@ -455,19 +456,19 @@
       </div>
 
       <div class="card-grid">
-        <div class="info-card">
+        <div class="info-card" data-reveal>
           <span class="status-pill status-live">Oficial y gratis</span>
           <span class="icon-tag">R</span>
           <h3>AnnualCreditReport.com</h3>
           <p>El único sitio autorizado por el gobierno federal para obtener tu reporte de crédito gratuito de los tres burós. No requiere tarjeta de crédito.</p>
         </div>
-        <div class="info-card">
+        <div class="info-card" data-reveal>
           <span class="status-pill status-live">Disponible ahora</span>
           <span class="icon-tag">G</span>
           <h3>Glosario de términos</h3>
           <p>Repasa los conceptos clave en la sección de <a href="credito.html" style="color:var(--teal); text-decoration:underline;">Crédito</a>: utilización, antigüedad, puntaje, y más — explicados en español simple.</p>
         </div>
-        <div class="info-card">
+        <div class="info-card" data-reveal>
           <span class="status-pill status-live">Disponible ahora</span>
           <span class="icon-tag">A</span>
           <h3>Analizador de reporte</h3>
@@ -751,17 +752,17 @@
             <p class="cd-alert" id="cdAlert" hidden></p>
             <div class="cd-field"><label for="cdGivenNames">Nombre o nombres</label><input id="cdGivenNames" name="givenNames" type="text" autocomplete="given-name" maxlength="70" required></div>
             <div class="cd-field"><label for="cdSurname">Apellido(s)</label><input id="cdSurname" name="surname" type="text" autocomplete="family-name" maxlength="80" required></div>
-            <div class="cd-field full"><label for="cdStreet">Tu calle y número</label><input id="cdStreet" name="street" type="text" autocomplete="street-address" maxlength="120" required></div>
-            <div class="cd-field"><label for="cdCity">Ciudad</label><input id="cdCity" name="city" type="text" autocomplete="address-level2" maxlength="70" required></div>
-            <div class="cd-field"><label for="cdState">Estado</label><input id="cdState" name="state" type="text" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" required></div>
-            <div class="cd-field"><label for="cdZip">Código postal</label><input id="cdZip" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" required></div>
+            <div class="cd-field full"><label for="cdStreet">Tu calle y número</label><input id="cdStreet" name="street" type="text" autocomplete="street-address" maxlength="120" data-dir-calle="persona" data-dir-tipo="persona" required></div>
+            <div class="cd-field"><label for="cdCity">Ciudad</label><input id="cdCity" name="city" type="text" autocomplete="address-level2" maxlength="70" data-dir-ciudad="persona" required></div>
+            <div class="cd-field"><label for="cdState">Estado</label><input id="cdState" name="state" type="text" autocomplete="address-level1" maxlength="40" placeholder="Ej.: FL" data-dir-estado="persona" required></div>
+            <div class="cd-field"><label for="cdZip">Código postal</label><input id="cdZip" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" data-dir-cp="persona" required></div>
             <div class="cd-field"><label for="cdPhone">Tu teléfono <span aria-hidden="true">(opcional)</span></label><input id="cdPhone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
 
             <div class="cd-field full"><label for="cdCollectorName">Nombre de la agencia de cobranza o acreedor</label><input id="cdCollectorName" name="collectorName" type="text" maxlength="120" required></div>
-            <div class="cd-field full"><label for="cdCollectorStreet">Dirección de la agencia (calle y número)</label><input id="cdCollectorStreet" name="collectorStreet" type="text" maxlength="120" required></div>
-            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" maxlength="70" required></div>
-            <div class="cd-field"><label for="cdCollectorState">Estado</label><input id="cdCollectorState" name="collectorState" type="text" maxlength="40" placeholder="Ej.: FL" required></div>
-            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" required></div>
+            <div class="cd-field full"><label for="cdCollectorStreet">Dirección de la agencia (calle y número)</label><input id="cdCollectorStreet" name="collectorStreet" type="text" maxlength="120" data-dir-calle="cobrador" data-dir-tipo="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" maxlength="70" data-dir-ciudad="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorState">Estado</label><input id="cdCollectorState" name="collectorState" type="text" maxlength="40" placeholder="Ej.: FL" data-dir-estado="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" data-dir-cp="cobrador" required></div>
             <div class="cd-field"><label for="cdAccountRef">Número de cuenta o referencia <span aria-hidden="true">(opcional)</span></label><input id="cdAccountRef" name="accountReference" type="text" maxlength="60"></div>
 
             <div class="cd-field full"><label for="cdReason">¿Por qué quieres que dejen de contactarte? <span aria-hidden="true">(opcional)</span></label>
@@ -792,20 +793,20 @@
   <section style="background:var(--paper-dim);">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow-dark">Próximamente</span>
-        <h2>Lo que estamos construyendo</h2>
-        <p>Estas herramientas están en desarrollo. La idea es que puedas usarlas directamente desde aquí, sin crear cuenta.</p>
+        <span class="eyebrow-dark">Ya funcionan</span>
+        <h2>Dos herramientas que salen de tu propio reporte</h2>
+        <p>Estas dos ya están listas y no necesitan cuenta. Se llaman así porque no trabajan con números de ejemplo, sino con lo que el analizador encontró en tu reporte.</p>
       </div>
 
       <div class="card-grid">
-        <div class="info-card">
+        <div class="info-card" data-reveal>
           <span class="status-pill status-live">Disponible ahora</span>
           <span class="icon-tag">S</span>
           <h3>Simulador de utilización</h3>
           <p>Calcula cómo cambiaría tu utilización si bajas el saldo de tus tarjetas antes de la fecha de corte.</p>
           <a href="#simulador-utilizacion" class="btn btn-outline-dark" style="margin-top:auto;">Usar simulador</a>
         </div>
-        <div class="info-card">
+        <div class="info-card" data-reveal>
           <span class="status-pill status-live">Disponible ahora</span>
           <span class="icon-tag">D</span>
           <h3>Generador de solicitud de corrección</h3>
@@ -831,6 +832,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -950,15 +952,21 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
+<script src="direccion-autocompletar.js"></script>
 <script src="cms.js"></script>
 <script src="mortgage-calculator.js"></script>
 <script src="quick-calculators.js"></script>
 <script src="mortgage-accelerator.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="reveal.js" defer></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

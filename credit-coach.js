@@ -69,6 +69,9 @@
     pt:{sugerencias:['Explicar minha carta','Revisar meu negócio'],placeholder:'Escreva sua pergunta…',
         legal:'Orientação educativa; não substitui aconselhamento profissional.',
         estado:'Assistente · online'},
+    ht:{sugerencias:['Eksplike lèt mwen an','Verifye biznis mwen'],placeholder:'Ekri kesyon w lan…',
+        legal:'Oryantasyon edikatif; li pa ranplase konsèy pwofesyonèl.',
+        estado:'Asistan · an liy'},
     it:{sugerencias:['Spiegami la lettera','Controlla la mia attività'],placeholder:'Scrivi la tua domanda…',
         legal:'Orientamento educativo; non sostituisce una consulenza professionale.',
         estado:'Assistente · online'},
@@ -111,17 +114,22 @@
   // que Zyron conserve su conversación, idiomas y respuestas humanas incluso
   // en páginas que solo incluyen credit-coach.js o cuando no hay sesión.
   let brainPromise=null;
-  function ensureBrain(){
-    if(window.ZyronBrain)return Promise.resolve(true);
-    if(brainPromise)return brainPromise;
-    brainPromise=new Promise(resolve=>{
+  function loadScript(src){
+    return new Promise(resolve=>{
       const script=document.createElement('script');
-      script.src='zyron-brain.js';
+      script.src=src;
       script.async=true;
-      script.onload=()=>resolve(!!window.ZyronBrain);
+      script.onload=()=>resolve(true);
       script.onerror=()=>resolve(false);
       document.head.appendChild(script);
     });
+  }
+  function ensureBrain(){
+    if(window.ZyronBrain)return Promise.resolve(true);
+    if(brainPromise)return brainPromise;
+    // Las leyes (FDCPA y FCRA) van primero: el cerebro las suma al cargar.
+    // Si ese archivo falla, Zyron sigue funcionando con el resto de sus temas.
+    brainPromise=loadScript('zyron-leyes.js').then(()=>loadScript('zyron-brain.js')).then(()=>!!window.ZyronBrain);
     return brainPromise;
   }
 

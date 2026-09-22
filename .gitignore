@@ -10,3 +10,8 @@ _papelera/
 # Editor / SO
 .DS_Store
 Thumbs.db
+
+# Llaves y estado local de la línea de comandos de Netlify (nunca al repositorio)
+.env
+.env.*
+.netlify/

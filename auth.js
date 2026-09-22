@@ -45,6 +45,69 @@
   let ready = false;
   const listeners = [];
   const recoveryListeners = [];
+  let sessionRevision = 0;
+
+  // Una misma identidad para la cabecera y la página de cuenta.
+  function getProfileIdentity(user = currentUser) {
+    const metadata = (user && user.user_metadata) || {};
+    const text = value => typeof value === "string" ? value.trim() : "";
+    const username = text(metadata.username) || text(metadata.preferred_username);
+    const displayName = username || text(metadata.full_name) || text(metadata.name) ||
+      text(user && user.email).split("@")[0] || "Usuario";
+    let initial;
+    if (typeof Intl.Segmenter === "function") {
+      initial = Array.from(new Intl.Segmenter("es", { granularity: "grapheme" }).segment(displayName))[0].segment;
+    } else {
+      initial = Array.from(displayName)[0];
+    }
+    // null/vacío significa que la persona quitó su foto, incluso con login social.
+    const candidate = Object.prototype.hasOwnProperty.call(metadata, "profile_photo")
+      ? text(metadata.profile_photo)
+      : text(metadata.avatar_url) || text(metadata.picture);
+    let photo = "";
+    if (/^data:image\/(?:jpeg|png|webp);base64,[a-z0-9+/=]+$/i.test(candidate)) {
+      photo = candidate;
+    } else if (candidate) {
+      try {
+        const url = new URL(candidate);
+        if (url.protocol === "https:" && !url.username && !url.password) photo = url.href;
+      } catch (_) { /* Una foto inválida conserva la inicial. */ }
+    }
+    return { displayName, username, initial: initial.toLocaleUpperCase("es"), photo };
+  }
+
+  function renderAvatar(element, identity) {
+    if (!element) return;
+    element.classList.add("profile-avatar");
+    element.textContent = identity.initial;
+    if (!identity.photo) return;
+    const image = document.createElement("img");
+    image.alt = ""; // El enlace o el perfil ya proporciona el nombre accesible.
+    image.decoding = "async";
+    image.referrerPolicy = "no-referrer";
+    image.addEventListener("error", () => image.remove(), { once: true });
+    image.src = identity.photo;
+    element.appendChild(image);
+  }
+
+  const navLink = document.getElementById("navAuthLink");
+  const navLinkParent = navLink && navLink.parentElement;
+  const navLinkNext = navLink && navLink.nextSibling;
+  const mobileNav = window.matchMedia("(max-width: 720px)");
+
+  function positionNavLink() {
+    if (!navLink || !navLinkParent) return;
+    const nav = document.querySelector("header .nav");
+    const toggle = document.getElementById("navToggle");
+    if (currentUser && mobileNav.matches && nav && toggle && toggle.parentElement === nav) {
+      nav.insertBefore(navLink, toggle);
+      navLink.classList.add("nav-auth-mobile");
+    } else {
+      navLinkParent.insertBefore(navLink, navLinkNext && navLinkNext.parentNode === navLinkParent ? navLinkNext : null);
+      navLink.classList.remove("nav-auth-mobile");
+    }
+  }
+  mobileNav.addEventListener("change", positionNavLink);
 
   // Días de prueba gratis que le quedan a la cuenta (0 si ya expiró, no hay
   // sesión, o la fecha de creación no se pudo leer).
@@ -71,19 +134,43 @@
     const link = document.getElementById("navAuthLink");
     if (!link) return;
     if (currentUser) {
-      link.textContent = "Mi cuenta";
+      const identity = getProfileIdentity();
+      link.replaceChildren();
+      const avatar = document.createElement("span");
+      avatar.className = "nav-profile-avatar";
+      avatar.setAttribute("aria-hidden", "true");
+      renderAvatar(avatar, identity);
+      link.appendChild(avatar);
+      link.setAttribute("aria-label", "Mi cuenta: " + identity.displayName);
+      link.title = "Mi cuenta · " + identity.displayName;
       link.href = "cuenta.html";
       link.classList.add("is-logged-in");
+      if (window.location.pathname.endsWith("/cuenta.html")) link.setAttribute("aria-current", "page");
     } else {
       link.textContent = "Iniciar sesión";
       link.href = "login.html";
       link.classList.remove("is-logged-in");
+      link.removeAttribute("aria-label");
+      link.removeAttribute("aria-current");
+      link.removeAttribute("title");
     }
+    positionNavLink();
+  }
+
+  function applyUpdatedUser(user) {
+    // Un guardado pendiente no debe restaurar una sesión que ya se cerró.
+    if (!user || !currentUser || user.id !== currentUser.id) return;
+    currentUser = user;
+    if (currentSession) currentSession = { ...currentSession, user };
+    sessionRevision++;
+    notify();
   }
 
   const CCAuth = {
     isConfigured: !notConfigured,
     client: client,
+    getProfileIdentity,
+    renderAvatar,
 
     onChange(fn) {
       listeners.push(fn);
@@ -312,17 +399,20 @@
     async updateName(name) {
       const { data, error } = await client.auth.updateUser({ data: { full_name: name } });
       if (error) throw error;
+      applyUpdatedUser(data && data.user);
       return data;
     },
 
     // Perfil opcional de la página Mi cuenta. Se conserva cualquier metadato
     // existente para que una edición de dirección o foto no borre el nombre.
     async updateProfile(profile) {
+      if (!currentUser) throw new Error("Inicia sesión para guardar tu perfil.");
       const existing = (currentUser && currentUser.user_metadata) || {};
       const { data, error } = await client.auth.updateUser({
         data: { ...existing, ...profile }
       });
       if (error) throw error;
+      applyUpdatedUser(data && data.user);
       return data;
     },
 
@@ -367,7 +457,7 @@
     },
 
     // Borra todo lo que el cliente guardó (análisis, cálculos y preferencias).
-    // No elimina la cuenta de acceso en sí (eso requiere confirmación manual del equipo).
+    // No elimina la cuenta de acceso en sí — para eso está eliminarCuenta().
     async deleteAllMyData() {
       if (!currentUser) throw new Error("Debes iniciar sesión.");
       const uid = currentUser.id;
@@ -379,19 +469,67 @@
       const failed = results.find((r) => r.status === "rejected" || (r.value && r.value.error));
       if (failed) throw (failed.reason || (failed.value && failed.value.error));
     },
+
+    /* Borra la cuenta de acceso (correo y contraseña), no solo los datos.
+       El navegador NO puede hacerlo: solo la API de administrador de
+       Supabase puede, y esa llave nunca puede vivir aquí. Por eso llama a
+       la función del servidor, que verifica el token y borra a ESE usuario
+       — el id sale de la verificación, nunca del cliente.
+
+       Devuelve:
+         { ok: true }            → la cuenta ya no existe
+         { noConfigurado: true } → falta la llave en Netlify; quien llama
+                                   debe caer al camino manual, y sobre todo
+                                   NO debe decirle a la persona que se borró.
+       Lanza error si algo falla de verdad. */
+    async eliminarCuenta(confirmacion) {
+      if (!currentUser) throw new Error("Debes iniciar sesión.");
+      const token = currentSession && currentSession.access_token;
+      if (!token) throw new Error("Tu sesión venció. Vuelve a entrar e inténtalo otra vez.");
+
+      let res;
+      try {
+        res = await fetch("/.netlify/functions/eliminar-cuenta", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessToken: token, confirmacion: confirmacion }),
+        });
+      } catch (err) {
+        // Sin red, o la función no existe (sitio servido fuera de Netlify).
+        // No es lo mismo que "se borró", así que se dice tal cual.
+        return { noConfigurado: true };
+      }
+
+      let data = {};
+      try { data = await res.json(); } catch (err) { data = {}; }
+
+      if (res.status === 503 || data.noConfigurado) return { noConfigurado: true };
+      if (!res.ok) throw new Error(data.error || "No pudimos completar el borrado.");
+
+      // La cuenta ya no existe: la sesión que quede en este navegador es un fantasma.
+      try { await client.auth.signOut(); } catch (err) { /* el usuario ya no está */ }
+      return { ok: true };
+    },
   };
 
   CCAuth.onChange(updateNavLink);
   window.CCAuth = CCAuth;
 
+  const initialRevision = sessionRevision;
   client.auth.getSession().then(({ data }) => {
+    if (initialRevision !== sessionRevision) return;
     currentSession = data && data.session ? data.session : null;
     currentUser = currentSession ? currentSession.user : null;
+    ready = true;
+    notify();
+  }).catch(() => {
+    if (initialRevision !== sessionRevision) return;
     ready = true;
     notify();
   });
 
   client.auth.onAuthStateChange((event, session) => {
+    sessionRevision++;
     // Si viene del enlace de "restablecer contraseña", avisa primero a los
     // listeners dedicados (onPasswordRecovery) — así la página puede
     // prepararse (mostrar el formulario de nueva contraseña) antes de que

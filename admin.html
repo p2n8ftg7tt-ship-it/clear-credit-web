@@ -24,11 +24,11 @@
   .admin-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:14px}
   @media(max-width:1100px){.admin-grid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:640px){.admin-grid{grid-template-columns:1fr 1fr}}
-  .admin-stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .admin-stat span{display:block;font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
   .admin-stat strong{font:600 1.7rem 'Fraunces',serif;color:var(--navy-deep)}
 
-  .admin-plans{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin:24px 0 40px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-plans{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:24px 0 40px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .admin-plans h3{font-size:.95rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:14px}
   .admin-plan-row{display:grid;grid-template-columns:110px 1fr 40px;align-items:center;gap:12px;margin-bottom:10px;font-size:.8rem}
   .admin-plan-row span:first-child{color:var(--muted);font-weight:600}
@@ -39,11 +39,21 @@
   .admin-table-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
   .admin-search{border:1.5px solid var(--line);border-radius:8px;padding:9px 13px;font:400 .86rem 'Public Sans',sans-serif;min-width:240px}
   .admin-search:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
-  .admin-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 18px rgba(8,47,73,.05)}
   table.admin-table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:760px}
   table.admin-table th{text-align:left;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
   table.admin-table td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
   table.admin-table tr:last-child td{border-bottom:0}
+  .tasas-admin{margin-top:48px}
+  .tasas-admin-sub{margin:26px 0 10px;font-size:.95rem;color:var(--navy-deep)}
+  .tasas-admin-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .tasas-admin-lista li{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.84rem}
+  .tasas-admin-lista li.vacio{color:var(--muted);background:transparent;border-style:dashed}
+  .tasas-admin-dias{display:flex;flex-wrap:wrap;gap:8px}
+  .tasas-dia{display:flex;flex-direction:column;gap:2px;min-width:104px;padding:8px 10px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:.76rem}
+  .tasas-dia strong{font-size:.8rem;color:var(--navy-deep)}
+  .tasas-dia.hubo{border-left:4px solid #20b875}
+  .tasas-dia.falta{border-left:4px solid #dc2626;background:#fef2f2}
   .admin-plan-pill{display:inline-block;font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--paper-dim);color:var(--navy)}
   .admin-plan-pill.is-none{color:var(--muted)}
   .admin-admin-pill{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--gold);color:var(--navy-deep);margin-left:6px}
@@ -54,12 +64,12 @@
   .admin-state p{line-height:1.65}
   /* El mensaje de error puede traer instrucciones de varios pasos: se lee
      mejor alineado a la izquierda y dentro de un recuadro. */
-  #adminErrorText{text-align:left;background:var(--paper-dim);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:16px 18px;margin-bottom:20px;font-size:.86rem}
+  #adminErrorText{text-align:left;background:var(--paper-dim);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;font-size:.86rem}
 
   .admin-content-editor{margin-top:48px;padding-top:8px}
   .admin-editor-layout{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
   @media(max-width:900px){.admin-editor-layout{grid-template-columns:1fr}}
-  .admin-editor-form{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-editor-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .admin-editor-form h3{font-size:.9rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:12px}
   .admin-editor-form textarea{border:1.5px solid var(--line);border-radius:8px;padding:11px 13px;font:400 .92rem 'Public Sans',sans-serif;color:var(--ink);background:#fff;width:100%;resize:vertical}
   .admin-editor-form textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
@@ -67,7 +77,7 @@
   .admin-saved-flash{font-size:.78rem;color:var(--good);font-weight:700;opacity:0;transition:opacity .2s ease}
   .admin-saved-flash.is-visible{opacity:1}
   .admin-note{margin-top:12px;color:var(--danger);font-size:.8rem}
-  .admin-editor-preview{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .admin-editor-preview{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .admin-preview-label{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
   .admin-editor-preview iframe{width:100%;height:640px;border:1px solid var(--line);border-radius:6px;background:#fff}
 
@@ -164,6 +174,54 @@
         <div id="priceRows"></div>
       </div>
 
+      <!-- Cobrar con tarjeta. Crea la factura EN BORRADOR en Stripe: se revisa
+           y se manda desde Stripe, nunca desde aquí. El importe no sale de este
+           formulario — sale del catálogo del servidor, para que un error de
+           tecleo no pueda crear una factura absurda. -->
+      <div class="admin-factura" id="facturaPanel">
+        <div class="admin-table-head">
+          <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Cobrar con tarjeta</h2>
+          <span style="font-size:.78rem;color:var(--muted);">Crea el borrador en Stripe. Tú lo revisas y lo mandas desde ahí.</span>
+        </div>
+
+        <div class="admin-factura-grid">
+          <div class="form-group">
+            <label for="facCorreo">Correo del cliente</label>
+            <input type="email" id="facCorreo" placeholder="cliente@ejemplo.com" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="facNombre">Nombre <span style="font-weight:400;color:var(--muted);">(opcional)</span></label>
+            <input type="text" id="facNombre" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="facServicio">Servicio</label>
+            <select id="facServicio">
+              <option value="listar">Ficha en los dos mapas — $49.99</option>
+              <option value="formar">LLC y EIN — $149.00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="facReferencia">Referencia del formulario</label>
+            <input type="text" id="facReferencia" placeholder="TH-260915-NVWL" autocomplete="off" style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label for="facTasas">Tasas oficiales <span style="font-weight:400;color:var(--muted);">(dólares, si aplican)</span></label>
+            <input type="number" id="facTasas" min="0" step="0.01" placeholder="100.00">
+          </div>
+          <div class="form-group">
+            <label for="facTasasConcepto">De qué son esas tasas</label>
+            <input type="text" id="facTasasConcepto" placeholder="Cuota de formación de Virginia" autocomplete="off">
+          </div>
+        </div>
+
+        <p class="admin-factura-nota">Las tasas oficiales van en una línea aparte de la factura, para que el cliente vea claramente qué es trabajo tuyo y qué cobra el gobierno.</p>
+
+        <div class="admin-factura-acciones">
+          <button type="button" class="btn btn-gold" id="facCrearBtn">Crear borrador en Stripe</button>
+          <span class="admin-factura-estado" id="facEstado" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+
       <div class="admin-table-head">
         <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Clientes</h2>
         <input type="search" class="admin-search" id="clientSearch" placeholder="Buscar por correo, nombre o teléfono…">
@@ -242,6 +300,40 @@
         </div>
       </div>
 
+      <!-- AGENTE DE TASAS — estado del agente (specs/004-mortgage-rate-agent). Solo lectura:
+           el sistema no te manda correos; abre esta vista y mira. -->
+      <div class="tasas-admin" id="adminTasas">
+        <div class="admin-table-head">
+          <h3>Agente de tasas hipotecarias</h3>
+          <button type="button" class="btn btn-outline-dark" id="tasasAdminRecargar">Actualizar</button>
+        </div>
+        <p class="admin-note" id="tasasAdminError" hidden></p>
+        <div class="admin-grid" id="tasasAdminResumen">
+          <div class="admin-stat"><span>Frescura</span><strong id="tasasAdminFrescura">—</strong></div>
+          <div class="admin-stat"><span>Horas desde la última corrida buena</span><strong id="tasasAdminHoras">—</strong></div>
+          <div class="admin-stat"><span>Publicado por última vez</span><strong id="tasasAdminPublicado">—</strong></div>
+          <div class="admin-stat"><span>Umbral de alerta</span><strong id="tasasAdminUmbral">—</strong></div>
+          <div class="admin-stat"><span>Interruptor (activo)</span><strong id="tasasAdminActivo">—</strong></div>
+        </div>
+
+        <h4 class="tasas-admin-sub">Últimos 14 días (lo esperado y lo que pasó)</h4>
+        <div class="tasas-admin-dias" id="tasasAdminDias"></div>
+
+        <h4 class="tasas-admin-sub">Avisos activos</h4>
+        <ul class="tasas-admin-lista" id="tasasAdminAlertas"></ul>
+
+        <h4 class="tasas-admin-sub">Lecturas retenidas (esperan tu revisión)</h4>
+        <ul class="tasas-admin-lista" id="tasasAdminRetenidas"></ul>
+
+        <h4 class="tasas-admin-sub">Últimas corridas</h4>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Cuándo (UTC)</th><th>Tipo</th><th>Resultado</th><th>Fuentes</th><th>Publicadas</th><th>Retenidas</th><th>Aviso nuevo</th></tr></thead>
+            <tbody id="tasasAdminCorridas"></tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -252,6 +344,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · Panel interno</span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -388,11 +481,92 @@
       renderClients(allClients);
       showState('adminContent');
       loadContentEditor();
+      loadTasasAdmin();
     }catch(err){
       $('adminErrorText').textContent = 'No pudimos conectar con el panel. Revisa tu conexión e intenta de nuevo.';
       showState('adminError');
     }
   }
+
+  // ---- Agente de tasas: estado para el dueño (solo lectura; todo se pinta con textContent) ----
+  const TASAS_FRESCURA = { al_dia:'Al día', sin_actualizar:'Sin actualizar', sin_datos:'Sin datos' };
+  function tasasTexto(id, texto){ const el = $(id); if(el) el.textContent = texto; }
+  function tasasVaciar(el){ while(el && el.firstChild) el.removeChild(el.firstChild); }
+  function tasasFecha(iso){
+    if(!iso) return '—';
+    const d = new Date(iso);
+    return isNaN(d) ? '—' : d.toISOString().replace('T',' ').slice(0,16);
+  }
+  function tasasFila(celdas){
+    const tr = document.createElement('tr');
+    celdas.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+    return tr;
+  }
+  function tasasItem(lista, texto, vacio){
+    const li = document.createElement('li');
+    li.textContent = texto;
+    if(vacio) li.className = 'vacio';
+    lista.appendChild(li);
+  }
+
+  async function loadTasasAdmin(){
+    const error = $('tasasAdminError');
+    error.hidden = true;
+    try{
+      const res = await fetch('/.netlify/functions/tasas-admin', {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + window.CCAuth.getAccessToken() },
+      });
+      const d = await res.json().catch(() => ({}));
+      if(!res.ok){
+        error.textContent = d.error || 'No pudimos leer el estado del agente. Usa «Actualizar» para reintentar.';
+        error.hidden = false;
+        return;
+      }
+
+      tasasTexto('tasasAdminFrescura', TASAS_FRESCURA[d.frescura] || '—');
+      tasasTexto('tasasAdminHoras', d.horasDesdeUltimaOk === null || d.horasDesdeUltimaOk === undefined ? '—' : d.horasDesdeUltimaOk + ' h');
+      tasasTexto('tasasAdminPublicado', tasasFecha(d.publicadoEn));
+      tasasTexto('tasasAdminUmbral', d.umbralPp + ' pp');
+      tasasTexto('tasasAdminActivo', d.activo ? 'Sí (visible)' : 'No (oculto)');
+
+      const dias = $('tasasAdminDias');
+      tasasVaciar(dias);
+      (d.diasEsperados || []).forEach(x => {
+        const caja = document.createElement('div');
+        caja.className = 'tasas-dia ' + (x.hubo ? 'hubo' : 'falta');
+        const a = document.createElement('strong'); a.textContent = x.dia;
+        const b = document.createElement('span');
+        b.textContent = (x.esperada === 'publicacion' ? 'Publicación' : 'Vigilancia') + ' · ' + (x.hubo ? 'corrió' : 'NO corrió');
+        caja.appendChild(a); caja.appendChild(b);
+        dias.appendChild(caja);
+      });
+
+      const alertas = $('tasasAdminAlertas');
+      tasasVaciar(alertas);
+      if(!(d.alertasActivas || []).length) tasasItem(alertas, 'Ninguno por ahora.', true);
+      (d.alertasActivas || []).forEach(a => tasasItem(alertas,
+        a.tipo + (a.termino ? ' · ' + a.termino + ' años' : '') + ' · ' + a.direccion + ' ' + a.magnitudPp + ' pp · fuente ' + a.fechaFuente));
+
+      const ret = $('tasasAdminRetenidas');
+      tasasVaciar(ret);
+      if(!(d.retenidas || []).length) tasasItem(ret, 'Ninguna.', true);
+      (d.retenidas || []).forEach(r => tasasItem(ret,
+        '#' + r.id + ' · ' + r.serie + ' = ' + r.valor + ' (' + r.fechaFuente + ') · ' + (r.nota || '') + ' — para liberarla, cambia su estado a «verificada» en la tabla tasas_lecturas'));
+
+      const cuerpo = $('tasasAdminCorridas');
+      tasasVaciar(cuerpo);
+      (d.corridas || []).forEach(c => {
+        const fuentes = Object.keys(c.fuentes || {}).map(k => k + ': ' + c.fuentes[k]).join(' · ');
+        cuerpo.appendChild(tasasFila([tasasFecha(c.corridaEn), c.tipo, c.resultado, fuentes || '—', c.publicadas, c.retenidas, c.alertaNueva ? 'Sí' : 'No']));
+      });
+      if(!(d.corridas || []).length) cuerpo.appendChild(tasasFila(['Todavía no hay corridas.', '', '', '', '', '', '']));
+    }catch(err){
+      error.textContent = 'No pudimos conectar para leer el estado del agente. Revisa tu conexión y usa «Actualizar».';
+      error.hidden = false;
+    }
+  }
+  $('tasasAdminRecargar').addEventListener('click', loadTasasAdmin);
 
   // ---- Editar contenido (textos, imagen del hero, contacto/redes) ----
   const CMS_FIELDS = [
@@ -563,6 +737,73 @@
       applyPreview(f.key, 'color', f.default);
     });
   });
+
+  /* ---------- Cobrar con tarjeta: crear el borrador en Stripe ----------
+     El importe NO se manda desde aquí. Este panel solo dice qué servicio es;
+     el precio lo pone el servidor. Lo único que viaja como número son las
+     tasas oficiales, y allá se validan con tope. */
+  (function facturas(){
+    const panel = $('facturaPanel');
+    if(!panel) return;
+    const estado = $('facEstado');
+    const btn = $('facCrearBtn');
+
+    function decir(texto, tipo){
+      estado.textContent = texto;
+      estado.className = 'admin-factura-estado' + (tipo ? ' is-' + tipo : '');
+    }
+
+    btn.addEventListener('click', async ()=>{
+      const correo = $('facCorreo').value.trim();
+      const referencia = $('facReferencia').value.trim().toUpperCase();
+      const tasasDolares = parseFloat($('facTasas').value || '0') || 0;
+      const tasasConcepto = $('facTasasConcepto').value.trim();
+
+      if(!correo){ decir('Falta el correo del cliente.', 'error'); return; }
+      if(referencia && !/^TH-\d{6}-[A-Z2-9]{4}$/.test(referencia)){
+        decir('La referencia debe verse así: TH-260915-NVWL', 'error'); return;
+      }
+      if(tasasDolares > 0 && !tasasConcepto){
+        decir('Di de qué son las tasas — el cliente tiene que poder leerlo en la factura.', 'error'); return;
+      }
+
+      btn.disabled = true;
+      decir('Creando el borrador en Stripe…', 'loading');
+
+      try{
+        const res = await fetch('/.netlify/functions/crear-factura', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            accessToken: window.CCAuth.getAccessToken(),
+            correo,
+            nombre: $('facNombre').value.trim(),
+            servicio: $('facServicio').value,
+            referencia,
+            tasasCentavos: Math.round(tasasDolares * 100),
+            tasasConcepto
+          })
+        });
+        const datos = await res.json().catch(()=>({}));
+
+        if(res.status === 503 || datos.noConfigurado){
+          decir('Stripe todavía no está configurado. Pon STRIPE_SECRET_KEY en Netlify — mira INSTRUCCIONES-PAGOS.md.', 'error');
+          return;
+        }
+        if(!res.ok){ decir(datos.error || 'No se pudo crear la factura.', 'error'); return; }
+
+        const total = (datos.totalCentavos/100).toFixed(2);
+        estado.className = 'admin-factura-estado is-ok';
+        estado.innerHTML = 'Borrador creado por <b>$' + total + ' USD</b>. ' +
+          '<a href="' + datos.panel + '" target="_blank" rel="noopener">Ábrelo en Stripe</a>, ' +
+          'revísalo y mándalo desde ahí. <b>Todavía no le ha llegado nada al cliente.</b>';
+      }catch(err){
+        decir('No se pudo hablar con el servidor: ' + (err.message || 'error de red'), 'error');
+      }finally{
+        btn.disabled = false;
+      }
+    });
+  })();
 
   $('adminRetryBtn').addEventListener('click', loadAdminData);
   $('adminSignOutBtn').addEventListener('click', async ()=>{

@@ -30,7 +30,7 @@
   .rate-watch-section{background:var(--paper-dim);position:relative;overflow:hidden;}
   .rate-watch-section::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(14,165,233,.14);border-radius:50%;right:-200px;top:-210px;}
   .rate-watch-layout{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:22px;align-items:stretch;}
-  .rate-watch-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:0 18px 45px rgba(7,89,133,.1);}
+  .rate-watch-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;box-shadow:0 18px 45px rgba(7,89,133,.1);}
   .rate-agent-title{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
   .rate-agent-icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-deep);font-family:'Fraunces',serif;font-size:1.15rem;font-weight:800;}
   .rate-agent-title h3{font-size:1.25rem;margin:0;color:var(--navy);}
@@ -40,7 +40,7 @@
   .rate-checklist{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .rate-checklist li{padding:13px 14px;border-left:3px solid var(--gold);background:var(--paper-dim);color:rgba(12,37,56,.78);font-size:.84rem;}
   .rate-checklist strong{display:block;color:var(--navy-deep);margin-bottom:2px;}
-  .rate-delivery{background:var(--navy-deep);color:#fff;border-radius:18px;padding:30px;display:flex;flex-direction:column;}
+  .rate-delivery{background:var(--navy-deep);color:#fff;border-radius:var(--radius-lg);padding:30px;display:flex;flex-direction:column;}
   .rate-delivery .eyebrow{color:var(--gold-light);}
   .rate-delivery h3{color:#fff;font-size:1.5rem;margin:0 0 10px;}
   .rate-delivery>p{color:rgba(255,255,255,.7);font-size:.9rem;margin:0;}
@@ -51,6 +51,65 @@
   .rate-source-links a:hover{border-color:var(--gold-light);color:var(--gold-light);}
   .rate-disclaimer{margin-top:15px!important;font-size:.68rem!important;color:rgba(255,255,255,.45)!important;}
   @media(max-width:800px){.rate-watch-layout{grid-template-columns:1fr}.rate-checklist{grid-template-columns:1fr;}}
+  /* Agente de tasas: lo que llena tasas-hipoteca.js (los estilos de arriba ya existían) */
+  .rate-watch-section[hidden],.rate-watch-section [hidden]{display:none!important;}
+  .rate-status[data-estado="sin_actualizar"]::before{background:#d97706;box-shadow:0 0 0 3px rgba(217,119,6,.16);}
+  .rate-status[data-estado="sin_datos"]::before{background:#9ca3af;box-shadow:0 0 0 3px rgba(156,163,175,.2);}
+  .tasas-cifras{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .tasas-cifra{display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:var(--paper-dim);border-left:3px solid var(--gold);}
+  .tasas-etiqueta{font-size:.78rem;font-weight:700;color:var(--muted);}
+  .tasas-valor{font-family:'Fraunces',serif;font-size:2.3rem;line-height:1.05;color:var(--navy-deep);}
+  .tasas-cambio{font-size:.82rem;font-weight:700;color:var(--navy);}
+  .tasas-cifra small{font-size:.72rem;color:var(--muted);}
+  .tasas-mensaje,.tasas-obsoleto{margin:14px 0 0;padding:12px 14px;border-radius:8px;background:rgba(201,138,62,.12);border:1px solid rgba(201,138,62,.35);font-size:.86rem;color:var(--ink);}
+  .tasas-alertas{margin-top:16px;display:grid;gap:10px;}
+  .tasas-alerta{padding:12px 14px;border:1px solid var(--gold);border-radius:8px;background:#fffaf1;font-size:.86rem;}
+  .tasas-alerta p{margin:0 0 6px;}
+  .tasas-alerta small a{color:var(--navy);font-weight:700;}
+  .rate-delivery>.tasas-solo-una{margin-top:14px;font-size:.8rem;}
+  .tasas-fuentes{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:14px;}
+  .tasas-fuentes li{display:grid;gap:3px;font-size:.78rem;color:rgba(255,255,255,.75);}
+  .tasas-fuentes strong{color:#fff;font-size:.84rem;}
+  .tasas-fuentes small{color:rgba(255,255,255,.55);}
+  .tasas-fuentes a{justify-self:start;margin-top:3px;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 10px;color:#fff;text-decoration:none;font-size:.7rem;font-weight:700;}
+  .tasas-fuentes a:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  @media(max-width:800px){.tasas-cifras{grid-template-columns:1fr;}.tasas-valor{font-size:2rem;}}
+
+  /* ===== Casas flotantes (specs/006-floating-rate-houses) =====
+     Las dibuja tasas-hipoteca.js (nada de esto aparece antes del lanzamiento: no hay marcado en el HTML).
+     Abajo a la izquierda, porque el asistente ocupa abajo a la derecha (z-index 200); por debajo de las
+     herramientas a pantalla completa (300). La casa es un pentágono hecho con clip-path: el plazo y la tasa
+     son texto real. Ninguna tasa se escribe aquí. */
+  .casas-flotantes{position:fixed;left:12px;bottom:12px;z-index:140;display:flex;flex-direction:row;align-items:flex-end;gap:8px;}
+  .casas-flotantes[hidden]{display:none;}
+  .casa{appearance:none;border:0;margin:0;font:inherit;cursor:pointer;color:var(--gold-light);background:var(--navy-deep);
+    width:88px;height:82px;padding:31px 4px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.1;
+    clip-path:polygon(50% 0,100% 40%,100% 100%,0 100%,0 40%);}
+  .casa-plazo{font-size:.62rem;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.82);}
+  .casa-valor{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--gold-light);}
+  .casa-estado{font-size:.54rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+  /* clip-path recorta el contorno del foco: el foco se muestra cambiando colores (visible con teclado). */
+  .casa:hover,.casa:focus-visible,.casa[aria-expanded="true"]{background:var(--gold-light);}
+  .casa:hover .casa-plazo,.casa:focus-visible .casa-plazo,.casa[aria-expanded="true"] .casa-plazo,
+  .casa:hover .casa-estado,.casa:focus-visible .casa-estado,.casa[aria-expanded="true"] .casa-estado{color:var(--navy-deep);}
+  .casa:hover .casa-valor,.casa:focus-visible .casa-valor,.casa[aria-expanded="true"] .casa-valor{color:var(--navy-deep);}
+  .casa:focus-visible .casa-plazo{text-decoration:underline;}
+  .casas-cerrar{appearance:none;position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);
+    background:#fff;color:var(--navy-deep);font-size:.9rem;font-weight:700;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0;box-shadow:0 2px 6px rgba(42,33,24,.2);}
+  .casas-cerrar:hover,.casas-cerrar:focus-visible{background:var(--gold-light);outline:2px solid var(--navy-deep);outline-offset:1px;}
+  /* Que el final de la página no quede atrapado detrás de las casas. */
+  body[data-casas]>footer{padding-bottom:118px;}
+  @media(min-width:900px){
+    .casas-flotantes{left:20px;bottom:20px;}
+    .casa{width:96px;height:90px;padding-top:34px;}
+    .casa-valor{font-size:1.15rem;}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    @keyframes casaflota{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    .casa{animation:casaflota 5s ease-in-out infinite;}
+    .casa+.casa{animation-delay:-2.5s;}
+  }
+  /* ===== fin casas flotantes ===== */
 
   /* Recorridos educativos de préstamos */
   .fha-entry,.conv-entry{position:relative;background:linear-gradient(90deg,#fff 0%,#fff 72%,rgba(14,165,233,.035) 100%);}
@@ -58,7 +117,7 @@
   .conv-entry::before{background:var(--navy);}
   .conv-world .fha-world-mark{background:var(--teal);}
   .fha-entry-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px;}
-  .fha-learn-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-width:255px;border:0;border-radius:9px;background:var(--navy-deep);color:#fff;padding:14px 18px;font:700 .86rem 'Public Sans',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(8,47,73,.16);transition:transform .18s ease,background .18s ease;}
+  .fha-learn-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-width:255px;border:0;border-radius:var(--radius-pill);background:var(--navy-deep);color:#fff;padding:14px 24px;font:700 .86rem 'Public Sans',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(8,47,73,.16);transition:transform .18s ease,background .18s ease;}
   .fha-learn-btn:hover{transform:translateY(-2px);background:var(--teal);}
   .fha-learn-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
   .fha-entry-actions small{color:rgba(12,37,56,.55);font-size:.72rem;}
@@ -135,7 +194,7 @@
   .fha-mip-line{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(125,211,252,.25);padding-top:10px;margin-top:10px;font-size:.72rem;}
   .fha-mip-line span{opacity:.65;}
   .fha-fine-print{color:rgba(12,37,56,.48);font-size:.62rem;line-height:1.55;margin-top:12px;}
-  .fha-calculator{display:grid;grid-template-columns:.92fr 1.08fr;margin-top:34px;border:1px solid var(--line);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(7,89,133,.1);}
+  .fha-calculator{display:grid;grid-template-columns:.92fr 1.08fr;margin-top:34px;border:1px solid var(--line);background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 18px 50px rgba(7,89,133,.1);}
   .fha-calc-controls{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:28px;}
   .fha-calc-field{display:flex;flex-direction:column;gap:6px;}
   .fha-calc-field label{color:var(--navy-deep);font-size:.68rem;font-weight:800;}
@@ -178,7 +237,7 @@
   .fha-prev{justify-self:start;background:transparent;color:var(--navy);padding:12px 0;}
   .fha-prev:disabled{opacity:.25;cursor:default;}
   .fha-world-footer>span{color:rgba(12,37,56,.45);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;}
-  .fha-next{justify-self:end;min-width:135px;display:flex;justify-content:space-between;gap:18px;background:var(--navy-deep);color:#fff;border-radius:7px;padding:12px 15px;}
+  .fha-next{justify-self:end;min-width:135px;display:flex;justify-content:space-between;gap:18px;background:var(--navy-deep);color:#fff;border-radius:var(--radius-pill);padding:12px 18px;}
   .fha-next:hover{background:var(--teal);}
 
   @media(max-width:800px){
@@ -253,13 +312,13 @@
   .cmp-field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font:700 .95rem 'Public Sans',sans-serif;color:var(--ink);background:#fff}
   .cmp-nota-tasas{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.55;margin:0 0 22px}
 
-  .cmp-veredicto{background:var(--navy-deep);border-radius:16px;padding:24px 26px;margin-bottom:20px}
+  .cmp-veredicto{background:var(--navy-deep);border-radius:var(--radius-lg);padding:24px 26px;margin-bottom:20px}
   .cmp-veredicto small{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.6);margin-bottom:8px}
   .cmp-veredicto strong{display:block;font-family:'Fraunces',serif;font-size:1.55rem;line-height:1.22;color:var(--gold-light)}
   .cmp-veredicto p{margin:10px 0 0;color:rgba(255,255,255,.78);line-height:1.65;font-size:.93rem}
 
   .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
-  .cmp-col{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+  .cmp-col{border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;overflow:hidden}
   .cmp-col header{padding:20px 22px;border-bottom:1px solid var(--line)}
   .cmp-col header span{display:inline-block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border-radius:999px;margin-bottom:10px}
   .cmp-fha header span{background:rgba(201,138,62,.16);color:#8a5a1f}
@@ -276,15 +335,15 @@
   .cmp-total dt{font-weight:700;color:var(--navy-deep)}
   .cmp-total dd{font-family:'Fraunces',serif;font-size:1.05rem}
 
-  .cmp-clave{border:1px solid var(--line);border-radius:16px;background:#fff;padding:24px 26px;margin-bottom:18px}
+  .cmp-clave{border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;padding:24px 26px;margin-bottom:18px}
   .cmp-clave h3{margin:0 0 8px;font-family:'Fraunces',serif;font-size:1.2rem;color:var(--navy-deep)}
   .cmp-clave > p{margin:0 0 18px;line-height:1.68;color:var(--ink)}
   .cmp-clave-par{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .cmp-clave-par > div{background:var(--paper-dim);border-radius:12px;padding:17px 19px}
+  .cmp-clave-par > div{background:var(--paper-dim);border-radius:var(--radius);padding:17px 19px}
   .cmp-clave-par b{display:block;margin-bottom:7px;color:var(--navy-deep);font-size:.95rem;line-height:1.4}
   .cmp-clave-par p{margin:0;font-size:.88rem;line-height:1.62;color:var(--ink)}
 
-  .cmp-aviso{display:flex;gap:14px;background:#fff0ed;border:1px solid rgba(179,64,42,.35);border-radius:14px;padding:18px 22px;margin-bottom:16px}
+  .cmp-aviso{display:flex;gap:14px;background:#fff0ed;border:1px solid rgba(179,64,42,.35);border-radius:var(--radius);padding:18px 22px;margin-bottom:16px}
   .cmp-aviso b{flex:none;width:26px;height:26px;border-radius:50%;background:#a34838;color:#fff;display:grid;place-items:center;font:800 .95rem 'Fraunces',serif}
   .cmp-aviso h4{margin:0 0 6px;font:700 1rem 'Public Sans',sans-serif;color:#8a2b2b}
   .cmp-aviso p{margin:0;line-height:1.62;font-size:.9rem;color:#7e3127}
@@ -300,12 +359,12 @@
   }
 
   /* ===== Ejemplo trabajado del seguro FHA ===== */
-  .mip-ejemplo{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 28px;margin:22px 0}
+  .mip-ejemplo{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:26px 28px;margin:22px 0}
   .mip-ejemplo h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:1.22rem;color:#fff}
   .mip-ejemplo-intro{margin:0 0 20px;color:rgba(255,255,255,.74);line-height:1.65;font-size:.95rem}
   .mip-ejemplo-intro b{color:var(--gold-light)}
   .mip-pasos{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:12px;counter-reset:mip}
-  .mip-pasos li{display:flex;gap:14px;background:rgba(0,0,0,.18);border-radius:12px;padding:15px 17px}
+  .mip-pasos li{display:flex;gap:14px;background:rgba(0,0,0,.18);border-radius:var(--radius);padding:15px 17px}
   .mip-pasos li > span{flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#2a2118;display:grid;place-items:center;font:800 .82rem 'Public Sans',sans-serif}
   .mip-pasos li > div{min-width:0}
   .mip-pasos b{display:block;color:#fff;font-size:.95rem;margin-bottom:5px}
@@ -317,7 +376,7 @@
   .mip-comparativa h4{margin:0 0 8px;font:700 1.02rem 'Public Sans',sans-serif;color:var(--gold-light)}
   .mip-comparativa p{margin:0 0 12px;color:rgba(255,255,255,.76);line-height:1.68;font-size:.92rem}
   .mip-comparativa p b{color:#fff}
-  .mip-conclusion{background:rgba(0,0,0,.22);border-radius:10px;padding:14px 16px;margin:0!important}
+  .mip-conclusion{background:rgba(0,0,0,.22);border-radius:var(--radius);padding:14px 16px;margin:0!important}
   .mip-conclusion a{color:var(--gold-light);font-weight:700}
   @media(max-width:620px){.mip-ejemplo{padding:19px 17px}.mip-pasos li{padding:13px 14px;gap:11px}}
 </style>
@@ -401,22 +460,22 @@
       </div>
 
       <div class="status-grid">
-        <div class="status-card">
+        <div class="status-card" data-reveal>
           <small>Camino más directo</small>
           <h3>Tienes green card (residente permanente)</h3>
           <p>Calificas con los mismos requisitos que cualquier ciudadano — mismos programas, mismos puntajes de crédito de referencia, y acceso a enganches bajos (desde 0% a 3% según el programa).</p>
         </div>
-        <div class="status-card">
+        <div class="status-card" data-reveal>
           <small>Con visa de trabajo</small>
           <h3>Tienes una visa de trabajo vigente</h3>
           <p>Puedes calificar mostrando tu visa vigente y una carta de tu empleador que confirme continuidad laboral. Los prestamistas suelen pedir que tu estatus legal siga vigente por al menos 3 años más.</p>
         </div>
-        <div class="status-card">
+        <div class="status-card" data-reveal>
           <small>DACA, asilo o refugio</small>
           <h3>Tienes DACA, asilo o estatus de refugiado</h3>
           <p>Eres elegible bajo las guías de Fannie Mae presentando tu documento de autorización de empleo (EAD) y un ITIN o número de seguro social, junto con la documentación financiera habitual.</p>
         </div>
-        <div class="status-card">
+        <div class="status-card" data-reveal>
           <small>Sin número de seguro social</small>
           <h3>No tienes número de seguro social</h3>
           <p>Existen <strong>préstamos ITIN</strong>, diseñados justo para esto. En vez de historial de crédito tradicional, el prestamista usa tus declaraciones de impuestos (2 años), tu historial laboral (2 años), estados de cuenta bancarios y recibos de servicios pagados a tiempo. El enganche típico es de 10% a 20%, aunque algunos prestamistas piden menos.</p>
@@ -430,6 +489,58 @@
         <a href="https://singlefamily.fanniemae.com/originating-underwriting/eligibility" target="_blank" rel="noopener noreferrer">Fannie Mae · Elegibilidad ↗</a>
       </div>
       <p class="disclaimer" style="margin-top:16px;">Contenido educativo general. Los requisitos exactos varían por prestamista y cambian con el tiempo — esto no sustituye asesoría legal, migratoria o financiera personalizada. Habla con un oficial de préstamos con experiencia en tu situación específica antes de tomar una decisión.</p>
+    </div>
+  </section>
+
+  <!-- AGENTE DE TASAS (specs/004-mortgage-rate-agent)
+       Oculto hasta el lanzamiento. Lo llena tasas-hipoteca.js con los datos de la función
+       pública; ninguna tasa se escribe a mano aquí. El aviso legal repite a tasas-texto.js
+       (tests/tasas-paginas.test.js comprueba que sean idénticos). -->
+  <section id="tasas" class="rate-watch-section section" hidden aria-labelledby="tasasTitulo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-dark">Tasas de referencia</span>
+        <h2 id="tasasTitulo">Tasas hipotecarias de referencia en EE. UU.</h2>
+        <p>Un agente revisa cada día las fuentes que reflejan las tasas hipotecarias y actualiza estas cifras los lunes y martes. Si algo cambia de forma importante, aparece un aviso aquí.</p>
+      </div>
+      <div class="rate-watch-layout">
+        <div class="rate-watch-card">
+          <div class="rate-agent-title">
+            <span class="rate-agent-icon" aria-hidden="true">%</span>
+            <div>
+              <h3>Agente de tasas</h3>
+              <p><span class="rate-status" id="tasasPill" hidden></span></p>
+            </div>
+          </div>
+          <p class="tasas-mensaje" id="tasasMensaje" role="status" hidden></p>
+          <div id="tasasContenido">
+            <div class="tasas-cifras">
+              <div class="tasas-cifra">
+                <span class="tasas-etiqueta" id="tasas30Etiqueta"></span>
+                <strong class="tasas-valor" id="tasas30Valor"></strong>
+                <span class="tasas-cambio" id="tasas30Cambio"></span>
+                <small id="tasas30Fecha"></small>
+              </div>
+              <div class="tasas-cifra">
+                <span class="tasas-etiqueta" id="tasas15Etiqueta"></span>
+                <strong class="tasas-valor" id="tasas15Valor"></strong>
+                <span class="tasas-cambio" id="tasas15Cambio"></span>
+                <small id="tasas15Fecha"></small>
+              </div>
+            </div>
+            <p class="tasas-obsoleto" id="tasasObsoleto" role="status" hidden></p>
+            <div class="tasas-alertas" id="tasasAlertas" aria-live="polite" hidden></div>
+          </div>
+        </div>
+        <div class="rate-delivery">
+          <span class="eyebrow">Revisión</span>
+          <h3 id="tasasRevisado"></h3>
+          <p id="tasasProxima"></p>
+          <p class="tasas-solo-una" id="tasasSoloUna"></p>
+          <ul class="tasas-fuentes" id="tasasFuentes"></ul>
+          <p class="rate-disclaimer">Promedios nacionales de referencia para fines educativos. No son una oferta, una aprobación ni la tasa que te darían a ti.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -876,7 +987,8 @@
       <button class="fha-prev" id="fhaPrev" type="button" disabled>← Anterior</button>
       <span id="fhaStepName">Qué es FHA</span>
       <button class="fha-next" id="fhaNext" type="button"><span>Continuar</span><span aria-hidden="true">→</span></button>
-    </footer>
+    <div class="wrap footer-legal" data-empresa="corta" hidden></div>
+  </footer>
   </div>
 
   <!-- RECORRIDO CONVENCIONAL -->
@@ -1048,6 +1160,10 @@
 </main>
 
 <footer>
+  <div class="wrap revision-legal">
+    <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-12">12 de septiembre de 2026</time>, contrastando las reglas de FHA/HUD (ML 2025-09), el PMI convencional bajo la HPA y las guías de Fannie Mae.
+    Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
+  </div>
   <div class="wrap footer-inner">
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
@@ -1239,9 +1355,14 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
+<script src="reveal.js" defer></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
 <script>
 /* ===== Comparador FHA vs convencional =====
    Toda la aritmética corre en el navegador de la persona. Se amortiza mes a

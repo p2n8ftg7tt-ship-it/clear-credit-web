@@ -28,6 +28,12 @@
   force = true
 
 [[redirects]]
+  from = "/INSTRUCCIONES-APARIENCIA.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/INSTRUCCIONES-CUENTAS.md"
   to = "/index.html"
   status = 404
@@ -91,6 +97,13 @@
   status = 404
   force = true
 
+# Las pruebas automáticas (node --test tests/) son de tu computadora, no del sitio
+[[redirects]]
+  from = "/tests/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
 # La propia carpeta, si alguien la pide sin archivo dentro
 [[redirects]]
   from = "/Claude outputs"
@@ -104,6 +117,80 @@
   to = "/index.html"
   status = 404
   force = true
+
+# Todo lo que está en la raíz se publica. Estas carpetas y notas son de trabajo
+# (especificaciones, herramientas de IA, mapa del código, instrucciones internas):
+# se quedan en tu computadora y en GitHub, pero nadie las descarga del sitio.
+[[redirects]]
+  from = "/specs/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.specify/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/graphify-out/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/skills-lock.json"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-PAGOS.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-DIRECCIONES.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-CARTAS-BILINGUES.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/INSTRUCCIONES-TASAS.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# Agente de tasas hipotecarias (specs/004-mortgage-rate-agent).
+# Corre todos los días a las 13:00 UTC (9 a. m. en verano de EE. UU.,
+# 8 a. m. en invierno). Los lunes y martes publica; los demás días solo
+# vigila. Netlify usa siempre hora UTC y solo lo ejecuta en el deploy
+# publicado (no en vistas previas). No tiene dirección web: nadie puede
+# llamarlo desde fuera.
+# ─────────────────────────────────────────────────────────────────────
+[functions."tasas-agente"]
+  schedule = "0 13 * * *"
 
 # ─────────────────────────────────────────────────────────────────────
 # Cabeceras de seguridad para todas las páginas.
@@ -119,4 +206,4 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://cloud.umami.is; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://cloud.umami.is https://gateway.umami.is; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"

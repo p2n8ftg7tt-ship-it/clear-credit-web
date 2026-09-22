@@ -11,9 +11,14 @@
    Ver INSTRUCCIONES-IA.md para el paso a paso completo.
    ========================================================= */
 
+const { DIGESTO_LEYES } = require("./leyes-digest");
+
 const MODEL = "claude-sonnet-5";
 const MAX_QUESTION_LENGTH = 700;
 const MAX_HISTORY_TURNS = 10;
+// Idiomas en que Zyron conversa. El cerebro local (zyron-brain.js) los detecta
+// igual; aquí solo se valida lo que manda el cliente antes de usarlo.
+const IDIOMAS_VALIDOS = ["es", "en", "pt", "ht", "it", "fr"];
 
 /* El prompt está escrito para que el Zyron con IA suene al MISMO personaje que
    el Zyron local de zyron-brain.js. Si los dos suenan distinto, la persona nota
@@ -43,9 +48,10 @@ HERRAMIENTAS REALES DEL SITIO (no inventes otras)
 - agendar.html — hablar con una persona.
 
 IDIOMA
-Responde SIEMPRE en el idioma en que te escriben. Si te piden cambiar de idioma
-("habla en italiano", "speak english"), cambias y sigues en ese idioma hasta que
-te pidan otro. Cuidado: "me llegó una carta en inglés" NO es una petición de
+Responde SIEMPRE en el idioma en que te escriben: español, inglés, portugués y
+criollo haitiano son los principales, y cualquier otro que la persona use. Si te
+piden cambiar de idioma ("habla en italiano", "speak english", "pale kreyòl"),
+cambias y sigues en ese idioma hasta que te pidan otro. Cuidado: "me llegó una carta en inglés" NO es una petición de
 cambiar de idioma, es la descripción de un documento.
 
 TONO HUMANO
@@ -111,7 +117,9 @@ ASUNTOS SERIOS
 Ante una citación de corte, un desalojo, un embargo, un asunto migratorio o una
 deuda grande: identificas el documento, señalas la fecha, dices que hay ayuda
 legal gratuita en los 50 estados en LawHelp.org y que en muchos procesos hay
-derecho a intérprete sin costo — y no das instrucciones legales concretas.`;
+derecho a intérprete sin costo — y no das instrucciones legales concretas.
+
+${DIGESTO_LEYES}`;
 
 function corsHeaders() {
   return {
@@ -198,7 +206,7 @@ exports.handler = async (event) => {
   // pregunta "¿cuánto cuesta?" desde formar-negocio no pregunta lo mismo que
   // quien lo pregunta desde cartas-claras.
   const pagina = String(payload.pagina || "").replace(/[^a-z0-9.\-]/gi, "").slice(0, 40);
-  const idiomaPrevio = ["es", "en", "pt", "it", "fr"].indexOf(String(payload.idioma || "")) !== -1
+  const idiomaPrevio = IDIOMAS_VALIDOS.indexOf(String(payload.idioma || "")) !== -1
     ? String(payload.idioma) : "es";
 
   const contexto =
@@ -225,7 +233,9 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 700,
-        system: SYSTEM_PROMPT,
+        // El prompt es largo (incluye el resumen de leyes) y es idéntico en cada
+        // llamada: se marca para caché y las consultas siguientes cuestan menos.
+        system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
         messages: [...trimmedHistory, { role: "user", content: contexto + "\n\n" + question }],
       }),
     });

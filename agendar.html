@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .ag-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:start}
-  .ag-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px;box-shadow:0 10px 30px rgba(42,33,24,.06)}
+  .ag-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 10px 30px rgba(42,33,24,.06)}
   .ag-card h2{font:600 1.35rem 'Fraunces',serif;color:var(--navy-deep);margin:0 0 6px}
   .ag-card>p{color:var(--muted);font-size:.88rem;margin:0 0 18px}
   .ag-or{display:flex;align-items:center;gap:14px;margin:26px 0;color:var(--muted);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
@@ -40,7 +40,7 @@
   .ag-check:hover{border-color:var(--navy)}
   .ag-check input{appearance:auto;width:15px;height:15px;margin:0;padding:0;border:0;border-radius:0;background:none;accent-color:var(--gold)}
   .ag-check.is-on{border-color:var(--gold);background:var(--paper-dim)}
-  .ag-side{background:var(--paper-dim);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .ag-side{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px 24px}
   .ag-side h3{font:700 .82rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin:0 0 14px}
   .ag-side li{list-style:none;position:relative;padding-left:22px;margin-bottom:12px;font-size:.85rem;color:var(--ink);line-height:1.55}
   .ag-side li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
@@ -49,7 +49,7 @@
   .ag-status.is-success{display:block;background:#e6f4ea;color:#1e5b34;border:1px solid #b9dfc4}
   .ag-status.is-error{display:block;background:#fbeaea;color:#8a2b2b;border:1px solid #f0c2c2}
   .ag-status.is-loading{display:block;background:var(--paper-dim);color:var(--muted);border:1px solid var(--line)}
-  .ag-cal-frame{width:100%;min-height:640px;border:1px solid var(--line);border-radius:10px}
+  .ag-cal-frame{width:100%;min-height:640px;border:1px solid var(--line);border-radius:var(--radius)}
   @media(max-width:900px){.ag-layout{grid-template-columns:1fr}}
   @media(max-width:640px){.ag-grid{grid-template-columns:1fr}}
 </style>
@@ -125,6 +125,7 @@
           <div class="ag-or">O si prefieres</div>
         </div>
 
+        <div class="wa-caja" data-whatsapp-label="Escribir por WhatsApp" hidden></div>
         <h2 id="agFormTitle">Dinos cuándo te queda bien</h2>
         <p>Llena esto y te escribimos para confirmar día y hora. Es gratis y no te compromete a nada.</p>
 
@@ -208,6 +209,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <!-- Formulario compatible con Netlify Forms: al desplegar en Netlify queda
@@ -232,9 +234,14 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 <script src="nav.js"></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
+<script src="whatsapp.js"></script>
 
 <script>
 (function(){

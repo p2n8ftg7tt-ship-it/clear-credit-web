@@ -33,7 +33,9 @@
   .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-200px;top:-210px}
   .acct-identity-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .acct-identity-left{display:flex;align-items:center;gap:20px}
-  .acct-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem 'Fraunces',serif;flex:none}
+  .acct-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem 'Fraunces',serif;flex:none}
+  /* Sin overflow:hidden y sin esta regla, la foto se salía del círculo. */
+  .acct-avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
   .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:'Fraunces',serif}
   .acct-meta{margin:6px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
@@ -50,7 +52,7 @@
   .acct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   @media(max-width:980px){.acct-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:640px){.acct-grid{grid-template-columns:1fr}}
-  .acct-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:20px;box-shadow:0 6px 18px rgba(8,47,73,.05);display:flex;flex-direction:column;gap:10px}
+  .acct-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 6px 18px rgba(8,47,73,.05);display:flex;flex-direction:column;gap:10px}
   .acct-card.is-good{border-left-color:var(--good)}
   .acct-card.is-gold{border-left-color:var(--gold)}
   .acct-card.is-teal{border-left-color:var(--teal)}
@@ -71,7 +73,7 @@
   .acct-config{padding:54px 0 80px;background:var(--paper-dim)}
   .acct-config-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:760px){.acct-config-grid{grid-template-columns:1fr}}
-  .acct-config-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
+  .acct-config-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:var(--radius);padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .acct-config-card.is-navy{border-left-color:var(--navy)}
   .acct-config-card.is-gold{border-left-color:var(--gold)}
   .acct-config-card.is-good{border-left-color:var(--good)}
@@ -96,7 +98,7 @@
   .acct-saved-flash{font-size:.7rem;color:var(--good);font-weight:700;margin-left:8px;opacity:0;transition:opacity .2s ease}
   .acct-saved-flash.is-visible{opacity:1}
 
-  .acct-danger{margin-top:16px;background:#fff;border:1px solid rgba(179,64,42,.3);border-left:4px solid var(--danger);border-radius:8px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .acct-danger{margin-top:16px;background:#fff;border:1px solid rgba(179,64,42,.3);border-left:4px solid var(--danger);border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .acct-danger h3{font-size:1rem;color:var(--danger);margin-bottom:4px;font-family:'Fraunces',serif}
   .acct-danger p{margin:0;color:var(--muted);font-size:.82rem;max-width:520px}
 
@@ -116,7 +118,7 @@
   .account-sidebar-person{min-width:0}.account-sidebar-person strong,.account-sidebar-person small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.account-sidebar-person strong{font-size:.86rem}.account-sidebar-person small{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.55)}
   .account-sidebar-toggle{margin-left:auto;width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:1rem;flex:none}
   .account-sidebar-nav{display:grid;gap:5px;padding-top:20px}.account-sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;color:rgba(255,255,255,.7);border-radius:9px;text-decoration:none;font-size:.83rem;font-weight:700}.account-sidebar-nav a:hover,.account-sidebar-nav a.is-active{background:rgba(255,255,255,.1);color:#fff}.account-sidebar-nav i{width:19px;font-style:normal;text-align:center;font-size:1rem}.account-sidebar-nav span{white-space:nowrap}
-  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:10px;background:rgba(201,162,77,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
+  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:var(--radius);background:rgba(201,162,77,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
   #accountContent{padding-left:264px;transition:padding-left .2s ease}.sidebar-collapsed #accountContent{padding-left:72px}.sidebar-collapsed .account-sidebar{width:72px;padding-inline:14px}.sidebar-collapsed .account-sidebar-person,.sidebar-collapsed .account-sidebar-nav span,.sidebar-collapsed .account-sidebar-footer{display:none}.sidebar-collapsed .account-sidebar-head{padding-inline:0}.sidebar-collapsed .account-sidebar-toggle{margin-left:0}.sidebar-collapsed .account-sidebar-nav a{justify-content:center;padding-inline:8px}
   .account-signed-in .page-hero{display:none}
   .acct-profile-card{grid-column:span 2;border-left-color:var(--gold)}.acct-profile-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}.acct-profile-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--gold-light);display:grid;place-items:center;color:var(--navy-deep);font:700 1.8rem 'Fraunces',serif;flex:none}.acct-profile-avatar img{width:100%;height:100%;object-fit:cover}.acct-avatar-action{position:relative;overflow:hidden;cursor:pointer;color:var(--teal);font-weight:800;font-size:.8rem}.acct-avatar-action input{position:absolute;inset:0;opacity:0;cursor:pointer}.acct-profile-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.acct-profile-fields .form-group{margin:0}.acct-profile-fields .form-group.full{grid-column:1/-1}.acct-profile-actions{display:flex;align-items:center;gap:12px;margin-top:20px}.acct-profile-status{font-size:.8rem;color:var(--good);font-weight:700}
@@ -319,16 +321,17 @@
           <form class="acct-config-card acct-profile-card" id="perfil">
             <div class="acct-profile-top">
               <div class="acct-profile-avatar" id="acctProfileAvatar">?</div>
-              <div><h3>Mi perfil</h3><p class="acct-note">Estos datos son opcionales y solo se usan para personalizar tu cuenta.</p><label class="acct-avatar-action">Cambiar foto<input id="acctPhotoInput" type="file" accept="image/png,image/jpeg,image/webp"></label></div>
+              <div><h3>Mi perfil</h3><p class="acct-note">Estos datos son opcionales y solo se usan para personalizar tu cuenta.</p><div class="acct-photo-actions"><label class="acct-avatar-action">Cambiar foto<input id="acctPhotoInput" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="acctPhotoHint"></label><button class="acct-link-btn" type="button" id="acctRemovePhoto">Quitar foto</button></div><p class="acct-note" id="acctPhotoHint">JPG, PNG o WebP · hasta 5 MB. Los cambios se aplican al guardar.</p></div>
             </div>
             <div class="acct-profile-fields">
               <div class="form-group"><label for="profileName">Nombre</label><input id="profileName" autocomplete="name" placeholder="Tu nombre"></div>
+              <div class="form-group"><label for="profileUsername">Nombre de usuario</label><input id="profileUsername" autocomplete="nickname" maxlength="64" placeholder="Cómo quieres aparecer" aria-describedby="profileUsernameHint"><p class="acct-note" id="profileUsernameHint">Se muestra en tu cuenta. Seguirás entrando con tu correo o proveedor habitual.</p></div>
               <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" autocomplete="tel" placeholder="Opcional"></div>
-              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional"></div>
-              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional"></div>
-              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional"></div>
+              <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional" data-dir-calle="persona" data-dir-tipo="persona"></div>
+              <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional" data-dir-ciudad="persona"></div>
+              <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional" data-dir-estado-cp="persona"></div>
             </div>
-            <div class="acct-profile-actions"><button class="btn btn-gold" type="submit">Guardar perfil</button><button class="acct-link-btn" type="button" id="acctClearProfile">Borrar datos de perfil</button><span class="acct-profile-status" id="acctProfileStatus" role="status"></span></div>
+            <div class="acct-profile-actions"><button class="btn btn-gold" id="acctSaveProfile" type="submit">Guardar perfil</button><button class="acct-link-btn" type="button" id="acctCancelProfile">Cancelar cambios</button><button class="acct-link-btn" type="button" id="acctClearProfile">Borrar datos de perfil</button><span class="acct-profile-status" id="acctProfileStatus" role="status" aria-live="polite"></span></div>
           </form>
 
           <!-- Seguridad -->
@@ -378,7 +381,11 @@
         <div class="acct-danger">
           <div>
             <h3>Eliminar mi cuenta</h3>
-            <p><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>No borra tu correo y contraseña de acceso</strong>: eso lo cerramos a mano. Al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>. Mientras tanto tu cuenta queda vacía pero puedes seguir entrando.</p>
+            <!-- El texto se ajusta solo según si el borrado automático está
+                 configurado en el servidor. Prometer "se borra al instante"
+                 cuando en realidad hay que escribir a Contacto es la clase de
+                 mentira pequeña que destruye la confianza de golpe. -->
+            <p id="acctDeleteDesc"><strong>Este botón borra al instante</strong> tus análisis, cálculos y preferencias guardadas, sin vuelta atrás. <strong>Tu correo y contraseña de acceso</strong> se cierran a mano: al terminar te llevamos a Contacto para pedirlo, y <strong>respondemos dentro de 7 días</strong>.</p>
           </div>
           <button type="button" class="btn" style="flex:none;border:1.5px solid var(--danger);background:transparent;color:var(--danger);" id="acctDeleteBtn">Eliminar cuenta</button>
         </div>
@@ -411,6 +418,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -420,6 +428,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script>
 <script src="cms.js"></script>
+<script src="direccion-autocompletar.js"></script>
 <script>
 (function(){
   'use strict';
@@ -772,22 +781,67 @@
     });
   });
 
+  /* ¿Está configurado el borrado automático?
+     La función solo acepta POST. Si le mandamos un cuerpo SIN la palabra de
+     confirmación, no puede borrar nada: contesta 400 cuando está lista y 503
+     cuando le falta la llave. Es una pregunta sin consecuencias, y sirve para
+     que el texto del botón diga la verdad antes de que nadie lo apriete. */
+  var borradoAutomatico = false;
+  (async function sondearBorrado(){
+    try{
+      const res = await fetch('/.netlify/functions/eliminar-cuenta', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'
+      });
+      borradoAutomatico = res.status !== 503;
+    }catch(e){ borradoAutomatico = false; }
+
+    if(borradoAutomatico){
+      const d = $('acctDeleteDesc');
+      if(d) d.innerHTML = '<strong>Este botón borra tu cuenta entera</strong>: tus análisis, tus cálculos, tus preferencias y tu acceso. Es inmediato y no se puede deshacer. No tienes que escribirle a nadie ni esperar respuesta.';
+    }
+  })();
+
   $('acctDeleteBtn').addEventListener('click', ()=>{
     openModal({
       title: 'Eliminar mi cuenta',
-      desc: 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
+      desc: borradoAutomatico
+        ? 'Esto borra permanentemente tu cuenta y todo lo que guardaste en ella —análisis, cálculos y preferencias— y no se puede deshacer. Escribe "ELIMINAR" para confirmar.'
+        : 'Esto borra permanentemente tus análisis, cálculos y preferencias guardadas, y no se puede deshacer. Tu correo y contraseña de acceso NO se borran aquí: escribe "ELIMINAR", y al terminar te llevamos a Contacto para pedir el cierre de la cuenta. Respondemos dentro de 7 días.',
       label: 'Escribe ELIMINAR para confirmar',
       value: '',
       placeholder: 'ELIMINAR',
-      submitLabel: 'Borrar mis datos',
+      submitLabel: 'Eliminar mi cuenta',
       onSubmit: async (value, ctx)=>{
-        if(value.trim().toUpperCase() !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+        const palabra = value.trim().toUpperCase();
+        if(palabra !== 'ELIMINAR'){ ctx.showModalMessage('Escribe ELIMINAR para confirmar.', 'error'); return; }
+
+        // Primero los datos guardados, que sí puede borrar el navegador.
         await window.CCAuth.deleteAllMyData();
-        ctx.showModalMessage('Listo, tus datos guardados se borraron. Te llevamos a Contacto para pedir el cierre de tu acceso — respondemos dentro de 7 días.', 'success');
+
+        // Después la cuenta de acceso, que necesita el servidor. Si la llave
+        // de administrador no está puesta en Netlify, esto devuelve
+        // noConfigurado y caemos al camino manual — sin decirle a nadie que
+        // se borró algo que sigue ahí.
+        let resultado = { noConfigurado: true };
+        try{
+          resultado = await window.CCAuth.eliminarCuenta(palabra);
+        }catch(err){
+          ctx.showModalMessage('Tus datos guardados sí se borraron, pero no pudimos cerrar el acceso: ' + (err.message || 'error inesperado') + ' Te llevamos a Contacto para hacerlo a mano.', 'error');
+          setTimeout(()=>{ window.location.href = 'contacto.html'; }, 2600);
+          return;
+        }
+
+        if(resultado && resultado.ok){
+          ctx.showModalMessage('Listo. Tu cuenta y todo lo que tenía quedaron borrados. No hace falta que escribas a nadie.', 'success');
+          setTimeout(()=>{ window.location.href = 'index.html'; }, 1800);
+          return;
+        }
+
+        ctx.showModalMessage('Tus datos guardados se borraron. El cierre del acceso todavía se hace a mano: te llevamos a Contacto para pedirlo — respondemos dentro de 7 días.', 'success');
         setTimeout(async ()=>{
           try{ await window.CCAuth.signOut(); }catch(e){}
           window.location.href = 'contacto.html';
-        }, 1400);
+        }, 2200);
       }
     });
   });
@@ -851,6 +905,7 @@
 </script>
 
   <script src="nav.js"></script>
+<script src="empresa.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

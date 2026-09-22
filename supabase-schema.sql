@@ -139,3 +139,111 @@ create policy "sitio-imagenes: solo admin actualiza"
 create policy "sitio-imagenes: solo admin borra"
   on storage.objects for delete
   using (bucket_id = 'sitio-imagenes' and (auth.jwt() -> 'app_metadata' ->> 'is_admin')::boolean is true);
+
+-- =========================================================
+-- Añadido: límite de gasto para la búsqueda automática de
+-- "¿Aparezco?" (netlify/functions/revisar-negocio.js)
+-- Cada consulta a Google Maps cuesta dinero real. Esta tabla
+-- cuenta cuántas búsquedas hizo cada dirección IP por día, para
+-- poder cortar en 5 y que la herramienta siga siendo gratis y
+-- sin cuenta para el visitante normal, sin exponerte a que un
+-- script la use miles de veces.
+-- Solo la llave de servicio (SUPABASE_SERVICE_ROLE_KEY) toca esta
+-- tabla — por eso no lleva políticas públicas de lectura/escritura.
+-- =========================================================
+create table if not exists public.aparezco_contador (
+  ip text not null,
+  dia date not null,
+  veces integer not null default 1,
+  primary key (ip, dia)
+);
+
+alter table public.aparezco_contador enable row level security;
+-- Sin "create policy": con RLS activado y ninguna política, nadie
+-- puede leer ni escribir aquí salvo la llave de servicio, que
+-- siempre pasa por encima de RLS. Es la misma protección que ya
+-- usa contenido_sitio para las escrituras de administrador.
+
+-- =========================================================
+-- Añadido: agente de tasas hipotecarias (specs/004-mortgage-rate-agent)
+-- Cinco tablas. Solo las funciones de Netlify las tocan, con la llave
+-- de servicio (SUPABASE_SERVICE_ROLE_KEY). Por eso NINGUNA lleva
+-- políticas: con RLS activado y sin "create policy", el navegador
+-- (llave pública) no puede leer ni escribir nada aquí. Los visitantes
+-- ven los datos solo a través de la función pública tasas-hipoteca,
+-- que devuelve un resumen sin datos internos.
+-- =========================================================
+
+-- Una sola fila: el umbral de alerta y el interruptor de lanzamiento.
+-- "activo" empieza en false: mientras siga así, el sitio no muestra
+-- nada de esta función. Se cambia a true a mano al final de
+-- INSTRUCCIONES-TASAS.md.
+create table if not exists public.tasas_config (
+  id text primary key,                       -- siempre 'principal'
+  umbral_pp numeric(4,3) not null default 0.125 check (umbral_pp > 0),
+  activo boolean not null default false,
+  updated_at timestamptz not null default now()
+);
+
+insert into public.tasas_config (id) values ('principal')
+on conflict (id) do nothing;
+
+-- Una observación de una serie de una fuente. La combinación
+-- (fuente_id, serie, fecha_fuente) es única para que repetir la
+-- corrida del agente nunca duplique filas.
+create table if not exists public.tasas_lecturas (
+  id bigint generated always as identity primary key,
+  fuente_id text not null check (fuente_id in ('freddie-pmms', 'tesoro-10a', 'nyfed-objetivo')),
+  serie text not null check (serie in ('pmms30', 'pmms15', 'dgs10', 'fed_hasta', 'fed_desde')),
+  valor numeric(5,3) not null,
+  fecha_fuente date not null,
+  obtenida_en timestamptz not null default now(),
+  estado text not null default 'verificada' check (estado in ('verificada', 'retenida')),
+  nota text,
+  unique (fuente_id, serie, fecha_fuente)
+);
+
+-- Lo que la página muestra como cifra titular. Solo lo escribe una
+-- corrida de lunes o martes (no las de vigilancia).
+create table if not exists public.tasas_publicado (
+  id text primary key,                       -- siempre 'actual'
+  snapshot jsonb not null,
+  publicado_en timestamptz not null default now()
+);
+
+-- Avisos de cambio importante. "clave" evita que la misma condición
+-- se avise dos veces.
+create table if not exists public.tasas_alertas (
+  id bigint generated always as identity primary key,
+  tipo text not null check (tipo in ('movimiento_semanal', 'tesoro_10a', 'fed_objetivo')),
+  termino text check (termino in ('30', '15')),   -- null para Tesoro y Fed
+  direccion text not null check (direccion in ('sube', 'baja')),
+  magnitud_pp numeric(5,3) not null,
+  datos jsonb,
+  fecha_fuente date not null,
+  fuente_id text not null,
+  detectada_en timestamptz not null default now(),
+  clave text not null unique,
+  estado text not null default 'activa' check (estado in ('activa', 'superada', 'despejada')),
+  cerrada_en timestamptz
+);
+
+-- Una fila por corrida del agente (la lee el panel de administrador).
+create table if not exists public.tasas_corridas (
+  id bigint generated always as identity primary key,
+  corrida_en timestamptz not null default now(),
+  tipo text not null check (tipo in ('publicacion', 'vigilancia')),
+  resultado text not null check (resultado in ('ok', 'parcial', 'fallo')),
+  fuentes jsonb not null default '{}'::jsonb,
+  publicadas integer not null default 0,
+  retenidas integer not null default 0,
+  alerta_nueva boolean not null default false,
+  duracion_ms integer not null default 0
+);
+
+alter table public.tasas_config enable row level security;
+alter table public.tasas_lecturas enable row level security;
+alter table public.tasas_publicado enable row level security;
+alter table public.tasas_alertas enable row level security;
+alter table public.tasas_corridas enable row level security;
+-- Sin "create policy" a propósito (ver el comentario de arriba).

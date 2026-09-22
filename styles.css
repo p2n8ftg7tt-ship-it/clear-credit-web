@@ -1,19 +1,31 @@
 :root{
-  --navy-deep:#2a2118;
-  --navy:#6b4226;
-  --teal:#4f6b57;
+  --navy-deep:#1c1712;
+  --navy:#7a4a28;
+  --teal:#3f7a6e;
   --sky:#8fae95;
-  --gold:#c98a3e;
-  --gold-light:#e8c99a;
+  --gold:#d99a3f;
+  --gold-light:#f0cf98;
   --paper:#ffffff;
-  --paper-dim:#f8f2e8;
-  --ink:#2a2118;
-  --muted:#6b5d4f;
-  --line:#e7dcc9;
+  --paper-dim:#f7f2e6;
+  --ink:#17130f;
+  --muted:#675c4f;
+  --line:#e6ddc9;
   --danger:#b3402a;
   --good:#3f7a52;
-  --shadow:0 18px 45px rgba(42,33,24,.12);
-  --radius:10px;
+  --shadow:0 20px 50px rgba(23,19,15,.14);
+  --shadow-lg:0 30px 80px rgba(23,19,15,.18);
+  --radius:16px;
+  --radius-sm:10px;
+  --radius-lg:28px;
+  --radius-xl:40px;
+  --radius-pill:999px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --dur:.22s;
+  /* Fondos suaves para las teselas tipo bento — variación real, sin gritar */
+  --wash-teal:#eaf3f1;
+  --wash-gold:#faf1e0;
+  --wash-clay:#f5ece2;
+  --wash-sage:#eef2e7;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -33,36 +45,44 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
 .brand-logo{display:block;height:36px;width:auto}
 .brand-name{display:block;line-height:1}
 .brand small{display:block;font:700 .55rem 'Public Sans',sans-serif;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}
-.links{display:flex;align-items:center;gap:24px}
-.links>a{font-size:.76rem;font-weight:700;text-decoration:none;color:rgba(12,37,56,.66);padding:25px 0 22px;border-bottom:3px solid transparent}
-.links>a:hover,.links>a.active{color:var(--navy);border-color:var(--gold)}
+.links{display:flex;align-items:center;gap:6px}
+.links>a{font-size:.76rem;font-weight:700;text-decoration:none;color:rgba(12,37,56,.66);padding:10px 14px;border-radius:var(--radius-pill);transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.links>a:hover,.links>a.active{color:var(--navy-deep);background:var(--wash-gold)}
 
 /* ===== Grupos desplegables del menú ===== */
 .nav-group{position:relative}
-.nav-group-btn{display:inline-flex;align-items:center;gap:5px;border:0;background:none;font-size:.76rem;font-weight:700;color:rgba(12,37,56,.66);padding:25px 0 22px;border-bottom:3px solid transparent;cursor:pointer;font-family:inherit}
-.nav-group-btn:hover,.nav-group.is-open .nav-group-btn,.nav-group-btn.is-active{color:var(--navy);border-color:var(--gold)}
+.nav-group-btn{display:inline-flex;align-items:center;gap:5px;border:0;background:none;font-size:.76rem;font-weight:700;color:rgba(12,37,56,.66);padding:10px 14px;border-radius:var(--radius-pill);cursor:pointer;font-family:inherit;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.nav-group-btn:hover,.nav-group.is-open .nav-group-btn,.nav-group-btn.is-active{color:var(--navy-deep);background:var(--wash-gold)}
 .nav-caret{width:9px;height:9px;flex:none;transition:transform .18s ease}
 .nav-group.is-open .nav-caret{transform:rotate(180deg)}
 
-.nav-menu{position:absolute;top:calc(100% - 8px);left:-16px;min-width:298px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 18px 45px rgba(42,33,24,.16);padding:7px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s ease,transform .16s ease,visibility .16s;z-index:120}
+.nav-menu{position:absolute;top:calc(100% - 2px);left:-16px;min-width:298px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:9px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s ease,transform .16s ease,visibility .16s;z-index:120}
 /* puente invisible: deja pasar el cursor del botón al menú sin que se cierre */
 .nav-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:14px}
 .nav-group.is-open .nav-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.nav-menu a{display:block;padding:10px 13px;border-radius:8px;text-decoration:none;border:0}
-.nav-menu a:hover,.nav-menu a:focus-visible{background:var(--paper-dim)}
-.nav-menu a.active{background:var(--paper-dim)}
+.nav-menu a{display:block;padding:10px 14px;border-radius:var(--radius);text-decoration:none;border:0}
+.nav-menu a:hover,.nav-menu a:focus-visible{background:var(--wash-gold)}
+.nav-menu a.active{background:var(--wash-gold)}
 .nav-menu strong{display:block;font-size:.79rem;font-weight:700;color:var(--navy-deep);line-height:1.3}
 .nav-menu span{display:block;font-size:.68rem;font-weight:400;color:var(--muted);line-height:1.45;margin-top:2px}
 .nav-menu a.active strong{color:var(--navy)}
 
 /* Iniciar sesión / Mi cuenta: botón, separado de la navegación */
-.links .nav-auth-btn{margin-left:4px;padding:9px 16px;border:1.5px solid var(--navy-deep);border-radius:7px;font-size:.75rem;font-weight:800;color:var(--navy-deep);text-decoration:none;transition:.15s ease}
+.links .nav-auth-btn{margin-left:4px;padding:10px 18px;border:1.5px solid var(--navy-deep);border-radius:var(--radius-pill);font-size:.75rem;font-weight:800;color:var(--navy-deep);text-decoration:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
 .links .nav-auth-btn:hover{background:var(--navy-deep);color:#fff;border-color:var(--navy-deep)}
 .links .nav-auth-btn.is-logged-in{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
 .links .nav-auth-btn.is-logged-in:hover{background:var(--navy-deep);border-color:var(--navy-deep);color:#fff}
+/* Identidad compartida: foto recortada y una inicial mientras carga. */
+.profile-avatar{position:relative;overflow:hidden;isolation:isolate}
+.profile-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+header .nav #navAuthLink.is-logged-in{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;min-width:44px;padding:3px;margin-block:0;border:1.5px solid var(--gold);border-radius:50%;background:var(--paper-dim);color:var(--ink);text-decoration:none}
+.nav-profile-avatar{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;font:700 1rem 'Public Sans',sans-serif}
+header .nav #navAuthLink.is-logged-in:hover{border-color:var(--navy);box-shadow:0 0 0 3px var(--paper-dim)}
+header .nav #navAuthLink:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+header .nav #navAuthLink.nav-auth-mobile{margin-left:auto;margin-right:-12px}
 
 @media(prefers-reduced-motion:reduce){.nav-menu,.nav-caret{transition:none}}
-.nav-toggle{display:none;border:0;background:var(--paper-dim);color:var(--navy);width:42px;height:42px;border-radius:7px;cursor:pointer}
+.nav-toggle{display:none;border:0;background:var(--paper-dim);color:var(--navy);width:42px;height:42px;border-radius:var(--radius);cursor:pointer}
 
 .page-hero{padding:94px 0 82px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 16 L0 6 L6 6 L6 12 L18 12 L18 0 L24 0 L24 16 L30 16 L30 6 L42 6 L42 12 L48 12' fill='none' stroke='%23f6d58b' stroke-opacity='.22' stroke-width='1.2'/%3E%3C/svg%3E") bottom left/48px 16px repeat-x,radial-gradient(640px circle at 84% -8%,rgba(246,213,139,.16),transparent 62%),var(--navy-deep);color:#fff;position:relative;overflow:hidden}
 .page-hero::before{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(246,213,139,.2);border-radius:50%;right:70px;top:38px}
@@ -75,11 +95,15 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
 .page-hero h1{max-width:850px;font-size:clamp(2.55rem,6vw,5rem);line-height:1.02}
 .page-hero p{max-width:720px;margin-top:23px;color:rgba(255,255,255,.73);font-size:1.04rem}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:7px;padding:13px 18px;text-decoration:none;font-weight:800;font-size:.8rem;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--radius-pill);padding:14px 26px;text-decoration:none;font-weight:800;font-size:.8rem;cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .btn[hidden]{display:none}
-.btn-gold{background:var(--gold);color:var(--navy-deep)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn-gold{background:var(--gold);color:var(--navy-deep);box-shadow:0 14px 30px rgba(217,154,63,.32)}
+.btn-gold:hover{background:#e2a84f;box-shadow:0 18px 38px rgba(217,154,63,.4)}
 .btn-light{background:#fff;color:var(--navy-deep)}
-.btn-outline{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn-light:hover{background:var(--wash-gold)}
+.btn-outline{background:transparent;color:var(--navy-deep);border:1.5px solid var(--line)}
+.btn-outline:hover{border-color:var(--navy-deep);background:var(--wash-gold)}
 .btn-outline-dark{background:transparent;color:var(--navy-deep);border:1.5px solid var(--navy-deep)}
 .btn-outline-dark:hover{background:var(--navy-deep);color:#fff}
 
@@ -118,7 +142,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .hero-stat small{display:block;color:var(--gold-light);font-size:.6rem;margin-top:2px}
 
 .agent-strip{margin-top:-34px;position:relative;z-index:5}
-.agent-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 21px;box-shadow:var(--shadow)}
+.agent-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 21px;box-shadow:var(--shadow)}
 .agent-avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--navy-deep);color:var(--gold-light);font:700 1rem 'Fraunces',serif}
 .agent-copy strong{display:block;color:var(--navy);font-size:.9rem}
 .agent-copy span{display:block;color:var(--muted);font-size:.72rem}
@@ -159,7 +183,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 
 .map-section{padding-top:76px;background:var(--paper-dim)}
 .rate-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;align-items:stretch}
-.map-card,.rate-panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 38px rgba(42,33,24,.08)}
+.map-card,.rate-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:0 14px 38px rgba(42,33,24,.08)}
 .map-card{position:relative;min-height:340px;padding:20px;overflow:visible}
 /* Mapa geográfico con relieve: cada estado es una pieza flotante */
 #usMap{width:100%;display:block}
@@ -205,7 +229,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .map-note a,.source-line a{color:var(--teal);font-weight:700}
 
 .credit-section{background:#fff}
-.tier-table{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(42,33,24,.06)}
+.tier-table{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(42,33,24,.06)}
 .tier-row{display:grid;grid-template-columns:1.3fr .7fr .7fr;align-items:center;gap:18px;padding:20px 25px;border-bottom:1px solid var(--line)}
 .tier-row:last-child{border-bottom:0}
 .tier-row.head{background:var(--navy-deep);color:#fff;padding-top:13px;padding-bottom:13px;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800}
@@ -239,7 +263,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .contract-lines{margin-top:14px;border-top:1px solid var(--line)}
 .contract-lines p{font-size:.61rem;padding:9px 0;border-bottom:1px solid var(--line)}
 .contract-lines b{color:var(--navy)}
-.reader-card{background:var(--navy-deep);color:#fff;border-radius:13px;padding:28px;position:sticky;top:92px}
+.reader-card{background:var(--navy-deep);color:#fff;border-radius:var(--radius-lg);padding:28px;position:sticky;top:92px}
 .reader-card .eyebrow{margin-bottom:7px}
 .reader-card h3{font:600 1.65rem 'Fraunces',serif}
 .reader-card>p{margin-top:12px;color:rgba(255,255,255,.72);font-size:.82rem}
@@ -292,7 +316,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .credit-coach-tooltip::after{content:"";position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--navy-deep)}
 .credit-coach-launcher:hover .credit-coach-tooltip,.credit-coach-launcher:focus-visible .credit-coach-tooltip{opacity:1;transform:translateY(-50%) translateX(0)}
 .credit-coach-launcher[aria-expanded="true"] .credit-coach-tooltip{display:none}
-.credit-coach-panel{position:fixed;right:22px;bottom:88px;z-index:200;width:368px;max-width:calc(100vw - 28px);max-height:min(520px,calc(100vh - 130px));display:flex;flex-direction:column;background:#fff;border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;padding:0}
+.credit-coach-panel{position:fixed;right:22px;bottom:88px;z-index:200;width:368px;max-width:calc(100vw - 28px);max-height:min(520px,calc(100vh - 130px));display:flex;flex-direction:column;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);border:1px solid var(--line);overflow:hidden;padding:0}
 .credit-coach-panel[hidden]{display:none}
 .credit-coach-header{display:flex;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,var(--navy-deep),#171008);color:#fff;flex:none}
 .credit-coach-header .credit-coach-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.14);color:var(--gold-light);padding:7px;box-sizing:border-box}
@@ -420,7 +444,7 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .cr-empty{font-size:.9rem;color:var(--muted);margin:0;padding:20px;text-align:center;background:var(--paper-dim);border-radius:var(--radius)}
 
 .saved-list{display:grid;gap:14px;margin-top:8px}
-.saved-item{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:18px 20px;box-shadow:0 6px 18px rgba(42,33,24,.05)}
+.saved-item{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:0 6px 18px rgba(42,33,24,.05)}
 .saved-item-stable{border-left-color:var(--good)}
 .saved-item-attention{border-left-color:var(--gold)}
 .saved-item-critical{border-left-color:var(--danger)}
@@ -435,3 +459,333 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .saved-item-meta span{font-size:.76rem;color:var(--navy);background:var(--paper-dim);padding:4px 10px;border-radius:999px}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Canal de WhatsApp — solo se ve si el número está puesto en whatsapp.js */
+.wa-caja[hidden]{display:none}
+.wa-caja{margin-top:18px}
+.wa-btn{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#0b3d24;
+  font-weight:800;font-size:.9rem;padding:12px 20px;border-radius:999px;text-decoration:none;
+  box-shadow:0 8px 20px rgba(37,211,102,.28);transition:transform .16s ease}
+.wa-btn:hover{transform:translateY(-2px);color:#0b3d24}
+.wa-nota{display:block;margin-top:9px;font-size:.74rem;line-height:1.5;color:var(--muted);max-width:460px}
+.band-dark .wa-nota,.page-hero .wa-nota{color:rgba(255,255,255,.62)}
+
+/* Fecha de revisión del contenido legal. Solo se pone donde de verdad se
+   revisó: una fecha inventada convierte una señal de rigor en una mentira. */
+.revision-legal{font-size:.76rem;line-height:1.6;color:rgba(255,255,255,.55);
+  padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.revision-legal strong{color:rgba(255,255,255,.75)}
+.revision-legal a{color:var(--gold-light);text-decoration:underline}
+
+/* Canales directos de la página de Contacto — se pintan desde whatsapp.js.
+   Si el correo y el teléfono están vacíos, esta caja nunca se muestra. */
+.canales-directos[hidden]{display:none}
+.canales-directos{margin-bottom:22px;padding:18px 20px;background:var(--paper-dim);
+  border:1px solid var(--line);border-radius:12px}
+.cd-titulo{margin:0 0 12px;font-size:.82rem;font-weight:700;color:var(--navy-deep)}
+.cd-lista{display:flex;flex-wrap:wrap;gap:10px}
+.cd-item{display:inline-flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);padding:11px 16px;text-decoration:none;transition:transform .16s ease,border-color .16s ease}
+.cd-item:hover{transform:translateY(-2px);border-color:var(--gold)}
+.cd-ico{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--navy-deep);
+  display:grid;place-items:center;font-size:.92rem}
+.cd-item strong{display:block;font-size:.78rem;color:var(--navy-deep)}
+.cd-item small{display:block;font-size:.84rem;color:var(--muted)}
+.cd-horario{display:block;margin-top:11px;font-size:.76rem;color:var(--muted)}
+.auth-recuperar-nota{display:block;margin-top:10px;font-size:.74rem;line-height:1.55;color:var(--muted)}
+
+/* =========================================================================
+   Foto de perfil — el CSS que faltaba
+   =========================================================================
+   auth.js (renderAvatar) mete la clase .profile-avatar y le cuelga un <img>
+   dentro. Esa clase NO tenía una sola regla en todo el sitio, así que la foto
+   se pintaba a su tamaño natural: una imagen de teléfono de 3000px reventaba
+   el encabezado y dejaba la inicial ("D") suelta al lado.
+
+   Las tres reglas que lo sostienen y que no se pueden quitar:
+     1. tamaño fijo en el contenedor
+     2. overflow:hidden en el contenedor  ← sin esto la foto se sale del círculo
+     3. la <img> a 100% con object-fit:cover ← sin esto se deforma o desborda
+   ========================================================================= */
+.profile-avatar{display:grid;place-items:center;flex:none;background:var(--gold);
+  color:var(--navy-deep);font-family:'Fraunces',serif;font-weight:700;line-height:1;
+  text-transform:uppercase;border-radius:50%}
+
+/* Una sola regla para TODOS los contenedores de avatar del sitio.
+   Ojo con el detalle que costó encontrar: dentro de un contenedor `grid` con
+   `place-items:center`, una <img> con `height:100%` NO se estira — se queda
+   con su alto natural. Una foto de teléfono de 3:4 salía 42x56 dentro de una
+   caja de 42x42. Posicionarla absoluta con inset:0 la obliga a llenar la caja
+   exacta, sin importar si el contenedor es flex, grid o bloque. */
+.profile-avatar,
+.acct-avatar,
+.acct-profile-avatar,
+.account-sidebar-avatar{position:relative;overflow:hidden}
+.profile-avatar > img,
+.acct-avatar > img,
+.acct-profile-avatar > img,
+.account-sidebar-avatar > img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;border-radius:inherit;max-width:none}
+
+/* Avatar del encabezado. El botón deja de ser una píldora con texto y pasa a
+   ser el círculo, así que se le quita el relleno y el borde de "Iniciar sesión". */
+.nav-profile-avatar{width:34px;height:34px;font-size:.88rem}
+.links .nav-auth-btn.is-logged-in{padding:0;border:none;background:none;
+  display:inline-flex;align-items:center;line-height:0}
+.links .nav-auth-btn.is-logged-in:hover{background:none;border:none}
+.links .nav-auth-btn.is-logged-in .profile-avatar{
+  box-shadow:0 0 0 2px rgba(201,162,77,.45);transition:box-shadow .16s ease}
+.links .nav-auth-btn.is-logged-in:hover .profile-avatar{
+  box-shadow:0 0 0 2px var(--navy-deep)}
+
+/* En el menú de hamburguesa el avatar se mueve junto al botón ☰. */
+.links .nav-auth-btn.nav-auth-mobile{margin:0 10px 0 auto;border-bottom:none;padding:0}
+@media(max-width:900px){
+  .links .nav-auth-btn.is-logged-in{margin:14px 0 4px;border-bottom:none}
+  .nav-profile-avatar{width:38px;height:38px}
+}
+
+/* Cómo se cobra — se explica antes del formulario, no después. */
+.pago-caja[hidden]{display:none}
+.pago-caja{background:var(--paper-dim);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:12px;padding:24px 26px;margin-bottom:28px}
+.pago-titulo{margin:0 0 14px;font:600 1.12rem 'Fraunces',serif;color:var(--navy-deep)}
+.pago-pasos{margin:0;padding-left:20px;display:grid;gap:9px}
+.pago-pasos li{font-size:.9rem;line-height:1.65;color:var(--muted)}
+.pago-pasos strong{color:var(--ink)}
+.pago-nota{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  font-size:.83rem;line-height:1.65;color:var(--muted)}
+.pago-nota strong{color:var(--navy-deep)}
+.pago-nota a{color:var(--teal);text-decoration:underline}
+/* Número de referencia: el rastro que hoy no existe si hay una discusión. */
+.pago-ref[hidden]{display:none}
+.pago-ref{margin-top:14px;padding:16px 18px;background:var(--navy-deep);color:#fff;
+  border-radius:10px;font-size:.88rem;line-height:1.6}
+.pago-ref b{display:block;font:700 1.35rem/1.2 'Fraunces',serif;color:var(--gold-light);
+  letter-spacing:.06em;margin:6px 0 8px;user-select:all}
+.pago-ref small{display:block;color:rgba(255,255,255,.66);font-size:.78rem;margin-top:6px}
+
+/* Los documentos van cerrados por defecto: pedirle la licencia y el EIN a
+   alguien que todavía no sabe el precio es pedirle demasiado, y deja a Themora
+   guardando papeles de alguien con quien no hay relación todavía. */
+.ln-docs-opcional{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.ln-docs-opcional > summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:.88rem;
+  color:var(--navy-deep);list-style:none;display:flex;align-items:center;gap:8px}
+.ln-docs-opcional > summary::-webkit-details-marker{display:none}
+.ln-docs-opcional > summary::before{content:'+';font:700 1.1rem 'Fraunces',serif;color:var(--gold);width:16px}
+.ln-docs-opcional[open] > summary::before{content:'−'}
+.ln-docs-opcional > summary span{font-weight:400;color:var(--muted);font-size:.82rem}
+.ln-docs-aviso{margin:0 16px 14px;padding:12px 14px;background:var(--paper-dim);border-radius:8px;
+  font-size:.8rem;line-height:1.6;color:var(--muted)}
+.ln-docs-opcional .ln-verif-part,.ln-docs-opcional .ln-radio-group,
+.ln-docs-opcional .ln-doc-grid,.ln-docs-opcional .form-group{margin-inline:16px}
+.ln-docs-opcional > *:last-child{margin-bottom:16px}
+
+/* =========================================================================
+   REVISIÓN DE SEPTIEMBRE — precio visible, identidad legal y avisos de envío
+   ========================================================================= */
+
+/* --- Precio en las tarjetas de la portada -------------------------------
+   El precio va antes del "Ver cómo funciona", con peso propio: quien no
+   puede pagarlo se entera aquí y no después de leer la página entera. */
+.negocio-precio{display:inline-block;margin-top:14px;font:800 .92rem 'Public Sans',sans-serif;
+  color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:5px 13px;align-self:flex-start}
+.negocio-precio[hidden]{display:none}
+
+/* --- Precio en el héroe de cada servicio -------------------------------- */
+.hero-precio{margin-top:18px;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.9);
+  border-left:3px solid var(--gold);padding-left:14px;max-width:560px}
+.hero-precio b{color:#fff;font-weight:800}
+.hero-precio[hidden]{display:none}
+
+/* --- Precios en Términos ------------------------------------------------ */
+.tm-precios b{color:var(--navy-deep)}
+
+/* --- Identidad legal ---------------------------------------------------- */
+.tm-identidad{background:var(--paper-dim);border:1px solid var(--line);border-radius:12px;
+  padding:18px 22px;margin:16px 0;line-height:1.7;font-size:.95rem}
+.tm-identidad strong{color:var(--navy-deep)}
+.tm-identidad[hidden]{display:none}
+.tm-identidad-falta[hidden]{display:none}
+.footer-legal{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);
+  font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.6)}
+.footer-legal a{color:rgba(255,255,255,.78)}
+.footer-legal[hidden]{display:none}
+
+/* --- Aviso de envío: la misma etiqueta en todas las herramientas ---------
+   Dos estados y dos colores, siempre en el mismo sitio (pegado al botón que
+   elige el archivo). La persona aprende a leer la etiqueta de un vistazo:
+   verde = no sale de aquí, ámbar = sí sale. Un párrafo largo tres pantallas
+   antes no consigue eso. */
+.aviso-envio{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;
+  background:rgba(184,134,48,.08);border:1px solid rgba(184,134,48,.3);
+  border-radius:12px;padding:16px 18px;margin:0 0 16px}
+.aviso-envio-local{background:rgba(74,124,89,.08);border-color:rgba(74,124,89,.32)}
+.aviso-envio-etiqueta{flex:0 0 auto;display:inline-block;font:800 .66rem 'Public Sans',sans-serif;
+  text-transform:uppercase;letter-spacing:.08em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.aviso-envio-sale{background:#8a5a12;color:#fff}
+.aviso-envio-queda{background:var(--good,#4a7c59);color:#fff}
+.aviso-envio-cuerpo{flex:1;min-width:220px}
+.aviso-envio-cuerpo p{margin:0 0 7px;font-size:.85rem;line-height:1.62;color:var(--ink)}
+.aviso-envio-cuerpo p:last-child{margin-bottom:0;color:var(--muted)}
+.aviso-envio-cuerpo b,.aviso-envio-cuerpo strong{color:var(--navy-deep)}
+.aviso-envio-cuerpo a{color:var(--teal);text-decoration:underline}
+
+/* El aviso dentro de un bloque oscuro (contrato del dealer) */
+.ct-foto .aviso-envio{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo p{color:rgba(255,255,255,.84)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo p:last-child{color:rgba(255,255,255,.62)}
+.ct-foto .aviso-envio .aviso-envio-cuerpo b,
+.ct-foto .aviso-envio .aviso-envio-cuerpo strong{color:#fff}
+.ct-foto .aviso-envio .aviso-envio-cuerpo a{color:var(--gold-light)}
+
+/* --- Contacto: el aviso antes del formulario ---------------------------- */
+.ct-aviso-previo{background:var(--paper-dim);border-left:3px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:16px 20px;margin:0 0 22px}
+.ct-aviso-previo>strong{display:block;font:700 .95rem 'Public Sans',sans-serif;
+  color:var(--navy-deep);margin-bottom:9px}
+.ct-aviso-previo ul{margin:0;padding-left:18px;display:grid;gap:7px}
+.ct-aviso-previo li{font-size:.86rem;line-height:1.6;color:var(--ink)}
+.ct-aviso-previo li b{color:var(--navy-deep)}
+.ct-aviso-limite{margin:12px 0 0;padding-top:11px;border-top:1px solid var(--line);
+  font-size:.81rem;line-height:1.6;color:var(--muted)}
+.ct-aviso-limite a{color:var(--teal);text-decoration:underline}
+.ct-tema-nota{display:block;margin-top:6px;font-size:.76rem;color:var(--muted);line-height:1.5}
+
+/* --- Tabla de plazos en Privacidad --------------------------------------
+   Cinco columnas no caben en un teléfono: se desplaza sola en su propia
+   caja en vez de reventar el ancho de la página. */
+.legal-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+.legal-table-plazos{margin:0;min-width:640px;font-size:.84rem}
+.legal-table-plazos td{padding:11px 14px 11px 0}
+.legal-table-plazos td:first-child{white-space:normal;min-width:150px}
+.legal-table-plazos td strong{color:var(--navy-deep)}
+
+/* --- Resumen de privacidad de una pantalla ------------------------------ */
+.priv-resumen{background:var(--navy-deep);border-radius:16px;padding:26px 28px;margin:30px 0 8px;color:#fff}
+.priv-resumen h2{margin:0 0 4px;font:600 1.24rem 'Fraunces',serif;color:#fff}
+.priv-resumen>p{margin:0 0 18px;font-size:.86rem;color:rgba(255,255,255,.66)}
+.priv-resumen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.priv-resumen-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:11px;padding:15px 17px}
+.priv-resumen-item strong{display:block;font:700 .84rem 'Public Sans',sans-serif;color:#fff;margin-bottom:5px}
+.priv-resumen-item span{display:block;font-size:.81rem;line-height:1.6;color:rgba(255,255,255,.74)}
+.priv-resumen-item a{color:var(--gold-light);text-decoration:underline}
+.priv-resumen-pie{margin:18px 0 0;font-size:.83rem;line-height:1.65;color:rgba(255,255,255,.74)}
+.priv-resumen-pie a{color:var(--gold-light);text-decoration:underline}
+
+@media (max-width:640px){
+  .priv-resumen-grid{grid-template-columns:1fr}
+  .priv-resumen{padding:22px 20px}
+  .aviso-envio{flex-direction:column;gap:10px}
+}
+
+/* --- Informe de Raquel: quién cobra, dentro del bloque de pago --------- */
+.pago-quien{margin:14px 0 0;padding:12px 15px;border-radius:9px;
+  background:rgba(184,134,48,.1);border:1px solid rgba(184,134,48,.28);
+  font-size:.84rem;line-height:1.6;color:var(--ink)}
+.pago-quien b,.pago-quien strong{color:var(--navy-deep)}
+.pago-quien a{color:var(--teal);text-decoration:underline}
+
+/* --- Aviso de suplantación en formar-negocio -------------------------- */
+.fn-suplantacion{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
+  font-size:.84rem;line-height:1.62}
+.fn-suplantacion a{color:var(--teal);text-decoration:underline}
+
+/* --- Textos que dependen de si hay WhatsApp configurado --------------- */
+[data-si-whatsapp][hidden],[data-sin-whatsapp][hidden]{display:none!important}
+
+/* =========================================================================
+   COBRO CON TARJETA — comparación honesta de medios y panel de facturas
+   ========================================================================= */
+
+/* --- Las dos opciones, una al lado de la otra -------------------------
+   El color hace el trabajo que el texto solo no alcanza: verde = tu banco
+   te respalda, ámbar = aquí estás confiando en nosotros. Alguien que solo
+   mira por encima se lleva igualmente la información correcta. */
+.pago-opciones{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 0}
+.pago-opcion{border-radius:11px;padding:15px 17px;border:1px solid}
+.pago-opcion-con{background:rgba(74,124,89,.09);border-color:rgba(74,124,89,.34)}
+.pago-opcion-sin{background:rgba(184,134,48,.09);border-color:rgba(184,134,48,.32)}
+.pago-op-etiqueta{display:inline-block;font:800 .6rem 'Public Sans',sans-serif;
+  text-transform:uppercase;letter-spacing:.09em;padding:4px 9px;border-radius:999px;margin-bottom:9px}
+.pago-op-con{background:var(--good,#4a7c59);color:#fff}
+.pago-op-sin{background:#8a5a12;color:#fff}
+.pago-opcion>strong{display:block;font:700 .98rem 'Public Sans',sans-serif;
+  color:var(--navy-deep);margin-bottom:6px}
+.pago-opcion p{margin:0;font-size:.82rem;line-height:1.6;color:var(--ink)}
+.pago-opcion p strong{color:var(--navy-deep)}
+.pago-opcion a{color:var(--teal);text-decoration:underline}
+
+.pago-consejo{margin:13px 0 0;padding:13px 16px;border-left:3px solid var(--gold);
+  background:var(--paper-dim);border-radius:0 10px 10px 0;
+  font-size:.85rem;line-height:1.62;color:var(--ink)}
+.pago-consejo strong{color:var(--navy-deep)}
+
+/* --- Panel de facturas en administración ------------------------------ */
+.admin-factura{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:22px 24px;margin:26px 0}
+.admin-factura-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.admin-factura-nota{margin:4px 0 0;font-size:.78rem;line-height:1.55;color:var(--muted)}
+.admin-factura-acciones{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.admin-factura-acciones .btn{flex:none}
+.admin-factura-estado{font-size:.83rem;line-height:1.55;font-weight:600;flex:1;min-width:220px}
+.admin-factura-estado.is-loading{color:var(--muted)}
+.admin-factura-estado.is-error{color:#8a2b2b}
+.admin-factura-estado.is-ok{color:#1e5b34;font-weight:500}
+.admin-factura-estado a{color:var(--teal);text-decoration:underline;font-weight:700}
+
+@media(max-width:700px){
+  .pago-opciones{grid-template-columns:1fr}
+  .admin-factura-grid{grid-template-columns:1fr}
+}
+
+/* ===== Aviso de tasas hipotecarias (specs/004-mortgage-rate-agent) =====
+   Va en el flujo normal de la página, arriba de todo: no es fijo ni tapa el menú,
+   los formularios ni otros avisos. En celular se mantiene corto: texto, enlace y
+   botón de cerrar caben en pocas líneas. Lo crea tasas-hipoteca.js solo cuando hay
+   un cambio importante y la persona no lo ha cerrado. */
+.tasas-aviso{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:10px max(16px,calc((100% - 1160px)/2));background:var(--navy-deep);color:#fff;font-size:.82rem;line-height:1.45}
+.tasas-aviso-texto{flex:1 1 320px;min-width:0}
+.tasas-aviso-enlace{color:var(--gold-light);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.tasas-aviso-enlace:hover{color:#fff}
+.tasas-aviso-cerrar{flex:none;width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:transparent;color:#fff;font-size:1.15rem;line-height:1;cursor:pointer;margin-left:auto}
+.tasas-aviso-cerrar:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.tasas-aviso-enlace:focus-visible,.tasas-aviso-cerrar:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px}
+
+/* =========================================================================
+   SISTEMA BENTO — teselas de personalidad para secciones de valor
+   =========================================================================
+   Rejilla asimétrica reutilizable: nunca todas las celdas del mismo tamaño,
+   y nunca todas en blanco. Cada tesela cambia de fondo (paper, wash cálido,
+   o tinta oscura) para que la sección respire variedad real, no relleno. */
+.bento-grid{display:grid;gap:16px}
+.bento-grid--3{grid-template-columns:repeat(6,1fr)}
+.bento-grid--3 .bento-tile:nth-child(1){grid-column:span 3}
+.bento-grid--3 .bento-tile:nth-child(2){grid-column:span 3}
+.bento-grid--3 .bento-tile:nth-child(3){grid-column:span 6}
+.bento-tile{border-radius:var(--radius-xl);padding:30px 30px 28px;border:1px solid var(--line);
+  background:#fff;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.bento-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.bento-tile--wash-teal{background:var(--wash-teal);border-color:transparent}
+.bento-tile--wash-gold{background:var(--wash-gold);border-color:transparent}
+.bento-tile--wash-clay{background:var(--wash-clay);border-color:transparent}
+.bento-tile--dark{background:var(--navy-deep);border-color:transparent;color:#fff}
+.bento-tile--dark strong,.bento-tile--dark h3{color:#fff}
+.bento-tile--dark span,.bento-tile--dark p{color:rgba(255,255,255,.72)}
+@media(max-width:900px){
+  .bento-grid--3{grid-template-columns:1fr}
+  .bento-grid--3 .bento-tile:nth-child(1),
+  .bento-grid--3 .bento-tile:nth-child(2),
+  .bento-grid--3 .bento-tile:nth-child(3){grid-column:auto}
+}
+
+/* Revelado suave al entrar en pantalla. Progresivo: sin JS o con
+   prefers-reduced-motion, el contenido ya está visible desde el primer
+   pintado — nunca depende del script para poder leerse. */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+[data-reveal].is-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+}

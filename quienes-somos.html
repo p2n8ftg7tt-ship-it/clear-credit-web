@@ -27,12 +27,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
+  /* Héroe tipográfico, sin imagen.
+     La ilustración que había aquí —una diosa con un cetro de esfera dorada, un
+     búho, y las palabras WISDOM · OPPORTUNITY · CLARITY · PROSPERITY— prometía
+     exactamente lo que esta página dice que Themora NO hace. Una página que se
+     titula "Lo que no somos" no puede abrir con iconografía de adivinación, y
+     menos con el texto en inglés en un sitio en español.
+     En su lugar: el degradado de la marca, la greca dorada que ya usa el resto
+     del sitio, y nada que prometa magia. */
   .qs-hero{
+    position:relative;overflow:hidden;
     background:
-      linear-gradient(100deg, rgba(10,14,10,.88) 0%, rgba(10,14,10,.62) 45%, rgba(10,14,10,.28) 100%),
-      url('images/quienes-somos-hero.jpg') center 22%/cover no-repeat;
+      radial-gradient(120% 130% at 12% 18%, rgba(201,162,77,.20) 0%, rgba(201,162,77,0) 55%),
+      linear-gradient(140deg, #14100b 0%, #1d1a2b 48%, #0d0f0c 100%);
   }
-  .qs-hero::before,.qs-hero::after{display:none}
+  /* .page-hero::before ya trae width:210px y border-radius:50% (es uno de los
+     anillos dorados). Hay que anularlos a mano: con left y right puestos Y un
+     width heredado, el navegador ignora el right y la greca se cortaba a los
+     210px, con las puntas difuminadas por el radio. */
+  .qs-hero::before{
+    content:'';position:absolute;inset:auto 0 0 0;width:auto;height:10px;
+    display:block;border:none;border-radius:0;
+    background-image:repeating-linear-gradient(90deg,
+      rgba(201,162,77,.85) 0 2px, transparent 2px 8px,
+      rgba(201,162,77,.85) 8px 10px, transparent 10px 12px);
+    opacity:.9;
+  }
+  .qs-hero::after{
+    content:'';position:absolute;top:-90px;right:-70px;width:340px;height:340px;
+    border-radius:50%;border:1px solid rgba(201,162,77,.22);display:block;
+  }
+  .qs-hero .wrap{position:relative;z-index:1}
   .qs-story{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
   .qs-badge-lg{width:74px;height:74px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:grid;place-items:center;flex-shrink:0}
   .qs-badge-lg svg{width:36px;height:36px}
@@ -40,13 +65,13 @@
   .qs-story-text p:first-of-type{margin-top:18px}
   .qs-founders{margin-top:18px;font-size:.92rem;color:var(--navy);font-style:italic}
   .qs-mission{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-  .qs-mission-card{background:var(--paper-dim);border:1px solid var(--line);border-radius:16px;padding:30px}
+  .qs-mission-card{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
   .qs-mission-card .qs-badge{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:grid;place-items:center;margin-bottom:16px}
   .qs-mission-card .qs-badge svg{width:24px;height:24px}
   .qs-mission-card h3{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--navy-deep);margin-bottom:8px}
   .qs-mission-card p{color:var(--muted);line-height:1.6}
   .qs-services{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .qs-service-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:transform .2s ease,box-shadow .2s ease;display:block;text-decoration:none}
+  .qs-service-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);display:block;text-decoration:none}
   .qs-service-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(42,33,24,.1)}
   .qs-service-card .qs-badge{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:grid;place-items:center;margin-bottom:16px}
   .qs-service-card .qs-badge svg{width:24px;height:24px}
@@ -143,14 +168,14 @@
         <p>Creemos que entender tu crédito y tus derechos financieros no debería depender de saber inglés o de pagar por información básica.</p>
       </div>
       <div class="qs-mission">
-        <div class="qs-mission-card">
+        <div class="qs-mission-card" data-reveal>
           <div class="qs-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
           <h3>Educación primero</h3>
           <p>Explicamos el crédito, los préstamos y los contratos en español claro, con ejemplos reales — para que entiendas el "por qué", no solo el "qué hacer".</p>
         </div>
-        <div class="qs-mission-card">
+        <div class="qs-mission-card" data-reveal>
           <div class="qs-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
           </div>
@@ -170,38 +195,38 @@
       </div>
       <div class="qs-services">
 
-        <a href="credito.html" class="qs-service-card">
+        <a href="credito.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
           <h3>Crédito y aprendizaje</h3>
           <p>Qué es el crédito, cómo se calcula tu puntaje y cómo mejorarlo con hábitos reales — explicado desde cero.</p>
         </a>
 
-        <a href="comprar-casa.html" class="qs-service-card">
+        <a href="comprar-casa.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7"/><path d="M9 22V12h6v10"/><path d="M5 10v11h14V10"/></svg></div>
           <h3>Comprar casa</h3>
           <p>Tipos de préstamo, qué esperar del proceso y cómo prepararte para calificar para tu primera casa.</p>
         </a>
 
-        <a href="comprar-auto.html" class="qs-service-card">
+        <a href="comprar-auto.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/><path d="M3 17V9l2-5h10l4 5v8"/><path d="M3 12h16"/></svg></div>
           <h3>Comprar auto</h3>
           <p>Cómo negociar, entender tu tasa de interés y evitar los errores más comunes al financiar un auto.</p>
         </a>
 
-        <a href="cartas-claras.html" class="qs-service-card">
+        <a href="cartas-claras.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg></div>
           <h3>Cartas Claras</h3>
           <p>Te ayudamos a entender cartas legales y financieras que te llegan por correo, en español simple.</p>
           <span class="qs-note">No somos abogados — es interpretación, no asesoría legal.</span>
         </a>
 
-        <a href="listar-negocio.html" class="qs-service-card">
+        <a href="listar-negocio.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v5"/><rect x="3" y="11" width="18" height="10" rx="1"/><path d="M9 11V8h6v3"/></svg></div>
           <h3>Listar tu negocio</h3>
           <p>Ayuda para poner tu negocio en Google Maps y Apple Maps, para que más clientes te encuentren.</p>
         </a>
 
-        <a href="formar-negocio.html" class="qs-service-card">
+        <a href="formar-negocio.html" class="qs-service-card" data-reveal>
           <div class="qs-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <h3>Formar tu negocio</h3>
           <p>Te acompañamos en el papeleo para registrar tu LLC y obtener tu EIN, paso a paso.</p>
@@ -256,6 +281,7 @@
     <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
+<div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
 <script>
@@ -266,10 +292,15 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
+<script src="zyron-leyes.js"></script>
 <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>
+<script src="reveal.js" defer></script>
+<script src="tasas-texto.js" defer></script>
+<script src="tasas-hipoteca.js" defer></script>
+<script src="empresa.js"></script>
 <script src="analytics.js"></script>
 </body>
 </html>

@@ -38,7 +38,38 @@
     s.defer = true;
     s.src = UMAMI_SCRIPT;
     s.setAttribute('data-website-id', UMAMI_WEBSITE_ID);
+
+    /* Diagnóstico, porque "no se registran visitas" tiene tres causas muy
+       distintas y hasta ahora fallaban todas en silencio:
+         1. la ID no está puesta            → no se carga nada
+         2. el script no llega              → bloqueador de anuncios o del
+                                               navegador; cloud.umami.is está
+                                               en casi todas las listas de
+                                               bloqueo, así que es lo más común
+         3. carga pero no cuenta            → la ID o el dominio no coinciden
+                                               con los de la cuenta de Umami
+       Ahora cada caso deja un mensaje claro en la consola del navegador
+       (F12 → Console). No se manda nada a ningún lado: es solo para ti. */
+    s.addEventListener('error', function () {
+      console.warn('[Themora] La analítica no cargó. Casi siempre es un ' +
+        'bloqueador de anuncios o la protección del navegador: cloud.umami.is ' +
+        'está en las listas de bloqueo. Compruébalo en una ventana privada y ' +
+        'sin extensiones. Si ahí sí carga, la analítica funciona — solo que no ' +
+        'cuenta a quien use bloqueador.');
+    });
+    s.addEventListener('load', function () {
+      setTimeout(function () {
+        if (!window.umami) {
+          console.warn('[Themora] El script de analítica cargó pero no arrancó. ' +
+            'Revisa que la ID (' + UMAMI_WEBSITE_ID + ') y el dominio de esta ' +
+            'página coincidan con los de tu sitio en cloud.umami.is.');
+        }
+      }, 1200);
+    });
+
     document.head.appendChild(s);
+  } else {
+    console.info('[Themora] Analítica apagada: falta poner UMAMI_WEBSITE_ID en analytics.js.');
   }
 
   /* ---------------------------------------------------------------------
