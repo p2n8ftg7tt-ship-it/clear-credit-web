@@ -35,7 +35,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* Base de tamaño de letra: casi todo el sitio mide su texto en rem, así que
+   subir esta base sube proporcionalmente cada tamaño (nav, párrafos, badges)
+   sin tener que tocar cada regla una por una. */
+html{scroll-behavior:smooth;font-size:118%}
 body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.65}
 body.modal-open{overflow:hidden}
 a{color:inherit}
