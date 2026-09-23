@@ -81,6 +81,16 @@
   .pass-match[hidden]{display:none}
   .pass-match.is-ok{color:var(--good)}
   .pass-match.is-bad{color:#b3402a}
+
+  /* ===== Validación en vivo y estado "cargando" ===== */
+  .field-error{margin:6px 0 0;font-size:.78rem;font-weight:600;color:#8a2b2b}
+  .field-error[hidden]{display:none}
+  .auth-card input[aria-invalid="true"]{border-color:#b3402a;box-shadow:0 0 0 3px rgba(179,64,42,.12)}
+  .auth-card .btn[aria-busy="true"]{cursor:progress;opacity:.85}
+  .auth-card .btn[aria-busy="true"]::before{content:"";width:15px;height:15px;margin-right:9px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:auth-spin .7s linear infinite;flex:none}
+  @keyframes auth-spin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.auth-card .btn[aria-busy="true"]::before{animation-duration:2.4s}}
+  .auth-message .auth-message-action{display:block;margin-top:8px;border:0;background:none;padding:0;font:inherit;font-weight:700;text-decoration:underline;color:inherit;cursor:pointer}
 </style>
 </head>
 <body data-cms-page="login">
@@ -174,14 +184,14 @@
           <small>El analizador, las calculadoras y Cartas Claras funcionan sin registrarte. La cuenta solo sirve para volver a ver lo que ya viste.</small>
         </p>
 
-        <div class="auth-message" id="authMessage" hidden></div>
+        <div class="auth-message" id="authMessage" role="status" aria-live="polite" hidden></div>
 
         <div id="authForms" hidden>
 
           <div class="auth-divider">o continúa con tu correo</div>
 
           <!-- CREAR CUENTA (panel por defecto al abrir) -->
-          <form class="auth-panel" id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp">
+          <form class="auth-panel" id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp" novalidate>
             <div class="form-group">
               <label for="signUpEmail">Correo electrónico</label>
               <input type="email" id="signUpEmail" name="email" required autocomplete="email">
@@ -232,7 +242,7 @@
           <div class="auth-panel" id="panelSignIn" role="tabpanel" aria-labelledby="tabSignIn" hidden>
 
             <!-- Correo + contraseña -->
-            <form id="panelSignInEmail">
+            <form id="panelSignInEmail" novalidate>
               <div class="form-group">
                 <label for="signInEmail">Correo electrónico</label>
                 <input type="email" id="signInEmail" name="email" required autocomplete="email">
@@ -254,7 +264,7 @@
              que se envía por correo cuando alguien pide "¿Olvidaste tu
              contraseña?". El resto de la tarjeta (redes, pestañas, iniciar
              sesión, crear cuenta) se oculta mientras esta está activa. -->
-        <form class="auth-panel" id="panelRecovery" hidden>
+        <form class="auth-panel" id="panelRecovery" novalidate hidden>
           <p class="auth-phone-hint" style="margin-top:0;">Escribe tu nueva contraseña. Al guardarla, entrarás directo a tu cuenta.</p>
           <div class="form-group">
             <label for="recoveryPassword">Nueva contraseña</label>
@@ -332,20 +342,85 @@
   }
   tabSignIn.addEventListener('click', ()=>switchTab('signin'));
   tabSignUp.addEventListener('click', ()=>switchTab('signup'));
-  if(window.location.hash === '#signin') switchTab('signin');
+  // Quien llega aquí desde una página que pide sesión (?next=…) casi
+  // siempre ya tiene cuenta: se le abre directo "Iniciar sesión".
+  if(window.location.hash === '#signin' || new URLSearchParams(window.location.search).has('next')) switchTab('signin');
+
+  const H = window.ThemoraAuthHelpers;
 
   function friendlyError(error){
-    const msg = (error && error.message) || '';
-    if(/already registered|already exists/i.test(msg)) return 'Ya existe una cuenta con ese correo. Intenta iniciar sesión.';
-    if(/invalid login credentials/i.test(msg)) return 'Correo o contraseña incorrectos.';
-    if(/password should be/i.test(msg)) return 'La contraseña debe tener al menos 6 caracteres.';
-    if(/token has expired|otp expired/i.test(msg)) return 'El código expiró. Pide uno nuevo.';
-    if(/invalid otp|token is invalid/i.test(msg)) return 'El código no es correcto. Revísalo e inténtalo de nuevo.';
-    if(/provider is not enabled|unsupported provider/i.test(msg)) return 'Este método de acceso no está activado todavía en el sitio. Prueba con otro método.';
-    if(/sms.*not enabled|phone.*not enabled|to signup, please provide/i.test(msg)) return 'El acceso por teléfono todavía no está activado en el sitio. Prueba con correo.';
     if(!window.CCAuth || !window.CCAuth.isConfigured) return 'Las cuentas todavía no están configuradas en este sitio (falta conectar Supabase).';
-    return msg || 'Ocurrió un error. Intenta de nuevo.';
+    return H ? H.mensajeError(error) : 'Algo salió mal. Inténtalo de nuevo.';
   }
+
+  /* Mensaje con un botón de acción debajo (ej. "Reenviar el correo"). */
+  function showMessageWithAction(text, kind, label, action){
+    showMessage(text, kind);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'auth-message-action';
+    btn.textContent = label;
+    btn.addEventListener('click', action, { once: true });
+    message.appendChild(btn);
+  }
+
+  /* A dónde ir después de entrar: ?next=credito.html regresa a la persona a
+     la página donde estaba (solo páginas de este sitio, ver destinoSeguro). */
+  const destino = H ? H.destinoSeguro(new URLSearchParams(window.location.search).get('next')) : 'cuenta.html';
+
+  /* Botón en estado "cargando": deshabilitado, con texto que dice qué está
+     pasando y una ruedita. Devuelve la función que lo deja como estaba. */
+  function ocupado(btn, texto){
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    btn.textContent = texto;
+    return () => {
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
+      btn.textContent = original;
+    };
+  }
+
+  /* ===== Errores junto a cada campo ===== */
+  function errorDeCampo(input, texto){
+    const id = input.id + 'Error';
+    let p = $(id);
+    if(!p){
+      p = document.createElement('p');
+      p.className = 'field-error';
+      p.id = id;
+      const ancla = input.closest('.mail-suggest-wrap, .pass-wrap') || input;
+      ancla.insertAdjacentElement('afterend', p);
+    }
+    p.textContent = texto || '';
+    p.hidden = !texto;
+    if(texto){
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', id);
+    } else {
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+    }
+    return !texto;
+  }
+
+  function revisarCorreo(input){
+    return errorDeCampo(input, H ? H.problemaCorreo(input.value) : (input.value.trim() ? '' : 'Escribe tu correo electrónico.'));
+  }
+
+  /* Validación en vivo: al salir del campo se revisa (no mientras escribe la
+     primera vez, para no regañar antes de tiempo); si ya estaba marcado en
+     rojo, se vuelve a revisar con cada tecla para quitar el rojo apenas
+     quede bien. */
+  function validarEnVivo(input, revisar){
+    input.addEventListener('blur', () => { if(input.value) revisar(input); });
+    input.addEventListener('input', () => { if(input.getAttribute('aria-invalid') === 'true') revisar(input); });
+  }
+  ['signUpEmail', 'signInEmail'].forEach(id => validarEnVivo($(id), revisarCorreo));
+  validarEnVivo($('signInPassword'), el => errorDeCampo(el, el.value ? '' : 'Escribe tu contraseña.'));
+  validarEnVivo($('signUpPassword2'), el => errorDeCampo(el, el.value ? '' : 'Vuelve a escribir la contraseña.'));
+  $('signUpTerms').addEventListener('change', () => { if($('signUpTerms').checked) clearMessage(); });
 
   /* ===== Botones de Google / Microsoft ===== */
   document.querySelectorAll('.auth-social-btn').forEach(btn=>{
@@ -366,22 +441,60 @@
 
   const panelSignInEmail = $('panelSignInEmail');
 
+  /* Freno suave contra intentos repetidos. La protección de verdad contra
+     fuerza bruta es la del servidor (Supabase limita los intentos por
+     dirección IP y contesta 429); esto solo evita que alguien —o un
+     script en esta misma pestaña— martille el botón, y le explica a la
+     persona por qué tiene que esperar. */
+  let fallosSeguidos = 0;
+  let esperaHasta = 0;
+  function frenoActivo(btn){
+    const faltan = Math.ceil((esperaHasta - Date.now()) / 1000);
+    if(faltan <= 0) return false;
+    showMessage('Hubo varios intentos fallidos. Por seguridad, espera ' + faltan + ' segundos antes de volver a intentar. Si no recuerdas tu contraseña, usa «¿Olvidaste tu contraseña?».', 'error');
+    btn.focus();
+    return true;
+  }
+
   panelSignInEmail.addEventListener('submit', async event=>{
     event.preventDefault();
     clearMessage();
+    const submitBtn = $('signInSubmit');
+    if(frenoActivo(submitBtn)) return;
+    const emailOk = revisarCorreo($('signInEmail'));
+    const passOk = errorDeCampo($('signInPassword'), $('signInPassword').value ? '' : 'Escribe tu contraseña.');
+    if(!emailOk){ $('signInEmail').focus(); return; }
+    if(!passOk){ $('signInPassword').focus(); return; }
     if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
     const email = $('signInEmail').value.trim();
     const password = $('signInPassword').value;
-    const submitBtn = $('signInSubmit');
-    submitBtn.disabled = true;
+    const listo = ocupado(submitBtn, 'Entrando…');
     try{
       await window.CCAuth.signIn(email, password);
-      window.location.href = 'cuenta.html';
+      fallosSeguidos = 0;
+      submitBtn.textContent = 'Listo, abriendo tu cuenta…';
+      window.location.href = destino;
+      return; // el botón sigue "cargando" mientras cambia la página
     }catch(error){
-      showMessage(friendlyError(error), 'error');
-    }finally{
-      submitBtn.disabled = false;
+      const code = (error && error.code) || '';
+      if(code === 'email_not_confirmed' || /email not confirmed/i.test((error && error.message) || '')){
+        showMessageWithAction(friendlyError(error), 'error', 'Reenviarme el correo de confirmación', async ()=>{
+          try{
+            await window.CCAuth.resendConfirmation(email);
+            showMessage('Listo: te enviamos otro correo de confirmación a ' + email + '. Puede tardar unos minutos; revisa también la carpeta de correo no deseado.', 'success');
+          }catch(err){ showMessage(friendlyError(err), 'error'); }
+        });
+      } else {
+        if(code === 'invalid_credentials' || /invalid login credentials/i.test((error && error.message) || '')){
+          fallosSeguidos++;
+          // Desde el 5.º fallo seguido: 30 s, luego 60 s, 90 s…
+          if(fallosSeguidos >= 5) esperaHasta = Date.now() + (fallosSeguidos - 4) * 30000;
+        }
+        showMessage(friendlyError(error), 'error');
+        $('signInPassword').select();
+      }
     }
+    listo();
   });
 
   panelSignUp.addEventListener('submit', async event=>{
@@ -391,63 +504,94 @@
     const password = $('signUpPassword').value;
     const password2 = $('signUpPassword2').value;
 
-    // El atributo `required` de la casilla ya lo impide en el navegador; esto
-    // es la segunda comprobación, por si el formulario se envía por código.
+    // Con `novalidate` el navegador ya no revisa nada (sus avisos salen en el
+    // idioma del navegador, a veces en inglés); se revisa aquí, en orden
+    // de arriba hacia abajo, y se lleva el cursor al primer problema.
+    if(!revisarCorreo($('signUpEmail'))){ $('signUpEmail').focus(); return; }
+
+    // Se revisa la contraseña ANTES que la conexión con Supabase: si el
+    // problema es la contraseña, decirle "el sitio no está configurado"
+    // mandaría a la persona a buscar un error que no existe.
+    if(H){
+      const r = H.evaluar(password, email);
+      if(!r.valida){
+        // El aviso va en el mismo recuadro que usa el medidor en vivo, para
+        // no repetir el mensaje en dos lugares.
+        const aviso = $('signUpProblem');
+        aviso.textContent = H.MENSAJES[r.problemas[0]] || 'Elige una contraseña más segura.';
+        aviso.hidden = false;
+        $('signUpPassword').setAttribute('aria-invalid', 'true');
+        $('signUpPassword').setAttribute('aria-describedby', 'signUpProblem');
+        $('signUpPassword').focus();
+        return;
+      }
+    }
+    if(!password2){
+      errorDeCampo($('signUpPassword2'), 'Vuelve a escribir la contraseña.');
+      $('signUpPassword2').focus();
+      return;
+    }
+    if(password !== password2){
+      errorDeCampo($('signUpPassword2'), 'Las dos contraseñas no coinciden. Vuelve a escribirlas.');
+      $('signUpPassword2').focus();
+      return;
+    }
+    errorDeCampo($('signUpPassword2'), '');
+
     const terms = $('signUpTerms');
     if(terms && !terms.checked){
       showMessage('Para crear la cuenta hace falta aceptar los Términos de uso y la Política de privacidad.', 'error');
       terms.focus();
       return;
     }
-
-    // Se revisa la contraseña ANTES que la conexión con Supabase: si el
-    // problema es la contraseña, decirle "el sitio no está configurado"
-    // mandaría a la persona a buscar un error que no existe.
-    const H = window.ThemoraAuthHelpers;
-    if(H){
-      const r = H.evaluar(password, email);
-      if(!r.valida){
-        showMessage(H.MENSAJES[r.problemas[0]] || 'Elige una contraseña más segura.', 'error');
-        $('signUpPassword').focus();
-        return;
-      }
-    }
-    if(password !== password2){
-      showMessage('Las dos contraseñas no coinciden. Vuelve a escribirlas.', 'error');
-      $('signUpPassword2').focus();
-      return;
-    }
     if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
 
-    const submitBtn = $('signUpSubmit');
-    submitBtn.disabled = true;
+    const listo = ocupado($('signUpSubmit'), 'Creando tu cuenta…');
     try{
       const data = await window.CCAuth.signUp(email, password);
       if(data && data.session){
-        window.location.href = 'cuenta.html';
-      } else {
-        showMessage('Cuenta creada. Revisa tu correo para confirmar tu dirección y luego inicia sesión.', 'success');
-        switchTab('signin');
+        window.location.href = destino;
+        return;
       }
+      /* Con "Confirm email" activado, Supabase NO avisa si el correo ya
+         tenía cuenta (para no revelar quién está registrado): devuelve un
+         usuario sin identidades. Se le dice lo mismo en los dos casos. */
+      switchTab('signin');
+      $('signInEmail').value = email;
+      showMessage('¡Listo! Te enviamos un correo a ' + email + '. Ábrelo y haz clic en el enlace para confirmar tu cuenta; después podrás entrar aquí. Si no lo ves en unos minutos, revisa la carpeta de correo no deseado.', 'success');
     }catch(error){
       showMessage(friendlyError(error), 'error');
-    }finally{
-      submitBtn.disabled = false;
     }
+    listo();
   });
 
+  let recuperarDisponible = 0;
   $('forgotPasswordBtn').addEventListener('click', async ()=>{
+    clearMessage();
     if(!window.CCAuth){ showMessage('Las cuentas todavía no están configuradas en este sitio.', 'error'); return; }
-    const email = $('signInEmail').value.trim();
-    if(!email){ showMessage('Escribe tu correo arriba y vuelve a intentar.', 'error'); return; }
+    const input = $('signInEmail');
+    if(!input.value.trim()){
+      errorDeCampo(input, 'Escribe aquí tu correo y vuelve a apretar «¿Olvidaste tu contraseña?».');
+      input.focus();
+      return;
+    }
+    if(!revisarCorreo(input)){ input.focus(); return; }
+    // Supabase no deja pedir otro enlace al mismo correo antes de 60 s;
+    // se avisa aquí en vez de mandar una petición que va a fallar.
+    const faltan = Math.ceil((recuperarDisponible - Date.now()) / 1000);
+    if(faltan > 0){ showMessage('Ya te enviamos un enlace. Si no llega, puedes pedir otro en ' + faltan + ' segundos.', 'info'); return; }
+    const email = input.value.trim();
+    const listo = ocupado($('forgotPasswordBtn'), 'Enviando…');
     try{
       await window.CCAuth.resetPassword(email);
+      recuperarDisponible = Date.now() + 60000;
       /* A propósito no confirmamos si el correo tiene cuenta: hacerlo deja
          que cualquiera pruebe correos hasta descubrir quién está registrado. */
-      showMessage('Si existe una cuenta con ese correo, te enviaremos instrucciones para restablecer la contraseña. Revisa también la carpeta de correo no deseado.', 'success');
+      showMessage('Si existe una cuenta con ' + email + ', te enviamos un enlace para elegir una contraseña nueva. Revisa también la carpeta de correo no deseado.', 'success');
     }catch(error){
       showMessage(friendlyError(error), 'error');
     }
+    listo();
   });
 
   /* ===== Sugerencias de correo, fuerza de la contraseña y confirmación ===== */
@@ -496,6 +640,7 @@
           problema.hidden = !problema.textContent;
         } else {
           problema.hidden = true;
+          campo.removeAttribute('aria-invalid');
         }
         if(reglas){
           reglas.hidden = false;
@@ -562,8 +707,7 @@
       showMessage('La contraseña debe tener al menos 10 caracteres.', 'error'); return;
     }
     if(newPassword !== confirmPassword){ showMessage('Las dos contraseñas no coinciden. Vuelve a escribirlas.', 'error'); return; }
-    const submitBtn = $('recoverySubmit');
-    submitBtn.disabled = true;
+    const listo = ocupado($('recoverySubmit'), 'Guardando…');
     try{
       await window.CCAuth.updatePassword(newPassword);
       showMessage('Contraseña actualizada. Entrando a tu cuenta…', 'success');
@@ -572,7 +716,7 @@
       setTimeout(()=>{ window.location.href = isAdmin ? 'admin.html' : 'cuenta.html'; }, 1200);
     }catch(error){
       showMessage(friendlyError(error), 'error');
-      submitBtn.disabled = false;
+      listo();
     }
   });
 
@@ -597,7 +741,7 @@
   if(window.CCAuth){
     window.CCAuth.onPasswordRecovery(enterRecoveryMode);
     window.CCAuth.onChange(user=>{
-      if(user && !inRecoveryMode) window.location.href = 'cuenta.html';
+      if(user && !inRecoveryMode) window.location.replace(destino);
     });
   }
 })();

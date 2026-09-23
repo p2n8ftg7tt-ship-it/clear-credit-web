@@ -183,7 +183,7 @@
   <section id="signedOutNotice" hidden>
     <div class="wrap" style="max-width:560px;text-align:center;">
       <p>Necesitas iniciar sesión para ver esta página.</p>
-      <a href="login.html" class="btn btn-gold">Iniciar sesión</a>
+      <a href="login.html?next=cuenta.html" class="btn btn-gold">Iniciar sesión</a>
     </div>
   </section>
 
@@ -860,7 +860,10 @@
   });
 
   $('signOutBtn').addEventListener('click', async ()=>{
-    await window.CCAuth.signOut();
+    const btn = $('signOutBtn');
+    btn.disabled = true;
+    btn.textContent = 'Cerrando sesión…';
+    try{ await window.CCAuth.signOut(); }catch(e){ /* signOut ya borra la sesión local si el servidor falla */ }
     window.location.href = 'index.html';
   });
 
@@ -883,8 +886,18 @@
   });
 
   if(window.CCAuth){
+    let primeraRevision = true;
     window.CCAuth.onChange((user, ready)=>{
       if(!ready) return;
+      // Quien llega sin sesión va directo a iniciar sesión, y vuelve aquí al
+      // entrar. Solo en la PRIMERA revisión: si la sesión se cierra después
+      // (Cerrar sesión, Eliminar cuenta), esos botones deciden a dónde ir.
+      const alLlegar = primeraRevision;
+      primeraRevision = false;
+      if(!user && alLlegar){
+        window.location.replace('login.html?next=cuenta.html');
+        return;
+      }
       if(user){
         document.body.classList.add('account-signed-in');
         $('signedOutNotice').hidden = true;

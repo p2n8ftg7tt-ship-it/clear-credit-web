@@ -83,6 +83,61 @@ propio en vez de usar el de Netlify), tienes que repetir este paso con la
 nueva dirección — si no, los enlaces de confirmación seguirán apuntando al
 dominio viejo.
 
+## Paso 5c — Seguridad y correos en español (panel de Supabase)
+
+Estas opciones viven en el panel de Supabase, no en el código del sitio.
+El formulario ya exige 10 caracteres, pero eso se puede saltar llamando a
+Supabase directo con la llave pública — por eso el mismo mínimo tiene que
+estar también del lado de Supabase.
+
+1. **Authentication → Providers → Email** (o *Sign In / Providers*):
+   - **Minimum password length:** `10` (por defecto es 6).
+   - **Password requirements:** déjalo en "No required characters" — la
+     guía del NIST recomienda largo, no símbolos obligatorios.
+   - **Leaked password protection:** actívalo si tu plan lo permite (plan
+     Pro). Rechaza contraseñas que aparecen en filtraciones conocidas.
+   - **Secure email change:** activado (pide confirmar en ambos correos).
+2. **Authentication → Rate Limits:** los valores por defecto ya frenan la
+   fuerza bruta por dirección IP (el sitio muestra "Hubo demasiados
+   intentos seguidos…" cuando Supabase corta). No los subas sin motivo.
+   Nota: con el servidor de correo incluido de Supabase solo salen unos
+   pocos correos por hora. Cuando tengas más clientes, conecta tu propio
+   SMTP (Resend, SendGrid, etc.) en **Authentication → Emails → SMTP
+   Settings**; si no, los correos de confirmación y recuperación dejan de
+   llegar sin aviso.
+3. **Authentication → Emails → Templates:** Supabase los manda en inglés
+   por defecto. Reemplaza cada uno con el texto de abajo (el asunto va en
+   *Subject* y el resto en *Body*). No borres `{{ .ConfirmationURL }}`: es
+   el enlace.
+
+**Confirm signup** — Asunto: `Confirma tu cuenta de Themora`
+
+```html
+<h2>¡Bienvenido a Themora!</h2>
+<p>Gracias por crear tu cuenta. Para activarla, haz clic en el botón:</p>
+<p><a href="{{ .ConfirmationURL }}" style="background:#d9a84a;color:#2a2118;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold;">Confirmar mi correo</a></p>
+<p>Si tú no creaste esta cuenta, ignora este mensaje: no pasará nada.</p>
+```
+
+**Reset password** — Asunto: `Elige tu nueva contraseña de Themora`
+
+```html
+<h2>¿Olvidaste tu contraseña?</h2>
+<p>Recibimos un pedido para cambiar la contraseña de tu cuenta. Haz clic en el botón para elegir una nueva:</p>
+<p><a href="{{ .ConfirmationURL }}" style="background:#d9a84a;color:#2a2118;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold;">Elegir nueva contraseña</a></p>
+<p>Por seguridad, el enlace dura poco tiempo y funciona una sola vez.</p>
+<p>Si tú no lo pediste, ignora este mensaje: tu contraseña no cambia.</p>
+```
+
+**Change email address** — Asunto: `Confirma tu nuevo correo en Themora`
+
+```html
+<h2>Confirma tu nuevo correo</h2>
+<p>Pediste cambiar el correo de tu cuenta de {{ .Email }} a {{ .NewEmail }}. Haz clic para confirmarlo:</p>
+<p><a href="{{ .ConfirmationURL }}" style="background:#d9a84a;color:#2a2118;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold;">Confirmar el cambio</a></p>
+<p>Si tú no lo pediste, no hagas clic y escríbenos desde la página de Contacto.</p>
+```
+
 ## Paso 6 — Publica el sitio
 
 Estos archivos nuevos ya están conectados a tu sitio:

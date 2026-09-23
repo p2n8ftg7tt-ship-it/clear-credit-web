@@ -68,9 +68,12 @@
 
       if (!lista.length) return cerrar();
 
-      caja.innerHTML = lista.map((d, idx) =>
-        `<button type="button" class="mail-suggest-item" role="option" data-value="${usuario}@${d}" tabindex="-1">` +
-        `<span class="mail-suggest-user">${usuario}@</span><b>${d}</b></button>`).join('');
+      // Lo que la persona escribe se escapa: pegarlo tal cual en innerHTML
+      // dejaría que un texto con < o " se convierta en HTML.
+      const u = escaparHtml(usuario);
+      caja.innerHTML = lista.map(d =>
+        `<button type="button" class="mail-suggest-item" role="option" data-value="${u}@${d}" tabindex="-1">` +
+        `<span class="mail-suggest-user">${u}@</span><b>${d}</b></button>`).join('');
       caja.hidden = false;
       activo = -1;
     }
@@ -217,11 +220,97 @@
     correo: 'No uses tu propio correo dentro de la contraseña — es lo primero que prueban.'
   };
 
-  window.ThemoraAuthHelpers = {
+  /* ---------------------------------------------------------------
+     3. Correo, errores de Supabase y destino después de entrar
+     --------------------------------------------------------------- */
+
+  function escaparHtml(txt) {
+    return String(txt).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  }
+
+  // Revisa lo mismo que revisaría un humano: algo@algo.algo, sin espacios.
+  // Devuelve null si está bien, o el mensaje que hay que mostrar.
+  function problemaCorreo(correo) {
+    const c = String(correo || '').trim();
+    if (!c) return 'Escribe tu correo electrónico.';
+    if (/\s/.test(c)) return 'El correo no puede tener espacios.';
+    if (c.indexOf('@') === -1) return 'Al correo le falta la @ (por ejemplo: nombre@gmail.com).';
+    if (!/^[^@]+@[^@]+\.[a-z]{2,}$/i.test(c)) return 'Revisa el correo: debe verse como nombre@gmail.com.';
+    return null;
+  }
+
+  /* Supabase contesta en inglés y con términos técnicos. Esto lo traduce a
+     algo que una persona sin experiencia técnica entienda y sepa qué hacer.
+     Se mira primero `code` (estable entre versiones) y después el texto,
+     porque algunas respuestas viejas o de red no traen código. */
+  function mensajeError(error) {
+    const code = (error && error.code) || '';
+    const msg = (error && error.message) || '';
+    const status = error && error.status;
+    const es = (codigos, patron) => codigos.indexOf(code) !== -1 || (patron && patron.test(msg));
+
+    if (es(['invalid_credentials'], /invalid login credentials/i))
+      return 'Correo o contraseña incorrectos. Revísalos e inténtalo de nuevo.';
+    if (es(['email_not_confirmed'], /email not confirmed/i))
+      return 'Todavía no confirmas tu correo. Busca el mensaje que te enviamos (revisa también la carpeta de correo no deseado) y haz clic en el enlace.';
+    if (es(['user_already_exists', 'email_exists'], /already registered|already exists/i))
+      return 'Ya existe una cuenta con ese correo. Inicia sesión, o usa «¿Olvidaste tu contraseña?» si no la recuerdas.';
+    if (es(['over_email_send_rate_limit'], /email rate limit/i))
+      return 'Enviamos demasiados correos en poco tiempo. Espera unos minutos y vuelve a intentarlo.';
+    if (es(['over_request_rate_limit', 'over_sms_send_rate_limit'], /rate limit|too many requests/i) || status === 429)
+      return 'Hubo demasiados intentos seguidos. Por seguridad, espera unos minutos antes de volver a intentar.';
+    if (/for security purposes.*after (\d+) seconds/i.test(msg))
+      return 'Por seguridad, espera ' + msg.match(/after (\d+) seconds/i)[1] + ' segundos antes de pedir otro correo.';
+    if (es(['weak_password'], /password should|password is known|pwned|weak/i))
+      return 'Esa contraseña no es lo bastante segura. Usa al menos ' + LARGO_MINIMO + ' caracteres y que no sea una contraseña común.';
+    if (es(['same_password'], /should be different/i))
+      return 'La nueva contraseña tiene que ser distinta a la anterior.';
+    if (es(['email_address_invalid', 'validation_failed'], /invalid.*email|unable to validate email/i))
+      return 'Ese correo no parece válido. Revísalo (por ejemplo: nombre@gmail.com).';
+    if (es(['otp_expired'], /token has expired|otp expired|link is invalid or has expired/i))
+      return 'El enlace o código ya venció. Pide uno nuevo.';
+    if (/invalid otp|token is invalid/i.test(msg))
+      return 'El código no es correcto. Revísalo e inténtalo de nuevo.';
+    if (es(['session_not_found', 'session_expired', 'refresh_token_not_found'], /session.*(missing|not found|expired)/i))
+      return 'Tu sesión venció. Vuelve a pedir el enlace o a iniciar sesión.';
+    if (es(['signup_disabled'], /signups not allowed/i))
+      return 'Por ahora no estamos aceptando cuentas nuevas. Escríbenos desde la página de Contacto.';
+    if (es(['user_banned'], /banned/i))
+      return 'Esta cuenta está suspendida. Escríbenos desde la página de Contacto.';
+    if (es(['provider_disabled'], /provider is not enabled|unsupported provider/i))
+      return 'Este método de acceso no está activado todavía en el sitio. Prueba con otro método.';
+    if (/sms.*not enabled|phone.*not enabled|to signup, please provide/i.test(msg))
+      return 'El acceso por teléfono todavía no está activado en el sitio. Prueba con correo.';
+    if (/failed to fetch|networkerror|load failed|network request failed/i.test(msg) || status === 0)
+      return 'No pudimos conectarnos. Revisa tu internet e inténtalo de nuevo.';
+    if (status >= 500)
+      return 'El servicio de cuentas tiene un problema en este momento. Inténtalo de nuevo en unos minutos.';
+    // Nunca mostrar el texto técnico en inglés: queda en la consola para diagnosticar.
+    if (msg && typeof console !== 'undefined') console.warn('[Themora] Error de cuenta:', code || status, msg);
+    return 'Algo salió mal. Inténtalo de nuevo, y si sigue pasando, escríbenos desde la página de Contacto.';
+  }
+
+  /* A dónde mandar a la persona después de entrar. Solo se aceptan páginas
+     del propio sitio ("herramientas.html", "credito.html#guardar"): un
+     ?next=https://otro-sitio.com convertiría el login en un redireccionador
+     para estafas de phishing. */
+  function destinoSeguro(valor, porDefecto) {
+    const d = String(valor || '');
+    return /^[a-z0-9-]+\.html(#[a-z0-9-]*)?$/i.test(d) && !/^login\.html/i.test(d) ? d : (porDefecto || 'cuenta.html');
+  }
+
+  const API = {
     montarSugerenciasCorreo,
     evaluar,
     MENSAJES,
     LARGO_MINIMO,
-    DOMINIOS
+    DOMINIOS,
+    escaparHtml,
+    problemaCorreo,
+    mensajeError,
+    destinoSeguro
   };
+  if (typeof window !== 'undefined') window.ThemoraAuthHelpers = API;
+  if (typeof module !== 'undefined' && module.exports) module.exports = API;
 })();

@@ -271,8 +271,26 @@
       return data;
     },
 
+    // Cierra la sesión en el servidor y en este navegador. Si el servidor no
+    // contesta (sin internet, token ya vencido), supabase-js deja la sesión
+    // guardada aquí — y la persona apretaría "Cerrar sesión" sin que pase
+    // nada. Por eso, si falla, se borra al menos la copia local: en una
+    // computadora compartida, lo importante es que el siguiente no entre.
     async signOut() {
       const { error } = await client.auth.signOut();
+      if (error) await client.auth.signOut({ scope: "local" });
+    },
+
+    // Vuelve a mandar el correo de confirmación de una cuenta nueva (para
+    // quien intenta entrar y Supabase contesta "Email not confirmed").
+    async resendConfirmation(email) {
+      const { error } = await client.auth.resend({
+        type: "signup",
+        email,
+        options: {
+          emailRedirectTo: window.location.origin + window.location.pathname.replace(/[^/]+$/, "cuenta.html"),
+        },
+      });
       if (error) throw error;
     },
 
