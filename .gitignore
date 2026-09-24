@@ -15,3 +15,6 @@ Thumbs.db
 .env
 .env.*
 .netlify/
+
+# Video de fondo que no se publica (se queda solo en la computadora)
+media/

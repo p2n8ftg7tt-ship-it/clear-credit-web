@@ -30,8 +30,8 @@
      APPLE_MAPS_KEY_ID
      APPLE_MAPS_PRIVATE_KEY  ← OPCIONALES. Sin ellas, el parámetro de
                                 Apple Maps simplemente no aparece en
-                                el scorecard (no cuenta a favor ni en
-                                contra del puntaje). Solo confirman si
+                                "Lo que encontramos". Con o sin ellas,
+                                Apple nunca cambia el TDS. Solo confirman si
                                 el negocio EXISTE como lugar — Apple
                                 no tiene una API pública que dé
                                 estrellas ni reseñas de negocios
@@ -66,6 +66,8 @@
 // paneles de Netlify quedan configurados como GOOGLE_MAPS_API_KEY en vez de
 // GOOGLE_PLACES_API_KEY, y con solo uno de los dos la búsqueda se veía como
 // "no configurada" aunque la llave sí estuviera puesta.
+const TDS = require("../../tds.js");
+
 function googleApiKey() {
   return process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY || "";
 }
@@ -280,21 +282,37 @@ async function consultarGoogle(nombre, ciudad, giro) {
 }
 
 /* ---------------------------------------------------------
-   Scorecard — un parámetro por fila, con la meta y (cuando hay
-   datos) el promedio real de la competencia. El puntaje es el
-   porcentaje de peso cumplido sobre el peso de lo que sí aplica
-   (por ejemplo, si Apple Maps no está configurado, ese parámetro
-   ni suma ni resta).
+   Themora Digital Score — la entrada que ve tds.js. Solo datos
+   observados, sin nombre, dirección, teléfono ni reseñas: la
+   página la recibe para calcular acciones y el simulador sin
+   volver a buscar.
+   --------------------------------------------------------- */
+function entradaTDS(g, giro) {
+  return {
+    encontrado: !!g.encontrado,
+    calificacion: g.encontrado && typeof g.calificacion === "number" ? g.calificacion : null,
+    totalResenas: (g.encontrado && g.totalResenas) || 0,
+    sitioWeb: !!(g.encontrado && g.sitioWeb),
+    horarioCompleto: !!(g.encontrado && g.horarioCompleto),
+    fotos: g.encontrado && typeof g.fotos === "number" ? g.fotos : null,
+    posicionGiro: (g.encontrado && g.posicion) || null,
+    // Sin giro, la búsqueda "por lo que vendes" usa el propio nombre y casi
+    // siempre sale #1: eso no mide nada, así que Visibilidad queda fuera.
+    giroMedible: !!giro,
+    referencia: TDS.referencia(g.competencia),
+  };
+}
+
+/* ---------------------------------------------------------
+   "Lo que encontramos" — un parámetro por fila, con la meta y
+   (cuando hay datos) el promedio real de la competencia. Ya no
+   da puntaje propio: el único número es el TDS.
    --------------------------------------------------------- */
 function evaluarParametros(g, apple) {
   const filas = [];
-  let pesoTotal = 0;
-  let pesoGanado = 0;
 
-  function fila(clave, etiqueta, aplica, cumplido, tuValor, meta, nota, peso) {
+  function fila(clave, etiqueta, aplica, cumplido, tuValor, meta, nota) {
     if (!aplica) return;
-    pesoTotal += peso;
-    if (cumplido) pesoGanado += peso;
     filas.push({ clave, etiqueta, cumplido, tuValor, meta, nota: nota || null });
   }
 
@@ -302,8 +320,7 @@ function evaluarParametros(g, apple) {
     "presencia", "Tienes ficha en Google Maps", true, g.encontrado,
     g.encontrado ? "Sí, existe" : "No la encontramos",
     "Ficha creada y reclamada",
-    g.encontrado ? null : "Sin esto, ningún otro parámetro de esta lista puede mejorar todavía.",
-    25
+    g.encontrado ? null : "Sin esto, ningún otro parámetro de esta lista puede mejorar todavía."
   );
 
   if (g.encontrado) {
@@ -312,43 +329,39 @@ function evaluarParametros(g, apple) {
       "calificacion", "Calificación", true, tieneCal && g.calificacion >= META_CALIFICACION,
       tieneCal ? g.calificacion.toFixed(1) + "★" : "Sin calificación todavía",
       META_CALIFICACION.toFixed(1) + "★ o más",
-      g.competencia ? `El promedio de tu categoría en tu ciudad es ${g.competencia.promedioCalificacion.toFixed(1)}★.` : null,
-      20
+      g.competencia ? `El promedio de tu categoría en tu ciudad es ${g.competencia.promedioCalificacion.toFixed(1)}★.` : null
     );
 
     fila(
       "resenas", "Número de reseñas", true, (g.totalResenas || 0) >= META_RESENAS,
       (g.totalResenas || 0) + (g.totalResenas === 1 ? " reseña" : " reseñas"),
       META_RESENAS + " reseñas o más",
-      g.competencia ? `El promedio de tu categoría es ${g.competencia.promedioResenas} reseñas.` : null,
-      15
+      g.competencia ? `El promedio de tu categoría es ${g.competencia.promedioResenas} reseñas.` : null
     );
 
     fila(
       "categoria", "Apareces buscando lo que vendes (sin tu nombre)", true,
       !!g.enGiroTop && g.posicion <= META_POSICION_GIRO,
       g.enGiroTop ? "Posición " + g.posicion + " de 10" : "No apareces",
-      "Entre los primeros " + META_POSICION_GIRO,
-      null, 20
+      "Entre los primeros " + META_POSICION_GIRO
     );
 
     fila(
       "horario", "Horario cargado completo", true, !!g.horarioCompleto,
       g.horarioCompleto ? "Completo" : "Incompleto o vacío",
-      "Los 7 días, con hora de apertura y cierre",
-      null, 10
+      "Los 7 días, con hora de apertura y cierre"
     );
 
     fila(
       "fotos", "Fotos del negocio", g.fotos != null, g.fotos != null && g.fotos >= META_FOTOS,
       g.fotos != null ? g.fotos + (g.fotos === 1 ? " foto" : " fotos") : "Sin datos",
-      META_FOTOS + " fotos o más", null, 5
+      META_FOTOS + " fotos o más"
     );
 
     fila(
       "sitioweb", "Sitio web enlazado a tu ficha", true, !!g.sitioWeb,
       g.sitioWeb ? "Sí" : "No",
-      "Un sitio web, aunque sea sencillo", null, 5
+      "Un sitio web, aunque sea sencillo"
     );
   }
 
@@ -356,12 +369,11 @@ function evaluarParametros(g, apple) {
     fila(
       "apple", "Tienes ficha en Apple Maps", true, apple.encontrado === true,
       apple.encontrado ? "Sí, existe" : "No la encontramos",
-      "Ficha creada en Apple Business Connect", null, 10
+      "Ficha creada en Apple Business Connect"
     );
   }
 
-  const puntaje = pesoTotal ? Math.round((100 * pesoGanado) / pesoTotal) : 0;
-  return { filas, puntaje };
+  return filas;
 }
 
 /* ---------------------------------------------------------
@@ -539,9 +551,12 @@ exports.handler = async (event) => {
       sugerencias = reglasFijas({ ...google, apple });
     }
 
-    const { filas: parametros, puntaje } = evaluarParametros(google, apple);
+    const parametros = evaluarParametros(google, apple);
+    // El TDS lo calcula solo tds.js; Apple Maps se muestra pero no suma (FR-010).
+    const entrada = entradaTDS(google, giro);
+    const tds = TDS.calcular(entrada);
 
-    return respuesta(200, { ok: true, google, apple, sugerencias, parametros, puntaje, conIA: !!sesionActiva });
+    return respuesta(200, { ok: true, google, apple, sugerencias, parametros, tds, entradaTDS: entrada, conIA: !!sesionActiva });
   } catch (err) {
     console.error("[revisar-negocio] error:", err.message);
     return respuesta(502, { error: "No se pudo completar la búsqueda en este momento. Intenta de nuevo en un minuto." });

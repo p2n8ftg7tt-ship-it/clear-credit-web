@@ -46,17 +46,12 @@
   .ap-back:hover{color:var(--navy);text-decoration:underline}
 
   /* Resultado */
-  .ap-verdict{border-radius:var(--radius-lg);padding:24px 26px;margin-bottom:22px}
-  .ap-verdict h3{font-family:'Fraunces',serif;font-size:1.42rem;line-height:1.24;margin:0 0 10px}
-  .ap-verdict p{margin:0;line-height:1.66}
-  .ap-verdict.malo{background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.24)}
-  .ap-verdict.malo h3{color:#8a2b2b}
-  .ap-verdict.medio{background:rgba(184,134,48,.11);border:1px solid rgba(184,134,48,.26)}
-  .ap-verdict.medio h3{color:#8a5a20}
-  .ap-verdict.bien{background:rgba(74,124,89,.10);border:1px solid rgba(74,124,89,.26)}
-  .ap-verdict.bien h3{color:var(--good)}
+  .ap-sub{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:28px 0 4px}
+  .ap-sub+.ap-subhelp{font-size:.88rem;color:var(--muted);margin:0 0 12px;line-height:1.55}
+  .ap-donde{font-size:.84rem;color:var(--muted);margin:-2px 0 14px}
+  .ap-donde strong{color:var(--navy-deep)}
 
-  .ap-findings{display:grid;gap:10px;margin:22px 0}
+  .ap-findings{display:grid;gap:10px;margin:12px 0 22px}
   .ap-param{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;background:#fff}
   .ap-param .mark{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;color:#fff;margin-top:1px}
   .ap-param.ok .mark{background:var(--good)}
@@ -67,15 +62,78 @@
   .ap-param .comp{display:block;color:var(--teal);font-weight:600;font-size:.83rem;margin-top:2px}
   .ap-param .nota{margin:6px 0 0;font-size:.83rem;color:var(--muted);line-height:1.5}
 
-  /* Puntaje general, arriba del resultado */
-  .ap-score{display:flex;align-items:center;gap:18px;margin-bottom:20px}
-  .ap-score .num{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;line-height:1;border:4px solid var(--line);border-radius:50%;width:88px;height:88px;display:grid;place-items:center;flex:none}
-  .ap-score.malo .num{border-color:#b3402a;color:#8a2b2b}
-  .ap-score.medio .num{border-color:var(--gold);color:#8a5a20}
-  .ap-score.bien .num{border-color:var(--good);color:var(--good)}
-  .ap-score .txt strong{display:block;color:var(--navy-deep);font-size:1.02rem;margin-bottom:2px}
-  .ap-score .txt span{font-size:.86rem;color:var(--muted);line-height:1.5}
-  @media (max-width:420px){ .ap-score{gap:14px} .ap-score .num{width:72px;height:72px;font-size:1.9rem} }
+  /* Themora Digital Score: colores de banda (texto oscuro sobre fondo claro,
+     contraste ≥ 4.5:1; el nombre de la banda siempre va escrito) */
+  .ap-card{
+    --tds-rojo:#b3402a; --tds-rojo-fondo:#fbe9e5; --tds-rojo-texto:#8a2b2b;
+    --tds-naranja:#d9772b; --tds-naranja-fondo:#fdeedf; --tds-naranja-texto:#8a4312;
+    --tds-amarillo:#d4a72c; --tds-amarillo-fondo:#fbf3d6; --tds-amarillo-texto:#6b5410;
+    --tds-verde:#3f7a52; --tds-verde-fondo:#e4f0e7; --tds-verde-texto:#2f5e3c;
+    --tds-azul:#2f6fa8; --tds-azul-fondo:#e3edf7; --tds-azul-texto:#1f4f82;
+  }
+  .ap-score{display:flex;align-items:center;gap:18px;margin-bottom:8px}
+  .ap-score .num{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;line-height:1;border:5px solid var(--line);border-radius:50%;width:92px;height:92px;display:grid;place-items:center;flex:none;color:var(--navy-deep)}
+  .ap-score .num small{display:block;font:600 .62rem 'Public Sans',sans-serif;color:var(--muted);letter-spacing:.02em;margin-top:-6px}
+  .ap-score .txt{min-width:0}
+  .ap-score .txt .titulo{display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+  .ap-score .txt p{font-size:.9rem;color:var(--navy-deep);line-height:1.55;margin:8px 0 0}
+  .ap-chip{display:inline-block;font-size:.8rem;font-weight:800;padding:4px 12px;border-radius:999px}
+  .ap-parcial{font-size:.8rem;color:var(--muted);margin:10px 0 18px;line-height:1.5}
+  .ap-parcial strong{color:var(--navy-deep)}
+  [data-banda="invisible"]{--b:var(--tds-rojo);--b-fondo:var(--tds-rojo-fondo);--b-texto:var(--tds-rojo-texto)}
+  [data-banda="vulnerable"]{--b:var(--tds-naranja);--b-fondo:var(--tds-naranja-fondo);--b-texto:var(--tds-naranja-texto)}
+  [data-banda="saludable"]{--b:var(--tds-amarillo);--b-fondo:var(--tds-amarillo-fondo);--b-texto:var(--tds-amarillo-texto)}
+  [data-banda="fuerte"]{--b:var(--tds-verde);--b-fondo:var(--tds-verde-fondo);--b-texto:var(--tds-verde-texto)}
+  [data-banda="dominante"]{--b:var(--tds-azul);--b-fondo:var(--tds-azul-fondo);--b-texto:var(--tds-azul-texto)}
+  .ap-score[data-banda] .num{border-color:var(--b)}
+  .ap-chip[data-banda]{background:var(--b-fondo);color:var(--b-texto);border:1px solid var(--b)}
+  @media (max-width:420px){ .ap-score{flex-direction:column;align-items:flex-start;gap:12px} .ap-score .num{width:76px;height:76px;font-size:1.9rem} }
+
+  /* Los cinco pilares */
+  .ap-pilares{display:grid;gap:12px;margin:0 0 8px}
+  .ap-pilar{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;background:#fff}
+  .ap-pilar .cab{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .ap-pilar .cab b{color:var(--navy-deep);font-size:.95rem}
+  .ap-pilar .cab b span{font-weight:500;color:var(--muted);font-size:.8rem;margin-left:6px}
+  .ap-pilar .cab .val{font-family:'Fraunces',serif;font-weight:700;color:var(--navy-deep);font-size:1.1rem}
+  .ap-pilar .cab .val.nd{font:700 .78rem 'Public Sans',sans-serif;color:var(--muted)}
+  .ap-bar{height:8px;border-radius:99px;background:var(--paper-dim);border:1px solid var(--line);overflow:hidden;margin:8px 0 6px}
+  .ap-bar i{display:block;height:100%;background:var(--teal);border-radius:99px}
+  .ap-pilar p{margin:4px 0 0;font-size:.84rem;color:var(--muted);line-height:1.52}
+  .ap-pilar.nd{background:var(--paper-dim);border-style:dashed}
+
+  /* Lo que más sube tu TDS */
+  .ap-acciones{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+  .ap-acciones li{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;background:#fff;font-size:.9rem;line-height:1.5}
+  @media (max-width:420px){ .ap-acciones li{flex-direction:column;align-items:flex-start;gap:8px} }
+  .ap-acciones .pts{flex:none;font-weight:800;color:var(--good);background:rgba(63,122,82,.1);border-radius:999px;padding:3px 10px;font-size:.84rem;white-space:nowrap}
+
+  /* Simulador y metodología (desplegables) */
+  .ap-desplegable{border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-dim);margin:18px 0;padding:0 18px}
+  .ap-desplegable summary{cursor:pointer;font-weight:700;color:var(--navy-deep);padding:14px 0;font-size:.95rem}
+  .ap-desplegable[open] summary{border-bottom:1px solid var(--line);margin-bottom:14px}
+  .ap-desplegable .cuerpo{padding-bottom:18px;font-size:.88rem;line-height:1.62}
+  .ap-desplegable .cuerpo p{margin:0 0 10px}
+  .ap-desplegable .cuerpo ul{margin:0 0 10px;padding-left:20px}
+  .ap-sim-ctrl{display:grid;gap:12px;margin-bottom:14px}
+  .ap-sim-ctrl label{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--navy-deep);min-height:40px}
+  .ap-sim-ctrl input[type="checkbox"]{width:20px;height:20px;accent-color:var(--teal);flex:none}
+  .ap-sim-ctrl select{flex:1;min-width:0;max-width:220px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:400 .9rem 'Public Sans',sans-serif;background:#fff;color:var(--ink)}
+  .ap-sim-res{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+  .ap-sim-res strong{font-size:1rem;color:var(--navy-deep)}
+  .ap-sim-res .real{font-size:.84rem;color:var(--muted)}
+  .ap-sim-res button{margin-left:auto;border:0;background:none;color:var(--teal);font:700 .84rem 'Public Sans',sans-serif;cursor:pointer;padding:8px 0}
+
+  /* Campo de ciudad: nota de ciudad sugerida, botón para borrar y error */
+  .ap-ciudad-caja{position:relative}
+  .ap-ciudad-caja input{padding-right:48px}
+  .ap-borrar{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;background:none;color:var(--muted);font-size:1.3rem;line-height:1;cursor:pointer;border-radius:8px}
+  .ap-borrar:hover{color:var(--navy-deep)}
+  .ap-borrar[hidden]{display:none}
+  .ap-nota-campo{margin:6px 0 0;font-size:.8rem;color:var(--teal);line-height:1.45}
+  .ap-error-campo{margin:6px 0 0;font-size:.8rem;font-weight:600;color:#8a2b2b;line-height:1.45}
+  .ap-nota-campo[hidden],.ap-error-campo[hidden]{display:none}
+  .form-group input[aria-invalid="true"]{border-color:#b3402a}
 
   .ap-evidence{border-left:3px solid var(--teal);background:rgba(31,110,115,.06);border-radius:0 12px 12px 0;padding:18px 20px;margin:24px 0}
   .ap-evidence h4{margin:0 0 8px;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--teal)}
@@ -202,7 +260,12 @@
           </div>
           <div class="form-group">
             <label for="apCiudad">Ciudad y estado</label>
-            <input type="text" id="apCiudad" placeholder="Roanoke, VA" autocomplete="address-level2">
+            <div class="ap-ciudad-caja">
+              <input type="text" id="apCiudad" placeholder="Roanoke, VA" autocomplete="address-level2" aria-describedby="apCiudadNota apCiudadError">
+              <button type="button" class="ap-borrar" id="apCiudadBorrar" aria-label="Borrar la ciudad" hidden>×</button>
+            </div>
+            <p class="ap-nota-campo" id="apCiudadNota" hidden></p>
+            <p class="ap-error-campo" id="apCiudadError" role="alert" hidden>Escribe la ciudad y el estado donde está tu negocio (por ejemplo: Houston, TX).</p>
           </div>
           <div class="form-group">
             <label for="apGiro">¿A qué se dedica? <span style="font-weight:400;color:var(--muted)">(en las palabras que usaría un cliente)</span></label>
@@ -213,7 +276,7 @@
 
           <div class="ap-privacy">
             <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l5.5 2.4v4c0 3.4-2.3 6.6-5.5 7.6C4.8 14 2.5 10.8 2.5 7.4v-4L8 1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            <span>Buscamos tu negocio por ti en Google Maps con estos tres datos — se mandan a Google para eso, y a nadie más. Nada se guarda en tu cuenta. Si además inicias sesión, las sugerencias las escribe una IA leyendo esos mismos resultados.</span>
+            <span>Buscamos tu negocio por ti en Google Maps con estos tres datos — se mandan a Google para eso, y a nadie más. Nada se guarda en tu cuenta. Si además inicias sesión, las sugerencias las escribe una IA leyendo esos mismos resultados. Te sugerimos la ciudad según tu conexión a internet; no la guardamos y puedes cambiarla.</span>
           </div>
         </div>
 
@@ -240,9 +303,38 @@
         <!-- RESULTADO -->
         <div class="ap-step" id="pasoResultado">
           <p class="ap-count">Tu resultado</p>
+          <p class="ap-donde" id="apDonde"></p>
           <div id="apScore"></div>
-          <div id="apVerdict"></div>
+
+          <div id="apPilaresBloque">
+            <h3 class="ap-sub">Tus cinco pilares</h3>
+            <p class="ap-subhelp">Cada pilar va de 0 a 100 y pesa distinto en tu TDS.</p>
+            <div class="ap-pilares" id="apPilares"></div>
+          </div>
+
+          <div id="apAccionesBloque" hidden>
+            <h3 class="ap-sub">Lo que más sube tu TDS</h3>
+            <p class="ap-subhelp">Cosas que puedes hacer tú mismo, con los puntos que sumaría cada una según la fórmula.</p>
+            <ul class="ap-acciones" id="apAcciones"></ul>
+          </div>
+
+          <details class="ap-desplegable" id="apSimulador" hidden>
+            <summary>¿Y si…? Prueba cambios y mira tu TDS</summary>
+            <div class="cuerpo">
+              <p>Esto es una simulación con los mismos datos de tu búsqueda: no vuelve a buscar ni gasta tus búsquedas del día.</p>
+              <div class="ap-sim-ctrl" id="apSimCtrl"></div>
+              <div class="ap-sim-res" aria-live="polite">
+                <strong id="apSimTexto"></strong>
+                <span class="real" id="apSimReal"></span>
+                <button type="button" id="apSimReset">Volver a mis datos reales</button>
+              </div>
+            </div>
+          </details>
+
           <div id="apFound"></div>
+
+          <h3 class="ap-sub">Lo que encontramos</h3>
+          <p class="ap-subhelp">Tu valor comparado con la meta, parámetro por parámetro.</p>
           <div class="ap-findings" id="apFindings"></div>
 
           <div class="ap-evidence">
@@ -257,6 +349,24 @@
             <p>Esto lo puedes hacer tú solo, gratis. Lo escribo completo a propósito: si lo haces por tu cuenta, me da gusto igual.</p>
             <ol id="apTodo"></ol>
           </div>
+
+          <details class="ap-desplegable" id="apMetodo">
+            <summary>Cómo calculamos el TDS</summary>
+            <div class="cuerpo">
+              <p>El <strong>Themora Digital Score (TDS)</strong> es un índice de 0 a 100 hecho con cinco pilares:</p>
+              <ul>
+                <li><strong>Reputación (30 %)</strong>: tus estrellas y cuántas reseñas tienes. Con pocas reseñas, tu calificación se acerca al promedio de tu zona: 5 estrellas con 1 reseña no pesan igual que 4.7 con 100.</li>
+                <li><strong>Visibilidad (25 %)</strong>: en qué lugar sales buscando lo que vendes en tu ciudad. Los primeros 3 lugares cuentan completo; si solo te encontramos por tu nombre, cuenta 30 de 100.</li>
+                <li><strong>Fundamentos (20 %)</strong>: si tu ficha tiene sitio web y horario completo.</li>
+                <li><strong>Completitud (15 %)</strong>: cuántas fotos tiene tu ficha. Google solo nos deja contar hasta 10, así que 10 ya cuenta completo.</li>
+                <li><strong>Actividad (10 %)</strong>: si respondes reseñas y mantienes tu ficha al día.</li>
+              </ul>
+              <p><strong>Lo que Google no nos deja ver no cuenta como cero.</strong> Hoy no podemos comprobar si respondes reseñas ni si tu ficha está reclamada; por eso Actividad queda fuera y su peso se reparte entre los demás pilares. Lo verás como «Evaluación parcial».</p>
+              <p><strong>El grupo de comparación</strong> son los negocios que salen buscando lo mismo que tú en tu ciudad (hasta 5). Si encontramos menos de 3, usamos una referencia fija de 4.7 estrellas.</p>
+              <p>Los pesos son una <strong>metodología inicial de Themora, todavía no validada</strong> con resultados reales de negocios. El TDS describe lo que vimos en esta búsqueda; no predice ventas.</p>
+              <p><strong>Contratar a Themora nunca cambia tu puntaje.</strong></p>
+            </div>
+          </details>
 
           <div class="ap-offer">
             <h3>Y si prefieres que lo haga yo</h3>
@@ -285,6 +395,8 @@
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>
 </footer>
 
+<script src="tds.js"></script>
+<script src="ciudad-sugerida.js"></script>
 <script>
 (() => {
   'use strict';
@@ -338,7 +450,20 @@
     if(!datos.nombre){ $('apNombre').focus(); $('apNombre').style.borderColor='#b3402a'; return; }
     $('apNombre').style.borderColor='';
 
-    stat('aparezco-empezar', { tiene_giro: datos.giro ? 'si' : 'no' });
+    // Sin ciudad, Google buscaría "cerca" del servidor, no de tu negocio.
+    if(!datos.ciudad){
+      $('apCiudadError').hidden = false;
+      $('apCiudad').setAttribute('aria-invalid', 'true');
+      $('apCiudad').focus();
+      return;
+    }
+    $('apCiudadError').hidden = true;
+    $('apCiudad').removeAttribute('aria-invalid');
+
+    stat('aparezco-empezar', {
+      tiene_giro: datos.giro ? 'si' : 'no',
+      ciudad: window.ThemoraCiudad ? ThemoraCiudad.clasificar({ valor: datos.ciudad, sugerido: ciudadSugerida.texto, origen: ciudadSugerida.origen }) : 'escrita',
+    });
 
     empezarCarga();
     mostrar('pasoCargando');
@@ -389,23 +514,125 @@
     return '<span class="ap-stars">'+s+'</span><span class="num">'+cal.toFixed(1)+'</span>';
   }
 
-  function claseParaPuntaje(p){ return p >= 75 ? 'bien' : p >= 45 ? 'medio' : 'malo'; }
+  /* ---- Themora Digital Score (la fórmula vive en tds.js) ---- */
+  const T = window.ThemoraTDS;
+  const pct = n => Math.round(n * 100) + ' %';
+
+  function scoreHTML(r, encontrado){
+    const b = T.BANDAS[r.banda];
+    const frase = encontrado ? b.frase : T.FRASE_NO_ENCONTRADO;
+    let html = '<div class="ap-score" data-banda="'+r.banda+'">' +
+      '<div class="num" aria-hidden="true"><span>'+r.tds+'<small>de 100</small></span></div>' +
+      '<div class="txt"><span class="titulo">Themora Digital Score · Índice de Salud Digital</span>' +
+      '<span class="ap-chip" data-banda="'+r.banda+'">'+r.tds+' de 100 · '+esc(b.nombre)+'</span>' +
+      '<p>'+esc(frase)+'</p></div></div>';
+    if(encontrado && r.parcial){
+      html += '<p class="ap-parcial"><strong>Evaluación parcial · '+r.pilaresMedidos+' de 5 pilares medidos.</strong> ' +
+        'Lo que Google no nos deja ver no cuenta como cero: queda fuera del cálculo.</p>';
+    }
+    return html;
+  }
+
+  function pilaresHTML(r){
+    return r.pilares.map(p => {
+      const cab = '<div class="cab"><b>'+esc(p.nombre)+'<span>'+pct(p.peso)+'</span></b>';
+      if(p.valor == null){
+        return '<div class="ap-pilar nd">'+cab+'<span class="val nd">No lo pudimos comprobar</span></div>' +
+          '<p>'+esc(p.razon.replace(/^No lo pudimos comprobar:\s*/, ''))+'</p></div>';
+      }
+      const v = Math.round(p.valor);
+      return '<div class="ap-pilar">'+cab+'<span class="val">'+v+'</span></div>' +
+        '<div class="ap-bar" role="img" aria-label="'+esc(p.nombre)+': '+v+' de 100"><i style="width:'+v+'%"></i></div>' +
+        '<p>'+esc(p.razon)+'</p></div>';
+    }).join('');
+  }
+
+  /* Simulador: cambia una cosa a la vez sobre los datos ya encontrados,
+     recalcula con tds.js y nunca vuelve a buscar. */
+  let sim = null;
+  function montarSimulador(entrada, real){
+    const e = entrada;
+    const opcionesFotos = [];
+    for(let n = (typeof e.fotos === 'number' ? e.fotos : 0); n <= T.TOPE_FOTOS; n++) opcionesFotos.push(n);
+    const actuales = e.totalResenas || 0;
+    const opcionesResenas = [actuales].concat([10, 25, 50, 100].filter(n => n > actuales));
+
+    let html = '';
+    if(!e.sitioWeb) html += '<label><input type="checkbox" data-ctrl="sitioweb"> Agregar un sitio web a mi ficha</label>';
+    if(!e.horarioCompleto) html += '<label><input type="checkbox" data-ctrl="horario"> Completar mi horario (los 7 días)</label>';
+    if(typeof e.fotos === 'number' && e.fotos < T.TOPE_FOTOS){
+      html += '<label>Fotos en mi ficha <select data-ctrl="fotos">' +
+        opcionesFotos.map(n => '<option value="'+n+'">'+n+(n === e.fotos ? ' (hoy)' : n === T.TOPE_FOTOS ? ' o más' : '')+'</option>').join('') +
+        '</select></label>';
+    }
+    if(opcionesResenas.length > 1){
+      html += '<label>Reseñas en Google <select data-ctrl="resenas">' +
+        opcionesResenas.map(n => '<option value="'+n+'">'+n+(n === actuales ? ' (hoy)' : '')+'</option>').join('') +
+        '</select></label>';
+    }
+    $('apSimulador').hidden = !html;
+    $('apSimulador').open = false;
+    $('apSimCtrl').innerHTML = html;
+    sim = { entrada: e, real, usados: {} };
+    pintarSimulacion();
+  }
+
+  function pintarSimulacion(){
+    if(!sim) return;
+    const cambios = {};
+    $('apSimCtrl').querySelectorAll('[data-ctrl]').forEach(c => {
+      const k = c.dataset.ctrl;
+      if(k === 'sitioweb' && c.checked) cambios.sitioWeb = true;
+      if(k === 'horario' && c.checked) cambios.horarioCompleto = true;
+      if(k === 'fotos') cambios.fotos = Number(c.value);
+      if(k === 'resenas'){
+        const n = Number(c.value);
+        if(n !== (sim.entrada.totalResenas || 0)){
+          cambios.totalResenas = n;
+          if(typeof sim.entrada.calificacion !== 'number') cambios.calificacion = sim.entrada.referencia.valor;
+        }
+      }
+    });
+    const s = T.simular(sim.entrada, cambios);
+    $('apSimTexto').textContent = 'Simulación: ' + s.tds + ' (' + T.BANDAS[s.banda].nombre + ')';
+    $('apSimReal').textContent = 'Tu TDS real: ' + sim.real.tds;
+  }
+
+  $('apSimCtrl').addEventListener('change', e => {
+    const k = e.target.dataset && e.target.dataset.ctrl;
+    if(k && sim && !sim.usados[k]){ sim.usados[k] = true; stat('aparezco-simular', { control: k }); }
+    pintarSimulacion();
+  });
+  $('apSimReset').addEventListener('click', () => {
+    $('apSimCtrl').querySelectorAll('[data-ctrl]').forEach(c => {
+      if(c.type === 'checkbox') c.checked = false; else c.selectedIndex = 0;
+    });
+    pintarSimulacion();
+  });
 
   function resultado(data){
     const g = data.google || {};
     const negocio = g.nombre || datos.nombre;
-    const puntaje = typeof data.puntaje === 'number' ? data.puntaje : 0;
-    const clase = claseParaPuntaje(puntaje);
+    const r = data.tds;
+    const entrada = data.entradaTDS;
 
-    /* Puntaje general, arriba de todo */
-    const fraseScore = clase === 'bien'
-      ? 'Estás mejor puesto que la mayoría. Lo que sigue es mantenerlo así.'
-      : clase === 'medio'
-      ? 'Vas a medias — hay parámetros concretos que te están costando clientes.'
-      : 'Hoy pierdes clientes por esto, no por tu producto ni tu servicio.';
-    $('apScore').innerHTML =
-      '<div class="ap-score '+clase+'"><div class="num">'+puntaje+'</div>' +
-      '<div class="txt"><strong>'+puntaje+' de 100 en presencia digital</strong><span>'+esc(fraseScore)+'</span></div></div>';
+    $('apDonde').innerHTML = 'Buscamos en: <strong>'+esc(datos.ciudad)+'</strong>';
+
+    /* TDS y banda, arriba de todo */
+    $('apScore').innerHTML = scoreHTML(r, !!g.encontrado);
+
+    /* Pilares, acciones y simulador: solo si hay ficha que medir */
+    $('apPilaresBloque').hidden = !g.encontrado;
+    $('apPilares').innerHTML = g.encontrado ? pilaresHTML(r) : '';
+
+    const acciones = g.encontrado && entrada ? T.acciones(entrada) : [];
+    $('apAccionesBloque').hidden = !acciones.length;
+    $('apAcciones').innerHTML = acciones.map(a =>
+      '<li><span>'+esc(a.texto)+'</span><span class="pts">+'+a.puntos+' '+(a.puntos === 1 ? 'punto' : 'puntos')+'</span></li>'
+    ).join('');
+
+    if(g.encontrado && entrada) montarSimulador(entrada, r);
+    else { $('apSimulador').hidden = true; sim = null; }
 
     /* Ficha encontrada: dirección, estrellas, reseñas reales */
     if(g.encontrado){
@@ -429,17 +656,8 @@
       $('apFound').innerHTML = '';
     }
 
-    /* Veredicto general, a partir del puntaje real */
-    const TITULOS = {
-      malo: ['Hoy tu negocio es casi invisible en los mapas', 'No es tu culpa ni es algo que hiciste mal — es un trámite que nadie te dijo que existía. Y tiene arreglo.'],
-      medio: ['Vas bien, pero hay huecos que sí cuestan clientes', 'Lo importante ya está encaminado. Los parámetros de abajo te dicen exactamente qué falta.'],
-      bien: ['Tu negocio está bien puesto en los mapas', 'En serio: la mayoría no está así. Lo siguiente que mueve la aguja son las reseñas y mantener la información al día.'],
-    };
-    const [titulo, texto] = g.encontrado ? TITULOS[clase] : TITULOS.malo;
-    $('apVerdict').innerHTML = '<div class="ap-verdict '+clase+'"><h3>'+esc(titulo)+'</h3><p>'+esc(texto)+'</p></div>';
-
-    /* Scorecard: un parámetro por fila, con tu valor, la meta, y el
-       promedio real de tu competencia cuando lo tenemos. */
+    /* Lo que encontramos: un parámetro por fila, con tu valor, la meta, y el
+       promedio real de tu competencia cuando lo tenemos. Sin puntaje propio. */
     const filas = data.parametros || [];
     $('apFindings').innerHTML = filas.map(f => {
       const c = f.cumplido ? 'ok' : 'no';
@@ -456,7 +674,8 @@
        sobre estos mismos datos — nunca inventado, siempre viene del servidor. */
     $('apTodo').innerHTML = (data.sugerencias || []).map(s => '<li>'+esc(s)+'</li>').join('');
 
-    stat('aparezco-resultado', { veredicto: clase, puntaje, con_ia: data.conIA ? 'si' : 'no', encontrado: g.encontrado ? 'si' : 'no' });
+    // Solo categorías: nunca el número, los pilares, el nombre ni la ciudad.
+    stat('aparezco-resultado', { banda: r.banda, parcial: r.parcial ? 'si' : 'no', con_ia: data.conIA ? 'si' : 'no', encontrado: g.encontrado ? 'si' : 'no' });
     mostrar('pasoResultado');
     if(negocio) document.title = '¿Aparece ' + negocio + '? | Themora';
   }
@@ -470,6 +689,76 @@
   // Enter para avanzar en el paso 1
   ['apNombre','apCiudad','apGiro'].forEach(id => {
     $(id).addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); $('apIr1').click(); } });
+  });
+
+  /* ---- Ciudad sugerida: la del perfil si hay sesión, si no la que Netlify
+     deduce de la conexión. Nunca pisa lo que la persona escribió, no se
+     guarda, y si falla cualquier cosa el campo queda como siempre. ---- */
+  const ciudadSugerida = { texto: null, origen: null };
+  let ciudadTocada = false;
+  const campoCiudad = $('apCiudad');
+
+  function actualizarBorrar(){ $('apCiudadBorrar').hidden = !campoCiudad.value; }
+  campoCiudad.addEventListener('input', () => {
+    ciudadTocada = true;
+    actualizarBorrar();
+    if(campoCiudad.value.trim()){ $('apCiudadError').hidden = true; campoCiudad.removeAttribute('aria-invalid'); }
+  });
+  $('apCiudadBorrar').addEventListener('click', () => {
+    ciudadTocada = true;
+    campoCiudad.value = '';
+    $('apCiudadNota').hidden = true;
+    actualizarBorrar();
+    campoCiudad.focus();
+  });
+
+  function aplicarCiudad(texto, origen){
+    if(!texto || ciudadTocada || campoCiudad.value.trim()) return;
+    campoCiudad.value = texto;
+    ciudadSugerida.texto = texto;
+    ciudadSugerida.origen = origen;
+    $('apCiudadNota').textContent = origen === 'perfil'
+      ? 'Usamos la ciudad de tu perfil. Si tu negocio está en otra, escríbela aquí.'
+      : 'Detectamos tu ciudad. Si tu negocio está en otra, escríbela aquí.';
+    $('apCiudadNota').hidden = false;
+    actualizarBorrar();
+  }
+
+  function ciudadDelPerfil(){
+    return new Promise(listo => {
+      if(!window.CCAuth || !window.ThemoraCiudad) return listo(null);
+      let hecho = false;
+      const fin = v => { if(!hecho){ hecho = true; listo(v); } };
+      setTimeout(() => fin(null), 2000);
+      window.CCAuth.onChange((usuario, preparado) => {
+        if(usuario) fin(ThemoraCiudad.desdePerfil(usuario.user_metadata));
+        else if(preparado) fin(null);
+      });
+    });
+  }
+
+  async function ciudadDetectada(){
+    if(!window.ThemoraCiudad) return null;
+    const controlador = new AbortController();
+    const corte = setTimeout(() => controlador.abort(), 2000);
+    try{
+      const res = await fetch('/.netlify/functions/ubicacion', { signal: controlador.signal });
+      if(!res.ok) return null;
+      const d = await res.json();
+      return ThemoraCiudad.formatear(d.ciudad, d.estado);
+    }catch(err){
+      return null;
+    }finally{
+      clearTimeout(corte);
+    }
+  }
+
+  // Se arranca al terminar de cargar la página: para entonces auth.js ya corrió.
+  document.addEventListener('DOMContentLoaded', async () => {
+    const detectada = ciudadDetectada();
+    const perfil = await ciudadDelPerfil();
+    if(perfil){ aplicarCiudad(perfil, 'perfil'); return; }
+    aplicarCiudad(await detectada, 'detectada');
   });
 })();
 </script>
