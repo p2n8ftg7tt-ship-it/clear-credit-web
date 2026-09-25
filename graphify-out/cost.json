@@ -1,0 +1,49 @@
+{
+  "runs": [
+    {
+      "date": "2026-09-20T09:10:07.435094+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 86
+    },
+    {
+      "date": "2026-09-21T08:13:30.838687+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 99
+    },
+    {
+      "date": "2026-09-21T23:12:23.339339+00:00",
+      "input_tokens": 207467,
+      "output_tokens": 0,
+      "files": 22
+    },
+    {
+      "date": "2026-09-22T12:30:00.015238+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 27
+    },
+    {
+      "date": "2026-09-23T13:38:09.482760+00:00",
+      "input_tokens": 81145,
+      "output_tokens": 0,
+      "files": 9,
+      "note": "subagent total tokens (in+out combined)"
+    },
+    {
+      "date": "2026-09-24T00:17:39.580197+00:00",
+      "input_tokens": 166707,
+      "output_tokens": 0,
+      "files": 20
+    },
+    {
+      "date": "2026-09-24T05:34:08.916478+00:00",
+      "input_tokens": 108791,
+      "output_tokens": 0,
+      "files": 13
+    }
+  ],
+  "total_input_tokens": 564110,
+  "total_output_tokens": 0
+}

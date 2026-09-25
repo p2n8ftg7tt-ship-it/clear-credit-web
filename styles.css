@@ -680,14 +680,6 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .aviso-envio-cuerpo b,.aviso-envio-cuerpo strong{color:var(--navy-deep)}
 .aviso-envio-cuerpo a{color:var(--teal);text-decoration:underline}
 
-/* El aviso dentro de un bloque oscuro (contrato del dealer) */
-.ct-foto .aviso-envio{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
-.ct-foto .aviso-envio .aviso-envio-cuerpo p{color:rgba(255,255,255,.84)}
-.ct-foto .aviso-envio .aviso-envio-cuerpo p:last-child{color:rgba(255,255,255,.62)}
-.ct-foto .aviso-envio .aviso-envio-cuerpo b,
-.ct-foto .aviso-envio .aviso-envio-cuerpo strong{color:#fff}
-.ct-foto .aviso-envio .aviso-envio-cuerpo a{color:var(--gold-light)}
-
 /* --- Contacto: el aviso antes del formulario ---------------------------- */
 .ct-aviso-previo{background:var(--paper-dim);border-left:3px solid var(--gold);
   border-radius:0 12px 12px 0;padding:16px 20px;margin:0 0 22px}

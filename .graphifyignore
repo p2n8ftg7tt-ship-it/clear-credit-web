@@ -1,0 +1,5 @@
+# Skills instaladas de Claude/agentes: no son parte del sitio
+.claude/
+.agents/
+.specify/
+skills-lock.json
