@@ -1,193 +1,187 @@
-/* Pruebas del Themora Digital Score (tds.js): el caso de referencia de
-   Guajiro Llc, los límites de cada banda, los datos que Google no da (nunca
-   cuentan como cero), las acciones y las palabras prohibidas.
+/* Pruebas del motor TDS 0.1 en JavaScript (tds.js).
+
+   Paridad: cada ejemplo de tests/fixtures/tds/ debe dar EXACTAMENTE lo mismo
+   que el motor Python de G:\My Drive\TDS (salidas guardadas en
+   tests/fixtures/tds/esperado/, generadas con `python -m tds_engine score`).
+   Si alguna vez el motor Python cambia, se vuelven a generar esos archivos;
+   los números no se ajustan a mano.
+
    Correr con:  node --test tests/*.test.js */
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('fs');
+const path = require('path');
 
 const T = require('../tds.js');
 
-const FIJA = { valor: 4.7, origen: 'fija', cantidad: 0 };
-const base = (cambios = {}) => ({
-  encontrado: true,
-  calificacion: 5,
-  totalResenas: 1,
-  sitioWeb: false,
-  horarioCompleto: false,
-  fotos: 0,
-  posicionGiro: null,
-  giroMedible: true,
-  referencia: FIJA,
-  ...cambios,
-});
-const pilar = (r, clave) => r.pilares.find(p => p.clave === clave);
+const DIR = path.join(__dirname, 'fixtures', 'tds');
+const texto = nombre => fs.readFileSync(path.join(DIR, nombre + '.json'), 'utf8');
+const esperado = nombre => JSON.parse(fs.readFileSync(path.join(DIR, 'esperado', nombre + '.json'), 'utf8'));
+const modelo = T.loadModel('0.1.0');
+const guajiro = () => JSON.parse(texto('guajiro'));
+const comp = (r, code) => r.components.find(c => c.code === code);
 
-/* ---------------- Caso de referencia ---------------- */
-test('Guajiro Llc: 30, Invisible, parcial con 4 de 5 pilares', () => {
-  const r = T.calcular(base());
-  assert.equal(r.tds, 30);
-  assert.equal(r.banda, 'invisible');
-  assert.equal(r.parcial, true);
-  assert.equal(r.pilaresMedidos, 4);
-  assert.equal(r.multiplicador, 1);
-  assert.ok(Math.abs(pilar(r, 'reputacion').valor - 63.8) < 0.1);
-  assert.equal(pilar(r, 'visibilidad').valor, 30);
-  assert.equal(pilar(r, 'fundamentos').valor, 0);
-  assert.equal(pilar(r, 'completitud').valor, 0);
-  assert.equal(pilar(r, 'actividad').valor, null);
-  assert.equal(pilar(r, 'actividad').pesoAplicado, 0);
-  assert.deepEqual(r.referencia, FIJA);
+/* ---------------- Paridad con el motor Python ---------------- */
+const EJEMPLOS = ['guajiro', 'guajiro_no_activity', 'guajiro_no_cohort', 'guajiro_no_v_no_a',
+  'guajiro_small_zone', 'maximum', 'minimum', 'not_locatable', 'review_burst'];
+
+for (const nombre of EJEMPLOS) {
+  test('paridad con Python: ' + nombre, () => {
+    assert.deepEqual(T.score(texto(nombre)), esperado(nombre));
+  });
+}
+
+test('paridad con Python: simulate con sitio web', () => {
+  const cambios = { 'info_checks.website_linked': true, 'contact_channels.website_reachable': true };
+  const r = T.simulate(texto('guajiro'), cambios);
+  const e = esperado('guajiro_simular_web');
+  assert.equal(r.tds, e.tds);
+  assert.deepEqual(r.simulation, e.simulation);
+  assert.deepEqual(r.components, e.components);
+  assert.deepEqual(r.reasons, e.reasons);
 });
 
-test('los cinco pilares van en orden fijo y los pesos aplicados suman 1', () => {
-  const r = T.calcular(base());
-  assert.deepEqual(r.pilares.map(p => p.clave), ['reputacion', 'visibilidad', 'fundamentos', 'completitud', 'actividad']);
-  const suma = r.pilares.reduce((s, p) => s + p.pesoAplicado, 0);
-  assert.ok(Math.abs(suma - 1) < 1e-9);
+test('paridad con Python: simulate con fotos y ficha no reclamada', () => {
+  const r = T.simulate(texto('guajiro'), { photos: 10, 'listing.claimed': false });
+  const e = esperado('guajiro_simular_fotos');
+  assert.equal(r.tds, e.tds);
+  assert.equal(r.gate, e.gate);
+  assert.deepEqual(r.simulation, e.simulation);
+  assert.deepEqual(r.components, e.components);
 });
 
-test('pilares mostrados × pesos reproducen el TDS con ±1', () => {
-  const casos = [
-    base(),
-    base({ sitioWeb: true, horarioCompleto: true, fotos: 10, totalResenas: 80, calificacion: 4.8, posicionGiro: 2 }),
-    base({ fotos: 4, posicionGiro: 6, totalResenas: 12, calificacion: 4.1 }),
-    base({ giroMedible: false, fotos: null }),
-  ];
-  for (const e of casos) {
-    const r = T.calcular(e);
-    const reconstruido = r.pilares.reduce((s, p) => s + (p.valor == null ? 0 : Math.round(p.valor) * p.pesoAplicado), 0);
-    assert.ok(Math.abs(reconstruido - r.tds) <= 1, `TDS ${r.tds} vs ${reconstruido}`);
+test('entrada inválida: calificación 6 da TDSInputError en business.reviews.rating', () => {
+  assert.throws(() => T.score(texto('invalid_rating_6')), err =>
+    err instanceof T.TDSInputError && err.field === 'business.reviews.rating' && err.allowed_range === '[1, 5] o null');
+});
+
+test('el modelo tiene el mismo parameters_hash que en Python', () => {
+  assert.equal(modelo.parameters_hash, esperado('guajiro').parameters_hash);
+  assert.equal(modelo.label, 'TDS 0.1 – metodología en validación');
+});
+
+/* ---------------- Caso de referencia (README del motor) ---------------- */
+test('Guajiro LLC: 33 ± 2,8 · Crítico; acción principal enlazar sitio web (+6,0)', () => {
+  const r = T.score(guajiro());
+  assert.equal(r.tds, 33);
+  assert.equal(r.margin, 2.8);
+  assert.equal(r.category, 'Crítico');
+  assert.equal(comp(r, 'R').score, 55.18);
+  assert.equal(comp(r, 'I').score, 57.14);
+  assert.equal(comp(r, 'C').score, 25);
+  assert.equal(comp(r, 'A').score, 41.67);
+  assert.equal(r.reasons[0].code, 'link_website');
+  assert.equal(r.reasons[0].gain_points, 6);
+});
+
+test('mismo resultado como objeto o como texto (salvo el hash de números como 5.0)', () => {
+  const a = T.score(guajiro());
+  const b = T.score(texto('guajiro'));
+  assert.deepEqual({ ...a, input_hash: null }, { ...b, input_hash: null });
+});
+
+test('el orden de las claves no cambia el input_hash', () => {
+  const g = guajiro();
+  const alReves = {};
+  for (const k of Object.keys(g).reverse()) alReves[k] = g[k];
+  assert.equal(T.score(alReves).input_hash, T.score(g).input_hash);
+});
+
+/* ---------------- Diferencia de ¿Aparezco?: "No sé" si está reclamada ---------------- */
+test('ficha reclamada desconocida: no castiga (compuerta 1) y lleva la bandera', () => {
+  const g = guajiro();
+  g.business.listing.claimed = null;
+  const r = T.score(g);
+  assert.equal(r.gate, 1);
+  assert.equal(r.tds, 33);
+  assert.ok(r.flags.includes('claimed_unknown'));
+  assert.equal(r.reasons.some(x => x.code === 'claim_listing'), false);
+});
+
+test('ficha no reclamada: compuerta 0,85 y aparece "Reclama tu ficha" si da puntos', () => {
+  const g = guajiro();
+  g.business.listing.claimed = false;
+  const r = T.score(g);
+  assert.equal(r.gate, 0.85);
+  assert.ok(r.tds < 33);
+  assert.equal(r.flags.includes('claimed_unknown'), false);
+});
+
+/* ---------------- Datos que faltan nunca cuentan como cero ---------------- */
+test('sin visibilidad ni actividad: cobertura 0,6, incompleta y sin categoría', () => {
+  const r = T.score(texto('guajiro_no_v_no_a'));
+  assert.equal(r.coverage, 0.6);
+  assert.equal(r.status, 'incomplete');
+  assert.equal(r.category, null);
+  assert.equal(typeof r.tds, 'number');
+});
+
+test('no localizable: no evaluable, sin TDS ni compuerta', () => {
+  const r = T.score(texto('not_locatable'));
+  assert.equal(r.status, 'not_evaluable');
+  assert.equal(r.tds, null);
+  assert.equal(r.gate, null);
+});
+
+test('un dato sin evidencia se trata como desconocido', () => {
+  const g = guajiro();
+  g.business.evidence = g.business.evidence.filter(e => e.field !== 'photos');
+  const r = T.score(g);
+  assert.ok(r.flags.includes('missing_evidence'));
+  assert.equal(comp(r, 'I').findings.some(f => f.includes('fotos en la ficha')), false);
+});
+
+test('límites: todo al máximo da 100 Referente, todo al mínimo da ≥ 0 Crítico', () => {
+  const max = T.score(texto('maximum'));
+  const min = T.score(texto('minimum'));
+  assert.equal(max.tds, 100);
+  assert.equal(max.category, 'Referente');
+  assert.ok(min.tds >= 0);
+  assert.equal(min.category, 'Crítico');
+});
+
+/* ---------------- Números idénticos a Python ---------------- */
+test('redondeo mitad hacia arriba como Decimal de Python', () => {
+  assert.equal(T.roundHalfUp(32.5, 0), 33);
+  assert.equal(T.roundHalfUp(33.14, 0), 33);
+  assert.equal(T.roundHalfUp(2.8213, 1), 2.8);
+  assert.equal(T.roundHalfUp(2.675, 2), 2.68); // str(2.675) = '2.675'
+  assert.equal(T.roundHalfUp(0.00004, 4), 0);
+  assert.equal(T.roundHalfUp(0.00005, 4), 0.0001);
+});
+
+test('repr de floats y texto con coma como Python', () => {
+  assert.equal(T.pyFloatRepr(1), '1.0');
+  assert.equal(T.pyFloatRepr(0.3), '0.3');
+  assert.equal(T.pyFloatRepr(0.00001), '1e-05');
+  assert.equal(T.pyFloatRepr(1e16), '1e+16');
+  assert.equal(T.numEs(4.545454, 2), '4,55');
+  assert.equal(T.numEs(4.625, 2), '4,62'); // mitad exacta: al par, como f"{x:.2f}"
+  assert.equal(T.numEs(5, 1), '5,0');
+});
+
+test('SHA-256 correcto (vectores conocidos)', () => {
+  assert.equal(T.sha256Hex(''), 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+  assert.equal(T.sha256Hex('abc'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+  assert.equal(T.sha256Hex('a'.repeat(1000)), '41edece42d63e8d9bf515a9ba6932e1c20cbc9f5a5d134645adb5db1b9737ea3');
+});
+
+/* ---------------- Modelo ---------------- */
+test('un modelo con pesos que no suman 1 se rechaza', () => {
+  const malo = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'models', 'tds-0.1.0.json'), 'utf8'));
+  malo.weights.V = 0.5;
+  assert.throws(() => T.modelFromDict(malo), T.TDSModelError);
+});
+
+test('simular un campo no permitido da TDSInputError', () => {
+  assert.throws(() => T.simulate(guajiro(), { 'business.plan_contratado': true }), T.TDSInputError);
+});
+
+/* ---------------- Textos ---------------- */
+test('ningún texto promete clientes, ventas ni posiciones', () => {
+  const r = T.score(guajiro());
+  const todo = JSON.stringify(r) + T.SIMULATION_DISCLAIMER;
+  for (const p of ['pierdes', 'perdiendo', 'garantizamos', 'vas a subir']) {
+    assert.equal(todo.toLowerCase().includes(p), false, p);
   }
-});
-
-/* ---------------- Reputación ---------------- */
-test('SC-002: 1 reseña de 5.0 nunca supera a 50+ reseñas de 4.7+', () => {
-  const una = pilar(T.calcular(base({ calificacion: 5, totalResenas: 1 })), 'reputacion').valor;
-  for (const [cal, v] of [[4.7, 50], [4.7, 100], [4.9, 60], [5, 50]]) {
-    const muchas = pilar(T.calcular(base({ calificacion: cal, totalResenas: v })), 'reputacion').valor;
-    assert.ok(muchas > una, `${cal}★ con ${v}: ${muchas} vs ${una}`);
-  }
-});
-
-test('100 reseñas de 4.7 tienen más reputación que 1 de 5.0', () => {
-  const a = pilar(T.calcular(base({ calificacion: 4.7, totalResenas: 100 })), 'reputacion').valor;
-  const b = pilar(T.calcular(base({ calificacion: 5, totalResenas: 1 })), 'reputacion').valor;
-  assert.ok(a > b);
-});
-
-test('cero reseñas: calificación = referencia, volumen 0, y la razón no dice "0.0★"', () => {
-  const r = T.calcular(base({ calificacion: null, totalResenas: 0 }));
-  const p = pilar(r, 'reputacion');
-  assert.ok(Math.abs(p.valor - 0.6 * (4.7 / 5) * 100) < 0.1);
-  assert.doesNotMatch(p.razon, /0\.0★/);
-  assert.match(p.razon, /no tienes reseñas/i);
-});
-
-test('referencia: promedio de la competencia con 3 o más, si no la fija de 4.7', () => {
-  assert.deepEqual(T.referencia({ cantidad: 5, promedioCalificacion: 4.56 }), { valor: 4.56, origen: 'competencia', cantidad: 5 });
-  assert.deepEqual(T.referencia({ cantidad: 2, promedioCalificacion: 4.1 }), { valor: 4.7, origen: 'fija', cantidad: 2 });
-  assert.deepEqual(T.referencia(null), { valor: 4.7, origen: 'fija', cantidad: 0 });
-  const r = T.calcular(base({ referencia: T.referencia({ cantidad: 5, promedioCalificacion: 4.6 }) }));
-  assert.match(pilar(r, 'reputacion').razon, /5 negocios/);
-  assert.match(pilar(T.calcular(base()), 'reputacion').razon, /referencia fija de 4\.7★/);
-});
-
-/* ---------------- Visibilidad ---------------- */
-test('visibilidad: top 3 = 100, 4–10 bajan 15 por lugar, solo por nombre = 30', () => {
-  const vis = pos => pilar(T.calcular(base({ posicionGiro: pos })), 'visibilidad').valor;
-  assert.equal(vis(1), 100);
-  assert.equal(vis(3), 100);
-  assert.equal(vis(4), 85);
-  assert.equal(vis(9), 10);
-  assert.equal(vis(10), 0); // 100 − 15·7 sería negativo: nunca baja de 0
-  assert.equal(vis(null), 30);
-});
-
-test('sin "a qué se dedica": Visibilidad no se mide y no cuenta como cero', () => {
-  const r = T.calcular(base({ giroMedible: false }));
-  const p = pilar(r, 'visibilidad');
-  assert.equal(p.valor, null);
-  assert.equal(p.pesoAplicado, 0);
-  assert.match(p.razon, /No lo pudimos comprobar/);
-  assert.equal(r.pilaresMedidos, 3);
-});
-
-/* ---------------- Completitud ---------------- */
-test('fotos: 10 (el tope de Google) cuenta completo; menos sigue la curva', () => {
-  const comp = n => pilar(T.calcular(base({ fotos: n })), 'completitud').valor;
-  assert.equal(comp(10), 100);
-  assert.equal(comp(0), 0);
-  assert.ok(Math.abs(comp(5) - 100 * (1 - Math.exp(-0.25))) < 0.1);
-  const r = T.calcular(base({ fotos: null }));
-  assert.equal(pilar(r, 'completitud').valor, null);
-});
-
-/* ---------------- No encontrado ---------------- */
-test('no encontrado: TDS 0, Invisible, multiplicador 0', () => {
-  const r = T.calcular({ encontrado: false, referencia: FIJA });
-  assert.equal(r.tds, 0);
-  assert.equal(r.banda, 'invisible');
-  assert.equal(r.multiplicador, 0);
-  assert.deepEqual(T.acciones({ encontrado: false, referencia: FIJA }), []);
-});
-
-/* ---------------- Bandas ---------------- */
-test('bandas en sus límites', () => {
-  const casos = [[0, 'invisible'], [39, 'invisible'], [40, 'vulnerable'], [59, 'vulnerable'], [60, 'saludable'],
-    [79, 'saludable'], [80, 'fuerte'], [94, 'fuerte'], [95, 'dominante'], [100, 'dominante']];
-  for (const [n, b] of casos) assert.equal(T.banda(n), b, String(n));
-});
-
-test('cada banda tiene nombre y frase', () => {
-  for (const clave of ['invisible', 'vulnerable', 'saludable', 'fuerte', 'dominante']) {
-    assert.ok(T.BANDAS[clave].nombre);
-    assert.ok(T.BANDAS[clave].frase);
-  }
-});
-
-/* ---------------- Acciones ---------------- */
-test('acciones de Guajiro: fotos +16; sitio web y horario +11 (empatan con reseñas y ganan por orden fijo)', () => {
-  const a = T.acciones(base());
-  assert.deepEqual(a.map(x => [x.clave, x.puntos]), [['fotos', 16], ['sitioweb', 11], ['horario', 11]]);
-});
-
-test('cada acción suma exactamente lo que da recalcular con ese cambio', () => {
-  const e = base({ fotos: 3, totalResenas: 7, calificacion: 4.4 });
-  const actual = T.calcular(e).tds;
-  for (const a of T.acciones(e)) {
-    assert.equal(a.puntos, T.calcular(T.aplicarAccion(e, a.clave)).tds - actual);
-    assert.ok(a.puntos >= 1);
-  }
-});
-
-test('lo que ya se cumple no aparece como acción', () => {
-  const a = T.acciones(base({ sitioWeb: true, horarioCompleto: true, fotos: 10, totalResenas: 60 }));
-  assert.deepEqual(a, []);
-});
-
-test('simular no cambia la entrada original', () => {
-  const e = base();
-  const copia = JSON.parse(JSON.stringify(e));
-  const s = T.simular(e, { sitioWeb: true });
-  assert.ok(s.tds > T.calcular(e).tds);
-  assert.deepEqual(e, copia);
-});
-
-/* ---------------- Palabras prohibidas (principio I) ---------------- */
-test('ningún texto predice clientes perdidos ni promete resultados', () => {
-  const PROHIBIDO = /pierd|perdiendo|cuestan? clientes|regal|no existes|garantiz|seguro que|%.*clientes|themora/i;
-  const textos = [];
-  for (const b of Object.values(T.BANDAS)) textos.push(b.frase, b.nombre);
-  textos.push(T.FRASE_NO_ENCONTRADO);
-  const entradas = [
-    base(), base({ calificacion: null, totalResenas: 0 }), base({ giroMedible: false, fotos: null }),
-    base({ posicionGiro: 2, sitioWeb: true, horarioCompleto: true, fotos: 10, totalResenas: 90, calificacion: 4.9 }),
-    base({ posicionGiro: 7 }), { encontrado: false, referencia: FIJA },
-  ];
-  for (const e of entradas) {
-    const r = T.calcular(e);
-    r.pilares.forEach(p => textos.push(p.razon));
-    T.acciones(e).forEach(a => textos.push(a.texto));
-  }
-  for (const t of textos) assert.doesNotMatch(t, PROHIBIDO, t);
 });

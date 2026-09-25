@@ -1,0 +1,316 @@
+{
+  "business": {
+    "business_id": "rafaga",
+    "sector": "restaurantes",
+    "zone": "roanoke",
+    "listing": {
+      "locatable": true,
+      "claimed": true
+    },
+    "reviews": {
+      "rating": 5.0,
+      "count": 40,
+      "responded": 0,
+      "last_30d": 30
+    },
+    "visibility_observations": [
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g1",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g2",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g3",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g4",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g5",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g6",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g7",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g8",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "comida",
+        "query_type": "category",
+        "grid_point": "g9",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g1",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g2",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g3",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g4",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g5",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g6",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g7",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g8",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "restaurante cubano",
+        "query_type": "category",
+        "grid_point": "g9",
+        "rank": null,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "query": "Guajiro LLC",
+        "query_type": "name",
+        "grid_point": "g5",
+        "rank": 1,
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      }
+    ],
+    "info_checks": {
+      "name": true,
+      "phone": true,
+      "address_or_service_area": true,
+      "primary_category": true,
+      "hours_7_days": false,
+      "website_linked": false,
+      "consistent_across_sources": true
+    },
+    "photos": 0,
+    "contact_channels": {
+      "call": true,
+      "website_reachable": false,
+      "messaging": false,
+      "book_or_order": false
+    },
+    "days_since_owner_activity": 30,
+    "evidence": [
+      {
+        "field": "listing",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "reviews",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "photos",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "days_since_owner_activity",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.name",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.phone",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.address_or_service_area",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.primary_category",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.hours_7_days",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.website_linked",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "info_checks.consistent_across_sources",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "contact_channels.call",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "contact_channels.website_reachable",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "contact_channels.messaging",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      },
+      {
+        "field": "contact_channels.book_or_order",
+        "source": "manual-pilot",
+        "captured_at": "2026-09-20T12:00:00Z"
+      }
+    ]
+  },
+  "cohorts": [
+    {
+      "level": "zone",
+      "sector": "restaurantes",
+      "rating_median": 4.5,
+      "review_counts": [
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        14,
+        15,
+        18,
+        20,
+        22,
+        25,
+        28,
+        30,
+        33,
+        36,
+        40,
+        45,
+        50,
+        55,
+        60,
+        70,
+        80,
+        90,
+        100,
+        120,
+        140,
+        160,
+        200,
+        250,
+        300,
+        400,
+        600
+      ],
+      "response_rate_median": 0.4,
+      "median_monthly_reviews": 3
+    }
+  ]
+}

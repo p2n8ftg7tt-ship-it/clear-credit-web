@@ -80,11 +80,19 @@
   .ap-chip{display:inline-block;font-size:.8rem;font-weight:800;padding:4px 12px;border-radius:999px}
   .ap-parcial{font-size:.8rem;color:var(--muted);margin:10px 0 18px;line-height:1.5}
   .ap-parcial strong{color:var(--navy-deep)}
-  [data-banda="invisible"]{--b:var(--tds-rojo);--b-fondo:var(--tds-rojo-fondo);--b-texto:var(--tds-rojo-texto)}
-  [data-banda="vulnerable"]{--b:var(--tds-naranja);--b-fondo:var(--tds-naranja-fondo);--b-texto:var(--tds-naranja-texto)}
-  [data-banda="saludable"]{--b:var(--tds-amarillo);--b-fondo:var(--tds-amarillo-fondo);--b-texto:var(--tds-amarillo-texto)}
-  [data-banda="fuerte"]{--b:var(--tds-verde);--b-fondo:var(--tds-verde-fondo);--b-texto:var(--tds-verde-texto)}
-  [data-banda="dominante"]{--b:var(--tds-azul);--b-fondo:var(--tds-azul-fondo);--b-texto:var(--tds-azul-texto)}
+  [data-banda="critico"]{--b:var(--tds-rojo);--b-fondo:var(--tds-rojo-fondo);--b-texto:var(--tds-rojo-texto)}
+  [data-banda="fragil"]{--b:var(--tds-naranja);--b-fondo:var(--tds-naranja-fondo);--b-texto:var(--tds-naranja-texto)}
+  [data-banda="desarrollo"]{--b:var(--tds-amarillo);--b-fondo:var(--tds-amarillo-fondo);--b-texto:var(--tds-amarillo-texto)}
+  [data-banda="solido"]{--b:var(--tds-verde);--b-fondo:var(--tds-verde-fondo);--b-texto:var(--tds-verde-texto)}
+  [data-banda="referente"]{--b:var(--tds-azul);--b-fondo:var(--tds-azul-fondo);--b-texto:var(--tds-azul-texto)}
+  [data-banda="incompleta"]{--b:var(--muted);--b-fondo:var(--paper-dim);--b-texto:var(--navy-deep)}
+  .ap-margen{font:600 .7rem 'Public Sans',sans-serif;color:var(--muted);display:block;margin-top:2px}
+  .ap-reclamada{border:0;padding:0;margin:0 0 18px}
+  .ap-reclamada legend{font-weight:600;color:var(--navy-deep);font-size:.9rem;margin-bottom:8px}
+  .ap-reclamada .opciones{display:flex;flex-wrap:wrap;gap:8px}
+  .ap-reclamada label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.9rem;cursor:pointer;min-height:40px;background:#fff}
+  .ap-reclamada input{accent-color:var(--teal);width:18px;height:18px;margin:0}
+  .ap-reclamada .ayuda{font-size:.8rem;color:var(--muted);margin:8px 0 0;line-height:1.5}
   .ap-score[data-banda] .num{border-color:var(--b)}
   .ap-chip[data-banda]{background:var(--b-fondo);color:var(--b-texto);border:1px solid var(--b)}
   @media (max-width:420px){ .ap-score{flex-direction:column;align-items:flex-start;gap:12px} .ap-score .num{width:76px;height:76px;font-size:1.9rem} }
@@ -271,12 +279,21 @@
             <label for="apGiro">¿A qué se dedica? <span style="font-weight:400;color:var(--muted)">(en las palabras que usaría un cliente)</span></label>
             <input type="text" id="apGiro" placeholder="comida mexicana" autocomplete="off">
           </div>
+          <fieldset class="ap-reclamada">
+            <legend>¿Ya reclamaste tu ficha en Google? <span style="font-weight:400;color:var(--muted)">(o sea, la administras tú)</span></legend>
+            <div class="opciones">
+              <label><input type="radio" name="apReclamada" value="si"> Sí</label>
+              <label><input type="radio" name="apReclamada" value="no"> No</label>
+              <label><input type="radio" name="apReclamada" value="nose" checked> No sé</label>
+            </div>
+            <p class="ayuda">Google no nos deja verlo. Si no sabes, no pasa nada: no cuenta ni a favor ni en contra.</p>
+          </fieldset>
 
           <button type="button" class="btn btn-gold" id="apIr1" style="width:100%;justify-content:center;">Buscar mi negocio</button>
 
           <div class="ap-privacy">
             <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l5.5 2.4v4c0 3.4-2.3 6.6-5.5 7.6C4.8 14 2.5 10.8 2.5 7.4v-4L8 1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            <span>Buscamos tu negocio por ti en Google Maps con estos tres datos — se mandan a Google para eso, y a nadie más. Nada se guarda en tu cuenta. Si además inicias sesión, las sugerencias las escribe una IA leyendo esos mismos resultados. Te sugerimos la ciudad según tu conexión a internet; no la guardamos y puedes cambiarla.</span>
+            <span>Buscamos tu negocio por ti en Google Maps con el nombre, la ciudad y a qué se dedica — se mandan a Google para eso, y a nadie más. Si tu ficha tiene sitio web, lo abrimos una vez para ver si funciona. Lo de la ficha reclamada solo se usa para calcular tu puntaje. Nada se guarda en tu cuenta. Si además inicias sesión, las sugerencias las escribe una IA leyendo esos mismos resultados. Te sugerimos la ciudad según tu conexión a internet; no la guardamos y puedes cambiarla.</span>
           </div>
         </div>
 
@@ -307,14 +324,14 @@
           <div id="apScore"></div>
 
           <div id="apPilaresBloque">
-            <h3 class="ap-sub">Tus cinco pilares</h3>
-            <p class="ap-subhelp">Cada pilar va de 0 a 100 y pesa distinto en tu TDS.</p>
+            <h3 class="ap-sub">Tus cinco componentes</h3>
+            <p class="ap-subhelp">Cada componente va de 0 a 100 y pesa distinto en tu TDS.</p>
             <div class="ap-pilares" id="apPilares"></div>
           </div>
 
           <div id="apAccionesBloque" hidden>
             <h3 class="ap-sub">Lo que más sube tu TDS</h3>
-            <p class="ap-subhelp">Cosas que puedes hacer tú mismo, con los puntos que sumaría cada una según la fórmula.</p>
+            <p class="ap-subhelp">Cosas que puedes hacer tú mismo, con los puntos que sumaría cada una según la fórmula. Es una estimación: no garantiza posiciones ni clientes.</p>
             <ul class="ap-acciones" id="apAcciones"></ul>
           </div>
 
@@ -353,17 +370,19 @@
           <details class="ap-desplegable" id="apMetodo">
             <summary>Cómo calculamos el TDS</summary>
             <div class="cuerpo">
-              <p>El <strong>Themora Digital Score (TDS)</strong> es un índice de 0 a 100 hecho con cinco pilares:</p>
+              <p>El <strong>Themora Digital Score (TDS 0.1)</strong> es un índice de 0 a 100 hecho con cinco componentes:</p>
               <ul>
-                <li><strong>Reputación (30 %)</strong>: tus estrellas y cuántas reseñas tienes. Con pocas reseñas, tu calificación se acerca al promedio de tu zona: 5 estrellas con 1 reseña no pesan igual que 4.7 con 100.</li>
-                <li><strong>Visibilidad (25 %)</strong>: en qué lugar sales buscando lo que vendes en tu ciudad. Los primeros 3 lugares cuentan completo; si solo te encontramos por tu nombre, cuenta 30 de 100.</li>
-                <li><strong>Fundamentos (20 %)</strong>: si tu ficha tiene sitio web y horario completo.</li>
-                <li><strong>Completitud (15 %)</strong>: cuántas fotos tiene tu ficha. Google solo nos deja contar hasta 10, así que 10 ya cuenta completo.</li>
+                <li><strong>Visibilidad (30 %)</strong>: buscamos lo que vendes desde 9 puntos de tu zona, con 2 búsquedas distintas (18 en total). Salir 1.º cuenta completo; cada lugar más abajo cuenta un poco menos, y después del 20.º ya no cuenta.</li>
+                <li><strong>Reputación (25 %)</strong>: tus estrellas y cuántas reseñas tienes. Con pocas reseñas, tu calificación se acerca a una calificación típica: 5 estrellas con 1 reseña no pesan igual que 4.7 con 100. Una estrella cuenta como 0, no como 20.</li>
+                <li><strong>Información (20 %)</strong>: si tu ficha tiene nombre, teléfono, dirección, categoría, horario de los 7 días y sitio web, y cuántas fotos tiene.</li>
+                <li><strong>Facilidad de contacto (15 %)</strong>: si te pueden llamar y si tu sitio web abre de verdad.</li>
                 <li><strong>Actividad (10 %)</strong>: si respondes reseñas y mantienes tu ficha al día.</li>
               </ul>
-              <p><strong>Lo que Google no nos deja ver no cuenta como cero.</strong> Hoy no podemos comprobar si respondes reseñas ni si tu ficha está reclamada; por eso Actividad queda fuera y su peso se reparte entre los demás pilares. Lo verás como «Evaluación parcial».</p>
-              <p><strong>El grupo de comparación</strong> son los negocios que salen buscando lo mismo que tú en tu ciudad (hasta 5). Si encontramos menos de 3, usamos una referencia fija de 4.7 estrellas.</p>
-              <p>Los pesos son una <strong>metodología inicial de Themora, todavía no validada</strong> con resultados reales de negocios. El TDS describe lo que vimos en esta búsqueda; no predice ventas.</p>
+              <p><strong>Lo que Google no nos deja ver no cuenta como cero.</strong> Hoy no podemos comprobar si respondes reseñas, ni si tienes mensajería o reservas en línea; eso queda fuera y su peso se reparte entre lo demás. Si medimos menos del 80 %, el resultado sale como «Evaluación incompleta», sin categoría.</p>
+              <p><strong>Ficha reclamada.</strong> Si nos dices que tu ficha no está reclamada, el TDS se multiplica por 0,85. Si no sabes, no cuenta ni a favor ni en contra.</p>
+              <p><strong>Margen de error.</strong> Con pocos datos el número es menos seguro; por eso lo mostramos con un «±». Si ese margen cruza el límite entre dos categorías, verás las dos (por ejemplo, «Frágil–En desarrollo»).</p>
+              <p><strong>Categorías:</strong> 0–39 Crítico · 40–59 Frágil · 60–74 En desarrollo · 75–89 Sólido · 90–100 Referente.</p>
+              <p><strong>TDS 0.1 – metodología en validación.</strong> Los pesos son una hipótesis de trabajo de Themora hasta comprobar que el puntaje anticipa resultados reales. El TDS describe lo que vimos en esta búsqueda; no predice ventas ni garantiza posiciones.</p>
               <p><strong>Contratar a Themora nunca cambia tu puntaje.</strong></p>
             </div>
           </details>
@@ -403,7 +422,7 @@
   const $ = id => document.getElementById(id);
 
   // Todo vive en memoria. Si cierras la pestaña, desaparece.
-  const datos = { nombre:'', ciudad:'', giro:'' };
+  const datos = { nombre:'', ciudad:'', giro:'', reclamada:'nose' };
 
   const PASOS = ['paso1','pasoCargando','pasoNoDisp','pasoResultado'];
   function mostrar(id){
@@ -421,6 +440,7 @@
   const MENSAJES_CARGA = [
     'Buscando tu negocio en Google Maps…',
     'Revisando calificación y reseñas…',
+    'Buscando lo que vendes desde distintos puntos de tu ciudad…',
     'Comparando con otros negocios de tu categoría…',
     'Armando tu resultado…',
   ];
@@ -446,6 +466,8 @@
     datos.nombre = $('apNombre').value.trim();
     datos.ciudad = $('apCiudad').value.trim();
     datos.giro   = $('apGiro').value.trim();
+    const marcada = document.querySelector('input[name="apReclamada"]:checked');
+    datos.reclamada = marcada ? marcada.value : 'nose';
 
     if(!datos.nombre){ $('apNombre').focus(); $('apNombre').style.borderColor='#b3402a'; return; }
     $('apNombre').style.borderColor='';
@@ -479,7 +501,7 @@
       const res = await fetch('/.netlify/functions/revisar-negocio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre: datos.nombre, ciudad: datos.ciudad, giro: datos.giro, accessToken: token || null }),
+        body: JSON.stringify({ nombre: datos.nombre, ciudad: datos.ciudad, giro: datos.giro, reclamada: datos.reclamada, accessToken: token || null }),
         signal: controlador.signal,
       });
       clearTimeout(corte);
@@ -514,55 +536,108 @@
     return '<span class="ap-stars">'+s+'</span><span class="num">'+cal.toFixed(1)+'</span>';
   }
 
-  /* ---- Themora Digital Score (la fórmula vive en tds.js) ---- */
+  /* ---- Themora Digital Score 0.1 (el motor vive en tds.js; los pesos en
+     models/tds-0.1.0.json). El resultado oficial lo calcula el servidor;
+     aquí solo se pinta y se simula con el mismo motor. ---- */
   const T = window.ThemoraTDS;
   const pct = n => Math.round(n * 100) + ' %';
+  const pts = n => (n > 0 ? '+' : '') + T.numEs(n, 1) + (Math.abs(n) === 1 ? ' punto' : ' puntos');
 
-  function scoreHTML(r, encontrado){
-    const b = T.BANDAS[r.banda];
-    const frase = encontrado ? b.frase : T.FRASE_NO_ENCONTRADO;
-    let html = '<div class="ap-score" data-banda="'+r.banda+'">' +
-      '<div class="num" aria-hidden="true"><span>'+r.tds+'<small>de 100</small></span></div>' +
-      '<div class="txt"><span class="titulo">Themora Digital Score · Índice de Salud Digital</span>' +
-      '<span class="ap-chip" data-banda="'+r.banda+'">'+r.tds+' de 100 · '+esc(b.nombre)+'</span>' +
-      '<p>'+esc(frase)+'</p></div></div>';
-    if(encontrado && r.parcial){
-      html += '<p class="ap-parcial"><strong>Evaluación parcial · '+r.pilaresMedidos+' de 5 pilares medidos.</strong> ' +
-        'Lo que Google no nos deja ver no cuenta como cero: queda fuera del cálculo.</p>';
+  const BANDAS = {
+    'Crítico':       { slug: 'critico',    frase: 'En las búsquedas que hicimos, a tu negocio le cuesta aparecer y a tu ficha le faltan datos básicos.' },
+    'Frágil':        { slug: 'fragil',     frase: 'Tu ficha tiene lo básico, pero en lo que medimos todavía hay componentes flojos.' },
+    'En desarrollo': { slug: 'desarrollo', frase: 'Tu ficha está bien encaminada; los componentes de abajo muestran qué queda por completar.' },
+    'Sólido':        { slug: 'solido',     frase: 'Tu ficha está muy completa y apareces bien en las búsquedas que hicimos.' },
+    'Referente':     { slug: 'referente',  frase: 'En las búsquedas que hicimos, tu ficha cumple casi todo lo que medimos.' },
+  };
+  const FRASE_NO_ENCONTRADO = 'No encontramos una ficha de tu negocio buscando su nombre y ciudad, así que no hay nada que medir todavía. El primer paso es crearla.';
+  const FRASE_INCOMPLETA = 'Con lo que pudimos comprobar no alcanza para darte una categoría: el número es solo orientativo.';
+  // Por qué un componente quedó sin medir, en palabras de ¿Aparezco?.
+  const SIN_MEDIR = {
+    V: 'No pudimos completar las búsquedas de lo que vendes desde distintos puntos de tu ciudad.',
+    R: 'Google no nos dio tus reseñas.',
+    I: 'Google no nos dio los datos de tu ficha.',
+    C: 'No pudimos comprobar cómo te contactan.',
+    A: 'Google no nos deja ver si respondes reseñas ni cuándo actualizaste tu ficha por última vez.',
+  };
+
+  // "Frágil–En desarrollo" → color del primero (el del puntaje).
+  function bandaDe(r){
+    if(r.status === 'not_evaluable') return { slug: 'incompleta', nombre: 'No evaluable' };
+    if(!r.category) return { slug: 'incompleta', nombre: 'Evaluación incompleta' };
+    const b = BANDAS[r.category.split('–')[0]] || { slug: 'incompleta', frase: '' };
+    return { slug: b.slug, nombre: r.category, frase: b.frase };
+  }
+
+  function scoreHTML(r){
+    const b = bandaDe(r);
+    const titulo = '<span class="titulo">Themora Digital Score · '+esc(r.model_label || '')+'</span>';
+    if(r.status === 'not_evaluable'){
+      return '<div class="ap-score" data-banda="incompleta"><div class="num" aria-hidden="true"><span>—</span></div>' +
+        '<div class="txt">'+titulo+'<span class="ap-chip" data-banda="incompleta">No evaluable</span><p>'+esc(FRASE_NO_ENCONTRADO)+'</p></div></div>';
     }
+    const margen = r.margin ? '± '+T.numEs(r.margin, 1) : '';
+    let html = '<div class="ap-score" data-banda="'+b.slug+'">' +
+      '<div class="num" aria-hidden="true"><span>'+r.tds+'<small>de 100</small>'+(margen ? '<span class="ap-margen">'+margen+'</span>' : '')+'</span></div>' +
+      '<div class="txt">'+titulo +
+      '<span class="ap-chip" data-banda="'+b.slug+'">'+r.tds+(margen ? ' '+margen : '')+' de 100 · '+esc(b.nombre)+'</span>' +
+      '<p>'+esc(r.category ? b.frase : FRASE_INCOMPLETA)+'</p></div></div>';
+    const notas = [];
+    if(r.category && r.category.includes('–')){
+      notas.push('<strong>Tu puntaje está en el límite entre dos categorías.</strong> Con el margen de error ('+margen+') puede caer en cualquiera de las dos.');
+    }
+    if(r.coverage < 1){
+      notas.push('<strong>'+(r.category ? 'Medimos' : 'Solo pudimos medir')+' el '+pct(r.coverage)+' de lo que cuenta el TDS.</strong> Lo que no pudimos comprobar no cuenta como cero: queda fuera del cálculo.');
+    }
+    if(r.flags.includes('claimed_unknown')) notas.push('No sabemos si tu ficha está reclamada, así que eso no cuenta ni a favor ni en contra.');
+    if(r.gate != null && r.gate < 1) notas.push('Como tu ficha no está reclamada, el TDS se multiplica por '+T.numEs(r.gate, 2)+'.');
+    if(r.flags.includes('default_references')) notas.push('Te comparamos con referencias generales del modelo, porque no teníamos 30 negocios parecidos al tuyo para comparar.');
+    if(notas.length) html += '<p class="ap-parcial">'+notas.join(' ')+'</p>';
     return html;
   }
 
-  function pilaresHTML(r){
-    return r.pilares.map(p => {
-      const cab = '<div class="cab"><b>'+esc(p.nombre)+'<span>'+pct(p.peso)+'</span></b>';
-      if(p.valor == null){
+  function pilaresHTML(r, pesos){
+    return r.components.map(c => {
+      const nombre = T.NOMBRES[c.code];
+      const cab = '<div class="cab"><b>'+esc(nombre)+'<span>'+(pesos ? pct(pesos[c.code]) : '')+'</span></b>';
+      if(!c.observed){
         return '<div class="ap-pilar nd">'+cab+'<span class="val nd">No lo pudimos comprobar</span></div>' +
-          '<p>'+esc(p.razon.replace(/^No lo pudimos comprobar:\s*/, ''))+'</p></div>';
+          '<p>'+esc(SIN_MEDIR[c.code])+'</p></div>';
       }
-      const v = Math.round(p.valor);
+      const v = Math.round(c.score);
       return '<div class="ap-pilar">'+cab+'<span class="val">'+v+'</span></div>' +
-        '<div class="ap-bar" role="img" aria-label="'+esc(p.nombre)+': '+v+' de 100"><i style="width:'+v+'%"></i></div>' +
-        '<p>'+esc(p.razon)+'</p></div>';
+        '<div class="ap-bar" role="img" aria-label="'+esc(nombre)+': '+v+' de 100"><i style="width:'+v+'%"></i></div>' +
+        '<p>'+esc(c.findings.join(' '))+'</p></div>';
     }).join('');
   }
 
+  /* El modelo para el simulador: el mismo archivo que usa el servidor. */
+  let modeloTDS = null;
+  const modeloListo = fetch('models/tds-0.1.0.json')
+    .then(res => (res.ok ? res.text() : Promise.reject(new Error(res.status))))
+    .then(texto => { modeloTDS = T.modelFromText(texto); })
+    .catch(() => { modeloTDS = null; });
+
   /* Simulador: cambia una cosa a la vez sobre los datos ya encontrados,
-     recalcula con tds.js y nunca vuelve a buscar. */
+     recalcula con el mismo motor y nunca vuelve a buscar. */
   let sim = null;
   function montarSimulador(entrada, real){
-    const e = entrada;
-    const opcionesFotos = [];
-    for(let n = (typeof e.fotos === 'number' ? e.fotos : 0); n <= T.TOPE_FOTOS; n++) opcionesFotos.push(n);
-    const actuales = e.totalResenas || 0;
+    const b = entrada.business;
+    const ic = b.info_checks || {};
+    const cc = b.contact_channels || {};
+    const fotos = typeof b.photos === 'number' ? b.photos : null;
+    const actuales = (b.reviews && b.reviews.count) || 0;
+    const opcionesFotos = fotos === null ? [] : [fotos].concat([5, 10, 20].filter(n => n > fotos));
     const opcionesResenas = [actuales].concat([10, 25, 50, 100].filter(n => n > actuales));
 
     let html = '';
-    if(!e.sitioWeb) html += '<label><input type="checkbox" data-ctrl="sitioweb"> Agregar un sitio web a mi ficha</label>';
-    if(!e.horarioCompleto) html += '<label><input type="checkbox" data-ctrl="horario"> Completar mi horario (los 7 días)</label>';
-    if(typeof e.fotos === 'number' && e.fotos < T.TOPE_FOTOS){
+    if(ic.website_linked === false) html += '<label><input type="checkbox" data-ctrl="sitioweb"> Agregar un sitio web que funcione a mi ficha</label>';
+    else if(cc.website_reachable === false) html += '<label><input type="checkbox" data-ctrl="sitioabre"> Arreglar mi sitio web para que abra</label>';
+    if(ic.hours_7_days === false) html += '<label><input type="checkbox" data-ctrl="horario"> Completar mi horario (los 7 días)</label>';
+    if(b.listing && b.listing.claimed === false) html += '<label><input type="checkbox" data-ctrl="reclamar"> Reclamar mi ficha en Google</label>';
+    if(opcionesFotos.length > 1){
       html += '<label>Fotos en mi ficha <select data-ctrl="fotos">' +
-        opcionesFotos.map(n => '<option value="'+n+'">'+n+(n === e.fotos ? ' (hoy)' : n === T.TOPE_FOTOS ? ' o más' : '')+'</option>').join('') +
+        opcionesFotos.map(n => '<option value="'+n+'">'+n+(n === fotos ? ' (hoy)' : '')+'</option>').join('') +
         '</select></label>';
     }
     if(opcionesResenas.length > 1){
@@ -570,32 +645,40 @@
         opcionesResenas.map(n => '<option value="'+n+'">'+n+(n === actuales ? ' (hoy)' : '')+'</option>').join('') +
         '</select></label>';
     }
-    $('apSimulador').hidden = !html;
+    $('apSimulador').hidden = !html || !modeloTDS;
     $('apSimulador').open = false;
     $('apSimCtrl').innerHTML = html;
-    sim = { entrada: e, real, usados: {} };
+    sim = { entrada, real, usados: {} };
     pintarSimulacion();
   }
 
   function pintarSimulacion(){
-    if(!sim) return;
+    if(!sim || !modeloTDS) return;
+    const b = sim.entrada.business;
     const cambios = {};
     $('apSimCtrl').querySelectorAll('[data-ctrl]').forEach(c => {
       const k = c.dataset.ctrl;
-      if(k === 'sitioweb' && c.checked) cambios.sitioWeb = true;
-      if(k === 'horario' && c.checked) cambios.horarioCompleto = true;
-      if(k === 'fotos') cambios.fotos = Number(c.value);
+      if(k === 'sitioweb' && c.checked){ cambios['info_checks.website_linked'] = true; cambios['contact_channels.website_reachable'] = true; }
+      if(k === 'sitioabre' && c.checked) cambios['contact_channels.website_reachable'] = true;
+      if(k === 'horario' && c.checked) cambios['info_checks.hours_7_days'] = true;
+      if(k === 'reclamar' && c.checked) cambios['listing.claimed'] = true;
+      if(k === 'fotos' && Number(c.value) !== b.photos) cambios.photos = Number(c.value);
       if(k === 'resenas'){
         const n = Number(c.value);
-        if(n !== (sim.entrada.totalResenas || 0)){
-          cambios.totalResenas = n;
-          if(typeof sim.entrada.calificacion !== 'number') cambios.calificacion = sim.entrada.referencia.valor;
+        if(n !== ((b.reviews && b.reviews.count) || 0)){
+          cambios['reviews.count'] = n;
+          // Sin reseñas todavía: se simula con la calificación típica del modelo.
+          if(b.reviews.rating == null) cambios['reviews.rating'] = modeloTDS.default_references.rating_median;
         }
       }
     });
-    const s = T.simular(sim.entrada, cambios);
-    $('apSimTexto').textContent = 'Simulación: ' + s.tds + ' (' + T.BANDAS[s.banda].nombre + ')';
-    $('apSimReal').textContent = 'Tu TDS real: ' + sim.real.tds;
+    let s;
+    try { s = T.simulate(sim.entrada, cambios, modeloTDS); }
+    catch(err){ $('apSimulador').hidden = true; return; }
+    const cat = s.category ? ' · '+s.category : '';
+    const delta = s.simulation.delta_points;
+    $('apSimTexto').textContent = 'Simulación: ' + s.tds + ' de 100' + cat + (delta ? ' (' + pts(delta) + ')' : '');
+    $('apSimReal').textContent = 'Tu TDS real: ' + sim.real.tds + '. ' + s.simulation.disclaimer_es;
   }
 
   $('apSimCtrl').addEventListener('change', e => {
@@ -615,24 +698,26 @@
     const negocio = g.nombre || datos.nombre;
     const r = data.tds;
     const entrada = data.entradaTDS;
+    const evaluable = r.status !== 'not_evaluable';
 
     $('apDonde').innerHTML = 'Buscamos en: <strong>'+esc(datos.ciudad)+'</strong>';
 
-    /* TDS y banda, arriba de todo */
-    $('apScore').innerHTML = scoreHTML(r, !!g.encontrado);
+    /* TDS, margen y categoría, arriba de todo */
+    $('apScore').innerHTML = scoreHTML(r);
 
-    /* Pilares, acciones y simulador: solo si hay ficha que medir */
-    $('apPilaresBloque').hidden = !g.encontrado;
-    $('apPilares').innerHTML = g.encontrado ? pilaresHTML(r) : '';
+    /* Componentes, acciones y simulador: solo si hay ficha que medir */
+    $('apPilaresBloque').hidden = !evaluable;
+    $('apPilares').innerHTML = evaluable ? pilaresHTML(r, data.pesosTDS) : '';
 
-    const acciones = g.encontrado && entrada ? T.acciones(entrada) : [];
+    // Acciones: las calcula el motor (mismo cálculo, cambiando solo ese dato).
+    const acciones = evaluable ? r.reasons : [];
     $('apAccionesBloque').hidden = !acciones.length;
     $('apAcciones').innerHTML = acciones.map(a =>
-      '<li><span>'+esc(a.texto)+'</span><span class="pts">+'+a.puntos+' '+(a.puntos === 1 ? 'punto' : 'puntos')+'</span></li>'
+      '<li><span>'+esc(a.action_es)+'</span><span class="pts">'+pts(a.gain_points)+' estimados</span></li>'
     ).join('');
 
-    if(g.encontrado && entrada) montarSimulador(entrada, r);
-    else { $('apSimulador').hidden = true; sim = null; }
+    $('apSimulador').hidden = true; sim = null;
+    if(evaluable && entrada) modeloListo.then(() => montarSimulador(entrada, r));
 
     /* Ficha encontrada: dirección, estrellas, reseñas reales */
     if(g.encontrado){
@@ -675,7 +760,7 @@
     $('apTodo').innerHTML = (data.sugerencias || []).map(s => '<li>'+esc(s)+'</li>').join('');
 
     // Solo categorías: nunca el número, los pilares, el nombre ni la ciudad.
-    stat('aparezco-resultado', { banda: r.banda, parcial: r.parcial ? 'si' : 'no', con_ia: data.conIA ? 'si' : 'no', encontrado: g.encontrado ? 'si' : 'no' });
+    stat('aparezco-resultado', { banda: bandaDe(r).slug, parcial: r.coverage < 1 ? 'si' : 'no', con_ia: data.conIA ? 'si' : 'no', encontrado: g.encontrado ? 'si' : 'no' });
     mostrar('pasoResultado');
     if(negocio) document.title = '¿Aparece ' + negocio + '? | Themora';
   }

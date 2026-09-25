@@ -66,7 +66,29 @@
 // paneles de Netlify quedan configurados como GOOGLE_MAPS_API_KEY en vez de
 // GOOGLE_PLACES_API_KEY, y con solo uno de los dos la búsqueda se veía como
 // "no configurada" aunque la llave sí estuviera puesta.
+const fs = require("fs");
+const path = require("path");
 const TDS = require("../../tds.js");
+
+/* Parámetros del TDS: models/tds-0.1.0.json (incluido en la función por
+   netlify.toml). Leído como texto, su parameters_hash es idéntico al del
+   motor Python; el require de respaldo asegura que el archivo viaje en el
+   paquete aunque la ruta cambie. */
+function cargarModelo() {
+  const candidatos = [
+    path.join(__dirname, "..", "..", "models", "tds-0.1.0.json"),
+    path.join(process.cwd(), "models", "tds-0.1.0.json"),
+  ];
+  for (const archivo of candidatos) {
+    try {
+      return TDS.modelFromText(fs.readFileSync(archivo, "utf8"));
+    } catch {
+      /* siguiente */
+    }
+  }
+  return TDS.modelFromDict(require("../../models/tds-0.1.0.json"));
+}
+const MODELO = cargarModelo();
 
 function googleApiKey() {
   return process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY || "";
@@ -77,7 +99,14 @@ const LIMITE_DIARIO_POR_IP = 5;
 const GOOGLE_FIELDS_BUSQUEDA_NOMBRE =
   "places.id,places.displayName,places.formattedAddress,places.rating," +
   "places.userRatingCount,places.googleMapsUri,places.businessStatus," +
-  "places.nationalPhoneNumber,places.regularOpeningHours,places.websiteUri";
+  "places.nationalPhoneNumber,places.regularOpeningHours,places.websiteUri," +
+  "places.location,places.primaryType,places.primaryTypeDisplayName";
+// Malla de Visibilidad: pedir SOLO el id cae en la tarifa "Text Search
+// Essentials (IDs Only)" de Google, que no se cobra.
+const GOOGLE_FIELDS_MALLA = "places.id";
+const MALLA_PASO_KM = 2;       // distancia entre puntos de la malla 3 × 3
+const MALLA_RADIO_M = 2000;    // cada búsqueda "desde" un punto
+const MALLA_RESULTADOS = 20;   // el modelo cuenta posiciones hasta la 20
 // Campos livianos: se piden para hasta 10 negocios del mismo giro, así que
 // solo lo necesario para (a) encontrar la posición del propio negocio y
 // (b) calcular el promedio de la competencia — nunca su ficha completa.
@@ -182,7 +211,7 @@ async function haySesion(accessToken) {
 /* ---------------------------------------------------------
    Google Places API (New)
    --------------------------------------------------------- */
-async function buscarGoogle(query, fieldMask, pageSize) {
+async function buscarGoogle(query, fieldMask, pageSize, extra) {
   const res = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
     headers: {
@@ -190,7 +219,7 @@ async function buscarGoogle(query, fieldMask, pageSize) {
       "X-Goog-Api-Key": googleApiKey(),
       "X-Goog-FieldMask": fieldMask,
     },
-    body: JSON.stringify({ textQuery: query, pageSize: pageSize || 5 }),
+    body: JSON.stringify({ textQuery: query, pageSize: pageSize || 5, ...(extra || {}) }),
   });
   if (!res.ok) {
     const texto = await res.text();
@@ -212,6 +241,97 @@ async function detalleGoogle(placeId) {
   );
   if (!res.ok) return null;
   return res.json();
+}
+
+/* ---------------------------------------------------------
+   Visibilidad (TDS): 2 consultas de categoría × 9 puntos alrededor
+   del negocio. En cada punto se anota en qué lugar (1–20) sale el
+   negocio, o null si no sale. Una búsqueda que falla NO se anota:
+   no es lo mismo "no apareció" que "no pudimos buscar".
+   --------------------------------------------------------- */
+function consultasCategoria(giro, tipoGoogle) {
+  const vistas = new Set();
+  const consultas = [];
+  for (const c of [giro, tipoGoogle]) {
+    const t = limpiar(c, MAX_TEXTO);
+    if (t && !vistas.has(t.toLowerCase())) {
+      vistas.add(t.toLowerCase());
+      consultas.push(t);
+    }
+  }
+  if (consultas.length === 1) consultas.push(consultas[0] + " cerca de mí");
+  return consultas;
+}
+
+function puntosMalla(lat, lng) {
+  const dLat = MALLA_PASO_KM / 111.32;
+  const dLng = MALLA_PASO_KM / (111.32 * Math.cos((lat * Math.PI) / 180));
+  const puntos = [];
+  for (const i of [-1, 0, 1]) {
+    for (const j of [-1, 0, 1]) puntos.push({ latitude: lat + i * dLat, longitude: lng + j * dLng });
+  }
+  return puntos;
+}
+
+async function medirMalla(consultas, ubicacion, placeId) {
+  if (!consultas.length || !ubicacion || typeof ubicacion.latitude !== "number") return [];
+  const puntos = puntosMalla(ubicacion.latitude, ubicacion.longitude);
+  const capturado = new Date().toISOString();
+  const tareas = [];
+  consultas.forEach((consulta, q) => {
+    puntos.forEach((centro, p) => {
+      tareas.push(
+        conTiempo(
+          buscarGoogle(consulta, GOOGLE_FIELDS_MALLA, MALLA_RESULTADOS, {
+            locationBias: { circle: { center: centro, radius: MALLA_RADIO_M } },
+          }),
+          4000
+        )
+          .then((lugares) => {
+            const i = lugares.findIndex((l) => l.id === placeId);
+            // Sin el texto de la búsqueda ni coordenadas: solo etiquetas.
+            return {
+              query: "categoria-" + (q + 1), query_type: "category", grid_point: "p" + (p + 1),
+              rank: i === -1 ? null : i + 1, source: "google-places", captured_at: capturado,
+            };
+          })
+          .catch(() => null)
+      );
+    });
+  });
+  return (await Promise.all(tareas)).filter(Boolean);
+}
+
+/* ¿El sitio web de la ficha abre? true si responde bien; false si no existe
+   (404/410, dominio inexistente, conexión rechazada); null si no se puede
+   saber (tiempo agotado, bloqueo a robots, error del servidor). Solo
+   http(s) y nunca direcciones internas. No se guarda nada de lo que devuelve. */
+async function sitioAbre(url) {
+  let u;
+  try {
+    u = new URL(url);
+  } catch {
+    return false;
+  }
+  if (!/^https?:$/.test(u.protocol)) return null;
+  const host = u.hostname.toLowerCase();
+  if (host === "localhost" || host.endsWith(".local") || host.endsWith(".internal") ||
+      /^[\d.]+$/.test(host) || host.includes(":")) return null;
+  const control = new AbortController();
+  const corte = setTimeout(() => control.abort(), 3000);
+  try {
+    const res = await fetch(u.href, { method: "GET", redirect: "follow", signal: control.signal,
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; ThemoraAparezco/1.0)" } });
+    try { await res.body?.cancel(); } catch { /* nada */ }
+    if (res.status < 400) return true;
+    if (res.status === 404 || res.status === 410) return false;
+    return null;
+  } catch (err) {
+    const codigo = err && err.cause && err.cause.code;
+    return codigo === "ENOTFOUND" || codigo === "ECONNREFUSED" ? false : null;
+  } finally {
+    clearTimeout(corte);
+  }
 }
 
 /* Promedio de calificación y reseñas de la competencia real: los negocios
@@ -251,7 +371,12 @@ async function consultarGoogle(nombre, ciudad, giro) {
   }
 
   const posicion = candidatosGiro.findIndex((p) => p.id === mejor.id);
-  const detalle = await detalleGoogle(mejor.id).catch(() => null);
+  const tipoGoogle = (mejor.primaryTypeDisplayName && mejor.primaryTypeDisplayName.text) || "";
+  const [detalle, malla, sitioAccesible] = await Promise.all([
+    detalleGoogle(mejor.id).catch(() => null),
+    medirMalla(consultasCategoria(giro, tipoGoogle), mejor.location, mejor.id).catch(() => []),
+    mejor.websiteUri ? sitioAbre(mejor.websiteUri) : Promise.resolve(false),
+  ]);
 
   const reseñas = ((detalle && detalle.reviews) || []).slice(0, 3).map((r) => ({
     texto: limpiar((r.text && r.text.text) || "", 220),
@@ -278,29 +403,84 @@ async function consultarGoogle(nombre, ciudad, giro) {
     competencia: calcularCompetencia(candidatosGiro, mejor.id),
     consultaNombre,
     consultaGiro,
+    // Solo para armar la entrada del TDS (entradaMotor); no se muestran.
+    tipoPrincipal: mejor.primaryType || null,
+    posicionNombre: candidatosNombre.indexOf(mejor) + 1,
+    malla,
+    sitioAccesible,
   };
 }
 
 /* ---------------------------------------------------------
-   Themora Digital Score — la entrada que ve tds.js. Solo datos
-   observados, sin nombre, dirección, teléfono ni reseñas: la
-   página la recibe para calcular acciones y el simulador sin
-   volver a buscar.
+   Themora Digital Score — la entrada del motor (tds.js), con el
+   formato de score-input.schema.json. Solo datos observados, sin
+   nombre, dirección, teléfono, ciudad, giro ni reseñas: la página
+   la recibe para el simulador sin volver a buscar.
+
+   Lo que Google no nos da va como null (nunca cuenta como cero):
+   si respondes reseñas, tu última actividad, mensajería, reservar
+   o pedir, y si tus datos coinciden en otras fuentes. Sin una
+   cohorte de 30 negocios o más, el motor usa las referencias por
+   defecto del modelo.
    --------------------------------------------------------- */
-function entradaTDS(g, giro) {
-  return {
-    encontrado: !!g.encontrado,
-    calificacion: g.encontrado && typeof g.calificacion === "number" ? g.calificacion : null,
-    totalResenas: (g.encontrado && g.totalResenas) || 0,
-    sitioWeb: !!(g.encontrado && g.sitioWeb),
-    horarioCompleto: !!(g.encontrado && g.horarioCompleto),
-    fotos: g.encontrado && typeof g.fotos === "number" ? g.fotos : null,
-    posicionGiro: (g.encontrado && g.posicion) || null,
-    // Sin giro, la búsqueda "por lo que vendes" usa el propio nombre y casi
-    // siempre sale #1: eso no mide nada, así que Visibilidad queda fuera.
-    giroMedible: !!giro,
-    referencia: TDS.referencia(g.competencia),
+const RECLAMADA = { si: true, no: false };
+
+function entradaMotor(g, reclamada, ahora) {
+  const capturado = ahora || new Date().toISOString();
+  const ev = (field, source) => ({ field, source: source || "google-places", captured_at: capturado });
+  const listing = { locatable: !!g.encontrado, claimed: g.encontrado && reclamada in RECLAMADA ? RECLAMADA[reclamada] : null };
+  const business = {
+    business_id: "aparezco",
+    sector: /restaurant/.test(g.tipoPrincipal || "") ? "restaurantes" : "default",
+    zone: "consulta-aparezco",
+    listing,
+    evidence: [ev("listing", listing.claimed === null ? "google-places" : "google-places+declarado-por-el-dueño")],
   };
+  if (!g.encontrado) return { model_version: MODELO.version, business, cohorts: [] };
+
+  const count = typeof g.totalResenas === "number" ? g.totalResenas : 0;
+  business.reviews = {
+    rating: count > 0 && typeof g.calificacion === "number" ? g.calificacion : null,
+    count, responded: null, last_30d: null,
+  };
+  business.evidence.push(ev("reviews"));
+
+  const obs = (g.malla || []).slice();
+  if (g.posicionNombre > 0) {
+    obs.push({ query: "nombre", query_type: "name", grid_point: "ciudad", rank: g.posicionNombre,
+      source: "google-places", captured_at: capturado });
+  }
+  business.visibility_observations = obs;
+
+  business.info_checks = {
+    name: true,
+    phone: !!g.telefono,
+    address_or_service_area: !!g.direccion,
+    primary_category: !!g.tipoPrincipal,
+    hours_7_days: !!g.horarioCompleto,
+    website_linked: !!g.sitioWeb,
+    consistent_across_sources: null,
+  };
+  for (const k of Object.keys(business.info_checks)) {
+    if (business.info_checks[k] !== null) business.evidence.push(ev("info_checks." + k));
+  }
+
+  business.photos = typeof g.fotos === "number" ? g.fotos : null;
+  if (business.photos !== null) business.evidence.push(ev("photos"));
+
+  business.contact_channels = {
+    call: !!g.telefono,
+    website_reachable: g.sitioWeb ? (typeof g.sitioAccesible === "boolean" ? g.sitioAccesible : null) : false,
+    messaging: null,
+    book_or_order: null,
+  };
+  for (const k of Object.keys(business.contact_channels)) {
+    if (business.contact_channels[k] !== null) {
+      business.evidence.push(ev("contact_channels." + k, k === "website_reachable" && g.sitioWeb ? "verificacion-directa" : undefined));
+    }
+  }
+  business.days_since_owner_activity = null;
+  return { model_version: MODELO.version, business, cohorts: [] };
 }
 
 /* ---------------------------------------------------------
@@ -521,6 +701,7 @@ exports.handler = async (event) => {
   const nombre = limpiar(payload.nombre, MAX_TEXTO);
   const ciudad = limpiar(payload.ciudad, MAX_TEXTO);
   const giro = limpiar(payload.giro, MAX_TEXTO);
+  const reclamada = limpiar(payload.reclamada, 10);
   if (!nombre) return respuesta(400, { error: "Falta el nombre del negocio." });
 
   const ip = obtenerIp(event);
@@ -533,10 +714,12 @@ exports.handler = async (event) => {
   }
 
   try {
-    const [google, apple] = await Promise.all([
+    const [googleCompleto, apple] = await Promise.all([
       conTiempo(consultarGoogle(nombre, ciudad, giro), 8000),
       conTiempo(consultarApple(nombre, ciudad), 6000).catch(() => ({ configurado: false, encontrado: null })),
     ]);
+    // Lo que solo sirve para la entrada del TDS no viaja a la IA ni a la página.
+    const { malla, sitioAccesible, tipoPrincipal, posicionNombre, ...google } = googleCompleto;
 
     let sugerencias;
     const sesionActiva = process.env.ANTHROPIC_API_KEY && (await haySesion(payload.accessToken));
@@ -553,10 +736,12 @@ exports.handler = async (event) => {
 
     const parametros = evaluarParametros(google, apple);
     // El TDS lo calcula solo tds.js; Apple Maps se muestra pero no suma (FR-010).
-    const entrada = entradaTDS(google, giro);
-    const tds = TDS.calcular(entrada);
+    const entrada = entradaMotor(googleCompleto, reclamada);
+    const tds = TDS.score(entrada, MODELO);
 
-    return respuesta(200, { ok: true, google, apple, sugerencias, parametros, tds, entradaTDS: entrada, conIA: !!sesionActiva });
+    return respuesta(200, {
+      ok: true, google, apple, sugerencias, parametros, tds, entradaTDS: entrada, pesosTDS: MODELO.weights, conIA: !!sesionActiva,
+    });
   } catch (err) {
     console.error("[revisar-negocio] error:", err.message);
     return respuesta(502, { error: "No se pudo completar la búsqueda en este momento. Intenta de nuevo en un minuto." });

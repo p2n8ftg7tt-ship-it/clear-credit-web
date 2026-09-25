@@ -189,6 +189,12 @@
 # publicado (no en vistas previas). No tiene dirección web: nadie puede
 # llamarlo desde fuera.
 # ─────────────────────────────────────────────────────────────────────
+# Parámetros del Themora Digital Score (models/tds-0.1.0.json): la función
+# revisar-negocio los lee como archivo para que el parameters_hash sea el
+# mismo que el del motor Python.
+[functions]
+  included_files = ["models/*.json"]
+
 [functions."tasas-agente"]
   schedule = "0 13 * * *"
 
