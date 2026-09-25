@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#1c1712">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/credito.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ===== HERO ===== */
@@ -65,13 +65,13 @@
     box-shadow:0 10px 30px rgba(0,0,0,.18);}
   .cr-process-item{display:flex;align-items:center;gap:9px;padding:8px 18px;position:relative;}
   .cr-process-item + .cr-process-item::before{content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:rgba(255,255,255,.16);}
-  .cr-process-item>span{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font:700 .74rem 'Fraunces',serif;flex:none;}
+  .cr-process-item>span{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font:700 .74rem var(--font-display);flex:none;}
   .cr-process-item strong{display:block;color:#fff;font-size:.82rem;line-height:1.25;}
   .cr-process-item small{display:block;color:rgba(246,242,232,.55);font-size:.7rem;line-height:1.3;}
   .cr-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius-lg);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22);}
   .cr-privacy{font-size:.72rem;color:var(--teal);font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px 14px;}
   .cr-dropzone{min-height:310px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius-lg);transition:.2s ease;cursor:pointer;}
-  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:#fffaf0;}
+  .cr-dropzone:hover,.cr-dropzone.is-dragging{border-color:var(--gold);background:var(--copia-lavanda);}
   .cr-dropzone.has-file{min-height:120px;}
   .cr-dropzone:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
   .cr-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
@@ -80,7 +80,7 @@
   .cr-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px;}
   .cr-upload-empty p{color:rgba(27,27,24,.62);margin:0 0 20px;}
   .cr-upload-empty small{color:rgba(27,27,24,.5);margin-top:14px;font-size:.75rem;}
-  .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius-pill);font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .cr-select-btn,.cr-analyze-btn,.cr-outline-btn{border:0;border-radius:var(--radius-pill);font-family:var(--font-body);font-weight:700;cursor:pointer;transition:.2s ease;}
   .cr-select-btn{background:var(--navy);color:#fff;padding:12px 20px;}
   .cr-select-btn:hover,.cr-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2);}
   .cr-file-ready{display:flex;align-items:center;text-align:left;width:min(100%,680px);}
@@ -114,7 +114,7 @@
   .cr-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:rgba(246,242,232,.14);border:1px solid rgba(246,242,232,.14);margin-bottom:24px;}
   .cr-kpi{background:var(--navy-deep);padding:18px;display:flex;flex-direction:column;}
   .cr-kpi span{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(246,242,232,.5);}
-  .cr-kpi strong{font-family:'Fraunces',serif;font-size:1.55rem;color:#fff;}
+  .cr-kpi strong{font-family:var(--font-display);font-size:1.55rem;color:#fff;}
   .cr-kpi small{color:rgba(246,242,232,.55);}
   .cr-groups{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
   .cr-group{background:var(--paper);color:var(--ink);padding:24px;border-radius:var(--radius-lg);}
@@ -132,7 +132,7 @@
   .cr-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
   .cr-summary-item{display:flex;flex-direction:column;gap:3px;}
   .cr-summary-item span{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(27,27,24,.5);}
-  .cr-summary-item strong{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--navy);word-break:break-word;}
+  .cr-summary-item strong{font-family:var(--font-display);font-size:1.05rem;color:var(--navy);word-break:break-word;}
   .cr-summary-item small{color:rgba(27,27,24,.6);font-size:.78rem;}
   .cr-summary-note{margin:16px 0 0;font-size:.76rem;color:rgba(27,27,24,.55);}
   .cr-finding{border-bottom:1px solid var(--line);padding:14px 0;}
@@ -152,10 +152,10 @@
   .cr-strategy-head p{color:rgba(27,27,24,.62);margin:0;}
   .cr-strategy-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
   .cr-strategy-list li{display:grid;grid-template-columns:36px 1fr;gap:13px;background:#fff;padding:16px;border-left:3px solid var(--gold);}
-  .cr-step-number{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-weight:700;}
+  .cr-step-number{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:var(--font-display);font-weight:700;}
   .cr-strategy-list strong{display:block;color:var(--navy);margin-bottom:2px;}
   .cr-strategy-list p{font-size:.86rem;color:rgba(27,27,24,.68);margin:0;}
-  .cr-solution-toggle{margin-top:12px;border:0;border-radius:var(--radius-pill);background:var(--teal);color:#fff;padding:10px 14px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-solution-toggle{margin-top:12px;border:0;border-radius:var(--radius-pill);background:var(--teal);color:#fff;padding:10px 14px;font-family:var(--font-body);font-weight:700;cursor:pointer;}
   .cr-solution-toggle:hover{filter:brightness(.94);}
   .cr-solution-toggle:focus-visible,.cr-solution-submit:focus-visible,.cr-copy-solution:focus-visible,.cr-google-address:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px;}
   .cr-solution-form{margin-top:14px;padding:16px;background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);}
@@ -180,9 +180,9 @@
   .cr-form-alert{grid-column:1/-1;margin:0!important;padding:10px 12px;border-left:3px solid #a34838;background:#fff0ed;color:#7e3127!important;font-size:.8rem!important;}
   .cr-form-alert[hidden]{display:none!important;}
   .cr-address-tools{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-  .cr-google-address{border:1px solid rgba(11,39,72,.24);border-radius:var(--radius-pill);background:#fff;color:var(--teal);padding:9px 12px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-google-address{border:1px solid rgba(11,39,72,.24);border-radius:var(--radius-pill);background:#fff;color:var(--teal);padding:9px 12px;font-family:var(--font-body);font-weight:700;cursor:pointer;}
   .cr-address-tools small{color:rgba(27,27,24,.58);}
-  .cr-solution-submit,.cr-copy-solution{margin-top:13px;border:0;border-radius:var(--radius-pill);padding:10px 14px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer;}
+  .cr-solution-submit,.cr-copy-solution{margin-top:13px;border:0;border-radius:var(--radius-pill);padding:10px 14px;font-family:var(--font-body);font-weight:700;cursor:pointer;}
   .cr-solution-submit{background:var(--navy);color:#fff;}
   .cr-copy-solution{background:var(--gold);color:#fff;}
   .cr-solution-result{margin-top:14px;border-top:1px solid var(--line);padding-top:14px;}
@@ -225,7 +225,7 @@
   /* ===== REPORTE OFICIAL Y MODELOS DE PUNTAJE ===== */
   .credit-report-callout{padding:34px 0;background:var(--navy-deep);color:#fff;}
   .credit-report-row{display:flex;align-items:center;justify-content:space-between;gap:28px;}
-  .credit-report-row h2{color:#fff;font:600 clamp(1.35rem,2.5vw,1.9rem)/1.15 'Fraunces',serif;letter-spacing:-.025em;margin:0 0 6px;}
+  .credit-report-row h2{color:#fff;font:600 clamp(1.35rem,2.5vw,1.9rem)/1.15 var(--font-display);letter-spacing:-.025em;margin:0 0 6px;}
   .credit-report-row p{margin:0;color:rgba(255,255,255,.72);max-width:68ch;}
   .official-report-btn{flex:none;display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:var(--radius-pill);background:var(--gold);color:var(--navy-deep);text-decoration:none;font-weight:800;box-shadow:0 10px 25px rgba(0,0,0,.16);transition:transform .2s ease,box-shadow .2s ease;}
   .official-report-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.22);}
@@ -234,7 +234,7 @@
   .score-model-intro{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px;}
   .score-model-card{padding:26px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;}
   .score-model-card .model-name{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
-  .score-model-card .model-tag{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-weight:800;}
+  .score-model-card .model-tag{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-family:var(--font-display);font-weight:800;}
   .score-model-card h3{margin:0;color:var(--navy);font-size:1.25rem;}
   .score-model-card p{margin:0;color:rgba(12,37,56,.72);font-size:.93rem;}
   .score-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px;}
@@ -248,7 +248,7 @@
   .decision-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;}
   .decision-table{width:100%;border-collapse:collapse;min-width:820px;}
   .decision-table th,.decision-table td{padding:17px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:.85rem;}
-  .decision-table th{background:var(--navy-deep);color:#fff;font-family:'Public Sans',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;}
+  .decision-table th{background:var(--navy-deep);color:#fff;font-family:var(--font-body);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;}
   .decision-table tbody tr:last-child td{border-bottom:0;}
   .decision-table .tier{font-weight:800;color:var(--navy);white-space:nowrap;}
   .decision-table .tier small{display:block;color:var(--teal);font-weight:700;margin-top:2px;}
@@ -262,7 +262,7 @@
   .range-seg{flex:1 1 0;min-width:78px;padding:20px 14px;display:flex;flex-direction:column;gap:4px;color:#fff;position:relative;}
   .range-seg::after{content:'';position:absolute;right:0;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.28);}
   .range-seg:last-child::after{display:none;}
-  .range-seg .num{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;}
+  .range-seg .num{font-family:var(--font-display);font-size:1.2rem;font-weight:700;}
   .range-seg .lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.92;}
   .range-seg.r1{background:#a63a26;flex-grow:280;}
   .range-seg.r2{background:#b8622f;flex-grow:90;}
@@ -272,7 +272,7 @@
   .range-caption{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:30px;}
   .factor-grid{display:grid;gap:16px;}
   .factor-row{display:grid;grid-template-columns:48px 1fr;gap:14px 16px;align-items:center;}
-  .factor-pct{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--navy);text-align:right;}
+  .factor-pct{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--navy);text-align:right;}
   .factor-track{grid-column:2;grid-row:1;height:10px;border-radius:999px;background:var(--line);overflow:hidden;}
   .factor-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold-light),var(--gold));}
   .factor-desc{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;}
@@ -290,8 +290,8 @@
   /* Cada tarjeta lleva el color de marca de su buró. Es el color real de cada
      compañía, que es lo que la gente reconoce, sin reproducir su logotipo. */
   .bureau-card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--bureau,var(--navy));border-radius:var(--radius-lg);padding:22px;transition:box-shadow .18s ease,transform .18s ease;}
-  .bureau-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(42,33,24,.1);}
-  .bureau-card .bureau-badge{width:44px;height:44px;border-radius:50%;background:var(--bureau,var(--navy-deep));color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;font-size:.95rem;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--bureau,var(--navy-deep)) 38%,transparent);}
+  .bureau-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(18,63,79,.1);}
+  .bureau-card .bureau-badge{width:44px;height:44px;border-radius:50%;background:var(--bureau,var(--navy-deep));color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:.95rem;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--bureau,var(--navy-deep)) 38%,transparent);}
   .bureau-card h4{color:var(--bureau,var(--navy));}
   /* Colores de marca: Equifax rojo, Experian morado, TransUnion azul */
   .bureau-card.is-equifax{--bureau:#b32541;}
@@ -843,7 +843,7 @@
     Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
   </div>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

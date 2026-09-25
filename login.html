@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/login.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ===== HERO con tarjeta flotante ===== */
@@ -37,9 +37,9 @@
 
   /* ===== Sugerencias de dominio de correo ===== */
   .mail-suggest-wrap{position:relative}
-  .mail-suggest{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 14px 34px rgba(42,33,24,.18);padding:5px;max-height:232px;overflow-y:auto}
+  .mail-suggest{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 14px 34px rgba(18,63,79,.18);padding:5px;max-height:232px;overflow-y:auto}
   .mail-suggest[hidden]{display:none}
-  .mail-suggest-item{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 11px;border-radius:6px;font:400 .86rem 'Public Sans',sans-serif;color:var(--ink);cursor:pointer}
+  .mail-suggest-item{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 11px;border-radius:6px;font:400 .86rem var(--font-body);color:var(--ink);cursor:pointer}
   .mail-suggest-item b{font-weight:700;color:var(--navy)}
   .mail-suggest-user{color:var(--muted)}
   .mail-suggest-item:hover,.mail-suggest-item.is-active{background:var(--paper-dim)}
@@ -47,12 +47,12 @@
   /* ===== Contraseña: ver, medidor y reglas ===== */
   .pass-wrap{position:relative;display:flex;align-items:stretch}
   .pass-wrap input{flex:1;padding-right:60px}
-  .pass-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--teal);font:700 .74rem 'Public Sans',sans-serif;cursor:pointer;padding:6px 8px;border-radius:6px}
+  .pass-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--teal);font:700 .74rem var(--font-body);cursor:pointer;padding:6px 8px;border-radius:6px}
   .pass-eye:hover{background:var(--paper-dim)}
 
   .pass-meter{display:flex;align-items:center;gap:10px;margin-top:8px}
   .pass-meter[hidden]{display:none}
-  .pass-bar{flex:1;height:6px;border-radius:99px;background:rgba(42,33,24,.12);overflow:hidden}
+  .pass-bar{flex:1;height:6px;border-radius:99px;background:rgba(18,63,79,.12);overflow:hidden}
   .pass-bar span{display:block;height:100%;width:0;border-radius:99px;transition:width .25s ease,background .25s ease}
   .pass-level{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;min-width:74px;text-align:right}
   .pass-meter[data-score="0"] .pass-bar span{width:8%;background:#b3402a}
@@ -71,7 +71,7 @@
   .pass-rules[hidden]{display:none}
   .pass-rules li{display:flex;align-items:flex-start;gap:8px;font-size:.74rem;color:var(--muted);line-height:1.45}
   .pass-rules li b{color:var(--navy-deep);font-weight:700}
-  .pass-rules i{flex:none;width:14px;height:14px;margin-top:2px;border-radius:50%;border:1.5px solid rgba(42,33,24,.25);position:relative}
+  .pass-rules i{flex:none;width:14px;height:14px;margin-top:2px;border-radius:50%;border:1.5px solid rgba(18,63,79,.25);position:relative}
   .pass-rules li.is-ok{color:var(--good)}
   .pass-rules li.is-ok b{color:var(--good)}
   .pass-rules li.is-ok i{background:var(--good);border-color:var(--good)}
@@ -296,7 +296,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

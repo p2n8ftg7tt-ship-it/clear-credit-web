@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,12 +24,12 @@
 <link rel="canonical" href="https://mithemora.com/agendar.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .ag-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:start}
-  .ag-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 10px 30px rgba(42,33,24,.06)}
-  .ag-card h2{font:600 1.35rem 'Fraunces',serif;color:var(--navy-deep);margin:0 0 6px}
+  .ag-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 10px 30px rgba(18,63,79,.06)}
+  .ag-card h2{font:600 1.35rem var(--font-display);color:var(--navy-deep);margin:0 0 6px}
   .ag-card>p{color:var(--muted);font-size:.88rem;margin:0 0 18px}
   .ag-or{display:flex;align-items:center;gap:14px;margin:26px 0;color:var(--muted);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
   .ag-or::before,.ag-or::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -41,7 +41,7 @@
   .ag-check input{appearance:auto;width:15px;height:15px;margin:0;padding:0;border:0;border-radius:0;background:none;accent-color:var(--gold)}
   .ag-check.is-on{border-color:var(--gold);background:var(--paper-dim)}
   .ag-side{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px 24px}
-  .ag-side h3{font:700 .82rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin:0 0 14px}
+  .ag-side h3{font:700 .82rem var(--font-body);text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin:0 0 14px}
   .ag-side li{list-style:none;position:relative;padding-left:22px;margin-bottom:12px;font-size:.85rem;color:var(--ink);line-height:1.55}
   .ag-side li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
   .ag-side .ag-note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted);line-height:1.6}
@@ -206,7 +206,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

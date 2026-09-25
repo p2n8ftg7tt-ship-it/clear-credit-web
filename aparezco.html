@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,14 +24,14 @@
 <link rel="canonical" href="https://mithemora.com/aparezco.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .ap-wrap{max-width:720px;margin-inline:auto;padding:0 20px}
 
   /* Panel flotante sobre el hero */
   .ap-hero{padding-bottom:150px}
-  .ap-card{position:relative;z-index:3;margin-top:-108px;background:rgba(255,255,255,.94);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-radius:var(--radius-xl);box-shadow:0 26px 68px rgba(42,33,24,.22);padding:32px 30px}
+  .ap-card{position:relative;z-index:3;margin-top:-108px;background:rgba(255,255,255,.94);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-radius:var(--radius-xl);box-shadow:0 26px 68px rgba(18,63,79,.22);padding:32px 30px}
   @media (max-width:620px){ .ap-card{padding:24px 20px;margin-top:-86px} .ap-hero{padding-bottom:128px} }
 
   .ap-step{display:none}
@@ -39,14 +39,14 @@
   @keyframes apIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   .ap-count{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
-  .ap-q{font-family:'Fraunces',serif;font-size:1.5rem;line-height:1.24;color:var(--navy-deep);margin:0 0 8px}
+  .ap-q{font-family:var(--font-display);font-size:1.5rem;line-height:1.24;color:var(--navy-deep);margin:0 0 8px}
   .ap-help{font-size:.92rem;line-height:1.62;color:var(--muted);margin:0 0 18px}
 
-  .ap-back{border:0;background:none;color:var(--muted);font:600 .84rem 'Public Sans',sans-serif;cursor:pointer;padding:8px 0;margin-top:14px}
+  .ap-back{border:0;background:none;color:var(--muted);font:600 .84rem var(--font-body);cursor:pointer;padding:8px 0;margin-top:14px}
   .ap-back:hover{color:var(--navy);text-decoration:underline}
 
   /* Resultado */
-  .ap-sub{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:28px 0 4px}
+  .ap-sub{font-family:var(--font-display);font-size:1.24rem;color:var(--navy-deep);margin:28px 0 4px}
   .ap-sub+.ap-subhelp{font-size:.88rem;color:var(--muted);margin:0 0 12px;line-height:1.55}
   .ap-donde{font-size:.84rem;color:var(--muted);margin:-2px 0 14px}
   .ap-donde strong{color:var(--navy-deep)}
@@ -72,8 +72,8 @@
     --tds-azul:#2f6fa8; --tds-azul-fondo:#e3edf7; --tds-azul-texto:#1f4f82;
   }
   .ap-score{display:flex;align-items:center;gap:18px;margin-bottom:8px}
-  .ap-score .num{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;line-height:1;border:5px solid var(--line);border-radius:50%;width:92px;height:92px;display:grid;place-items:center;flex:none;color:var(--navy-deep)}
-  .ap-score .num small{display:block;font:600 .62rem 'Public Sans',sans-serif;color:var(--muted);letter-spacing:.02em;margin-top:-6px}
+  .ap-score .num{font-family:var(--font-display);font-weight:700;font-size:2.3rem;line-height:1;border:5px solid var(--line);border-radius:50%;width:92px;height:92px;display:grid;place-items:center;flex:none;color:var(--navy-deep)}
+  .ap-score .num small{display:block;font:600 .62rem var(--font-body);color:var(--muted);letter-spacing:.02em;margin-top:-6px}
   .ap-score .txt{min-width:0}
   .ap-score .txt .titulo{display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
   .ap-score .txt p{font-size:.9rem;color:var(--navy-deep);line-height:1.55;margin:8px 0 0}
@@ -86,7 +86,7 @@
   [data-banda="solido"]{--b:var(--tds-verde);--b-fondo:var(--tds-verde-fondo);--b-texto:var(--tds-verde-texto)}
   [data-banda="referente"]{--b:var(--tds-azul);--b-fondo:var(--tds-azul-fondo);--b-texto:var(--tds-azul-texto)}
   [data-banda="incompleta"]{--b:var(--muted);--b-fondo:var(--paper-dim);--b-texto:var(--navy-deep)}
-  .ap-margen{font:600 .7rem 'Public Sans',sans-serif;color:var(--muted);display:block;margin-top:2px}
+  .ap-margen{font:600 .7rem var(--font-body);color:var(--muted);display:block;margin-top:2px}
   .ap-reclamada{border:0;padding:0;margin:0 0 18px}
   .ap-reclamada legend{font-weight:600;color:var(--navy-deep);font-size:.9rem;margin-bottom:8px}
   .ap-reclamada .opciones{display:flex;flex-wrap:wrap;gap:8px}
@@ -103,8 +103,8 @@
   .ap-pilar .cab{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
   .ap-pilar .cab b{color:var(--navy-deep);font-size:.95rem}
   .ap-pilar .cab b span{font-weight:500;color:var(--muted);font-size:.8rem;margin-left:6px}
-  .ap-pilar .cab .val{font-family:'Fraunces',serif;font-weight:700;color:var(--navy-deep);font-size:1.1rem}
-  .ap-pilar .cab .val.nd{font:700 .78rem 'Public Sans',sans-serif;color:var(--muted)}
+  .ap-pilar .cab .val{font-family:var(--font-display);font-weight:700;color:var(--navy-deep);font-size:1.1rem}
+  .ap-pilar .cab .val.nd{font:700 .78rem var(--font-body);color:var(--muted)}
   .ap-bar{height:8px;border-radius:99px;background:var(--paper-dim);border:1px solid var(--line);overflow:hidden;margin:8px 0 6px}
   .ap-bar i{display:block;height:100%;background:var(--teal);border-radius:99px}
   .ap-pilar p{margin:4px 0 0;font-size:.84rem;color:var(--muted);line-height:1.52}
@@ -126,11 +126,11 @@
   .ap-sim-ctrl{display:grid;gap:12px;margin-bottom:14px}
   .ap-sim-ctrl label{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--navy-deep);min-height:40px}
   .ap-sim-ctrl input[type="checkbox"]{width:20px;height:20px;accent-color:var(--teal);flex:none}
-  .ap-sim-ctrl select{flex:1;min-width:0;max-width:220px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:400 .9rem 'Public Sans',sans-serif;background:#fff;color:var(--ink)}
+  .ap-sim-ctrl select{flex:1;min-width:0;max-width:220px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:400 .9rem var(--font-body);background:#fff;color:var(--ink)}
   .ap-sim-res{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);padding-top:14px}
   .ap-sim-res strong{font-size:1rem;color:var(--navy-deep)}
   .ap-sim-res .real{font-size:.84rem;color:var(--muted)}
-  .ap-sim-res button{margin-left:auto;border:0;background:none;color:var(--teal);font:700 .84rem 'Public Sans',sans-serif;cursor:pointer;padding:8px 0}
+  .ap-sim-res button{margin-left:auto;border:0;background:none;color:var(--teal);font:700 .84rem var(--font-body);cursor:pointer;padding:8px 0}
 
   /* Campo de ciudad: nota de ciudad sugerida, botón para borrar y error */
   .ap-ciudad-caja{position:relative}
@@ -150,14 +150,14 @@
   .ap-evidence cite{display:block;margin-top:10px;font-size:.78rem;color:var(--muted);font-style:normal}
 
   .ap-todo{margin:26px 0}
-  .ap-todo h3{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:0 0 6px}
+  .ap-todo h3{font-family:var(--font-display);font-size:1.24rem;color:var(--navy-deep);margin:0 0 6px}
   .ap-todo>p{font-size:.92rem;color:var(--muted);margin:0 0 14px;line-height:1.6}
   .ap-todo ol{padding-left:22px;display:grid;gap:11px;margin:0}
   .ap-todo li{line-height:1.62;font-size:.94rem}
   .ap-todo li b{color:var(--navy-deep)}
 
   .ap-offer{border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 26px;background:var(--paper-dim);margin-top:26px}
-  .ap-offer h3{font-family:'Fraunces',serif;font-size:1.24rem;color:var(--navy-deep);margin:0 0 8px}
+  .ap-offer h3{font-family:var(--font-display);font-size:1.24rem;color:var(--navy-deep);margin:0 0 8px}
   .ap-offer p{font-size:.94rem;line-height:1.66;margin:0 0 16px}
   .ap-actions{display:flex;flex-wrap:wrap;gap:10px}
 
@@ -174,13 +174,13 @@
   .ap-notice{border:1px solid rgba(184,134,48,.3);background:rgba(184,134,48,.09);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;font-size:.86rem;line-height:1.55;color:#8a5a20}
 
   .ap-nodisp{text-align:center;padding:16px 8px}
-  .ap-nodisp h2{font-family:'Fraunces',serif;font-size:1.32rem;color:var(--navy-deep);margin:0 0 10px}
+  .ap-nodisp h2{font-family:var(--font-display);font-size:1.32rem;color:var(--navy-deep);margin:0 0 10px}
   .ap-nodisp p{color:var(--muted);font-size:.93rem;line-height:1.62;margin:0 0 22px}
   .ap-nodisp .ap-actions{justify-content:center}
 
   /* Ficha encontrada: dirección, estrellas, reseñas reales */
   .ap-found{border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px 24px;background:#fff;margin-bottom:20px}
-  .ap-found h3{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--navy-deep);margin:0 0 4px}
+  .ap-found h3{font-family:var(--font-display);font-size:1.18rem;color:var(--navy-deep);margin:0 0 4px}
   .ap-found .addr{font-size:.88rem;color:var(--muted);margin:0 0 12px;line-height:1.5}
   .ap-stars-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
   .ap-stars{color:var(--gold);font-size:1.05rem;letter-spacing:1px}
@@ -408,7 +408,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

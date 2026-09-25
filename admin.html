@@ -9,15 +9,15 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .admin-band{padding:44px 0;background:var(--navy-deep);color:#fff}
   .admin-band-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  .admin-band h1{font-family:'Fraunces',serif;font-size:1.7rem;margin:0}
+  .admin-band h1{font-family:var(--font-display);font-size:1.7rem;margin:0}
   .admin-band p{margin:4px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
 
   .admin-section{padding:44px 0 80px}
@@ -26,10 +26,10 @@
   @media(max-width:640px){.admin-grid{grid-template-columns:1fr 1fr}}
   .admin-stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
   .admin-stat span{display:block;font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
-  .admin-stat strong{font:600 1.7rem 'Fraunces',serif;color:var(--navy-deep)}
+  .admin-stat strong{font:600 1.7rem var(--font-display);color:var(--navy-deep)}
 
   .admin-plans{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:24px 0 40px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
-  .admin-plans h3{font-size:.95rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:14px}
+  .admin-plans h3{font-size:.95rem;color:var(--navy-deep);font-family:var(--font-display);margin-bottom:14px}
   .admin-plan-row{display:grid;grid-template-columns:110px 1fr 40px;align-items:center;gap:12px;margin-bottom:10px;font-size:.8rem}
   .admin-plan-row span:first-child{color:var(--muted);font-weight:600}
   .admin-plan-bar{height:10px;border-radius:99px;background:var(--paper-dim);overflow:hidden}
@@ -37,7 +37,7 @@
   .admin-plan-row .admin-plan-count{text-align:right;color:var(--navy-deep);font-weight:700}
 
   .admin-table-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-  .admin-search{border:1.5px solid var(--line);border-radius:8px;padding:9px 13px;font:400 .86rem 'Public Sans',sans-serif;min-width:240px}
+  .admin-search{border:1.5px solid var(--line);border-radius:8px;padding:9px 13px;font:400 .86rem var(--font-body);min-width:240px}
   .admin-search:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
   .admin-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 18px rgba(8,47,73,.05)}
   table.admin-table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:760px}
@@ -70,8 +70,8 @@
   .admin-editor-layout{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
   @media(max-width:900px){.admin-editor-layout{grid-template-columns:1fr}}
   .admin-editor-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:0 6px 18px rgba(8,47,73,.05)}
-  .admin-editor-form h3{font-size:.9rem;color:var(--navy-deep);font-family:'Fraunces',serif;margin-bottom:12px}
-  .admin-editor-form textarea{border:1.5px solid var(--line);border-radius:8px;padding:11px 13px;font:400 .92rem 'Public Sans',sans-serif;color:var(--ink);background:#fff;width:100%;resize:vertical}
+  .admin-editor-form h3{font-size:.9rem;color:var(--navy-deep);font-family:var(--font-display);margin-bottom:12px}
+  .admin-editor-form textarea{border:1.5px solid var(--line);border-radius:8px;padding:11px 13px;font:400 .92rem var(--font-body);color:var(--ink);background:#fff;width:100%;resize:vertical}
   .admin-editor-form textarea:focus{outline:2px solid var(--gold-light);border-color:var(--gold)}
   .admin-upload-status{display:block;margin-top:6px;color:var(--muted);font-size:.72rem}
   .admin-saved-flash{font-size:.78rem;color:var(--good);font-weight:700;opacity:0;transition:opacity .2s ease}
@@ -180,7 +180,7 @@
            tecleo no pueda crear una factura absurda. -->
       <div class="admin-factura" id="facturaPanel">
         <div class="admin-table-head">
-          <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Cobrar con tarjeta</h2>
+          <h2 style="font-size:1.1rem;font-family:var(--font-display);color:var(--navy-deep);">Cobrar con tarjeta</h2>
           <span style="font-size:.78rem;color:var(--muted);">Crea el borrador en Stripe. Tú lo revisas y lo mandas desde ahí.</span>
         </div>
 
@@ -223,7 +223,7 @@
       </div>
 
       <div class="admin-table-head">
-        <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Clientes</h2>
+        <h2 style="font-size:1.1rem;font-family:var(--font-display);color:var(--navy-deep);">Clientes</h2>
         <input type="search" class="admin-search" id="clientSearch" placeholder="Buscar por correo, nombre o teléfono…">
       </div>
       <div class="admin-table-wrap">
@@ -244,7 +244,7 @@
 
       <div class="admin-content-editor" id="contentEditor">
         <div class="admin-table-head">
-          <h2 style="font-size:1.1rem;font-family:'Fraunces',serif;color:var(--navy-deep);">Editar contenido</h2>
+          <h2 style="font-size:1.1rem;font-family:var(--font-display);color:var(--navy-deep);">Editar contenido</h2>
           <span style="font-size:.78rem;color:var(--muted);">Cambia lo que quieras y presiona "Publicar cambios" para que se vea en el sitio.</span>
         </div>
 
@@ -341,7 +341,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · Panel interno</span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>
@@ -584,11 +584,11 @@
   // que sostienen la legibilidad y el significado del sitio, no la identidad
   // visual, así que abrirlos a edición podría romper el sitio por accidente.
   const COLOR_FIELDS = [
-    { key:'--gold', tipo:'color', pagina:'global', etiqueta:'Dorado principal', nombre:'Dorado principal (botones, acentos)', default:'#c98a3e' },
-    { key:'--gold-light', tipo:'color', pagina:'global', etiqueta:'Dorado claro', nombre:'Dorado claro (detalles suaves)', default:'#e8c99a' },
-    { key:'--navy', tipo:'color', pagina:'global', etiqueta:'Marrón (marca)', nombre:'Marrón (títulos, marca)', default:'#6b4226' },
-    { key:'--navy-deep', tipo:'color', pagina:'global', etiqueta:'Marrón oscuro', nombre:'Marrón oscuro (encabezados, fondo oscuro)', default:'#2a2118' },
-    { key:'--teal', tipo:'color', pagina:'global', etiqueta:'Verde salvia', nombre:'Verde salvia (acentos secundarios)', default:'#4f6b57' },
+    { key:'--gold', tipo:'color', pagina:'global', etiqueta:'Verde agua', nombre:'Verde agua (acentos, puntos, bordes)', default:'#5FA8B8' },
+    { key:'--gold-light', tipo:'color', pagina:'global', etiqueta:'Agua claro', nombre:'Agua claro (detalles sobre fondo oscuro)', default:'#9FD3DB' },
+    { key:'--navy', tipo:'color', pagina:'global', etiqueta:'Verde petróleo', nombre:'Verde petróleo (botones, enlaces)', default:'#17687A' },
+    { key:'--navy-deep', tipo:'color', pagina:'global', etiqueta:'Azul petróleo', nombre:'Azul petróleo (títulos, fondo oscuro)', default:'#123F4F' },
+    { key:'--teal', tipo:'color', pagina:'global', etiqueta:'Verde petróleo 2', nombre:'Verde petróleo (acentos secundarios)', default:'#17687A' },
   ];
   let colorState = {};
 

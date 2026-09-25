@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/quienes-somos.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* Héroe tipográfico, sin imagen.
@@ -38,8 +38,8 @@
   .qs-hero{
     position:relative;overflow:hidden;
     background:
-      radial-gradient(120% 130% at 12% 18%, rgba(201,162,77,.20) 0%, rgba(201,162,77,0) 55%),
-      linear-gradient(140deg, #14100b 0%, #1d1a2b 48%, #0d0f0c 100%);
+      radial-gradient(120% 130% at 12% 18%, rgba(159,211,219,.16) 0%, rgba(23,104,122,0) 55%),
+      linear-gradient(140deg, #0E3240 0%, #123F4F 48%, #0B2A36 100%);
   }
   /* .page-hero::before ya trae width:210px y border-radius:50% (es uno de los
      anillos dorados). Hay que anularlos a mano: con left y right puestos Y un
@@ -49,13 +49,13 @@
     content:'';position:absolute;inset:auto 0 0 0;width:auto;height:10px;
     display:block;border:none;border-radius:0;
     background-image:repeating-linear-gradient(90deg,
-      rgba(201,162,77,.85) 0 2px, transparent 2px 8px,
-      rgba(201,162,77,.85) 8px 10px, transparent 10px 12px);
+      rgba(159,211,219,.7) 0 2px, transparent 2px 8px,
+      rgba(159,211,219,.7) 8px 10px, transparent 10px 12px);
     opacity:.9;
   }
   .qs-hero::after{
     content:'';position:absolute;top:-90px;right:-70px;width:340px;height:340px;
-    border-radius:50%;border:1px solid rgba(201,162,77,.22);display:block;
+    border-radius:50%;border:1px solid rgba(23,104,122,.22);display:block;
   }
   .qs-hero .wrap{position:relative;z-index:1}
   .qs-story{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
@@ -68,14 +68,14 @@
   .qs-mission-card{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
   .qs-mission-card .qs-badge{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:grid;place-items:center;margin-bottom:16px}
   .qs-mission-card .qs-badge svg{width:24px;height:24px}
-  .qs-mission-card h3{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--navy-deep);margin-bottom:8px}
+  .qs-mission-card h3{font-family:var(--font-display);font-size:1.25rem;color:var(--navy-deep);margin-bottom:8px}
   .qs-mission-card p{color:var(--muted);line-height:1.6}
   .qs-services{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
   .qs-service-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);display:block;text-decoration:none}
-  .qs-service-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(42,33,24,.1)}
+  .qs-service-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(18,63,79,.1)}
   .qs-service-card .qs-badge{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:grid;place-items:center;margin-bottom:16px}
   .qs-service-card .qs-badge svg{width:24px;height:24px}
-  .qs-service-card h3{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--navy-deep);margin-bottom:8px}
+  .qs-service-card h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy-deep);margin-bottom:8px}
   .qs-service-card p{color:var(--muted);font-size:.94rem;line-height:1.55}
   .qs-service-card .qs-note{display:block;margin-top:10px;font-size:.8rem;color:var(--teal);font-weight:600}
   .qs-not{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
@@ -152,7 +152,7 @@
       </div>
       <div class="qs-story-text">
         <span class="eyebrow-dark" style="color:var(--teal)">Nuestra historia</span>
-        <h2 style="font-family:'Fraunces',serif;color:var(--navy-deep);font-size:clamp(1.6rem,3vw,2.1rem)">Nació de una necesidad muy común</h2>
+        <h2 style="font-family:var(--font-display);color:var(--navy-deep);font-size:clamp(1.6rem,3vw,2.1rem)">Nació de una necesidad muy común</h2>
         <p>Muchas familias hispanohablantes llegan a Estados Unidos con ganas de progresar, pero se topan con un sistema financiero lleno de términos en inglés, contratos difíciles de entender y muy pocos recursos confiables en español. Preguntas tan básicas como "¿qué es mi puntaje de crédito?" o "¿qué dice esta carta que me llegó?" quedan sin respuesta clara, y eso frena sueños tan importantes como comprar una casa, un auto o abrir un negocio propio.</p>
         <p>Themora se creó para cerrar esa brecha: explicar el sistema financiero y legal de Estados Unidos en español sencillo, paso a paso, sin tecnicismos ni promesas exageradas — para que cada persona pueda tomar sus propias decisiones con información real.</p>
         <p class="qs-founders">(Fundado por Eddie y Madian Correa)</p>
@@ -278,7 +278,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

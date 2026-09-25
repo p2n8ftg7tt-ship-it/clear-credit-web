@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/cuenta.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   #accountContent{padding:0}
@@ -33,15 +33,15 @@
   .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-200px;top:-210px}
   .acct-identity-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .acct-identity-left{display:flex;align-items:center;gap:20px}
-  .acct-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem 'Fraunces',serif;flex:none}
+  .acct-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem var(--font-display);flex:none}
   /* Sin overflow:hidden y sin esta regla, la foto se salía del círculo. */
   .acct-avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
-  .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:'Fraunces',serif}
+  .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:var(--font-display)}
   .acct-meta{margin:6px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
   .acct-identity-right{display:flex;align-items:center;gap:12px}
   .acct-plan-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
-  .acct-plan-pill{background:var(--gold);color:var(--navy-deep);padding:7px 14px;border-radius:999px;font:800 .74rem 'Public Sans',sans-serif;letter-spacing:.02em}
+  .acct-plan-pill{background:var(--gold);color:var(--navy-deep);padding:7px 14px;border-radius:999px;font:800 .74rem var(--font-body);letter-spacing:.02em}
   .acct-plan-pill.is-empty{background:rgba(255,255,255,.14);color:#fff}
   .acct-plan-pill.is-trial{background:rgba(90,190,214,.22);color:#bdeaf5}
   .acct-plan-desc{color:rgba(255,255,255,.55);font-size:.78rem}
@@ -58,7 +58,7 @@
   .acct-card.is-teal{border-left-color:var(--teal)}
   .acct-card.is-navy{border-left-color:var(--navy)}
   .acct-card-kicker{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-  .acct-card h3{font-size:1.02rem;color:var(--navy-deep);font-family:'Fraunces',serif}
+  .acct-card h3{font-size:1.02rem;color:var(--navy-deep);font-family:var(--font-display)}
   .acct-card p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.55;flex-grow:1}
   .acct-card-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:700;font-size:.78rem;text-decoration:none}
   .acct-card-link:hover{color:var(--gold)}
@@ -77,7 +77,7 @@
   .acct-config-card.is-navy{border-left-color:var(--navy)}
   .acct-config-card.is-gold{border-left-color:var(--gold)}
   .acct-config-card.is-good{border-left-color:var(--good)}
-  .acct-config-card h3{font-size:1.02rem;color:var(--navy-deep);margin-bottom:6px;font-family:'Fraunces',serif}
+  .acct-config-card h3{font-size:1.02rem;color:var(--navy-deep);margin-bottom:6px;font-family:var(--font-display)}
   .acct-config-card>.acct-note{margin-bottom:10px}
   .acct-field{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
   .acct-field:last-child{border-bottom:0;padding-bottom:0}
@@ -99,29 +99,29 @@
   .acct-saved-flash.is-visible{opacity:1}
 
   .acct-danger{margin-top:16px;background:#fff;border:1px solid rgba(179,64,42,.3);border-left:4px solid var(--danger);border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .acct-danger h3{font-size:1rem;color:var(--danger);margin-bottom:4px;font-family:'Fraunces',serif}
+  .acct-danger h3{font-size:1rem;color:var(--danger);margin-bottom:4px;font-family:var(--font-display)}
   .acct-danger p{margin:0;color:var(--muted);font-size:.82rem;max-width:520px}
 
   /* ---- Modal reutilizable ---- */
   .acct-modal-overlay{position:fixed;inset:0;background:rgba(20,14,8,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
   .acct-modal-overlay[hidden]{display:none}
   .acct-modal{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);max-width:420px;width:100%;padding:26px}
-  .acct-modal h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--navy-deep);margin-bottom:6px}
+  .acct-modal h3{font-family:var(--font-display);font-size:1.2rem;color:var(--navy-deep);margin-bottom:6px}
   .acct-modal-desc{color:var(--muted);font-size:.84rem;margin-bottom:16px;line-height:1.5}
   .acct-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
 
   /* ---- Espacio personal: barra lateral plegable ---- */
   .account-sidebar{position:fixed;z-index:50;left:0;top:72px;bottom:0;width:264px;padding:22px 14px;background:#151b27;color:#fff;border-right:1px solid rgba(255,255,255,.08);transition:width .2s ease;overflow-y:auto}
   .account-sidebar-head{display:flex;align-items:center;gap:11px;padding:4px 8px 22px;border-bottom:1px solid rgba(255,255,255,.11)}
-  .account-sidebar-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--gold);color:var(--navy-deep);font:700 1rem 'Fraunces',serif;flex:none}
+  .account-sidebar-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--gold);color:var(--navy-deep);font:700 1rem var(--font-display);flex:none}
   .account-sidebar-avatar img{width:100%;height:100%;object-fit:cover}
   .account-sidebar-person{min-width:0}.account-sidebar-person strong,.account-sidebar-person small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.account-sidebar-person strong{font-size:.86rem}.account-sidebar-person small{margin-top:3px;font-size:.7rem;color:rgba(255,255,255,.55)}
   .account-sidebar-toggle{margin-left:auto;width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:1rem;flex:none}
   .account-sidebar-nav{display:grid;gap:5px;padding-top:20px}.account-sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;color:rgba(255,255,255,.7);border-radius:9px;text-decoration:none;font-size:.83rem;font-weight:700}.account-sidebar-nav a:hover,.account-sidebar-nav a.is-active{background:rgba(255,255,255,.1);color:#fff}.account-sidebar-nav i{width:19px;font-style:normal;text-align:center;font-size:1rem}.account-sidebar-nav span{white-space:nowrap}
-  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:var(--radius);background:rgba(201,162,77,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
+  .account-sidebar-footer{position:absolute;bottom:16px;left:14px;right:14px;padding:14px 12px;border-radius:var(--radius);background:rgba(23,104,122,.12);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.72)}
   #accountContent{padding-left:264px;transition:padding-left .2s ease}.sidebar-collapsed #accountContent{padding-left:72px}.sidebar-collapsed .account-sidebar{width:72px;padding-inline:14px}.sidebar-collapsed .account-sidebar-person,.sidebar-collapsed .account-sidebar-nav span,.sidebar-collapsed .account-sidebar-footer{display:none}.sidebar-collapsed .account-sidebar-head{padding-inline:0}.sidebar-collapsed .account-sidebar-toggle{margin-left:0}.sidebar-collapsed .account-sidebar-nav a{justify-content:center;padding-inline:8px}
   .account-signed-in .page-hero{display:none}
-  .acct-profile-card{grid-column:span 2;border-left-color:var(--gold)}.acct-profile-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}.acct-profile-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--gold-light);display:grid;place-items:center;color:var(--navy-deep);font:700 1.8rem 'Fraunces',serif;flex:none}.acct-profile-avatar img{width:100%;height:100%;object-fit:cover}.acct-avatar-action{position:relative;overflow:hidden;cursor:pointer;color:var(--teal);font-weight:800;font-size:.8rem}.acct-avatar-action input{position:absolute;inset:0;opacity:0;cursor:pointer}.acct-profile-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.acct-profile-fields .form-group{margin:0}.acct-profile-fields .form-group.full{grid-column:1/-1}.acct-profile-actions{display:flex;align-items:center;gap:12px;margin-top:20px}.acct-profile-status{font-size:.8rem;color:var(--good);font-weight:700}
+  .acct-profile-card{grid-column:span 2;border-left-color:var(--gold)}.acct-profile-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}.acct-profile-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--gold-light);display:grid;place-items:center;color:var(--navy-deep);font:700 1.8rem var(--font-display);flex:none}.acct-profile-avatar img{width:100%;height:100%;object-fit:cover}.acct-avatar-action{position:relative;overflow:hidden;cursor:pointer;color:var(--teal);font-weight:800;font-size:.8rem}.acct-avatar-action input{position:absolute;inset:0;opacity:0;cursor:pointer}.acct-profile-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.acct-profile-fields .form-group{margin:0}.acct-profile-fields .form-group.full{grid-column:1/-1}.acct-profile-actions{display:flex;align-items:center;gap:12px;margin-top:20px}.acct-profile-status{font-size:.8rem;color:var(--good);font-weight:700}
   @media(max-width:900px){.account-sidebar{position:sticky;top:0;width:100%;height:auto;bottom:auto;padding:10px 16px;display:flex;align-items:center;gap:14px;overflow:visible}.account-sidebar-head{padding:0;border:0;flex:1}.account-sidebar-nav{display:flex;padding:0;gap:2px}.account-sidebar-nav a{padding:8px}.account-sidebar-nav a span,.account-sidebar-footer,.account-sidebar-toggle{display:none}#accountContent,.sidebar-collapsed #accountContent{padding-left:0}.acct-profile-card{grid-column:auto}.acct-identity{padding-top:36px}}
   @media(max-width:620px){.account-sidebar-nav a:nth-child(n+4){display:none}.acct-profile-fields{grid-template-columns:1fr}.acct-profile-fields .form-group.full{grid-column:auto}.acct-profile-top{align-items:flex-start}}
 </style>
@@ -415,7 +415,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>

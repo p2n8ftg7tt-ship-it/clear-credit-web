@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#2a2118">
+<meta name="theme-color" content="#123F4F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
@@ -24,7 +24,7 @@
 <link rel="canonical" href="https://mithemora.com/herramientas.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* Calculadora hipotecaria */
@@ -43,9 +43,9 @@
   .mortgage-input-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
   .mortgage-helper{font-size:.68rem;color:var(--muted)}
   .mortgage-result{background:var(--navy-deep);color:#fff;border-radius:var(--radius-lg,28px);padding:28px;position:sticky;top:92px}
-  .mortgage-result h3{font:600 1.5rem 'Fraunces',serif;margin:4px 0 14px}
-  .mortgage-total{font:700 2.4rem 'Fraunces',serif;color:var(--gold-light);margin-bottom:16px}
-  .mortgage-total span{font:400 .85rem 'Public Sans',sans-serif;color:rgba(255,255,255,.6)}
+  .mortgage-result h3{font:600 1.5rem var(--font-display);margin:4px 0 14px}
+  .mortgage-total{font:700 2.4rem var(--font-display);color:var(--gold-light);margin-bottom:16px}
+  .mortgage-total span{font:400 .85rem var(--font-body);color:rgba(255,255,255,.6)}
   .mortgage-breakdown{list-style:none;border-top:1px solid rgba(255,255,255,.16)}
   .mortgage-breakdown li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.16);font-size:.82rem;color:rgba(255,255,255,.78)}
   .mortgage-breakdown strong{color:#fff}
@@ -57,7 +57,7 @@
   /* Calculadoras rápidas */
   .quick-calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .quick-calc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius,10px);padding:24px;box-shadow:0 10px 28px rgba(8,47,73,.06);display:flex;flex-direction:column;gap:14px}
-  .quick-calc-card h3{font:600 1.1rem 'Fraunces',serif;color:var(--navy-deep);margin:0}
+  .quick-calc-card h3{font:600 1.1rem var(--font-display);color:var(--navy-deep);margin:0}
   .quick-calc-card .qc-desc{font-size:.78rem;color:var(--muted);margin:-8px 0 4px}
   .qc-field{display:flex;flex-direction:column;gap:5px}
   .qc-field label{font-size:.72rem;font-weight:700;color:var(--navy)}
@@ -71,8 +71,8 @@
   .qc-result.band-green{border-left-color:var(--good)}
   .qc-result.band-amber{border-left-color:var(--gold)}
   .qc-result.band-red{border-left-color:#a3402a}
-  .qc-result .qc-big{font:700 1.5rem 'Fraunces',serif;color:var(--navy-deep)}
-  .qc-result .qc-big span{display:block;font:400 .72rem 'Public Sans',sans-serif;color:var(--muted);margin-top:2px}
+  .qc-result .qc-big{font:700 1.5rem var(--font-display);color:var(--navy-deep)}
+  .qc-result .qc-big span{display:block;font:400 .72rem var(--font-body);color:var(--muted);margin-top:2px}
   .qc-result p{margin:6px 0 0;font-size:.76rem;color:var(--muted);line-height:1.45}
   .qc-warning{margin-top:2px;padding:10px 12px;border-radius:8px;background:rgba(179,64,42,.1);border:1px solid rgba(179,64,42,.3);color:#a3402a;font-size:.76rem;font-weight:700}
   .qc-warning[hidden]{display:none!important}
@@ -82,9 +82,9 @@
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
   .info-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius,16px);padding:24px;box-shadow:0 10px 28px rgba(8,47,73,.06);transition:transform var(--dur,.22s) var(--ease,ease),box-shadow var(--dur,.22s) var(--ease,ease)}
   .info-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-  .info-card h3{font:600 1.15rem 'Fraunces',serif;color:var(--navy-deep);margin:14px 0 8px}
+  .info-card h3{font:600 1.15rem var(--font-display);color:var(--navy-deep);margin:14px 0 8px}
   .info-card p{font-size:.85rem;color:var(--muted);flex:1}
-  .icon-tag{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper-dim);color:var(--navy);font:700 .85rem 'Fraunces',serif;border:1px solid var(--line)}
+  .icon-tag{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper-dim);color:var(--navy);font:700 .85rem var(--font-display);border:1px solid var(--line)}
   .status-pill{display:inline-block;align-self:flex-start;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:20px;margin-bottom:4px}
   .status-live{background:rgba(63,122,82,.12);color:var(--good)}
   .status-soon{background:rgba(184,134,59,.14);color:var(--gold)}
@@ -118,9 +118,9 @@
   .acc-current strong{color:var(--navy-deep)}
   .acc-current small{display:block;color:var(--muted);font-size:.72rem;margin-top:4px;line-height:1.5}
   .acc-result{background:var(--navy-deep);color:#fff;border-radius:var(--radius,10px);padding:28px;position:sticky;top:92px}
-  .acc-result h3{font:600 1.35rem 'Fraunces',serif;margin:4px 0 16px;color:#fff}
-  .acc-big{font:700 2.1rem 'Fraunces',serif;color:var(--gold-light);line-height:1.1}
-  .acc-big span{display:block;font:400 .8rem 'Public Sans',sans-serif;color:rgba(255,255,255,.6);margin-top:4px}
+  .acc-result h3{font:600 1.35rem var(--font-display);margin:4px 0 16px;color:#fff}
+  .acc-big{font:700 2.1rem var(--font-display);color:var(--gold-light);line-height:1.1}
+  .acc-big span{display:block;font:400 .8rem var(--font-body);color:rgba(255,255,255,.6);margin-top:4px}
   .acc-lines{list-style:none;margin-top:18px;border-top:1px solid rgba(255,255,255,.16)}
   .acc-lines li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.16);font-size:.82rem;color:rgba(255,255,255,.78)}
   .acc-lines strong{color:#fff}
@@ -137,7 +137,7 @@
   .cd-tool .eyebrow-dark{color:var(--gold-light)}
   .cd-tool h2{color:#fff;margin:6px 0 10px}
   .cd-tool-intro{color:rgba(255,255,255,.72);max-width:62ch}
-  .cd-toggle{margin-top:8px;border:0;border-radius:var(--radius,10px);background:var(--gold);color:#fff;padding:12px 20px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer}
+  .cd-toggle{margin-top:8px;border:0;border-radius:var(--radius,10px);background:var(--gold);color:#fff;padding:12px 20px;font-family:var(--font-body);font-weight:700;cursor:pointer}
   .cd-toggle:hover{filter:brightness(1.06)}
   .cd-form{margin-top:22px;padding:24px;background:#fff;color:var(--ink);border-radius:var(--radius,10px)}
   .cd-form[hidden],.cd-result[hidden]{display:none!important}
@@ -149,7 +149,7 @@
   .cd-field input:focus,.cd-field select:focus,.cd-field textarea:focus{border-color:var(--teal);outline:2px solid rgba(47,111,98,.18)}
   .cd-alert{grid-column:1/-1;margin:0 0 4px;padding:10px 12px;border-left:3px solid #a34838;background:#fff0ed;color:#7e3127;font-size:.8rem}
   .cd-alert[hidden]{display:none!important}
-  .cd-submit,.cd-copy{margin-top:14px;border:0;border-radius:var(--radius,10px);padding:11px 16px;font-family:'Public Sans',sans-serif;font-weight:700;cursor:pointer}
+  .cd-submit,.cd-copy{margin-top:14px;border:0;border-radius:var(--radius,10px);padding:11px 16px;font-family:var(--font-body);font-weight:700;cursor:pointer}
   .cd-submit{background:var(--navy);color:#fff}
   .cd-copy{background:var(--gold);color:#fff}
   .cd-result{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
@@ -829,7 +829,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand" style="font-family:'Fraunces',serif;">Themora</span>
+    <span class="brand" style="font-family:var(--font-display);">Themora</span>
     <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
   </div>
 <div class="wrap footer-legal" data-empresa="corta" hidden></div>
