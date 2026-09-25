@@ -5,7 +5,7 @@
    Este archivo es el asistente que responde HOY, sin inteligencia artificial,
    sin sesión y sin costo. Importa entenderlo bien: el camino con IA real
    (netlify/functions/coach.js) exige que el visitante inicie sesión Y que la
-   llave de Anthropic esté puesta en Netlify. Mientras falte cualquiera de las
+   llave de la IA esté puesta en Netlify. Mientras falte cualquiera de las
    dos, el 100% de las personas que escriben en el chat llegan aquí.
 
    Qué hace distinto a un chatbot de palabras clave normal:
