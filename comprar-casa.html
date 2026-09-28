@@ -36,7 +36,7 @@
   .rate-agent-title h3{font-size:1.25rem;margin:0;color:var(--navy);}
   .rate-agent-title p{font-size:.78rem;color:var(--teal);font-weight:800;margin:1px 0 0;}
   .rate-status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 10px;background:rgba(2,132,199,.1);color:var(--teal);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;}
-  .rate-status::before{content:"";width:8px;height:8px;border-radius:50%;background:#20b875;box-shadow:0 0 0 3px rgba(32,184,117,.14);}
+  .rate-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px rgba(32,184,117,.14);}
   .rate-checklist{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .rate-checklist li{padding:13px 14px;border-left:3px solid var(--gold);background:var(--paper-dim);color:rgba(12,37,56,.78);font-size:.84rem;}
   .rate-checklist strong{display:block;color:var(--navy-deep);margin-bottom:2px;}
@@ -54,16 +54,16 @@
   /* Agente de tasas: lo que llena tasas-hipoteca.js (los estilos de arriba ya existían) */
   .rate-watch-section[hidden],.rate-watch-section [hidden]{display:none!important;}
   .rate-status[data-estado="sin_actualizar"]::before{background:#d97706;box-shadow:0 0 0 3px rgba(217,119,6,.16);}
-  .rate-status[data-estado="sin_datos"]::before{background:#9ca3af;box-shadow:0 0 0 3px rgba(156,163,175,.2);}
+  .rate-status[data-estado="sin_datos"]::before{background:var(--muted);box-shadow:0 0 0 3px rgba(156,163,175,.2);}
   .tasas-cifras{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .tasas-cifra{display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:var(--paper-dim);border-left:3px solid var(--gold);}
   .tasas-etiqueta{font-size:.78rem;font-weight:700;color:var(--muted);}
   .tasas-valor{font-family:var(--font-display);font-size:2.3rem;line-height:1.05;color:var(--navy-deep);}
   .tasas-cambio{font-size:.82rem;font-weight:700;color:var(--navy);}
   .tasas-cifra small{font-size:.72rem;color:var(--muted);}
-  .tasas-mensaje,.tasas-obsoleto{margin:14px 0 0;padding:12px 14px;border-radius:8px;background:rgba(201,138,62,.12);border:1px solid rgba(201,138,62,.35);font-size:.86rem;color:var(--ink);}
+  .tasas-mensaje,.tasas-obsoleto{margin:14px 0 0;padding:12px 14px;border-radius:var(--radius);background:rgba(201,138,62,.12);border:1px solid rgba(201,138,62,.35);font-size:.86rem;color:var(--ink);}
   .tasas-alertas{margin-top:16px;display:grid;gap:10px;}
-  .tasas-alerta{padding:12px 14px;border:1px solid var(--gold);border-radius:8px;background:#EAF3F3;font-size:.86rem;}
+  .tasas-alerta{padding:12px 14px;border:1px solid var(--gold);border-radius:var(--radius);background:#EAF3F3;font-size:.86rem;}
   .tasas-alerta p{margin:0 0 6px;}
   .tasas-alerta small a{color:var(--navy);font-weight:700;}
   .rate-delivery>.tasas-solo-una{margin-top:14px;font-size:.8rem;}
@@ -82,6 +82,8 @@
      son texto real. Ninguna tasa se escribe aquí. */
   .casas-flotantes{position:fixed;left:12px;bottom:12px;z-index:140;display:flex;flex-direction:row;align-items:flex-end;gap:8px;}
   .casas-flotantes[hidden]{display:none;}
+  /* En celular las casas no tapan el campo en el que escribes (specs/011, FR-020). */
+  @media(max-width:720px){body:has(main :is(input,textarea,select):focus) .casas-flotantes{display:none;}}
   .casa{appearance:none;border:0;margin:0;font:inherit;cursor:pointer;color:var(--gold-light);background:var(--navy-deep);
     width:88px;height:82px;padding:31px 4px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.1;
     clip-path:polygon(50% 0,100% 40%,100% 100%,0 100%,0 40%);}
@@ -147,7 +149,7 @@
   .fha-step-tab.is-active i{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
   .fha-step-tab.is-done{color:var(--teal);}
   .fha-step-tab.is-done i{background:var(--paper-dim);border-color:var(--gold-light);}
-  .fha-world-scroll{overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);}
+  .fha-world-scroll{overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);}
   .fha-world-content{width:min(1080px,calc(100% - 56px));margin:0 auto;padding:52px 0 64px;}
   .fha-step[hidden]{display:none;}
   .fha-step{animation:fha-step-in .25s ease both;}
@@ -163,7 +165,7 @@
   .fha-card-num{display:block;color:var(--gold);font-size:.62rem;font-weight:800;letter-spacing:.12em;}
   .fha-concept-card h3,.fha-profile-card h3{font-size:1.25rem;margin:17px 0 7px;color:var(--navy);}
   .fha-concept-card p,.fha-profile-card p{color:rgba(12,37,56,.66);font-size:.82rem;line-height:1.58;}
-  .fha-myth{display:flex;gap:22px;align-items:flex-start;margin-top:18px;background:#e9f7fd;padding:18px 21px;}
+  .fha-myth{display:flex;gap:22px;align-items:flex-start;margin-top:18px;background:var(--copia-celeste);padding:18px 21px;}
   .fha-myth>span,.fha-definition>span{color:var(--teal);font-size:.62rem;font-weight:900;letter-spacing:.13em;}
   .fha-myth strong{display:block;color:var(--navy);font-family:var(--font-display);margin-bottom:3px;}
   .fha-myth p{font-size:.8rem;color:rgba(12,37,56,.65);}
@@ -180,7 +182,7 @@
   .fha-payment-row h3{display:inline;font-size:1.04rem;margin-right:9px;color:var(--navy);}
   .fha-payment-row p{display:inline;color:rgba(12,37,56,.64);font-size:.77rem;line-height:1.5;}
   .fha-payment-row>b{justify-self:end;background:var(--paper-dim);color:var(--teal);padding:6px 9px;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;}
-  .fha-definition{display:flex;gap:24px;margin-top:18px;background:#e9f7fd;padding:17px 20px;}
+  .fha-definition{display:flex;gap:24px;margin-top:18px;background:var(--copia-celeste);padding:17px 20px;}
   .fha-definition p{font-size:.78rem;color:rgba(12,37,56,.66);}
   .fha-mip-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px;}
   .fha-mip-card{padding:30px;}
@@ -198,7 +200,7 @@
   .fha-calc-controls{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:28px;}
   .fha-calc-field{display:flex;flex-direction:column;gap:6px;}
   .fha-calc-field label{color:var(--navy-deep);font-size:.68rem;font-weight:800;}
-  .fha-calc-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;}
+  .fha-calc-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:#fff;}
   .fha-calc-input:focus-within{outline:3px solid rgba(14,165,233,.14);border-color:var(--gold);}
   .fha-calc-input input{min-width:0;width:100%;height:42px;border:0;background:transparent;padding:0 10px;color:var(--ink);font-weight:700;outline:0;}
   .fha-calc-input span{padding:0 10px;color:var(--teal);font-size:.72rem;font-weight:800;}
@@ -302,14 +304,14 @@
   /* ===== Comparador FHA vs convencional ===== */
   .cmp-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin:26px 0 10px}
   .cmp-field label{display:block;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
-  .cmp-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
+  .cmp-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden}
   .cmp-input span{padding:0 10px;color:var(--muted);font-weight:700;font-size:.9rem;flex:none}
   .cmp-input.cmp-pct span{order:2}
   .cmp-input input{flex:1;min-width:0;border:0;padding:11px 4px 11px 0;font:700 1rem var(--font-body);color:var(--ink);background:transparent}
   .cmp-input.cmp-pct input{padding-left:13px}
   .cmp-input input:focus{outline:none}
   .cmp-input:focus-within{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
-  .cmp-field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font:700 .95rem var(--font-body);color:var(--ink);background:#fff}
+  .cmp-field select{width:100%;border:1px solid var(--line);border-radius:var(--radius);padding:11px 12px;font:700 .95rem var(--font-body);color:var(--ink);background:#fff}
   .cmp-nota-tasas{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.55;margin:0 0 22px}
 
   .cmp-veredicto{background:var(--navy-deep);border-radius:var(--radius-lg);padding:24px 26px;margin-bottom:20px}
@@ -330,7 +332,7 @@
   .cmp-col dl > div:last-child{border-bottom:0}
   .cmp-col dt{font-size:.82rem;color:var(--muted);line-height:1.4}
   .cmp-col dd{margin:0;font-weight:700;color:var(--navy-deep);font-size:.92rem;white-space:nowrap;text-align:right}
-  .cmp-destacar dd{color:#8a2b2b}
+  .cmp-destacar dd{color:var(--corrector)}
   .cmp-total{border-top:2px solid var(--navy-deep)!important;margin-top:4px}
   .cmp-total dt{font-weight:700;color:var(--navy-deep)}
   .cmp-total dd{font-family:var(--font-display);font-size:1.05rem}
@@ -343,11 +345,11 @@
   .cmp-clave-par b{display:block;margin-bottom:7px;color:var(--navy-deep);font-size:.95rem;line-height:1.4}
   .cmp-clave-par p{margin:0;font-size:.88rem;line-height:1.62;color:var(--ink)}
 
-  .cmp-aviso{display:flex;gap:14px;background:#fff0ed;border:1px solid rgba(179,64,42,.35);border-radius:var(--radius);padding:18px 22px;margin-bottom:16px}
-  .cmp-aviso b{flex:none;width:26px;height:26px;border-radius:50%;background:#a34838;color:#fff;display:grid;place-items:center;font:800 .95rem var(--font-display)}
-  .cmp-aviso h4{margin:0 0 6px;font:700 1rem var(--font-body);color:#8a2b2b}
-  .cmp-aviso p{margin:0;line-height:1.62;font-size:.9rem;color:#7e3127}
-  .cmp-aviso a{color:#8a2b2b;font-weight:700}
+  .cmp-aviso{display:flex;gap:14px;background:var(--copia-rosa);border:1px solid rgba(179,64,42,.35);border-radius:var(--radius);padding:18px 22px;margin-bottom:16px}
+  .cmp-aviso b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--corrector);color:#fff;display:grid;place-items:center;font:800 .95rem var(--font-display)}
+  .cmp-aviso h4{margin:0 0 6px;font:700 1rem var(--font-body);color:var(--corrector)}
+  .cmp-aviso p{margin:0;line-height:1.62;font-size:.9rem;color:var(--ink)}
+  .cmp-aviso a{color:var(--corrector);font-weight:700}
 
   .cmp-legal{font-size:.8rem;color:var(--muted);line-height:1.62;margin:0}
 
@@ -983,12 +985,39 @@
       </div>
     </div>
 
-    <footer class="fha-world-footer">
-      <button class="fha-prev" id="fhaPrev" type="button" disabled>← Anterior</button>
-      <span id="fhaStepName">Qué es FHA</span>
-      <button class="fha-next" id="fhaNext" type="button"><span>Continuar</span><span aria-hidden="true">→</span></button>
-    <div class="wrap footer-legal" data-empresa="corta" hidden></div>
-  </footer>
+    <footer>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
+  </div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
+</footer>
   </div>
 
   <!-- RECORRIDO CONVENCIONAL -->
@@ -1355,8 +1384,6 @@
 <script src="auth.js"></script>
 <script src="cms.js"></script>
 <script src="site-search-index.js"></script>
-<script src="zyron-leyes.js"></script>
-<script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
 <script src="reveal.js" defer></script>

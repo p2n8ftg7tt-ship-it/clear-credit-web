@@ -31,6 +31,7 @@
      CORREO_LEGAL : un correo que de verdad leas. Puede ser el
                     mismo de contacto.
    ========================================================= */
+/* El modo operador muestra la razón social y el estado junto a los precios. */
 (function () {
   'use strict';
 
@@ -80,8 +81,14 @@
     var slots = document.querySelectorAll('[data-empresa]');
     for (var i = 0; i < slots.length; i++) {
       var el = slots[i];
-      if (!hayAlgo) { el.hidden = true; continue; }
       var modo = el.getAttribute('data-empresa');
+      if (modo === 'operador') {
+        if (!RAZON_SOCIAL) { el.hidden = true; continue; }
+        el.textContent = 'Operado por ' + RAZON_SOCIAL + (ESTADO ? ', ' + ESTADO : '');
+        el.hidden = false;
+        continue;
+      }
+      if (!hayAlgo) { el.hidden = true; continue; }
       el.innerHTML = modo === 'corta' ? lineaCorta() : bloqueCompleto();
       el.hidden = false;
     }

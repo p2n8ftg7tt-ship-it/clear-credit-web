@@ -65,11 +65,11 @@
   .cc-scope-label{margin:0 6px 8px;font-size:.76rem;font-weight:700;color:var(--muted);}
   .cc-scope-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 6px 18px;}
   .cc-scope-chip{background:rgba(255,255,255,.8);border:1px solid rgba(18,63,79,.14);color:var(--navy);font:600 .74rem var(--font-body);padding:6px 12px;border-radius:999px;transition:opacity .3s ease,background .3s ease,border-color .3s ease,transform .3s ease;}
-  .cc-scope-chip-alert{background:rgba(179,64,42,.1);border-color:rgba(179,64,42,.35);color:#a3402a;}
+  .cc-scope-chip-alert{background:rgba(179,64,42,.1);border-color:rgba(179,64,42,.35);color:var(--corrector);}
   /* Al detectar el tipo de carta, ese chip se enciende y los demás se apagan */
   .cc-scope-chips.has-detection .cc-scope-chip{opacity:.32;}
   .cc-scope-chip.is-detected{opacity:1;background:var(--gold);border-color:var(--gold);color:var(--navy-deep);font-weight:800;transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,138,62,.4);}
-  .cc-scope-chip-alert.is-detected{background:#b3402a;border-color:#b3402a;color:#fff;box-shadow:0 6px 18px rgba(179,64,42,.45);}
+  .cc-scope-chip-alert.is-detected{background:var(--corrector);border-color:var(--corrector);color:#fff;box-shadow:0 6px 18px rgba(179,64,42,.45);}
 
   /* Pestañas: subir documento / pegar texto */
   .cc-tabs{display:flex;gap:6px;margin-bottom:14px;}
@@ -107,7 +107,7 @@
   .cr-progress-copy small{color:var(--muted);}
   .cr-spinner{width:30px;height:30px;border:3px solid rgba(159,211,219,.25);border-top-color:var(--gold);border-radius:50%;animation:cr-spin 1s linear infinite;flex:none;}
   @keyframes cr-spin{to{transform:rotate(360deg)}}
-  .cr-error{display:flex;gap:12px;background:#fff0ed;border-left:4px solid #a34838;color:#7e3127;padding:15px 18px;margin-top:14px;border-radius:0 8px 8px 0;}
+  .cr-error{display:flex;gap:12px;background:var(--copia-rosa);border-left:4px solid var(--corrector);color:var(--corrector);padding:15px 18px;margin-top:14px;border-radius:0 var(--radius) var(--radius) 0;}
   .cr-error b{font-size:1.15rem;}
   .cr-error p{margin:0;}
   .cr-error strong{display:block;}
@@ -125,18 +125,18 @@
   .cc-badge[hidden]{display:none!important;}
   .cc-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font:700 .78rem var(--font-body);letter-spacing:.01em;}
   .cc-badge-cat{background:rgba(201,138,62,.16);color:#8a5a20;border:1px solid rgba(201,138,62,.45);}
-  .cc-badge-urg-alta{background:rgba(179,64,42,.12);color:#8a2b2b;border:1px solid rgba(179,64,42,.42);}
+  .cc-badge-urg-alta{background:rgba(179,64,42,.12);color:var(--corrector);border:1px solid rgba(179,64,42,.42);}
   .cc-badge-urg-media{background:rgba(201,138,62,.16);color:#8a5a20;border:1px solid rgba(201,138,62,.45);}
-  .cc-badge-urg-baja{background:rgba(79,107,87,.14);color:#31543c;border:1px solid rgba(79,107,87,.42);}
+  .cc-badge-urg-baja{background:rgba(79,107,87,.14);color:var(--good);border:1px solid rgba(79,107,87,.42);}
   .cc-panel{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-lg);padding:22px 24px;margin-top:16px;box-shadow:0 10px 26px rgba(18,63,79,.06);}
   .cc-panel h4{color:var(--navy-deep);font:600 1.05rem var(--font-display);margin:0 0 10px;}
   .cc-panel p{color:var(--ink);margin:0;line-height:1.6;}
-  .cc-scam-alert{background:#fff0ed;border:1.5px solid rgba(179,64,42,.45);border-radius:var(--radius-lg);padding:22px 24px;margin-top:16px;display:flex;gap:14px;}
-  .cc-scam-alert b{font-size:1.5rem;color:#a34838;flex:none;}
-  .cc-scam-alert h4{color:#8a2b2b;font:700 1.05rem var(--font-body);margin:0 0 8px;}
-  .cc-scam-alert p{color:#7e3127;margin:0 0 12px;line-height:1.6;}
+  .cc-scam-alert{background:var(--copia-rosa);border:1.5px solid rgba(179,64,42,.45);border-radius:var(--radius-lg);padding:22px 24px;margin-top:16px;display:flex;gap:14px;}
+  .cc-scam-alert b{font-size:1.5rem;color:var(--corrector);flex:none;}
+  .cc-scam-alert h4{color:var(--corrector);font:700 1.05rem var(--font-body);margin:0 0 8px;}
+  .cc-scam-alert p{color:var(--ink);margin:0 0 12px;line-height:1.6;}
   .cc-scam-links{display:flex;flex-wrap:wrap;gap:10px;}
-  .cc-scam-links a{color:#fff;background:#a34838;border:1px solid #a34838;padding:8px 14px;border-radius:8px;font:700 .76rem var(--font-body);text-decoration:none;}
+  .cc-scam-links a{color:#fff;background:var(--corrector);border:1px solid var(--corrector);padding:8px 14px;border-radius:var(--radius);font:700 .76rem var(--font-body);text-decoration:none;}
   .cc-scam-links a:hover{background:#8a2b2b;}
   .cc-crosslink{background:rgba(79,107,87,.1);border:1.5px solid rgba(79,107,87,.35);border-radius:var(--radius-lg);padding:22px 24px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
   .cc-crosslink p{color:var(--ink);margin:0;max-width:56ch;line-height:1.55;}
@@ -167,9 +167,9 @@
 
   .cc-deadline{display:flex;align-items:center;gap:14px;background:rgba(179,64,42,.09);border:1px solid rgba(179,64,42,.28);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:18px}
   .cc-deadline[hidden]{display:none}
-  .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#8a2b2b;flex:none}
-  .cc-deadline strong{font-family:var(--font-display);font-size:1.3rem;line-height:1.2;color:#8a2b2b}
-  .cc-deadline-aviso{flex:1 0 100%;font-size:.82rem;line-height:1.5;color:#6b4a3f}
+  .cc-deadline-k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--corrector);flex:none}
+  .cc-deadline strong{font-family:var(--font-display);font-size:1.3rem;line-height:1.2;color:var(--corrector)}
+  .cc-deadline-aviso{flex:1 0 100%;font-size:.82rem;line-height:1.5;color:var(--muted)}
 
   .cc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
   .cc-meta[hidden]{display:none}
@@ -187,7 +187,7 @@
   .cc-list-rights li::before{background:var(--good)}
 
   .cc-phrases{list-style:none;margin:0;padding:0;display:grid;gap:11px}
-  .cc-phrases li{border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:0 11px 11px 0;padding:13px 16px;background:#fff}
+  .cc-phrases li{border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:13px 16px;background:#fff}
   .cc-phrase-en{display:block;font-weight:700;color:var(--navy-deep);line-height:1.5}
   .cc-phrase-es{display:block;font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.5}
 
@@ -232,7 +232,7 @@
   .cc-permiso-lista li{display:flex;gap:11px;align-items:flex-start;background:#fff;border-radius:var(--radius);padding:12px 14px;font-size:.9rem;line-height:1.58}
   .cc-permiso-lista .si,.cc-permiso-lista .no{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:800;color:#fff;margin-top:1px}
   .cc-permiso-lista .si{background:var(--good)}
-  .cc-permiso-lista .no{background:#b3402a}
+  .cc-permiso-lista .no{background:var(--corrector)}
   .cc-permiso-tip{font-size:.87rem!important;color:var(--muted)!important;font-style:italic}
   .cc-permiso-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
   /* Iconos de línea propios, en vez de emoji del sistema. Heredan el color con
@@ -582,15 +582,41 @@
 </main>
 
 <footer>
-  <div class="wrap revision-legal">
+<div class="wrap revision-legal">
     <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-14">14 de septiembre de 2026</time>, contrastando FDCPA, FCRA y las señales de fraude que publica la FTC.
     Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
   </div>
-  <div class="wrap footer-inner">
-    <span class="brand" style="font-family:var(--font-display);">Themora</span>
-    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
   </div>
-<div class="wrap footer-legal" data-empresa="corta" hidden></div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -1602,8 +1628,6 @@
   if(t){ t.addEventListener('click', ()=>{ const open=n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
 </script>
 <script src="site-search-index.js"></script>
-<script src="zyron-leyes.js"></script>
-<script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
 
   <script src="nav.js"></script>

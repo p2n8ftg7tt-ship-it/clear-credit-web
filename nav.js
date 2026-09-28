@@ -9,6 +9,16 @@
 
   const groups = Array.from(document.querySelectorAll('.nav-group'));
   if (!groups.length) return;
+  // En celular el nombre del grupo es solo un encabezado: que el teclado no se detenga ahí.
+  const narrow = window.matchMedia('(max-width:720px)');
+  const syncNarrow = () => groups.forEach(group => {
+    const btn = group.querySelector('.nav-group-btn');
+    if (!btn) return;
+    if (narrow.matches) { btn.setAttribute('tabindex', '-1'); btn.setAttribute('aria-hidden', 'true'); }
+    else { btn.removeAttribute('tabindex'); btn.removeAttribute('aria-hidden'); }
+  });
+  syncNarrow();
+  narrow.addEventListener('change', syncNarrow);
 
   // El desplegable solo aplica en pantallas anchas...
   const desktop = window.matchMedia('(min-width: 901px)');

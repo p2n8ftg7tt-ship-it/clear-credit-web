@@ -385,6 +385,7 @@
       </div>
 
       <div class="pago-caja" data-precio-de="formar" hidden></div>
+      <p class="pago-operador" data-empresa="operador" hidden></p>
 
       <form id="fnForm" novalidate>
         <div class="fn-form-grid">
@@ -450,15 +451,41 @@
 </main>
 
 <footer>
-  <div class="wrap revision-legal">
+<div class="wrap revision-legal">
     <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-14">14 de septiembre de 2026</time>, contrastando los pasos de registro estatal, el EIN federal y el reporte BOI de FinCEN.
     Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
   </div>
-  <div class="wrap footer-inner">
-    <span class="brand" style="font-family:var(--font-display);">Themora</span>
-    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
   </div>
-<div class="wrap footer-legal" data-empresa="corta" hidden></div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
 </footer>
 
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y listar-negocio.html):
@@ -557,8 +584,6 @@
 </script>
 
   <script src="site-search-index.js"></script>
-  <script src="zyron-leyes.js"></script>
-  <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
 <script src="reveal.js" defer></script>

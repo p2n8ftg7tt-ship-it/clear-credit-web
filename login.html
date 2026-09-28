@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <title>Iniciar sesión | Themora</title>
 <meta name="description" content="Crea tu cuenta gratuita o inicia sesión para guardar tus análisis de crédito y cálculos hipotecarios.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -295,11 +296,37 @@
 </main>
 
 <footer>
-  <div class="wrap footer-inner">
-    <span class="brand" style="font-family:var(--font-display);">Themora</span>
-    <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
   </div>
-<div class="wrap footer-legal" data-empresa="corta" hidden></div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
 </footer>
 
 <script>

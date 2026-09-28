@@ -44,7 +44,7 @@
     --ct-wash:var(--paper-dim);
     --ct-wash-warn:var(--wash-gold);
     --ct-wash-ok:var(--wash-teal);
-    --ct-wash-bad:#fbeeea;
+    --ct-wash-bad:var(--copia-rosa);
     --ct-line-ok:rgba(63,122,110,.32);
     --ct-line-bad:rgba(179,64,42,.32);
   }
@@ -147,7 +147,7 @@
   .ct-input-wrap .ct-sign{position:absolute;left:12px;color:var(--ct-soft);font-weight:700;font-size:.9rem;pointer-events:none}
   .ct-input-wrap .ct-suffix{position:absolute;right:12px;color:var(--ct-soft);font-weight:700;font-size:.85rem;pointer-events:none}
   .ct-field input,.ct-field select{width:100%;border:1px solid var(--line);border-radius:var(--radius-sm);padding:11px 13px;font:600 1rem var(--font-body);color:var(--ct-text);background:#fff}
-  .ct-field input::placeholder,.ct-extra-row input::placeholder{color:#7d7163;font-weight:500}
+  .ct-field input::placeholder,.ct-extra-row input::placeholder{color:var(--muted);font-weight:500}
   .ct-field input.has-sign{padding-left:26px}
   .ct-field input.has-suffix{padding-right:38px}
   .ct-field input:focus,.ct-field select:focus,.ct-extra-row input:focus,.ct-extra-row select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
@@ -224,7 +224,7 @@
     .ct-results{margin:0}
   }
   @media(max-width:620px){
-    .ct-process{display:flex;flex-direction:column;width:100%;border-radius:18px;padding:6px 10px}
+    .ct-process{display:flex;flex-direction:column;width:100%;border-radius:var(--radius);padding:6px 10px}
     .ct-process-item{padding:11px 8px}.ct-process-item + .ct-process-item::before{left:8px;right:8px;top:0;width:auto;height:1px}
     .ct-dropzone{min-height:280px;padding:24px 16px}.ct-dropzone.has-file{padding:16px}
     .ct-hojas{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
@@ -335,6 +335,7 @@
       </div>
       <a href="quienes-somos.html">Quiénes somos</a>
       <a href="contacto.html">Contacto</a>
+      <a href="login.html" id="navAuthLink" class="nav-auth-btn">Iniciar sesión</a>
       </nav>
     </div>
   </header>
@@ -644,17 +645,42 @@
   </main>
 
   <footer>
-    <div class="wrap revision-legal">
+<div class="wrap revision-legal">
       <strong>Revisión del contenido legal:</strong> esta página se revisó por última vez el <time datetime="2026-09-13">13 de septiembre de 2026</time>, contrastando <a href="https://www.ecfr.gov/current/title-12/chapter-X/part-1026" target="_blank" rel="noopener">Regulation Z (TILA)</a> y la CARS Rule, que el Quinto Circuito <strong>anuló</strong> el 27 de enero de 2025 — <a href="https://www.ca5.uscourts.gov/opinions/pub/24/24-60013-CV0.pdf" target="_blank" rel="noopener">sentencia completa, caso No. 24-60013 (PDF)</a>. Por eso esta página no cita esa regla como si estuviera vigente.
       Las reglas cambian. Si ves algo que ya no cuadra con la fuente oficial, <a href="contacto.html">dínoslo</a> y lo corregimos.
     </div>
-    <div class="wrap footer-inner">
-      <span class="brand">Themora</span>
-      <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
-      <span><a href="comprar-casa.html">Compra de casa</a> · <a href="comprar-auto.html">Compra de auto</a></span>
-    </div>
-  <div class="wrap footer-legal" data-empresa="corta" hidden></div>
-  </footer>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
+  </div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
+</footer>
 
   <script>
     const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
@@ -1308,8 +1334,6 @@
   <script src="auth.js"></script>
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
-  <script src="zyron-leyes.js"></script>
-  <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
 <script src="tasas-texto.js" defer></script>

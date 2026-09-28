@@ -49,12 +49,12 @@
     /* La segunda hoja detrás: es un papel, no una tarjeta. */
     .hm-hoja::before{content:"";position:absolute;inset:14px -12px 40px 12px;background:var(--copia-celeste,#fff);border:1px solid var(--line);transform:rotate(2.2deg);}
     .hm-carta{position:relative;background:#fff;border:1px solid var(--line);padding:30px 32px 34px;transform:rotate(-1deg);
-      box-shadow:0 24px 40px -30px rgba(18,63,79,.45);font:400 .78rem/1.72 var(--font-body);color:#3b4252;}
+      box-shadow:0 24px 40px -30px rgba(18,63,79,.45);font:400 .78rem/1.72 var(--font-body);color:var(--ink);}
     .hm-carta p{margin:0 0 11px;}
     .hm-membrete{display:flex;flex-direction:column;padding-bottom:12px;margin-bottom:16px!important;border-bottom:1px solid var(--line);}
-    .hm-membrete strong{font:700 .86rem var(--font-display);color:#2b3140;letter-spacing:-.01em;}
-    .hm-membrete span{font-size:.7rem;color:#7b8394;}
-    .hm-ref{font-size:.72rem;color:#5d6577;}
+    .hm-membrete strong{font:700 .86rem var(--font-display);color:var(--ink);letter-spacing:-.01em;}
+    .hm-membrete span{font-size:.7rem;color:var(--muted);}
+    .hm-ref{font-size:.72rem;color:var(--muted);}
     .hm-firma{margin:18px 0 0!important;}
     /* El trazo: sin box-decoration-break, el fondo se reparte entre las
        líneas como una sola tira, así que se "pinta" en orden de lectura. */
@@ -79,7 +79,7 @@
 
     /* ===== TRES DATOS ===== */
     .tres-section{padding:64px 0 0;background:var(--paper);}
-    .tres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+    .tres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
     .tres-item{background:var(--paper-dim);padding:28px 26px;}
     .tres-item b{display:block;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);
       display:grid;place-items:center;font:800 .82rem var(--font-display);margin-bottom:12px;}
@@ -109,7 +109,7 @@
     .negocio-card p{color:rgba(255,255,255,.72);font-size:.85rem;line-height:1.6;flex:1;}
     .negocio-card .negocio-cta{display:inline-block;margin-top:17px;color:var(--gold-light);font-weight:800;font-size:.8rem;}
     .negocio-honesto{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(255,255,255,.06);
-      border-radius:0 12px 12px 0;font-size:.87rem;line-height:1.65;color:rgba(255,255,255,.82);max-width:760px;}
+      border-radius:0 var(--radius) var(--radius) 0;font-size:.87rem;line-height:1.65;color:rgba(255,255,255,.82);max-width:760px;}
 
     /* ===== POR QUÉ CREERNOS ===== */
     .creer-section{padding:76px 0;background:var(--paper);}
@@ -127,7 +127,7 @@
     .nosomos-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:11px;}
     .nosomos-list li{position:relative;padding-left:30px;font-size:.93rem;line-height:1.6;color:var(--ink);}
     .nosomos-list li::before{content:'✕';position:absolute;left:4px;top:0;font-weight:800;color:var(--danger);font-size:.88rem;}
-    .nosomos-cierre{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);border-radius:14px;
+    .nosomos-cierre{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
       font:600 1.05rem/1.5 var(--font-display);color:var(--navy-deep);}
 
     /* ===== GUÍAS ===== */
@@ -227,7 +227,7 @@
     /* Preguntas y cuenta */
     body[data-cms-page="index"] .faq-item strong{font:700 1.08rem var(--font-display);color:var(--tinta);}
     body[data-cms-page="index"] .faq-item span{font-size:.9rem;line-height:1.7;}
-    body[data-cms-page="index"] .account-cta-box{background:var(--tinta);border-radius:8px;}
+    body[data-cms-page="index"] .account-cta-box{background:var(--tinta);border-radius:var(--radius);}
     body[data-cms-page="index"] .account-cta-box h2{color:#fff;}
     body[data-cms-page="index"] .account-cta-box .btn-gold{background:#fff;color:var(--tinta);}
     body[data-cms-page="index"] .account-cta-box .btn-gold:hover{background:var(--copia-celeste);color:var(--tinta);}
@@ -287,7 +287,6 @@
           <p data-cms="index_hero_texto">Una carta del IRS, un contrato del dealer, un permiso de la ciudad, tu reporte de crédito. Te decimos qué es, qué fecha importa y qué opciones tienes — antes de que lo firmes, lo pagues o se te pase la fecha.</p>
           <div class="home-hero-actions">
             <a data-umami-event="inicio-carta" href="cartas-claras.html" class="btn btn-gold">Explicar mi carta gratis</a>
-            <a data-umami-event="inicio-negocio" href="aparezco.html" class="btn btn-outline">Tengo un negocio →</a>
           </div>
           <p class="home-hero-nota">Gratis, sin crear cuenta y sin dar tu correo.</p>
         </div>
@@ -413,8 +412,10 @@
     <!-- LO QUE NO SOMOS -->
     <section class="nosomos-section">
       <div class="wrap nosomos-wrap">
-        <span class="eyebrow-dark">Con claridad</span>
-        <h2 style="font:600 clamp(1.8rem,3.4vw,2.6rem)/1.1 var(--font-display);color:var(--navy-deep);">Lo que no somos</h2>
+        <div class="section-head">
+          <span class="eyebrow-dark">Con claridad</span>
+          <h2>Lo que no somos</h2>
+        </div>
         <ul class="nosomos-list">
           <li><strong>No somos abogados.</strong> Te decimos qué opciones existen; nunca qué debes hacer en tu caso.</li>
           <li><strong>No somos prestamistas ni asesores hipotecarios con licencia.</strong> No aprobamos préstamos ni te conseguimos una tasa.</li>
@@ -430,9 +431,10 @@
     <section class="negocio-section band-dark">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow-dark" style="color:var(--gold-light);">¿Tienes un negocio?</span>
+          <span class="eyebrow">¿Tienes un negocio?</span>
           <h2>Que te encuentren, y que estés en regla.</h2>
           <p>Si alguien te recomienda y no te encuentra en el mapa, esa venta no llega. Empieza por ver cómo estás hoy — eso no cuesta nada.</p>
+          <div class="hero-actions"><a data-umami-event="inicio-negocio" href="aparezco.html" class="btn btn-gold">Revisar mi negocio gratis</a></div>
         </div>
         <div class="negocio-grid">
           <a class="negocio-card is-primero" href="aparezco.html" data-umami-event="inicio-aparezco" data-reveal>
@@ -528,18 +530,38 @@
   </main>
 
   <footer>
-    <div class="wrap footer-inner">
-      <span class="brand">Themora</span>
-      <span>© 2026 · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="contacto.html">Contacto</a></span>
-      <span><a href="comprar-casa.html">Comprar casa</a> · <a href="comprar-auto.html">Comprar auto</a> · <a href="contacto.html">Contacto</a></span>
-    </div>
-    <div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden style="border-top:1px solid rgba(255,255,255,.14);margin-top:14px;padding-top:14px;">
-      <span data-cms="global_contacto_telefono"></span>
-      <span data-cms="global_contacto_correo"></span>
-      <span data-cms="global_contacto_redes"></span>
-    </div>
-  <div class="wrap footer-legal" data-empresa="corta" hidden></div>
-  </footer>
+
+<div class="wrap footer-grid">
+  <div class="footer-col">
+    <span class="brand">Themora</span>
+    <p class="footer-nosomos">No somos abogados, ni prestamistas, ni una empresa de reparación de crédito. Te explicamos qué opciones existen; la decisión es tuya.</p>
+  </div>
+  <nav class="footer-col" aria-label="Servicios">
+    <strong>Servicios</strong>
+    <a href="cartas-claras.html">Cartas Claras</a>
+    <a href="contrato-auto.html">Contrato del dealer</a>
+    <a href="credito.html">Crédito</a>
+    <a href="aparezco.html">¿Aparece mi negocio?</a>
+  </nav>
+  <nav class="footer-col" aria-label="Themora">
+    <strong>Themora</strong>
+    <a href="quienes-somos.html">Quiénes somos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="agendar.html">Agendar una cita</a>
+  </nav>
+  <nav class="footer-col" aria-label="Legal">
+    <strong>Legal</strong>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="terminos.html">Términos</a>
+  </nav>
+</div>
+<div class="wrap footer-inner" id="footerContact" data-cms-reveal hidden>
+  <span data-cms="global_contacto_telefono"></span>
+  <span data-cms="global_contacto_correo"></span>
+  <span data-cms="global_contacto_redes"></span>
+</div>
+<div class="wrap footer-legal"><span>© 2026 Themora</span> <span data-empresa="corta" hidden></span></div>
+</footer>
 
   <script>
     const t=document.getElementById('navToggle'), n=document.getElementById('navLinks');
@@ -549,8 +571,6 @@
   <script src="auth.js"></script>
   <script src="cms.js"></script>
   <script src="site-search-index.js"></script>
-  <script src="zyron-leyes.js"></script>
-  <script src="zyron-brain.js"></script>
   <script src="credit-coach.js"></script>
   <script src="nav.js"></script>
 <script src="reveal.js" defer></script>
