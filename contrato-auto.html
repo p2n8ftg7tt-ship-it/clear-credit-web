@@ -68,25 +68,69 @@
   .ct-intro-note p strong{color:var(--ct-head)}
   .ct-intro-note p + p{margin-top:10px}
 
-  .ct-foto{border:1px dashed var(--line);border-radius:var(--radius-lg);padding:20px 22px;background:var(--ct-wash);margin-bottom:24px}
-  .ct-foto-head h3{margin:0 0 6px;font-family:var(--font-display);font-size:1.05rem;color:var(--ct-head)}
-  .ct-foto-head p{margin:0 0 14px;font-size:.88rem;line-height:1.62;color:var(--ct-soft)}
-  .ct-foto-head p strong{color:var(--ct-head)}
-  .ct-foto .aviso-envio{background:#fff}
-  .ct-foto-estado{font-size:.86rem;color:var(--ct-soft);line-height:1.5}
+  /* El lector vive aparte: elegir fotos es opcional, pero merece un momento claro. */
+  .ct-lector-section{background:var(--navy-deep);color:var(--paper);position:relative;overflow:hidden}
+  .ct-lector-section::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(246,242,232,.09);border-radius:50%;left:-250px;bottom:-250px;pointer-events:none}
+  .ct-lector-section .section-head h2{color:var(--paper)}
+  .ct-lector-section .section-head p{color:rgba(246,242,232,.72)}
+  .ct-lector-section .eyebrow-dark{color:var(--gold-light)}
+  .ct-process{display:inline-flex;flex-wrap:wrap;align-items:stretch;background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:6px 8px;margin-bottom:26px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+  .ct-process-item{display:flex;align-items:center;gap:9px;padding:8px 18px;position:relative}
+  .ct-process-item + .ct-process-item::before{content:"";position:absolute;left:0;top:18%;height:64%;width:1px;background:rgba(255,255,255,.16)}
+  .ct-process-item>span{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy-deep);font:700 .74rem var(--font-display);flex:none}
+  .ct-process-item strong{display:block;color:var(--paper);font-size:.82rem;line-height:1.25}
+  .ct-process-item small{display:block;color:rgba(246,242,232,.55);font-size:.7rem;line-height:1.3}
+  .ct-upload-card{background:var(--paper);color:var(--ink);border-radius:var(--radius-lg);padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.22)}
+  .ct-upload-card .aviso-envio{background:var(--paper)}
+  .ct-dropzone{min-height:310px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius-lg);transition:.2s ease;cursor:pointer}
+  .ct-dropzone:hover,.ct-dropzone.is-dragging{border-color:var(--franja-verde);background:var(--copia-verde)}
+  .ct-dropzone.has-file{min-height:auto;display:block;padding:20px}
+  .ct-dropzone:focus-visible,.ct-hoja:focus-visible,.ct-slot:focus-visible,.ct-select-btn:focus-visible,.ct-camera-btn:focus-visible,.ct-remove:focus-visible,.ct-change-btn:focus-visible,.ct-analyze-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px}
+  .ct-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  .ct-upload-empty{display:flex;flex-direction:column;align-items:center}
+  .ct-upload-empty[hidden],#ctReady[hidden],.ct-hojas[hidden],.ct-analyze-btn[hidden],.ct-progress[hidden],.ct-foto-error[hidden]{display:none!important}
+  .ct-upload-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--paper);margin-bottom:18px}
+  .ct-upload-icon svg{width:36px;height:36px}
+  .ct-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px}
+  .ct-upload-empty p{margin:0 0 18px;color:var(--muted);font-size:.9rem}
+  .ct-upload-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .ct-select-btn,.ct-camera-btn{border:0;border-radius:999px;background:var(--navy);color:var(--paper);padding:12px 20px;font:700 .9rem var(--font-body);cursor:pointer;transition:.2s ease}
+  .ct-select-btn:hover,.ct-camera-btn:hover,.ct-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2)}
+  .ct-camera-btn{display:none}
+  .ct-upload-empty small{display:block;margin-top:14px;color:var(--muted);font-size:.72rem}
+  .ct-ready-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;text-align:left}
+  .ct-foto-estado{font:700 1rem var(--font-display);color:var(--navy)}
+  .ct-change-btn{border:0;background:none;color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline}
+  .ct-hojas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:14px}
+  .ct-hoja{position:relative;min-width:0;transform:rotate(-1.2deg);transition:transform .2s ease}
+  .ct-hoja:nth-child(even){transform:rotate(.9deg)}
+  .ct-hoja:hover,.ct-hoja:focus-within{transform:rotate(0)}
+  .ct-hoja img,.ct-slot{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:0 6px 14px rgba(18,63,79,.14)}
+  .ct-pag-n,.ct-remove,.ct-check{position:absolute;border-radius:50%;display:grid;place-items:center}
+  .ct-pag-n{top:-8px;left:-8px;width:24px;height:24px;background:var(--navy);color:var(--paper);font:800 .72rem var(--font-body);z-index:1}
+  .ct-remove,.ct-check{top:-9px;right:-9px;width:32px;height:32px;z-index:1}
+  .ct-remove{border:1px solid var(--line);background:var(--paper);color:var(--navy);font:700 1.1rem var(--font-body);cursor:pointer}
+  .ct-check{background:var(--franja-verde);color:var(--navy);font-weight:800}
+  .ct-pag-nombre{display:block;margin-top:8px;font-size:.72rem;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ct-slot{border:1.5px dashed var(--franja-verde);background:var(--copia-verde);color:var(--navy);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 .72rem var(--font-body)}
+  .ct-slot b{font-size:1.7rem;line-height:1}
+  .ct-hoja.is-reading::after{content:"";position:absolute;left:4px;right:4px;top:0;height:2px;background:var(--franja-verde);box-shadow:0 0 8px var(--franja-verde);animation:ct-sweep 1.4s ease-in-out infinite;animation-delay:var(--scan-delay)}
+  @keyframes ct-sweep{to{top:calc(100% - 2px)}}
+  .ct-analyze-btn{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;border-radius:var(--radius);background:var(--gold);color:var(--paper);padding:15px 20px;margin-top:14px;font:700 1rem var(--font-body);cursor:pointer}
+  .ct-analyze-btn span{font-size:1.2rem}
+  .ct-limite-ia{display:block;margin:9px 0 0;font-size:.8rem;line-height:1.5;color:var(--muted)}
+  .ct-progress{display:flex;align-items:center;gap:14px;background:rgba(47,111,98,.1);color:var(--navy);padding:15px 18px;margin-top:14px;border-radius:var(--radius)}
+  .ct-progress-copy{display:flex;flex-direction:column}.ct-progress-copy small{color:rgba(27,27,24,.58)}
+  .ct-spinner{width:30px;height:30px;border:3px solid rgba(47,111,98,.2);border-top-color:var(--teal);border-radius:50%;animation:ct-spin 1s linear infinite;flex:none}
+  @keyframes ct-spin{to{transform:rotate(360deg)}}
+  .ct-foto-error{display:flex;gap:12px;background:var(--ct-wash-bad);border-left:4px solid var(--danger);color:var(--danger);padding:15px 18px;margin-top:14px}
+  .ct-foto-error b{font-size:1.15rem}.ct-foto-error p{margin:0}.ct-foto-error strong{display:block}
   .ct-revisar{background:var(--ct-wash-warn);border:1.5px solid var(--gold);border-radius:var(--radius);padding:15px 18px;margin-top:14px}
   .ct-revisar[hidden]{display:none}
   .ct-revisar h4{margin:0 0 6px;font:700 .96rem var(--font-body);color:var(--ct-head)}
   .ct-revisar p{margin:0;font-size:.87rem;line-height:1.6;color:var(--ct-text)}
   .ct-revisar ul{margin:8px 0 0;padding-left:18px;font-size:.86rem;line-height:1.62;color:var(--ct-text)}
 
-  .ct-paginas{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
-  .ct-paginas[hidden]{display:none}
-  .ct-pagina{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:8px 10px}
-  .ct-pagina img{width:44px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--line);flex:none;background:#fff}
-  .ct-pagina .ct-pag-n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ct-head);color:#fff;display:grid;place-items:center;font:800 .72rem var(--font-body)}
-  .ct-pagina .ct-pag-nombre{flex:1;min-width:0;font-size:.84rem;color:var(--ct-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .ct-pagina .ct-extra-del{height:32px;width:32px;flex:none}
   .ct-avisos{margin:10px 0 0;padding-left:18px;font-size:.83rem;line-height:1.6;color:var(--ct-soft)}
   .ct-avisos:empty{display:none}
 
@@ -176,16 +220,23 @@
 
   .ct-print{margin-top:18px}
   @media print{
-    header,footer,.ct-form,.ct-print,.skip-link,.credit-coach-launcher{display:none!important}
+    header,footer,.ct-form,.ct-print,.ct-lector-section,.skip-link,.credit-coach-launcher{display:none!important}
     .ct-results{margin:0}
   }
   @media(max-width:620px){
+    .ct-process{display:flex;flex-direction:column;width:100%;border-radius:18px;padding:6px 10px}
+    .ct-process-item{padding:11px 8px}.ct-process-item + .ct-process-item::before{left:8px;right:8px;top:0;width:auto;height:1px}
+    .ct-dropzone{min-height:280px;padding:24px 16px}.ct-dropzone.has-file{padding:16px}
+    .ct-hojas{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
     .ct-headline{padding:20px 19px}
     .ct-headline strong{font-size:1.5rem}
     .ct-block{padding:18px 17px}
   }
+  @media(pointer:coarse){.ct-camera-btn{display:inline-flex}.ct-select-btn{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}}
+  @media(prefers-reduced-motion:reduce){.ct-hoja.is-reading::after{display:none}.ct-spinner{animation:none}}
 
   .ct-intro-note p.ct-fuente{font-size:.78rem;color:var(--ct-soft);line-height:1.55;margin-top:10px}
+  .ct-manual-note{margin:0 0 18px;color:var(--muted);font-size:.84rem;text-align:left}
   .ct-limite-ia{font-size:.8rem;color:var(--ct-soft);line-height:1.5;flex:1;min-width:180px}
 
   .ct-escenario{display:grid;gap:9px;margin-bottom:16px}
@@ -326,12 +377,22 @@
           <p>Un vendedor te dice “son solo $40 más al mes”. Cuarenta dólares al mes durante 72 meses, con interés, no son $40. Aquí se ve el número completo.</p>
         </div>
 
-        <div class="ct-foto" id="ctFotoBlock">
-          <div class="ct-foto-head">
-            <h3>¿Prefieres tomarle fotos?</h3>
-            <p>Un contrato de dealer casi nunca cabe en una hoja: el precio está en una página, la tasa en otra y los productos agregados casi siempre en una aparte. <strong>Súbelas todas juntas</strong> — hasta 8 — o el PDF completo, y llenamos el formulario por ti.</p>
-            <p><strong>Después tú revisas cada número contra tu papel</strong> antes de que se calcule nada. Nunca confíes en que una máquina leyó bien una cifra de miles de dólares.</p>
-          </div>
+      </div>
+    </section>
+
+    <section id="leer-contrato" class="section ct-lector-section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow-dark">Opcional - Con fotos</span>
+          <h2>Tomale foto al contrato y llenamos los numeros</h2>
+          <p>Un contrato de dealer casi nunca cabe en una hoja: el precio está en una, la tasa en otra y los productos agregados en otra. Súbelas todas juntas, hasta 8, o el PDF completo.</p>
+        </div>
+        <div class="ct-process" aria-label="Cómo funciona la lectura">
+          <div class="ct-process-item"><span>1</span><div><strong>Fotografía cada hoja</strong><small>O sube el PDF completo</small></div></div>
+          <div class="ct-process-item"><span>2</span><div><strong>Leemos los números</strong><small>Precio, tasa, plazo y extras</small></div></div>
+          <div class="ct-process-item"><span>3</span><div><strong>Tú revisas</strong><small>Cada casilla contra tu papel</small></div></div>
+        </div>
+        <div class="ct-upload-card" id="ctFotoBlock">
           <!-- El aviso de qué pasa con el documento va AQUÍ, pegado al botón
                que lo elige, no al principio de la página donde nadie lo asocia
                con el momento de subirlo. Un contrato de dealer trae nombre,
@@ -344,20 +405,32 @@
               <p>Si prefieres que no salga nada, <a href="#ctForm">escribe los números a mano</a>: el cálculo es exactamente el mismo. Elegir el archivo todavía no envía nada; el envío ocurre cuando aprietas el botón dorado.</p>
             </div>
           </div>
-          <div class="ct-actions">
-            <label class="btn btn-outline" for="ctFotoInput">Subir las páginas del contrato</label>
-            <input type="file" id="ctFotoInput" accept="image/*,application/pdf" multiple hidden>
-            <span class="ct-foto-estado" id="ctFotoEstado"></span>
-          </div>
-          <ol class="ct-paginas" id="ctPaginas" hidden></ol>
-          <div class="ct-actions" id="ctLeerAcciones" hidden>
-            <button type="button" class="btn btn-gold" id="ctLeerPaginas" data-umami-event="contrato-auto-foto-enviada">Leer estas páginas</button>
-            <span class="ct-limite-ia">Es una extracción preliminar y puede equivocarse. Lo que manda es tu contrato firmado.</span>
-            <button type="button" class="btn btn-outline" id="ctQuitarTodas">Quitar todas</button>
+          <div class="ct-dropzone" id="ctDropzone" role="button" tabindex="0" aria-label="Elegir las hojas del contrato">
+            <input class="ct-file-input" type="file" id="ctFotoInput" accept="image/*,application/pdf" multiple>
+            <input class="ct-file-input" type="file" id="ctFotoCamara" accept="image/*" capture="environment" multiple>
+            <div class="ct-upload-empty" id="ctUploadEmpty">
+              <div class="ct-upload-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 10h20v28H14z"/><path d="M9 14h20v28H9z"/><path d="M19 6h20v28H19z"/></svg></div>
+              <h3>Arrastra aquí las hojas del contrato</h3><p>o tómales foto con el teléfono</p>
+              <div class="ct-upload-buttons"><button class="ct-camera-btn" id="ctCameraButton" type="button">Tomar foto</button><button class="ct-select-btn" id="ctSelectButton" type="button">Elegir archivos</button></div>
+              <small>Fotos o PDF - Hasta 8 hojas</small>
+            </div>
+            <div id="ctReady" hidden>
+              <div class="ct-ready-head"><strong class="ct-foto-estado" id="ctFotoEstado" aria-live="polite"></strong><button type="button" class="ct-change-btn" id="ctQuitarTodas">Empezar de nuevo</button></div>
+              <ol class="ct-hojas" id="ctPaginas" hidden></ol>
+            </div>
           </div>
           <ul class="ct-avisos" id="ctAvisos"></ul>
-          <div class="ct-error" id="ctFotoError" role="alert" hidden></div>
+          <button type="button" class="ct-analyze-btn" id="ctLeerPaginas" data-umami-event="contrato-auto-foto-enviada" hidden>Leer las hojas <span>→</span></button>
+          <span class="ct-limite-ia">Es una extracción preliminar y puede equivocarse. Lo que manda es tu contrato firmado.</span>
+          <div class="ct-progress" id="ctProgreso" aria-live="polite" hidden><span class="ct-spinner"></span><div class="ct-progress-copy"><strong id="ctProgresoTitulo">Leyendo hojas...</strong><small>Buscamos precio, tasa, plazo y extras</small></div></div>
+          <div class="ct-foto-error" id="ctFotoError" role="alert" hidden></div>
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="ct-manual-note">Prefieres no subir nada? Escribe los numeros aqui abajo, el calculo es el mismo.</p>
 
         <form class="ct-form" id="ctForm" autocomplete="off">
 
@@ -1112,65 +1185,78 @@
 
      La IA solo LEE: llena el formulario y se detiene. La persona revisa,
      corrige y aprieta el botón. La aritmética nunca sale de este archivo. */
-  const fotoEstado=$('ctFotoEstado'), fotoError=$('ctFotoError');
-  let paginasListas=[];
+  const fotoEstado=$('ctFotoEstado'), fotoError=$('ctFotoError'), dropzone=$('ctDropzone'), progreso=$('ctProgreso');
+  let paginasListas=[], leyendo=false, leidas=false;
 
   function ponerSiHay(id,valor){ if(valor!==null&&valor!==undefined) $(id).value=valor; }
 
+  function errorFoto(titulo,mensaje){
+    fotoError.innerHTML='<b>!</b><p><strong>'+escapeHtml(titulo)+'</strong><span>'+mensaje+' <a href="#ctForm">Escribir los números a mano</a></span></p>';
+    fotoError.hidden=false;
+  }
+
   function pintarPaginas(){
-    const cont=$('ctPaginas');
+    const cont=$('ctPaginas'), hay=paginasListas.length>0;
     cont.innerHTML=paginasListas.map((p,i)=>
-      '<li class="ct-pagina">'+
+      '<li class="ct-hoja'+(leyendo?' is-reading':'')+'" style="--scan-delay:'+(i*.35)+'s">'+
         '<span class="ct-pag-n">'+(i+1)+'</span>'+
         '<img src="data:'+p.mediaType+';base64,'+p.base64+'" alt="Página '+(i+1)+'">'+
-        '<span class="ct-pag-nombre">'+escapeHtml(p.nombre)+'</span>'+
-        '<button type="button" class="ct-extra-del" data-i="'+i+'" aria-label="Quitar la página '+(i+1)+'">×</button>'+
-      '</li>').join('');
-    cont.querySelectorAll('.ct-extra-del').forEach(b=>b.addEventListener('click',()=>{
-      paginasListas.splice(parseInt(b.dataset.i,10),1); pintarPaginas();
+        (leidas?'<span class="ct-check" aria-label="Leída">✓</span>':'<button type="button" class="ct-remove" data-i="'+i+'" aria-label="Quitar la hoja '+(i+1)+'"'+(leyendo?' disabled':'')+'>×</button>')+
+        '<span class="ct-pag-nombre">'+escapeHtml(p.nombre)+'</span></li>').join('')+
+      (hay&&paginasListas.length<window.ThemoraPaginas.MAX_PAGINAS?'<li><button type="button" class="ct-slot" id="ctOtraHoja" '+(leyendo?'disabled':'')+'><b>+</b>Otra hoja</button></li>':'');
+    cont.querySelectorAll('.ct-remove').forEach(b=>b.addEventListener('click',()=>{
+      if(leyendo)return; paginasListas.splice(parseInt(b.dataset.i,10),1); pintarPaginas();
     }));
-    const hay=paginasListas.length>0;
-    cont.hidden=!hay;
-    $('ctLeerAcciones').hidden=!hay;
+    const otra=$('ctOtraHoja'); if(otra)otra.addEventListener('click',e=>{e.stopPropagation();$('ctFotoInput').click();});
+    cont.hidden=!hay; $('ctReady').hidden=!hay; $('ctUploadEmpty').hidden=hay; dropzone.classList.toggle('has-file',hay);
+    $('ctLeerPaginas').hidden=!hay; $('ctLeerPaginas').disabled=leyendo;
+    $('ctQuitarTodas').disabled=leyendo;
+    fotoEstado.textContent=hay?paginasListas.length+' de '+window.ThemoraPaginas.MAX_PAGINAS+' hoja'+(paginasListas.length===1?'':'s'):'';
+    $('ctLeerPaginas').innerHTML='Leer '+paginasListas.length+' hoja'+(paginasListas.length===1?'':'s')+' <span>→</span>';
   }
 
   function escapeHtml(t){
     return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   }
 
-  $('ctFotoInput').addEventListener('change',async(e)=>{
-    const files=e.target.files;
+  async function prepararFotos(files){
     if(!files||!files.length)return;
-    fotoError.hidden=true; $('ctRevisar').hidden=true; $('ctAvisos').innerHTML='';
-    fotoEstado.textContent='Preparando las páginas…';
+    fotoError.hidden=true; leidas=false; $('ctRevisar').hidden=true; $('ctAvisos').innerHTML='';
     try{
       const r=await window.ThemoraPaginas.preparar(files);
       // Se agregan a las que ya hubiera, por si las sube en varias tandas.
       paginasListas=paginasListas.concat(r.paginas).slice(0,window.ThemoraPaginas.MAX_PAGINAS);
       pintarPaginas();
       $('ctAvisos').innerHTML=r.avisos.map(a=>'<li>'+escapeHtml(a)+'</li>').join('');
-      fotoEstado.textContent=paginasListas.length+(paginasListas.length===1?' página lista':' páginas listas');
     }catch(err){
-      fotoEstado.textContent='';
-      fotoError.textContent=(err&&err.message)||'No se pudieron preparar las páginas.';
-      fotoError.hidden=false;
-    }finally{ e.target.value=''; }
-  });
+      errorFoto('No pudimos preparar las hojas',escapeHtml((err&&err.message)||'No se pudieron preparar las páginas.')+'.');
+    }
+  }
+  function cambioFotos(e){prepararFotos(e.target.files);e.target.value='';}
+  $('ctFotoInput').addEventListener('change',cambioFotos);
+  $('ctFotoCamara').addEventListener('change',cambioFotos);
+  $('ctSelectButton').addEventListener('click',e=>{e.stopPropagation();$('ctFotoInput').click();});
+  $('ctCameraButton').addEventListener('click',e=>{e.stopPropagation();$('ctFotoCamara').click();});
+  dropzone.addEventListener('click',()=>{if(!paginasListas.length&&!leyendo)$('ctFotoInput').click();});
+  dropzone.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!paginasListas.length&&!leyendo){e.preventDefault();$('ctFotoInput').click();}});
+  dropzone.addEventListener('dragover',e=>{e.preventDefault();if(!leyendo)dropzone.classList.add('is-dragging');});
+  dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('is-dragging'));
+  dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remove('is-dragging');if(!leyendo)prepararFotos(e.dataTransfer.files);});
 
   $('ctQuitarTodas').addEventListener('click',()=>{
-    paginasListas=[]; pintarPaginas(); fotoEstado.textContent=''; $('ctAvisos').innerHTML='';
+    if(leyendo)return; paginasListas=[]; leidas=false; pintarPaginas(); $('ctAvisos').innerHTML='';
   });
 
   $('ctLeerPaginas').addEventListener('click',async()=>{
     if(!paginasListas.length)return;
-    fotoError.hidden=true;
+    fotoError.hidden=true; leyendo=true; pintarPaginas(); progreso.hidden=false;
+    $('ctProgresoTitulo').textContent='Leyendo '+paginasListas.length+' hoja'+(paginasListas.length===1?'...':'s...');
 
     if(!window.CCAuth||!window.CCAuth.isConfigured||!(window.CCAuth.getUser&&window.CCAuth.getUser())){
-      fotoError.innerHTML='Para leer las fotos hay que iniciar sesión. <a href="login.html">Entrar</a> — o escribe los números a mano, la calculadora funciona igual de bien.';
-      fotoError.hidden=false; return;
+      leyendo=false; progreso.hidden=true; pintarPaginas();
+      errorFoto('Hay que iniciar sesión para leer las fotos','Para leer las fotos hay que iniciar sesión. <a href="login.html">Entrar</a> — o'); return;
     }
 
-    fotoEstado.textContent='Leyendo '+paginasListas.length+(paginasListas.length===1?' página…':' páginas…');
     try{
       const res=await fetch('/.netlify/functions/explain-auto-contract',{
         method:'POST', headers:{'Content-Type':'application/json'},
@@ -1178,13 +1264,12 @@
                               accessToken:window.CCAuth.getAccessToken&&window.CCAuth.getAccessToken() })
       });
       const data=await res.json();
-      fotoEstado.textContent='';
-      if(!res.ok||!data.result){ fotoError.textContent=data.error||'No se pudieron leer las fotos. Escribe los números a mano.'; fotoError.hidden=false; return; }
+      if(!res.ok||!data.result){ throw new Error(data.error||'No se pudieron leer las fotos.'); }
 
       const r=data.result;
       if(r.es_contrato_auto!=='si'){
-        fotoError.textContent=(r.que_es||'Esto no parece un contrato de compra de auto.')+' Si es otro tipo de papel, puedes subirlo a Cartas Claras.';
-        fotoError.hidden=false; return;
+        leyendo=false; progreso.hidden=true; pintarPaginas();
+        errorFoto('Esto no parece un contrato de auto',escapeHtml((r.que_es||'Esto no parece un contrato de compra de auto.')+' Si es otro tipo de papel, puedes subirlo a Cartas Claras.')+' '); return;
       }
 
       ponerSiHay('ctPrecio',r.precio_vehiculo); ponerSiHay('ctEnganche',r.enganche);
@@ -1205,11 +1290,13 @@
       $('ctRevisar').hidden=false;
       $('ctRevisar').scrollIntoView({behavior:'smooth',block:'center'});
 
+      leidas=true; progreso.hidden=true; pintarPaginas();
+
       if(window.ThemoraStats)window.ThemoraStats.evento('contrato-auto-foto-leida',{paginas:String(paginasListas.length)});
     }catch(err){
-      fotoEstado.textContent='';
-      fotoError.textContent='No se pudieron leer las fotos. Escribe los números a mano — la calculadora funciona igual.';
-      fotoError.hidden=false;
+      errorFoto('No pudimos leer las hojas','No se pudieron leer las fotos.');
+    }finally{
+      leyendo=false; progreso.hidden=true; pintarPaginas();
     }
   });
 

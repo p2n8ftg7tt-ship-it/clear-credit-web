@@ -1,0 +1,1 @@
+const test=require('node:test'),assert=require('node:assert/strict');const {SERVICIOS,MAX_TASAS_CENTAVOS}=require('../netlify/functions/lib/pagos-catalogo');test('catálogo único conserva precios',()=>{assert.equal(SERVICIOS.listar.centavos,4999);assert.equal(SERVICIOS.formar.centavos,14900);assert.equal(MAX_TASAS_CENTAVOS,100000)});

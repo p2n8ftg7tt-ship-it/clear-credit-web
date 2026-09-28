@@ -1,0 +1,1 @@
+{"id":"evt_sub","type":"customer.subscription.updated","data":{"object":{"id":"sub_test","status":"active","metadata":{"user_id":"00000000-0000-0000-0000-000000000001"},"items":{"data":[{"price":{"id":"price_test"}}]}}}}

@@ -1,16 +1,27 @@
 <!--
 Sync Impact Report (borrar antes de hacer commit)
-- Version change: (plantilla sin rellenar) → 1.0.0
-- Principios modificados: ninguno renombrado; los 5 marcadores de la plantilla se rellenaron
-  (I. Honestidad y no asesoría, II. Privacidad por diseño, III. Funciona sin IA,
-  IV. Una sola verdad, probada, V. Multilingüe con revisión humana)
-- Secciones añadidas: Restricciones técnicas y de despliegue; Flujo de desarrollo y calidad
+- Version change: 1.0.0 → 1.1.0
+- Principios modificados: ninguno renombrado ni redefinido; los 5 principios existentes
+  (I–V) se mantienen tal cual.
+- Secciones añadidas: ninguna nueva a nivel de encabezado.
+- Secciones ampliadas:
+  - Restricciones técnicas y de despliegue: nueva regla "Pagos y datos de tarjeta"
+    (Stripe como autoridad del estado de pago, prohibición de tocar datos crudos de
+    tarjeta, verificación de firma de webhook, llaves de Stripe junto a las demás
+    llaves de entorno).
+  - Flujo de desarrollo y calidad: nueva regla "Código que toca dinero" (idempotencia,
+    eventos de webhook duplicados, registro de auditoría para acciones de admin sobre
+    pagos/reembolsos).
 - Secciones eliminadas: ninguna
+- Motivo de la enmienda: se solicitó construir un "Themora Payment Center" con Stripe;
+  la propia sección de Cumplimiento de esta constitución exige revisión completa al
+  añadir un servicio externo nuevo. Esta enmienda solo fija las reglas durables de
+  seguridad/auditoría para cualquier código que toque dinero; la implementación del
+  Payment Center en sí queda fuera de este comando (ver Next Actions de la respuesta).
 - TODOs pendientes:
   - TODO(NATIVE_REVIEW): traducciones a portugués y criollo haitiano escritas por Claude;
     falta revisión de hablantes nativos (ver Principio V).
-  - RATIFICATION_DATE se fijó al día de adopción de esta constitución (2026-09-20); el
-    primer commit del repositorio es de 2026-09-14.
+  - RATIFICATION_DATE se mantiene en el día de adopción original (2026-09-20).
 - Plantillas dependientes (plan/spec/tasks) leen la constitución en tiempo de ejecución;
   no se modificaron aquí.
 -->
@@ -77,10 +88,17 @@ quien más necesita claridad.
 - **Todo lo que está en la raíz se publica.** Notas internas, instrucciones (`INSTRUCCIONES-*.md`),
   `README.md`, `tests/`, borradores y la papelera MUST bloquearse con reglas 404 en
   `netlify.toml`. Los textos completos de leyes (PDF/MD) MUST NOT copiarse al proyecto.
-- **Secretos fuera del código.** Llaves de Anthropic, Google Places, Supabase (service role)
-  y similares MUST vivir solo en variables de entorno de Netlify. Toda función que gaste
-  dinero o toque datos MUST verificar la sesión con Supabase y aplicar límite de uso por
-  IP o por cuenta.
+- **Secretos fuera del código.** Llaves de Anthropic, Google Places, Supabase (service role),
+  Stripe (secreta, de webhook) y similares MUST vivir solo en variables de entorno de
+  Netlify. Toda función que gaste dinero o toque datos MUST verificar la sesión con
+  Supabase y aplicar límite de uso por IP o por cuenta.
+- **Pagos y datos de tarjeta.** Si el proyecto integra pagos, Stripe MUST ser la única
+  autoridad del estado de pago/suscripción/factura; la base de datos propia es una copia
+  que se reconcilia vía webhooks, nunca la fuente de verdad. Los datos crudos de tarjeta
+  MUST NOT tocar servidores ni funciones de Themora (solo Stripe Checkout/Elements/
+  Customer Portal). Todo endpoint de webhook MUST verificar la firma de Stripe antes de
+  confiar en el evento, y toda petición que cambie estado (cobro, reembolso, cancelación)
+  MUST usar una llave de idempotencia.
 - **Seguridad del navegador.** Se mantienen las cabeceras de `netlify.toml` (CSP,
   `X-Frame-Options: DENY`, HSTS, `Permissions-Policy`). Un servicio externo nuevo MUST
   añadirse de forma explícita a la CSP, con el mínimo de permisos.
@@ -103,6 +121,11 @@ quien más necesita claridad.
   `graphify query`.
 - **Cambios por partes pequeñas.** Los commits agrupan un solo propósito y explican el
   porqué; nada se publica con cambios sin revisar en el árbol de trabajo.
+- **Código que toca dinero.** Cambios en checkout, suscripciones, facturas, reembolsos o
+  webhooks de pago MUST llevar pruebas de: evento de webhook duplicado (mismo event id
+  NEVER se reprocesa), pago fallido, fallo de firma de webhook y fallo de la API de
+  Stripe, antes de publicarse. Toda acción de administración sobre pagos o reembolsos
+  MUST quedar en un registro de auditoría (quién, cuándo, qué cambió).
 
 ## Governance
 
@@ -123,4 +146,4 @@ plantilla o costumbre la contradiga, gana la constitución hasta que se enmiende
 - **Guía operativa.** Las instrucciones de trabajo del día a día viven en `CLAUDE.md` y en
   los archivos `INSTRUCCIONES-*.md`; si chocan con esta constitución, se corrigen.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-20 | **Last Amended**: 2026-09-20
+**Version**: 1.1.0 | **Ratified**: 2026-09-20 | **Last Amended**: 2026-09-26

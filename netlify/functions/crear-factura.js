@@ -43,6 +43,8 @@ const HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store",
 };
+const catalogo = require("./lib/pagos-catalogo");
+const stripeLib = require("./lib/pagos-stripe");
 
 /* Catálogo autoritativo. Debe coincidir con PRECIOS en pago.js.
    Los importes van en CENTAVOS: Stripe no acepta decimales, y
@@ -123,6 +125,10 @@ async function esAdmin(accessToken) {
 const REFERENCIA_VALIDA = /^TH-\d{6}-[A-Z2-9]{4}$/;
 
 exports.handler = async (event) => {
+  const SERVICIOS = catalogo.SERVICIOS;
+  const MAX_TASAS_CENTAVOS = catalogo.MAX_TASAS_CENTAVOS;
+  const stripe = stripeLib.stripe;
+  const esAdmin = stripeLib.esAdmin;
   if (event.httpMethod !== "POST") {
     return respuesta(405, { error: "Método no permitido." });
   }
