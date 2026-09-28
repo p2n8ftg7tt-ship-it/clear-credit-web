@@ -195,6 +195,10 @@ footer{padding:28px 0;background:var(--navy-deep);color:rgba(255,255,255,.65)}
 .footer-col a:hover{color:#fff;text-decoration:underline}
 .footer-nosomos{color:rgba(255,255,255,.72);max-width:32ch;line-height:1.55}
 #footerContact{border-top:1px solid rgba(255,255,255,.14);margin-top:14px;padding-top:14px}
+/* .footer-inner es flex y le ganaba al atributo hidden: sin datos en el CMS salía una línea vacía. */
+#footerContact[hidden]{display:none}
+/* La marca del pie va en blanco y alineada a la izquierda de su columna. */
+.footer-col .brand{color:#fff;align-items:flex-start}
 
 /* Autos */
 .auto-hero{padding-bottom:100px}
