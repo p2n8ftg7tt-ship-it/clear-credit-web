@@ -263,3 +263,55 @@ create policy "pagos: ver solo lo propio" on public.pagos for select using (auth
 create policy "suscripciones: ver solo lo propio" on public.suscripciones for select using (auth.uid() = user_id);
 create policy "reembolsos: ver solo lo propio" on public.reembolsos for select using (pago_id in (select id from public.pagos where user_id = auth.uid()));
 -- Sin "create policy" a propósito (ver el comentario de arriba).
+
+-- ─────────────────────────────────────────────────────────────────────
+-- Agente de crédito con IA (spec 017): máximo 3 análisis por día y cuenta.
+-- Solo guarda usuario, día y número de usos: nada del reporte.
+-- El día es el calendario de la hora del Este (lo calcula la función).
+-- Sin "create policy" a propósito: solo la service role (la función) entra.
+-- ─────────────────────────────────────────────────────────────────────
+create table if not exists public.credito_agente_uso (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  dia date not null,
+  veces integer not null default 0,
+  llamadas integer not null default 0,
+  primary key (user_id, dia)
+);
+alter table public.credito_agente_uso enable row level security;
+
+-- Suma 1 uso solo si no se pasó del límite, en una sola operación atómica:
+-- dos análisis al mismo tiempo no pueden pasar el límite.
+create or replace function public.credito_agente_consumir(p_user uuid, p_dia date, p_limite integer)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare filas integer;
+begin
+  insert into public.credito_agente_uso as u (user_id, dia, veces)
+  values (p_user, p_dia, 1)
+  on conflict (user_id, dia) do update set veces = u.veces + 1 where u.veces < p_limite;
+  get diagnostics filas = row_count;
+  return filas > 0;
+end;
+$$;
+revoke all on function public.credito_agente_consumir(uuid, date, integer) from public, anon, authenticated;
+
+-- Cuenta cada llamada a la IA (máx. 24 al día, FR-007a), incluidos los reintentos.
+-- La fila ya existe: la crea credito_agente_consumir en la primera vuelta del día.
+create or replace function public.credito_agente_llamar(p_user uuid, p_dia date, p_limite integer)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare filas integer;
+begin
+  update public.credito_agente_uso set llamadas = llamadas + 1
+  where user_id = p_user and dia = p_dia and llamadas < p_limite;
+  get diagnostics filas = row_count;
+  return filas > 0;
+end;
+$$;
+revoke all on function public.credito_agente_llamar(uuid, date, integer) from public, anon, authenticated;

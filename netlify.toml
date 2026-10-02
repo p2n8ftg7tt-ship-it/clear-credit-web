@@ -164,6 +164,12 @@
   force = true
 
 [[redirects]]
+  from = "/INSTRUCCIONES-AGENTE-CREDITO.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/INSTRUCCIONES-DIRECCIONES.md"
   to = "/index.html"
   status = 404
