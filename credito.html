@@ -713,6 +713,12 @@
     .cr-circulo-nombre { font-weight: 700; font-size: .9rem; }
     .cr-circulo-frase { font-size: .8rem; }
     .cr-sin-problemas { margin: 0; }
+    .cr-analisis { margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--renglon); border-radius: var(--radius); background: var(--paper); }
+    .cr-analisis h4 { margin: 0 0 .5rem; }
+    .cr-analisis h5 { margin: 1rem 0 .25rem; font-size: .95rem; }
+    .cr-analisis ul, .cr-analisis ol { margin: 0; padding-left: 1.25rem; }
+    .cr-hallazgo + .cr-hallazgo { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--renglon); }
+    .cr-analisis-nota { font-style: italic; }
     .cr-abiertas {
       max-width: 22rem;
       margin-top: 16px;
@@ -3907,8 +3913,10 @@
       }
 
       /* Cuentas con problemas como círculos (014 US2). Un solo número de problemas: analisis.problemas. */
+      let problemasActuales = [];
       function renderProblemas(analisis) {
         $('crProblemas').hidden = !analisis;
+        problemasActuales = analisis ? analisis.problemas : [];
         if (!analisis) return;
         $('crAnalisis').hidden = true;
         $('crAnalisis').innerHTML = '';
@@ -3923,7 +3931,60 @@
           : '<p class="cr-sin-problemas">' + (sinCuentas ? 'No pudimos leer las cuentas de este reporte, así que no sabemos si alguna tiene problemas.'
             : 'No encontramos cuentas con problemas en este reporte.') + '</p>';
       }
+
+      /* Análisis de un problema (014 US3): las cuatro partes por hallazgo y la carta.
+         armarFormulario(problema, formId) devuelve los campos del formulario existente (fuera de este bloque). */
+      const CLAVE_HALLAZGO = { cobranza: 'collection', charge_off: 'charge-off', reposesion: 'repossession', ejecucion_hipotecaria: 'foreclosure',
+        atraso: 'late-payments', saldo_vencido: 'past-due-amount', registro_publico: 'bankruptcy' };
+      function cartaDeProblema(p, armarFormulario) {
+        if (!p.carta) return '';
+        const formId = 'crCartaProblema-' + String(p.id).replace(/[^a-z0-9-]/gi, '');
+        const etiqueta = p.carta === 'debt-validation' ? 'Preparar carta de validación' : 'Preparar carta de disputa';
+        const inner = typeof armarFormulario === 'function' ? armarFormulario(p, formId) : '';
+        return '<button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="' + formId + '" data-open-label="Ocultar formulario" data-closed-label="' + etiqueta + '">' + etiqueta + '</button>' +
+          '<form class="cr-solution-form" id="' + formId + '" data-solution-type="' + p.carta + '" data-issue-title="' + escapeHtml(p.frase) + '" data-issue-key="' +
+          (CLAVE_HALLAZGO[p.hallazgos[0].regla] || '') + '" data-issue-arg="" hidden>' + inner + '</form>';
+      }
+      function renderAnalisis(p, armarFormulario) {
+        const hallazgos = p.hallazgos.map(h => '<div class="cr-hallazgo">' +
+          '<h5>Qué vimos</h5><p>' + escapeHtml(h.queVimos) + '</p>' +
+          (h.queSignifica ? '<h5>Qué significa para ti</h5><p>' + escapeHtml(h.queSignifica) + '</p>' : '') +
+          (h.queDiceLaLey.length ? '<h5>Qué dice la ley</h5><ul>' + h.queDiceLaLey.map(c => '<li><strong>' + escapeHtml(c.ley + ' ' + c.seccion) + '</strong> ' + escapeHtml(c.texto) + '</li>').join('') + '</ul>' : '') +
+          (h.opciones.length ? '<h5>Qué puedes hacer</h5><ol>' + h.opciones.map(o => '<li>' + escapeHtml(o) + '</li>').join('') + '</ol>' : '') +
+          (h.noCubierto ? '<p class="cr-analisis-nota">' + escapeHtml(h.noCubierto) + '</p>' : '') + '</div>').join('');
+        return '<h4 tabindex="-1">' + escapeHtml(p.acreedor) + ' — ' + escapeHtml(p.gravedadTexto) + '</h4>' + hallazgos + cartaDeProblema(p, armarFormulario);
+      }
+      function abrirAnalisis(id, armarFormulario) {
+        const p = problemasActuales.find(x => x.id === id);
+        if (!p) return null;
+        $('crAnalisis').innerHTML = renderAnalisis(p, armarFormulario);
+        $('crAnalisis').hidden = false;
+        return p;
+      }
       /* 014-resumen:fin */
+
+      /* Círculos (014 US3): un solo panel de análisis. Tocar el mismo círculo lo cierra. La carta reutiliza
+         los formularios de siempre, precargados con lo que dice el reporte (el número ya viene enmascarado). */
+      function armarFormularioProblema(p, formId) {
+        const d = p.datosCarta || {};
+        if (p.carta === 'debt-validation') {
+          return renderDebtValidationForm({}, formId)
+            .replace('name="collectorName" type="text"', 'name="collectorName" type="text" value="' + escapeHtml(d.acreedor || '') + '"')
+            .replace('name="accountReference" type="text"', 'name="accountReference" type="text" value="' + escapeHtml(d.numero || '') + '"');
+        }
+        return renderBureauDisputeForm({}, formId, d.buro);
+      }
+      if ($('crCirculos')) $('crCirculos').addEventListener('click', event => {
+        const boton = event.target.closest('.cr-circulo');
+        if (!boton) return;
+        const abierto = boton.getAttribute('aria-expanded') === 'true';
+        $('crCirculos').querySelectorAll('.cr-circulo').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        if (abierto) { $('crAnalisis').hidden = true; return; }
+        if (!abrirAnalisis(boton.dataset.id, armarFormularioProblema)) return;
+        boton.setAttribute('aria-expanded', 'true');
+        const titulo = $('crAnalisis').querySelector('h4');
+        if (titulo) titulo.focus();
+      });
 
       /* Carteles de consultas: popover nativo (cierra con Escape y tocando fuera); sin soporte, se
          alterna «hidden» y se replican esos cierres. El foco va al título al abrir y vuelve al botón. */

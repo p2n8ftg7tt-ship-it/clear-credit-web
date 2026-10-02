@@ -30,7 +30,7 @@ function cargarResumen() {
   const escapar = html.match(/const escapeHtml\s*=[^\n]+/)[0];
   const nodos = {};
   const $ = (id) => (nodos[id] = nodos[id] || { id, innerHTML: '', textContent: '', hidden: true, attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } });
-  const api = new Function('$', escapar + '\n' + html.slice(desde, hasta) + '\nreturn { renderResumen };')($);
+  const api = new Function('$', escapar + '\n' + html.slice(desde, hasta) + '\nreturn { renderResumen, renderAnalisis, abrirAnalisis };')($);
   return { api, nodos };
 }
 
@@ -146,4 +146,53 @@ test('US2: --atencion existe y los círculos usan solo tokens', () => {
   assert.ok(reglas.length > 0);
   assert.ok(!/#[0-9a-f]{3,6}/i.test(reglas), 'sin colores sueltos');
   assert.match(css, /\.visually-hidden/);
+});
+
+/* ----------------------------------------------------------------- US3: análisis por problema (spec 014 T030, hecha en la 019) */
+
+const PROHIBIDAS_UI = /\bdebes\b|no pagues|es ilegal|garantiz|\bclientes?\b/i;
+
+test('US3: el análisis del charge-off tiene las cuatro partes, la página y la ley', () => {
+  const { api } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  api.renderResumen(a);
+  const co = a.problemas.find((p) => p.id.includes('3411'));
+  const html = api.renderAnalisis(co, () => '');
+  ['Qué vimos', 'Qué significa para ti', 'Qué dice la ley', 'Qué puedes hacer', 'página', '§ 1681c', '§ 1681i', 'Preparar carta de disputa'].forEach((x) => assert.ok(html.includes(x), x));
+  assert.ok(!PROHIBIDAS_UI.test(html));
+});
+
+test('US3: la cobranza cita § 1692g y trae el formulario de validación precargado por el armador', () => {
+  const { api, nodos } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  api.renderResumen(a);
+  const cob = a.problemas.find((p) => p.id.includes('0123'));
+  let recibido = null;
+  const p = api.abrirAnalisis(cob.id, (problema, formId) => { recibido = [problema.id, formId]; return '<input name="collectorName">'; });
+  assert.strictEqual(p.id, cob.id);
+  assert.strictEqual(nodos.crAnalisis.hidden, false);
+  assert.ok(nodos.crAnalisis.innerHTML.includes('§ 1692g'));
+  assert.ok(nodos.crAnalisis.innerHTML.includes('data-solution-type="debt-validation"'));
+  assert.strictEqual(recibido[0], cob.id);
+  assert.ok(!PROHIBIDAS_UI.test(nodos.crAnalisis.innerHTML));
+});
+
+test('US3: un acreedor con <script> sale escapado en el análisis y en los círculos', () => {
+  const { api, nodos } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  a.problemas[0].acreedor = '<script>alert(1)</script>';
+  a.problemas[0].nombreCorto = '<script>x</script>';
+  api.renderResumen(a);
+  assert.ok(!nodos.crCirculos.innerHTML.includes('<script>'));
+  assert.ok(!api.renderAnalisis(a.problemas[0], () => '').includes('<script>'));
+});
+
+test('US3: la página abre y cierra el análisis al tocar un círculo y precarga la carta (T028–T029)', () => {
+  const fuera = html.slice(html.indexOf('/* 014-resumen:fin */'));
+  assert.match(fuera, /\$\('crCirculos'\)\.addEventListener\('click'/);
+  assert.match(fuera, /function armarFormularioProblema\(/);
+  assert.match(fuera, /renderDebtValidationForm\(/);
+  assert.match(fuera, /renderBureauDisputeForm\(/);
+  assert.match(fuera, /collectorName/);
+  assert.ok(reglasDe('.cr-analisis').length > 0, 'CSS del panel de análisis');
 });

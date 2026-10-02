@@ -193,14 +193,68 @@
         ? { fecha: isoDe(c.fechaReportada), dato: 'Marcada como posible negativa por el buró', origen: origenDe(c.acreedor) } : null) }
   ];
 
+
+  /* Textos y citas por regla (014 research R3/R4). Solo secciones cargadas en zyron-leyes.js.
+     Opciones en orden: verificar, disputa al buró (correo certificado), disputa a quien reporta,
+     validación con el cobrador. Sin órdenes ni promesas. */
+  const C_FCRA_7 = { ley: 'FCRA', seccion: '§ 1681c(a)(4)', texto: 'Una cuenta enviada a cobranza o dada por perdida puede aparecer hasta 7 años.' };
+  const C_FCRA_180 = { ley: 'FCRA', seccion: '§ 1681c(c)', texto: 'Ese plazo empieza 180 días después del primer atraso que llevó a esa situación, y no vuelve a empezar si la deuda se vende o se paga.' };
+  const C_FCRA_OTRA = { ley: 'FCRA', seccion: '§ 1681c(a)(5)', texto: 'Otra información negativa, como atrasos, puede aparecer hasta 7 años.' };
+  const C_FCRA_DISPUTA = { ley: 'FCRA', seccion: '§ 1681i(a)', texto: 'Si lo disputas, el buró debe investigarlo gratis en 30 días (hasta 45 si aportas información nueva) y corregir o borrar lo que no pueda verificar.' };
+  const C_FCRA_FURNISHER = { ley: 'FCRA', seccion: '§ 1681s-2(b)', texto: 'Quien reporta la cuenta debe investigar cuando el buró le pasa tu disputa.' };
+  const OP_VERIFICAR = 'Compara el monto, las fechas y el número de cuenta con tus estados de cuenta.';
+  const OP_BURO = 'Si algún dato no es correcto, puedes disputarlo directamente con el buró por correo certificado con acuse de recibo, y guardar la copia y el comprobante. Una queja a la CFPB no reemplaza esa disputa.';
+  const OP_ACREEDOR = 'También puedes disputarlo con quien reporta la cuenta; esa disputa lo obliga a investigar.';
+  const PRESCRIPCION = 'La prescripción de la deuda depende de las leyes de tu estado, que este sitio todavía no tiene cargadas.';
+  const TEXTOS = {
+    cobranza: { textos: { queSignifica: 'Una agencia de cobranza o un comprador de deudas reporta esta cuenta. Pesa en tu historial mientras aparezca, aunque la pagues.',
+      opciones: [OP_VERIFICAR, 'Si recibiste un aviso del cobrador hace menos de 30 días, puedes pedirle por escrito que valide la deuda; mientras lo hace, debe pausar el cobro.', OP_BURO,
+        'Pagarla no la borra del reporte; antes de pagar o reconocer una deuda vieja, consulta el plazo de prescripción de tu estado.'], noCubierto: PRESCRIPCION },
+      citas: [{ ley: 'FDCPA', seccion: '§ 1692g(b)', texto: 'Puedes pedir por escrito la validación dentro de los 30 días del aviso; mientras tanto el cobrador debe pausar el cobro.' },
+        { ley: 'FDCPA', seccion: '§ 1692e(8)', texto: 'Reportar una deuda sin indicar que está disputada es una práctica prohibida.' }, C_FCRA_7] },
+    charge_off: { textos: { queSignifica: 'El acreedor dio esta deuda por perdida en su contabilidad. Para tu historial cuenta como una de las marcas más pesadas, aunque la cuenta ya esté cerrada o pagada.',
+      opciones: [OP_VERIFICAR, OP_BURO, OP_ACREEDOR, 'Si el dato es correcto, la ley no obliga a borrarlo antes de su plazo; pagarlo no lo elimina, pero el reporte puede mostrarlo como pagado.'], noCubierto: PRESCRIPCION },
+      citas: [C_FCRA_7, C_FCRA_180, C_FCRA_DISPUTA] },
+    reposesion: { textos: { queSignifica: 'El acreedor recuperó el bien (por ejemplo, el carro) por falta de pago. Es una marca negativa importante.',
+      opciones: [OP_VERIFICAR, OP_BURO, OP_ACREEDOR] }, citas: [C_FCRA_OTRA, C_FCRA_DISPUTA] },
+    ejecucion_hipotecaria: { textos: { queSignifica: 'El reporte indica una ejecución hipotecaria: el prestamista tomó o intentó tomar la vivienda por falta de pago.',
+      opciones: [OP_VERIFICAR, OP_BURO, OP_ACREEDOR] }, citas: [C_FCRA_OTRA, C_FCRA_DISPUTA] },
+    atraso: { textos: { queSignifica: 'La cuenta muestra un pago que llegó tarde. Los atrasos recientes pesan más que los viejos.',
+      opciones: [OP_VERIFICAR, 'Si la cuenta tiene un saldo vencido hoy, ponerla al día evita un atraso nuevo.', OP_BURO, OP_ACREEDOR] },
+      citas: [C_FCRA_OTRA, C_FCRA_DISPUTA, C_FCRA_FURNISHER] },
+    saldo_vencido: { textos: { queSignifica: 'La cuenta tiene un monto vencido: pagos que todavía no se han cubierto.',
+      opciones: [OP_VERIFICAR, 'Ponerla al día evita que se reporte un atraso nuevo.', OP_BURO] }, citas: [C_FCRA_DISPUTA] },
+    marcada_por_buro: { textos: { queSignifica: 'El buró la señala como posiblemente negativa, aunque no vimos atrasos ni cobranza en sus datos.',
+      opciones: [OP_VERIFICAR, 'Revisa en tu reporte original por qué aparece marcada.'] }, citas: [] },
+    registro_publico: { textos: { queSignifica: 'El reporte incluye un registro público, como una bancarrota. Es de las marcas que más pesan.',
+      opciones: [OP_VERIFICAR, OP_BURO] },
+      citas: [{ ley: 'FCRA', seccion: '§ 1681c(a)(1)', texto: 'Una bancarrota puede aparecer hasta 10 años desde la orden.' }, C_FCRA_DISPUTA] },
+    obsoleta: { textos: { queSignifica: 'Por sus fechas, este dato negativo ya pasó el plazo en que la ley permite reportarlo (7 años desde 180 días después del primer atraso).',
+      opciones: ['Confirma la fecha del primer atraso en tu reporte original.', 'Si ya pasó el plazo, puedes disputarlo con el buró por correo certificado con acuse de recibo, pidiendo que lo quite por ser información desactualizada.'] },
+      citas: [{ ley: 'FCRA', seccion: '§ 1681c(a)', texto: 'La información negativa más antigua que el plazo no debería aparecer en el reporte.' }] }
+  };
+
+  /* Inicio = DOFD o, si falta, el mes verificable más antiguo con atraso; obsoleta si inicio + 180 días + 7 años < fecha del reporte. */
+  function esObsoleta(cuenta, fechaReporte) {
+    const atrasos = hist(cuenta, /^atraso_\d+$/).map((x) => x.iso).sort();
+    const inicio = isoDe(cuenta.dofd) || atrasos[0] || '';
+    const ref = String(fechaReporte || '');
+    if (!/^\d{4}-\d{2}/.test(inicio) || !/^\d{4}-\d{2}/.test(ref)) return false;
+    const [a, m] = inicio.split('-').map(Number);
+    const total = a * 12 + (m - 1) + 6 + 84;
+    const fin = Math.floor(total / 12) + '-' + String(total % 12 + 1).padStart(2, '0');
+    return fin < ref.slice(0, 7);
+  }
+
   const ETIQUETA_REGISTRO = { bancarrota_7: 'Bancarrota (capítulo 7)', bancarrota_13: 'Bancarrota (capítulo 13)', bancarrota_11: 'Bancarrota (capítulo 11)', bancarrota_12: 'Bancarrota (capítulo 12)' };
 
   function hallazgo(regla, d) {
+    const t = TEXTOS[regla.id] || { textos: { queSignifica: '', opciones: [] }, citas: [] };
     return { regla: regla.id, gravedad: regla.gravedad, queVimos: d.dato + (d.origen && d.origen.pagina ? ' (página ' + d.origen.pagina + ')' : ''),
-      queSignifica: '', queDiceLaLey: [], opciones: [], noCubierto: null };
+      queSignifica: t.textos.queSignifica, queDiceLaLey: t.citas.slice(), opciones: t.textos.opciones.slice(), noCubierto: t.textos.noCubierto || null };
   }
 
-  function problemasDe(reporte) {
+  function problemasDe(reporte, opciones) {
     const lista = [];
     reporte.cuentas.forEach((c) => {
       const halla = [];
@@ -210,6 +264,12 @@
         if (d) halla.push({ regla: r, d });
       });
       if (!halla.length) return;
+      const fechaRef = (opciones && opciones.hoy) || isoDe(reporte.fechaReporte);
+      if (esObsoleta(c, fechaRef)) {
+        const inicio = isoDe(c.dofd);
+        halla.push({ regla: { id: 'obsoleta', gravedad: halla[0].regla.gravedad, carta: 'bureau-dispute' },
+          d: { fecha: inicio, dato: 'Información con más de 7 años' + (inicio ? ' (primer atraso: ' + mesCorto(inicio) + ')' : ''), origen: origenDe(c.dofd) } });
+      }
       const principal = halla.slice().sort((a, b) => RANGO[a.regla.gravedad] - RANGO[b.regla.gravedad])[0];
       const acreedor = textoDe(c.acreedor) || 'Acreedor no legible';
       lista.push({
@@ -241,7 +301,7 @@
     return {
       resumen: resumenGeneral(reporte),
       abiertas: cuentasAbiertas(reporte),
-      problemas: problemasDe(reporte),
+      problemas: problemasDe(reporte, opciones),
       consultas: { duras: grupoConsultas(reporte, TIPOS_CONSULTA.duras), blandas: grupoConsultas(reporte, TIPOS_CONSULTA.blandas) },
       pasos: [],
       conclusion: '',
@@ -249,7 +309,12 @@
     };
   }
 
-  const API = { analizar, REGLAS, iniciales, nombreCorto };
+  /* REGLAS completa (contrato analista-api): detección, textos y citas; registro_publico y obsoleta no detectan por cuenta. */
+  REGLAS.push({ id: 'registro_publico', gravedad: 'roja', carta: 'bureau-dispute', detecta: () => null },
+    { id: 'obsoleta', gravedad: null, carta: 'bureau-dispute', detecta: () => null });
+  REGLAS.forEach((r) => { r.textos = TEXTOS[r.id].textos; r.citas = TEXTOS[r.id].citas; });
+
+  const API = { analizar, REGLAS, iniciales, nombreCorto, esObsoleta };
   if (typeof window !== 'undefined') window.ThemoraAnalista = API;
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
 })();

@@ -136,3 +136,38 @@ test('US2 utilidades: iniciales, nombreCorto y frase (T018)', () => {
   assert.deepStrictEqual(p.map((x) => [x.acreedor, x.gravedad]), [
     ['COBROS EJEMPLO LLC', 'roja'], ['COOPERATIVA DEMO CREDIT UNION', 'roja'], ['COOPERATIVA DEMO CREDIT UNION', 'naranja']]);
 });
+
+/* ------------------------------------------------------------ US3: la ley y las opciones (spec 014 T024–T025, hechas en la 019) */
+
+test('US3 invariantes de REGLAS (T024)', () => {
+  const leyes = fs.readFileSync(path.join(__dirname, '..', 'zyron-leyes.js'), 'utf8');
+  const prohibidas = /\bdebes\b|no pagues|es ilegal|garantiz|\bcliente/i;
+  A.REGLAS.forEach((r) => {
+    (r.citas || []).forEach((c) => {
+      const base = c.seccion.replace(/\(.*$/, '').trim();
+      assert.ok(leyes.includes(base), r.id + ' cita ' + c.seccion + ' que no está en zyron-leyes.js');
+    });
+    const textos = JSON.stringify([r.textos, r.citas]);
+    assert.ok(!prohibidas.test(textos), r.id + ' usa palabras prohibidas');
+    ['ANA', 'COBROS', 'COOPERATIVA', 'CALLE'].forEach((x) => assert.ok(!textos.includes(x), r.id + ' contiene ' + x));
+    if (r.gravedad === 'roja' || r.gravedad === 'naranja') {
+      assert.ok(r.citas.length >= 1, r.id + ' sin citas');
+      assert.ok(r.textos.opciones.length >= 1, r.id + ' sin opciones');
+    }
+  });
+  const hallazgos = JSON.stringify(A.analizar(leer('experian-resumen.json')).problemas.map((p) => p.hallazgos));
+  assert.ok(!prohibidas.test(hallazgos));
+});
+
+test('US3 esObsoleta (T025)', () => {
+  const rep = '2026-05-20';
+  assert.strictEqual(A.esObsoleta(cta('a', { dofd: fechaV('2018-01') }), rep), true);
+  assert.strictEqual(A.esObsoleta(cta('b', { dofd: fechaV('2021-01') }), rep), false);
+  assert.strictEqual(A.esObsoleta(cta('c', { historial: [mes(2017, 3, 'atraso_30')] }), rep), true);
+  assert.strictEqual(A.esObsoleta(cta('d'), rep), false);
+  const cobranza = A.analizar(leer('experian-resumen.json')).problemas.find((p) => p.id.includes('0123'));
+  const obs = cobranza.hallazgos.find((h) => h.regla === 'obsoleta');
+  assert.ok(obs, 'la cobranza del fixture tiene hallazgo obsoleta');
+  assert.ok(obs.queDiceLaLey.some((c) => c.seccion === '§ 1681c(a)'));
+  assert.strictEqual(cobranza.gravedad, 'roja');
+});
