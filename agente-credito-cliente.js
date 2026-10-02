@@ -111,8 +111,9 @@
     return limpiarProfundo(e);
   }
 
-  function etiquetarReporte(reporte) {
+  function etiquetarReporte(reporte, opciones) {
     if (!reporte || typeof reporte !== 'object' || !Array.isArray(reporte.cuentas)) throw new TypeError('reporte_invalido');
+    const o = opciones || {}, seleccion = o.marcadas || {};
     const letras = reporte.cuentas.map((_, i) => letra(i));
     const consultas = Array.isArray(reporte.consultas) ? reporte.consultas : [];
     const etiquetado = {
@@ -125,8 +126,23 @@
         const estado = simple(r.estado);
         return { tipo: typeof r.tipo === 'string' ? r.tipo : (simple(r.tipo) || 'otro'), fechaPresentacion: simple(r.fechaPresentacion), estado: estado === null ? null : limpiarTexto(estado) };
       }),
-      avisos: (reporte.avisos || []).map((a) => ({ tipo: a.tipo || 'otro' }))
+      avisos: (reporte.avisos || []).map((a) => ({ tipo: a.tipo || 'otro' })),
+      marcadas: { cuentas: [], datos: [] }
     };
+    const porId = new Map(reporte.cuentas.map((c, i) => [String(c.id), letras[i]]));
+    etiquetado.marcadas.cuentas = (seleccion.cuentaIds || []).map((id) => porId.get(String(id))).filter(Boolean);
+    const identidadCruda = reporte.identidad || {};
+    const privadosIdentidad = {};
+    [['nombres', 'Nombre'], ['direcciones', 'Dirección'], ['telefonos', 'Teléfono']].forEach(([grupo, tipo]) => {
+      (identidadCruda[grupo] || []).filter(tieneValor).forEach((v, i) => { privadosIdentidad[tipo + ' ' + (i + 1)] = { tipo, valor: simple(v) }; });
+    });
+    const etiquetasValidas = new Set(Object.keys(privadosIdentidad));
+    etiquetado.marcadas.datos = (seleccion.datos || []).filter((x) => etiquetasValidas.has(x));
+    const privado = { cuentas: {}, identidad: privadosIdentidad };
+    reporte.cuentas.forEach((c, i) => {
+      const numero = simple(c.numero), grupos = numero === null ? [] : String(numero).match(/\d{4}/g);
+      privado.cuentas[letras[i]] = { acreedor: simple(c.acreedor), ultimos4: grupos && grupos.length ? grupos[grupos.length - 1] : null, apertura: simple(c.fechaApertura) };
+    });
     const paraHerramientas = {
       cuentas: reporte.cuentas.map((c, i) => {
         const copia = Object.assign({}, c, { id: letras[i] });
@@ -136,7 +152,7 @@
       }),
       consultas: consultas.slice()
     };
-    return { etiquetado, paraHerramientas };
+    return { etiquetado, paraHerramientas, privado };
   }
 
   /* ------------------------------------------------------------ respaldo local (FR-023) */
@@ -206,7 +222,7 @@
     let preparado;
     try {
       emitir('etiquetando');
-      preparado = etiquetarReporte(reporte);
+      preparado = etiquetarReporte(reporte, { marcadas: o.marcadas });
     } catch (_) {
       emitir('respaldo:datos_rechazados');
       return analisisLocal(null, { motivo: 'datos_rechazados' });

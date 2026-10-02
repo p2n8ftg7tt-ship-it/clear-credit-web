@@ -180,3 +180,26 @@ test('analisisLocal usa el «hoy» dado y limpia textos', () => {
   assert.strictEqual(r.herramientas.consultasDuras.total, 2);
   assert.strictEqual(r.herramientas.fechasSalida[0].fechas[0].salida, '2028-09');
 });
+
+test('etiquetar: marcadas y privado (Review Focus 5)', () => {
+  const r = cargar('agente/acme-zeta.json');
+  r.cuentas[0].numero = { valor: 'XXXX0123', texto: 'XXXX0123' };
+  const { etiquetado, privado } = C.etiquetarReporte(r, { marcadas: { cuentaIds: ['B', 'NO-EXISTE'], datos: ['Nombre 9'] } });
+  assert.deepStrictEqual(etiquetado.marcadas, { cuentas: ['B'], datos: [] });
+  assert.deepStrictEqual(privado.cuentas.A, { acreedor: 'ACME BANK', ultimos4: '0123', apertura: '2018-06' });
+  assert.strictEqual(privado.cuentas.B.ultimos4, null);
+  assert.ok(!JSON.stringify(etiquetado).includes('0123'));
+});
+
+test('etiquetar: sin marcadas → listas vacías', () => {
+  assert.deepStrictEqual(C.etiquetarReporte(cargar('agente/acme-zeta.json')).etiquetado.marcadas, { cuentas: [], datos: [] });
+});
+
+test('lo que se envía al servidor nunca lleva privado ni datos del consumidor (SC-004)', async () => {
+  const cuerpos = [];
+  const e = AY.crearEntorno({ respuestasIA: [AY.pideHerramientas(AY.PEDIDOS_ACME), AY.termina(AY.RESULTADO_VALIDO)] });
+  const r = AY.acme(); r.cuentas[0].numero = { valor: 'XXXX0123', texto: 'XXXX0123' };
+  await C.analizarConAgente(r, { accessToken: 'bueno', marcadas: { cuentaIds: ['B'], datos: [] }, fetch: async (url, init) => { cuerpos.push(init.body); return haciaFuncion(e.handler)(url, init); } });
+  cuerpos.forEach((c) => { assert.ok(!c.includes('0123')); assert.ok(!c.includes('"privado"')); });
+  assert.ok(JSON.parse(cuerpos[0]).etiquetado.marcadas.cuentas.includes('B'));
+});
