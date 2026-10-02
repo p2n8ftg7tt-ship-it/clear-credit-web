@@ -17,6 +17,7 @@
   --agua:#9FD3DB;
   --resaltador:#FFE27A;
   --corrector:#C7372F;
+  --atencion:#B4561B; /* naranja de gravedad media; ≥4.5:1 con blanco */
   --renglon:#D3E2E4;
   --copia-celeste:#E2F1F4;--franja-celeste:#5FA8B8;
   --copia-verde:#E3F3EA;--franja-verde:#6DB38C;
@@ -1007,3 +1008,6 @@ header{view-transition-name:site-header}
 /* Aviso de la calculadora de hipoteca cuando no se pudo guardar (spec 012, C7). */
 .mortgage-save-status{margin:8px 0 0;color:var(--corrector)}
 .mortgage-save-status:empty{display:none}
+
+/* Texto solo para lectores de pantalla (spec 014). */
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

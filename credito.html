@@ -700,6 +700,19 @@
     }
 
     /* Cuentas abiertas: un cuadro chico al lado de la hoja grande. */
+    /* Círculos de cuentas con problemas (spec 014 US2) */
+    .cr-problemas { margin-top: var(--space-3); }
+    .cr-circulos { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .cr-circulo { display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 9rem; padding: .25rem; border: 0; background: none; color: var(--tinta); font: inherit; text-align: center; cursor: pointer; border-radius: var(--radius); }
+    .cr-iniciales { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+    .cr-circulo[data-gravedad=roja] .cr-iniciales { background: var(--corrector); color: var(--paper); }
+    .cr-circulo[data-gravedad=naranja] .cr-iniciales { background: var(--atencion); color: var(--paper); }
+    .cr-circulo[data-gravedad=amarilla] .cr-iniciales { background: var(--resaltador); color: var(--tinta); }
+    .cr-circulo[aria-expanded=true] .cr-iniciales { box-shadow: 0 0 0 3px var(--tinta); }
+    .cr-circulo:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+    .cr-circulo-nombre { font-weight: 700; font-size: .9rem; }
+    .cr-circulo-frase { font-size: .8rem; }
+    .cr-sin-problemas { margin: 0; }
     .cr-abiertas {
       max-width: 22rem;
       margin-top: 16px;
@@ -2694,6 +2707,7 @@
             <div class="cr-cartel" id="crCartelBlandas" popover role="dialog" aria-labelledby="crCartelBlandasT" hidden></div>
           </section>
           <section class="cr-abiertas" id="crAbiertas" aria-labelledby="crAbiertasT"></section>
+          <section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT" hidden><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div></section>
 
           <div class="cr-results-head">
             <div><span class="eyebrow-dark">Resultado del documento</span>
@@ -3889,6 +3903,25 @@
         $('crAbiertas').innerHTML = '<h3 id="crAbiertasT">Cuentas abiertas <strong>' + a.total + '</strong></h3>' +
           (a.porTipo.length ? '<ul>' + a.porTipo.map(t => '<li><span>' + t.etiqueta + '</span><strong>' + t.cantidad + '</strong></li>').join('') + '</ul>'
             : '<p>No tienes cuentas abiertas en este reporte.</p>');
+        renderProblemas(analisis);
+      }
+
+      /* Cuentas con problemas como círculos (014 US2). Un solo número de problemas: analisis.problemas. */
+      function renderProblemas(analisis) {
+        $('crProblemas').hidden = !analisis;
+        if (!analisis) return;
+        $('crAnalisis').hidden = true;
+        $('crAnalisis').innerHTML = '';
+        const sinCuentas = analisis.advertencias.some(a => /no pudimos leer las cuentas/i.test(a));
+        $('crCirculos').innerHTML = analisis.problemas.length
+          ? analisis.problemas.map(p =>
+            '<button type="button" class="cr-circulo" data-gravedad="' + p.gravedad + '" data-id="' + escapeHtml(p.id) + '" aria-expanded="false" aria-controls="crAnalisis">' +
+            '<span class="cr-iniciales" aria-hidden="true">' + escapeHtml(p.iniciales) + '</span>' +
+            '<span class="cr-circulo-nombre">' + escapeHtml(p.nombreCorto) + '</span>' +
+            '<span class="cr-circulo-frase">' + escapeHtml(p.frase) + '</span>' +
+            '<span class="visually-hidden">Gravedad: ' + escapeHtml(p.gravedadTexto) + '.</span></button>').join('')
+          : '<p class="cr-sin-problemas">' + (sinCuentas ? 'No pudimos leer las cuentas de este reporte, así que no sabemos si alguna tiene problemas.'
+            : 'No encontramos cuentas con problemas en este reporte.') + '</p>';
       }
       /* 014-resumen:fin */
 

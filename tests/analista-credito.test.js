@@ -82,3 +82,57 @@ test('US1 consultas (Review Focus #5): 113 blandas de 12 empresas quedan en 12 g
   assert.strictEqual(c.blandas.porEmpresa.length, 12);
   assert.strictEqual(c.blandas.porEmpresa.reduce((s, g) => s + g.fechas.length, 0), 113);
 });
+
+/* ------------------------------------------------------------ US2: cuentas con problemas (spec 014 T017–T018, hechas en la 019) */
+
+const val = (valor, etiqueta) => ({ valor, texto: String(valor && valor.texto ? valor.texto : valor), origen: { pagina: 2, seccion: 'cuentas', etiqueta: etiqueta || 'X', linea: 1 } });
+const fechaV = (iso) => val({ texto: iso, iso });
+const cta = (id, extra) => Object.assign({ id, acreedor: val('BANCO ' + id), cerrada: false, esCobranza: false, historial: [], historial24: [], atrasosListados: [], codigosNarrativos: [], comentarios: [] }, extra || {});
+const rep = (cuentas, extra) => Object.assign({ buro: 'experian', fechaReporte: fechaV('2026-05-20'), cuentas, consultas: [], registrosPublicos: [], identidad: { nombres: [], direcciones: [], telefonos: [] }, advertencias: [] }, extra || {});
+const mes = (anio, m, codigo) => ({ anio, mes: m, codigo, texto: codigo, mesVerificable: true, origen: { pagina: 2, seccion: 'cuentas', etiqueta: 'Payment History', linea: 3 } });
+
+test('US2 problemas y gravedad (T017)', () => {
+  const p = A.analizar(rep([
+    cta('cob', { esCobranza: true, fechaCobranza: fechaV('2025-01') }),
+    cta('co', { montoChargeOff: val(144), fechaChargeOff: fechaV('2025-03') }),
+    cta('at', { historial: [mes(2025, 6, 'atraso_30')] }),
+    cta('ven', { vencido: val(50) }),
+    cta('mar', { marcaNegativaBuro: true }),
+    cta('ok', { historial: [mes(2025, 6, 'al_dia')] }),
+    cta('coat', { montoChargeOff: val(90), fechaChargeOff: fechaV('2024-02'), historial: [mes(2024, 1, 'atraso_60')] })
+  ], { registrosPublicos: [{ tipo: 'bancarrota_7', fechaPresentacion: fechaV('2020-04') }] })).problemas;
+  const por = Object.fromEntries(p.map((x) => [x.id, x]));
+  assert.strictEqual(por.cob.gravedad, 'roja');
+  assert.strictEqual(por.cob.hallazgos[0].regla, 'cobranza');
+  assert.strictEqual(por.co.gravedad, 'roja');
+  assert.strictEqual(por.at.gravedad, 'naranja');
+  assert.strictEqual(por.ven.gravedad, 'naranja');
+  assert.strictEqual(por.mar.gravedad, 'amarilla');
+  assert.ok(!por.ok);
+  assert.strictEqual(por.coat.gravedad, 'roja');
+  assert.deepStrictEqual(por.coat.hallazgos.map((h) => h.regla).slice(0, 2), ['charge_off', 'atraso']);
+  assert.ok(por['rp-0'] && por['rp-0'].gravedad === 'roja');
+  const orden = p.map((x) => x.gravedad);
+  assert.deepStrictEqual(orden, orden.slice().sort((a, b) => ['roja', 'naranja', 'amarilla'].indexOf(a) - ['roja', 'naranja', 'amarilla'].indexOf(b)));
+  const rojas = p.filter((x) => x.gravedad === 'roja').map((x) => x.id);
+  assert.deepStrictEqual(rojas, ['co', 'cob', 'coat', 'rp-0']);
+});
+
+test('US2 utilidades: iniciales, nombreCorto y frase (T018)', () => {
+  assert.strictEqual(A.iniciales('COOPERATIVA DEMO CREDIT UNION'), 'CD');
+  assert.strictEqual(A.iniciales('AMERICREDIT/GM FINANCIAL'), 'AG');
+  assert.strictEqual(A.iniciales('DISCOVER CARD'), 'DI');
+  assert.strictEqual(A.iniciales('WFBNA CARD'), 'WF');
+  assert.strictEqual(A.iniciales(''), '?');
+  assert.strictEqual(A.iniciales('123'), '?');
+  assert.strictEqual(A.nombreCorto('TARJETA EJEMPLO BANK NA'), 'Tarjeta Ejemplo');
+  const largo = A.nombreCorto('ABCDEFGHIJ KLMNOPQRST UVWXYZABCD EFGHIJKLMN');
+  assert.ok(largo.length <= 22 && largo.endsWith('…'));
+  const p = A.analizar(leer('experian-resumen.json')).problemas;
+  const frase = (i) => p.find((x) => x.id.indexOf(i) >= 0).frase;
+  assert.strictEqual(frase('3411'), 'Charge-off, feb. 2026');
+  assert.strictEqual(frase('7508'), 'Atraso de 30 días, feb. 2026');
+  assert.ok(frase('0123').startsWith('En cobranza'));
+  assert.deepStrictEqual(p.map((x) => [x.acreedor, x.gravedad]), [
+    ['COBROS EJEMPLO LLC', 'roja'], ['COOPERATIVA DEMO CREDIT UNION', 'roja'], ['COOPERATIVA DEMO CREDIT UNION', 'naranja']]);
+});

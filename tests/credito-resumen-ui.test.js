@@ -111,3 +111,39 @@ test('US1: el texto del reporte se escapa antes de insertarse', () => {
   const todo = Object.values(nodos).map((n) => n.innerHTML).join(' ');
   assert.ok(!todo.includes('<img') && !todo.includes('<b>BANCO'), 'se insertó HTML del reporte');
 });
+
+/* ----------------------------------------------------------------- US2: círculos (spec 014 T023, hecha en la 019) */
+
+test('US2: marcado de #crProblemas después de #crAbiertas', () => {
+  const i = html.indexOf('id="crAbiertas"'), j = html.indexOf('id="crProblemas"');
+  assert.ok(i > 0 && j > i, '#crProblemas va después de #crAbiertas');
+  ['class="cr-problemas"', 'aria-labelledby="crProblemasT"', 'id="crCirculos"', 'id="crAnalisis"'].forEach((x) => assert.ok(html.includes(x), x));
+});
+
+test('US2: tres círculos en orden rojo, rojo, naranja con experian-resumen', () => {
+  const { api, nodos } = cargarResumen();
+  api.renderResumen(analizar('experian-resumen.json'));
+  const circulos = nodos.crCirculos.innerHTML.match(/<button[^>]*class="cr-circulo"[^>]*>/g) || [];
+  assert.strictEqual(circulos.length, 3);
+  assert.deepStrictEqual(circulos.map((b) => b.match(/data-gravedad="(\w+)"/)[1]), ['roja', 'roja', 'naranja']);
+  circulos.forEach((b) => assert.match(b, /aria-controls="crAnalisis"/));
+  assert.strictEqual((nodos.crCirculos.innerHTML.match(/class="visually-hidden">Gravedad: /g) || []).length, 3);
+  assert.ok(!nodos.crCirculos.innerHTML.includes('Tarjeta Ejemplo'));
+});
+
+test('US2: con experian.json, los círculos son exactamente analizar(...).problemas', () => {
+  const { api, nodos } = cargarResumen();
+  const a = analizar('experian.json');
+  api.renderResumen(a);
+  const n = (nodos.crCirculos.innerHTML.match(/class="cr-circulo"/g) || []).length;
+  assert.strictEqual(n, a.problemas.length);
+  if (!a.problemas.length) assert.match(nodos.crCirculos.innerHTML, /No encontramos cuentas con problemas/);
+});
+
+test('US2: --atencion existe y los círculos usan solo tokens', () => {
+  assert.match(css, /--atencion:\s*#B4561B/);
+  const reglas = reglasDe('.cr-circulo').concat(reglasDe('.cr-iniciales')).join('}');
+  assert.ok(reglas.length > 0);
+  assert.ok(!/#[0-9a-f]{3,6}/i.test(reglas), 'sin colores sueltos');
+  assert.match(css, /\.visually-hidden/);
+});
