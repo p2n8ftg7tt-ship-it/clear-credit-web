@@ -1,0 +1,427 @@
+[
+ {
+  "numero": 1,
+  "lineas": [
+   {
+    "texto": "Prepared for: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Experian Credit Report"
+   },
+   {
+    "texto": "Report Date: 05/20/2026"
+   },
+   {
+    "texto": "Personal Information"
+   },
+   {
+    "texto": "Name: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Also Known As: ANA RUIZ"
+   },
+   {
+    "texto": "Year of Birth: 1976"
+   },
+   {
+    "texto": "Address: 123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "Spouse or Co-Applicant: JUAN EJEMPLO"
+   },
+   {
+    "texto": "Personal Statements: FILE LOCKED AT CONSUMER'S REQUEST"
+   },
+   {
+    "texto": "Accounts"
+   },
+   {
+    "texto": "Account Name: TARJETA DEMO"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 4111222233335678"
+   },
+   {
+    "texto": "Account Type: Credit card"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 06/01/2021"
+   },
+   {
+    "texto": "Status: Open. Never late."
+   },
+   {
+    "texto": "Status Updated: 04/2026"
+   },
+   {
+    "texto": "Balance: $420"
+   },
+   {
+    "texto": "Balance Updated: 04/30/2026"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $1,500"
+   },
+   {
+    "texto": "Monthly Payment: $25"
+   },
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2026 OK OK OK OK",
+    "piezas": [
+     {
+      "texto": "2026",
+      "x": 40
+     },
+     {
+      "texto": "OK",
+      "x": 100
+     },
+     {
+      "texto": "OK",
+      "x": 130
+     },
+     {
+      "texto": "OK",
+      "x": 160
+     },
+     {
+      "texto": "OK",
+      "x": 190
+     }
+    ]
+   },
+   {
+    "texto": "Account Name: PRESTAMO EJEMPLO"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 7700123XXXX"
+   },
+   {
+    "texto": "Account Type: Installment"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 01/15/2022"
+   },
+   {
+    "texto": "Status: Open"
+   },
+   {
+    "texto": "Balance: $6,200"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $12,000"
+   },
+   {
+    "texto": "Terms: 60 Months"
+   },
+   {
+    "texto": "Late Payments: April 2023 Jan 2023"
+   },
+   {
+    "texto": "Page 1 of 2"
+   }
+  ]
+ },
+ {
+  "numero": 2,
+  "lineas": [
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2022 ND",
+    "piezas": [
+     {
+      "texto": "2022",
+      "x": 40
+     },
+     {
+      "texto": "ND",
+      "x": 100
+     }
+    ]
+   },
+   {
+    "texto": "2023 30 OK OK 30",
+    "piezas": [
+     {
+      "texto": "2023",
+      "x": 40
+     },
+     {
+      "texto": "30",
+      "x": 100
+     },
+     {
+      "texto": "OK",
+      "x": 130
+     },
+     {
+      "texto": "OK",
+      "x": 160
+     },
+     {
+      "texto": "30",
+      "x": 190
+     }
+    ]
+   },
+   {
+    "texto": "Collections"
+   },
+   {
+    "texto": "Account Name: COBROS DEMO"
+   },
+   {
+    "texto": "Account Number: 5550123XXXX"
+   },
+   {
+    "texto": "Original Creditor: TIENDA EJEMPLO"
+   },
+   {
+    "texto": "Collection Opened: 03/2024"
+   },
+   {
+    "texto": "Original Loan Amount: $300"
+   },
+   {
+    "texto": "Balance: $300"
+   },
+   {
+    "texto": "Status: Collection account. $300 past due as of Apr 2026."
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2024 CO",
+    "piezas": [
+     {
+      "texto": "2024",
+      "x": 40
+     },
+     {
+      "texto": "CO",
+      "x": 160
+     }
+    ]
+   },
+   {
+    "texto": "Hard Inquiries"
+   },
+   {
+    "texto": "BANCO EJEMPLO"
+   },
+   {
+    "texto": "Inquired on: 05/12/2026"
+   },
+   {
+    "texto": "Removal Date: 06/2028"
+   },
+   {
+    "texto": "Business Type: Banks"
+   },
+   {
+    "texto": "Soft Inquiries"
+   },
+   {
+    "texto": "MONITOREO DEMO"
+   },
+   {
+    "texto": "Inquired on: 04/01/2026"
+   },
+   {
+    "texto": "Public Records"
+   },
+   {
+    "texto": "No public records reported"
+   },
+   {
+    "texto": "Page 2 of 2"
+   }
+  ]
+ }
+]

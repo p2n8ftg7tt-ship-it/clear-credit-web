@@ -1,0 +1,630 @@
+{
+ "buro": "experian",
+ "perfil": {
+  "id": "experian",
+  "verificadoEl": "2026-09-30",
+  "formatoVerificado": true
+ },
+ "fechaReporte": {
+  "valor": {
+   "texto": "05/20/2026",
+   "iso": "2026-05-20"
+  },
+  "texto": "05/20/2026",
+  "origen": {
+   "pagina": 1,
+   "seccion": "desconocida",
+   "etiqueta": "Report Date",
+   "linea": 2
+  }
+ },
+ "paginasLeidas": 2,
+ "paginasTotales": 2,
+ "identidad": {
+  "nombres": [
+   {
+    "valor": "ANA EJEMPLO RUIZ",
+    "texto": "ANA EJEMPLO RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Name",
+     "linea": 4
+    }
+   },
+   {
+    "valor": "ANA RUIZ",
+    "texto": "ANA RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Also Known As",
+     "linea": 5
+    }
+   }
+  ],
+  "direcciones": [
+   {
+    "valor": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "texto": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Address",
+     "linea": 7
+    },
+    "tipo": "actual"
+   }
+  ],
+  "telefonos": [],
+  "empleadores": [],
+  "ssnMostrado": false,
+  "ssnUltimos4": null,
+  "fechaNacimientoMostrada": true
+ },
+ "avisos": [
+  {
+   "tipo": "bloqueo",
+   "texto": {
+    "valor": "FILE LOCKED AT CONSUMER'S REQUEST",
+    "texto": "FILE LOCKED AT CONSUMER'S REQUEST",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Personal Statements",
+     "linea": 9
+    }
+   }
+  }
+ ],
+ "cuentas": [
+  {
+   "id": "experian-tarjeta-demo-5678-2021-06-01",
+   "acreedor": {
+    "valor": "TARJETA DEMO",
+    "texto": "TARJETA DEMO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 11
+    }
+   },
+   "numero": {
+    "valor": "XXXXXXXXXXXX5678",
+    "texto": "XXXXXXXXXXXX5678",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 13
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit card",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 14
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 15
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Open. Never late.",
+    "texto": "Open. Never late.",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 17
+    }
+   },
+   "saldo": {
+    "valor": 420,
+    "texto": "$420",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 19
+    }
+   },
+   "limite": {
+    "valor": 1500,
+    "texto": "$1,500",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 21
+    }
+   },
+   "pagoProgramado": {
+    "valor": 25,
+    "texto": "$25",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Monthly Payment",
+     "linea": 22
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "06/01/2021",
+     "iso": "2021-06-01"
+    },
+    "texto": "06/01/2021",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 16
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/2026",
+     "iso": "2026-04"
+    },
+    "texto": "04/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status Updated",
+     "linea": 18
+    }
+   },
+   "historial": [
+    {
+     "anio": 2026,
+     "mes": 1,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 25
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 2,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 25
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 3,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 25
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 4,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 25
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-prestamo-ejemplo-0123-2022-01-15",
+   "acreedor": {
+    "valor": "PRESTAMO EJEMPLO",
+    "texto": "PRESTAMO EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 26
+    }
+   },
+   "numero": {
+    "valor": "XXX0123XXXX",
+    "texto": "XXX0123XXXX",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 28
+    }
+   },
+   "tipo": {
+    "valor": "plazos",
+    "texto": "Installment",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 29
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 30
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Open",
+    "texto": "Open",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 32
+    }
+   },
+   "saldo": {
+    "valor": 6200,
+    "texto": "$6,200",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 33
+    }
+   },
+   "montoOriginal": {
+    "valor": 12000,
+    "texto": "$12,000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 34
+    }
+   },
+   "plazo": {
+    "valor": "60 Months",
+    "texto": "60 Months",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Terms",
+     "linea": 35
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "01/15/2022",
+     "iso": "2022-01-15"
+    },
+    "texto": "01/15/2022",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 31
+    }
+   },
+   "historial": [
+    {
+     "anio": 2022,
+     "mes": 1,
+     "codigo": "sin_datos",
+     "texto": "ND",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 2
+     }
+    },
+    {
+     "anio": 2023,
+     "mes": 1,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 3
+     }
+    },
+    {
+     "anio": 2023,
+     "mes": 2,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 3
+     }
+    },
+    {
+     "anio": 2023,
+     "mes": 3,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 3
+     }
+    },
+    {
+     "anio": 2023,
+     "mes": 4,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 3
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [
+    {
+     "valor": {
+      "texto": "April 2023",
+      "iso": "2023-04"
+     },
+     "texto": "April 2023",
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Late Payments",
+      "linea": 36
+     }
+    },
+    {
+     "valor": {
+      "texto": "Jan 2023",
+      "iso": "2023-01"
+     },
+     "texto": "Jan 2023",
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Late Payments",
+      "linea": 36
+     }
+    }
+   ],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-cobros-demo-0123-sf",
+   "acreedor": {
+    "valor": "COBROS DEMO",
+    "texto": "COBROS DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Account Name",
+     "linea": 5
+    }
+   },
+   "acreedorOriginal": {
+    "valor": "TIENDA EJEMPLO",
+    "texto": "TIENDA EJEMPLO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Original Creditor",
+     "linea": 7
+    }
+   },
+   "numero": {
+    "valor": "XXX0123XXXX",
+    "texto": "XXX0123XXXX",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Account Number",
+     "linea": 6
+    }
+   },
+   "cerrada": false,
+   "esCobranza": true,
+   "estado": {
+    "valor": "Collection account. $300 past due as of Apr 2026.",
+    "texto": "Collection account. $300 past due as of Apr 2026.",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Status",
+     "linea": 11
+    }
+   },
+   "saldo": {
+    "valor": 300,
+    "texto": "$300",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Balance",
+     "linea": 10
+    }
+   },
+   "montoOriginal": {
+    "valor": 300,
+    "texto": "$300",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Original Loan Amount",
+     "linea": 9
+    }
+   },
+   "fechaCobranza": {
+    "valor": {
+     "texto": "03/2024",
+     "iso": "2024-03"
+    },
+    "texto": "03/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Collection Opened",
+     "linea": 8
+    }
+   },
+   "historial": [
+    {
+     "anio": 2024,
+     "mes": 3,
+     "codigo": "charge_off",
+     "texto": "CO",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cobranzas",
+      "etiqueta": "Payment History",
+      "linea": 13
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  }
+ ],
+ "consultas": [
+  {
+   "empresa": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 15
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "05/12/2026",
+     "iso": "2026-05-12"
+    },
+    "texto": "05/12/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 16
+    }
+   },
+   "fechaSalida": {
+    "valor": {
+     "texto": "06/2028",
+     "iso": "2028-06"
+    },
+    "texto": "06/2028",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Removal Date",
+     "linea": 17
+    }
+   },
+   "tipoNegocio": {
+    "valor": "Banks",
+    "texto": "Banks",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Business Type",
+     "linea": 18
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "MONITOREO DEMO",
+    "texto": "MONITOREO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 20
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "04/01/2026",
+     "iso": "2026-04-01"
+    },
+    "texto": "04/01/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 21
+    }
+   }
+  }
+ ],
+ "registrosPublicos": [],
+ "advertencias": []
+}

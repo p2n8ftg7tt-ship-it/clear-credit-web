@@ -1,0 +1,568 @@
+{
+ "buro": "transunion",
+ "perfil": {
+  "id": "transunion",
+  "verificadoEl": "2026-09-30",
+  "formatoVerificado": true
+ },
+ "fechaReporte": {
+  "valor": {
+   "texto": "05/18/2026",
+   "iso": "2026-05-18"
+  },
+  "texto": "05/18/2026",
+  "origen": {
+   "pagina": 1,
+   "seccion": "desconocida",
+   "etiqueta": "Report Date",
+   "linea": 1
+  }
+ },
+ "paginasLeidas": 2,
+ "paginasTotales": 2,
+ "identidad": {
+  "nombres": [
+   {
+    "valor": "ANA EJEMPLO RUIZ",
+    "texto": "ANA EJEMPLO RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Name",
+     "linea": 3
+    }
+   }
+  ],
+  "direcciones": [
+   {
+    "valor": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "texto": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Current Address",
+     "linea": 6
+    },
+    "tipo": "actual"
+   }
+  ],
+  "telefonos": [
+   {
+    "valor": "(555) 555-0100",
+    "texto": "(555) 555-0100",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Telephone Numbers",
+     "linea": 7
+    }
+   }
+  ],
+  "empleadores": [],
+  "ssnMostrado": true,
+  "ssnUltimos4": "9999",
+  "fechaNacimientoMostrada": true
+ },
+ "avisos": [
+  {
+   "tipo": "declaracion",
+   "texto": {
+    "valor": "THIS STATEMENT IS AN EXAMPLE WRITTEN FOR TESTS.",
+    "texto": "THIS STATEMENT IS AN EXAMPLE WRITTEN FOR TESTS.",
+    "origen": {
+     "pagina": 2,
+     "seccion": "avisos",
+     "etiqueta": "",
+     "linea": 20
+    }
+   }
+  }
+ ],
+ "cuentas": [
+  {
+   "id": "transunion-cobros-ejemplo-8765-2025-02",
+   "acreedor": {
+    "valor": "COBROS EJEMPLO",
+    "texto": "COBROS EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 10
+    }
+   },
+   "acreedorOriginal": {
+    "valor": "TIENDA EJEMPLO",
+    "texto": "TIENDA EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Original Creditor",
+     "linea": 11
+    }
+   },
+   "numero": {
+    "valor": "8765****",
+    "texto": "8765****",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Número junto al acreedor",
+     "linea": 10
+    }
+   },
+   "tipo": {
+    "valor": "abierta",
+    "texto": "Open Account",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Account Type",
+     "linea": 12
+    }
+   },
+   "cerrada": false,
+   "esCobranza": true,
+   "estadoPago": {
+    "valor": "In Collection",
+    "texto": "In Collection",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Pay Status",
+     "linea": 14
+    }
+   },
+   "saldo": {
+    "valor": 250,
+    "texto": "$250",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Balance",
+     "linea": 12
+    }
+   },
+   "vencido": {
+    "valor": 250,
+    "texto": "$250",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Past Due",
+     "linea": 14
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "02/2025",
+     "iso": "2025-02"
+    },
+    "texto": "02/2025",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Date Opened",
+     "linea": 13
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/2026",
+     "iso": "2026-04"
+    },
+    "texto": "04/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Date Updated",
+     "linea": 13
+    }
+   },
+   "fechaCobranza": {
+    "valor": {
+     "texto": "02/2025",
+     "iso": "2025-02"
+    },
+    "texto": "02/2025",
+    "origen": {
+     "pagina": 1,
+     "seccion": "adversas",
+     "etiqueta": "Date Placed for Collection",
+     "linea": 11
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "transunion-cobranzas-en-adversas",
+    "cuenta-en-adversas"
+   ]
+  },
+  {
+   "id": "transunion-banco-ejemplo-4321-2018-05",
+   "acreedor": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 0
+    }
+   },
+   "numero": {
+    "valor": "4321****",
+    "texto": "4321****",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Número junto al acreedor",
+     "linea": 0
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Revolving Account",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Account Type",
+     "linea": 1
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estadoPago": {
+    "valor": "Current; Paid or Paying as Agreed",
+    "texto": "Current; Paid or Paying as Agreed",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Pay Status",
+     "linea": 4
+    }
+   },
+   "saldo": {
+    "valor": 90,
+    "texto": "$90",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Balance",
+     "linea": 2
+    }
+   },
+   "limite": {
+    "valor": 500,
+    "texto": "$500",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Credit Limit",
+     "linea": 3
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 480,
+    "texto": "$480",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "High Balance",
+     "linea": 3
+    }
+   },
+   "vencido": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Past Due",
+     "linea": 3
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "05/2018",
+     "iso": "2018-05"
+    },
+    "texto": "05/2018",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Date Opened",
+     "linea": 2
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/2026",
+     "iso": "2026-04"
+    },
+    "texto": "04/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "adversas",
+     "etiqueta": "Date Updated",
+     "linea": 2
+    }
+   },
+   "historial": [
+    {
+     "anio": 2024,
+     "mes": null,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": false,
+     "origen": {
+      "pagina": 2,
+      "seccion": "adversas",
+      "etiqueta": "Payment History",
+      "linea": 6
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "cuenta-en-adversas"
+   ]
+  },
+  {
+   "id": "transunion-auto-demo-finance-1122-2019-03",
+   "acreedor": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 8
+    }
+   },
+   "numero": {
+    "valor": "1122****",
+    "texto": "1122****",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Número junto al acreedor",
+     "linea": 8
+    }
+   },
+   "tipo": {
+    "valor": "auto",
+    "texto": "Auto Loan",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Loan Type",
+     "linea": 9
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estadoPago": {
+    "valor": "Paid, Closed; was Paid as Agreed",
+    "texto": "Paid, Closed; was Paid as Agreed",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Pay Status",
+     "linea": 12
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Balance",
+     "linea": 10
+    }
+   },
+   "plazo": {
+    "valor": "60 Months",
+    "texto": "60 Months",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Terms",
+     "linea": 11
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "03/2019",
+     "iso": "2019-03"
+    },
+    "texto": "03/2019",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Date Opened",
+     "linea": 10
+    }
+   },
+   "fechaCierre": {
+    "valor": {
+     "texto": "03/2024",
+     "iso": "2024-03"
+    },
+    "texto": "03/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Date Closed",
+     "linea": 10
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "03/2024",
+     "iso": "2024-03"
+    },
+    "texto": "03/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "satisfactorias",
+     "etiqueta": "Date Updated",
+     "linea": 10
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  }
+ ],
+ "consultas": [
+  {
+   "empresa": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 14
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "05/2018",
+     "iso": "2018-05"
+    },
+    "texto": "05/2018",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Requested On",
+     "linea": 14
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "OFERTAS DEMO",
+    "texto": "OFERTAS DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 16
+    }
+   },
+   "tipo": "promocional",
+   "fecha": {
+    "valor": {
+     "texto": "01/10/2026",
+     "iso": "2026-01-10"
+    },
+    "texto": "01/10/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Requested On",
+     "linea": 16
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "OFERTAS DEMO",
+    "texto": "OFERTAS DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 16
+    }
+   },
+   "tipo": "promocional",
+   "fecha": {
+    "valor": {
+     "texto": "02/10/2026",
+     "iso": "2026-02-10"
+    },
+    "texto": "02/10/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Requested On",
+     "linea": 16
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "TARJETA DEMO",
+    "texto": "TARJETA DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 18
+    }
+   },
+   "tipo": "revision_cuenta",
+   "fecha": {
+    "valor": {
+     "texto": "03/15/2026",
+     "iso": "2026-03-15"
+    },
+    "texto": "03/15/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Requested On",
+     "linea": 18
+    }
+   }
+  }
+ ],
+ "registrosPublicos": [],
+ "advertencias": [
+  {
+   "codigo": "mes_no_verificable",
+   "detalle": "BANCO EJEMPLO: 2024, código 30",
+   "origen": {
+    "pagina": 2,
+    "seccion": "adversas",
+    "etiqueta": "Payment History",
+    "linea": 6
+   }
+  }
+ ]
+}

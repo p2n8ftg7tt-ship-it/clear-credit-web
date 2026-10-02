@@ -1,0 +1,272 @@
+{
+ "buro": "desconocido",
+ "perfil": {
+  "id": "generico",
+  "verificadoEl": "2026-09-30",
+  "formatoVerificado": false
+ },
+ "fechaReporte": {
+  "valor": {
+   "texto": "15 de mayo de 2026",
+   "iso": "2026-05-15"
+  },
+  "texto": "15 de mayo de 2026",
+  "origen": {
+   "pagina": 1,
+   "seccion": "desconocida",
+   "etiqueta": "Fecha del reporte",
+   "linea": 1
+  }
+ },
+ "paginasLeidas": 1,
+ "paginasTotales": 1,
+ "identidad": {
+  "nombres": [
+   {
+    "valor": "ANA EJEMPLO RUIZ",
+    "texto": "ANA EJEMPLO RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Nombre",
+     "linea": 3
+    }
+   }
+  ],
+  "direcciones": [
+   {
+    "valor": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "texto": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Dirección",
+     "linea": 6
+    }
+   }
+  ],
+  "telefonos": [],
+  "empleadores": [],
+  "ssnMostrado": true,
+  "ssnUltimos4": "9999",
+  "fechaNacimientoMostrada": true
+ },
+ "avisos": [],
+ "cuentas": [
+  {
+   "id": "desconocido-tienda-ejemplo-2222-2020-03",
+   "acreedor": {
+    "valor": "TIENDA EJEMPLO",
+    "texto": "TIENDA EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Acreedor",
+     "linea": 8
+    }
+   },
+   "numero": {
+    "valor": "XXXXXXXXXXXX2222",
+    "texto": "XXXXXXXXXXXX2222",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Número de cuenta",
+     "linea": 9
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Tarjeta de crédito",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Tipo de cuenta",
+     "linea": 10
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Al día",
+    "texto": "Al día",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Estado",
+     "linea": 14
+    }
+   },
+   "saldo": {
+    "valor": 150,
+    "texto": "$150",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Saldo",
+     "linea": 12
+    }
+   },
+   "limite": {
+    "valor": 800,
+    "texto": "$800",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Límite de crédito",
+     "linea": 13
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "03/2020",
+     "iso": "2020-03"
+    },
+    "texto": "03/2020",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Fecha de apertura",
+     "linea": 11
+    }
+   },
+   "dofd": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Fecha del primer atraso",
+     "linea": 15
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  },
+  {
+   "id": "desconocido-prestamos-ejemplo-5678-2021-01",
+   "acreedor": {
+    "valor": "PRESTAMOS EJEMPLO",
+    "texto": "PRESTAMOS EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Acreedor",
+     "linea": 16
+    }
+   },
+   "numero": {
+    "valor": "XXXX5678",
+    "texto": "XXXX5678",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Número de cuenta",
+     "linea": 17
+    }
+   },
+   "tipo": {
+    "valor": "plazos",
+    "texto": "Préstamo personal",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Tipo de cuenta",
+     "linea": 18
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Cerrada",
+    "texto": "Cerrada",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Estado",
+     "linea": 21
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Saldo",
+     "linea": 20
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "01/2021",
+     "iso": "2021-01"
+    },
+    "texto": "01/2021",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Fecha de apertura",
+     "linea": 19
+    }
+   },
+   "dofd": {
+    "valor": {
+     "texto": "07/2022",
+     "iso": "2022-07"
+    },
+    "texto": "07/2022",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Fecha del primer atraso",
+     "linea": 22
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  }
+ ],
+ "consultas": [
+  {
+   "empresa": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 24
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "02/03/2026",
+     "iso": "2026-02-03"
+    },
+    "texto": "02/03/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 24
+    }
+   }
+  }
+ ],
+ "registrosPublicos": [],
+ "advertencias": [
+  {
+   "codigo": "formato_no_verificado",
+   "detalle": "No reconocimos el buró; se usó la lectura genérica."
+  }
+ ]
+}

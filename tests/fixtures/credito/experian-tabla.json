@@ -1,0 +1,10 @@
+[
+  {"numero":1,"lineas":[
+    {"texto":"Experian Credit Report"},{"texto":"Personal Information"},{"texto":"Name(s) Associated With Your Credit ANA TABLA DEMO"},{"texto":"Address(es) Associated With Your Credit 10 CALLE DEMO"},{"texto":"Phone Numbers 555-0100"},
+    {"texto":"Accounts"},{"texto":"Account Name"},{"texto":"TARJETA TABLA"},{"texto":"Account Number 123456XXXXXX"},{"texto":"Account Status Open, Current"},{"texto":"Date Opened November 7, 2022"},{"texto":"Account Type Credit Card"},{"texto":"Credit Limit / Original Balance $1500"},{"texto":"Payment Status Current"},
+    {"texto":"Account Name PRESTAMO TABLA"},{"texto":"Account Number 987654XXXXXX"},{"texto":"Account Status Paid, Closed"},{"texto":"Date Opened January 2020"},{"texto":"Account Type Personal Loan"},{"texto":"Credit Limit / Original Balance $8000"},{"texto":"Payment Status Current"},
+    {"texto":"Collections"},{"texto":"Account Name COBRANZA TABLA"},{"texto":"Account Number 111111XXXXXX"},{"texto":"Collection Opened March 2021"},{"texto":"Account Type Collection Agency"},{"texto":"Original Creditor TIENDA TABLA"},{"texto":"Original Loan Amount $300"},{"texto":"Balance $125"},
+    {"texto":"Credit Inquiries"},{"texto":"Hard Inquiries"},{"texto":"Business Name PRESTAMISTA TABLA"},{"texto":"Inquiry Date May 1, 2024 May 2, 2024"},{"texto":"Soft Inquiries"},{"texto":"Company Name REVISION TABLA"},{"texto":"Inquiry Date June 2024"},
+    {"texto":"A Summary of Your Rights Under the Fair Credit Reporting Act"}
+  ]}
+]

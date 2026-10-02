@@ -1,0 +1,611 @@
+[
+ {
+  "numero": 1,
+  "lineas": [
+   {
+    "texto": "Prepared for: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Date: May 24, 2026"
+   },
+   {
+    "texto": "Confirmation # 5550001"
+   },
+   {
+    "texto": "Equifax Credit Report"
+   },
+   {
+    "texto": "Summary"
+   },
+   {
+    "texto": "Credit Accounts 6 Inquiries 7"
+   },
+   {
+    "texto": "Personal Information"
+   },
+   {
+    "texto": "Name: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Former Name(s): ANA E RUIZ"
+   },
+   {
+    "texto": "Social Security Number: XXX-XX-9999"
+   },
+   {
+    "texto": "Date of Birth: 02/29/1976"
+   },
+   {
+    "texto": "Current Address: 123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "Former Address(es): 45 AVENIDA DEMO, OTRO PUEBLO, FL 00001"
+   },
+   {
+    "texto": "Phone Number(s): (555) 555-0100"
+   },
+   {
+    "texto": "Employment Information: None"
+   },
+   {
+    "texto": "Consumer File Notices: None"
+   },
+   {
+    "texto": "Consumer Statement: No Statement on file"
+   },
+   {
+    "texto": "Credit Accounts"
+   },
+   {
+    "texto": "Paid on Time 30 30 Days Past Due 60 60 Days Past Due"
+   },
+   {
+    "texto": "BANCO EJEMPLO"
+   },
+   {
+    "texto": "Date Reported: 04/30/2026 Balance: $310"
+   },
+   {
+    "texto": "Account Number: *1234 Owner: Individual Account Credit Limit: High Credit: $2,000"
+   },
+   {
+    "texto": "Loan/Account Type: Credit Card Status: Pays As Agreed"
+   },
+   {
+    "texto": "Date Opened: 08/18/2019 Date of 1st Delinquency: Terms Frequency: Monthly"
+   },
+   {
+    "texto": "Date of Last Activity: 04/2026 Date Major Delinquency 1st Reported: Months Reviewed: 81"
+   },
+   {
+    "texto": "Scheduled Payment Amount: $25 Amount Past Due: Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: $100 Charge Off Amount: Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 04/12/2026 Date Closed: Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: Activity Designator:"
+   },
+   {
+    "texto": "Narrative Code(s): 233"
+   },
+   {
+    "texto": "TARJETA DEMO"
+   },
+   {
+    "texto": "Date Reported: 04/30/2026 Balance: $640"
+   },
+   {
+    "texto": "Account Number: *5678 Owner: Individual Account Credit Limit: $1,000 High Credit: $700"
+   },
+   {
+    "texto": "Loan/Account Type: Credit Card Status: Pays As Agreed"
+   },
+   {
+    "texto": "Page 1 of 3"
+   },
+   {
+    "texto": "EFX-ACR"
+   }
+  ]
+ },
+ {
+  "numero": 2,
+  "lineas": [
+   {
+    "texto": "Prepared for: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Date: May 24, 2026"
+   },
+   {
+    "texto": "Confirmation # 5550001"
+   },
+   {
+    "texto": "Date Opened: 06/01/2021 Date of 1st Delinquency: Terms Frequency: Monthly"
+   },
+   {
+    "texto": "Date of Last Activity: 04/2026 Date Major Delinquency 1st Reported: Months Reviewed: 58"
+   },
+   {
+    "texto": "Scheduled Payment Amount: $35 Amount Past Due: $0 Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: $35 Charge Off Amount: Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 04/15/2026 Date Closed: Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: Activity Designator:"
+   },
+   {
+    "texto": "Narrative Code(s):"
+   },
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2026 30",
+    "piezas": [
+     {
+      "texto": "2026",
+      "x": 40
+     },
+     {
+      "texto": "30",
+      "x": 160
+     }
+    ]
+   },
+   {
+    "texto": "24-Month History"
+   },
+   {
+    "texto": "Month Balance Scheduled Payment Actual Payment Last Payment Date Past Due High Credit Credit Limit Narrative Codes",
+    "piezas": [
+     {
+      "texto": "Month",
+      "x": 40
+     },
+     {
+      "texto": "Balance",
+      "x": 100
+     },
+     {
+      "texto": "Scheduled Payment",
+      "x": 160
+     },
+     {
+      "texto": "Actual Payment",
+      "x": 220
+     },
+     {
+      "texto": "Last Payment Date",
+      "x": 280
+     },
+     {
+      "texto": "Past Due",
+      "x": 340
+     },
+     {
+      "texto": "High Credit",
+      "x": 400
+     },
+     {
+      "texto": "Credit Limit",
+      "x": 460
+     },
+     {
+      "texto": "Narrative Codes",
+      "x": 520
+     }
+    ]
+   },
+   {
+    "texto": "04/26 $640 $35 $35 04/15/2026 $0 $700 $1,000",
+    "piezas": [
+     {
+      "texto": "04/26",
+      "x": 40
+     },
+     {
+      "texto": "$640",
+      "x": 100
+     },
+     {
+      "texto": "$35",
+      "x": 160
+     },
+     {
+      "texto": "$35",
+      "x": 220
+     },
+     {
+      "texto": "04/15/2026",
+      "x": 280
+     },
+     {
+      "texto": "$0",
+      "x": 340
+     },
+     {
+      "texto": "$700",
+      "x": 400
+     },
+     {
+      "texto": "$1,000",
+      "x": 460
+     }
+    ]
+   },
+   {
+    "texto": "03/26 $610 $35 $0 02/14/2026 $35 $700 $1,000",
+    "piezas": [
+     {
+      "texto": "03/26",
+      "x": 40
+     },
+     {
+      "texto": "$610",
+      "x": 100
+     },
+     {
+      "texto": "$35",
+      "x": 160
+     },
+     {
+      "texto": "$0",
+      "x": 220
+     },
+     {
+      "texto": "02/14/2026",
+      "x": 280
+     },
+     {
+      "texto": "$35",
+      "x": 340
+     },
+     {
+      "texto": "$700",
+      "x": 400
+     },
+     {
+      "texto": "$1,000",
+      "x": 460
+     }
+    ]
+   },
+   {
+    "texto": "TARJETA DEMO"
+   },
+   {
+    "texto": "Date Reported: 04/30/2026 Balance: $0"
+   },
+   {
+    "texto": "Account Number: *5678 Owner: Individual Account Credit Limit: $1,000 High Credit: $1,000"
+   },
+   {
+    "texto": "Loan/Account Type: Credit Card Status: Pays As Agreed"
+   },
+   {
+    "texto": "Date Opened: 06/01/2021 Date of 1st Delinquency: 05/2024 Terms Frequency: Monthly"
+   },
+   {
+    "texto": "Date of Last Activity: 01/2025 Date Major Delinquency 1st Reported: 08/2024 Months Reviewed: 58"
+   },
+   {
+    "texto": "Scheduled Payment Amount: Amount Past Due: $0 Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: Charge Off Amount: Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 12/20/2024 Date Closed: Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: Activity Designator:"
+   },
+   {
+    "texto": "Narrative Code(s):"
+   },
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2024 30 60 90 120",
+    "piezas": [
+     {
+      "texto": "2024",
+      "x": 40
+     },
+     {
+      "texto": "30",
+      "x": 220
+     },
+     {
+      "texto": "60",
+      "x": 250
+     },
+     {
+      "texto": "90",
+      "x": 280
+     },
+     {
+      "texto": "120",
+      "x": 310
+     }
+    ]
+   },
+   {
+    "texto": "CUENTA DEPOSITO DEMO - Closed"
+   },
+   {
+    "texto": "Date Reported: 03/31/2026 Balance: $0"
+   },
+   {
+    "texto": "Account Number: *4321 Owner: Individual Account Credit Limit: High Credit: $480"
+   },
+   {
+    "texto": "Loan/Account Type: Deposit Related Status: Charge Off"
+   },
+   {
+    "texto": "Date Opened: 01/10/2020 Date of 1st Delinquency: 03/2021 Terms Frequency:"
+   },
+   {
+    "texto": "Date of Last Activity: 09/2021 Date Major Delinquency 1st Reported: 07/2021 Months Reviewed: 60"
+   },
+   {
+    "texto": "Scheduled Payment Amount: Amount Past Due: $0 Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: Charge Off Amount: $480 Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 09/15/2021 Date Closed: 08/2021 Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: Activity Designator: Paid"
+   },
+   {
+    "texto": "Narrative Code(s): 244, 156, 093"
+   },
+   {
+    "texto": "Page 2 of 3"
+   },
+   {
+    "texto": "EFX-ACR"
+   }
+  ]
+ },
+ {
+  "numero": 3,
+  "lineas": [
+   {
+    "texto": "Prepared for: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Date: May 24, 2026"
+   },
+   {
+    "texto": "Confirmation # 5550001"
+   },
+   {
+    "texto": "AUTO DEMO FINANCE - Closed"
+   },
+   {
+    "texto": "Date Reported: 02/29/2024 Balance: $0"
+   },
+   {
+    "texto": "Account Number: *1111 Owner: Joint Account Credit Limit: High Credit: $15,000"
+   },
+   {
+    "texto": "Loan/Account Type: Auto Loan Status: Pays As Agreed"
+   },
+   {
+    "texto": "Date Opened: 03/05/2019 Date of 1st Delinquency: Terms Frequency: Monthly"
+   },
+   {
+    "texto": "Date of Last Activity: 02/2024 Date Major Delinquency 1st Reported: Months Reviewed: 59"
+   },
+   {
+    "texto": "Scheduled Payment Amount: Amount Past Due: Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: Charge Off Amount: Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 02/10/2024 Date Closed: 02/2024 Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: 60 Months Activity Designator: Paid and Closed"
+   },
+   {
+    "texto": "Narrative Code(s):"
+   },
+   {
+    "texto": "PRESTAMOS AUTO EJEMPLO - Closed"
+   },
+   {
+    "texto": "Date Reported: 07/31/2018 Balance: $0"
+   },
+   {
+    "texto": "Account Number: *2222 Owner: Individual Account Credit Limit: High Credit: $9,500"
+   },
+   {
+    "texto": "Loan/Account Type: Auto Loan Status: Pays As Agreed"
+   },
+   {
+    "texto": "Date Opened: 07/01/2015 Date of 1st Delinquency: Terms Frequency: Monthly"
+   },
+   {
+    "texto": "Date of Last Activity: 07/2018 Date Major Delinquency 1st Reported: Months Reviewed: 36"
+   },
+   {
+    "texto": "Scheduled Payment Amount: Amount Past Due: Deferred Payment Start Date:"
+   },
+   {
+    "texto": "Actual Payment Amount: Charge Off Amount: Balloon Payment Amount:"
+   },
+   {
+    "texto": "Date of Last Payment: 07/15/2018 Date Closed: 07/2018 Balloon Payment Date:"
+   },
+   {
+    "texto": "Term Duration: 36 Months Activity Designator: Paid and Closed"
+   },
+   {
+    "texto": "Narrative Code(s):"
+   },
+   {
+    "texto": "Inquiries"
+   },
+   {
+    "texto": "Company Name Inquiry Type Inquiry Date(s)"
+   },
+   {
+    "texto": "BANCO EJEMPLO Hard 01/15/2026"
+   },
+   {
+    "texto": "TARJETA DEMO Hard 03/02/2026"
+   },
+   {
+    "texto": "AUTO DEMO FINANCE Hard 05/10/2026, 05/12/2026"
+   },
+   {
+    "texto": "AUTO DEMO FINANCE Soft 05/10/2026, 05/12/2026"
+   },
+   {
+    "texto": "MONITOREO DEMO Soft 04/01/2026"
+   },
+   {
+    "texto": "A Summary of Your Rights Under the Fair Credit Reporting Act"
+   },
+   {
+    "texto": "You must be told if information in your file has been used against you. Status: example"
+   },
+   {
+    "texto": "Page 3 of 3"
+   },
+   {
+    "texto": "EFX-ACR"
+   }
+  ]
+ }
+]

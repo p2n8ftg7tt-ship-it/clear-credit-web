@@ -1,0 +1,129 @@
+[
+ {
+  "numero": 1,
+  "lineas": [
+   {
+    "texto": "TransUnion Credit Report"
+   },
+   {
+    "texto": "Report Date: 05/18/2026 File Number: 5550002"
+   },
+   {
+    "texto": "Personal Information"
+   },
+   {
+    "texto": "Name: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Social Security Number: XXX-XX-9999"
+   },
+   {
+    "texto": "Date of Birth: 02/29/1976"
+   },
+   {
+    "texto": "Current Address: 123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "Telephone Numbers: (555) 555-0100"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Accounts with Adverse Information"
+   },
+   {
+    "texto": "COBROS EJEMPLO #8765****"
+   },
+   {
+    "texto": "Original Creditor: TIENDA EJEMPLO Date Placed for Collection: 02/2025"
+   },
+   {
+    "texto": "Account Type: Open Account Balance: $250"
+   },
+   {
+    "texto": "Date Opened: 02/2025 Date Updated: 04/2026"
+   },
+   {
+    "texto": "Pay Status: In Collection Past Due: $250"
+   },
+   {
+    "texto": "Estimated month and year this item will be removed: 06/2031"
+   },
+   {
+    "texto": "Page 1 of 2"
+   }
+  ]
+ },
+ {
+  "numero": 2,
+  "lineas": [
+   {
+    "texto": "BANCO EJEMPLO #4321****"
+   },
+   {
+    "texto": "Account Type: Revolving Account Loan Type: Credit Card"
+   },
+   {
+    "texto": "Date Opened: 05/2018 Balance: $90 Date Updated: 04/2026"
+   },
+   {
+    "texto": "Credit Limit: $500 High Balance: $480 Past Due: $0"
+   },
+   {
+    "texto": "Pay Status: Current; Paid or Paying as Agreed"
+   },
+   {
+    "texto": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+   },
+   {
+    "texto": "2024 30"
+   },
+   {
+    "texto": "Satisfactory Accounts"
+   },
+   {
+    "texto": "AUTO DEMO FINANCE #1122****"
+   },
+   {
+    "texto": "Account Type: Installment Account Loan Type: Auto Loan"
+   },
+   {
+    "texto": "Date Opened: 03/2019 Balance: $0 Date Updated: 03/2024 Date Closed: 03/2024"
+   },
+   {
+    "texto": "Terms: 60 Months"
+   },
+   {
+    "texto": "Pay Status: Paid, Closed; was Paid as Agreed"
+   },
+   {
+    "texto": "Regular Inquiries"
+   },
+   {
+    "texto": "BANCO EJEMPLO Requested On: 05/2018"
+   },
+   {
+    "texto": "Promotional Inquiries"
+   },
+   {
+    "texto": "OFERTAS DEMO Requested On: 01/10/2026, 02/10/2026"
+   },
+   {
+    "texto": "Account Review Inquiries"
+   },
+   {
+    "texto": "TARJETA DEMO Requested On: 03/15/2026"
+   },
+   {
+    "texto": "Consumer Statement"
+   },
+   {
+    "texto": "THIS STATEMENT IS AN EXAMPLE WRITTEN FOR TESTS."
+   },
+   {
+    "texto": "Page 2 of 2"
+   }
+  ]
+ }
+]

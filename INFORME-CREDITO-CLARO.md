@@ -45,12 +45,11 @@ encontré y corregí varios problemas concretos:
   actualicé la tarjeta "Próximamente → Guía de disputas" para reflejar que
   esa función ya existe (el generador de cartas), en vez de seguir
   anunciándola como pendiente.
-- **`analyzer.js` es un archivo huérfano** — no lo incluye ninguna página; la
-  versión real y activa del analizador vive en un `<script>` dentro de
-  `credito.html`. No lo borré (no tengo permiso de borrado en tu
-  computadora), pero le agregué una nota al inicio explicando que no se usa,
-  para que no confunda a nadie —incluyéndome a mí en la próxima sesión—.
-  Puedes borrarlo cuando quieras.
+- **`analyzer.js` era un archivo huérfano** — no lo incluía ninguna página.
+  Se eliminó en la Fase 0 de la spec 013 (septiembre de 2026). Hoy el lector
+  de `credito.html` usa `lector-credito.js` (el motor que lee el reporte
+  cuenta por cuenta) y `lector-credito-perfiles.js` (cómo se lee cada buró);
+  la evaluación de la Fase 0 sigue en un `<script>` dentro de la página.
 - **SEO y metadatos ausentes en las 9 páginas:** no había favicon, ni
   etiquetas Open Graph/Twitter (las que generan la vista previa cuando
   alguien comparte tu enlace en WhatsApp o redes), ni `robots.txt`, ni

@@ -1,0 +1,2038 @@
+{
+ "buro": "equifax",
+ "perfil": {
+  "id": "equifax",
+  "verificadoEl": "2026-09-30",
+  "formatoVerificado": true
+ },
+ "fechaReporte": {
+  "valor": {
+   "texto": "May 24, 2026",
+   "iso": "2026-05-24"
+  },
+  "texto": "May 24, 2026",
+  "origen": {
+   "pagina": 1,
+   "seccion": "desconocida",
+   "etiqueta": "Date",
+   "linea": 1
+  }
+ },
+ "paginasLeidas": 3,
+ "paginasTotales": 3,
+ "identidad": {
+  "nombres": [
+   {
+    "valor": "ANA EJEMPLO RUIZ",
+    "texto": "ANA EJEMPLO RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Name",
+     "linea": 7
+    }
+   },
+   {
+    "valor": "ANA E RUIZ",
+    "texto": "ANA E RUIZ",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Former Name(s)",
+     "linea": 8
+    }
+   }
+  ],
+  "direcciones": [
+   {
+    "valor": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "texto": "123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Current Address",
+     "linea": 11
+    },
+    "tipo": "actual"
+   },
+   {
+    "valor": "45 AVENIDA DEMO, OTRO PUEBLO, FL 00001",
+    "texto": "45 AVENIDA DEMO, OTRO PUEBLO, FL 00001",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Former Address(es)",
+     "linea": 12
+    },
+    "tipo": "anterior"
+   }
+  ],
+  "telefonos": [
+   {
+    "valor": "(555) 555-0100",
+    "texto": "(555) 555-0100",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Phone Number(s)",
+     "linea": 13
+    }
+   }
+  ],
+  "empleadores": [],
+  "ssnMostrado": true,
+  "ssnUltimos4": "9999",
+  "fechaNacimientoMostrada": true
+ },
+ "avisos": [],
+ "cuentas": [
+  {
+   "id": "equifax-banco-ejemplo-1234-2019-08-18",
+   "acreedor": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 19
+    }
+   },
+   "numero": {
+    "valor": "*1234",
+    "texto": "*1234",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 21
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit Card",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 22
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual Account",
+    "texto": "Individual Account",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 21
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Pays As Agreed",
+    "texto": "Pays As Agreed",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 22
+    }
+   },
+   "designadorActividad": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 28
+    }
+   },
+   "saldo": {
+    "valor": 310,
+    "texto": "$310",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 20
+    }
+   },
+   "limite": {
+    "valor": 2000,
+    "texto": "$2,000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 21
+    }
+   },
+   "saldoMasAlto": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 21
+    }
+   },
+   "vencido": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 25
+    }
+   },
+   "pagoProgramado": {
+    "valor": 25,
+    "texto": "$25",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 25
+    }
+   },
+   "pagoReal": {
+    "valor": 100,
+    "texto": "$100",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 26
+    }
+   },
+   "montoChargeOff": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 26
+    }
+   },
+   "plazo": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 28
+    }
+   },
+   "frecuencia": {
+    "valor": "Monthly",
+    "texto": "Monthly",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 23
+    }
+   },
+   "mesesRevisados": {
+    "valor": 81,
+    "texto": "81",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 24
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "08/18/2019",
+     "iso": "2019-08-18"
+    },
+    "texto": "08/18/2019",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 23
+    }
+   },
+   "fechaCierre": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 27
+    }
+   },
+   "dofd": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 23
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 24
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "04/12/2026",
+     "iso": "2026-04-12"
+    },
+    "texto": "04/12/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 27
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "04/2026",
+     "iso": "2026-04"
+    },
+    "texto": "04/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 24
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/30/2026",
+     "iso": "2026-04-30"
+    },
+    "texto": "04/30/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 20
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [
+    {
+     "codigo": "233",
+     "descripcion": "Amount in High Credit Column is Credit Limit"
+    }
+   ],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "equifax-233-high-credit-es-limite"
+   ]
+  },
+  {
+   "id": "equifax-tarjeta-demo-5678-2021-06-01",
+   "acreedor": {
+    "valor": "TARJETA DEMO",
+    "texto": "TARJETA DEMO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 30
+    }
+   },
+   "numero": {
+    "valor": "*5678",
+    "texto": "*5678",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 32
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit Card",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 33
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual Account",
+    "texto": "Individual Account",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 32
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Pays As Agreed",
+    "texto": "Pays As Agreed",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 33
+    }
+   },
+   "designadorActividad": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 8
+    }
+   },
+   "saldo": {
+    "valor": 640,
+    "texto": "$640",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 31
+    }
+   },
+   "limite": {
+    "valor": 1000,
+    "texto": "$1,000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit",
+     "linea": 32
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 700,
+    "texto": "$700",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 32
+    }
+   },
+   "vencido": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 5
+    }
+   },
+   "pagoProgramado": {
+    "valor": 35,
+    "texto": "$35",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 5
+    }
+   },
+   "pagoReal": {
+    "valor": 35,
+    "texto": "$35",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 6
+    }
+   },
+   "montoChargeOff": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 6
+    }
+   },
+   "plazo": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 8
+    }
+   },
+   "frecuencia": {
+    "valor": "Monthly",
+    "texto": "Monthly",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 3
+    }
+   },
+   "mesesRevisados": {
+    "valor": 58,
+    "texto": "58",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 4
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "06/01/2021",
+     "iso": "2021-06-01"
+    },
+    "texto": "06/01/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 3
+    }
+   },
+   "fechaCierre": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 7
+    }
+   },
+   "dofd": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 3
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 4
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "04/15/2026",
+     "iso": "2026-04-15"
+    },
+    "texto": "04/15/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 7
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "04/2026",
+     "iso": "2026-04"
+    },
+    "texto": "04/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 4
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/30/2026",
+     "iso": "2026-04-30"
+    },
+    "texto": "04/30/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 31
+    }
+   },
+   "historial": [
+    {
+     "anio": 2026,
+     "mes": 3,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 12
+     }
+    }
+   ],
+   "historial24": [
+    {
+     "mes": {
+      "texto": "04/26",
+      "iso": "2026-04"
+     },
+     "saldo": {
+      "valor": 640,
+      "texto": "$640",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "pagoProgramado": {
+      "valor": 35,
+      "texto": "$35",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "pagoReal": {
+      "valor": 35,
+      "texto": "$35",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "fechaUltimoPago": {
+      "valor": {
+       "texto": "04/15/2026",
+       "iso": "2026-04-15"
+      },
+      "texto": "04/15/2026",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "vencido": {
+      "valor": 0,
+      "texto": "$0",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "saldoMasAlto": {
+      "valor": 700,
+      "texto": "$700",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "limite": {
+      "valor": 1000,
+      "texto": "$1,000",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 15
+      }
+     },
+     "codigosNarrativos": [],
+     "columnasVerificables": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "24-Month History",
+      "linea": 15
+     }
+    },
+    {
+     "mes": {
+      "texto": "03/26",
+      "iso": "2026-03"
+     },
+     "saldo": {
+      "valor": 610,
+      "texto": "$610",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "pagoProgramado": {
+      "valor": 35,
+      "texto": "$35",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "pagoReal": {
+      "valor": 0,
+      "texto": "$0",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "fechaUltimoPago": {
+      "valor": {
+       "texto": "02/14/2026",
+       "iso": "2026-02-14"
+      },
+      "texto": "02/14/2026",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "vencido": {
+      "valor": 35,
+      "texto": "$35",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "saldoMasAlto": {
+      "valor": 700,
+      "texto": "$700",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "limite": {
+      "valor": 1000,
+      "texto": "$1,000",
+      "origen": {
+       "pagina": 2,
+       "seccion": "cuentas",
+       "etiqueta": "24-Month History",
+       "linea": 16
+      }
+     },
+     "codigosNarrativos": [],
+     "columnasVerificables": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "24-Month History",
+      "linea": 16
+     }
+    }
+   ],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  },
+  {
+   "id": "equifax-tarjeta-demo-5678-2021-06-01-2",
+   "acreedor": {
+    "valor": "TARJETA DEMO",
+    "texto": "TARJETA DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 17
+    }
+   },
+   "numero": {
+    "valor": "*5678",
+    "texto": "*5678",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 19
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit Card",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 20
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual Account",
+    "texto": "Individual Account",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 19
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Pays As Agreed",
+    "texto": "Pays As Agreed",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 20
+    }
+   },
+   "designadorActividad": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 26
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 18
+    }
+   },
+   "limite": {
+    "valor": 1000,
+    "texto": "$1,000",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit",
+     "linea": 19
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 1000,
+    "texto": "$1,000",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 19
+    }
+   },
+   "vencido": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 23
+    }
+   },
+   "pagoProgramado": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 23
+    }
+   },
+   "pagoReal": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 24
+    }
+   },
+   "montoChargeOff": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 24
+    }
+   },
+   "plazo": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 26
+    }
+   },
+   "frecuencia": {
+    "valor": "Monthly",
+    "texto": "Monthly",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 21
+    }
+   },
+   "mesesRevisados": {
+    "valor": 58,
+    "texto": "58",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 22
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "06/01/2021",
+     "iso": "2021-06-01"
+    },
+    "texto": "06/01/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 21
+    }
+   },
+   "fechaCierre": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 25
+    }
+   },
+   "dofd": {
+    "valor": {
+     "texto": "05/2024",
+     "iso": "2024-05"
+    },
+    "texto": "05/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 21
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "valor": {
+     "texto": "08/2024",
+     "iso": "2024-08"
+    },
+    "texto": "08/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 22
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "12/20/2024",
+     "iso": "2024-12-20"
+    },
+    "texto": "12/20/2024",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 25
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "01/2025",
+     "iso": "2025-01"
+    },
+    "texto": "01/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 22
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "04/30/2026",
+     "iso": "2026-04-30"
+    },
+    "texto": "04/30/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 18
+    }
+   },
+   "historial": [
+    {
+     "anio": 2024,
+     "mes": 5,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 30
+     }
+    },
+    {
+     "anio": 2024,
+     "mes": 6,
+     "codigo": "atraso_60",
+     "texto": "60",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 30
+     }
+    },
+    {
+     "anio": 2024,
+     "mes": 7,
+     "codigo": "atraso_90",
+     "texto": "90",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 30
+     }
+    },
+    {
+     "anio": 2024,
+     "mes": 8,
+     "codigo": "atraso_120",
+     "texto": "120",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 2,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 30
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  },
+  {
+   "id": "equifax-cuenta-deposito-demo-4321-2020-01-10",
+   "acreedor": {
+    "valor": "CUENTA DEPOSITO DEMO",
+    "texto": "CUENTA DEPOSITO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 31
+    }
+   },
+   "numero": {
+    "valor": "*4321",
+    "texto": "*4321",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 33
+    }
+   },
+   "tipo": {
+    "valor": "deposito",
+    "texto": "Deposit Related",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 34
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual Account",
+    "texto": "Individual Account",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 33
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Charge Off",
+    "texto": "Charge Off",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 34
+    }
+   },
+   "designadorActividad": {
+    "valor": "Paid",
+    "texto": "Paid",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 40
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 32
+    }
+   },
+   "limite": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit",
+     "linea": 33
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 480,
+    "texto": "$480",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 33
+    }
+   },
+   "vencido": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 37
+    }
+   },
+   "pagoProgramado": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 37
+    }
+   },
+   "pagoReal": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 38
+    }
+   },
+   "montoChargeOff": {
+    "valor": 480,
+    "texto": "$480",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 38
+    }
+   },
+   "plazo": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 40
+    }
+   },
+   "frecuencia": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 35
+    }
+   },
+   "mesesRevisados": {
+    "valor": 60,
+    "texto": "60",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 36
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "01/10/2020",
+     "iso": "2020-01-10"
+    },
+    "texto": "01/10/2020",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 35
+    }
+   },
+   "fechaCierre": {
+    "valor": {
+     "texto": "08/2021",
+     "iso": "2021-08"
+    },
+    "texto": "08/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 39
+    }
+   },
+   "dofd": {
+    "valor": {
+     "texto": "03/2021",
+     "iso": "2021-03"
+    },
+    "texto": "03/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 35
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "valor": {
+     "texto": "07/2021",
+     "iso": "2021-07"
+    },
+    "texto": "07/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 36
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "09/15/2021",
+     "iso": "2021-09-15"
+    },
+    "texto": "09/15/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 39
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "09/2021",
+     "iso": "2021-09"
+    },
+    "texto": "09/2021",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 36
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "03/31/2026",
+     "iso": "2026-03-31"
+    },
+    "texto": "03/31/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 32
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [
+    {
+     "codigo": "244",
+     "descripcion": ""
+    },
+    {
+     "codigo": "156",
+     "descripcion": ""
+    },
+    {
+     "codigo": "093",
+     "descripcion": ""
+    }
+   ],
+   "comentarios": [],
+   "reglasAplicadas": []
+  },
+  {
+   "id": "equifax-auto-demo-finance-1111-2019-03-05",
+   "acreedor": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 3
+    }
+   },
+   "numero": {
+    "valor": "*1111",
+    "texto": "*1111",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 5
+    }
+   },
+   "tipo": {
+    "valor": "auto",
+    "texto": "Auto Loan",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 6
+    }
+   },
+   "responsabilidad": {
+    "valor": "Joint Account",
+    "texto": "Joint Account",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 5
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Pays As Agreed",
+    "texto": "Pays As Agreed",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 6
+    }
+   },
+   "designadorActividad": {
+    "valor": "Paid and Closed",
+    "texto": "Paid and Closed",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 12
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 4
+    }
+   },
+   "limite": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit",
+     "linea": 5
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 15000,
+    "texto": "$15,000",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 5
+    }
+   },
+   "vencido": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 9
+    }
+   },
+   "pagoProgramado": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 9
+    }
+   },
+   "pagoReal": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 10
+    }
+   },
+   "montoChargeOff": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 10
+    }
+   },
+   "plazo": {
+    "valor": "60 Months",
+    "texto": "60 Months",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 12
+    }
+   },
+   "frecuencia": {
+    "valor": "Monthly",
+    "texto": "Monthly",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 7
+    }
+   },
+   "mesesRevisados": {
+    "valor": 59,
+    "texto": "59",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 8
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "03/05/2019",
+     "iso": "2019-03-05"
+    },
+    "texto": "03/05/2019",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 7
+    }
+   },
+   "fechaCierre": {
+    "valor": {
+     "texto": "02/2024",
+     "iso": "2024-02"
+    },
+    "texto": "02/2024",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 11
+    }
+   },
+   "dofd": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 7
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 8
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "02/10/2024",
+     "iso": "2024-02-10"
+    },
+    "texto": "02/10/2024",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 11
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "02/2024",
+     "iso": "2024-02"
+    },
+    "texto": "02/2024",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 8
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "02/29/2024",
+     "iso": "2024-02-29"
+    },
+    "texto": "02/29/2024",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 4
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  },
+  {
+   "id": "equifax-prestamos-auto-ejemplo-2222-2015-07-01",
+   "acreedor": {
+    "valor": "PRESTAMOS AUTO EJEMPLO",
+    "texto": "PRESTAMOS AUTO EJEMPLO",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Nombre del acreedor",
+     "linea": 14
+    }
+   },
+   "numero": {
+    "valor": "*2222",
+    "texto": "*2222",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 16
+    }
+   },
+   "tipo": {
+    "valor": "auto",
+    "texto": "Auto Loan",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Loan/Account Type",
+     "linea": 17
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual Account",
+    "texto": "Individual Account",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Owner",
+     "linea": 16
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Pays As Agreed",
+    "texto": "Pays As Agreed",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 17
+    }
+   },
+   "designadorActividad": {
+    "valor": "Paid and Closed",
+    "texto": "Paid and Closed",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Activity Designator",
+     "linea": 23
+    }
+   },
+   "saldo": {
+    "valor": 0,
+    "texto": "$0",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 15
+    }
+   },
+   "limite": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit",
+     "linea": 16
+    }
+   },
+   "saldoMasAlto": {
+    "valor": 9500,
+    "texto": "$9,500",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "High Credit",
+     "linea": 16
+    }
+   },
+   "vencido": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Amount Past Due",
+     "linea": 20
+    }
+   },
+   "pagoProgramado": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Scheduled Payment Amount",
+     "linea": 20
+    }
+   },
+   "pagoReal": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Actual Payment Amount",
+     "linea": 21
+    }
+   },
+   "montoChargeOff": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Charge Off Amount",
+     "linea": 21
+    }
+   },
+   "plazo": {
+    "valor": "36 Months",
+    "texto": "36 Months",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Term Duration",
+     "linea": 23
+    }
+   },
+   "frecuencia": {
+    "valor": "Monthly",
+    "texto": "Monthly",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Terms Frequency",
+     "linea": 18
+    }
+   },
+   "mesesRevisados": {
+    "valor": 36,
+    "texto": "36",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Months Reviewed",
+     "linea": 19
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "07/01/2015",
+     "iso": "2015-07-01"
+    },
+    "texto": "07/01/2015",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 18
+    }
+   },
+   "fechaCierre": {
+    "valor": {
+     "texto": "07/2018",
+     "iso": "2018-07"
+    },
+    "texto": "07/2018",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Closed",
+     "linea": 22
+    }
+   },
+   "dofd": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of 1st Delinquency",
+     "linea": 18
+    }
+   },
+   "fechaMorosidadGraveReportada": {
+    "estado": "no_reportado",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Major Delinquency 1st Reported",
+     "linea": 19
+    }
+   },
+   "ultimoPago": {
+    "valor": {
+     "texto": "07/15/2018",
+     "iso": "2018-07-15"
+    },
+    "texto": "07/15/2018",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Payment",
+     "linea": 22
+    }
+   },
+   "ultimaActividad": {
+    "valor": {
+     "texto": "07/2018",
+     "iso": "2018-07"
+    },
+    "texto": "07/2018",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date of Last Activity",
+     "linea": 19
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "07/31/2018",
+     "iso": "2018-07-31"
+    },
+    "texto": "07/31/2018",
+    "origen": {
+     "pagina": 3,
+     "seccion": "cuentas",
+     "etiqueta": "Date Reported",
+     "linea": 15
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  }
+ ],
+ "consultas": [
+  {
+   "empresa": {
+    "valor": "BANCO EJEMPLO",
+    "texto": "BANCO EJEMPLO",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 27
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "01/15/2026",
+     "iso": "2026-01-15"
+    },
+    "texto": "01/15/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 27
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "TARJETA DEMO",
+    "texto": "TARJETA DEMO",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 28
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "03/02/2026",
+     "iso": "2026-03-02"
+    },
+    "texto": "03/02/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 28
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 29
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "05/10/2026",
+     "iso": "2026-05-10"
+    },
+    "texto": "05/10/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 29
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 29
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "05/12/2026",
+     "iso": "2026-05-12"
+    },
+    "texto": "05/12/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 29
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 30
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "05/10/2026",
+     "iso": "2026-05-10"
+    },
+    "texto": "05/10/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 30
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "AUTO DEMO FINANCE",
+    "texto": "AUTO DEMO FINANCE",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 30
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "05/12/2026",
+     "iso": "2026-05-12"
+    },
+    "texto": "05/12/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 30
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "MONITOREO DEMO",
+    "texto": "MONITOREO DEMO",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 31
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "04/01/2026",
+     "iso": "2026-04-01"
+    },
+    "texto": "04/01/2026",
+    "origen": {
+     "pagina": 3,
+     "seccion": "consultas",
+     "etiqueta": "Fecha",
+     "linea": 31
+    }
+   }
+  }
+ ],
+ "registrosPublicos": [],
+ "advertencias": []
+}

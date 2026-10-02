@@ -1,0 +1,435 @@
+[
+ {
+  "numero": 1,
+  "lineas": [
+   {
+    "texto": "Prepared for: ANA PRUEBA EJEMPLO"
+   },
+   {
+    "texto": "Experian Credit Report"
+   },
+   {
+    "texto": "Report Date: 05/20/2026"
+   },
+   {
+    "texto": "Personal Information"
+   },
+   {
+    "texto": "Name: ANA PRUEBA EJEMPLO"
+   },
+   {
+    "texto": "Name ID #10001"
+   },
+   {
+    "texto": "Also Known As: ANA P EJEMPLO"
+   },
+   {
+    "texto": "Name ID #10002"
+   },
+   {
+    "texto": "Social Security Number: XXX-XX-4321"
+   },
+   {
+    "texto": "Year of Birth: 1980"
+   },
+   {
+    "texto": "Address: 100 CALLE FALSA, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "Previous Address: 200 AVENIDA DEMO, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "300 CAMINO PRUEBA, OTRA CIUDAD, FL 00000"
+   },
+   {
+    "texto": "Phone Numbers: (555) 010-0001, (555) 010-0002"
+   },
+   {
+    "texto": "Accounts"
+   },
+   {
+    "texto": "POTENTIALLY NEGATIVE"
+   },
+   {
+    "texto": "Account Name: COOPERATIVA DEMO CREDIT UNION"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 43411SXXXX"
+   },
+   {
+    "texto": "Account Type: Deposit"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 05/19/2025"
+   },
+   {
+    "texto": "Status: Paid, Closed. $144 written off."
+   },
+   {
+    "texto": "Status Updated: 02/2026"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $144"
+   },
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2026 OK CO",
+    "piezas": [
+     {
+      "texto": "2026",
+      "x": 40
+     },
+     {
+      "texto": "OK",
+      "x": 100
+     },
+     {
+      "texto": "CO",
+      "x": 130
+     }
+    ]
+   },
+   {
+    "texto": "POTENTIALLY NEGATIVE"
+   },
+   {
+    "texto": "Account Name: COOPERATIVA DEMO CREDIT UNION"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 537508XXXXXXXXXX"
+   },
+   {
+    "texto": "Account Type: Credit card"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 05/01/2024"
+   },
+   {
+    "texto": "Status: Open."
+   },
+   {
+    "texto": "Status Updated: 03/2026"
+   },
+   {
+    "texto": "Balance: $294"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $500"
+   },
+   {
+    "texto": "Monthly Payment: $20"
+   },
+   {
+    "texto": "Payment History"
+   },
+   {
+    "texto": "Year Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "piezas": [
+     {
+      "texto": "Year",
+      "x": 40
+     },
+     {
+      "texto": "Jan",
+      "x": 100
+     },
+     {
+      "texto": "Feb",
+      "x": 130
+     },
+     {
+      "texto": "Mar",
+      "x": 160
+     },
+     {
+      "texto": "Apr",
+      "x": 190
+     },
+     {
+      "texto": "May",
+      "x": 220
+     },
+     {
+      "texto": "Jun",
+      "x": 250
+     },
+     {
+      "texto": "Jul",
+      "x": 280
+     },
+     {
+      "texto": "Aug",
+      "x": 310
+     },
+     {
+      "texto": "Sep",
+      "x": 340
+     },
+     {
+      "texto": "Oct",
+      "x": 370
+     },
+     {
+      "texto": "Nov",
+      "x": 400
+     },
+     {
+      "texto": "Dec",
+      "x": 430
+     }
+    ]
+   },
+   {
+    "texto": "2026 OK 30 OK OK",
+    "piezas": [
+     {
+      "texto": "2026",
+      "x": 40
+     },
+     {
+      "texto": "OK",
+      "x": 100
+     },
+     {
+      "texto": "30",
+      "x": 130
+     },
+     {
+      "texto": "OK",
+      "x": 160
+     },
+     {
+      "texto": "OK",
+      "x": 190
+     }
+    ]
+   },
+   {
+    "texto": "Account Name: TARJETA EJEMPLO BANK NA"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 601100XXXXXXXXXX"
+   },
+   {
+    "texto": "Account Type: Credit card"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 03/10/2019"
+   },
+   {
+    "texto": "Status: Open/Never late."
+   },
+   {
+    "texto": "Balance: $120"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $2,000"
+   },
+   {
+    "texto": "Page 1 of 2"
+   }
+  ]
+ },
+ {
+  "numero": 2,
+  "lineas": [
+   {
+    "texto": "Account Name: AUTOS PRUEBA FINANCIAL"
+   },
+   {
+    "texto": "Account Information"
+   },
+   {
+    "texto": "Account Number: 111092XXXXXX"
+   },
+   {
+    "texto": "Account Type: Auto Loan"
+   },
+   {
+    "texto": "Responsibility: Individual"
+   },
+   {
+    "texto": "Date Opened: 04/04/2025"
+   },
+   {
+    "texto": "Status: Paid, Closed/Never late."
+   },
+   {
+    "texto": "Status Updated: 05/2025"
+   },
+   {
+    "texto": "Credit Limit / Original Balance: $33,576"
+   },
+   {
+    "texto": "Terms: 72 Months"
+   },
+   {
+    "texto": "Collections"
+   },
+   {
+    "texto": "Account Name: COBROS EJEMPLO LLC"
+   },
+   {
+    "texto": "Account Number: 9900123XXXX"
+   },
+   {
+    "texto": "Original Creditor: CLINICA DEMO"
+   },
+   {
+    "texto": "Collection Opened: 06/2018"
+   },
+   {
+    "texto": "Date of First Delinquency: 01/2018"
+   },
+   {
+    "texto": "Original Loan Amount: $800"
+   },
+   {
+    "texto": "Balance: $800"
+   },
+   {
+    "texto": "Status: Collection account. $800 past due as of Apr 2026."
+   },
+   {
+    "texto": "Public Records"
+   },
+   {
+    "texto": "No public records reported"
+   },
+   {
+    "texto": "Hard Inquiries"
+   },
+   {
+    "texto": "BANCO DEMO"
+   },
+   {
+    "texto": "Inquired on: 05/12/2026"
+   },
+   {
+    "texto": "BANCO DEMO"
+   },
+   {
+    "texto": "Inquired on: 12/20/2025"
+   },
+   {
+    "texto": "AUTOS PRUEBA FINANCIAL"
+   },
+   {
+    "texto": "Inquired on: 04/04/2025"
+   },
+   {
+    "texto": "Soft Inquiries"
+   },
+   {
+    "texto": "MONITOREO DEMO"
+   },
+   {
+    "texto": "Inquired on: 05/19/2026"
+   },
+   {
+    "texto": "MONITOREO DEMO"
+   },
+   {
+    "texto": "Inquired on: 03/05/2026"
+   },
+   {
+    "texto": "MONITOREO DEMO"
+   },
+   {
+    "texto": "Inquired on: 08/07/2025"
+   },
+   {
+    "texto": "TIENDA PROMO"
+   },
+   {
+    "texto": "Inquired on: 04/01/2026"
+   },
+   {
+    "texto": "TIENDA PROMO"
+   },
+   {
+    "texto": "Inquired on: 01/15/2026"
+   },
+   {
+    "texto": "Page 2 of 2"
+   }
+  ]
+ }
+]

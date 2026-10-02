@@ -1,0 +1,82 @@
+[
+ {
+  "numero": 1,
+  "lineas": [
+   {
+    "texto": "Reporte de crédito"
+   },
+   {
+    "texto": "Fecha del reporte: 15 de mayo de 2026"
+   },
+   {
+    "texto": "Información personal"
+   },
+   {
+    "texto": "Nombre: ANA EJEMPLO RUIZ"
+   },
+   {
+    "texto": "Seguro Social: XXX-XX-9999"
+   },
+   {
+    "texto": "Fecha de nacimiento: 02/29/1976"
+   },
+   {
+    "texto": "Dirección: 123 CALLE FALSA, CIUDAD EJEMPLO, FL 00000"
+   },
+   {
+    "texto": "Cuentas"
+   },
+   {
+    "texto": "Acreedor: TIENDA EJEMPLO"
+   },
+   {
+    "texto": "Número de cuenta: 6011000011112222"
+   },
+   {
+    "texto": "Tipo de cuenta: Tarjeta de crédito"
+   },
+   {
+    "texto": "Fecha de apertura: 03/2020"
+   },
+   {
+    "texto": "Saldo: $150"
+   },
+   {
+    "texto": "Límite de crédito: $800"
+   },
+   {
+    "texto": "Estado: Al día"
+   },
+   {
+    "texto": "Fecha del primer atraso:"
+   },
+   {
+    "texto": "Acreedor: PRESTAMOS EJEMPLO"
+   },
+   {
+    "texto": "Número de cuenta: 12345678"
+   },
+   {
+    "texto": "Tipo de cuenta: Préstamo personal"
+   },
+   {
+    "texto": "Fecha de apertura: 01/2021"
+   },
+   {
+    "texto": "Saldo: $0"
+   },
+   {
+    "texto": "Estado: Cerrada"
+   },
+   {
+    "texto": "Fecha del primer atraso: 07/2022"
+   },
+   {
+    "texto": "Consultas"
+   },
+   {
+    "texto": "BANCO EJEMPLO Dura 02/03/2026"
+   }
+  ]
+ }
+]

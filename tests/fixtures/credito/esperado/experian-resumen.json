@@ -1,0 +1,935 @@
+{
+ "buro": "experian",
+ "perfil": {
+  "id": "experian",
+  "verificadoEl": "2026-09-30",
+  "formatoVerificado": true
+ },
+ "fechaReporte": {
+  "valor": {
+   "texto": "05/20/2026",
+   "iso": "2026-05-20"
+  },
+  "texto": "05/20/2026",
+  "origen": {
+   "pagina": 1,
+   "seccion": "desconocida",
+   "etiqueta": "Report Date",
+   "linea": 2
+  }
+ },
+ "paginasLeidas": 2,
+ "paginasTotales": 2,
+ "identidad": {
+  "nombres": [
+   {
+    "valor": "ANA PRUEBA EJEMPLO",
+    "texto": "ANA PRUEBA EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Name",
+     "linea": 4
+    }
+   },
+   {
+    "valor": "ANA P EJEMPLO",
+    "texto": "ANA P EJEMPLO",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Also Known As",
+     "linea": 6
+    }
+   }
+  ],
+  "direcciones": [
+   {
+    "valor": "100 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "texto": "100 CALLE FALSA, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Address",
+     "linea": 10
+    },
+    "tipo": "actual"
+   },
+   {
+    "valor": "200 AVENIDA DEMO, CIUDAD EJEMPLO, FL 00000",
+    "texto": "200 AVENIDA DEMO, CIUDAD EJEMPLO, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Previous Address",
+     "linea": 11
+    },
+    "tipo": "anterior"
+   },
+   {
+    "valor": "300 CAMINO PRUEBA, OTRA CIUDAD, FL 00000",
+    "texto": "300 CAMINO PRUEBA, OTRA CIUDAD, FL 00000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Previous Address",
+     "linea": 12
+    },
+    "tipo": "anterior"
+   }
+  ],
+  "telefonos": [
+   {
+    "valor": "(555) 010-0001",
+    "texto": "(555) 010-0001",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Phone Numbers",
+     "linea": 13
+    }
+   },
+   {
+    "valor": "(555) 010-0002",
+    "texto": "(555) 010-0002",
+    "origen": {
+     "pagina": 1,
+     "seccion": "personal",
+     "etiqueta": "Phone Numbers",
+     "linea": 13
+    }
+   }
+  ],
+  "empleadores": [],
+  "ssnMostrado": true,
+  "ssnUltimos4": "4321",
+  "fechaNacimientoMostrada": true
+ },
+ "avisos": [],
+ "cuentas": [
+  {
+   "id": "experian-cooperativa-demo-credit-union-3411-2025-05-19",
+   "acreedor": {
+    "valor": "COOPERATIVA DEMO CREDIT UNION",
+    "texto": "COOPERATIVA DEMO CREDIT UNION",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 16
+    }
+   },
+   "numero": {
+    "valor": "X3411SXXXX",
+    "texto": "X3411SXXXX",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 18
+    }
+   },
+   "tipo": {
+    "valor": "deposito",
+    "texto": "Deposit",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 19
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 20
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "marcaNegativaBuro": true,
+   "estado": {
+    "valor": "Paid, Closed. $144 written off.",
+    "texto": "Paid, Closed. $144 written off.",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 22
+    }
+   },
+   "limiteOMontoOriginal": {
+    "valor": 144,
+    "texto": "$144",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 24
+    }
+   },
+   "montoChargeOff": {
+    "valor": 144,
+    "texto": "$144",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 22
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "05/19/2025",
+     "iso": "2025-05-19"
+    },
+    "texto": "05/19/2025",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 21
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "02/2026",
+     "iso": "2026-02"
+    },
+    "texto": "02/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status Updated",
+     "linea": 23
+    }
+   },
+   "historial": [
+    {
+     "anio": 2026,
+     "mes": 1,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 27
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 2,
+     "codigo": "charge_off",
+     "texto": "CO",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 27
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-cooperativa-demo-credit-union-7508-2024-05-01",
+   "acreedor": {
+    "valor": "COOPERATIVA DEMO CREDIT UNION",
+    "texto": "COOPERATIVA DEMO CREDIT UNION",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 29
+    }
+   },
+   "numero": {
+    "valor": "XX7508XXXXXXXXXX",
+    "texto": "XX7508XXXXXXXXXX",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 31
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit card",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 32
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 33
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "marcaNegativaBuro": true,
+   "estado": {
+    "valor": "Open.",
+    "texto": "Open.",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 35
+    }
+   },
+   "saldo": {
+    "valor": 294,
+    "texto": "$294",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 37
+    }
+   },
+   "limite": {
+    "valor": 500,
+    "texto": "$500",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 38
+    }
+   },
+   "pagoProgramado": {
+    "valor": 20,
+    "texto": "$20",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Monthly Payment",
+     "linea": 39
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "05/01/2024",
+     "iso": "2024-05-01"
+    },
+    "texto": "05/01/2024",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 34
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "03/2026",
+     "iso": "2026-03"
+    },
+    "texto": "03/2026",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status Updated",
+     "linea": 36
+    }
+   },
+   "historial": [
+    {
+     "anio": 2026,
+     "mes": 1,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 42
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 2,
+     "codigo": "atraso_30",
+     "texto": "30",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 42
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 3,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 42
+     }
+    },
+    {
+     "anio": 2026,
+     "mes": 4,
+     "codigo": "al_dia",
+     "texto": "OK",
+     "mesVerificable": true,
+     "origen": {
+      "pagina": 1,
+      "seccion": "cuentas",
+      "etiqueta": "Payment History",
+      "linea": 42
+     }
+    }
+   ],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-tarjeta-ejemplo-bank-na-1100-2019-03-10",
+   "acreedor": {
+    "valor": "TARJETA EJEMPLO BANK NA",
+    "texto": "TARJETA EJEMPLO BANK NA",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 43
+    }
+   },
+   "numero": {
+    "valor": "XX1100XXXXXXXXXX",
+    "texto": "XX1100XXXXXXXXXX",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 45
+    }
+   },
+   "tipo": {
+    "valor": "rotativa",
+    "texto": "Credit card",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 46
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 47
+    }
+   },
+   "cerrada": false,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Open/Never late.",
+    "texto": "Open/Never late.",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 49
+    }
+   },
+   "saldo": {
+    "valor": 120,
+    "texto": "$120",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Balance",
+     "linea": 50
+    }
+   },
+   "limite": {
+    "valor": 2000,
+    "texto": "$2,000",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 51
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "03/10/2019",
+     "iso": "2019-03-10"
+    },
+    "texto": "03/10/2019",
+    "origen": {
+     "pagina": 1,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 48
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-autos-prueba-financial-1092-2025-04-04",
+   "acreedor": {
+    "valor": "AUTOS PRUEBA FINANCIAL",
+    "texto": "AUTOS PRUEBA FINANCIAL",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Account Name",
+     "linea": 0
+    }
+   },
+   "numero": {
+    "valor": "XX1092XXXXXX",
+    "texto": "XX1092XXXXXX",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Account Number",
+     "linea": 2
+    }
+   },
+   "tipo": {
+    "valor": "auto",
+    "texto": "Auto Loan",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Account Type",
+     "linea": 3
+    }
+   },
+   "responsabilidad": {
+    "valor": "Individual",
+    "texto": "Individual",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Responsibility",
+     "linea": 4
+    }
+   },
+   "cerrada": true,
+   "esCobranza": false,
+   "estado": {
+    "valor": "Paid, Closed/Never late.",
+    "texto": "Paid, Closed/Never late.",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Status",
+     "linea": 6
+    }
+   },
+   "montoOriginal": {
+    "valor": 33576,
+    "texto": "$33,576",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Credit Limit / Original Balance",
+     "linea": 8
+    }
+   },
+   "plazo": {
+    "valor": "72 Months",
+    "texto": "72 Months",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Terms",
+     "linea": 9
+    }
+   },
+   "fechaApertura": {
+    "valor": {
+     "texto": "04/04/2025",
+     "iso": "2025-04-04"
+    },
+    "texto": "04/04/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Date Opened",
+     "linea": 5
+    }
+   },
+   "fechaReportada": {
+    "valor": {
+     "texto": "05/2025",
+     "iso": "2025-05"
+    },
+    "texto": "05/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cuentas",
+     "etiqueta": "Status Updated",
+     "linea": 7
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": [
+    "experian-limite-o-monto-original"
+   ]
+  },
+  {
+   "id": "experian-cobros-ejemplo-llc-0123-sf",
+   "acreedor": {
+    "valor": "COBROS EJEMPLO LLC",
+    "texto": "COBROS EJEMPLO LLC",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Account Name",
+     "linea": 11
+    }
+   },
+   "acreedorOriginal": {
+    "valor": "CLINICA DEMO",
+    "texto": "CLINICA DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Original Creditor",
+     "linea": 13
+    }
+   },
+   "numero": {
+    "valor": "XXX0123XXXX",
+    "texto": "XXX0123XXXX",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Account Number",
+     "linea": 12
+    }
+   },
+   "cerrada": false,
+   "esCobranza": true,
+   "estado": {
+    "valor": "Collection account. $800 past due as of Apr 2026.",
+    "texto": "Collection account. $800 past due as of Apr 2026.",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Status",
+     "linea": 18
+    }
+   },
+   "saldo": {
+    "valor": 800,
+    "texto": "$800",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Balance",
+     "linea": 17
+    }
+   },
+   "montoOriginal": {
+    "valor": 800,
+    "texto": "$800",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Original Loan Amount",
+     "linea": 16
+    }
+   },
+   "dofd": {
+    "valor": {
+     "texto": "01/2018",
+     "iso": "2018-01"
+    },
+    "texto": "01/2018",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Date of First Delinquency",
+     "linea": 15
+    }
+   },
+   "fechaCobranza": {
+    "valor": {
+     "texto": "06/2018",
+     "iso": "2018-06"
+    },
+    "texto": "06/2018",
+    "origen": {
+     "pagina": 2,
+     "seccion": "cobranzas",
+     "etiqueta": "Collection Opened",
+     "linea": 14
+    }
+   },
+   "historial": [],
+   "historial24": [],
+   "atrasosListados": [],
+   "codigosNarrativos": [],
+   "comentarios": [],
+   "reglasAplicadas": []
+  }
+ ],
+ "consultas": [
+  {
+   "empresa": {
+    "valor": "BANCO DEMO",
+    "texto": "BANCO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 22
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "05/12/2026",
+     "iso": "2026-05-12"
+    },
+    "texto": "05/12/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 23
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "BANCO DEMO",
+    "texto": "BANCO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 24
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "12/20/2025",
+     "iso": "2025-12-20"
+    },
+    "texto": "12/20/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 25
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "AUTOS PRUEBA FINANCIAL",
+    "texto": "AUTOS PRUEBA FINANCIAL",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 26
+    }
+   },
+   "tipo": "dura",
+   "fecha": {
+    "valor": {
+     "texto": "04/04/2025",
+     "iso": "2025-04-04"
+    },
+    "texto": "04/04/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 27
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "MONITOREO DEMO",
+    "texto": "MONITOREO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 29
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "05/19/2026",
+     "iso": "2026-05-19"
+    },
+    "texto": "05/19/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 30
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "MONITOREO DEMO",
+    "texto": "MONITOREO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 31
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "03/05/2026",
+     "iso": "2026-03-05"
+    },
+    "texto": "03/05/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 32
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "MONITOREO DEMO",
+    "texto": "MONITOREO DEMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 33
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "08/07/2025",
+     "iso": "2025-08-07"
+    },
+    "texto": "08/07/2025",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 34
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "TIENDA PROMO",
+    "texto": "TIENDA PROMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 35
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "04/01/2026",
+     "iso": "2026-04-01"
+    },
+    "texto": "04/01/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 36
+    }
+   }
+  },
+  {
+   "empresa": {
+    "valor": "TIENDA PROMO",
+    "texto": "TIENDA PROMO",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Empresa",
+     "linea": 37
+    }
+   },
+   "tipo": "blanda",
+   "fecha": {
+    "valor": {
+     "texto": "01/15/2026",
+     "iso": "2026-01-15"
+    },
+    "texto": "01/15/2026",
+    "origen": {
+     "pagina": 2,
+     "seccion": "consultas",
+     "etiqueta": "Inquired on",
+     "linea": 38
+    }
+   }
+  }
+ ],
+ "registrosPublicos": [],
+ "advertencias": []
+}

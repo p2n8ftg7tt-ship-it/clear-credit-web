@@ -19,7 +19,9 @@ const leerCredito = () => fs.readFileSync(path.join(__dirname, '..', 'credito.ht
 function cuerpoDe(html, nombre) {
   const inicio = html.indexOf('function ' + nombre + '(');
   assert.ok(inicio >= 0, 'no se encontró la función ' + nombre);
-  const siguiente = html.indexOf('\n  function ', inicio + 10);
+  /* El sangrado puede cambiar (formateador del editor): la próxima función se busca con cualquier sangrado. */
+  const resto = html.slice(inicio + 10).search(/\n[ \t]*function /);
+  const siguiente = resto >= 0 ? inicio + 10 + resto : -1;
   return html.slice(inicio, siguiente > 0 ? siguiente : undefined);
 }
 
@@ -34,7 +36,7 @@ test('credito.html tiene las funciones que estas pruebas vigilan', () => {
 
 test('el campo del teléfono pide 10 dígitos con guiones y conserva su etiqueta', () => {
   const cuerpo = cuerpoDe(leerCredito(), 'personalFieldsHtml');
-  const campo = cuerpo.match(/<input id="'\+formId\+'Phone"[^>]*>/);
+  const campo = cuerpo.match(/<input id="'\s*\+\s*formId\s*\+\s*'Phone"[^>]*>/);
   assert.ok(campo, 'no se encontró el campo del teléfono');
   const etiqueta = campo[0];
   ['name="currentPhone"', 'type="tel"', 'inputmode="tel"', 'autocomplete="tel"', 'maxlength="20"',
@@ -115,7 +117,7 @@ test('el botón de marcar todos actúa solo sobre su grupo y avisa su estado', (
 test('la privacidad no cambia: ninguna llamada de red nueva y la analítica sigue mandando solo el tipo de carta', () => {
   const html = leerCredito();
   assert.ok(!/\bfetch\(/.test(html), 'credito.html no debe llamar a fetch');
-  assert.ok(html.includes("window.ThemoraStats.evento('carta-generada',{tipo:type})"));
+  assert.ok(/window\.ThemoraStats\.evento\('carta-generada',\s*\{\s*tipo:\s*type\s*\}\)/.test(html));
   const eventos = html.match(/ThemoraStats\.evento\([^)]*\)/g) || [];
   eventos.forEach((e) => assert.ok(!/nombre|address|direccion|phone|telefono|length|size/i.test(e), 'analítica con datos: ' + e));
 });
