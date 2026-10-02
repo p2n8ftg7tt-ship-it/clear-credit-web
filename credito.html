@@ -677,6 +677,31 @@
     }
 
     /* Cuentas abiertas: un cuadro chico al lado de la hoja grande. */
+    /* El agente en la página (019) */
+    .cr-agente, .cr-cartas-agente { margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--renglon); border-radius: var(--radius); background: var(--paper); }
+    .cr-agente-boton { margin-top: .5rem; padding: .7rem 1.1rem; border: 0; border-radius: var(--radius); background: var(--accion); color: var(--paper); font: inherit; font-weight: 700; cursor: pointer; }
+    .cr-agente-boton:disabled { opacity: .6; cursor: progress; }
+    .cr-agente-boton:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+    .cr-agente-nota { margin: .5rem 0 0; }
+    .cr-marcar fieldset { margin: .75rem 0; border: 1px solid var(--renglon); border-radius: var(--radius); }
+    .cr-marcar label { display: block; padding: .25rem 0; }
+    .cr-agente-plan { padding-left: 1.25rem; }
+    .cr-agente-plan > li { margin-bottom: .75rem; }
+    .cr-agente-tipo { display: inline-block; padding: .05rem .5rem; border-radius: var(--radius); background: var(--tinta); color: var(--paper); font-weight: 700; font-size: .85rem; }
+    .cr-agente-hechos { margin: .35rem 0; }
+    .cr-fuente { font-size: .8rem; color: var(--muted); }
+    .cr-fuente[data-fuente=herramienta] { color: var(--accion); }
+    .cr-aviso { font-size: .85rem; color: var(--muted); }
+    .cr-carta-agente { margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--renglon); border-radius: var(--radius); }
+    .cr-carta-agente[data-estado=aprobada] { border-color: var(--good); }
+    .cr-carta-campo { display: grid; gap: .2rem; margin: .4rem 0; }
+    .cr-carta-campo input { padding: .5rem .6rem; border: 1px solid var(--borde-campo); border-radius: var(--radius); font: inherit; }
+    .cr-carta-confirmacion { display: block; margin: .4rem 0; }
+    .cr-carta-estado { font-weight: 700; }
+    @media (max-width: 600px) {
+      .cr-agente, .cr-cartas-agente, .cr-carta-agente { padding: 1rem; }
+      .cr-carta-agente .cr-letter-pair { display: block; }
+    }
     /* Círculos de cuentas con problemas (spec 014 US2) */
     .cr-problemas { margin-top: var(--space-3); }
     .cr-circulos { display: flex; flex-wrap: wrap; gap: var(--space-3); }
@@ -1980,6 +2005,20 @@
           </section>
           <section class="cr-abiertas" id="crAbiertas" aria-labelledby="crAbiertasT"></section>
           <section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT" hidden><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div><div class="cr-analisis-impresion" id="crAnalisisImpresion"></div></section>
+          <section class="cr-agente" id="crAgente" aria-labelledby="crAgenteT" hidden>
+            <h3 id="crAgenteT">Análisis con el agente</h3>
+            <p>Un agente con IA revisa tu reporte sin tus datos personales y te propone un plan y, si hace falta, cartas que tú revisas y envías. Gratis, hasta 3 análisis por día.</p>
+            <button type="button" class="cr-agente-boton" id="crAgenteBoton" data-umami-event="agente-pedido">Analizar con el agente</button>
+            <p class="cr-agente-nota" id="crAgenteSesion" hidden>Inicia sesión para usar el análisis con IA. Es gratis, hasta 3 análisis por día. <a href="login.html">Iniciar sesión</a></p>
+            <p class="cr-agente-nota" id="crAgenteAviso" hidden></p>
+            <div id="crMarcar" hidden></div>
+            <div id="crAgenteResultado" hidden></div>
+          </section>
+          <section class="cr-cartas-agente" id="crCartasAgente" aria-labelledby="crCartasAgenteT" hidden>
+            <h3 id="crCartasAgenteT">Tus cartas</h3>
+            <p>El agente preparó estas cartas. Completa tus datos, revisa y apruébalas; tú las envías por correo. El sitio nunca las envía por ti.</p>
+            <div id="crCartasLista"></div>
+          </section>
 
           <div class="cr-result-actions">
             <button class="cr-outline-btn" id="crResetButton" type="button">Analizar otro documento</button>
@@ -2520,6 +2559,10 @@
   <script defer src="lector-credito-perfiles.js"></script>
   <script defer src="lector-credito.js"></script>
   <script defer src="analista-credito.js"></script>
+  <script defer src="herramientas-credito.js"></script>
+  <script defer src="agente-credito-cliente.js"></script>
+  <script defer src="cartas-agente.js"></script>
+  <script defer src="agente-credito-vista.js"></script>
   <script>
     const t = document.getElementById('navToggle'), n = document.getElementById('navLinks');
     if (t) { t.addEventListener('click', () => { const open = n.classList.toggle('open'); t.setAttribute('aria-expanded', open); }); }
@@ -2894,11 +2937,155 @@
       }
       /* 014-resumen:fin */
 
+      /* 019-agente:inicio */
+      /* El agente en la página (spec 019): la vista vive en agente-credito-vista.js; aquí solo el estado
+         y los pasos. Ningún dato personal va al agente: analizarConAgente etiqueta el reporte antes. */
+      const estadoAgente = { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false };
+      const V = () => window.ThemoraAgenteVista;
+      /* Analítica: solo el nombre fijo del evento, sin datos (Principio II). */
+      const evento = cual => { if (window.ThemoraStats) window.ThemoraStats.evento(cual); };
+
+      function limpiarAgente() {
+        ['crMarcar', 'crAgenteResultado', 'crCartasLista'].forEach(id => { $(id).innerHTML = ''; });
+        ['crMarcar', 'crAgenteResultado', 'crCartasAgente', 'crAgenteSesion', 'crAgenteAviso'].forEach(id => { $(id).hidden = true; });
+        $('crPasos').querySelectorAll('[data-agente]').forEach(li => li.remove());
+        Object.assign(estadoAgente, { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false });
+        $('crAgente').hidden = true;
+      }
+
+      function iniciarAgente(reporte, analisis) {
+        const A = window.ThemoraAgenteCredito;
+        if (!reporte || !A || !V() || !window.ThemoraCartasAgente) return;
+        Object.assign(estadoAgente, { reporte, analisis, preparado: A.etiquetarReporte(reporte), letras: A.letrasDe(reporte) });
+        $('crAgente').hidden = false;
+      }
+
+      function alPedirAgente() {
+        const token = window.CCAuth && window.CCAuth.getAccessToken ? window.CCAuth.getAccessToken() : null;
+        if (!token) { $('crAgenteSesion').hidden = false; return; }
+        $('crAgenteSesion').hidden = true;
+        $('crAgenteAviso').hidden = !estadoAgente.usado;
+        $('crAgenteAviso').textContent = estadoAgente.usado ? 'Si lo analizas otra vez, usarás otro de tus 3 análisis con IA de hoy.' : '';
+        const frases = {};
+        (estadoAgente.analisis ? estadoAgente.analisis.problemas : []).forEach(p => { frases[p.id] = p.frase; });
+        const cuentas = estadoAgente.reporte.cuentas.map(c => ({ id: c.id, acreedor: c.acreedor && c.acreedor.valor ? c.acreedor.valor : 'Cuenta sin nombre', frase: frases[c.id] || '' }));
+        const datos = Object.keys(estadoAgente.preparado.privado.identidad).map(etiqueta => Object.assign({ etiqueta }, estadoAgente.preparado.privado.identidad[etiqueta]));
+        $('crMarcar').innerHTML = V().renderMarcar({ cuentas, datos });
+        $('crMarcar').hidden = false;
+      }
+
+      function alCancelarMarcas() {
+        $('crMarcar').hidden = true;
+        $('crMarcar').innerHTML = '';
+      }
+
+      /* Cada evento del agente es un paso más en #crPasos; el anterior en curso queda hecho. */
+      function agregarPasoAgente(codigo) {
+        $('crPasos').querySelectorAll('[data-agente]').forEach(li => { if (li.dataset.estado === 'en_curso') li.dataset.estado = 'hecho'; });
+        const li = document.createElement('li');
+        li.dataset.agente = '1';
+        li.dataset.estado = codigo === 'terminado' ? 'hecho' : /^respaldo:/.test(codigo) ? 'fallido' : 'en_curso';
+        li.textContent = V().textoEvento(codigo, estadoAgente.preparado ? estadoAgente.preparado.privado : null);
+        $('crPasos').appendChild(li);
+      }
+
+      async function alConfirmarMarcas(cuentaIds, datos) {
+        if (estadoAgente.corriendo || !estadoAgente.reporte) return;
+        estadoAgente.corriendo = true;
+        $('crAgenteBoton').disabled = true;
+        $('crMarcar').hidden = true;
+        $('crMarcar').innerHTML = '';
+        const token = window.CCAuth && window.CCAuth.getAccessToken ? window.CCAuth.getAccessToken() : null;
+        try {
+          const r = await window.ThemoraAgenteCredito.analizarConAgente(estadoAgente.reporte, {
+            accessToken: token, marcadas: { cuentaIds: cuentaIds || [], datos: datos || [] }, onEvento: agregarPasoAgente
+          });
+          mostrarResultadoAgente(r);
+        } finally {
+          estadoAgente.corriendo = false;
+          estadoAgente.usado = true;
+          $('crAgenteBoton').disabled = false;
+        }
+      }
+
+      function mostrarResultadoAgente(r) {
+        estadoAgente.resultado = r;
+        $('crAgenteResultado').innerHTML = V().renderResultado(r, estadoAgente.preparado.privado);
+        $('crAgenteResultado').hidden = false;
+        estadoAgente.borradores = window.ThemoraCartasAgente.crearBorradores(r, estadoAgente.preparado, { buro: estadoAgente.reporte.buro });
+        pintarCartas();
+        evento(r && r.modo === 'ia' ? 'agente-terminado' : 'agente-respaldo');
+      }
+
+      function pintarCartas() {
+        const CA = window.ThemoraCartasAgente;
+        $('crCartasLista').innerHTML = estadoAgente.borradores.map(b => V().renderCarta(b, b.estado === 'aprobada' ? CA.textoFinal(b) : null)).join('');
+        $('crCartasAgente').hidden = !estadoAgente.borradores.length;
+      }
+
+      function reemplazarBorrador(id, cambio) {
+        const i = estadoAgente.borradores.findIndex(b => b.id === id);
+        if (i < 0) return null;
+        const antes = estadoAgente.borradores[i].estado;
+        const nuevo = cambio(estadoAgente.borradores[i]);
+        estadoAgente.borradores = estadoAgente.borradores.map((b, k) => (k === i ? nuevo : b));
+        pintarCartas();
+        if (nuevo.estado === 'aprobada' && antes !== 'aprobada') evento('carta-aprobada');
+        return nuevo;
+      }
+
+      /* Cambiar un dato reinicia las confirmaciones: una carta aprobada vuelve a borrador (FR-013). */
+      function alCambiarCampo(id, campo, valor) {
+        const [grupo, clave] = String(campo).split('.');
+        if ((grupo !== 'remitente' && grupo !== 'cobrador') || !clave) return;
+        reemplazarBorrador(id, b => window.ThemoraCartasAgente.actualizarDatos(b, { [grupo]: { [clave]: valor } }));
+      }
+
+      function alConfirmar(id, clave, valor) {
+        if (clave !== 'inexacta' && clave !== 'yoEnvio') return;
+        reemplazarBorrador(id, b => window.ThemoraCartasAgente.confirmar(b, { [clave]: !!valor }));
+      }
+
+      /* Copia SOLO el inglés, como el botón de las cartas de siempre. */
+      async function alCopiar(id) {
+        const b = estadoAgente.borradores.find(x => x.id === id);
+        if (!b || b.estado !== 'aprobada') return false;
+        await navigator.clipboard.writeText(window.ThemoraCartasAgente.textoFinal(b).textoEn);
+        evento('carta-copiada');
+        return true;
+      }
+
+      /* «Lo que dice el agente» dentro del análisis de un círculo (FR-010). */
+      function seccionAgenteParaCuenta(cuentaId) {
+        return estadoAgente.resultado ? V().renderAgenteEnCirculo(estadoAgente.resultado, estadoAgente.letras[cuentaId], estadoAgente.preparado.privado) : '';
+      }
+      /* 019-agente:fin */
+
       /* «¿No reconoces alguno de estos datos?» abre las cartas de corrección de identidad (014 T037). */
       if ($('crIdentidadEnlace')) $('crIdentidadEnlace').addEventListener('click', () => {
         const abrir = $('crIdentidadZona').hidden;
         $('crIdentidadZona').hidden = !abrir;
         $('crIdentidadEnlace').setAttribute('aria-expanded', String(abrir));
+      });
+
+      /* Agente (019): botón, lista de marcas y tarjetas de cartas. */
+      $('crAgenteBoton').addEventListener('click', alPedirAgente);
+      $('crMarcar').addEventListener('submit', event => {
+        event.preventDefault();
+        const marcadas = name => [...event.target.querySelectorAll('input[name="' + name + '"]:checked')].map(x => x.value);
+        alConfirmarMarcas(marcadas('marca-cuenta'), marcadas('marca-dato'));
+      });
+      $('crMarcar').addEventListener('click', event => { if (event.target.closest('[data-accion="cancelar-marcar"]')) alCancelarMarcas(); });
+      $('crCartasLista').addEventListener('change', event => {
+        const t = event.target;
+        if (t.dataset.campo) alCambiarCampo(t.dataset.id, t.dataset.campo, t.value);
+        else if (t.dataset.confirmacion) alConfirmar(t.dataset.id, t.dataset.confirmacion, t.checked);
+      });
+      $('crCartasLista').addEventListener('click', async event => {
+        const boton = event.target.closest('[data-accion="copiar-carta"]');
+        if (!boton) return;
+        try { await alCopiar(boton.dataset.id); boton.textContent = 'Carta en inglés copiada'; }
+        catch (error) { boton.textContent = 'No se pudo copiar: selecciona el texto en inglés'; }
       });
 
       /* Círculos (014 US3): un solo panel de análisis. Tocar el mismo círculo lo cierra. La carta reutiliza
@@ -2920,6 +3107,8 @@
         if (abierto) { $('crAnalisis').hidden = true; return; }
         if (!abrirAnalisis(boton.dataset.id, armarFormularioProblema)) return;
         boton.setAttribute('aria-expanded', 'true');
+        const agente = seccionAgenteParaCuenta(boton.dataset.id);
+        if (agente) $('crAnalisis').insertAdjacentHTML('beforeend', agente);
         const titulo = $('crAnalisis').querySelector('h4');
         if (titulo) titulo.focus();
       });
@@ -3014,6 +3203,7 @@
         if (!selectedFile) return;
         errorBox.hidden = true; results.hidden = true; analyzeButton.hidden = true; progress.hidden = false;
         reiniciarPasos();
+        limpiarAgente();
         marcarPaso('observar', 'en_curso', 'Leyendo tu reporte…');
         try {
           const extension = selectedFile.name.toLowerCase().split('.').pop();
@@ -3030,6 +3220,7 @@
           marcarPaso('leer', 'en_curso');
           const analisis = render(reporte);
           analisis.pasos.forEach(p => marcarPaso(p.id, p.estado, p.texto));
+          iniciarAgente(reporte, analisis);
           analyzeButton.hidden = false;
         } catch (error) {
           const enCurso = document.querySelector('#crPasos [data-estado="en_curso"]');
