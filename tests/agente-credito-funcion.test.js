@@ -192,3 +192,15 @@ test('nada del reporte llega a los logs', async () => {
   const todo = e.llamadas.logs.concat(e2.llamadas.logs).join('\n');
   ['ACME', 'ZETA', 'NOVA', '1284', '1,284', 'F'].forEach((x) => assert.ok(!todo.includes(x), 'log con ' + x + ': ' + todo));
 });
+
+test('carta no válida tras la corrección: se entrega el análisis sin esa carta (FR-004)', async () => {
+  const conMala = JSON.parse(JSON.stringify(RESULTADO_VALIDO));
+  conMala.cartas.push({ tipo: 'bureau-dispute', cuentas: [{ letra: 'C', motivo: 'not-mine' }], subtipo: 'no_aplica', etiquetas: [] });
+  const e = crearEntorno({ respuestasIA: [pideHerramientas(PEDIDOS_ACME), termina(conMala), termina(conMala)] });
+  const r1 = await vuelta1(e);
+  const r2 = await vueltaSiguiente(e, r1);
+  assert.match(r2.cuerpo.messages.slice(-1)[0].content, /carta\[1\]/);
+  const r3 = await vueltaSiguiente(e, r2);
+  assert.strictEqual(r3.cuerpo.estado, 'terminado');
+  assert.deepStrictEqual(r3.cuerpo.resultado.cartas, RESULTADO_VALIDO.cartas);
+});

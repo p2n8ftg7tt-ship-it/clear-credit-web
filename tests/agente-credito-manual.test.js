@@ -19,12 +19,24 @@ test('cada herramienta es estricta y su esquema está cerrado', () => {
 
 test('el esquema del resultado exige los seis campos y cierra todos los objetos', () => {
   const E = M.ESQUEMA_RESULTADO;
-  assert.deepStrictEqual(E.required, ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales']);
+  assert.deepStrictEqual(E.required, ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales', 'cartas']);
   (function cerrado(s) {
     if (s && s.type === 'object') { assert.strictEqual(s.additionalProperties, false); Object.values(s.properties).forEach(cerrado); }
     if (s && s.type === 'array') cerrado(s.items);
   })(E);
   assert.deepStrictEqual(E.properties.plan.items.properties.tipo.enum, ['disputar', 'pagar', 'esperar', 'proteger', 'revisar']);
+});
+
+test('el esquema y el manual incluyen las cartas', () => {
+  const E = M.ESQUEMA_RESULTADO;
+  assert.ok(E.required.includes('cartas'));
+  const item = E.properties.cartas.items;
+  assert.deepStrictEqual(item.properties.tipo.enum, ['bureau-dispute', 'debt-validation', 'identity']);
+  assert.deepStrictEqual(item.properties.cuentas.items.properties.motivo.enum, ['not-mine', 'wrong-amount', 'wrong-date', 'already-resolved', 'wrong-status', 'other', 'no_aplica']);
+  assert.deepStrictEqual(item.properties.subtipo.enum, ['identity-names', 'identity-phones', 'identity-addresses', 'identity-mixed', 'no_aplica']);
+  assert.match(M.MANUAL, /CARTAS/);
+  assert.match(M.MANUAL, /not-mine/);
+  assert.match(M.MANUAL, /marcadas/);
 });
 
 test('el manual trae las correcciones de FR-012 y no las reglas viejas', () => {

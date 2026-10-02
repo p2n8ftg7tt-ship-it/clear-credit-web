@@ -72,7 +72,8 @@ const RESULTADO_VALIDO = {
   despues: [],
   preguntasParaTi: ['¿Recibiste una carta de ZETA COLLECTIONS en los últimos 30 días?'],
   verificar: ['Confirma en tu reporte original que las cuentas A y B son la misma deuda.'],
-  datosPersonales: []
+  datosPersonales: [],
+  cartas: [{ tipo: 'bureau-dispute', cuentas: [{ letra: 'A', motivo: 'wrong-amount' }], subtipo: 'no_aplica', etiquetas: [] }]
 };
 
 function acme() {

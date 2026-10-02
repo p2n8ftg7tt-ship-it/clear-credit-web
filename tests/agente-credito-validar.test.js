@@ -5,7 +5,8 @@ const V = require('../netlify/functions/lib/agente-credito-validar.js');
 
 const ETIQUETADO = {
   identidad: { nombres: [{ etiqueta: 'Nombre 1', diferencias: [] }, { etiqueta: 'Nombre 2', diferencias: ['nombre_de_pila_distinto'] }], direcciones: [], telefonos: [] },
-  cuentas: [{ letra: 'A', saldo: 1284, dofd: '2021-03' }, { letra: 'B', saldo: 1284 }, { letra: 'C', saldo: 890, limite: 1000 }]
+  cuentas: [{ letra: 'A', saldo: 1284, dofd: '2021-03' }, { letra: 'B', saldo: 1284, esCobranza: true }, { letra: 'C', saldo: 890, limite: 1000 }],
+  marcadas: { cuentas: ['B'], datos: ['Nombre 2'] }
 };
 const HERRAMIENTAS = [{ fechas: [{ salida: '2028-09', rango: { desde: '2028-08', hasta: '2028-09' } }] }, { total: { porcentaje: 89 } }];
 const valido = () => ({
@@ -16,7 +17,8 @@ const valido = () => ({
     { tipo: 'esperar', cuentas: ['B'], hechos: [{ cuenta: 'B', dato: 'salida estimada 2028-09', fuente: 'herramienta' }], interpretacion: 'Es una estimación mensual.', accion: 'Consulta el plazo de prescripción de tu estado antes de pagar.' }
   ],
   despues: [], preguntasParaTi: ['¿Recibiste una carta del cobrador en los últimos 30 días?'], verificar: ['Confirma que A y B son la misma deuda.'],
-  datosPersonales: [{ etiqueta: 'Nombre 2', razon: 'nombre de pila distinto' }]
+  datosPersonales: [{ etiqueta: 'Nombre 2', razon: 'nombre de pila distinto' }],
+  cartas: []
 });
 const validar = (r) => V.validarResultado(r, { etiquetado: ETIQUETADO, resultadosHerramientas: HERRAMIENTAS });
 
@@ -87,4 +89,43 @@ test('validarResultado: palabras prohibidas en cualquier texto', () => {
   assert.deepStrictEqual(validar(r).problemas, ['palabra_prohibida:debes']);
   const r2 = valido(); r2.verificar = ['Esta cuenta es ilegal.'];
   assert.deepStrictEqual(validar(r2).problemas, ['palabra_prohibida:ilegal']);
+});
+
+const disputa = (cuentas) => ({ tipo: 'bureau-dispute', cuentas, subtipo: 'no_aplica', etiquetas: [] });
+const PLAN = valido().plan; // el paso 0 es «disputar» con la cuenta A
+const vc = (cartas) => V.validarCartas(cartas, { etiquetado: ETIQUETADO, plan: PLAN });
+
+test('validarCartas: acepta una disputa respaldada por un paso «disputar»', () => {
+  assert.deepStrictEqual(vc([disputa([{ letra: 'A', motivo: 'wrong-amount' }])]), { validas: [disputa([{ letra: 'A', motivo: 'wrong-amount' }])], problemas: [] });
+});
+
+test('validarCartas: reglas de FR-003', () => {
+  assert.deepStrictEqual(vc([disputa([{ letra: 'C', motivo: 'wrong-amount' }])]).problemas, ['carta[0]:sin_paso_disputar:C']);
+  assert.deepStrictEqual(vc([disputa([{ letra: 'F', motivo: 'other' }])]).problemas, ['carta[0]:cuenta_inexistente:F']);
+  assert.deepStrictEqual(vc([disputa([{ letra: 'A', motivo: 'no_aplica' }])]).problemas, ['carta[0]:forma']);
+  assert.deepStrictEqual(vc([disputa([{ letra: 'A', motivo: 'not-mine' }])]).problemas, ['carta[0]:no_marcada:A']);
+  assert.deepStrictEqual(vc([{ tipo: 'debt-validation', cuentas: [{ letra: 'C', motivo: 'no_aplica' }], subtipo: 'no_aplica', etiquetas: [] }]).problemas, ['carta[0]:no_es_cobranza:C']);
+  assert.deepStrictEqual(vc([{ tipo: 'identity', cuentas: [], subtipo: 'identity-names', etiquetas: ['Nombre 1'] }]).problemas, ['carta[0]:no_marcada:Nombre 1']);
+  assert.deepStrictEqual(vc([{ tipo: 'demanda', cuentas: [], subtipo: 'no_aplica', etiquetas: [] }]).problemas, ['carta[0]:tipo']);
+  const d = disputa([{ letra: 'A', motivo: 'wrong-amount' }]);
+  assert.deepStrictEqual(vc([d, d]).problemas, ['carta[1]:repetida']);
+  const cuatro = [d, { tipo: 'debt-validation', cuentas: [{ letra: 'B', motivo: 'no_aplica' }], subtipo: 'no_aplica', etiquetas: [] },
+    { tipo: 'identity', cuentas: [], subtipo: 'identity-names', etiquetas: ['Nombre 2'] }, d];
+  const r = vc(cuatro);
+  assert.deepStrictEqual(r.problemas, ['carta[3]:sobra']);
+  assert.strictEqual(r.validas.length, 3);
+});
+
+test('validarCartas: la misma cuenta en una disputa y en una validación es válida (Review Focus 4)', () => {
+  const plan = [{ tipo: 'disputar', cuentas: ['B'], hechos: [], interpretacion: 'x', accion: 'y' }];
+  const r = V.validarCartas([disputa([{ letra: 'B', motivo: 'wrong-amount' }]),
+    { tipo: 'debt-validation', cuentas: [{ letra: 'B', motivo: 'no_aplica' }], subtipo: 'no_aplica', etiquetas: [] }], { etiquetado: ETIQUETADO, plan });
+  assert.deepStrictEqual(r.problemas, []);
+});
+
+test('validarResultado: exige cartas y prefija sus problemas', () => {
+  const r = valido(); delete r.cartas;
+  assert.deepStrictEqual(validar(r).problemas, ['forma:campos']);
+  const r2 = valido(); r2.cartas = [disputa([{ letra: 'C', motivo: 'other' }])];
+  assert.deepStrictEqual(validar(r2).problemas, ['carta[0]:sin_paso_disputar:C']);
 });

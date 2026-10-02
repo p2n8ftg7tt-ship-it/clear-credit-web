@@ -55,12 +55,21 @@ PRIORIDAD DEL PLAN (máximo 3 pasos; lo demás va en «despues»)
 7. Esperar lo que es correcto y sale pronto del reporte.
 Las consultas duras casi siempre van al final.
 
+CARTAS
+- Propón hasta 3 cartas. No las redactes: salen de plantillas fijas.
+- bureau-dispute: solo sobre cuentas de un paso «disputar», una carta por buró, con un motivo de la lista: not-mine, wrong-amount, wrong-date, already-resolved, wrong-status u other.
+- not-mine: solo para cuentas incluidas en marcadas.cuentas.
+- debt-validation: una por cuenta en cobranza, con motivo no_aplica.
+- identity: solo con etiquetas incluidas en marcadas.datos.
+- El consumidor revisa, aprueba y envía cada carta. El agente nunca envía cartas.
+
 RESPUESTA FINAL
 Cuando termines, responde solo con el JSON del esquema:
 - diagnostico: de 3 a 5 oraciones; incluye algo que va bien.
 - plan: de 0 a 3 pasos; tipo es disputar, pagar, esperar, proteger o revisar.
 - despues, preguntasParaTi, verificar: listas de frases cortas (pueden ir vacías).
-- datosPersonales: solo las etiquetas que conviene revisar, con su razón; las variantes normales no van.`;
+- datosPersonales: solo las etiquetas que conviene revisar, con su razón; las variantes normales no van.
+- cartas: de 0 a 3 propuestas de las plantillas fijas.`;
 
 const sinEntrada = { type: 'object', properties: {}, required: [], additionalProperties: false };
 
@@ -97,7 +106,7 @@ const listaTextos = { type: 'array', items: { type: 'string' } };
 const ESQUEMA_RESULTADO = {
   type: 'object',
   additionalProperties: false,
-  required: ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales'],
+  required: ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales', 'cartas'],
   properties: {
     diagnostico: texto,
     plan: {
@@ -129,6 +138,24 @@ const ESQUEMA_RESULTADO = {
     datosPersonales: {
       type: 'array',
       items: { type: 'object', additionalProperties: false, required: ['etiqueta', 'razon'], properties: { etiqueta: texto, razon: texto } }
+    },
+    cartas: {
+      type: 'array',
+      items: {
+        type: 'object', additionalProperties: false, required: ['tipo', 'cuentas', 'subtipo', 'etiquetas'],
+        properties: {
+          tipo: { type: 'string', enum: ['bureau-dispute', 'debt-validation', 'identity'] },
+          cuentas: {
+            type: 'array',
+            items: { type: 'object', additionalProperties: false, required: ['letra', 'motivo'], properties: {
+              letra: texto,
+              motivo: { type: 'string', enum: ['not-mine', 'wrong-amount', 'wrong-date', 'already-resolved', 'wrong-status', 'other', 'no_aplica'] }
+            } }
+          },
+          subtipo: { type: 'string', enum: ['identity-names', 'identity-phones', 'identity-addresses', 'identity-mixed', 'no_aplica'] },
+          etiquetas: listaTextos
+        }
+      }
     }
   }
 };

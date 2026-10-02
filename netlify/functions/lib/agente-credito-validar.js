@@ -103,12 +103,13 @@ const mismasClaves = (o, claves) => !!o && typeof o === 'object' && !Array.isArr
   Object.keys(o).sort().join(',') === claves.slice().sort().join(',');
 
 function revisarForma(r) {
-  if (!mismasClaves(r, ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales'])) return ['forma:campos'];
+  if (!mismasClaves(r, ['diagnostico', 'plan', 'despues', 'preguntasParaTi', 'verificar', 'datosPersonales', 'cartas'])) return ['forma:campos'];
   const p = [];
   if (!esTexto(r.diagnostico)) p.push('forma:diagnostico');
   if (!Array.isArray(r.plan)) p.push('forma:plan');
   ['despues', 'preguntasParaTi', 'verificar'].forEach((k) => { if (!esListaDeTextos(r[k])) p.push('forma:' + k); });
   if (!Array.isArray(r.datosPersonales) || !r.datosPersonales.every((d) => mismasClaves(d, ['etiqueta', 'razon']) && esTexto(d.etiqueta) && esTexto(d.razon))) p.push('forma:datosPersonales');
+  if (!Array.isArray(r.cartas)) p.push('forma:cartas');
   (Array.isArray(r.plan) ? r.plan : []).forEach((paso, i) => {
     const bien = mismasClaves(paso, ['tipo', 'cuentas', 'hechos', 'interpretacion', 'accion']) && TIPOS_PASO.has(paso.tipo) &&
       esListaDeTextos(paso.cuentas) && esTexto(paso.interpretacion) && esTexto(paso.accion) && Array.isArray(paso.hechos) &&
@@ -116,6 +117,68 @@ function revisarForma(r) {
     if (!bien) p.push('forma:plan[' + i + ']');
   });
   return p;
+}
+
+const TIPOS_CARTA = new Set(['bureau-dispute', 'debt-validation', 'identity']);
+const MOTIVOS_CARTA = new Set(['not-mine', 'wrong-amount', 'wrong-date', 'already-resolved', 'wrong-status', 'other', 'no_aplica']);
+const SUBTIPOS_IDENTIDAD = new Set(['identity-names', 'identity-phones', 'identity-addresses', 'identity-mixed']);
+
+function validarCartas(cartas, contexto) {
+  const validas = [], problemas = [], vistos = new Set();
+  const etiquetado = (contexto && contexto.etiquetado) || {};
+  const cuentas = new Map((etiquetado.cuentas || []).map((c) => [c.letra, c]));
+  const identidad = etiquetado.identidad || {};
+  const etiquetasExistentes = new Set([].concat(identidad.nombres || [], identidad.direcciones || [], identidad.telefonos || []).map((x) => x.etiqueta));
+  const marcadas = etiquetado.marcadas || { cuentas: [], datos: [] };
+  const cuentasMarcadas = new Set(marcadas.cuentas || []), datosMarcados = new Set(marcadas.datos || []);
+  const disputables = new Set();
+  ((contexto && contexto.plan) || []).filter((p) => p && p.tipo === 'disputar').forEach((p) => (p.cuentas || []).forEach((l) => disputables.add(l)));
+  (Array.isArray(cartas) ? cartas : []).forEach((carta, i) => {
+    const prefijo = 'carta[' + i + ']:';
+    let problema = null, destino = null;
+    if (i >= 3) problema = 'sobra';
+    else if (!carta || !TIPOS_CARTA.has(carta.tipo)) problema = 'tipo';
+    else {
+      const base = mismasClaves(carta, ['tipo', 'cuentas', 'subtipo', 'etiquetas']) && Array.isArray(carta.cuentas) && Array.isArray(carta.etiquetas);
+      const cuentasBien = base && carta.cuentas.every((x) => mismasClaves(x, ['letra', 'motivo']) && esTexto(x.letra) && MOTIVOS_CARTA.has(x.motivo));
+      let forma = false;
+      if (carta.tipo === 'bureau-dispute') forma = cuentasBien && carta.cuentas.length >= 1 && carta.cuentas.length <= 10 && carta.cuentas.every((x) => x.motivo !== 'no_aplica') && carta.subtipo === 'no_aplica' && carta.etiquetas.length === 0;
+      if (carta.tipo === 'debt-validation') forma = cuentasBien && carta.cuentas.length === 1 && carta.cuentas[0].motivo === 'no_aplica' && carta.subtipo === 'no_aplica' && carta.etiquetas.length === 0;
+      if (carta.tipo === 'identity') forma = cuentasBien && carta.cuentas.length === 0 && SUBTIPOS_IDENTIDAD.has(carta.subtipo) && carta.etiquetas.length >= 1 && carta.etiquetas.every(esTexto);
+      if (!forma) problema = 'forma';
+      if (!problema) {
+        const inexistente = carta.cuentas.find((x) => !cuentas.has(x.letra));
+        if (inexistente) problema = 'cuenta_inexistente:' + inexistente.letra;
+      }
+      if (!problema && carta.tipo === 'bureau-dispute') {
+        const sinPaso = carta.cuentas.find((x) => !disputables.has(x.letra));
+        const noMarcada = carta.cuentas.find((x) => x.motivo === 'not-mine' && !cuentasMarcadas.has(x.letra));
+        if (sinPaso) problema = 'sin_paso_disputar:' + sinPaso.letra;
+        else if (noMarcada) problema = 'no_marcada:' + noMarcada.letra;
+        destino = 'buro';
+      }
+      if (!problema && carta.tipo === 'debt-validation') {
+        const l = carta.cuentas[0].letra;
+        if (cuentas.get(l).esCobranza !== true) problema = 'no_es_cobranza:' + l;
+        destino = l;
+      }
+      if (!problema && carta.tipo === 'identity') {
+        const inexistente = carta.etiquetas.find((x) => !etiquetasExistentes.has(x));
+        const noMarcada = carta.etiquetas.find((x) => etiquetasExistentes.has(x) && !datosMarcados.has(x));
+        if (inexistente) problema = 'etiqueta_inexistente:' + inexistente;
+        else if (noMarcada) problema = 'no_marcada:' + noMarcada;
+        destino = 'buro';
+      }
+      if (!problema) {
+        const clave = carta.tipo + ':' + destino;
+        if (vistos.has(clave)) problema = 'repetida';
+        else vistos.add(clave);
+      }
+    }
+    if (problema) problemas.push(prefijo + problema);
+    else validas.push(carta);
+  });
+  return { validas, problemas };
 }
 
 const contarOraciones = (t) => String(t).split(/[.!?]+(?=\s|$)/).map((s) => s.trim()).filter(Boolean).length;
@@ -142,6 +205,7 @@ function validarResultado(resultado, contexto) {
     }));
   });
   resultado.datosPersonales.forEach((d) => { if (!etiquetas.has(d.etiqueta)) problemas.push('etiqueta_inexistente:' + d.etiqueta); });
+  problemas.push(...validarCartas(resultado.cartas, { etiquetado, plan: resultado.plan }).problemas);
   const textos = [resultado.diagnostico].concat(
     resultado.despues, resultado.preguntasParaTi, resultado.verificar,
     resultado.plan.reduce((a, p) => a.concat([p.interpretacion, p.accion], p.hechos.map((h) => h.dato)), []),
@@ -151,4 +215,4 @@ function validarResultado(resultado, contexto) {
   return { ok: unicos.length === 0, problemas: unicos };
 }
 
-module.exports = { barreraDatosPersonales, palabrasProhibidas, numerosDelDato, validarResultado };
+module.exports = { barreraDatosPersonales, palabrasProhibidas, numerosDelDato, validarCartas, validarResultado };

@@ -15,7 +15,7 @@
 
 const crypto = require('crypto');
 const { MANUAL, HERRAMIENTAS, ESQUEMA_RESULTADO } = require('./lib/agente-credito-manual');
-const { barreraDatosPersonales, validarResultado } = require('./lib/agente-credito-validar');
+const { barreraDatosPersonales, validarCartas, validarResultado } = require('./lib/agente-credito-validar');
 const { firmarPase, leerPase, hmacConversacion } = require('./lib/agente-credito-pase');
 
 const MODELO = 'claude-sonnet-5-5';
@@ -188,6 +188,10 @@ function crearHandler(dep) {
         ? validarResultado(resultado, { etiquetado: etiquetadoDe(messages), resultadosHerramientas: resultadosDe(messages) }).problemas
         : ['json_no_valido'];
       if (!problemas.length) return responder(200, { estado: 'terminado', resultado, uso: { vueltas: b.n } });
+      if (resultado && problemas.every((p) => p.startsWith('carta[')) && (b.k === 1 || b.n >= MAX_VUELTAS)) {
+        const limpio = Object.assign({}, resultado, { cartas: validarCartas(resultado.cartas, { etiquetado: etiquetadoDe(messages), plan: resultado.plan }).validas });
+        return responder(200, { estado: 'terminado', resultado: limpio, uso: { vueltas: b.n } });
+      }
     }
     log('[agente-credito] resultado_no_valido', problemas.length);
     if (b.k === 1 || b.n >= MAX_VUELTAS) return respaldo(200, 'respuesta_no_valida', false);
