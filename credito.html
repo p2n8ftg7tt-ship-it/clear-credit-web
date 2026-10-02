@@ -436,29 +436,6 @@
       border-radius: var(--radius);
     }
 
-    .cr-progress-renglon {
-      display: block;
-      height: 12px;
-      border-bottom: 1px solid var(--franja-lavanda);
-    }
-
-    .cr-progress-renglon span {
-      display: block;
-      height: 100%;
-      width: 0;
-      background: var(--resaltador);
-      transition: width .3s ease;
-    }
-
-    .cr-progress-copy {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cr-progress-copy small {
-      color: rgba(27, 27, 24, .58);
-    }
-
     .cr-error {
       display: flex;
       gap: 12px;
@@ -732,6 +709,13 @@
       .cr-pasos li[data-estado=en_curso]::before { animation: cr-paso-pulso 1.2s ease-in-out infinite; }
       @keyframes cr-paso-pulso { 50% { opacity: .35; } }
     }
+    .cr-analisis-impresion { display: none; }
+    @media print {
+      #crProgress, .cr-pasos, .cr-solution-toggle, .cr-solution-form, .cr-dg-identidad, .cr-identidad-zona, .cr-cartel, .cr-result-actions, #crAnalisis { display: none !important; }
+      #crAnalisisImpresion { display: block; }
+      .cr-analisis-impreso { break-inside: avoid; margin-top: 1rem; padding-top: .5rem; border-top: 1px solid var(--renglon); }
+      .cr-circulo .cr-iniciales { border: 2px solid var(--tinta); }
+    }
     .cr-abiertas {
       max-width: 22rem;
       margin-top: 16px;
@@ -785,330 +769,12 @@
       }
     }
 
-    .cr-results-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 24px;
-    }
-
-    .cr-results-head h3 {
-      color: var(--tinta);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin: 0 0 8px;
-    }
-
-    .cr-results-head p {
-      color: var(--muted);
-      max-width: 68ch;
-    }
-
-    .cr-health {
-      min-width: 220px;
-      border: 1px solid var(--borde-campo);
-      padding: 14px 17px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cr-health small {
-      font-size: .65rem;
-      color: var(--muted);
-    }
-
-    .cr-health strong {
-      color: var(--tinta);
-    }
-
-    .cr-health.critical {
-      border-color: var(--renglon);
-      border-top: 5px solid var(--franja-rosa);
-      background: var(--copia-rosa);
-    }
-
-    .cr-health.attention {
-      border-color: var(--renglon);
-      border-top: 5px solid var(--franja-celeste);
-      background: var(--copia-celeste);
-    }
-
-    .cr-health.stable {
-      border-color: var(--renglon);
-      border-top: 5px solid var(--franja-verde);
-      background: var(--copia-verde);
-    }
-
-    /* Los indicadores de la Fase 0 caben en un solo renglón (contracts/ui-cuentas.md §3). */
-    .cr-kpis {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 24px;
-      padding: 10px 0;
-      border-top: 1px solid var(--renglon);
-      border-bottom: 1px solid var(--renglon);
-      margin-bottom: 24px;
-    }
-
-    .cr-kpi {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-
-    .cr-kpi span {
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-    }
-
-    .cr-kpi strong {
-      font-family: var(--font-display);
-      font-size: var(--text-body);
-      color: var(--tinta);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .cr-groups {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .cr-group {
-      background: #fff;
-      border: 1px solid var(--renglon);
-      color: var(--ink);
-      padding: 24px;
-      border-radius: var(--radius-lg);
-    }
-
-    .cr-group-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 14px;
-    }
-
-    .cr-group-head h4 {
-      font-size: 1.2rem;
-      margin: 0;
-    }
-
-    .cr-group-head span {
-      font-size: .7rem;
-      font-weight: 700;
-      border-radius: var(--radius);
-      padding: 4px 9px;
-    }
-
-    .cr-negative .cr-group-head h4 {
-      color: var(--corrector);
-    }
-
-    .cr-negative .cr-group-head span {
-      background: rgba(163, 72, 56, .12);
-      color: var(--corrector);
-    }
-
-    .cr-positive .cr-group-head h4 {
-      color: var(--teal);
-    }
-
-    .cr-positive .cr-group-head span {
-      background: rgba(47, 111, 98, .12);
-      color: var(--teal);
-    }
-
-    .cr-summary {
-      background: var(--copia-lavanda);
-      border: 1px solid var(--renglon);
-      border-top: 5px solid var(--franja-lavanda);
-      color: var(--tinta);
-      padding: 24px;
-      border-radius: var(--radius);
-      margin-bottom: 22px;
-    }
-
-    .cr-summary-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--renglon);
-      margin-bottom: 12px;
-    }
-
-    .cr-summary-head h4 {
-      font-size: var(--text-body-lg);
-      margin: 0;
-      color: var(--tinta);
-    }
-
-    .cr-summary-head span {
-      font-size: var(--text-body-sm);
-      font-weight: 700;
-      border-radius: var(--radius);
-      padding: 4px 9px;
-      background: var(--copia-verde);
-      color: var(--tinta);
-    }
-
-    .cr-summary-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .cr-summary-item {
-      margin: 0;
-      color: var(--muted);
-      font-size: var(--text-body-sm);
-    }
-
-    .cr-summary-item strong {
-      font-family: var(--font-display);
-      color: var(--tinta);
-      word-break: break-word;
-    }
-
-    .cr-summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-variant-numeric: tabular-nums;
-      font-size: var(--text-body-sm);
-    }
-
-    .cr-summary-table caption {
-      text-align: left;
-      font-family: var(--font-display);
-      font-size: var(--text-body);
-      color: var(--tinta);
-      margin-bottom: 6px;
-    }
-
-    .cr-summary-table th,
-    .cr-summary-table td {
-      padding: 6px;
-      border-bottom: 1px solid var(--renglon);
-      text-align: right;
-    }
-
-    .cr-summary-table th:first-child,
-    .cr-summary-table td:first-child {
-      text-align: left;
-    }
-
-    .cr-summary-note {
-      margin: 16px 0 0;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-    }
-
-    .cr-finding {
-      border-bottom: 1px solid var(--line);
-      padding: 14px 0;
-    }
-
-    .cr-finding:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .cr-finding:first-child {
-      padding-top: 0;
-    }
-
-    .cr-finding-title {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-    }
-
-    .cr-finding-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      margin-top: 7px;
-      flex: none;
-    }
-
-    .cr-negative .cr-finding-dot {
-      background: var(--corrector);
-    }
-
-    .cr-positive .cr-finding-dot {
-      background: var(--teal);
-    }
-
-    .cr-finding strong {
-      display: block;
-      color: var(--navy);
-    }
-
-    .cr-finding p {
-      font-size: .88rem;
-      color: rgba(27, 27, 24, .68);
-      margin: 5px 0 0 18px;
-    }
-
     .cr-evidence {
       display: inline-block;
       font-size: .68rem;
       color: var(--texto-acento);
       font-weight: 700;
       margin: 7px 0 0 18px;
-    }
-
-    .cr-empty {
-      font-size: .9rem;
-      color: rgba(27, 27, 24, .62);
-      margin: 0;
-    }
-
-    .cr-strategy {
-      margin-top: 22px;
-      background: var(--paper-dim);
-      color: var(--ink);
-      padding: 28px;
-      border-radius: var(--radius-lg);
-    }
-
-    .cr-strategy-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: flex-end;
-      margin-bottom: 20px;
-    }
-
-    .cr-strategy h4 {
-      color: var(--navy);
-      font-size: 1.35rem;
-      margin: 0 0 5px;
-    }
-
-    .cr-strategy-head p {
-      color: rgba(27, 27, 24, .62);
-      margin: 0;
-    }
-
-    .cr-strategy-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .cr-strategy-list li {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 13px;
-      background: #fff;
-      padding: 16px;
-      border-left: 3px solid var(--gold);
     }
 
     .cr-step-number {
@@ -1121,18 +787,6 @@
       color: #fff;
       font-family: var(--font-display);
       font-weight: 700;
-    }
-
-    .cr-strategy-list strong {
-      display: block;
-      color: var(--navy);
-      margin-bottom: 2px;
-    }
-
-    .cr-strategy-list p {
-      font-size: .86rem;
-      color: rgba(27, 27, 24, .68);
-      margin: 0;
     }
 
     .cr-solution-toggle {
@@ -2046,11 +1700,6 @@
 
     @media(max-width:760px) {
 
-      .cr-kpis,
-      .cr-summary-grid {
-        grid-template-columns: 1fr;
-      }
-
       .cr-process {
         display: flex;
         flex-direction: column;
@@ -2069,20 +1718,6 @@
         top: 0;
         width: auto;
         height: 1px;
-      }
-
-      .cr-groups {
-        grid-template-columns: 1fr;
-      }
-
-      .cr-results-head,
-      .cr-strategy-head {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .cr-health {
-        min-width: 0;
       }
 
       .cr-dropzone {
@@ -2145,233 +1780,6 @@
       .cr-results {
         margin-top: 0;
       }
-
-      .cr-results-head h3,
-      .cr-health strong {
-        color: #111;
-      }
-
-      .cr-results-head p,
-      .cr-health small,
-      .cr-kpi span,
-      .cr-kpi small {
-        color: #555;
-      }
-
-      .cr-health,
-      .cr-kpis {
-        border-color: #ccc;
-        background: #fff;
-      }
-
-      .cr-kpi strong {
-        color: #111;
-      }
-
-      .cr-groups {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .cr-summary {
-        border: 1px solid #ddd;
-      }
-
-      .cr-summary-head span {
-        color: #333;
-        background: #eee;
-      }
-    }
-
-    /* Palabras teñidas en titulares: una por sección, sobre fondo oscuro
-     (héroe y analizador comparten var(--navy-deep)), por eso usan el mismo
-     dorado claro que ya usan los eyebrows sobre fondo oscuro en todo el sitio. */
-    /* «Tus cuentas, una por una» (spec 013, contracts/ui-cuentas.md): cada cuenta es una ficha de
-     papel lavanda con renglones. El resaltador solo marca DOFD, charge-off y vencido; el único
-     elemento llamativo es la franja del historial. Solo tokens y la escala --text-*. */
-    .lc-cuentas {
-      margin: 32px 0;
-    }
-
-    .lc-cuentas[hidden],
-    .lc-aviso[hidden] {
-      display: none !important;
-    }
-
-    .lc-cuentas>h3 {
-      font-family: var(--font-display);
-      color: var(--tinta);
-      margin: 0 0 8px;
-    }
-
-    .lc-resumen {
-      max-width: 70ch;
-      color: var(--ink);
-      margin: 0 0 10px;
-    }
-
-    .lc-aviso {
-      max-width: 70ch;
-      background: var(--copia-celeste);
-      border-left: 4px solid var(--franja-celeste);
-      padding: 10px 14px;
-      color: var(--tinta);
-      margin: 0 0 16px;
-    }
-
-    .lc-cuerpo {
-      display: grid;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .lc-indice ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .lc-indice a {
-      display: block;
-      padding: 6px 0;
-      color: var(--tinta);
-      text-decoration: none;
-      border-bottom: 1px solid var(--renglon);
-    }
-
-    .lc-indice a:hover {
-      text-decoration: underline;
-    }
-
-    .lc-indice a:focus-visible,
-    .lc-indice summary:focus-visible,
-    .lc-origen summary:focus-visible {
-      outline: var(--focus-ring);
-      outline-offset: 2px;
-    }
-
-    .lc-indice small {
-      color: var(--muted);
-      font-size: var(--text-body-sm);
-    }
-
-    .lc-indice-lista {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0 18px;
-    }
-
-    .lc-indice-movil {
-      display: none;
-    }
-
-    .lc-indice-movil summary {
-      cursor: pointer;
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--tinta);
-      padding: 10px 0;
-    }
-
-    .lc-fichas {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .lc-ficha,
-    .lc-bloque {
-      background: var(--copia-lavanda);
-      border-top: 5px solid var(--franja-lavanda);
-      border-radius: var(--radius);
-      padding: 18px 20px;
-      color: var(--ink);
-      scroll-margin-top: 90px;
-    }
-
-    .lc-ficha header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 4px 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--renglon);
-    }
-
-    .lc-ficha h4,
-    .lc-bloque h4 {
-      font-family: var(--font-display);
-      font-size: var(--text-body-lg);
-      color: var(--tinta);
-      margin: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .lc-sub {
-      flex-basis: 100%;
-      order: 3;
-      margin: 0;
-      color: var(--muted);
-      font-size: var(--text-body-sm);
-    }
-
-    .lc-estado {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: var(--text-body-sm);
-      color: var(--tinta);
-    }
-
-    .lc-ficha[data-estado="cobranza"] .lc-estado {
-      color: var(--corrector);
-    }
-
-    .lc-campos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-      gap: 0 28px;
-      margin: 0;
-      padding: 4px 0;
-    }
-
-    .lc-par {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--renglon);
-    }
-
-    .lc-campos dt {
-      font-family: var(--font-body);
-      color: var(--muted);
-      font-size: var(--text-body-sm);
-    }
-
-    .lc-campos dd {
-      margin: 0;
-      text-align: right;
-      font-family: var(--font-display);
-      font-variant-numeric: tabular-nums;
-      color: var(--tinta);
-      overflow-wrap: anywhere;
-    }
-
-    .lc-campos dd.lc-vacio {
-      font-family: var(--font-body);
-      font-style: italic;
-      color: var(--muted);
-    }
-
-    .lc-campos dd.lc-resaltado span {
-      padding: 0 3px;
-      background: linear-gradient(176deg, transparent 10%, var(--resaltador) 12%, var(--resaltador) 88%, transparent 92%) no-repeat left center/100% 100%;
-    }
-
-    .lc-ficha.lc-pasada dd.lc-resaltado span {
-      animation: lc-resaltar .6s ease-out both;
     }
 
     @keyframes lc-resaltar {
@@ -2381,166 +1789,6 @@
 
       to {
         background-size: 100% 100%
-      }
-    }
-
-    .lc-historial {
-      padding-top: 12px;
-    }
-
-    .lc-historial h5,
-    .lc-bloque h5 {
-      font-family: var(--font-display);
-      font-size: var(--text-body);
-      color: var(--tinta);
-      margin: 12px 0 8px;
-    }
-
-    .lc-anio {
-      display: grid;
-      grid-template-columns: 3.2em repeat(12, minmax(0, 1fr));
-      gap: 3px;
-      margin-bottom: 3px;
-      align-items: center;
-    }
-
-    .lc-anio-num {
-      font-family: var(--font-display);
-      font-variant-numeric: tabular-nums;
-      font-size: var(--text-body-sm);
-      color: var(--tinta);
-    }
-
-    .lc-meses span {
-      text-align: center;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-    }
-
-    .lc-mes {
-      display: grid;
-      place-items: center;
-      min-height: 24px;
-      border-radius: 3px;
-      background: var(--renglon);
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: var(--text-body-sm);
-      line-height: 1;
-      color: var(--paper);
-    }
-
-    .lc-mes[data-codigo="sin_datos"],
-    .lc-mes[data-codigo="muy_nueva"],
-    .lc-mes[data-codigo="desconocido"],
-    .lc-mes[data-codigo="cerrada"] {
-      background: transparent;
-      border: 1px dashed var(--franja-lavanda);
-    }
-
-    .lc-mes[data-codigo^="atraso"],
-    .lc-mes[data-codigo="cobranza"],
-    .lc-mes[data-codigo="charge_off"],
-    .lc-mes[data-codigo="reposesion"],
-    .lc-mes[data-codigo="entrega_voluntaria"],
-    .lc-mes[data-codigo^="ejecucion"],
-    .lc-mes[data-codigo="bancarrota"],
-    .lc-mes[data-codigo="incumplimiento"] {
-      background: var(--corrector);
-    }
-
-    .lc-nota {
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-      margin: 6px 0 0;
-      max-width: 70ch;
-    }
-
-    .lc-origen {
-      margin-top: 12px;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-    }
-
-    .lc-origen summary {
-      cursor: pointer;
-      color: var(--tinta);
-    }
-
-    .lc-origen ul,
-    .lc-bloque ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-    }
-
-    @media(min-width:1000px) {
-      .lc-cuerpo {
-        grid-template-columns: 220px minmax(0, 1fr);
-      }
-
-      .lc-indice {
-        position: sticky;
-        top: 90px;
-      }
-
-      .lc-indice-lista {
-        display: block;
-      }
-    }
-
-    @media(max-width:759px) {
-      .lc-indice-lista {
-        display: none;
-      }
-
-      .lc-indice-movil {
-        display: block;
-      }
-
-      .lc-ficha,
-      .lc-bloque {
-        padding: 14px;
-      }
-
-      .lc-anio {
-        grid-template-columns: 2.6em repeat(12, minmax(0, 1fr));
-        gap: 2px;
-      }
-
-      .lc-mes {
-        min-height: 20px;
-      }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      .lc-ficha.lc-pasada dd.lc-resaltado span {
-        animation: none;
-      }
-
-      .cr-progress-renglon span {
-        transition: none;
-      }
-    }
-
-    @media print {
-
-      .lc-indice,
-      .lc-origen {
-        display: none !important;
-      }
-
-      .lc-cuerpo {
-        display: block;
-      }
-
-      .lc-ficha,
-      .lc-bloque {
-        break-inside: avoid;
-        margin-bottom: 12px;
-      }
-
-      .lc-ficha.lc-pasada dd.lc-resaltado span {
-        animation: none;
       }
     }
   </style>
@@ -2725,66 +1973,13 @@
                 aria-controls="crCartelBlandas"></button>
             </div>
             <p class="cr-dg-avisos" id="crDgAvisos" hidden></p>
+            <p class="cr-dg-identidad"><button type="button" class="cr-dg-identidad-enlace" id="crIdentidadEnlace" aria-expanded="false" aria-controls="crIdentidadZona">¿No reconoces alguno de estos datos?</button></p>
+            <div class="cr-identidad-zona" id="crIdentidadZona" hidden></div>
             <div class="cr-cartel" id="crCartelDuras" popover role="dialog" aria-labelledby="crCartelDurasT" hidden></div>
             <div class="cr-cartel" id="crCartelBlandas" popover role="dialog" aria-labelledby="crCartelBlandasT" hidden></div>
           </section>
           <section class="cr-abiertas" id="crAbiertas" aria-labelledby="crAbiertasT"></section>
-          <section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT" hidden><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div></section>
-
-          <div class="cr-results-head">
-            <div><span class="eyebrow-dark">Resultado del documento</span>
-              <h3>Evaluación del reporte de crédito</h3>
-              <p id="crConclusion"></p>
-            </div>
-            <div class="cr-health" id="crHealth"><small>Estado general</small><strong id="crHealthText"></strong><span
-                id="crDocumentMeta"></span></div>
-          </div>
-
-          <div class="cr-kpis" id="crKpis"></div>
-
-          <article class="cr-summary">
-            <div class="cr-summary-head">
-              <h4>Resumen del reporte</h4><span>Datos generales</span>
-            </div>
-            <div class="cr-summary-grid" id="crSummaryGrid"></div>
-            <p class="cr-summary-note">Extraído automáticamente del documento. Verifica cada dato contra el reporte
-              original antes de usarlo.</p>
-          </article>
-
-          <section class="lc-cuentas" id="crCuentas" aria-labelledby="crCuentasTitulo" hidden>
-            <h3 id="crCuentasTitulo">Tus cuentas, una por una</h3>
-            <p class="lc-resumen" id="crResumenFrase"></p>
-            <p class="lc-aviso" id="crAvisosLectura" hidden></p>
-            <div class="lc-cuerpo">
-              <nav class="lc-indice" id="crIndice" aria-label="Cuentas del reporte"></nav>
-              <div class="lc-fichas" id="crFichas"></div>
-            </div>
-          </section>
-
-          <div class="cr-groups">
-            <article class="cr-group cr-negative">
-              <div class="cr-group-head">
-                <h4>Puntos negativos</h4><span id="crNegativeCount">0 detectados</span>
-              </div>
-              <div id="crNegativeList"></div>
-            </article>
-            <article class="cr-group cr-positive">
-              <div class="cr-group-head">
-                <h4>Puntos positivos</h4><span id="crPositiveCount">0 detectados</span>
-              </div>
-              <div id="crPositiveList"></div>
-            </article>
-          </div>
-
-          <article class="cr-strategy">
-            <div class="cr-strategy-head">
-              <div><span class="eyebrow-dark">Estrategia recomendada</span>
-                <h4>Qué hacer y en qué orden</h4>
-              </div>
-              <p>Ataca primero lo que puede causar más daño; protege al mismo tiempo lo que ya está funcionando.</p>
-            </div>
-            <ol class="cr-strategy-list" id="crStrategyList"></ol>
-          </article>
+          <section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT" hidden><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div><div class="cr-analisis-impresion" id="crAnalisisImpresion"></div></section>
 
           <div class="cr-result-actions">
             <button class="cr-outline-btn" id="crResetButton" type="button">Analizar otro documento</button>
@@ -3342,12 +2537,7 @@
       let selectedFile = null;
 
       const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-      const normalize = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
-      const normalizeMultiline = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\r\n?/g, '\n').replace(/[^\S\n]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
-      const count = (text, regex) => (text.match(regex) || []).length;
       const bytes = size => size < 1048576 ? Math.max(1, Math.round(size / 1024)) + ' KB' : (size / 1048576).toFixed(1) + ' MB';
-      const firstNumber = (text, patterns) => { for (const pattern of patterns) { const match = text.match(pattern); if (match && match[1] !== undefined) return Number(match[1].replace(/,/g, '')); } return null; };
-      const money = value => value === null ? 'No visible' : '$' + Number(value).toLocaleString('en-US', { maximumFractionDigits: 0 });
       const CREDIT_BUREAUS = {
         equifax: { key: 'equifax', name: 'Equifax', recipient: 'Equifax Information Services LLC', address: ['P.O. Box 740241', 'Atlanta, GA 30374'] },
         experian: { key: 'experian', name: 'Experian', recipient: 'Experian — Dispute by Mail', address: ['P.O. Box 4500', 'Allen, TX 75013'] },
@@ -3358,29 +2548,6 @@
         ['AL', 'Alabama'], ['AK', 'Alaska'], ['AZ', 'Arizona'], ['AR', 'Arkansas'], ['CA', 'California'], ['CO', 'Colorado'], ['CT', 'Connecticut'], ['DE', 'Delaware'], ['FL', 'Florida'], ['GA', 'Georgia'], ['HI', 'Hawái'], ['ID', 'Idaho'], ['IL', 'Illinois'], ['IN', 'Indiana'], ['IA', 'Iowa'], ['KS', 'Kansas'], ['KY', 'Kentucky'], ['LA', 'Luisiana'], ['ME', 'Maine'], ['MD', 'Maryland'], ['MA', 'Massachusetts'], ['MI', 'Míchigan'], ['MN', 'Minnesota'], ['MS', 'Misisipi'], ['MO', 'Misuri'], ['MT', 'Montana'], ['NE', 'Nebraska'], ['NV', 'Nevada'], ['NH', 'Nuevo Hampshire'], ['NJ', 'Nueva Jersey'], ['NM', 'Nuevo México'], ['NY', 'Nueva York'], ['NC', 'Carolina del Norte'], ['ND', 'Dakota del Norte'], ['OH', 'Ohio'], ['OK', 'Oklahoma'], ['OR', 'Oregón'], ['PA', 'Pensilvania'], ['RI', 'Rhode Island'], ['SC', 'Carolina del Sur'], ['SD', 'Dakota del Sur'], ['TN', 'Tennessee'], ['TX', 'Texas'], ['UT', 'Utah'], ['VT', 'Vermont'], ['VA', 'Virginia'], ['WA', 'Washington'], ['WV', 'Virginia Occidental'], ['WI', 'Wisconsin'], ['WY', 'Wyoming'], ['DC', 'Distrito de Columbia'], ['PR', 'Puerto Rico']
       ];
 
-      function detectCreditBureau(source) {
-        if (window.ThemoraLector) {
-          const detected = window.ThemoraLector.detectarBuro([{ numero: 1, lineas: String(source || '').split('\n').map(texto => ({ texto })) }]);
-          return detected.buro === 'desconocido' ? 'unknown' : detected.buro;
-        }
-        // Respaldo de la Fase 0, por si lector-credito.js no cargó.
-        const header = normalize(source).slice(0, 6000);
-        const definitions = [
-          { key: 'equifax', token: /\bequifax\b/g, strong: [/\bequifax (?:credit )?report\b/, /\b(?:report (?:provided|prepared|issued) by|provided by) equifax\b/, /\bequifax information services\b/] },
-          { key: 'experian', token: /\bexperian\b/g, strong: [/\bexperian (?:credit )?report\b/, /\b(?:report (?:provided|prepared|issued) by|provided by) experian\b/, /\bexperian national consumer assistance center\b/] },
-          { key: 'transunion', token: /\b(?:transunion|trans union)\b/g, strong: [/\b(?:transunion|trans union) (?:credit )?report\b/, /\b(?:report (?:provided|prepared|issued) by|provided by) (?:transunion|trans union)\b/, /\btransunion consumer solutions\b/] }
-        ];
-        const scored = definitions.map(definition => {
-          const tokenMatch = definition.token.exec(header);
-          const first = tokenMatch ? tokenMatch.index : -1;
-          let score = first < 0 ? 0 : first < 600 ? 40 : first < 2500 ? 20 : 5;
-          definition.strong.forEach(pattern => { if (pattern.test(header)) score += 100; });
-          return { key: definition.key, score, first };
-        }).sort((a, b) => b.score - a.score || (a.first < 0 ? 99999 : a.first) - (b.first < 0 ? 99999 : b.first));
-        if (!scored[0] || scored[0].score === 0) return 'unknown';
-        if (scored[1] && scored[0].score === scored[1].score) return 'unknown';
-        return scored[0].key;
-      }
 
       function stateOptionsHtml() {
         return US_STATES.map(state => '<option value="' + state[0] + '">' + escapeHtml(state[1]) + '</option>').join('');
@@ -3417,134 +2584,13 @@
         return '<fieldset class="cr-detected-data"><legend>Datos personales detectados</legend><span class="cr-detected-help">Marca únicamente los datos que son incorrectos o que nunca te pertenecieron.</span>' + body + '</fieldset>';
       }
 
-      function extractPersonalInformation(source) {
-        const documentText = normalizeMultiline(source);
-        const startPattern = /\b(?:personal information|personal identification information|consumer information|consumer identification|information about you|your personal information|informacion personal|informacion del consumidor|datos personales|identificacion del consumidor|perfil personal)\b/g;
-        // Reports often repeat this heading as a plain-language explainer ("This section includes
-        // your name...") before the real data block. Prefer the occurrence actually followed by a
-        // data marker (a masked SSN or a real date of birth) so we scope to the real section instead
-        // of the explanatory one.
-        const dataMarkerPattern = /(?:x{3}[-\s]?x{2}[-\s]?\d{2,4}|\*{3}[-\s]?\*{2}[-\s]?\d{2,4}|date of birth:?\s*\d{1,2}\/\d{1,2}\/\d{2,4}|fecha de nacimiento:?\s*\d{1,2}\/\d{1,2}\/\d{2,4})/i;
-        const startCandidates = [...documentText.matchAll(startPattern)];
-        const startMatch = startCandidates.find(candidate => dataMarkerPattern.test(documentText.slice(candidate.index, candidate.index + 700))) || startCandidates[0] || null;
-        const start = startMatch ? startMatch.index : 0;
-        const available = documentText.slice(start);
-        const boundaryPattern = /\b(?:credit summary|account summary|accounts summary|credit accounts|account information|credit items|tradelines?|payment history|creditor contacts?|collections?|public records?|hard inquiries|soft inquiries|credit inquiries|consultas de credito|resumen de credito|resumen de cuentas|informacion de cuentas|historial de pagos|cuentas de credito|registros publicos)\b/g;
-        let end = -1;
-        let boundary;
-        while ((boundary = boundaryPattern.exec(available))) {
-          if (boundary.index >= 60) { end = boundary.index; break; }
-        }
-        const maximum = startMatch ? 7000 : 3500;
-        const scoped = available.slice(0, end >= 0 ? Math.min(end, maximum) : maximum).trim();
-        return { text: scoped, hasHeading: Boolean(startMatch) };
-      }
-
-      function extractReportedNames(personalText) {
-        const names = new Set();
-        const rejected = /\b(?:address|direccion|phone|telefono|employer|empleador|social security|seguro social|date of birth|fecha de nacimiento|report|reporte|creditor|acreedor|bank|banco|account|cuenta)\b/;
-        const addCandidate = value => {
-          String(value || '').split(/\s*(?:;|\||\/)\s*|\s+\b(?:and|y)\b\s+/).forEach(part => {
-            const cleaned = part.replace(/^[\s:,-]+|[\s:,-]+$/g, '').replace(/\s+/g, ' ');
-            const words = cleaned.split(' ').filter(Boolean);
-            if (cleaned.length >= 5 && cleaned.length <= 70 && words.length >= 2 && words.length <= 7 && !/\d/.test(cleaned) && !rejected.test(cleaned) && /^[a-z .,'-]+$/.test(cleaned)) names.add(cleaned);
-          });
-        };
-        const lines = personalText.split('\n').map(line => line.trim()).filter(Boolean);
-        const heading = /^(?:names? reported|reported names?|other names?|previous names?|former names?|also known as|aka|nombres? reportados?|otros nombres?|nombres? anteriores?|tambien conocido como)\s*[:#-]?$/;
-        const stopHeading = /^(?:addresses?|direcciones?|phones?|telephone numbers?|telefonos?|employers?|empleadores?|social security|seguro social|date of birth|fecha de nacimiento)\b/;
-        const introPhrase = /creditors use your personal information|this section includes|your credit report provides|esta secci[oó]n incluye/i;
-        lines.forEach((line, index) => {
-          if (heading.test(line)) {
-            for (let offset = 1; offset <= 8 && index + offset < lines.length; offset++) {
-              if (stopHeading.test(lines[index + offset])) break;
-              addCandidate(lines[index + offset]);
-            }
-          }
-          const labeled = line.match(/^(?:consumer name|full name|legal name|current name|name|nombre del consumidor|nombre completo|nombre legal|nombre actual|nombre)\s*[:#-]\s*(.+)$/i);
-          if (labeled) addCandidate(labeled[1]);
-          const alias = line.match(/^(?:names? reported|reported names?|other names?|previous names?|former names?|also known as|aka|nombres? reportados?|otros nombres?|nombres? anteriores?|tambien conocido como)\s*[:#-]\s*(.+)$/i);
-          if (alias) addCandidate(alias[1]);
-          // En reportes reales como Equifax, el nombre del consumidor aparece como una línea propia dentro de Personal Information sin etiqueta "Name:"
-          if (!introPhrase.test(line) && !line.includes(':') && !stopHeading.test(line)) {
-            addCandidate(line);
-          }
-        });
-        return names;
-      }
-
-      // En muchos reportes oficiales (Equifax, Experian), el encabezado de página repite
-      // "Prepared for: <nombre>" en cada hoja; sirve como respaldo directo y confiable.
-      function extractPreparedForName(source) {
-        const documentText = normalizeMultiline(source);
-        const match = documentText.match(/prepared for:?\s*(?:\n\s*)?([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*){1,4})/i)
-          || documentText.match(/preparado para:?\s*(?:\n\s*)?([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*){1,4})/i);
-        if (!match) return null;
-        const cleaned = match[1].trim();
-        return cleaned.length >= 3 && cleaned.length <= 60 && !/\d/.test(cleaned) ? cleaned : null;
-      }
 
 
 
-      // Real official credit-report exports always bundle plain-language explainer copy (what a
-      // section means) and a federally mandated "Summary of Your Rights" appendix. Both are full of
-      // words like "bankruptcy", "charge off" or "identity theft" used in a purely educational sense,
-      // never as an actual finding about this consumer — left alone they cause false positives. This
-      // strips that noise, plus the fixed payment-history legend (the code key explaining what
-      // "CO", "F", "R", etc. mean) and field LABELS that appear on every account whether or not they
-      // have a value (e.g. "Charge Off Amount:" printed even when blank). Numeric extraction (which
-      // requires an actual amount to follow) already ignores blank labels correctly and is
-      // deliberately run against the un-stripped text, before this function is applied.
-      function stripReportNoise(value) {
-        let cleaned = value;
-        cleaned = cleaned.split(/a summary of your rights under the fair credit reporting act/i)[0];
-        cleaned = cleaned.split(/resumen de sus derechos conforme a la ley/i)[0];
-        const noisePhrases = [
-          /\(collections and bankruptcy public records\)/gi,
-          /open,\s*closed,\s*paid on time,\s*or past due/gi,
-          /unfamiliar inquiries may be a sign of identity theft/gi,
-          /\bpaid on time\b/gi,
-          /\b(30|60|90|120|150|180)\s+\1\s*days?\s*past\s*due\b/gi,
-          /\bv\s+voluntary surrender\b/gi,
-          /\bf\s+foreclosure\b/gi,
-          /\bco\s+charge\s*[- ]?off\b/gi,
-          /\bb\s+included in bankruptcy\b/gi,
-          /\br\s+repossession\b/gi,
-          /\btn\s+too new to rate\b/gi,
-          /\bc\s+collection account\b/gi,
-          /\bno data available\b/gi,
-          /\bcharge off amount\b/gi,
-          /\bamount past due\b/gi,
-          /\bpast due amount\b/gi
-        ];
-        noisePhrases.forEach(pattern => { cleaned = cleaned.replace(pattern, ' '); });
-        return cleaned;
-      }
 
-      // Summarizes the accounts/tradelines the document actually lists, using the
-      // "Loan/Account Type: X | Status: Y" field pair that appears once per account in these
-      // exports, so the analyzer can show a plain "here's what we found" summary instead of only
-      // flagged problems.
-      function extractAccountsSummary(text) {
-        const pattern = /(?:loan\/)?account type:\s*([a-z][a-z /]{2,30}?)\s*\|\s*status:\s*([a-z][a-z .,]{2,40}?)(?=\s*date opened|\s*payment history|\s*narrative|\s*(?:loan\/)?account type:|\s*$)/gi;
-        const accounts = [...text.matchAll(pattern)].map(match => ({ type: match[1].trim(), status: match[2].trim() }));
-        const byType = new Map();
-        accounts.forEach(account => {
-          const label = identityDisplayValue('Tipo de cuenta', account.type);
-          byType.set(label, (byType.get(label) || 0) + 1);
-        });
-        const cardCount = accounts.filter(account => /credit card|tarjeta/.test(account.type)).length;
-        return { count: accounts.length, byType: [...byType.entries()].map(([type, count]) => ({ type, count })), cardCount };
-      }
 
-      // Counts inquiry rows by type ("Hard"/"Soft" immediately followed by a date), which is how
-      // these exports list each inquiry — more reliable than looking for a stated total.
-      function extractInquiriesSummary(text) {
-        const rows = [...text.matchAll(/\b(hard|soft|dura|blanda)\s+\d{1,2}\/\d{1,2}\/\d{2,4}/gi)];
-        const hard = rows.filter(match => /^(?:hard|dura)$/i.test(match[1])).length;
-        const soft = rows.filter(match => /^(?:soft|blanda)$/i.test(match[1])).length;
-        return { hard, soft, total: rows.length };
-      }
+
+
 
       function showError(message) {
         progress.hidden = true;
@@ -3624,130 +2670,7 @@
         return { text: parts.join('\n\n'), detail: workbook.SheetNames.length + ' hoja' + (workbook.SheetNames.length === 1 ? '' : 's') + ' de cálculo', paginas, paginasTotales: paginas.length };
       }
 
-      function evaluateDocument(source, detail) {
-        const text = normalize(source);
-        const negatives = [];
-        const positives = [];
-        const bureauKey = detectCreditBureau(source);
-        const addNegative = (priority, title, description, action, evidence, solutionType = null, detectedValues = [], issueKey = null, issueArg = '') => negatives.push({ priority, title, description, action, evidence, solutionType, detectedValues, issueKey, issueArg });
-        const addPositive = (title, description, evidence) => positives.push({ title, description, evidence });
 
-        const score = firstNumber(text, [/(?:fico|vantagescore|credit score|puntaje(?: de credito)?|score)[^0-9]{0,28}([3-8][0-9]{2})/i, /([3-8][0-9]{2})[^a-z0-9]{0,14}(?:fico|vantagescore|credit score)/i]);
-        const utilization = firstNumber(text, [/(?:credit utilization|revolving utilization|utilization rate|uso del credito|utilizacion)[^0-9]{0,24}([0-9]{1,3})\s*%/i, /([0-9]{1,3})\s*%[^a-z0-9]{0,20}(?:utilization|utilizacion|uso del credito)/i]);
-        const inquiries = firstNumber(text, [/(?:hard inquiries|hard inquiry|consultas duras|consultas recientes)[^0-9]{0,18}([0-9]{1,2})/i]);
-        const pastDueAmount = firstNumber(text, [/(?:past due amount|amount past due|saldo vencido|monto vencido)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
-        const chargeOffAmount = firstNumber(text, [/(?:charge off amount|charge-off amount|monto castigado)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
-        const totalDebt = firstNumber(text, [/(?:total debt|total balance|deuda total|saldo total)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
-        const income = firstNumber(text, [/(?:monthly income|ingreso mensual|gross income|ingreso bruto)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
-        const monthlyDebt = firstNumber(text, [/(?:monthly debt|debt payment|pago mensual de deuda|pagos mensuales)[^0-9]{0,16}\$?([0-9,]+(?:\.[0-9]{1,2})?)/i]);
-        const dti = income && monthlyDebt ? Math.round(monthlyDebt / income * 100) : firstNumber(text, [/(?:debt.to.income|dti|relacion deuda.ingreso)[^0-9]{0,16}([0-9]{1,3})\s*%/i]);
-
-        // Boolean "has this negative signal" checks run against scanText, not the raw text: real
-        // official credit-report exports always include a payment-history legend, per-account field
-        // labels (printed even when blank), plain-language explainer copy and the federally mandated
-        // "Summary of Your Rights" appendix — all of which reuse the same words ("charge off",
-        // "bankruptcy", "fraud alert") without describing an actual finding about this consumer.
-        // stripReportNoise removes that noise so these checks only match genuine reported data.
-        const scanText = stripReportNoise(text);
-        const late30 = count(scanText, /\b(?:30|60|90|120)\s*(?:days?|dias?)\s*(?:late|past due|delinquent|atrasad[oa]s?)\b/g) + count(scanText, /\b(?:late|delinquent|atrasad[oa]s?)\s*(?:30|60|90|120)\s*(?:days?|dias?)\b/g);
-        const hasPastDue = /(?:\bcurrently past due\b|\bstatus:?\s*past due\b|\bpast due status\b|currently delinquent|saldo vencido|monto vencido|cuenta vencida)/.test(scanText);
-        const hasCollection = /(?:collection account|account in collection|placed for collection|cuenta en cobranza|agencia de cobro|debt collection)/.test(scanText);
-        const hasChargeOff = /(?:charge[ -]?off|charged off|cuenta castigada|deuda castigada)/.test(scanText);
-        const hasBankruptcy = /(?:bankruptcy|chapter 7|chapter 13|bancarrota|quiebra)/.test(scanText);
-        const hasForeclosure = /(?:foreclosure|ejecucion hipotecaria)/.test(scanText);
-        const hasRepossession = /(?:repossession|repossessed|reposesion|vehiculo recuperado)/.test(scanText);
-        const hasFraud = /(?:fraud alert|identity theft|alerta de fraude|robo de identidad)/.test(scanText);
-        const hasCurrent = /(?:paid as agreed|pays? as agreed|current account|account current|cuenta al dia|al corriente|nunca atrasad)/.test(scanText);
-        const hasNoCollections = /(?:no collections|no collection accounts|sin cobranzas|cero cobranzas)/.test(scanText);
-        const hasNoLate = /(?:no late payments|never late|sin pagos atrasados|cero pagos atrasados)/.test(scanText);
-        const hasPaid = /(?:paid in full|balance paid|pagado en su totalidad|saldo pagado)/.test(scanText);
-
-        const personalInformation = extractPersonalInformation(source);
-        const personalText = personalInformation.text.replace(/\n/g, ' ');
-        const reportedNames = extractReportedNames(personalInformation.text);
-        const phoneMatches = [...personalText.matchAll(/\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}\b/g)];
-        const phoneNumbers = new Set(phoneMatches.map(match => match[0].replace(/[^\d]/g, '')));
-        const addressMatches = [...personalText.matchAll(/\b\d{1,6}\s+(?!\d+\b)[a-z0-9#.,'-]+(?:\s+(?!\d+\b)[a-z0-9#.,'-]+){0,6}\s+(?:st|street|ave|avenue|dr|drive|rd|road|blvd|boulevard|ln|lane|ct|court|way|pl|place|cir|circle|ter|terrace|pkwy|parkway|hwy|highway|calle|avenida)\b\.?(?:\s+(?:n|s|e|w|ne|nw|se|sw)\b\.?)?(?:\s+(?:apt|apartment|unit|suite|ste|#)\.?\s*[a-z0-9-]+)?(?:,?\s*[a-z][a-z .'-]{1,28}?,\s*[a-z]{2}\s*\d{5}(?:-\d{4})?)?/g)];
-        const addresses = new Set(addressMatches.map(match => match[0].replace(/\s+/g, ' ').trim()));
-        const hasPersonalInfoSection = personalInformation.hasHeading;
-        const detectedNames = [...reportedNames].map(value => ({ type: 'Nombre o alias', value: identityDisplayValue('Nombre', value) }));
-        const detectedPhones = [...phoneNumbers].map(value => ({ type: 'Teléfono', value: identityDisplayValue('Teléfono', value) }));
-        const detectedAddresses = [...addresses].map(value => ({ type: 'Dirección', value: identityDisplayValue('Dirección', value) }));
-        const allDetectedIdentity = [...detectedNames, ...detectedPhones, ...detectedAddresses];
-        /* Qué tarjetas de identidad se ofrecen lo decide cartas-bilingues.js (mismos umbrales de siempre); si ese
-           módulo no cargó, se aplican los mismos umbrales aquí. Todas las tarjetas reciben la lista completa. */
-        const identityCounts = { nombres: reportedNames.size, direcciones: addresses.size, telefonos: phoneNumbers.size };
-        const identityCards = window.ThemoraCartas && window.ThemoraCartas.tiposDeTarjeta
-          ? window.ThemoraCartas.tiposDeTarjeta(identityCounts)
-          : [identityCounts.nombres >= 2 && 'identity-names', identityCounts.telefonos >= 2 && 'identity-phones', identityCounts.direcciones >= 2 && 'identity-addresses', identityCounts.nombres >= 2 && identityCounts.telefonos >= 2 && identityCounts.direcciones >= 2 && 'identity-mixed'].filter(Boolean);
-        const primaryName = (reportedNames.size ? [...reportedNames][0] : null) || extractPreparedForName(source);
-        const primaryPhone = phoneNumbers.size ? identityDisplayValue('Teléfono', [...phoneNumbers][0]) : null;
-        const primaryAddress = addresses.size ? [...addresses][0] : null;
-        const accountsSummary = extractAccountsSummary(text);
-        const inquiriesSummary = extractInquiriesSummary(text);
-
-        if (hasBankruptcy) addNegative('Crítica', 'Bancarrota reportada', 'El documento contiene una referencia a bancarrota o a un capítulo judicial.', 'Verifica tribunal, tipo de caso, estado y fechas. Disputa solo datos inexactos y consulta a un profesional autorizado para decisiones legales.', 'Registro público', 'bureau-dispute', [], 'bankruptcy');
-        if (hasForeclosure) addNegative('Crítica', 'Ejecución hipotecaria detectada', 'Aparece una referencia a foreclosure o ejecución hipotecaria.', 'Comprueba propiedad, préstamo, estado y fechas. Reúne documentos antes de contactar al acreedor o presentar una disputa.', 'Vivienda', 'bureau-dispute', [], 'foreclosure');
-        if (hasRepossession) addNegative('Crítica', 'Reposesión detectada', 'El documento parece incluir una recuperación de vehículo u otro bien.', 'Verifica saldo, fechas y venta del bien. Solicita un desglose escrito de cualquier saldo restante.', 'Cuenta garantizada', 'bureau-dispute', [], 'repossession');
-        if (hasChargeOff || (chargeOffAmount !== null && chargeOffAmount > 0)) addNegative('Alta', 'Cuenta castigada o charge-off', 'El acreedor parece haber marcado una cuenta como pérdida contable.', 'Confirma acreedor, saldo y fecha de primera morosidad. Disputa errores; si es correcta, negocia únicamente con términos escritos.', 'Cuenta negativa', 'bureau-dispute', [], 'charge-off');
-        if (hasCollection && !hasNoCollections) addNegative('Alta', 'Cuenta en cobranza', 'El documento contiene señales de una cuenta enviada o vendida a cobros.', 'La ley federal (FDCPA §1692g) permite pedirle por escrito al cobrador que valide la deuda: que muestre que es tuya y que el monto es correcto. Ese derecho tiene plazo: 30 días desde que recibes su aviso de validación. Mientras lo valida, el cobrador debe pausar el cobro.', 'Cobranza', 'debt-validation', [], 'collection');
-        if (late30 > 0 || hasPastDue) addNegative('Alta', 'Pagos atrasados o saldo vencido', 'Se encontraron referencias a morosidad que pueden afectar considerablemente el historial de pagos.', 'Compara cuenta, mes, categoría del atraso y monto con tus estados. Corrige errores o lleva la cuenta al día cuanto antes.', 'Historial de pagos', 'bureau-dispute', [], 'late-payments');
-        if (pastDueAmount !== null && pastDueAmount > 0) addNegative('Alta', 'Monto vencido visible: ' + money(pastDueAmount), 'El documento muestra un saldo identificado como vencido.', 'Confirma que el monto sea actual y solicita por escrito las opciones para poner la cuenta al día.', 'Saldo vencido', 'bureau-dispute', [], 'past-due-amount', money(pastDueAmount));
-        if (utilization !== null && utilization >= 50) addNegative('Alta', 'Utilización elevada: ' + utilization + '%', 'Usar la mitad o más del crédito disponible puede presionar el puntaje aunque los pagos estén al día.', 'Prioriza la tarjeta con mayor porcentaje; paga antes del cierre y baja primero de 50%, después de 30% y finalmente de 10%.', 'Uso del crédito');
-        else if (utilization !== null && utilization >= 30) addNegative('Media', 'Utilización por encima de 30%: ' + utilization + '%', 'Existe margen para mejorar el perfil reduciendo los saldos reportados.', 'Haz pagos antes de la fecha de cierre y evita concentrar la deuda en una sola tarjeta.', 'Uso del crédito');
-        if (dti !== null && dti > 43) addNegative('Media', 'Relación deuda/ingreso elevada: ' + dti + '%', 'Una carga mensual alta puede dificultar nuevas aprobaciones incluso con buen puntaje.', 'Reduce pagos mensuales o aumenta ingresos documentables antes de solicitar una obligación grande.', 'Capacidad de pago');
-        if (hasFraud) addNegative('Alta', 'Alerta de fraude o identidad', 'El documento menciona una alerta de fraude o posible robo de identidad.', 'Revisa cuentas y consultas desconocidas; contacta a los burós y acreedores mediante sus canales oficiales.', 'Seguridad');
-        /* Variaciones de identidad: se muestran "Para verificar", nunca como prioridad alta por su número.
-           Los burós explican que son normales (inicial del segundo nombre, errores de tipeo, dirección de
-           un familiar o del trabajo); solo importa lo que la persona no reconozca. */
-        const IDENTITY_NORMAL = 'Tener varias variantes suele ser normal: los acreedores reportan lo que pusiste en cada solicitud (con o sin inicial, con errores de tipeo, direcciones de trabajo o de un familiar).';
-        if (identityCards.includes('identity-names')) addNegative('Para verificar', 'Varios nombres o alias: ' + reportedNames.size, 'El bloque de información personal incluye más de un nombre. ' + IDENTITY_NORMAL, 'Compara cada nombre con tu identificación oficial. Si alguno nunca lo has usado, puedes pedirle al buró que lo corrija.', 'Identidad', 'identity-names', allDetectedIdentity);
-        if (identityCards.includes('identity-phones')) addNegative('Para verificar', 'Varios números de teléfono: ' + phoneNumbers.size, 'El bloque de información personal contiene más de un teléfono (los de bancos y cobradores quedan excluidos). ' + IDENTITY_NORMAL, 'Revisa cuál es el actual. Si alguno no lo reconoces, puedes pedir su corrección.', 'Identidad', 'identity-phones', allDetectedIdentity);
-        if (identityCards.includes('identity-addresses')) addNegative('Para verificar', 'Varias direcciones registradas: ' + addresses.size, 'El bloque de información personal muestra más de una dirección (las de bancos y acreedores quedan excluidas). ' + IDENTITY_NORMAL, 'Revisa cuál es la actual y cuáles anteriores son tuyas. Si alguna nunca la usaste, puedes pedir su corrección.', 'Identidad', 'identity-addresses', allDetectedIdentity);
-        if (identityCards.includes('identity-mixed')) addNegative('Para verificar', 'Varios nombres, teléfonos y direcciones a la vez', 'La información personal combina varias variantes de los tres tipos. ' + IDENTITY_NORMAL + ' Aun así, vale la pena revisarla con calma.', 'Compara estos datos con tu identificación y con los otros dos burós. Marca solo lo que no te pertenezca.', 'Identidad', 'identity-mixed', allDetectedIdentity);
-        if (score !== null && score < 580) addNegative('Alta', 'Puntaje bajo: ' + score, 'El puntaje aparece en un rango que suele limitar opciones y elevar costos.', 'Trabaja primero pagos vencidos y utilización; evita abrir cuentas nuevas mientras estabilizas el perfil.', 'Puntaje');
-        else if (score !== null && score < 670) addNegative('Media', 'Puntaje regular: ' + score, 'El puntaje está cerca del rango bueno, pero todavía puede limitar algunas ofertas.', 'Protege los pagos puntuales y reduce saldos; mide el progreso mensualmente, no diariamente.', 'Puntaje');
-
-        if (hasCurrent) addPositive('Cuentas reportadas al día', 'El documento contiene referencias a cuentas corrientes o pagadas según lo acordado.', 'Historial de pagos');
-        if (hasNoLate) addPositive('Sin pagos atrasados visibles', 'Se encontró una indicación explícita de ausencia de atrasos.', 'Historial de pagos');
-        if (hasNoCollections) addPositive('Sin cobranzas visibles', 'El documento indica que no aparecen cuentas en cobranza.', 'Cuentas negativas');
-        if (hasPaid) addPositive('Obligaciones pagadas', 'Aparecen cuentas o saldos identificados como pagados por completo.', 'Reducción de deuda');
-        if (utilization !== null && utilization < 30) addPositive('Utilización controlada: ' + utilization + '%', 'El porcentaje detectado está por debajo de 30%, una señal favorable para el uso del crédito.', 'Uso del crédito');
-        if (score !== null && score >= 670) addPositive('Puntaje en rango bueno o mejor: ' + score, 'El puntaje detectado se encuentra en un rango generalmente considerado bueno o superior.', 'Puntaje');
-        if (inquiries !== null && inquiries <= 2) addPositive('Pocas consultas recientes: ' + inquiries, 'Un número bajo de consultas reduce la presión del crédito nuevo.', 'Crédito nuevo');
-        if (dti !== null && dti <= 36) addPositive('Relación deuda/ingreso manejable: ' + dti + '%', 'La carga mensual estimada se encuentra en un rango generalmente más cómodo.', 'Capacidad de pago');
-        if (hasPersonalInfoSection && reportedNames.size <= 1 && phoneNumbers.size <= 1 && addresses.size <= 1) addPositive('Información personal consistente', 'El bloque personal inicial no muestra variaciones múltiples evidentes de nombre, teléfono o dirección.', 'Identidad');
-
-        if (!positives.length && !negatives.length) addPositive('Sin alertas evidentes en el texto', 'No se detectaron palabras o cifras que indiquen problemas graves en el contenido extraído.', 'Revisión inicial');
-        if (!negatives.length) addPositive('No se detectaron señales negativas principales', 'No aparecen referencias claras a atrasos, cobranzas, charge-offs, bancarrota o utilización elevada.', 'Resumen');
-
-        const priorityOrder = { Crítica: 0, Alta: 1, Media: 2, Baja: 3, 'Para verificar': 4 };
-        negatives.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-        const strategies = [];
-        negatives.forEach(item => strategies.push({ title: item.title, description: item.action, solutionType: item.solutionType, detectedValues: item.detectedValues, issueKey: item.issueKey, issueArg: item.issueArg }));
-        /* Varias consultas duras no son un punto negativo por sí solas: al comparar tasas de auto o de
-           hipoteca, los modelos de puntaje pueden contar las del mismo tipo en poco tiempo como una sola.
-           Solo se ofrece revisar las que la persona no reconozca. */
-        if (inquiries !== null && inquiries >= 5) strategies.push({ title: 'Revisar tus consultas duras (' + inquiries + ')', description: 'Si comparaste tasas de auto o de hipoteca, los modelos de puntaje pueden contar como una sola las consultas del mismo tipo hechas en poco tiempo. Confirma cada empresa y fecha; si alguna no la autorizaste, puedes disputarla con el buró.', solutionType: 'bureau-dispute', detectedValues: [], issueKey: 'inquiries', issueArg: String(inquiries) });
-        if (strategies.length < 4) strategies.push({ title: 'Proteger lo positivo', description: 'Mantén pagos automáticos, saldos bajos y evita cerrar cuentas antiguas sin evaluar el impacto.' });
-        if (strategies.length < 4) strategies.push({ title: 'Comparar los tres burós', description: 'Revisa Equifax, Experian y TransUnion: una cuenta o error puede aparecer solo en uno de ellos.' });
-        if (strategies.length < 4) strategies.push({ title: 'Documentar cada gestión', description: 'Guarda reportes, cartas, comprobantes, capturas y números de caso. Disputa únicamente información incorrecta o que no te pertenezca.' });
-
-        const critical = negatives.filter(item => item.priority === 'Crítica' || item.priority === 'Alta').length;
-        const health = critical ? 'Atención prioritaria' : negatives.length ? 'Hay margen de mejora' : 'Perfil sin alertas obvias';
-        const tone = critical ? 'critical' : negatives.length ? 'attention' : 'stable';
-        const conclusion = critical
-          ? 'Se identificaron ' + critical + ' punto' + (critical === 1 ? '' : 's') + ' de prioridad alta. Resuelve primero los registros que afectan pagos, cobranzas o cuentas negativas y verifica cada dato antes de pagar o disputar.'
-          : negatives.length
-            ? 'El documento muestra aspectos favorables, pero también ' + negatives.length + ' oportunidad' + (negatives.length === 1 ? '' : 'es') + ' de mejora. Sigue el plan en orden para fortalecer el perfil sin perder lo que ya funciona.'
-            : 'No aparecen problemas principales en el contenido extraído. Conserva los hábitos positivos y confirma visualmente que las tres agencias reporten información correcta.';
-
-        return { score, utilization, inquiries, totalDebt, dti, negatives, positives, strategies, health, tone, conclusion, detail, bureauKey, primaryName, primaryPhone, primaryAddress, accountsSummary, inquiriesSummary };
-      }
-
-      function renderFinding(item, negative) {
-        return '<div class="cr-finding"><div class="cr-finding-title"><span class="cr-finding-dot"></span><div><strong>' + escapeHtml(item.title) + '</strong></div></div><p>' + escapeHtml(item.description) + '</p><span class="cr-evidence">' + escapeHtml(negative ? item.priority + '. ' + item.evidence : item.evidence) + '</span></div>';
-      }
 
       const SOLUTION_LABELS = {
         'identity-names': 'Solucionar este problema', 'identity-phones': 'Solucionar este problema',
@@ -3828,19 +2751,6 @@
           letterResultHtml('Borrador de validación');
       }
 
-      function renderStrategy(item, index, bureauKey) {
-        const formId = 'crIdentitySolution' + index;
-        let inner = '';
-        if (item.solutionType && item.solutionType.indexOf('identity-') === 0) inner = renderIdentityForm(item, formId, bureauKey);
-        else if (item.solutionType === 'bureau-dispute') inner = renderBureauDisputeForm(item, formId, bureauKey);
-        else if (item.solutionType === 'debt-validation') inner = renderDebtValidationForm(item, formId);
-        const label = SOLUTION_LABELS[item.solutionType] || 'Solucionar este problema';
-        const solution = item.solutionType
-          ? '<button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="' + formId + '" data-open-label="Ocultar formulario" data-closed-label="' + escapeHtml(label) + '">' + escapeHtml(label) + '</button>' +
-          '<form class="cr-solution-form" id="' + formId + '" data-solution-type="' + escapeHtml(item.solutionType) + '" data-issue-title="' + escapeHtml(item.title) + '" data-issue-key="' + escapeHtml(item.issueKey || '') + '" data-issue-arg="' + escapeHtml(item.issueArg || '') + '" hidden>' + inner + '</form>'
-          : '';
-        return '<li><span class="cr-step-number">' + (index + 1) + '</span><div><strong>' + escapeHtml(item.title) + '</strong><p>' + escapeHtml(item.description) + '</p>' + solution + '</div></li>';
-      }
 
       /* 014-resumen:inicio */
       /* Resumen del consumidor (spec 014, contracts/ui-resumen.md): pinta lo que decide
@@ -3961,14 +2871,14 @@
           '<form class="cr-solution-form" id="' + formId + '" data-solution-type="' + p.carta + '" data-issue-title="' + escapeHtml(p.frase) + '" data-issue-key="' +
           (CLAVE_HALLAZGO[p.hallazgos[0].regla] || '') + '" data-issue-arg="" hidden>' + inner + '</form>';
       }
-      function renderAnalisis(p, armarFormulario) {
+      function renderAnalisis(p, armarFormulario, sinCarta) {
         const hallazgos = p.hallazgos.map(h => '<div class="cr-hallazgo">' +
           '<h5>Qué vimos</h5><p>' + escapeHtml(h.queVimos) + '</p>' +
           (h.queSignifica ? '<h5>Qué significa para ti</h5><p>' + escapeHtml(h.queSignifica) + '</p>' : '') +
           (h.queDiceLaLey.length ? '<h5>Qué dice la ley</h5><ul>' + h.queDiceLaLey.map(c => '<li><strong>' + escapeHtml(c.ley + ' ' + c.seccion) + '</strong> ' + escapeHtml(c.texto) + '</li>').join('') + '</ul>' : '') +
           (h.opciones.length ? '<h5>Qué puedes hacer</h5><ol>' + h.opciones.map(o => '<li>' + escapeHtml(o) + '</li>').join('') + '</ol>' : '') +
           (h.noCubierto ? '<p class="cr-analisis-nota">' + escapeHtml(h.noCubierto) + '</p>' : '') + '</div>').join('');
-        return '<h4 tabindex="-1">' + escapeHtml(p.acreedor) + ' — ' + escapeHtml(p.gravedadTexto) + '</h4>' + hallazgos + cartaDeProblema(p, armarFormulario);
+        return '<h4 tabindex="-1">' + escapeHtml(p.acreedor) + ' — ' + escapeHtml(p.gravedadTexto) + '</h4>' + hallazgos + (sinCarta ? '' : cartaDeProblema(p, armarFormulario));
       }
       function abrirAnalisis(id, armarFormulario) {
         const p = problemasActuales.find(x => x.id === id);
@@ -3977,7 +2887,19 @@
         $('crAnalisis').hidden = false;
         return p;
       }
+      /* Impresión (014 T040): todos los análisis, uno por problema, en un contenedor que solo se ve al imprimir. */
+      function prepararImpresion() {
+        $('crAnalisisImpresion').innerHTML = problemasActuales.map(p =>
+          '<section class="cr-analisis-impreso">' + renderAnalisis(p, null, true).replace(' tabindex="-1"', '') + '</section>').join('');
+      }
       /* 014-resumen:fin */
+
+      /* «¿No reconoces alguno de estos datos?» abre las cartas de corrección de identidad (014 T037). */
+      if ($('crIdentidadEnlace')) $('crIdentidadEnlace').addEventListener('click', () => {
+        const abrir = $('crIdentidadZona').hidden;
+        $('crIdentidadZona').hidden = !abrir;
+        $('crIdentidadEnlace').setAttribute('aria-expanded', String(abrir));
+      });
 
       /* Círculos (014 US3): un solo panel de análisis. Tocar el mismo círculo lo cierra. La carta reutiliza
          los formularios de siempre, precargados con lo que dice el reporte (el número ya viene enmascarado). */
@@ -4024,276 +2946,53 @@
         }
       });
 
-      function render(data, reporte, extracted) {
-        window.__ccLastAnalysis = data;
-        const analisis = reporte && window.ThemoraAnalista ? window.ThemoraAnalista.analizar(reporte) : null;
+      function render(reporte) {
+        const analisis = window.ThemoraAnalista.analizar(reporte);
+        window.__ccLastAnalysis = window.ThemoraAnalista.paraGuardar(analisis);
         renderResumen(analisis);
-        const detectedBureau = CREDIT_BUREAUS[data.bureauKey] || CREDIT_BUREAUS.unknown;
-        $('crConclusion').textContent = data.conclusion;
-        $('crHealth').className = 'cr-health ' + data.tone;
-        $('crHealthText').textContent = data.health;
-        $('crDocumentMeta').textContent = documentSentence(data, detectedBureau, reporte, extracted);
-        const kpis = [
-          ['Buró emisor', detectedBureau.name, data.bureauKey === 'unknown' ? 'Confírmalo en la portada' : 'Detectado en el encabezado'],
-          ['Puntaje encontrado', data.score === null ? 'No visible' : String(data.score), data.score === null ? 'Puede estar en una imagen' : 'Confirma modelo y buró'],
-          ['Utilización', data.utilization === null ? 'No visible' : data.utilization + '%', data.utilization === null ? 'Revisa saldos y límites' : 'Objetivo inicial: menos de 30%'],
-          ['Puntos negativos', String(data.negatives.length), data.negatives.length ? 'Ordenados por prioridad' : 'Ninguno principal detectado'],
-          ['Puntos positivos', String(data.positives.length), data.positives.length ? 'Fortalezas identificadas' : 'Requiere revisión manual']
-        ];
-        $('crKpis').innerHTML = kpis.map(item => '<span class="cr-kpi" title="' + escapeHtml(item[2]) + '"><span>' + escapeHtml(item[0]) + '</span> <strong>' + escapeHtml(item[1]) + '</strong></span>').join('');
-        $('crSummaryGrid').innerHTML = renderReportSummary(reporte, data, detectedBureau);
-        $('crNegativeCount').textContent = data.negatives.length + ' detectado' + (data.negatives.length === 1 ? '' : 's');
-        $('crPositiveCount').textContent = data.positives.length + ' detectado' + (data.positives.length === 1 ? '' : 's');
-        $('crNegativeList').innerHTML = data.negatives.length ? data.negatives.map(item => renderFinding(item, true)).join('') : '<p class="cr-empty">No se detectaron señales negativas principales en el texto extraído. Confirma visualmente cuentas, saldos y fechas.</p>';
-        $('crPositiveList').innerHTML = data.positives.length ? data.positives.map(item => renderFinding(item, false)).join('') : '<p class="cr-empty">No se encontraron suficientes señales positivas explícitas. Esto no significa que el documento sea negativo; revisa las cuentas manualmente.</p>';
-        $('crStrategyList').innerHTML = data.strategies.map((item, index) => renderStrategy(item, index, data.bureauKey)).join('');
-        renderCuentas(reporte);
+        renderIdentidad(reporte);
         results.hidden = false;
         setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
         return analisis;
       }
 
-      /* ---------------------------------------------------------------------------------------
-         «Tus cuentas, una por una» (spec 013, Fase 1; contracts/ui-cuentas.md). Solo muestra lo que
-         lector-credito.js leyó del reporte, con las fechas tal como están impresas; no juzga nada.
-         Todo texto que viene del reporte pasa por escapeHtml.
-         --------------------------------------------------------------------------------------- */
-      const MESES_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      const LC_TIPOS = { rotativa: 'Tarjeta o crédito rotativo', plazos: 'Préstamo a plazos', hipoteca: 'Hipoteca', auto: 'Préstamo de auto', estudiantil: 'Préstamo estudiantil', cobranza: 'Cobranza', abierta: 'Cuenta que se paga completa cada mes', deposito: 'Relacionada con una cuenta de depósito', otra: 'Otro tipo de cuenta' };
-      const LC_SECCIONES = { personal: 'datos personales', avisos: 'avisos del archivo', resumen: 'resumen', cuentas: 'cuentas', adversas: 'cuentas con información negativa', satisfactorias: 'cuentas al día', cobranzas: 'cobranzas', consultas: 'consultas', registros_publicos: 'registros públicos', desconocida: 'sin sección' };
-      const LC_CODIGOS = { al_dia: 'pagado a tiempo', atraso_30: '30 días de atraso', atraso_60: '60 días de atraso', atraso_90: '90 días de atraso', atraso_120: '120 días de atraso', atraso_150: '150 días de atraso', atraso_180: '180 días de atraso', cobranza: 'en cobranza', charge_off: 'charge-off', reposesion: 'reposesión', entrega_voluntaria: 'entrega voluntaria', ejecucion_hipotecaria: 'ejecución hipotecaria', ejecucion_iniciada: 'ejecución hipotecaria iniciada', bancarrota: 'incluida en una bancarrota', cerrada: 'cerrada', muy_nueva: 'muy nueva para calificar', sin_datos: 'sin datos', pagada_por_acreedor: 'pagada por el acreedor', reclamo_gobierno: 'reclamo del gobierno', reclamo_seguro: 'reclamo al seguro', incumplimiento: 'incumplimiento', desconocido: 'código que no reconocimos' };
-      const LC_SIGLA = { atraso_30: '30', atraso_60: '60', atraso_90: '90', atraso_120: '120', atraso_150: '150', atraso_180: '180', cobranza: 'C', charge_off: 'CO', reposesion: 'R', entrega_voluntaria: 'V', ejecucion_hipotecaria: 'F', ejecucion_iniciada: 'FS', bancarrota: 'B', incumplimiento: 'D' };
-      const LC_AVISOS = { alerta_fraude: 'Alerta de fraude', alerta_servicio_activo: 'Alerta de servicio militar activo', congelamiento: 'Congelamiento del archivo', bloqueo: 'Archivo bloqueado', exclusion_ofertas: 'Exclusión de ofertas preaprobadas', declaracion: 'Declaración del consumidor', otro: 'Aviso del archivo' };
-      const LC_CAMPOS = [
-        [['saldo', 'saldo'], ['limite', 'límite'], ['montoOriginal', 'monto original'], ['saldoMasAlto', 'saldo más alto'], ['limiteOMontoOriginal', 'límite o monto original'], ['vencido', 'vencido'], ['pagoProgramado', 'pago programado'], ['pagoReal', 'pago real'], ['montoChargeOff', 'monto del charge-off']],
-        [['fechaApertura', 'abierta'], ['dofd', 'primer atraso (DOFD)'], ['fechaChargeOff', 'charge-off'], ['fechaCobranza', 'enviada a cobranza'], ['fechaMorosidadGraveReportada', 'atraso grave reportado por primera vez'], ['ultimoPago', 'último pago'], ['ultimaActividad', 'última actividad'], ['fechaReportada', 'reportada'], ['fechaCierre', 'cerrada']],
-        [['estado', 'estado'], ['estadoPago', 'estado de pago'], ['designadorActividad', 'designador de actividad'], ['plazo', 'plazo'], ['frecuencia', 'frecuencia de pago'], ['mesesRevisados', 'meses revisados'], ['acreedorOriginal', 'acreedor original'], ['contacto', 'contacto del acreedor'], ['declaracionConsumidor', 'tu declaración']]
-      ];
-      const LC_MONTOS = ['saldo', 'limite', 'montoOriginal', 'saldoMasAlto', 'limiteOMontoOriginal', 'vencido', 'pagoProgramado', 'pagoReal', 'montoChargeOff'];
-      const lcPlural = (n, uno, varios) => n + ' ' + (n === 1 ? uno : varios);
-      const lcAncla = id => 'cuenta-' + String(id).replace(/[^a-z0-9-]/gi, '-');
-      const lcTieneValor = v => !!v && v.estado !== 'no_reportado' && v.valor !== null && v.valor !== undefined;
-      const lcEstado = c => c.esCobranza ? 'cobranza' : c.cerrada ? 'cerrada' : 'abierta';
-      const LC_ESTADOS = { abierta: 'Abierta', cerrada: 'Cerrada', cobranza: 'En cobranza' };
-      const lcAcreedor = c => lcTieneValor(c.acreedor) ? c.acreedor.valor : 'Acreedor no legible';
-
-      function lcFechaLarga(fecha) {
-        if (!fecha || !fecha.iso) return fecha ? fecha.texto : '';
-        const partes = fecha.iso.split('-');
-        if (partes.length === 3) return Number(partes[2]) + ' de ' + MESES_ES[Number(partes[1]) - 1] + ' de ' + partes[0];
-        if (partes.length === 2) return MESES_ES[Number(partes[1]) - 1] + ' de ' + partes[0];
-        return partes[0];
+      /* Identidad (014 T037): los datos personales salen del reporte leído, no de un análisis por
+         palabras. tiposDeTarjeta decide qué cartas de corrección se ofrecen; cada una recibe TODOS
+         los datos detectados (allDetectedIdentity) para que la persona marque los que no son suyos. */
+      function identidadDetectada(reporte) {
+        const id = (reporte && reporte.identidad) || {};
+        const valor = v => (v && v.valor !== undefined && v.valor !== null && v.estado !== 'no_reportado' ? String(v.valor) : '');
+        const lista = [];
+        (id.nombres || []).forEach(v => { if (valor(v)) lista.push({ type: 'Nombre', value: identityDisplayValue('Nombre', valor(v)) }); });
+        (id.telefonos || []).forEach(v => { if (valor(v)) lista.push({ type: 'Teléfono', value: identityDisplayValue('Teléfono', valor(v)) }); });
+        (id.direcciones || []).forEach(v => { if (valor(v)) lista.push({ type: 'Dirección', value: identityDisplayValue('Dirección', valor(v)) }); });
+        return lista;
+      }
+      function renderIdentidad(reporte) {
+        const zona = $('crIdentidadZona');
+        const enlace = $('crIdentidadEnlace');
+        if (!zona || !enlace) return;
+        const allDetectedIdentity = identidadDetectada(reporte);
+        const conteo = { nombres: 0, telefonos: 0, direcciones: 0 };
+        allDetectedIdentity.forEach(v => { conteo[v.type === 'Nombre' ? 'nombres' : v.type === 'Teléfono' ? 'telefonos' : 'direcciones'] += 1; });
+        const tipos = window.ThemoraCartas && window.ThemoraCartas.tiposDeTarjeta ? window.ThemoraCartas.tiposDeTarjeta(conteo)
+          : ['identity-names', 'identity-phones', 'identity-addresses'].filter((t, i) => [conteo.nombres, conteo.telefonos, conteo.direcciones][i] >= 2);
+        const bureauKey = reporte && CREDIT_BUREAUS[reporte.buro] ? reporte.buro : 'unknown';
+        zona.innerHTML = tipos.length
+          ? tipos.map((tipo, index) => {
+            const formId = 'crIdentitySolution' + index;
+            const item = { title: SOLUTION_LABELS[tipo] || 'Corregir datos personales', solutionType: tipo, detectedValues: allDetectedIdentity };
+            const label = SOLUTION_LABELS[tipo] || 'Corregir datos personales';
+            return '<div class="cr-identidad-carta"><button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="' + formId + '" data-open-label="Ocultar formulario" data-closed-label="' + escapeHtml(label) + '">' + escapeHtml(label) + '</button>' +
+              '<form class="cr-solution-form" id="' + formId + '" data-solution-type="' + escapeHtml(tipo) + '" data-issue-title="' + escapeHtml(label) + '" data-issue-key="" data-issue-arg="" hidden>' + renderIdentityForm(item, formId, bureauKey) + '</form></div>';
+          }).join('')
+          : '<p class="cr-identidad-ok">Información personal consistente: el reporte no muestra variantes de tus datos para revisar.</p>';
+        enlace.setAttribute('aria-expanded', 'false');
+        zona.hidden = true;
       }
 
-      /* «Reporte de Equifax del 24 de mayo de 2026. Leímos las 14 páginas.» */
-      function documentSentence(data, bureau, reporte, extracted) {
-        if (!reporte) return data.detail + '. Buró: ' + bureau.name + '.';
-        const conocido = reporte.buro !== 'desconocido' && CREDIT_BUREAUS[reporte.buro];
-        let frase = 'Reporte de ' + (conocido ? CREDIT_BUREAUS[reporte.buro].name : 'un buró que no reconocimos');
-        const fecha = reporte.fechaReporte && reporte.fechaReporte.valor;
-        if (fecha && fecha.iso) frase += (conocido ? (fecha.iso.length === 10 ? ' del ' : ' de ') : ', con fecha ') + lcFechaLarga(fecha);
-        frase += '.';
-        if (extracted && extracted.esPdf) {
-          const leidas = reporte.paginasLeidas, totales = reporte.paginasTotales;
-          frase += leidas < totales ? ' Leímos ' + leidas + ' de ' + totales + ' páginas.' : (totales === 1 ? ' Leímos su única página.' : ' Leímos las ' + totales + ' páginas.');
-        }
-        return frase;
-      }
 
-      function lcTextoValor(campo, v) {
-        if (!lcTieneValor(v)) return v && v.texto ? v.texto : null;
-        if (LC_MONTOS.includes(campo) && typeof v.valor === 'number') return '$' + v.valor.toLocaleString('en-US');
-        return v.texto || String(v.valor);
-      }
 
-      function lcPar(etiqueta, texto, resaltar) {
-        if (texto === null) return '<div class="lc-par"><dt>' + escapeHtml(etiqueta) + '</dt><dd class="lc-vacio">no reportado</dd></div>';
-        return '<div class="lc-par"><dt>' + escapeHtml(etiqueta) + '</dt><dd' + (resaltar ? ' class="lc-resaltado"' : '') + '><span>' + escapeHtml(texto) + '</span></dd></div>';
-      }
-
-      function lcResaltar(campo, v) {
-        if (!lcTieneValor(v)) return false;
-        if (campo === 'vencido') return typeof v.valor === 'number' && v.valor > 0;
-        return ['dofd', 'fechaChargeOff', 'montoChargeOff'].includes(campo);
-      }
-
-      function lcCampos(c) {
-        return LC_CAMPOS.map((grupo, indice) => {
-          const pares = grupo.filter(([campo]) => c[campo] !== undefined).map(([campo, etiqueta]) => lcPar(etiqueta, lcTextoValor(campo, c[campo]), lcResaltar(campo, c[campo])));
-          if (indice === 2) {
-            if (c.codigosNarrativos && c.codigosNarrativos.length) pares.push(lcPar('códigos narrativos', c.codigosNarrativos.map(x => x.codigo + (x.descripcion ? ' (' + x.descripcion + ')' : '')).join(', '), false));
-            (c.comentarios || []).forEach(comentario => pares.push(lcPar('comentario', lcTextoValor('comentarios', comentario), false)));
-          }
-          return pares.length ? '<dl class="lc-campos">' + pares.join('') + '</dl>' : '';
-        }).join('');
-      }
-
-      function lcNotaSinMes(h) {
-        const atraso = /^atraso_(\d+)$/.exec(h.codigo);
-        const que = atraso ? 'un atraso de ' + atraso[1] + ' días' : 'un registro de «' + (LC_CODIGOS[h.codigo] || h.texto) + '»';
-        return '<p class="lc-nota">En ' + h.anio + ' hay ' + escapeHtml(que) + ' cuyo mes no se pudo ubicar.</p>';
-      }
-
-      function lcHistorial(c) {
-        const historial = c.historial || [];
-        const verificables = historial.filter(h => h.mesVerificable);
-        const sinMes = historial.filter(h => !h.mesVerificable && h.codigo !== 'al_dia' && h.codigo !== 'sin_datos');
-        if (!verificables.length && !sinMes.length) return '';
-        const anios = [...new Set(verificables.map(h => h.anio))].sort((a, b) => b - a);
-        const filas = anios.map(anio => {
-          let celdas = '';
-          for (let mes = 1; mes <= 12; mes++) {
-            const h = verificables.find(x => x.anio === anio && x.mes === mes);
-            const codigo = h ? h.codigo : 'sin_datos';
-            const etiqueta = MESES_ES[mes - 1] + ' de ' + anio + ': ' + (LC_CODIGOS[codigo] || codigo);
-            celdas += '<span class="lc-mes" data-codigo="' + codigo + '" role="img" aria-label="' + escapeHtml(etiqueta) + '" title="' + escapeHtml(etiqueta) + '">' + (LC_SIGLA[codigo] || '') + '</span>';
-          }
-          return '<div class="lc-anio"><span class="lc-anio-num">' + anio + '</span>' + celdas + '</div>';
-        }).join('');
-        const iniciales = filas ? '<div class="lc-anio lc-meses" aria-hidden="true"><span></span>' + ['E', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'].map(letra => '<span>' + letra + '</span>').join('') + '</div>' : '';
-        return '<div class="lc-historial" role="group" aria-label="Historial de pagos de ' + escapeHtml(lcAcreedor(c)) + '"><h5>Historial de pagos</h5>' + iniciales + filas + sinMes.map(lcNotaSinMes).join('') + '</div>';
-      }
-
-      function lcOrigen(c) {
-        const datos = [['acreedor', c.acreedor], ['número de cuenta', c.numero], ['tipo', c.tipo], ['responsabilidad', c.responsabilidad]];
-        LC_CAMPOS.forEach(grupo => grupo.forEach(([campo, etiqueta]) => datos.push([etiqueta, c[campo]])));
-        const items = datos.filter(([, v]) => v && v.origen).map(([etiqueta, v]) => {
-          const o = v.origen;
-          return '<li>' + escapeHtml(etiqueta) + ': página ' + o.pagina + ', ' + escapeHtml(LC_SECCIONES[o.seccion] || o.seccion) + (o.etiqueta ? ', «' + escapeHtml(o.etiqueta) + '»' : '') + '.</li>';
-        });
-        return items.length ? '<details class="lc-origen"><summary>De dónde salió cada dato</summary><ul>' + items.join('') + '</ul></details>' : '';
-      }
-
-      function lcFicha(c, primera) {
-        const estado = lcEstado(c);
-        const ancla = lcAncla(c.id);
-        const partes = [];
-        if (lcTieneValor(c.tipo)) partes.push(LC_TIPOS[c.tipo.valor] + (c.tipo.texto ? ' (' + c.tipo.texto + ')' : ''));
-        if (lcTieneValor(c.responsabilidad)) partes.push(c.responsabilidad.texto);
-        const sub = (partes.length ? partes.join(', ') + '. ' : '') + (lcTieneValor(c.numero) ? 'Cuenta ' + c.numero.valor : 'Número de cuenta no reportado');
-        return '<article class="lc-ficha' + (primera ? ' lc-pasada' : '') + '" id="' + ancla + '" aria-labelledby="' + ancla + '-t" data-estado="' + estado + '">' +
-          '<header><h4 id="' + ancla + '-t">' + escapeHtml(lcAcreedor(c)) + '</h4><p class="lc-sub">' + escapeHtml(sub) + '</p><span class="lc-estado">' + LC_ESTADOS[estado] + '</span></header>' +
-          lcCampos(c) + lcHistorial(c) + lcOrigen(c) + '</article>';
-      }
-
-      function lcConsultas(reporte) {
-        if (!reporte.consultas.length) return '';
-        const lista = tipos => {
-          const porEmpresa = new Map();
-          reporte.consultas.filter(consulta => tipos.includes(consulta.tipo)).forEach(consulta => {
-            const empresa = lcTieneValor(consulta.empresa) ? consulta.empresa.valor : 'Empresa no legible';
-            if (!porEmpresa.has(empresa)) porEmpresa.set(empresa, []);
-            const extra = consulta.tipo === 'promocional' ? ' (promocional)' : consulta.tipo === 'revision_cuenta' ? ' (revisión de cuenta)' : '';
-            porEmpresa.get(empresa).push(consulta.fecha.texto + extra);
-          });
-          return [...porEmpresa.entries()].map(([empresa, fechas]) => '<li>' + escapeHtml(empresa) + ': ' + escapeHtml(fechas.join(', ')) + '.</li>').join('');
-        };
-        const duras = lista(['dura']), blandas = lista(['blanda', 'promocional', 'revision_cuenta']), otras = lista(['desconocida']);
-        return '<section class="lc-bloque" id="crConsultas" aria-labelledby="crConsultasT"><h4 id="crConsultasT">Consultas a tu crédito</h4>' +
-          (duras ? '<h5>Consultas duras</h5><ul>' + duras + '</ul>' : '') +
-          (blandas ? '<h5>Consultas blandas</h5><p class="lc-nota">Las consultas blandas no afectan tu puntaje y pueden quedar en el reporte de uno a dos años, según el buró.</p><ul>' + blandas + '</ul>' : '') +
-          (otras ? '<h5>Consultas sin tipo indicado</h5><ul>' + otras + '</ul>' : '') + '</section>';
-      }
-
-      function lcPersonales(reporte) {
-        const identidad = reporte.identidad;
-        const pares = [];
-        const lista = (etiqueta, valores, detalle) => { if (valores.length) pares.push(lcPar(etiqueta, valores.map(v => v.texto + (detalle ? detalle(v) : '')).join('; '), false)); };
-        lista('nombres', identidad.nombres);
-        lista('direcciones', identidad.direcciones, v => v.tipo === 'actual' ? ' (actual)' : v.tipo === 'anterior' ? ' (anterior)' : '');
-        lista('teléfonos', identidad.telefonos);
-        lista('empleadores', identidad.empleadores);
-        const frases = [];
-        if (identidad.ssnMostrado) frases.push('El reporte muestra tu número de Seguro Social; aquí no lo repetimos.');
-        if (identidad.fechaNacimientoMostrada) frases.push('El reporte muestra tu fecha de nacimiento; aquí no la repetimos.');
-        const avisos = reporte.avisos.map(aviso => '<li>' + escapeHtml(LC_AVISOS[aviso.tipo] || LC_AVISOS.otro) + ': ' + escapeHtml(aviso.texto.texto) + '</li>').join('');
-        if (!pares.length && !frases.length && !avisos) return '';
-        return '<section class="lc-bloque" id="crDatosPersonales" aria-labelledby="crDatosPersonalesT"><h4 id="crDatosPersonalesT">Tus datos personales</h4>' +
-          (pares.length ? '<dl class="lc-campos">' + pares.join('') + '</dl>' : '') +
-          frases.map(frase => '<p class="lc-nota">' + frase + '</p>').join('') +
-          (avisos ? '<h5>Avisos del archivo</h5><ul>' + avisos + '</ul>' : '') + '</section>';
-      }
-
-      function lcResumenFrase(r) {
-        if (!r.cuentas) return 'No encontramos cuentas en el texto que pudimos leer. Revisa tu reporte directamente; puede que esa parte esté en una imagen.';
-        let frase = 'Encontramos ' + lcPlural(r.cuentas, 'cuenta', 'cuentas') + ': ' + lcPlural(r.abiertas, 'abierta', 'abiertas') + ' y ' + lcPlural(r.cerradas, 'cerrada', 'cerradas') + '.';
-        if (r.cobranzas) frase += r.cobranzas === 1 ? ' Una aparece en cobranza.' : ' ' + r.cobranzas + ' aparecen en cobranza.';
-        frase += ' Hay ' + lcPlural(r.consultasDuras, 'consulta dura', 'consultas duras') + ' y ' + lcPlural(r.consultasBlandas, 'blanda', 'blandas') + '.';
-        return frase;
-      }
-
-      function lcAvisosLectura(reporte) {
-        const avisos = [];
-        reporte.advertencias.forEach(a => {
-          if (a.codigo === 'formato_no_verificado') avisos.push('No reconocimos el formato de este buró. Lo leímos con una lectura general, así que revisa cada dato contra tu reporte.');
-          if (a.codigo === 'paginas_truncadas') avisos.push('Tu reporte tiene ' + reporte.paginasTotales + ' páginas; leímos las primeras ' + reporte.paginasLeidas + '.');
-        });
-        if (reporte.advertencias.some(a => a.codigo === 'mes_no_verificable')) avisos.push('En algunas cuentas hay atrasos cuyo mes no pudimos ubicar; lo indicamos en cada ficha.');
-        return avisos.join(' ');
-      }
-
-      function renderCuentas(reporte) {
-        const seccion = $('crCuentas');
-        if (!reporte || !window.ThemoraLector) { seccion.hidden = true; return; }
-        const r = window.ThemoraLector.resumen(reporte);
-        $('crResumenFrase').textContent = lcResumenFrase(r);
-        const avisos = lcAvisosLectura(reporte);
-        $('crAvisosLectura').textContent = avisos;
-        $('crAvisosLectura').hidden = !avisos;
-        const enlaces = reporte.cuentas.map(c => '<li><a href="#' + lcAncla(c.id) + '">' + escapeHtml(lcAcreedor(c)) + ' <small>(' + LC_ESTADOS[lcEstado(c)].toLowerCase() + ')</small></a></li>').join('') +
-          (reporte.consultas.length ? '<li><a href="#crConsultas">Consultas</a></li>' : '') +
-          '<li><a href="#crDatosPersonales">Datos personales</a></li>';
-        $('crIndice').innerHTML = reporte.cuentas.length ? '<ul class="lc-indice-lista">' + enlaces + '</ul><details class="lc-indice-movil"><summary>Ir a una cuenta (' + reporte.cuentas.length + ')</summary><ul>' + enlaces + '</ul></details>' : '';
-        $('crFichas').innerHTML = reporte.cuentas.map((c, indice) => lcFicha(c, indice === 0)).join('') + lcConsultas(reporte) + lcPersonales(reporte);
-        seccion.hidden = false;
-      }
-
-      /* Totales del resumen general desde el lector; misma forma que guarda auth.js (solo números). */
-      function summaryFromReport(reporte) {
-        const r = window.ThemoraLector.resumen(reporte);
-        const porTipo = new Map();
-        reporte.cuentas.forEach(c => { const tipo = lcTieneValor(c.tipo) ? LC_TIPOS[c.tipo.valor] : 'Sin tipo reportado'; porTipo.set(tipo, (porTipo.get(tipo) || 0) + 1); });
-        return {
-          accountsSummary: { count: r.cuentas, cardCount: r.rotativas, byType: [...porTipo.entries()].map(([type, count]) => ({ type, count })) },
-          inquiriesSummary: { hard: r.consultasDuras, soft: r.consultasBlandas, total: reporte.consultas.length }
-        };
-      }
-
-      function renderReportSummary(reporte, data, bureau) {
-        if (!reporte || !window.ThemoraLector) {
-          const cuentas = data.accountsSummary || { count: 0, cardCount: 0 };
-          const consultas = data.inquiriesSummary || { hard: 0, soft: 0, total: 0 };
-          return '<div class="cr-summary-item">buró: <strong>' + escapeHtml(bureau.name) + '</strong></div>' +
-            '<div class="cr-summary-item">cuentas: <strong>' + escapeHtml(String(cuentas.count)) + '</strong></div>' +
-            '<div class="cr-summary-item">consultas: <strong>' + escapeHtml(String(consultas.total)) + '</strong> (duras: ' + escapeHtml(String(consultas.hard)) + ', blandas: ' + escapeHtml(String(consultas.soft)) + ').</div>';
-        }
-        const valor = v => lcTieneValor(v) ? v.texto : '';
-        const identidad = reporte.identidad || {};
-        const nombre = valor((identidad.nombres || [])[0]);
-        const direccion = valor((identidad.direcciones || []).find(x => x.tipo === 'actual') || (identidad.direcciones || [])[0]);
-        const telefono = valor((identidad.telefonos || [])[0]);
-        const fecha = valor(reporte.fechaReporte);
-        const generales = ['buró: ' + (CREDIT_BUREAUS[reporte.buro] ? CREDIT_BUREAUS[reporte.buro].name : 'no reconocido'), fecha && 'fecha del reporte: ' + fecha, nombre && 'nombre: ' + nombre, direccion && 'dirección actual: ' + direccion, telefono && 'teléfono: ' + telefono].filter(Boolean).join('. ') + '.';
-        const tipos = [['rotativa', 'Tarjetas y crédito rotativo'], ['plazos', 'Préstamos a plazos'], ['auto', 'Préstamos de auto'], ['hipoteca', 'Hipotecas'], ['estudiantil', 'Préstamos estudiantiles'], ['cobranza', 'Cobranzas'], ['otra', 'Otras']];
-        const filas = tipos.map(([tipo, etiqueta]) => {
-          const lista = reporte.cuentas.filter(c => (lcTieneValor(c.tipo) ? c.tipo.valor : 'otra') === tipo);
-          if (!lista.length) return '';
-          const abiertas = lista.filter(c => !c.cerrada).length, cerradas = lista.length - abiertas;
-          return '<tr><th scope="row">' + escapeHtml(etiqueta) + '</th><td>' + abiertas + '</td><td>' + cerradas + '</td><td>' + lista.length + '</td></tr>';
-        }).join('');
-        const totalAbiertas = reporte.cuentas.filter(c => !c.cerrada).length;
-        const negativas = reporte.cuentas.filter(c => c.esCobranza || (c.reglasAplicadas || []).includes('cuenta-en-adversas') || (c.historial || []).some(h => ['atraso_30', 'atraso_60', 'atraso_90', 'atraso_120', 'atraso_150', 'atraso_180', 'charge_off', 'cobranza'].includes(h.codigo)) || [c.estado, c.estadoPago].some(v => lcTieneValor(v) && /(charge.?off|collection|past due|late)/i.test(v.texto)) || (lcTieneValor(c.vencido) && c.vencido.valor > 0)).length;
-        const cobranza = reporte.cuentas.filter(c => c.esCobranza).length;
-        const porTipo = tipo => reporte.consultas.filter(c => c.tipo === tipo).length;
-        const duras = porTipo('dura'), promocionales = porTipo('promocional'), revision = porTipo('revision_cuenta'), blandas = porTipo('blanda') + promocionales + revision;
-        const consulta = 'duras: ' + duras + '. blandas: ' + blandas + (promocionales || revision ? ' (promocionales: ' + promocionales + (revision ? ', de revisión de cuenta: ' + revision : '') + ')' : '') + '.';
-        const avisos = (reporte.avisos || []).map(a => a.texto && a.texto.texto).filter(Boolean);
-        return '<p class="cr-summary-item"><strong>Datos generales:</strong> ' + escapeHtml(generales) + '</p>' +
-          (reporte.advertencias.some(a => a.codigo === 'cuentas_no_leidas') ? '<p class="cr-summary-item">No pudimos leer las cuentas de este reporte.</p>' : '<table class="cr-summary-table"><caption>Cuentas por tipo</caption><thead><tr><th scope="col">tipo</th><th scope="col">Abiertas</th><th scope="col">Cerradas</th><th scope="col">Total</th></tr></thead><tbody>' + filas + '<tr><th scope="row">Total</th><td>' + totalAbiertas + '</td><td>' + (reporte.cuentas.length - totalAbiertas) + '</td><td>' + reporte.cuentas.length + '</td></tr></tbody></table><p class="cr-summary-item">' + negativas + ' cuentas con información negativa (atrasos, charge-off o cobranza) y ' + cobranza + ' en cobranza.</p>') +
-          (reporte.advertencias.some(a => a.codigo === 'consultas_no_leidas') ? '<p class="cr-summary-item">No pudimos leer las consultas de este reporte.</p>' : '<p class="cr-summary-item"><strong>Consultas:</strong> ' + escapeHtml(consulta) + '</p>') +
-          ((reporte.registrosPublicos || []).length ? '<p class="cr-summary-item"><strong>Registros públicos:</strong> ' + reporte.registrosPublicos.length + ' encontrados.</p>' : '') +
-          (avisos.length ? '<p class="cr-summary-item"><strong>Avisos del archivo:</strong> ' + escapeHtml(avisos.join('; ')) + '.</p>' : '');
-      }
 
       /* Pasos de lectura (014 US4): pendiente → en_curso → hecho, o fallido. */
       const TEXTOS_PASO = { observar: 'Leer el documento', leer: 'Ordenar tus cuentas y consultas', revisar: 'Revisar cada cuenta con la ley', concluir: 'Preparar el resumen' };
@@ -4323,15 +3022,14 @@
           else if (extension === 'docx') extracted = await extractWord(selectedFile);
           else extracted = await extractExcel(selectedFile);
           const lector = window.ThemoraLector;
-          const reporte = lector && extracted.paginas ? lector.leerReporte(extracted.paginas, { paginasTotales: extracted.paginasTotales }) : null;
+          if (!lector || !window.ThemoraAnalista) throw new Error('No pudimos cargar el lector de reportes. Recarga la página e inténtalo otra vez.');
+          const reporte = extracted.paginas ? lector.leerReporte(extracted.paginas, { paginasTotales: extracted.paginasTotales }) : null;
+          if (!reporte) throw new Error('No pudimos leer este archivo. Si es una foto o un escaneo, descarga el PDF original desde el sitio del buró.');
           const sinTexto = reporte && reporte.advertencias.some(a => a.codigo === 'sin_texto');
           if (sinTexto || extracted.text.replace(/\s/g, '').length < 100) throw new Error('No pudimos leer texto en este archivo. Si es una foto o un escaneo, descarga el PDF original desde el sitio del buró.');
           marcarPaso('leer', 'en_curso');
-          const data = evaluateDocument(extracted.text, extracted.detail);
-          if (reporte) Object.assign(data, summaryFromReport(reporte));
-          const analisis = render(data, reporte, extracted);
-          if (analisis) analisis.pasos.forEach(p => marcarPaso(p.id, p.estado, p.texto));
-          else ['observar', 'leer', 'revisar', 'concluir'].forEach(id => marcarPaso(id, 'hecho'));
+          const analisis = render(reporte);
+          analisis.pasos.forEach(p => marcarPaso(p.id, p.estado, p.texto));
           analyzeButton.hidden = false;
         } catch (error) {
           const enCurso = document.querySelector('#crPasos [data-estado="en_curso"]');
@@ -4651,7 +3349,7 @@
       });
       analyzeButton.addEventListener('click', runAnalysis);
       $('crResetButton').addEventListener('click', () => { selectedFile = null; input.value = ''; results.hidden = true; progress.hidden = true; errorBox.hidden = true; analyzeButton.hidden = true; ready.hidden = true; empty.hidden = false; dropzone.classList.remove('has-file'); dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-      $('crPrintButton').addEventListener('click', () => window.print());
+      $('crPrintButton').addEventListener('click', () => { prepararImpresion(); window.print(); });
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -20,6 +20,7 @@ Se apoya en el modelo de la especificación 013 (`Reporte`, `Cuenta`, `Consulta`
 | `consultas` | `{ duras: GrupoConsultas, blandas: GrupoConsultas }` | Blandas incluye promocionales y de revisión de cuenta |
 | `pasos` | `PasoAgente[]` | Los cuatro pasos con sus textos finales |
 | `conclusion` | string | Una o dos frases para el consumidor |
+| `totales` | `{ cuentas, rotativas, porTipo: [{ type, count }], consultas }` | Conteos que usa `paraGuardar` (agregado en la 019, T036); sin datos de la persona |
 | `advertencias` | string[] | Lectura parcial, formato no reconocido, meses no verificables |
 
 Invariante (FR-002): `problemas.length` es el único número de «cuentas con problemas»; `pasos[3].texto` y `resumen` lo leen de ahí.

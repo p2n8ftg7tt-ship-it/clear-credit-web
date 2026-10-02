@@ -322,8 +322,42 @@
       problemas,
       consultas,
       pasos: pasosDe(reporte, resumen, problemas, consultas),
+      totales: totalesDe(reporte),
       conclusion: '',
       advertencias: advertenciasDe(reporte)
+    };
+  }
+
+  /* Lo que se guarda en la cuenta (CCAuth.saveAnalysis): solo números y frases genéricas, nunca datos de la persona. */
+  function paraGuardar(analisis) {
+    const p = analisis.problemas;
+    const roja = p.some((x) => x.gravedad === 'roja');
+    const t = analisis.totales;
+    return {
+      health: roja ? 'Atención prioritaria' : (p.length ? 'Hay margen de mejora' : 'Perfil sin alertas obvias'),
+      tone: roja ? 'critical' : (p.length ? 'attention' : 'stable'),
+      conclusion: analisis.conclusion || '',
+      score: null,
+      utilization: null,
+      negatives: p.map((x) => ({ title: x.frase, priority: x.gravedadTexto })),
+      positives: [],
+      accountsSummary: { count: t.cuentas, cardCount: t.rotativas, byType: t.porTipo },
+      inquiriesSummary: { hard: analisis.consultas.duras.total, soft: analisis.consultas.blandas.total, total: t.consultas }
+    };
+  }
+
+  function totalesDe(reporte) {
+    const etiqueta = Object.fromEntries(TIPOS_ABIERTAS);
+    const porTipo = new Map();
+    reporte.cuentas.forEach((c) => {
+      const tipo = tieneValor(c.tipo) ? (etiqueta[c.tipo.valor] || (c.tipo.valor === 'cobranza' ? 'Cobranzas' : 'Otras')) : 'Sin tipo reportado';
+      porTipo.set(tipo, (porTipo.get(tipo) || 0) + 1);
+    });
+    return {
+      cuentas: reporte.cuentas.length,
+      rotativas: reporte.cuentas.filter((c) => tieneValor(c.tipo) && c.tipo.valor === 'rotativa').length,
+      porTipo: [...porTipo.entries()].map(([type, count]) => ({ type, count })),
+      consultas: (reporte.consultas || []).length
     };
   }
 
@@ -332,7 +366,7 @@
     { id: 'obsoleta', gravedad: null, carta: 'bureau-dispute', detecta: () => null });
   REGLAS.forEach((r) => { r.textos = TEXTOS[r.id].textos; r.citas = TEXTOS[r.id].citas; });
 
-  const API = { analizar, REGLAS, iniciales, nombreCorto, esObsoleta };
+  const API = { analizar, REGLAS, iniciales, nombreCorto, esObsoleta, paraGuardar };
   if (typeof window !== 'undefined') window.ThemoraAnalista = API;
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
 })();

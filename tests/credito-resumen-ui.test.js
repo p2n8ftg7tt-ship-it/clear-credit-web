@@ -30,7 +30,7 @@ function cargarResumen() {
   const escapar = html.match(/const escapeHtml\s*=[^\n]+/)[0];
   const nodos = {};
   const $ = (id) => (nodos[id] = nodos[id] || { id, innerHTML: '', textContent: '', hidden: true, attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } });
-  const api = new Function('$', escapar + '\n' + html.slice(desde, hasta) + '\nreturn { renderResumen, renderAnalisis, abrirAnalisis };')($);
+  const api = new Function('$', escapar + '\n' + html.slice(desde, hasta) + '\nreturn { renderResumen, renderAnalisis, abrirAnalisis, prepararImpresion };')($);
   return { api, nodos };
 }
 
@@ -224,4 +224,49 @@ test('US4: CSS de los pasos con tokens; el único movimiento vive en prefers-red
   assert.ok(media > 0, 'existe el media query');
   const dentro = estilo.slice(media, estilo.indexOf('}}', media));
   animaciones.forEach((x) => assert.ok(dentro.includes(x), 'la animación de los pasos va dentro del media query'));
+});
+
+/* ----------------------------------------------------------------- US5: una pantalla que no aturde (spec 014 T039–T041, hechas en la 019) */
+
+test('US5: lo viejo ya no está dentro de #crResults (T041)', () => {
+  const resultados = html.slice(html.indexOf('id="crResults"'), html.indexOf('id="crResetButton"'));
+  ['crKpis', 'crSummaryGrid', 'crCuentas', 'crNegativeList', 'crStrategyList', 'crHealth'].forEach((id) => assert.ok(!resultados.includes('id="' + id + '"'), 'sigue #' + id));
+  ['function renderFinding(', 'function renderStrategy(', 'function renderReportSummary(', 'function summaryFromReport(', 'function renderCuentas(', 'function stripReportNoise('].forEach((f) => assert.ok(!html.includes(f), 'sigue ' + f));
+  assert.ok(!/\.cr-kpi|\.cr-summary|\.lc-|\.cr-group|\.cr-finding|\.cr-strategy/.test(estilo), 'quedó CSS de lo retirado');
+});
+
+test('US5: ninguna frase de problema se repite en lo pintado (SC-006)', () => {
+  const { api, nodos } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  api.renderResumen(a);
+  const pintado = Object.values(nodos).map((n) => n.innerHTML).join('\n');
+  new Set(a.problemas.map((p) => p.frase)).forEach((f) => {
+    const veces = pintado.split(f).length - 1;
+    assert.strictEqual(veces, a.problemas.filter((p) => p.frase === f).length, f);
+  });
+});
+
+test('US5: se dice «consumidor», nunca «cliente» (T039)', () => {
+  const seccion = html.slice(html.indexOf('id="analizar-reporte"'), html.indexOf('</section>', html.indexOf('id="crResetButton"')));
+  assert.ok(!/\bclientes?\b/i.test(seccion), 'la sección del analizador dice cliente');
+  assert.ok(!/\bclientes?\b/i.test(fs.readFileSync(path.join(raiz, 'analista-credito.js'), 'utf8')));
+});
+
+test('US5: sin lector o analista, runAnalysis muestra el error, sin análisis por palabras (FR-001)', () => {
+  const run = html.slice(html.indexOf('async function runAnalysis()'), html.indexOf("$('crSelectButton').addEventListener"));
+  assert.ok(run.includes('No pudimos cargar el lector de reportes. Recarga la página e inténtalo otra vez.'));
+  assert.ok(!/evaluateDocument|summaryFromReport/.test(run));
+  assert.match(html, /window\.__ccLastAnalysis = window\.ThemoraAnalista\.paraGuardar\(analisis\)/);
+});
+
+test('US5: impresión con todos los análisis (T040)', () => {
+  const { api, nodos } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  api.renderResumen(a);
+  api.prepararImpresion();
+  assert.strictEqual((nodos.crAnalisisImpresion.innerHTML.match(/class="cr-analisis-impreso"/g) || []).length, a.problemas.length);
+  assert.ok(html.includes('id="crAnalisisImpresion"'));
+  const print = estilo.slice(estilo.indexOf('@media print'));
+  assert.ok(/#crAnalisisImpresion\{display:block/.test(print), 'el contenedor se muestra al imprimir');
+  assert.ok(/\.cr-pasos[^{]*\{display:none/.test(print) || /#crProgress[^{]*\{display:none/.test(print), 'los pasos se ocultan al imprimir');
 });

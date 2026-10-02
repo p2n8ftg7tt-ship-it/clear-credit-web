@@ -21,7 +21,7 @@ test('analizar: rechaza lo que no es un Reporte y devuelve la forma de Analisis'
   assert.throws(() => A.analizar(null), TypeError);
   assert.throws(() => A.analizar({}), TypeError);
   const a = A.analizar({ cuentas: [], consultas: [], registrosPublicos: [], identidad: { nombres: [], direcciones: [], telefonos: [] }, advertencias: [] });
-  assert.deepStrictEqual(Object.keys(a).sort(), ['abiertas', 'advertencias', 'conclusion', 'consultas', 'pasos', 'problemas', 'resumen'].sort());
+  assert.deepStrictEqual(Object.keys(a).sort(), ['abiertas', 'advertencias', 'conclusion', 'consultas', 'pasos', 'problemas', 'resumen', 'totales'].sort());
 });
 
 /* ------------------------------------------------------------ US1: resumen claro y confiable */
@@ -185,4 +185,61 @@ test('US4 pasos con datos reales (T031)', () => {
   const uno = A.analizar(rep([cta('x', { esCobranza: true })]));
   assert.strictEqual(uno.pasos[3].texto, 'Encontré 1 cuenta con problemas');
   assert.strictEqual(A.analizar(rep([])).pasos[3].texto, 'No encontré cuentas con problemas');
+});
+
+/* ------------------------------------------------------------ US5: lo que se guarda (spec 014 T036, hecha en la 019)
+   Incluye la prueba FR-053 que vivía en credito-lector-ui.test.js (summaryFromReport, ya retirado). */
+
+test('US5 paraGuardar: forma de CCAuth.saveAnalysis y solo números (T036, FR-053)', () => {
+  const g = A.paraGuardar(A.analizar(leer('equifax.json')));
+  assert.deepStrictEqual(Object.keys(g).sort(), ['accountsSummary', 'conclusion', 'health', 'inquiriesSummary', 'negatives', 'positives', 'score', 'tone', 'utilization'].sort());
+  assert.strictEqual(g.score, null);
+  assert.strictEqual(g.utilization, null);
+  assert.deepStrictEqual(g.positives, []);
+  assert.deepStrictEqual(Object.keys(g.accountsSummary), ['count', 'cardCount', 'byType']);
+  assert.strictEqual(g.accountsSummary.count, 6);
+  assert.deepStrictEqual(g.inquiriesSummary, { hard: 4, soft: 3, total: 7 });
+  const texto = JSON.stringify(g);
+  ['EJEMPLO', 'ANA', 'CALLE', '555', '9999'].forEach((x) => assert.ok(!texto.includes(x), 'lo guardado contiene ' + x));
+});
+
+test('US5 paraGuardar: salud según los problemas', () => {
+  const salud = (cuentas) => { const g = A.paraGuardar(A.analizar(rep(cuentas))); return [g.health, g.tone]; };
+  assert.deepStrictEqual(salud([cta('x', { esCobranza: true })]), ['Atención prioritaria', 'critical']);
+  assert.deepStrictEqual(salud([cta('x', { vencido: val(10) })]), ['Hay margen de mejora', 'attention']);
+  assert.deepStrictEqual(salud([cta('x')]), ['Perfil sin alertas obvias', 'stable']);
+  const g = A.paraGuardar(A.analizar(rep([cta('x', { vencido: val(10) })])));
+  assert.deepStrictEqual(g.negatives, [{ title: 'Saldo vencido de $10', priority: 'Atención' }]);
+});
+
+/* ------------------------------------------------------------ Garantías de la Fase 0 (spec 013 FR-001 a FR-004)
+   Vivían en tests/credito-fase0.test.js sobre evaluateDocument(), que se retiró en la 019 (014 T035/T038).
+   Se trasladan aquí, sobre el analista que lo reemplaza; lo que se comprueba no se afloja. */
+
+const ORDENES = /\b(no pagues|debes|tienes que|garantizamos|(?<!cuenta )garantizad[oa]s?)\b/i;
+
+test('Fase 0 FR-001: las variaciones de identidad nunca son un problema', () => {
+  const v = (valor) => ({ valor, texto: valor });
+  const r = rep([], { identidad: { nombres: [v('ANA RUIZ'), v('ANA R RUIZ'), v('LUIS PEREZ')], direcciones: [v('1 MAIN ST, MIAMI, FL 33101'), v('2 OAK, DALLAS, TX 75201')], telefonos: [v('3055550100'), v('2125550100')] } });
+  const a = A.analizar(r);
+  assert.deepStrictEqual(a.problemas, []);
+  assert.strictEqual(A.paraGuardar(a).health, 'Perfil sin alertas obvias');
+});
+
+test('Fase 0 FR-002/FR-003: la cobranza se explica sin órdenes y menciona el plazo de validación', () => {
+  const cob = A.analizar(rep([cta('x', { esCobranza: true })])).problemas[0];
+  const h = cob.hallazgos.find((x) => x.regla === 'cobranza');
+  h.opciones.forEach((o) => assert.ok(!ORDENES.test(o), o));
+  assert.ok(h.opciones.some((o) => /30 días/.test(o)));
+  assert.ok(h.queDiceLaLey.some((c) => /1692g/.test(c.seccion)));
+});
+
+test('Fase 0 FR-004: muchas consultas duras no son un problema', () => {
+  const consultas = Array.from({ length: 10 }, (_, i) => ({ tipo: 'dura', empresa: val('BANCO ' + i), fecha: fechaV('2026-0' + (1 + (i % 4)) + '-10') }));
+  assert.deepStrictEqual(A.analizar(rep([], { consultas })).problemas, []);
+});
+
+test('Fase 0 FR-002: ningún texto del analista da órdenes ni garantías', () => {
+  const textos = JSON.stringify(A.REGLAS.map((r) => [r.textos, r.citas]));
+  assert.ok(!ORDENES.test(textos));
 });

@@ -88,13 +88,14 @@ test('sin el módulo de cartas la lista sigue mostrándose (plana, como antes)',
   assert.ok(cuerpo.includes('Datos personales detectados'));
 });
 
+/* 014 T037 (en la 019): la fuente de los datos cambió de evaluateDocument (addNegative) al reporte
+   leído (renderIdentidad). Lo que se comprueba no cambia: todas las tarjetas reciben TODOS los datos. */
 test('todas las tarjetas de identidad reciben la lista completa de datos, no solo los de su tipo', () => {
-  const lineas = leerCredito().split('\n').filter((l) => /addNegative\(/.test(l) && /'identity-(names|phones|addresses|mixed)'/.test(l) && !/const addNegative/.test(l));
-  assert.strictEqual(lineas.length, 4, 'debe haber las 4 tarjetas de identidad');
-  lineas.forEach((l) => {
-    assert.ok(l.includes('allDetectedIdentity'), 'una tarjeta no recibe todos los datos: ' + l.slice(0, 90));
-    assert.ok(!/detected(Names|Phones|Addresses)\)/.test(l), 'una tarjeta recibe solo un tipo: ' + l.slice(0, 90));
-  });
+  const cuerpo = cuerpoDe(leerCredito(), 'renderIdentidad');
+  assert.ok(cuerpo.includes('const allDetectedIdentity = identidadDetectada(reporte)'), 'los datos salen del reporte leído');
+  assert.ok(/detectedValues:\s*allDetectedIdentity/.test(cuerpo), 'cada tarjeta recibe todos los datos');
+  assert.ok(!/detected(Names|Phones|Addresses)/.test(cuerpo), 'una tarjeta recibe solo un tipo');
+  ['Nombre', 'Teléfono', 'Dirección'].forEach((t) => assert.ok(cuerpoDe(leerCredito(), 'identidadDetectada').includes("type: '" + t + "'"), t));
 });
 
 test('qué tarjetas de identidad se ofrecen lo decide tiposDeTarjeta (con respaldo si falta el módulo)', () => {

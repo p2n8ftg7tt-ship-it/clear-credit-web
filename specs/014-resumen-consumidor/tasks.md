@@ -208,7 +208,7 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 ### Tests para US2
 
-- [ ] T017 [P] [US2] En `tests/analista-credito.test.js`, prueba de «problemas y gravedad» con cuentas armadas en la prueba (objetos `Cuenta` mínimos con `Valor` del data-model de la 013):
+- [X] T017 [P] [US2] En `tests/analista-credito.test.js`, prueba de «problemas y gravedad» con cuentas armadas en la prueba (objetos `Cuenta` mínimos con `Valor` del data-model de la 013):
   - `esCobranza` → roja, regla `cobranza`.
   - `montoChargeOff.valor > 0` → roja.
   - Historial con `atraso_30` → naranja.
@@ -218,7 +218,7 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
   - Charge-off más atraso → una sola entrada roja con dos hallazgos.
 
   Orden: roja antes que naranja antes que amarilla; dentro de la misma gravedad, la `fechaProblema` más reciente primero; un registro público sale como problema rojo con `id` `rp-0`.
-- [ ] T018 [P] [US2] En `tests/analista-credito.test.js`, pruebas de las utilidades:
+- [X] T018 [P] [US2] En `tests/analista-credito.test.js`, pruebas de las utilidades:
   - `iniciales('COOPERATIVA DEMO CREDIT UNION') === 'CD'`
   - `iniciales('AMERICREDIT/GM FINANCIAL') === 'AG'`
   - `iniciales('DISCOVER CARD') === 'DI'`
@@ -229,24 +229,24 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 ### Implementación US2
 
-- [ ] T019 [US2] Implementar `REGLAS` en `analista-credito.js` con los ids, detección y gravedad de research.md R2: `cobranza`, `charge_off`, `reposesion`, `ejecucion_hipotecaria`, `atraso`, `saldo_vencido`, `marcada_por_buro` y `registro_publico`.
+- [X] T019 [US2] Implementar `REGLAS` en `analista-credito.js` con los ids, detección y gravedad de research.md R2: `cobranza`, `charge_off`, `reposesion`, `ejecucion_hipotecaria`, `atraso`, `saldo_vencido`, `marcada_por_buro` y `registro_publico`.
   - Cada `detecta(cuenta, reporte)` devuelve `{ fecha, dato, origen }` o `null`. Por ejemplo, `atraso` toma el mes verificable más reciente con código `/^atraso_\d+$/` y `dato: 'Atraso de ' + n + ' días'`.
   - `analizar()` llena `problemas` con `CuentaConProblema` (data-model.md), usando `iniciales`, `nombreCorto`, `gravedadTexto` (`roja→'Grave'`, `naranja→'Atención'`, `amarilla→'Para revisar'`) y `frase`.
   - `carta` vale `'debt-validation'` en las cobranzas, `'bureau-dispute'` en las demás rojas y naranjas, y `null` en las amarillas.
 
   T017 pasa.
-- [ ] T020 [US2] Implementar y exportar en `analista-credito.js`:
+- [X] T020 [US2] Implementar y exportar en `analista-credito.js`:
   - `iniciales(acreedor)`: separar por `/[\s\/&,.-]+/` y quitar `BANK, NA, N.A, CARD, CREDIT, UNION, FINANCIAL, SERVICES, SERVICE, INC, LLC, CORP, CO, THE, OF, FSB, USA`. Si quedan dos palabras o más, la primera letra de las dos primeras; si queda una, sus dos primeras letras. Mayúsculas; `'?'` si no hay letras.
   - `nombreCorto`: formato título y sin los sufijos `BANK NA, NA, N.A., INC, LLC, CORP`; si pasa de 22 caracteres, se corta en 21 y se añade `…`.
   - Fechas cortas con `['ene.','feb.','mar.','abr.','may.','jun.','jul.','ago.','sept.','oct.','nov.','dic.']`.
 
   T018 pasa.
-- [ ] T021 [US2] `credito.html`: marcado `<section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT"><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div></section>`, después de `#crAbiertas`. Añadir `renderProblemas(analisis)`:
+- [X] T021 [US2] `credito.html`: marcado `<section class="cr-problemas" id="crProblemas" aria-labelledby="crProblemasT"><h3 id="crProblemasT">Cuentas con problemas</h3><div class="cr-circulos" id="crCirculos"></div><div class="cr-analisis" id="crAnalisis" hidden tabindex="-1"></div></section>`, después de `#crAbiertas`. Añadir `renderProblemas(analisis)`:
   - Cada problema es un `<button type="button" class="cr-circulo" data-gravedad="roja|naranja|amarilla" data-id="…" aria-expanded="false" aria-controls="crAnalisis">` con `<span class="cr-iniciales" aria-hidden="true">CD</span>`, `<span class="cr-circulo-nombre">Cooperativa Demo</span>`, `<span class="cr-circulo-frase">Charge-off, feb. 2026</span>` y `<span class="visually-hidden">Gravedad: Grave.</span>`.
   - Sin problemas: `<p class="cr-sin-problemas">No encontramos cuentas con problemas en este reporte.</p>`.
   - Si `analisis.advertencias` dice que no se leyeron las cuentas, mostrar esa frase en lugar de la tranquila (Review Focus #1).
   - Verificar que `.visually-hidden` existe en `styles.css`; si no existe, crearla ahí.
-- [ ] T022 [P] [US2] CSS de los círculos en el `<style>` de `credito.html`:
+- [X] T022 [P] [US2] CSS de los círculos en el `<style>` de `credito.html`:
   - En `:root` de `styles.css`, añadir `--atencion:#B4561B;` con un comentario («naranja de gravedad media; ≥4.5:1 con blanco»).
   - `.cr-circulos` es `display:flex; flex-wrap:wrap; gap:var(--space-3)`.
   - `.cr-iniciales` es un círculo de `3.5rem` (≥44px), `border-radius:50%`, con `font-family:var(--font-display)`.
@@ -255,7 +255,7 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
   - `:focus-visible` usa `var(--focus-ring)`.
   - En teléfono los círculos pasan a varias filas, sin desplazamiento horizontal.
   - Ningún otro elemento recibe movimiento.
-- [ ] T023 [US2] En `tests/credito-resumen-ui.test.js`, con `experian-resumen.json`:
+- [X] T023 [US2] En `tests/credito-resumen-ui.test.js`, con `experian-resumen.json`:
   - Hay 3 `.cr-circulo` en orden rojo, rojo, naranja; cada uno tiene `aria-controls="crAnalisis"` y texto oculto de gravedad.
   - No aparece «Tarjeta Ejemplo».
   - Con `experian.json`, el número de círculos es igual a `analizar(...).problemas.length`.
@@ -273,12 +273,12 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 ### Tests para US3
 
-- [ ] T024 [P] [US3] En `tests/analista-credito.test.js`, prueba de las invariantes de `REGLAS` (contracts/analista-api.md):
+- [X] T024 [P] [US3] En `tests/analista-credito.test.js`, prueba de las invariantes de `REGLAS` (contracts/analista-api.md):
   1. Toda `cita.seccion`, reducida con `.replace(/\(.*$/, '').trim()`, aparece en el texto de `zyron-leyes.js` (`fs.readFileSync`).
   2. Ningún texto de reglas ni de hallazgos generados con `experian-resumen.json` cumple `/\bdebes\b|no pagues|es ilegal|garantiz|\bcliente/i`.
   3. Toda regla roja o naranja tiene `citas.length >= 1` y `textos.opciones.length >= 1`.
   4. Los textos de las reglas no contienen nombres del fixture.
-- [ ] T025 [P] [US3] En `tests/analista-credito.test.js`, prueba de `esObsoleta(cuenta, fechaReporte)`:
+- [X] T025 [P] [US3] En `tests/analista-credito.test.js`, prueba de `esObsoleta(cuenta, fechaReporte)`:
   - DOFD `01/2018` con fecha del reporte `2026-05-20` → `true` (2018-01 + 7 años + 180 días = 2025-07).
   - DOFD `01/2021` → `false`.
   - Sin DOFD y con un `atraso_30` verificable en `2017-03` → `true`.
@@ -287,7 +287,7 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 ### Implementación US3
 
-- [ ] T026 [US3] Completar `textos` y `citas` de cada regla en `analista-credito.js` con la tabla de research.md R3. Las opciones siguen el orden de R4 (verificar el dato → disputa al buró por correo certificado con acuse → disputa al acreedor → validación con el cobrador si es cobranza; recordar que una queja a la CFPB no es una disputa).
+- [X] T026 [US3] Completar `textos` y `citas` de cada regla en `analista-credito.js` con la tabla de research.md R3. Las opciones siguen el orden de R4 (verificar el dato → disputa al buró por correo certificado con acuse → disputa al acreedor → validación con el cobrador si es cobranza; recordar que una queja a la CFPB no es una disputa).
 
   Texto de la regla `charge_off` (las demás siguen el mismo tono):
   ```js
@@ -309,8 +309,8 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
   Escribir también `cobranza` (§ 1692g(b), § 1692e(8), § 1681c(a)(4)), `atraso` (§ 1681c(a)(5), § 1681i(a), § 1681s-2), `saldo_vencido` (§ 1681i(a)), `reposesion` y `ejecucion_hipotecaria` (§ 1681c(a)(5), § 1681i(a)), `registro_publico` (§ 1681c(a)(1), § 1681i(a)) y `marcada_por_buro` (sin cita obligatoria; opciones de revisión).
 
   `noCubierto` en cobranza y charge-off: «La prescripción de la deuda depende de las leyes de tu estado, que este sitio todavía no tiene cargadas.» T024 pasa.
-- [ ] T027 [US3] Implementar `esObsoleta` en `analista-credito.js` (inicio = `dofd.valor.iso` o, si falta, el mes verificable más antiguo con `atraso_*`; fin = inicio + 7 años + 180 días; obsoleta si fin < fecha del reporte, o `opciones.hoy`) y la regla `obsoleta`, que añade un hallazgo sin cambiar la gravedad. Ajustar research.md R2 (fila `obsoleta`) a esta definición. T025 pasa.
-- [ ] T028 [US3] `credito.html`: añadir `renderAnalisis(problema)`, que llena `#crAnalisis` con:
+- [X] T027 [US3] Implementar `esObsoleta` en `analista-credito.js` (inicio = `dofd.valor.iso` o, si falta, el mes verificable más antiguo con `atraso_*`; fin = inicio + 7 años + 180 días; obsoleta si fin < fecha del reporte, o `opciones.hoy`) y la regla `obsoleta`, que añade un hallazgo sin cambiar la gravedad. Ajustar research.md R2 (fila `obsoleta`) a esta definición. T025 pasa.
+- [X] T028 [US3] `credito.html`: añadir `renderAnalisis(problema)`, que llena `#crAnalisis` con:
   - `<h4 tabindex="-1">` con el nombre y la gravedad.
   - Por cada hallazgo, las secciones «Qué vimos», «Qué significa para ti», «Qué dice la ley» (lista `<li><strong>FCRA § 1681c(a)(4)</strong> texto</li>`) y «Qué puedes hacer» (`<ol>`).
   - `noCubierto` como nota.
@@ -321,11 +321,11 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
   - Al tocar otra vez el mismo círculo: se cierra.
 
   Todo texto del reporte pasa por `escapeHtml`.
-- [ ] T029 [US3] Carta precargada en `credito.html`: el botón del análisis reutiliza `renderBureauDisputeForm(item, formId, bureauKey)` o `renderDebtValidationForm(item, formId)` (L3389–3424) dentro de un `<form class="cr-solution-form" hidden>`, con `item = { title, solutionType: problema.carta, issueKey: regla, issueArg: dato }` y el mismo `cr-solution-toggle`.
+- [X] T029 [US3] Carta precargada en `credito.html`: el botón del análisis reutiliza `renderBureauDisputeForm(item, formId, bureauKey)` o `renderDebtValidationForm(item, formId)` (L3389–3424) dentro de un `<form class="cr-solution-form" hidden>`, con `item = { title, solutionType: problema.carta, issueKey: regla, issueArg: dato }` y el mismo `cr-solution-toggle`.
   - En la validación de deuda, `collectorName` y `accountReference` se precargan con `datosCarta.acreedor` y `datosCarta.numero` (ya enmascarado).
   - En la disputa, el `<select name="creditBureau">` sale con el buró detectado.
   - Los manejadores de envío existentes deben seguir funcionando: delegación en `results`, L3747 en adelante.
-- [ ] T030 [US3] En `tests/credito-resumen-ui.test.js`:
+- [X] T030 [US3] En `tests/credito-resumen-ui.test.js`:
   - Abrir el análisis del charge-off con `renderAnalisis` produce las cuatro partes, «página», `§ 1681c` y `§ 1681i`.
   - El de la cobranza contiene `§ 1692g` y un formulario con `data-solution-type="debt-validation"`.
   - El HTML pintado no contiene las palabras prohibidas.
@@ -341,20 +341,20 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 **Independent Test**: los pasos aparecen en orden; el último dice «Encontré 3 cuentas con problemas» con `experian-resumen.json` (igual que los círculos); si la lectura falla, el paso en curso queda `fallido`.
 
-- [ ] T031 [P] [US4] En `tests/analista-credito.test.js`: `analizar(...).pasos` tiene los ids `observar`, `leer`, `revisar` y `concluir`, todos en `estado:'hecho'`.
+- [X] T031 [P] [US4] En `tests/analista-credito.test.js`: `analizar(...).pasos` tiene los ids `observar`, `leer`, `revisar` y `concluir`, todos en `estado:'hecho'`.
   - `pasos[0].texto` incluye `Experian` y `2026`.
   - `pasos[1].texto` incluye `5 cuentas` y `3 consultas duras`.
   - `pasos[2].texto === 'Revisé cada cuenta contra la FCRA y la FDCPA'`.
   - `pasos[3].texto === 'Encontré 3 cuentas con problemas'` (`'Encontré 1 cuenta con problemas'` en singular, `'No encontré cuentas con problemas'` con cero).
-- [ ] T032 [US4] Implementar `pasos` en `analista-credito.js` (data-model `PasoAgente`). T031 pasa.
-- [ ] T033 [US4] `credito.html`: reemplazar el contenido de `#crProgress` por `<ol class="cr-pasos" id="crPasos" aria-live="polite">` con cuatro `<li data-estado="pendiente">`. En `runAnalysis()` (L3714):
+- [X] T032 [US4] Implementar `pasos` en `analista-credito.js` (data-model `PasoAgente`). T031 pasa.
+- [X] T033 [US4] `credito.html`: reemplazar el contenido de `#crProgress` por `<ol class="cr-pasos" id="crPasos" aria-live="polite">` con cuatro `<li data-estado="pendiente">`. En `runAnalysis()` (L3714):
   - El paso «observar» pasa a `en_curso` con el texto «Leyendo la página N de M» dentro del callback de `extractPdf`.
   - Al terminar `leerReporte`, «observar» y «leer» quedan `hecho` con sus textos.
   - Tras `analizar`, «revisar» y «concluir» quedan `hecho` con los textos de `analisis.pasos`.
   - Se borra `await new Promise(resolve => setTimeout(resolve, 400));`.
   - En el `catch`, el paso en curso queda `fallido` y se muestra `#crError` como hoy.
   - La lista de pasos queda visible encima del resultado (no se oculta al terminar).
-- [ ] T034 [P] [US4] CSS de `.cr-pasos`:
+- [X] T034 [P] [US4] CSS de `.cr-pasos`:
   - Marcador por estado con tokens: hecho = palomita en `var(--good)`; en curso = punto en `var(--accion)`; fallido = cruz en `var(--corrector)`; pendiente = `var(--muted)`.
   - El único movimiento es un pulso suave del punto en curso, dentro de `@media (prefers-reduced-motion: no-preference)`.
   - Añadir a `tests/credito-resumen-ui.test.js`: `#crPasos` tiene `aria-live`, la animación vive solo dentro de ese media query y el bloque de `setTimeout(resolve, 400)` ya no existe.
@@ -369,24 +369,24 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 **Independent Test**: tras el análisis, las únicas secciones visibles son los pasos, los datos generales, las cuentas abiertas, las cuentas con problemas (con su análisis), las acciones y el aviso. Ningún hallazgo se repite; no aparece «cliente».
 
-- [ ] T035 [US5] Retirar de `credito.html`:
+- [X] T035 [US5] Retirar de `credito.html`:
   - El marcado `.cr-results-head`, `#crKpis`, `.cr-summary`, `#crCuentas`, `.cr-groups` y `.cr-strategy`.
   - Las funciones que ya no se usan: `evaluateDocument`, `stripReportNoise`, `renderFinding`, `renderStrategy`, `renderReportSummary`, `summaryFromReport`, el bloque `MESES_ES`…`renderCuentas` (fichas `lc-*`) y `firstNumber`/`count` si nadie más los usa (confirmar con `graphify query "evaluateDocument callers"` y Grep).
   - Su CSS (`.cr-kpi*`, `.cr-summary*`, `.lc-*`, `.cr-group*`, `.cr-finding*`, `.cr-strategy*`).
 
   Sin `ThemoraLector` o `ThemoraAnalista`, `runAnalysis` muestra `#crError` con «No pudimos cargar el lector de reportes. Recarga la página e inténtalo otra vez.», sin caer a un análisis por palabras (FR-001).
-- [ ] T036 [US5] Implementar `paraGuardar(analisis)` en `analista-credito.js`. Devuelve `{ health, tone, conclusion, score:null, utilization:null, negatives, positives:[], accountsSummary:{ count, cardCount, byType }, inquiriesSummary:{ hard, soft, total } }`, donde:
+- [X] T036 [US5] Implementar `paraGuardar(analisis)` en `analista-credito.js`. Devuelve `{ health, tone, conclusion, score:null, utilization:null, negatives, positives:[], accountsSummary:{ count, cardCount, byType }, inquiriesSummary:{ hard, soft, total } }`, donde:
   - `negatives` es `problemas.map(p => ({ title: p.frase, priority: p.gravedadTexto }))`.
   - `health` y `tone`: si hay alguna roja, `'Atención prioritaria'`/`'critical'`; si hay problemas, `'Hay margen de mejora'`/`'attention'`; si no, `'Perfil sin alertas obvias'`/`'stable'`.
 
   Prueba en `tests/analista-credito.test.js`: con un reporte cuyo SSN es `123-45-6789`, `JSON.stringify(paraGuardar(a))` no contiene `6789`, `ANA`, `CALLE` ni `555` (Review Focus #3). `CCAuth.resumenSeguro()` de `auth.js` acepta la forma (prueba con `require('../auth-helpers.js')` si la expone; si no, comparar contra las claves que lee `auth.js:358-371`).
 
   En `credito.html`: `window.__ccLastAnalysis = ThemoraAnalista.paraGuardar(analisis)`.
-- [ ] T037 [US5] Identidad sin `evaluateDocument`: construir `detectedValues` para el formulario de corrección de identidad desde `reporte.identidad` (nombres, teléfonos y direcciones con `identityDisplayValue`).
+- [X] T037 [US5] Identidad sin `evaluateDocument`: construir `detectedValues` para el formulario de corrección de identidad desde `reporte.identidad` (nombres, teléfonos y direcciones con `identityDisplayValue`).
   - Ofrecerlo como enlace discreto dentro de `#crDatosGenerales`, «¿No reconoces alguno de estos datos?», que abre `renderIdentityForm` plegado.
   - `tiposDeTarjeta` sigue decidiendo qué tarjeta se ofrece.
   - Ajustar `tests/credito-identidad.test.js` solo en la fuente de los datos (la lista sigue agrupada, sin nada marcado y con la misma analítica). Ninguna aserción se debilita.
-- [ ] T038 [US5] Pruebas que vigilaban lo retirado:
+- [X] T038 [US5] Pruebas que vigilaban lo retirado:
   - **`tests/credito-lector-ui.test.js`**: borrar las pruebas de fichas (`renderCuentas`, historial, «no reportado», resaltador de DOFD) y conservar las de orden de carga y del botón «Leer mi reporte».
   - **`tests/credito-fase0.test.js`**: portar FR-001 a FR-004 a `tests/analista-credito.test.js`:
     - la identidad nunca es problema;
@@ -395,13 +395,13 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
     - sin palabras prohibidas.
   - **FR-005** («el analizador viejo no existe») se amplía a que `evaluateDocument` ya no está en `credito.html`.
   - Anotar en el encabezado de cada archivo qué se movió y por qué (constitución: no se debilita una prueba; se traslada).
-- [ ] T039 [US5] Lenguaje: cambiar en `credito.html` todo «cliente» que se refiera a la persona por «consumidor» (Grep `-i "cliente"` en la sección del analizador y en sus textos de JS). Prueba en `tests/credito-resumen-ui.test.js`: entre `id="analizar-reporte"` y su `</section>`, y en `analista-credito.js`, no aparece `/\bclientes?\b/i`.
-- [ ] T040 [US5] Impresión: en el `@media print` de `credito.html`:
+- [X] T039 [US5] Lenguaje: cambiar en `credito.html` todo «cliente» que se refiera a la persona por «consumidor» (Grep `-i "cliente"` en la sección del analizador y en sus textos de JS). Prueba en `tests/credito-resumen-ui.test.js`: entre `id="analizar-reporte"` y su `</section>`, y en `analista-credito.js`, no aparece `/\bclientes?\b/i`.
+- [X] T040 [US5] Impresión: en el `@media print` de `credito.html`:
   - Ocultar los pasos, los botones y los carteles.
   - Mostrar los datos generales, las cuentas abiertas, la lista de problemas y **todos** los análisis: al imprimir se pinta cada análisis en un contenedor `#crAnalisisImpresion`, oculto en pantalla.
   - Los círculos se imprimen con borde y la gravedad en texto.
   - Prueba: existe la regla de impresión y `#crAnalisisImpresion` se llena con un análisis por problema.
-- [ ] T041 [US5] Prueba final de la historia en `tests/credito-resumen-ui.test.js`: dentro de `#crResults` ya no existen los ids `crKpis`, `crSummaryGrid`, `crCuentas`, `crNegativeList` ni `crStrategyList`, y ninguna `frase` de problema aparece dos veces en el HTML pintado (SC-006).
+- [X] T041 [US5] Prueba final de la historia en `tests/credito-resumen-ui.test.js`: dentro de `#crResults` ya no existen los ids `crKpis`, `crSummaryGrid`, `crCuentas`, `crNegativeList` ni `crStrategyList`, y ninguna `frase` de problema aparece dos veces en el HTML pintado (SC-006).
 
 **Checkpoint**: las cinco historias completas.
 
@@ -409,11 +409,11 @@ description: "Tareas para el resumen del consumidor en el analizador de crédito
 
 ## Phase 8: Polish & Cross-Cutting
 
-- [ ] T042 Correr `node --test tests/`: todo PASS. Reportar cualquier fallo tal cual.
-- [ ] T043 Revisión manual con quickstart.md §2 (pasos 1–11) con un PDF real de Experian del dueño, sin copiarlo al proyecto; incluye 375px y movimiento reducido. Tomar una captura de la pantalla de resultado y revisarla con la guía de `frontend-design` (una sola cosa llamativa: los círculos; nada más con movimiento; contraste).
-- [ ] T044 [P] Medir SC-004: altura de `#crResults` con un reporte de 16 cuentas, antes y después (DevTools); anotarla en `specs/014-resumen-consumidor/quickstart.md`.
-- [ ] T045 [P] `graphify update .` y confirmar con `graphify explain "analista-credito.js"` que el módulo aparece conectado con `credito.html` y `lector-credito.js`.
-- [ ] T046 [P] Actualizar la memoria `analizador-credito-agente.md` (qué quedó hecho y qué sigue: IA híbrida, más leyes, idiomas) y marcar en `specs/013-lector-credito-metodologia/spec.md` que las fases 2 y 4 avanzaron vía 014.
+- [X] T042 (cubierta por 019, Task 6) Correr `node --test tests/`: todo PASS. Reportar cualquier fallo tal cual.
+- [X] T043 (cubierta por 019, Task 6) Revisión manual con quickstart.md §2 (pasos 1–11) con un PDF real de Experian del dueño, sin copiarlo al proyecto; incluye 375px y movimiento reducido. Tomar una captura de la pantalla de resultado y revisarla con la guía de `frontend-design` (una sola cosa llamativa: los círculos; nada más con movimiento; contraste).
+- [X] T044 (cubierta por 019, Task 6) [P] Medir SC-004: altura de `#crResults` con un reporte de 16 cuentas, antes y después (DevTools); anotarla en `specs/014-resumen-consumidor/quickstart.md`.
+- [X] T045 (cubierta por 019, Task 6) [P] `graphify update .` y confirmar con `graphify explain "analista-credito.js"` que el módulo aparece conectado con `credito.html` y `lector-credito.js`.
+- [X] T046 (cubierta por 019, Task 6) [P] Actualizar la memoria `analizador-credito-agente.md` (qué quedó hecho y qué sigue: IA híbrida, más leyes, idiomas) y marcar en `specs/013-lector-credito-metodologia/spec.md` que las fases 2 y 4 avanzaron vía 014.
 
 ---
 
