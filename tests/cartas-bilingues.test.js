@@ -246,7 +246,7 @@ test('armar acepta el tipo de solución de la página (identity-names, etc.) y r
    etiqueta en credito.html sin traducirla aquí, el inglés mostraría español. */
 test('cada etiqueta de dato detectado que usa credito.html tiene su traducción al inglés', () => {
   const html = require('node:fs').readFileSync(path.join(__dirname, '..', 'credito.html'), 'utf8');
-  const usadas = new Set((html.match(/{type:'([^']+)',value:/g) || []).map((x) => x.match(/type:'([^']+)'/)[1]));
+  const usadas = new Set((html.match(/\{\s*type:\s*'([^']+)',\s*value:/g) || []).map((x) => x.match(/type:\s*'([^']+)'/)[1]));
   assert.ok(usadas.size >= 3, 'se esperaban al menos las etiquetas de nombre, teléfono y dirección; hay: ' + [...usadas].join(', '));
   usadas.forEach((etiqueta) => assert.ok(C.ETIQUETAS_TIPO_DATO[etiqueta], 'falta traducir la etiqueta  + etiqueta +  de credito.html'));
 });
@@ -551,4 +551,44 @@ test('la carta de identidad tiene una línea por cada dato marcado (1, 3 y 8) y 
     todos.slice(k).forEach((v) => assert.ok(!r.textoEs.includes(v.value) && !r.textoEn.includes(v.value), 'aparece un dato sin marcar: ' + v.value));
     b.es.concat(b.en).forEach((l) => assert.ok(!l.includes(DIRECCION) && !l.includes(NOMBRE_LEGAL), 'se coló un dato propio: ' + l));
   });
+});
+
+const fsB = require('node:fs');
+const pathB = require('node:path');
+const CB = require('../cartas-bilingues.js');
+const remitenteB = { givenNames: 'ANA', firstSurname: 'RUIZ', secondSurname: '', street: '1 MAIN ST', city: 'MIAMI', state: 'FL', postalCode: '33101', currentPhone: '3055550100' };
+
+test('BUROS coincide con la tabla de credito.html (Principio IV)', () => {
+  const html = fsB.readFileSync(pathB.join(__dirname, '..', 'credito.html'), 'utf8');
+  Object.values(CB.BUROS).forEach((b) => {
+    assert.ok(html.includes("recipient: '" + b.destinatario + "'"), b.nombre);
+    assert.ok(html.includes("address: ['" + b.direccion.join("', '") + "']"), b.nombre);
+  });
+  assert.ok(Object.isFrozen(CB.BUROS));
+});
+
+test('disputa sin cuentas: idéntica a hoy', () => {
+  const base = { remitente: remitenteB, buro: CB.BUROS.equifax, motivo: 'wrong-amount', fecha: new Date(2026, 9, 2) };
+  assert.deepStrictEqual(CB.armar('bureau-dispute', base), CB.armar('bureau-dispute', Object.assign({ cuentas: [] }, base)));
+  assert.ok(!CB.armar('bureau-dispute', base).bloques.some((b) => b.id === 'cuentas-disputadas'));
+});
+
+test('disputa con varias cuentas: bloque bilingüe después del motivo', () => {
+  const c = CB.armar('bureau-dispute', { remitente: remitenteB, buro: CB.BUROS.equifax, motivo: 'other', fecha: new Date(2026, 9, 2),
+    cuentas: [{ acreedor: 'ACME BANK', ultimos4: '0123', motivo: 'wrong-amount' }, { acreedor: 'ACME & CO., INC.', ultimos4: null, motivo: 'wrong-date' }] });
+  const ids = c.bloques.map((b) => b.id);
+  assert.strictEqual(ids.indexOf('cuentas-disputadas'), ids.indexOf('motivo') + 1);
+  const b = c.bloques.find((x) => x.id === 'cuentas-disputadas');
+  assert.deepStrictEqual(b.es, ['CUENTAS QUE DISPUTO:', '1. ACME BANK — cuenta terminada en 0123 — ' + CB.MOTIVOS['wrong-amount'].es,
+    '2. ACME & CO., INC. — número no visible en el reporte — ' + CB.MOTIVOS['wrong-date'].es]);
+  assert.deepStrictEqual(b.en, ['ACCOUNTS I AM DISPUTING:', '1. ACME BANK — account ending in 0123 — ' + CB.MOTIVOS['wrong-amount'].en,
+    '2. ACME & CO., INC. — account number not shown on the report — ' + CB.MOTIVOS['wrong-date'].en]);
+  assert.strictEqual(b.libre, false);
+});
+
+test('disputa con 10 cuentas (Review Focus 1)', () => {
+  const cuentas = Array.from({ length: 10 }, (_, i) => ({ acreedor: 'BANCO ' + i, ultimos4: String(1000 + i), motivo: 'other' }));
+  const b = CB.armar('bureau-dispute', { remitente: remitenteB, buro: CB.BUROS.experian, motivo: 'other', cuentas }).bloques.find((x) => x.id === 'cuentas-disputadas');
+  assert.strictEqual(b.es.length, 11);
+  assert.match(b.en[10], /^10\. BANCO 9 — account ending in 1009 — /);
 });

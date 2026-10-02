@@ -108,6 +108,12 @@
     en: 'the account or information identified in my credit report'
   };
 
+  var BUROS = Object.freeze({
+    equifax: { nombre: 'Equifax', destinatario: 'Equifax Information Services LLC', direccion: ['P.O. Box 740241', 'Atlanta, GA 30374'] },
+    experian: { nombre: 'Experian', destinatario: 'Experian — Dispute by Mail', direccion: ['P.O. Box 4500', 'Allen, TX 75013'] },
+    transunion: { nombre: 'TransUnion', destinatario: 'TransUnion Consumer Solutions', direccion: ['P.O. Box 2000', 'Chester, PA 19016-2000'] }
+  });
+
   // Tipo de dato personal detectado en el reporte (la etiqueta se traduce; el valor, nunca).
   var ETIQUETAS_TIPO_DATO = { 'Nombre': 'Name', 'Nombre o alias': 'Name or alias', 'Teléfono': 'Phone', 'Dirección': 'Address' };
   var TIPO_DATO_DESCONOCIDO = 'Information';
@@ -307,12 +313,27 @@
     ];
   }
 
+  // Varias cuentas en una sola disputa (spec 018). Sin «cuentas», la carta queda igual que antes.
+  // TODO(NATIVE_REVIEW): revisar el inglés de este bloque con una persona nativa (Principio V).
+  function bloqueCuentasDisputadas(cuentas) {
+    var linea = function (c, i, idioma) {
+      var motivo = (MOTIVOS[c.motivo] || MOTIVOS.other)[idioma];
+      var numero = texto(c.ultimos4)
+        ? (idioma === 'es' ? ' — cuenta terminada en ' : ' — account ending in ') + texto(c.ultimos4) + ' — '
+        : (idioma === 'es' ? ' — número no visible en el reporte — ' : ' — account number not shown on the report — ');
+      return (i + 1) + '. ' + texto(c.acreedor) + numero + motivo;
+    };
+    return bloque('cuentas-disputadas',
+      ['CUENTAS QUE DISPUTO:'].concat(cuentas.map(function (c, i) { return linea(c, i, 'es'); })),
+      ['ACCOUNTS I AM DISPUTING:'].concat(cuentas.map(function (c, i) { return linea(c, i, 'en'); })));
+  }
+
   function cartaDisputaBuro(datos) {
     var r = remitente(datos), b = buro(datos);
     var motivo = MOTIVOS[datos.motivo] || MOTIVOS.other;
     var detalle = texto(datos.detalle);
     var h = etiquetaHallazgo(datos.hallazgo);
-    return [
+    var bloques = [
       bloque('remitente',
         [r.legalName, r.address, 'Teléfono: ' + r.phone],
         [r.legalName, r.address, 'Phone: ' + r.phone]),
@@ -351,6 +372,11 @@
         ['Atentamente,', '', 'Firma: ______________________________', r.legalName],
         ['Sincerely,', '', 'Signature: ______________________________', r.legalName])
     ];
+    if (Array.isArray(datos.cuentas) && datos.cuentas.length) {
+      var despuesDelMotivo = bloques.findIndex(function (x) { return x.id === 'motivo'; }) + 1;
+      bloques.splice(despuesDelMotivo, 0, bloqueCuentasDisputadas(datos.cuentas));
+    }
+    return bloques;
   }
 
   function cartaValidacionDeuda(datos) {
@@ -429,7 +455,8 @@
     formatearFecha: formatearFecha,
     ETIQUETAS_HALLAZGO: ETIQUETAS_HALLAZGO,
     ETIQUETAS_TIPO_DATO: ETIQUETAS_TIPO_DATO,
-    MOTIVOS: MOTIVOS
+    MOTIVOS: MOTIVOS,
+    BUROS: BUROS
   };
   if (typeof window !== 'undefined') window.ThemoraCartas = API;
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
