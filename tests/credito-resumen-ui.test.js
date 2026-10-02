@@ -281,3 +281,15 @@ test('revisión 4: la carta de un círculo identifica la cuenta (acreedor y núm
   assert.ok(arg && arg.includes('COOPERATIVA DEMO CREDIT UNION'), 'falta el acreedor: ' + arg);
   if (co.datosCarta.numero) assert.ok(arg.includes(co.datosCarta.numero), 'falta el número enmascarado');
 });
+test('menor M1: la precarga de la carta usa una función de reemplazo (un «$&» en el dato no se interpreta)', () => {
+  const cuerpo = html.slice(html.indexOf('function armarFormularioProblema('), html.indexOf("if ($('crCirculos'))"));
+  assert.match(cuerpo, /\.replace\('name="collectorName" type="text"', \(\) =>/);
+  assert.match(cuerpo, /\.replace\('name="accountReference" type="text"', \(\) =>/);
+});
+test('menor M2: imprimir con el navegador (Ctrl+P) también llena los análisis', () => {
+  assert.match(html, /window\.addEventListener\('beforeprint', prepararImpresion\)/);
+});
+test('menor M4: sin código muerto de primaryName', () => {
+  assert.ok(!html.includes('primaryName'));
+  assert.ok(!html.includes('fallbackName'));
+});

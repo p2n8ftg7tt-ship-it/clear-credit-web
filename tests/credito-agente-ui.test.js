@@ -245,3 +245,29 @@ test('revisión 5: editar un campo o marcar una casilla actualiza solo esa tarje
   assert.deepStrictEqual([casillas.inexacta.checked, casillas.yoEnvio.checked], [false, false]);
   assert.strictEqual(partes['.cr-carta-final'].innerHTML, '');
 });
+test('menor M3: un respaldo que no gastó un uso no avisa que se gastará otro', async () => {
+  for (const motivo of ['sin_sesion', 'limite_diario', 'no_configurado', 'datos_rechazados']) {
+    const { api, nodos } = crearEntornoPagina({ analizarConAgente: async () => ({ modo: 'local', motivo, herramientas: {} }) });
+    api.iniciarAgente(reporteAcme(), null);
+    api.alPedirAgente();
+    await api.alConfirmarMarcas([], []);
+    api.alPedirAgente();
+    assert.strictEqual(nodos.crAgenteAviso.hidden, true, motivo);
+  }
+  const { api, nodos } = crearEntornoPagina({ analizarConAgente: async () => ({ modo: 'local', motivo: 'ia_no_disponible', herramientas: {} }) });
+  api.iniciarAgente(reporteAcme(), null);
+  api.alPedirAgente();
+  await api.alConfirmarMarcas([], []);
+  api.alPedirAgente();
+  assert.strictEqual(nodos.crAgenteAviso.hidden, false, 'ia_no_disponible puede haber gastado el uso: se avisa');
+});
+test('menor M5: el círculo abierto recibe «Lo que dice el agente» cuando el agente termina', async () => {
+  const { api, nodos } = crearEntornoPagina();
+  let agregado = '';
+  nodos.crCirculos = { hijos: [], attrs: {}, querySelector: (sel) => (sel === '.cr-circulo[aria-expanded="true"]' ? { dataset: { id: 'A' } } : null) };
+  nodos.crAnalisis = { hidden: false, innerHTML: '<h4>ACME</h4>', insertAdjacentHTML(pos, h) { agregado += h; this.innerHTML += h; }, querySelector: () => null };
+  api.iniciarAgente(reporteAcme(), null);
+  api.alPedirAgente();
+  await api.alConfirmarMarcas([], []);
+  assert.match(agregado, /Lo que dice el agente/);
+});

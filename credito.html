@@ -2849,10 +2849,7 @@
         $('crAbiertas').hidden = !analisis;
         if (!analisis) return;
         const r = analisis.resumen;
-        const nombreValido = r.nombre && r.nombre !== 'Nombre no legible en el reporte';
-        const fallbackName = typeof window !== 'undefined' && window.__ccLastAnalysis && window.__ccLastAnalysis.primaryName;
-        const nombreMostrar = nombreValido ? r.nombre : (fallbackName || r.nombre);
-        $('crDgTitulo').textContent = nombreMostrar === 'Nombre no legible en el reporte' ? nombreMostrar : enTitulo(nombreMostrar);
+        $('crDgTitulo').textContent = r.nombre === 'Nombre no legible en el reporte' ? r.nombre : enTitulo(r.nombre);
         const conocido = r.buro.id !== 'desconocido';
         $('crDgFuente').textContent = (conocido ? 'Reporte de ' + r.buro.nombre : 'Reporte de un buró que no reconocimos') +
           (r.fecha ? (r.fecha.iso.length === 10 ? ' del ' : ' de ') + r.fecha.texto : '');
@@ -3010,11 +3007,13 @@
           const r = await window.ThemoraAgenteCredito.analizarConAgente(estadoAgente.reporte, {
             accessToken: token, marcadas: { cuentaIds: cuentaIds || [], datos: datos || [] }, onEvento: codigo => { if (vigente()) agregarPasoAgente(codigo); }
           });
-          if (vigente()) mostrarResultadoAgente(r);
+          if (vigente()) {
+            estadoAgente.usado = r.modo === 'ia' || !['sin_sesion', 'limite_diario', 'no_configurado', 'datos_rechazados'].includes(r.motivo);
+            mostrarResultadoAgente(r);
+          }
         } finally {
           if (vigente()) {
             estadoAgente.corriendo = false;
-            estadoAgente.usado = true;
             $('crAgenteBoton').disabled = false;
           }
         }
@@ -3026,6 +3025,13 @@
         $('crAgenteResultado').hidden = false;
         estadoAgente.borradores = window.ThemoraCartasAgente.crearBorradores(r, estadoAgente.preparado, { buro: estadoAgente.reporte.buro });
         pintarCartas();
+        const circulos = $('crCirculos');
+        const panel = $('crAnalisis');
+        if (!panel.hidden && circulos.querySelector) {
+          const abierto = circulos.querySelector('.cr-circulo[aria-expanded="true"]');
+          const agente = abierto ? seccionAgenteParaCuenta(abierto.dataset.id) : '';
+          if (agente && !panel.querySelector('.cr-agente-circulo')) panel.insertAdjacentHTML('beforeend', agente);
+        }
         evento(r && r.modo === 'ia' ? 'agente-terminado' : 'agente-respaldo');
       }
 
@@ -3117,8 +3123,8 @@
         const d = p.datosCarta || {};
         if (p.carta === 'debt-validation') {
           return renderDebtValidationForm({}, formId)
-            .replace('name="collectorName" type="text"', 'name="collectorName" type="text" value="' + escapeHtml(d.acreedor || '') + '"')
-            .replace('name="accountReference" type="text"', 'name="accountReference" type="text" value="' + escapeHtml(d.numero || '') + '"');
+            .replace('name="collectorName" type="text"', () => 'name="collectorName" type="text" value="' + escapeHtml(d.acreedor || '') + '"')
+            .replace('name="accountReference" type="text"', () => 'name="accountReference" type="text" value="' + escapeHtml(d.numero || '') + '"');
         }
         return renderBureauDisputeForm({}, formId, d.buro);
       }
@@ -3564,6 +3570,7 @@
       analyzeButton.addEventListener('click', runAnalysis);
       $('crResetButton').addEventListener('click', () => { selectedFile = null; input.value = ''; results.hidden = true; progress.hidden = true; errorBox.hidden = true; analyzeButton.hidden = true; ready.hidden = true; empty.hidden = false; dropzone.classList.remove('has-file'); dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
       $('crPrintButton').addEventListener('click', () => { prepararImpresion(); window.print(); });
+      window.addEventListener('beforeprint', prepararImpresion);
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

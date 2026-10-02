@@ -212,7 +212,7 @@
       opciones: [OP_VERIFICAR, 'Si recibiste un aviso del cobrador hace menos de 30 días, puedes pedirle por escrito que valide la deuda; mientras lo hace, debe pausar el cobro.', OP_BURO,
         'Pagarla no la borra del reporte; antes de pagar o reconocer una deuda vieja, consulta el plazo de prescripción de tu estado.'], noCubierto: PRESCRIPCION },
       citas: [{ ley: 'FDCPA', seccion: '§ 1692g(b)', texto: 'Puedes pedir por escrito la validación dentro de los 30 días del aviso; mientras tanto el cobrador debe pausar el cobro.' },
-        { ley: 'FDCPA', seccion: '§ 1692e(8)', texto: 'Reportar una deuda sin indicar que está disputada es una práctica prohibida.' }, C_FCRA_7] },
+        { ley: 'FDCPA', seccion: '§ 1692e(8)', texto: 'Comunicar información de crédito sobre una deuda sin indicar que está disputada, cuando se sabe que lo está, es una práctica prohibida.' }, C_FCRA_7] },
     charge_off: { textos: { queSignifica: 'El acreedor dio esta deuda por perdida en su contabilidad. Para tu historial cuenta como una de las marcas más pesadas, aunque la cuenta ya esté cerrada o pagada.',
       opciones: [OP_VERIFICAR, OP_BURO, OP_ACREEDOR, 'Si el dato es correcto, la ley no obliga a borrarlo antes de su plazo; pagarlo no lo elimina, pero el reporte puede mostrarlo como pagado.'], noCubierto: PRESCRIPCION },
       citas: [C_FCRA_7, C_FCRA_180, C_FCRA_DISPUTA] },

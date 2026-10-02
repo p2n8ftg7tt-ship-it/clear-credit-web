@@ -259,3 +259,7 @@ test('revisión 3: la cobranza muestra cuándo entró a cobranza; el «as of» s
   assert.strictEqual(cob.frase, 'En cobranza, jun. 2018');
   assert.strictEqual(p[0].id, cob.id, 'sigue primero por su fecha vigente (abr. 2026)');
 });
+test('menor M6: § 1692e(8) incluye la condición de saber que está disputada', () => {
+  const cita = A.REGLAS.find((r) => r.id === 'cobranza').citas.find((c) => c.seccion === '§ 1692e(8)');
+  assert.strictEqual(cita.texto, 'Comunicar información de crédito sobre una deuda sin indicar que está disputada, cuando se sabe que lo está, es una práctica prohibida.');
+});

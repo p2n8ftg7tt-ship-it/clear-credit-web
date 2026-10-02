@@ -39,7 +39,7 @@ Registros públicos: cada uno es un «problema» propio (rojo) aunque no sea cue
 | cualquier dato inexacto | Si se disputa con el buró, debe reinvestigar gratis en 30 días (hasta 45 si se aporta información nueva) y corregir o borrar lo que no pueda verificar | FCRA § 1681i(a) |
 | dato inexacto del acreedor | Quien reporta debe investigar cuando el buró le pasa la disputa | FCRA § 1681s-2(b) |
 | cobranza | Derecho a pedir por escrito la validación dentro de los 30 días del aviso; mientras tanto el cobrador debe pausar el cobro | FDCPA § 1692g(b) |
-| cobranza disputada | Reportar una deuda sin indicar que está disputada es una práctica prohibida | FDCPA § 1692e(8) |
+| cobranza disputada | Comunicar información de crédito sobre una deuda sin indicar que está disputada, cuando se sabe que lo está, es una práctica prohibida. | FDCPA § 1692e(8) |
 | obsoleta | Información negativa más antigua que el plazo no debería aparecer | FCRA § 1681c(a) |
 
 - **Rationale**: Principio I (describir lo que dice la ley, sin «debes» ni «es ilegal») y Principio IV (una sola verdad: las mismas secciones que Zyron). FCBA, ECOA, CROA, Reg V y Reg F están en los skills de leyes pero **no** en el sitio; se dejan para una especificación que las cargue con sus pruebas, y el análisis lo dice con franqueza cuando aplique (FR-017).
