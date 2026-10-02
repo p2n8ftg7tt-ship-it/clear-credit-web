@@ -65,3 +65,37 @@ test('renderAgenteEnCirculo: solo los pasos de esa cuenta', () => {
 test('escapar cubre & < > " \'', () => {
   assert.strictEqual(V.escapar('a&b<c>"d\'e'), 'a&amp;b&lt;c&gt;&quot;d&#39;e');
 });
+const CA = require('../cartas-agente.js');
+const REM = { givenNames: 'ANA', firstSurname: 'RUIZ', secondSurname: '', street: '1 MAIN ST', city: 'MIAMI', state: 'FL', postalCode: '33101', currentPhone: '3055550100' };
+const borrador = () => CA.crearBorradores(IA(), C.etiquetarReporte(AY.acme()), { buro: 'equifax' })[0];
+
+test('renderCarta incompleta: campos, faltantes en español y sin carta final', () => {
+  const html = V.renderCarta(borrador());
+  ['data-campo="remitente.givenNames"', 'data-campo="remitente.postalCode"', 'data-confirmacion="inexacta"', 'data-confirmacion="yoEnvio"',
+    'Falta: tu nombre, tu dirección', 'Disputa al buró', 'Equifax Information Services LLC', 'ACME BANK'].forEach((x) => assert.ok(html.includes(x), x));
+  assert.ok(!html.includes('cr-letter-pair') && !html.includes('copiar-carta'));
+});
+
+test('renderCarta aprobada: dos columnas, copiar y guía; sin envío', () => {
+  const b = CA.confirmar(CA.actualizarDatos(borrador(), { remitente: REM }), { inexacta: true, yoEnvio: true });
+  const html = V.renderCarta(b, CA.textoFinal(b, { fecha: new Date(2026, 9, 2) }));
+  ['data-estado="aprobada"', 'Aprobada: lista para que la envíes tú', 'cr-letter-pair', 'cr-letter-cell en', 'ACCOUNTS I AM DISPUTING',
+    'data-accion="copiar-carta"', 'Copiar carta en inglés', 'correo certificado'].forEach((x) => assert.ok(html.includes(x), x));
+  assert.ok(!/mailto:|<form[^>]*action=/i.test(html));
+  assert.ok(html.includes('value="ANA"'));
+});
+
+test('renderCarta: cambiar un dato tras aprobar oculta la carta final (Review Focus 5)', () => {
+  let b = CA.confirmar(CA.actualizarDatos(borrador(), { remitente: REM }), { inexacta: true, yoEnvio: true });
+  b = CA.actualizarDatos(b, { remitente: Object.assign({}, REM, { street: '2 OAK RD' }) });
+  const html = V.renderCarta(b);
+  assert.ok(html.includes('Marca las dos confirmaciones para aprobarla') && !html.includes('cr-letter-pair'));
+});
+
+test('renderCarta: validación pide el cobrador; datos escapados', () => {
+  const r = Object.assign(IA(), { cartas: [{ tipo: 'debt-validation', cuentas: [{ letra: 'B', motivo: 'no_aplica' }], subtipo: 'no_aplica', etiquetas: [] }] });
+  const b = CA.actualizarDatos(CA.crearBorradores(r, C.etiquetarReporte(AY.acme()), { buro: 'equifax' })[0], { remitente: Object.assign({}, REM, { givenNames: '<b>ANA</b>' }) });
+  const html = V.renderCarta(b);
+  assert.ok(html.includes('Validación de deuda') && html.includes('data-campo="cobrador.calle"') && html.includes('los datos del cobrador'));
+  assert.ok(!html.includes('<b>ANA</b>') && html.includes('&lt;b&gt;ANA&lt;/b&gt;'));
+});
