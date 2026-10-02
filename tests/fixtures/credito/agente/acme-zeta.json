@@ -1,0 +1,59 @@
+{
+  "buro": "equifax",
+  "identidad": { "nombres": [], "direcciones": [], "telefonos": [], "empleadores": [], "ssnMostrado": false, "ssnUltimos4": null, "fechaNacimientoMostrada": false },
+  "avisos": [],
+  "registrosPublicos": [],
+  "advertencias": [],
+  "cuentas": [
+    {
+      "id": "A",
+      "acreedor": { "valor": "ACME BANK", "texto": "ACME BANK", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Account Name", "linea": 2 } },
+      "tipo": { "valor": "rotativa", "texto": "Revolving", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Account Type", "linea": 3 } },
+      "cerrada": true,
+      "esCobranza": false,
+      "estado": { "valor": "Charge Off", "texto": "Charge Off", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Status", "linea": 4 } },
+      "saldo": { "valor": 1284, "texto": "$1,284", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Balance", "linea": 5 } },
+      "dofd": { "valor": { "texto": "03/2021", "iso": "2021-03" }, "texto": "03/2021", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Date of 1st Delinquency", "linea": 9 } },
+      "fechaApertura": { "valor": { "texto": "06/2018", "iso": "2018-06" }, "texto": "06/2018", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Date Opened", "linea": 6 } },
+      "comentarios": [{ "valor": "Account sold to another lender", "texto": "Account sold to another lender", "origen": { "pagina": 1, "seccion": "adversas", "etiqueta": "Comments", "linea": 10 } }],
+      "historial": [], "atrasosListados": [], "codigosNarrativos": []
+    },
+    {
+      "id": "B",
+      "acreedor": { "valor": "ZETA COLLECTIONS", "texto": "ZETA COLLECTIONS", "origen": { "pagina": 2, "seccion": "cobranzas", "etiqueta": "Collection Agency", "linea": 2 } },
+      "tipo": { "valor": "cobranza", "texto": "Collection", "origen": { "pagina": 2, "seccion": "cobranzas", "etiqueta": "Account Type", "linea": 3 } },
+      "cerrada": false, "esCobranza": true,
+      "acreedorOriginal": { "valor": "ACME BANK", "texto": "ACME BANK", "origen": { "pagina": 2, "seccion": "cobranzas", "etiqueta": "Original Creditor", "linea": 4 } },
+      "saldo": { "valor": 1284, "texto": "$1,284", "origen": { "pagina": 2, "seccion": "cobranzas", "etiqueta": "Balance", "linea": 5 } },
+      "dofd": { "valor": { "texto": "03/2021", "iso": "2021-03" }, "texto": "03/2021", "origen": { "pagina": 2, "seccion": "cobranzas", "etiqueta": "Date of 1st Delinquency", "linea": 6 } },
+      "comentarios": [], "historial": [], "atrasosListados": [], "codigosNarrativos": []
+    },
+    {
+      "id": "C",
+      "acreedor": { "valor": "NOVA CARD", "texto": "NOVA CARD", "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Account Name", "linea": 20 } },
+      "tipo": { "valor": "rotativa", "texto": "Revolving", "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Account Type", "linea": 21 } },
+      "cerrada": false, "esCobranza": false,
+      "responsabilidad": { "valor": "Individual", "texto": "Individual", "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Responsibility", "linea": 22 } },
+      "saldo": { "valor": 890, "texto": "$890", "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Balance", "linea": 23 } },
+      "limite": { "valor": 1000, "texto": "$1,000", "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Credit Limit", "linea": 24 } },
+      "historial": [{ "anio": 2026, "mes": 8, "codigo": "al_dia", "texto": "OK", "mesVerificable": true, "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Payment History", "linea": 25 } }, { "anio": 2026, "mes": 9, "codigo": "al_dia", "texto": "OK", "mesVerificable": true, "origen": { "pagina": 1, "seccion": "satisfactorias", "etiqueta": "Payment History", "linea": 25 } }],
+      "atrasosListados": [], "comentarios": [], "codigosNarrativos": []
+    },
+    {
+      "id": "D",
+      "acreedor": { "valor": "SOL AUTO", "texto": "SOL AUTO", "origen": { "pagina": 2, "seccion": "satisfactorias", "etiqueta": "Account Name", "linea": 20 } },
+      "tipo": { "valor": "auto", "texto": "Auto", "origen": { "pagina": 2, "seccion": "satisfactorias", "etiqueta": "Account Type", "linea": 21 } },
+      "cerrada": false, "esCobranza": false,
+      "saldo": { "valor": 14200, "texto": "$14,200", "origen": { "pagina": 2, "seccion": "satisfactorias", "etiqueta": "Balance", "linea": 22 } },
+      "historial": [{ "anio": 2026, "mes": 8, "codigo": "al_dia", "texto": "OK", "mesVerificable": true, "origen": { "pagina": 2, "seccion": "satisfactorias", "etiqueta": "Payment History", "linea": 23 } }, { "anio": 2026, "mes": 9, "codigo": "al_dia", "texto": "OK", "mesVerificable": true, "origen": { "pagina": 2, "seccion": "satisfactorias", "etiqueta": "Payment History", "linea": 23 } }],
+      "atrasosListados": [], "comentarios": [], "codigosNarrativos": []
+    }
+  ],
+  "consultas": [
+    { "tipo": "dura", "empresa": { "valor": "CAPITAL DEMO", "texto": "CAPITAL DEMO", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Company", "linea": 2 } }, "fecha": { "valor": { "texto": "02/14/2026", "iso": "2026-02-14" }, "texto": "02/14/2026", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Inquiry Date", "linea": 3 } } },
+    { "tipo": "dura", "empresa": { "valor": "AUTO LENDER DEMO", "texto": "AUTO LENDER DEMO", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Company", "linea": 5 } }, "fecha": { "valor": { "texto": "11/03/2025", "iso": "2025-11-03" }, "texto": "11/03/2025", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Inquiry Date", "linea": 6 } } },
+    { "tipo": "dura", "empresa": { "valor": "BANCO MES DEMO", "texto": "BANCO MES DEMO", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Company", "linea": 8 } }, "fecha": { "valor": { "texto": "10/2025", "iso": "2025-10" }, "texto": "10/2025", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Inquiry Date", "linea": 9 } } },
+    { "tipo": "dura", "empresa": { "valor": "VIEJA DEMO", "texto": "VIEJA DEMO", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Company", "linea": 11 } }, "fecha": { "valor": { "texto": "08/20/2025", "iso": "2025-08-20" }, "texto": "08/20/2025", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Inquiry Date", "linea": 12 } } },
+    { "tipo": "blanda", "empresa": { "valor": "PROMO DEMO", "texto": "PROMO DEMO", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Company", "linea": 14 } }, "fecha": { "valor": { "texto": "05/01/2026", "iso": "2026-05-01" }, "texto": "05/01/2026", "origen": { "pagina": 3, "seccion": "consultas", "etiqueta": "Inquiry Date", "linea": 15 } } }
+  ]
+}
