@@ -55,8 +55,23 @@
       if(saveHint)saveHint.hidden=loggedIn;
     });
 
+    // Aviso junto al botón (no una ventana emergente): se lee en contexto y el
+    // lector de pantalla lo anuncia por ser role="status".
+    function aviso(texto){
+      let el=byId('mortgageSaveStatus');
+      if(!el){
+        el=document.createElement('p');
+        el.id='mortgageSaveStatus';
+        el.className='mortgage-save-status';
+        el.setAttribute('role','status');
+        saveButton.insertAdjacentElement('afterend',el);
+      }
+      el.textContent=texto;
+    }
+
     saveButton.addEventListener('click',async function(){
       if(!window.__ccLastMortgage)return;
+      aviso('');
       saveButton.disabled=true;
       const originalText=saveButton.textContent;
       saveButton.textContent='Guardando…';
@@ -65,7 +80,7 @@
         saveButton.textContent='Guardado ✓';
         setTimeout(()=>{ saveButton.textContent=originalText; saveButton.disabled=false; },2200);
       }catch(err){
-        alert('No pudimos guardar este cálculo. Intenta de nuevo.');
+        aviso('No pudimos guardar este cálculo. Revisa tu conexión e inténtalo de nuevo.');
         saveButton.textContent=originalText;
         saveButton.disabled=false;
       }

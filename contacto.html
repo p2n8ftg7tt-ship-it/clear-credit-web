@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto | Themora</title>
-<meta name="description" content="Escríbeme tus preguntas sobre crédito, compra de casa o auto.">
+<meta name="description" content="Escríbenos tus preguntas sobre crédito, compra de casa o auto.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,17 +14,18 @@
 <meta property="og:site_name" content="Themora">
 <meta property="og:locale" content="es_US">
 <meta property="og:title" content="Contacto | Themora">
-<meta property="og:description" content="Escríbeme tus preguntas sobre crédito, compra de casa o auto.">
+<meta property="og:description" content="Escríbenos tus preguntas sobre crédito, compra de casa o auto.">
 <meta property="og:image" content="https://mithemora.com/images/hero-familia.jpg">
 <meta property="og:url" content="https://mithemora.com/contacto.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contacto | Themora">
-<meta name="twitter:description" content="Escríbeme tus preguntas sobre crédito, compra de casa o auto.">
+<meta name="twitter:description" content="Escríbenos tus preguntas sobre crédito, compra de casa o auto.">
 <meta name="twitter:image" content="https://mithemora.com/images/hero-familia.jpg">
 <link rel="canonical" href="https://mithemora.com/contacto.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-cms-page="contacto">
@@ -33,7 +34,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -75,7 +76,7 @@
   <section class="page-hero">
     <div class="wrap">
       <span class="eyebrow">Hablemos</span>
-      <h1>¿Tienes una pregunta? Escríbeme.</h1>
+      <h1>¿Tienes una pregunta? Escríbenos.</h1>
       <p>Un papel que no entiendes, un trámite de tu negocio, una duda del sitio. Te respondo yo, directamente. No necesitas crear cuenta.</p>
     </div>
   </section>
@@ -110,12 +111,12 @@
 
           <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
           </div>
 
           <div class="form-group">
             <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" required>
           </div>
 
           <div class="form-group">

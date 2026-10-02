@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/herramientas.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   /* Calculadora hipotecaria */
@@ -34,10 +35,10 @@
   .mortgage-field{display:flex;flex-direction:column;gap:6px}
   .mortgage-field.full{grid-column:1/-1}
   .mortgage-field label{font-size:.76rem;font-weight:700;color:var(--navy)}
-  .mortgage-input-wrap{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
+  .mortgage-input-wrap{display:flex;align-items:stretch;border:1px solid var(--borde-campo);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
   .mortgage-input-wrap input,.mortgage-field select{border:0;background:transparent;padding:12px 13px;font:inherit;color:var(--ink);width:100%;box-sizing:border-box}
-  .mortgage-field select{border:1px solid var(--line);border-radius:8px;background:var(--paper-dim)}
-  .mortgage-input-wrap input:focus,.mortgage-field select:focus{outline:2px solid var(--gold-light)}
+  .mortgage-field select{border:1px solid var(--borde-campo);border-radius:8px;background:var(--paper-dim)}
+  .mortgage-input-wrap input:focus,.mortgage-field select:focus{outline:var(--focus-ring)}
   .mortgage-input-wrap .prefix,.mortgage-input-wrap .suffix{display:flex;align-items:center;padding:0 13px;color:var(--muted);font-weight:700;background:rgba(11,39,72,.04)}
   .mortgage-input-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
   .mortgage-input-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
@@ -61,9 +62,9 @@
   .quick-calc-card .qc-desc{font-size:.78rem;color:var(--muted);margin:-8px 0 4px}
   .qc-field{display:flex;flex-direction:column;gap:5px}
   .qc-field label{font-size:.72rem;font-weight:700;color:var(--navy)}
-  .qc-input-wrap{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
+  .qc-input-wrap{display:flex;align-items:stretch;border:1px solid var(--borde-campo);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
   .qc-input-wrap input{border:0;background:transparent;padding:10px 12px;font:inherit;color:var(--ink);width:100%;box-sizing:border-box}
-  .qc-input-wrap input:focus{outline:2px solid var(--gold-light)}
+  .qc-input-wrap input:focus{outline:var(--focus-ring)}
   .qc-input-wrap .prefix,.qc-input-wrap .suffix{display:flex;align-items:center;padding:0 11px;color:var(--muted);font-weight:700;background:rgba(11,39,72,.04)}
   .qc-input-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
   .qc-input-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
@@ -85,15 +86,15 @@
   .info-card h3{font:600 1.15rem var(--font-display);color:var(--navy-deep);margin:14px 0 8px}
   .info-card p{font-size:.85rem;color:var(--muted);flex:1}
   .icon-tag{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper-dim);color:var(--navy);font:700 .85rem var(--font-display);border:1px solid var(--line)}
-  .status-pill{display:inline-block;align-self:flex-start;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:5px 10px;border-radius:20px;margin-bottom:4px}
+  .status-pill{display:inline-block;align-self:flex-start;font-size:.62rem;font-weight:800;padding:5px 10px;border-radius:20px;margin-bottom:4px}
   .status-live{background:rgba(63,122,82,.12);color:var(--good)}
-  .status-soon{background:rgba(184,134,59,.14);color:var(--gold)}
+  .status-soon{background:rgba(95,168,184,.14);color:var(--texto-acento)}
 
 
   /* Acelerador de hipoteca */
   .acc-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,1fr);gap:22px;align-items:start}
   .acc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg,28px);padding:28px;box-shadow:0 14px 38px rgba(8,47,73,.06)}
-  .acc-step{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:var(--teal);margin:0 0 4px}
+  .acc-step{font-size:.68rem;font-weight:800;color:var(--teal);margin:0 0 4px}
   .acc-step-desc{font-size:.8rem;color:var(--muted);margin:0 0 16px;line-height:1.55}
   .acc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .acc-field{display:flex;flex-direction:column;gap:6px}
@@ -101,17 +102,17 @@
   .acc-field label{font-size:.76rem;font-weight:700;color:var(--navy)}
   .acc-wrap{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-dim)}
   .acc-wrap input{border:0;background:transparent;padding:12px 13px;font:inherit;color:var(--ink);width:100%;box-sizing:border-box}
-  .acc-wrap input:focus{outline:2px solid var(--gold-light)}
+  .acc-wrap input:focus{outline:var(--focus-ring)}
   .acc-wrap .prefix,.acc-wrap .suffix{display:flex;align-items:center;padding:0 13px;color:var(--muted);font-weight:700;background:rgba(11,39,72,.04)}
   .acc-wrap.has-prefix .prefix{border-right:1px solid var(--line)}
   .acc-wrap.has-suffix .suffix{border-left:1px solid var(--line)}
   .acc-date{display:flex;gap:8px}
-  .acc-date select{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--paper-dim);padding:12px 10px;font:inherit;color:var(--ink)}
-  .acc-date select:focus{outline:2px solid var(--gold-light)}
+  .acc-date select{flex:1;min-width:0;border:1px solid var(--borde-campo);border-radius:8px;background:var(--paper-dim);padding:12px 10px;font:inherit;color:var(--ink)}
+  .acc-date select:focus{outline:var(--focus-ring)}
   .acc-divider{margin:24px 0 0;padding-top:22px;border-top:1px solid var(--line)}
   /* El campo que la persona escribió se marca; los otros dos se ven calculados */
-  .acc-field.is-calculated .acc-wrap,.acc-field.is-calculated .acc-date select{background:rgba(201,138,62,.09);border-color:rgba(201,138,62,.35)}
-  .acc-tag{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);opacity:0;transition:opacity .2s ease}
+  .acc-field.is-calculated .acc-wrap,.acc-field.is-calculated .acc-date select{background:rgba(95,168,184,.09);border-color:rgba(95,168,184,.35)}
+  .acc-tag{font-size:.64rem;font-weight:800;color:var(--texto-acento);opacity:0;transition:opacity .2s ease}
   .acc-field.is-calculated .acc-tag{opacity:1}
   .acc-label-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
   .acc-current{background:var(--paper-dim);border-left:3px solid var(--teal);border-radius:8px;padding:13px 15px;margin-top:16px;font-size:.8rem;color:var(--ink)}
@@ -176,7 +177,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -749,7 +750,7 @@
 
         <form id="cdForm" class="cd-form" hidden>
           <div class="cd-fields">
-            <p class="cd-alert" id="cdAlert" hidden></p>
+            <p class="cd-alert" id="cdAlert" role="alert" hidden></p>
             <div class="cd-field"><label for="cdGivenNames">Nombre o nombres</label><input id="cdGivenNames" name="givenNames" type="text" autocomplete="given-name" maxlength="70" required></div>
             <div class="cd-field"><label for="cdSurname">Apellido(s)</label><input id="cdSurname" name="surname" type="text" autocomplete="family-name" maxlength="80" required></div>
             <div class="cd-field full"><label for="cdStreet">Tu calle y número</label><input id="cdStreet" name="street" type="text" autocomplete="street-address" maxlength="120" data-dir-calle="persona" data-dir-tipo="persona" required></div>
@@ -758,11 +759,11 @@
             <div class="cd-field"><label for="cdZip">Código postal</label><input id="cdZip" name="postalCode" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" data-dir-cp="persona" required></div>
             <div class="cd-field"><label for="cdPhone">Tu teléfono <span aria-hidden="true">(opcional)</span></label><input id="cdPhone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
 
-            <div class="cd-field full"><label for="cdCollectorName">Nombre de la agencia de cobranza o acreedor</label><input id="cdCollectorName" name="collectorName" type="text" maxlength="120" required></div>
+            <div class="cd-field full"><label for="cdCollectorName">Nombre de la agencia de cobranza o acreedor</label><input id="cdCollectorName" name="collectorName" type="text" autocomplete="off" maxlength="120" required></div>
             <div class="cd-field full"><label for="cdCollectorStreet">Dirección de la agencia (calle y número)</label><input id="cdCollectorStreet" name="collectorStreet" type="text" maxlength="120" data-dir-calle="cobrador" data-dir-tipo="cobrador" required></div>
-            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" maxlength="70" data-dir-ciudad="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorCity">Ciudad</label><input id="cdCollectorCity" name="collectorCity" type="text" autocomplete="off" maxlength="70" data-dir-ciudad="cobrador" required></div>
             <div class="cd-field"><label for="cdCollectorState">Estado</label><input id="cdCollectorState" name="collectorState" type="text" maxlength="40" placeholder="Ej.: FL" data-dir-estado="cobrador" required></div>
-            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" inputmode="numeric" maxlength="10" data-dir-cp="cobrador" required></div>
+            <div class="cd-field"><label for="cdCollectorZip">Código postal</label><input id="cdCollectorZip" name="collectorPostalCode" type="text" autocomplete="off" inputmode="numeric" maxlength="10" data-dir-cp="cobrador" required></div>
             <div class="cd-field"><label for="cdAccountRef">Número de cuenta o referencia <span aria-hidden="true">(opcional)</span></label><input id="cdAccountRef" name="accountReference" type="text" maxlength="60"></div>
 
             <div class="cd-field full"><label for="cdReason">¿Por qué quieres que dejen de contactarte? <span aria-hidden="true">(opcional)</span></label>
@@ -893,10 +894,15 @@
     const alertBox=document.getElementById('cdAlert');
     const data=new FormData(form);
     const required=['givenNames','surname','street','city','state','postalCode','collectorName','collectorStreet','collectorCity','collectorState','collectorPostalCode'];
-    const missing=required.some(name=>!String(data.get(name)||'').trim());
-    if(missing){
+    // Cada campo vacío queda marcado y ligado al aviso, y el foco va al primero.
+    form.querySelectorAll('[aria-invalid="true"]').forEach(campo=>{campo.removeAttribute('aria-invalid');campo.removeAttribute('aria-describedby');});
+    const vacios=required.filter(name=>!String(data.get(name)||'').trim());
+    if(vacios.length){
       alertBox.textContent='Completa tu información y la dirección completa de la agencia de cobranza para preparar la carta.';
       alertBox.hidden=false;
+      vacios.forEach(name=>{const campo=form.elements[name];if(campo){campo.setAttribute('aria-invalid','true');campo.setAttribute('aria-describedby','cdAlert');}});
+      const primero=form.elements[vacios[0]];
+      if(primero&&primero.focus)primero.focus();
       return;
     }
     alertBox.hidden=true;

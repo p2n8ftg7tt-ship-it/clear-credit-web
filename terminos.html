@@ -24,11 +24,12 @@
 <link rel="canonical" href="https://mithemora.com/terminos.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   .legal-wrap{max-width:760px;margin-inline:auto;padding:0 22px}
-  .legal-updated{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--paper-dim);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-bottom:8px}
+  .legal-updated{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;color:var(--muted);background:var(--paper-dim);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-bottom:8px}
   .legal-lead{font-size:1.06rem;line-height:1.72;color:var(--ink)}
   .legal-body h2{font-family:var(--font-display);font-size:1.42rem;line-height:1.28;margin:52px 0 14px;color:var(--navy-deep);scroll-margin-top:90px}
   .legal-body h3{font-size:1.02rem;margin:28px 0 8px;color:var(--navy-deep)}
@@ -36,19 +37,19 @@
   .legal-body ul{padding-left:20px;display:grid;gap:8px;margin:12px 0}
   .legal-body a{color:var(--teal);text-decoration:underline}
   .legal-toc{background:var(--paper-dim);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;margin:34px 0 8px}
-  .legal-toc strong{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
+  .legal-toc strong{display:block;font-size:.76rem;color:var(--muted);margin-bottom:10px}
   .legal-toc ol{margin:0;padding-left:20px;display:grid;gap:6px}
   .legal-toc a{color:var(--navy);text-decoration:none;font-weight:600}
   .legal-toc a:hover{text-decoration:underline}
-  .legal-note{border-left:3px solid var(--gold);background:rgba(184,134,48,.07);border-radius:0 10px 10px 0;padding:16px 20px;margin:22px 0}
+  .legal-note{border-left:3px solid var(--gold);background:rgba(95,168,184,.07);border-radius:0 10px 10px 0;padding:16px 20px;margin:22px 0}
   .legal-note p{margin:0;font-size:.94rem}
   .legal-stop{border-left:3px solid #b3402a;background:rgba(179,64,42,.07);border-radius:0 10px 10px 0;padding:16px 20px;margin:22px 0}
   .legal-stop p{margin:0;font-size:.94rem}
   .legal-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0}
   .legal-col{border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px 22px;background:#fff}
-  .legal-col h4{margin:0 0 12px;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
-  .legal-col.si h4{color:var(--good)}
-  .legal-col.no h4{color:#b3402a}
+  .legal-col h3{margin:0 0 12px;font-size:.76rem;}
+  .legal-col.si h3{color:var(--good)}
+  .legal-col.no h3{color:#b3402a}
   .legal-col ul{margin:0;padding-left:18px;display:grid;gap:7px}
   .legal-col li{font-size:.92rem;line-height:1.6}
   @media (max-width:620px){
@@ -63,7 +64,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -121,7 +122,7 @@
 
       <div class="legal-cols">
         <div class="legal-col si">
-          <h4>✓ Lo que sí somos</h4>
+          <h3>✓ Lo que sí somos</h3>
           <ul>
             <li>Un sitio de <strong>educación financiera en español</strong>, gratis</li>
             <li>Herramientas para que <strong>tú mismo</strong> entiendas tu reporte, tus cartas y tus números</li>
@@ -130,7 +131,7 @@
           </ul>
         </div>
         <div class="legal-col no">
-          <h4>✗ Lo que no somos</h4>
+          <h3>✗ Lo que no somos</h3>
           <ul>
             <li><strong>No somos abogados.</strong> Nada aquí es asesoría legal</li>
             <li><strong>No somos asesores financieros</strong> con licencia</li>

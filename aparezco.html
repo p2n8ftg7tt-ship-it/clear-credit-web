@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/aparezco.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   .ap-wrap{max-width:720px;margin-inline:auto;padding:0 20px}
@@ -38,7 +39,7 @@
   .ap-step.is-on{display:block;animation:apIn .28s ease}
   @keyframes apIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  .ap-count{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+  .ap-count{font-size:.72rem;font-weight:800;color:var(--muted);margin-bottom:6px}
   .ap-q{font-family:var(--font-display);font-size:1.5rem;line-height:1.24;color:var(--navy-deep);margin:0 0 8px}
   .ap-help{font-size:.92rem;line-height:1.62;color:var(--muted);margin:0 0 18px}
 
@@ -75,7 +76,7 @@
   .ap-score .num{font-family:var(--font-display);font-weight:700;font-size:2.3rem;line-height:1;border:5px solid var(--line);border-radius:50%;width:92px;height:92px;display:grid;place-items:center;flex:none;color:var(--navy-deep)}
   .ap-score .num small{display:block;font:600 .62rem var(--font-body);color:var(--muted);letter-spacing:.02em;margin-top:-6px}
   .ap-score .txt{min-width:0}
-  .ap-score .txt .titulo{display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+  .ap-score .txt .titulo{display:block;font-size:.72rem;font-weight:800;color:var(--muted);margin-bottom:6px}
   .ap-score .txt p{font-size:.9rem;color:var(--navy-deep);line-height:1.55;margin:8px 0 0}
   .ap-chip{display:inline-block;font-size:.8rem;font-weight:800;padding:4px 12px;border-radius:999px}
   .ap-parcial{font-size:.8rem;color:var(--muted);margin:10px 0 18px;line-height:1.5}
@@ -126,7 +127,7 @@
   .ap-sim-ctrl{display:grid;gap:12px;margin-bottom:14px}
   .ap-sim-ctrl label{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--navy-deep);min-height:40px}
   .ap-sim-ctrl input[type="checkbox"]{width:20px;height:20px;accent-color:var(--teal);flex:none}
-  .ap-sim-ctrl select{flex:1;min-width:0;max-width:220px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:400 .9rem var(--font-body);background:#fff;color:var(--ink)}
+  .ap-sim-ctrl select{flex:1;min-width:0;max-width:220px;border:1.5px solid var(--borde-campo);border-radius:8px;padding:8px 10px;font:400 .9rem var(--font-body);background:#fff;color:var(--ink)}
   .ap-sim-res{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);padding-top:14px}
   .ap-sim-res strong{font-size:1rem;color:var(--navy-deep)}
   .ap-sim-res .real{font-size:.84rem;color:var(--muted)}
@@ -144,7 +145,7 @@
   .form-group input[aria-invalid="true"]{border-color:#b3402a}
 
   .ap-evidence{border-left:3px solid var(--teal);background:rgba(31,110,115,.06);border-radius:0 12px 12px 0;padding:18px 20px;margin:24px 0}
-  .ap-evidence h4{margin:0 0 8px;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--teal)}
+  .ap-evidence h4{margin:0 0 8px;font-size:.74rem;color:var(--teal)}
   .ap-evidence p{margin:0 0 10px;font-size:.93rem;line-height:1.68}
   .ap-evidence p:last-child{margin:0}
   .ap-evidence cite{display:block;margin-top:10px;font-size:.78rem;color:var(--muted);font-style:normal}
@@ -171,7 +172,7 @@
   .ap-loading p{color:var(--muted);font-size:.94rem}
 
   /* Aviso de límite diario o de búsqueda no disponible */
-  .ap-notice{border:1px solid rgba(184,134,48,.3);background:rgba(184,134,48,.09);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;font-size:.86rem;line-height:1.55;color:#8a5a20}
+  .ap-notice{border:1px solid rgba(95,168,184,.3);background:rgba(95,168,184,.09);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;font-size:.86rem;line-height:1.55;color:var(--tinta)}
 
   .ap-nodisp{text-align:center;padding:16px 8px}
   .ap-nodisp h2{font-family:var(--font-display);font-size:1.32rem;color:var(--navy-deep);margin:0 0 10px}
@@ -183,10 +184,10 @@
   .ap-found h3{font-family:var(--font-display);font-size:1.18rem;color:var(--navy-deep);margin:0 0 4px}
   .ap-found .addr{font-size:.88rem;color:var(--muted);margin:0 0 12px;line-height:1.5}
   .ap-stars-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
-  .ap-stars{color:var(--gold);font-size:1.05rem;letter-spacing:1px}
+  .ap-stars{color:var(--texto-acento);font-size:1.05rem;letter-spacing:1px}
   .ap-stars .num{font-weight:800;color:var(--navy-deep);font-size:.98rem;letter-spacing:0}
   .ap-stars .count{font-size:.84rem;color:var(--muted)}
-  .ap-badge{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:20px;margin-top:6px}
+  .ap-badge{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:20px;margin-top:6px}
   .ap-badge.pos-bien{background:rgba(74,124,89,.13);color:var(--good)}
   .ap-badge.pos-mal{background:rgba(179,64,42,.12);color:#8a2b2b}
   .ap-quotes{display:grid;gap:8px;margin-top:16px}
@@ -206,7 +207,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       

@@ -7,6 +7,16 @@
 (() => {
   'use strict';
 
+  // La sección actual se marca en la cinta aunque su enlace viva dentro de un
+  // submenú: el grupo que lo contiene se resalta y el enlace lleva aria-current.
+  // (El CSS ya lo resalta con :has; esto cubre navegadores sin :has y el lector de pantalla.)
+  document.querySelectorAll('.links a.active').forEach(link => {
+    link.setAttribute('aria-current', 'page');
+    const grupo = link.closest('.nav-group');
+    const boton = grupo && grupo.querySelector('.nav-group-btn');
+    if (boton) boton.classList.add('is-active');
+  });
+
   const groups = Array.from(document.querySelectorAll('.nav-group'));
   if (!groups.length) return;
   // En celular el nombre del grupo es solo un encabezado: que el teclado no se detenga ahí.

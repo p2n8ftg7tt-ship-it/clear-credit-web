@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/formar-negocio.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   .fn-badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
@@ -42,7 +43,7 @@
   .fn-include-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px}
   .fn-include-card h3{margin:0 0 8px;font:700 .95rem var(--font-body);color:var(--navy-deep)}
   .fn-include-card p{margin:0;color:var(--muted);font-size:.87rem}
-  .fn-include-card .tag{display:inline-block;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:rgba(79,107,87,.1);padding:3px 9px;border-radius:12px;margin-bottom:9px;}
+  .fn-include-card .tag{display:inline-block;font-size:.66rem;font-weight:800;color:var(--teal);background:rgba(79,107,87,.1);padding:3px 9px;border-radius:12px;margin-bottom:9px;}
   .fn-va-panel{background:var(--navy-deep);border-radius:var(--radius-xl);padding:34px 30px;color:#fff;}
   .fn-va-panel .eyebrow{color:var(--gold-light);}
   .fn-va-panel h2{font-family:var(--font-display);font-size:clamp(1.7rem,3.4vw,2.4rem);margin:6px 0 14px;letter-spacing:-.025em;}
@@ -53,11 +54,11 @@
   .fn-va-fact .lbl{display:block;font-size:.72rem;color:rgba(255,255,255,.6);margin-top:3px;}
   .fn-other-states{margin-top:18px;padding:16px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);font-size:.85rem;color:rgba(255,255,255,.78);}
   .fn-price-wrap{background:#fff;border:1.5px solid var(--gold);border-radius:var(--radius-xl);padding:32px 28px;}
-  .fn-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:14px;}
+  .fn-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;padding:5px 10px;border-radius:6px;margin-bottom:14px;}
   .fn-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
   .fn-price-item{background:var(--paper-dim);border-radius:var(--radius);padding:18px 20px;}
   .fn-price-item .amt{font:700 2rem var(--font-display);color:var(--navy-deep);}
-  .fn-price-item .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800;color:var(--teal);margin-bottom:6px;}
+  .fn-price-item .lbl{display:block;font-size:.72rem;font-weight:800;color:var(--teal);margin-bottom:6px;}
   .fn-price-item p{margin:8px 0 0;font-size:.82rem;color:var(--muted);}
   .fn-trust{display:flex;gap:16px;align-items:flex-start;background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:8px;padding:18px 20px;margin-top:26px}
   .fn-trust p{margin:0;color:var(--muted);font-size:.87rem}
@@ -106,7 +107,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -391,15 +392,15 @@
         <div class="fn-form-grid">
           <div class="form-group">
             <label for="fnNombre">Tu nombre</label>
-            <input type="text" id="fnNombre" name="nombre" required>
+            <input type="text" id="fnNombre" name="nombre" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="fnCorreo">Tu correo electrónico</label>
-            <input type="email" id="fnCorreo" name="correo" required>
+            <input type="email" id="fnCorreo" name="correo" autocomplete="email" spellcheck="false" required>
           </div>
           <div class="form-group">
             <label for="fnTelefono">Tu teléfono <span class="ln-optional">(opcional ahora)</span></label>
-            <input type="tel" id="fnTelefono" name="telefono">
+            <input type="tel" id="fnTelefono" name="telefono" autocomplete="tel">
           </div>
           <div class="form-group">
             <label for="fnEstado">¿En qué estado será tu negocio?</label>
@@ -407,7 +408,7 @@
           </div>
           <div class="form-group full">
             <label for="fnNegocioNombre">Nombre que quieres para tu empresa</label>
-            <input type="text" id="fnNegocioNombre" name="negocio_nombre" placeholder="Ej: Hernández Construcción LLC" required>
+            <input type="text" id="fnNegocioNombre" name="negocio_nombre" autocomplete="organization" placeholder="Ej: Hernández Construcción LLC" required>
           </div>
           <div class="form-group">
             <label for="fnGiro">¿A qué se va a dedicar el negocio? <span class="ln-optional">(opcional ahora)</span></label>
@@ -492,7 +493,7 @@
      al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
      enviemos por JavaScript, sin necesitar backend propio. A propósito NO incluye ningún
      campo sensible (seguro social, ITIN, etc.) -- ese dato se pide después, en privado. -->
-<form name="formar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="sr-only" id="fnStaticForm">
+<form name="formar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden id="fnStaticForm">
   <input type="text" name="referencia" />
   <input type="hidden" name="form-name" value="formar-negocio" />
   <input name="bot-field" />

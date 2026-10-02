@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-10-02T13:33:16.914228+00:00",
+  "nodes": {
+    "auth": {
+      "code_fingerprint": "b99b2706fa11a777978a9c99a4eb678a91016d78e1cfa28724ccc18ab15c1472",
+      "label": "auth.js",
+      "last": "2026-09-28T21:01:58.669716+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-28T21:01:58.669716+00:00",
+          "outcome": "useful",
+          "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
+        }
+      ],
+      "score": 0.918309991,
+      "source_file": "auth.js",
+      "status": "tentative",
+      "uses": 1
+    },
+    "cms": {
+      "code_fingerprint": "6c626962e64b5b633361ed1255c1cbdfe3a0b925b1b5098c85c5c4e72f96f275",
+      "label": "cms.js",
+      "last": "2026-09-29T01:41:15.050440+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-29T01:41:15.050440+00:00",
+          "outcome": "useful",
+          "q": "Qué se implementó en la spec 012 y qué causaba el salto entre páginas y las letras más chicas en credito"
+        },
+        {
+          "date": "2026-09-28T21:01:58.669716+00:00",
+          "outcome": "useful",
+          "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
+        },
+        {
+          "date": "2026-09-28T19:33:50.631428+00:00",
+          "outcome": "useful",
+          "q": "Síntesis de hallazgos UI/UX: causas raíz, dependencias, riesgos y prioridades"
+        }
+      ],
+      "score": 2.757756433,
+      "source_file": "cms.js",
+      "status": "preferred",
+      "uses": 3
+    },
+    "nav": {
+      "code_fingerprint": "81d43b118d85bc2cd63bac30511a69b494a4d2b35240455c7260ced18f889141",
+      "label": "nav.js",
+      "last": "2026-09-29T01:41:15.050440+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-29T01:41:15.050440+00:00",
+          "outcome": "useful",
+          "q": "Qué se implementó en la spec 012 y qué causaba el salto entre páginas y las letras más chicas en credito"
+        },
+        {
+          "date": "2026-09-28T21:01:58.669716+00:00",
+          "outcome": "useful",
+          "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
+        }
+      ],
+      "score": 1.840744121,
+      "source_file": "nav.js",
+      "status": "preferred",
+      "uses": 2
+    },
+    "specs_011_ux_audit_remediation_color_mapping_log_comprar_casa_html": {
+      "code_fingerprint": "e3dec10b5f25abe1064bfcf800f880d9026665dd5e8d770570dcbdb0e98ed9d8",
+      "label": "comprar-casa.html",
+      "last": "2026-09-28T19:33:49.078733+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-28T19:33:49.078733+00:00",
+          "outcome": "useful",
+          "q": "Revisión de diseño visual: jerarquía, tipografía, color, marca y consistencia"
+        },
+        {
+          "date": "2026-09-28T19:33:47.456886+00:00",
+          "outcome": "useful",
+          "q": "Auditoría de accesibilidad y UX del sitio: qué problemas objetivos hay y dónde"
+        }
+      ],
+      "score": 1.834023464,
+      "source_file": "specs/011-ux-audit-remediation/color-mapping-log.md",
+      "status": "preferred",
+      "uses": 2
+    },
+    "specs_011_ux_audit_remediation_color_mapping_log_credito_html": {
+      "code_fingerprint": "e3dec10b5f25abe1064bfcf800f880d9026665dd5e8d770570dcbdb0e98ed9d8",
+      "label": "credito.html",
+      "last": "2026-09-29T01:41:15.050440+00:00",
+      "neg": 2,
+      "provenance": [
+        {
+          "date": "2026-09-29T01:41:15.050440+00:00",
+          "outcome": "useful",
+          "q": "Qué se implementó en la spec 012 y qué causaba el salto entre páginas y las letras más chicas en credito"
+        },
+        {
+          "date": "2026-09-28T21:01:58.669716+00:00",
+          "outcome": "useful",
+          "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
+        },
+        {
+          "date": "2026-09-28T19:33:52.165126+00:00",
+          "outcome": "corrected",
+          "q": "Qué problemas tiene graphify en este proyecto"
+        },
+        {
+          "date": "2026-09-28T19:33:49.078733+00:00",
+          "outcome": "useful",
+          "q": "Revisión de diseño visual: jerarquía, tipografía, color, marca y consistencia"
+        },
+        {
+          "date": "2026-09-28T09:58:26.376024+00:00",
+          "outcome": "corrected",
+          "q": "Which pages load which scripts and which netlify functions and external services do they call?"
+        }
+      ],
+      "score": 0.932158319,
+      "source_file": "specs/011-ux-audit-remediation/color-mapping-log.md",
+      "status": "contested",
+      "uses": 3,
+      "verdict": "useful"
+    },
+    "specs_011_ux_audit_remediation_contracts_ui_rules_contract_site_wide_ui_rules": {
+      "code_fingerprint": "c611d4c43694c81118bf8453a3e8d21c5ed69db15e0419aae3ca4db3403a11db",
+      "label": "Contract: Site-wide UI rules",
+      "last": "2026-09-28T19:33:50.631428+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-09-28T19:33:50.631428+00:00",
+          "outcome": "useful",
+          "q": "Síntesis de hallazgos UI/UX: causas raíz, dependencias, riesgos y prioridades"
+        }
+      ],
+      "score": 0.008426512,
+      "source_file": "specs/011-ux-audit-remediation/contracts/ui-rules.md",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "useful"
+    }
+  },
+  "version": 1
+}

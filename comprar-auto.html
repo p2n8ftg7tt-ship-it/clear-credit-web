@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/comprar-auto.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+  <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
   <link rel="stylesheet" href="styles.css">
 <style>
   .auto-myth-answer{display:inline-flex;align-items:baseline;gap:12px;margin:6px 0 26px;flex-wrap:wrap;}
@@ -33,7 +34,7 @@
 
   .auto-path-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);margin-top:8px;}
   .auto-path-card{background:var(--navy-deep);padding:26px;}
-  .auto-path-card small{display:block;color:var(--gold-light);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;margin-bottom:10px;}
+  .auto-path-card small{display:block;color:var(--gold-light);font-size:.62rem;font-weight:800;margin-bottom:10px;}
   .auto-path-card h3{color:#fff;font-size:1.12rem;margin:0 0 9px;font-family:var(--font-display);}
   .auto-path-card p{color:rgba(255,255,255,.68);font-size:.83rem;line-height:1.62;}
   .auto-path-card ul{margin:8px 0 0;padding-left:18px;color:rgba(255,255,255,.68);font-size:.83rem;line-height:1.75;}
@@ -50,7 +51,7 @@
   .auto-myth .source-line a{color:var(--gold-light);}
   .auto-myth .disclaimer{color:rgba(255,255,255,.5)!important;}
   .auto-myth{position:relative;overflow:hidden;}
-  .auto-myth::before{content:"";position:absolute;width:460px;height:460px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-220px;top:-230px;pointer-events:none;}
+  .auto-myth::before{content:"";position:absolute;width:460px;height:460px;border:1px solid rgba(159,211,219,.14);border-radius:50%;right:-220px;top:-230px;pointer-events:none;}
   .auto-myth .wrap{position:relative;z-index:1;}
 
   /* La píldora de "agendar" es la que se monta sobre el encabezado, así que
@@ -64,12 +65,12 @@
   .etapas-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .etapa-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 24px 22px;display:flex;flex-direction:column;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
   .etapa-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-  .etapa-card small{display:block;color:var(--teal);font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+  .etapa-card small{display:block;color:var(--teal);font-size:.64rem;font-weight:800;margin-bottom:8px}
   .etapa-card h3{margin:0 0 6px;font-family:var(--font-display);font-size:1.25rem;line-height:1.2;color:var(--navy-deep)}
   .etapa-card > p{margin:0 0 12px;font-size:.88rem;line-height:1.6;color:var(--muted)}
   .etapa-links{list-style:none;margin:0 0 14px;padding:0}
   .etapa-links a{display:flex;gap:10px;align-items:center;padding:10px 0;min-height:46px;border-top:1px solid var(--line);color:var(--navy-deep);font-weight:600;font-size:.92rem;line-height:1.4;text-decoration:none}
-  .etapa-links a::after{content:"\2192";margin-left:auto;padding-left:8px;color:var(--gold);flex:none}
+  .etapa-links a::after{content:"\2192";margin-left:auto;padding-left:8px;color:var(--texto-acento);flex:none}
   .etapa-links a[target="_blank"]::after{content:"\2197"}
   .etapa-links a:hover,.etapa-links a:focus-visible{color:var(--teal)}
   .etapa-nota{margin:0 0 14px;font-size:.8rem;line-height:1.55;color:var(--muted);border-left:3px solid var(--gold);padding-left:12px}
@@ -84,7 +85,7 @@
 
   <header>
     <div class="nav">
-      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="links" id="navLinks" aria-label="Navegación principal">
         

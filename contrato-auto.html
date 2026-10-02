@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/contrato-auto.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+  <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
   <link rel="stylesheet" href="styles.css">
 <style>
   /* ===== Sistema de color de esta página =====
@@ -85,7 +86,7 @@
   .ct-dropzone{min-height:310px;border:1.5px dashed rgba(11,39,72,.35);background:var(--paper-dim);display:grid;place-items:center;text-align:center;padding:34px;border-radius:var(--radius-lg);transition:.2s ease;cursor:pointer}
   .ct-dropzone:hover,.ct-dropzone.is-dragging{border-color:var(--franja-verde);background:var(--copia-verde)}
   .ct-dropzone.has-file{min-height:auto;display:block;padding:20px}
-  .ct-dropzone:focus-visible,.ct-hoja:focus-visible,.ct-slot:focus-visible,.ct-select-btn:focus-visible,.ct-camera-btn:focus-visible,.ct-remove:focus-visible,.ct-change-btn:focus-visible,.ct-analyze-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:3px}
+  .ct-dropzone:focus-visible,.ct-hoja:focus-visible,.ct-slot:focus-visible,.ct-select-btn:focus-visible,.ct-camera-btn:focus-visible,.ct-remove:focus-visible,.ct-change-btn:focus-visible,.ct-analyze-btn:focus-visible{outline:var(--focus-ring);outline-offset:3px}
   .ct-file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
   .ct-upload-empty{display:flex;flex-direction:column;align-items:center}
   .ct-upload-empty[hidden],#ctReady[hidden],.ct-hojas[hidden],.ct-analyze-btn[hidden],.ct-progress[hidden],.ct-foto-error[hidden]{display:none!important}
@@ -94,7 +95,7 @@
   .ct-upload-empty h3{color:var(--navy);font-size:1.3rem;margin:0 0 4px}
   .ct-upload-empty p{margin:0 0 18px;color:var(--muted);font-size:.9rem}
   .ct-upload-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .ct-select-btn,.ct-camera-btn{border:0;border-radius:999px;background:var(--navy);color:var(--paper);padding:12px 20px;font:700 .9rem var(--font-body);cursor:pointer;transition:.2s ease}
+  .ct-select-btn,.ct-camera-btn{border:0;border-radius:var(--radius);background:var(--navy);color:var(--paper);padding:12px 20px;font:700 .9rem var(--font-display);cursor:pointer;transition:.2s ease}
   .ct-select-btn:hover,.ct-camera-btn:hover,.ct-analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(11,39,72,.2)}
   .ct-camera-btn{display:none}
   .ct-upload-empty small{display:block;margin-top:14px;color:var(--muted);font-size:.72rem}
@@ -146,16 +147,16 @@
   .ct-input-wrap{position:relative;display:flex;align-items:center}
   .ct-input-wrap .ct-sign{position:absolute;left:12px;color:var(--ct-soft);font-weight:700;font-size:.9rem;pointer-events:none}
   .ct-input-wrap .ct-suffix{position:absolute;right:12px;color:var(--ct-soft);font-weight:700;font-size:.85rem;pointer-events:none}
-  .ct-field input,.ct-field select{width:100%;border:1px solid var(--line);border-radius:var(--radius-sm);padding:11px 13px;font:600 1rem var(--font-body);color:var(--ct-text);background:#fff}
+  .ct-field input,.ct-field select{width:100%;border:1px solid var(--borde-campo);border-radius:var(--radius-sm);padding:11px 13px;font:600 1rem var(--font-body);color:var(--ct-text);background:#fff}
   .ct-field input::placeholder,.ct-extra-row input::placeholder{color:var(--muted);font-weight:500}
   .ct-field input.has-sign{padding-left:26px}
   .ct-field input.has-suffix{padding-right:38px}
-  .ct-field input:focus,.ct-field select:focus,.ct-extra-row input:focus,.ct-extra-row select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .ct-field input:focus,.ct-field select:focus,.ct-extra-row input:focus,.ct-extra-row select:focus{outline:var(--focus-ring);outline-offset:1px;border-color:var(--gold)}
 
   /* Lista de productos agregados */
   .ct-extras{display:grid;gap:10px;margin-bottom:14px}
   .ct-extra-row{display:grid;grid-template-columns:1fr 130px 40px;gap:9px;align-items:center}
-  .ct-extra-row select,.ct-extra-row input{width:100%;border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font:600 .95rem var(--font-body);color:var(--ct-text);background:#fff}
+  .ct-extra-row select,.ct-extra-row input{width:100%;border:1px solid var(--borde-campo);border-radius:var(--radius-sm);padding:10px 12px;font:600 .95rem var(--font-body);color:var(--ct-text);background:#fff}
   .ct-extra-row .ct-money{position:relative}
   .ct-extra-del{border:1px solid var(--line);background:#fff;border-radius:var(--radius-sm);height:40px;cursor:pointer;color:var(--danger);font-size:1.1rem;line-height:1;font-weight:700}
   .ct-extra-del:hover{background:var(--ct-wash-bad);border-color:var(--ct-line-bad)}
@@ -171,13 +172,13 @@
 
   /* Mismos tres niveles de blanco que el hero: título, texto (.78), etiqueta (.6) */
   .ct-headline{background:var(--navy-deep);border-radius:var(--radius-xl);padding:26px 28px;margin-bottom:18px}
-  .ct-headline small{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.6);margin-bottom:8px}
+  .ct-headline small{display:block;font-size:.68rem;font-weight:800;color:rgba(255,255,255,.6);margin-bottom:8px}
   .ct-headline strong{display:block;font-family:var(--font-display);font-size:1.9rem;line-height:1.18;color:var(--gold-light)}
   .ct-headline p{margin:10px 0 0;color:rgba(255,255,255,.78);line-height:1.65;font-size:.93rem}
 
   /* Etiqueta pequeña: un solo estilo en tarjetas, tablas, escenarios y lista */
   .ct-card span,table.ct-table th,.ct-escenario-res span,.ct-antes-grupo h5{
-    font:800 .68rem var(--font-body);text-transform:uppercase;letter-spacing:.07em;color:var(--ct-soft);line-height:1.3}
+    font:800 .68rem var(--font-body);color:var(--ct-soft);line-height:1.3}
 
   .ct-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-bottom:20px}
   .ct-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:15px 17px;background:#fff}
@@ -202,7 +203,7 @@
   .ct-flags{display:grid;gap:10px}
   .ct-flag{display:flex;gap:12px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;background:var(--ct-wash)}
   .ct-flag.is-hot{border-left-color:var(--danger);background:var(--ct-wash-bad)}
-  .ct-flag b{flex:none;font-size:1rem;color:var(--gold);line-height:1.4}
+  .ct-flag b{flex:none;font-size:1rem;color:var(--texto-acento);line-height:1.4}
   .ct-flag.is-hot b{color:var(--danger)}
   .ct-flag div{min-width:0}
   .ct-flag h5{margin:0 0 4px;font:700 .95rem var(--font-body);color:var(--ct-head)}
@@ -284,7 +285,7 @@
      auto en wireframe dentro de un marco de "escaneo" — la idea de que esta
      página analiza tu contrato, sin usar ninguna foto. */
   .hero.hero-dark{position:relative;overflow:hidden;padding:100px 0 92px;color:#fff;
-    background:radial-gradient(680px circle at 88% -12%,rgba(240,207,152,.16),transparent 60%),var(--navy-deep);}
+    background:radial-gradient(680px circle at 88% -12%,rgba(159,211,219,.16),transparent 60%),var(--navy-deep);}
   .hero.hero-dark .wrap{position:relative;z-index:1}
   .hero.hero-dark .eyebrow{margin-bottom:14px}
   .hero.hero-dark h1{font-family:var(--font-display);letter-spacing:-.03em;line-height:1.08;max-width:760px;
@@ -303,7 +304,7 @@
 
   <header>
     <div class="nav">
-      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="links" id="navLinks" aria-label="Navegación principal">
 
@@ -423,7 +424,7 @@
           <ul class="ct-avisos" id="ctAvisos"></ul>
           <button type="button" class="ct-analyze-btn" id="ctLeerPaginas" data-umami-event="contrato-auto-foto-enviada" hidden>Leer las hojas <span>→</span></button>
           <span class="ct-limite-ia">Es una extracción preliminar y puede equivocarse. Lo que manda es tu contrato firmado.</span>
-          <div class="ct-progress" id="ctProgreso" aria-live="polite" hidden><span class="ct-spinner"></span><div class="ct-progress-copy"><strong id="ctProgresoTitulo">Leyendo hojas...</strong><small>Buscamos precio, tasa, plazo y extras</small></div></div>
+          <div class="ct-progress" id="ctProgreso" aria-live="polite" hidden><span class="ct-spinner"></span><div class="ct-progress-copy"><strong id="ctProgresoTitulo">Leyendo hojas…</strong><small>Buscamos precio, tasa, plazo y extras</small></div></div>
           <div class="ct-foto-error" id="ctFotoError" role="alert" hidden></div>
         </div>
       </div>

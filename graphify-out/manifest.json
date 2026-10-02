@@ -5,12 +5,6 @@
     "ast_hash": "b229fbc26cea9dd4c2c3298aa747a7d7",
     "semantic_hash": "b229fbc26cea9dd4c2c3298aa747a7d7"
   },
-  "analyzer.js": {
-    "mtime": 1790324579.350213,
-    "seen": 1790324832.542118,
-    "ast_hash": "642ee3a10646250ef7de0374b96347aa",
-    "semantic_hash": "642ee3a10646250ef7de0374b96347aa"
-  },
   "auth-helpers.js": {
     "mtime": 1790324579.5365207,
     "seen": 1790326147.6408,
@@ -36,10 +30,10 @@
     "semantic_hash": "f6111c0394b14f1f7f2c99882ee7fd9e"
   },
   "cms.js": {
-    "mtime": 1790324579.7522435,
-    "seen": 1790324832.542365,
-    "ast_hash": "e32da21a6f2e3b4917cdee1a68d5ee5c",
-    "semantic_hash": "e32da21a6f2e3b4917cdee1a68d5ee5c"
+    "mtime": 1790638207.965171,
+    "seen": 1790646606.2104552,
+    "ast_hash": "13f68d05e02350cc0c48e1dc1606d5d2",
+    "semantic_hash": "13f68d05e02350cc0c48e1dc1606d5d2"
   },
   "credit-coach.js": {
     "mtime": 1790324579.8011537,
@@ -61,9 +55,9 @@
   },
   "empresa.js": {
     "mtime": 1790512331.7114813,
-    "seen": 1790514415.0876095,
+    "seen": 1790624662.8986998,
     "ast_hash": "e192eb8f2b899233712c48b147c1fc42",
-    "semantic_hash": ""
+    "semantic_hash": "e192eb8f2b899233712c48b147c1fc42"
   },
   "mortgage-accelerator.js": {
     "mtime": 1790324580.024288,
@@ -72,16 +66,16 @@
     "semantic_hash": "1d604c0449f72938a7845400a4f01c72"
   },
   "mortgage-calculator.js": {
-    "mtime": 1790324580.0667226,
-    "seen": 1790324832.5424948,
-    "ast_hash": "96ae3b6be33603ade8ef4202cea04a54",
-    "semantic_hash": "96ae3b6be33603ade8ef4202cea04a54"
+    "mtime": 1790643680.7170882,
+    "seen": 1790646606.2104716,
+    "ast_hash": "da210cff93d9621afa90795942dc301f",
+    "semantic_hash": "da210cff93d9621afa90795942dc301f"
   },
   "nav.js": {
-    "mtime": 1790512939.6863475,
-    "seen": 1790514415.0880022,
-    "ast_hash": "961700dcab5378e7ad5159a72f72e967",
-    "semantic_hash": ""
+    "mtime": 1790638204.593779,
+    "seen": 1790646606.210474,
+    "ast_hash": "34d1e0b9d5569894de42ef45d95aa487",
+    "semantic_hash": "34d1e0b9d5569894de42ef45d95aa487"
   },
   "netlify/functions/admin-data.js": {
     "mtime": 1788926113.0344806,
@@ -103,9 +97,9 @@
   },
   "netlify/functions/crear-factura.js": {
     "mtime": 1790482399.7211502,
-    "seen": 1790482616.7386565,
+    "seen": 1790624662.898727,
     "ast_hash": "e8979f971dc973e5387319281755d68a",
-    "semantic_hash": ""
+    "semantic_hash": "e8979f971dc973e5387319281755d68a"
   },
   "netlify/functions/eliminar-cuenta.js": {
     "mtime": 1789467639.5623431,
@@ -168,9 +162,9 @@
     "semantic_hash": "86e07d6257de3797fa4f8c4b6306d687"
   },
   "supabase-schema.sql": {
-    "mtime": 1790482448.1280537,
-    "seen": 1790562698.6265316,
-    "ast_hash": "ae6eb9b672d50ff0b3d6543392305c44",
+    "mtime": 1790924114.349231,
+    "seen": 1790945151.5821853,
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "tests/autocompletar-direccion.test.js": {
@@ -210,10 +204,10 @@
     "semantic_hash": "e8f9be546755ab0c45e64d50e3aaec57"
   },
   "INFORME-CREDITO-CLARO.md": {
-    "mtime": 1788562699.1700413,
-    "seen": 1789895407.416931,
-    "ast_hash": "d0de25140e9d9b342d370908b98e648b",
-    "semantic_hash": "d0de25140e9d9b342d370908b98e648b"
+    "mtime": 1790822302.7569163,
+    "seen": 1790868231.3133516,
+    "ast_hash": "0381096c2cab1ec3dc579431a0a6c6bd",
+    "semantic_hash": "0381096c2cab1ec3dc579431a0a6c6bd"
   },
   "INSTRUCCIONES-ADMIN.md": {
     "mtime": 1788409367.9343107,
@@ -276,106 +270,106 @@
     "semantic_hash": "9278131217468cddf57c22b1883e77eb"
   },
   "admin.html": {
-    "mtime": 1790482574.2620237,
-    "seen": 1790482616.7475815,
-    "ast_hash": "015b8f3ee1af37aabff1e2959ce4b256",
-    "semantic_hash": ""
+    "mtime": 1790645355.5642564,
+    "seen": 1790646606.2106667,
+    "ast_hash": "c5f593c80419e29bc1efb843e06e8a23",
+    "semantic_hash": "c5f593c80419e29bc1efb843e06e8a23"
   },
   "agendar.html": {
-    "mtime": 1790514096.8565416,
-    "seen": 1790514415.105429,
-    "ast_hash": "174c9e449328bea159a25ee941c8a7f8",
-    "semantic_hash": ""
+    "mtime": 1790645355.7059643,
+    "seen": 1790646606.2106686,
+    "ast_hash": "1e9f60b87054a5629ec04949e74e3328",
+    "semantic_hash": "1e9f60b87054a5629ec04949e74e3328"
   },
   "aparezco.html": {
-    "mtime": 1790514097.035711,
-    "seen": 1790514415.1054316,
-    "ast_hash": "7f0a7460abd49f42feb005cd2cba8d04",
-    "semantic_hash": ""
+    "mtime": 1790645355.781926,
+    "seen": 1790646606.2106707,
+    "ast_hash": "a67bf0374161d65d409c431fd986db89",
+    "semantic_hash": "a67bf0374161d65d409c431fd986db89"
   },
   "cartas-claras.html": {
-    "mtime": 1790514282.1309583,
-    "seen": 1790514415.1054347,
-    "ast_hash": "49707a8560e166772489fe45f5279584",
-    "semantic_hash": ""
+    "mtime": 1790645355.8645716,
+    "seen": 1790646606.2106724,
+    "ast_hash": "6ada0818637621e203d14b32e770c482",
+    "semantic_hash": "6ada0818637621e203d14b32e770c482"
   },
   "comprar-auto.html": {
-    "mtime": 1790514097.3709989,
-    "seen": 1790514415.105437,
-    "ast_hash": "8203f772a8a4db5b1cf2fba6fd027d97",
-    "semantic_hash": ""
+    "mtime": 1790645355.9512587,
+    "seen": 1790646606.2106745,
+    "ast_hash": "56ef57fde7fe0f1ccaaa4d57253b0465",
+    "semantic_hash": "56ef57fde7fe0f1ccaaa4d57253b0465"
   },
   "comprar-casa.html": {
-    "mtime": 1790514358.0059412,
-    "seen": 1790514415.1054387,
-    "ast_hash": "b9e8bb7bff2a86d0b1d71962e06dc1ab",
-    "semantic_hash": ""
+    "mtime": 1790645356.0252895,
+    "seen": 1790646606.2106762,
+    "ast_hash": "e94ebf05f2fde631d94dba86da8b7588",
+    "semantic_hash": "e94ebf05f2fde631d94dba86da8b7588"
   },
   "contacto.html": {
-    "mtime": 1790514097.681002,
-    "seen": 1790514415.105441,
-    "ast_hash": "4300a1e9287322bcea02e6a76d4d9ed2",
-    "semantic_hash": ""
+    "mtime": 1790645356.10437,
+    "seen": 1790646606.2106783,
+    "ast_hash": "6c937671b0bb5271f0fe7c57c57a0ede",
+    "semantic_hash": "6c937671b0bb5271f0fe7c57c57a0ede"
   },
   "contrato-auto.html": {
-    "mtime": 1790514269.3548186,
-    "seen": 1790514415.1054428,
-    "ast_hash": "b0674af163abeb6abe3926605891b54d",
-    "semantic_hash": ""
+    "mtime": 1790645356.1780457,
+    "seen": 1790646606.2106805,
+    "ast_hash": "563be4040dedbf5cd6cad857f6f4097a",
+    "semantic_hash": "563be4040dedbf5cd6cad857f6f4097a"
   },
   "credito.html": {
-    "mtime": 1790514269.3530784,
-    "seen": 1790514415.105445,
-    "ast_hash": "234d6699b8416d48ecb7bcc2793acdc1",
+    "mtime": 1790945768.9654264,
+    "seen": 1790947996.6462975,
+    "ast_hash": "7a46d8ed6fa28f89f873336a7629c903",
     "semantic_hash": ""
   },
   "cuenta.html": {
-    "mtime": 1790512346.6372895,
-    "seen": 1790514415.1054475,
-    "ast_hash": "f1e53be3d6206cae6f15d612afd0816b",
-    "semantic_hash": ""
+    "mtime": 1790645356.3615541,
+    "seen": 1790646606.2106848,
+    "ast_hash": "f373dbc42fcb73858c92e850cf91243d",
+    "semantic_hash": "f373dbc42fcb73858c92e850cf91243d"
   },
   "formar-negocio.html": {
-    "mtime": 1790514098.2632153,
-    "seen": 1790514415.1054494,
-    "ast_hash": "e0c038c8f0f0f5cf5210e8ab33c43fec",
-    "semantic_hash": ""
+    "mtime": 1790645356.4543438,
+    "seen": 1790646606.2106867,
+    "ast_hash": "75c121e1b4d6718f365837fca6149736",
+    "semantic_hash": "75c121e1b4d6718f365837fca6149736"
   },
   "herramientas.html": {
-    "mtime": 1790514098.4250195,
-    "seen": 1790514415.1054516,
-    "ast_hash": "240a8ed8cd389e1701ebdaadbcbf921b",
-    "semantic_hash": ""
+    "mtime": 1790645356.5208213,
+    "seen": 1790646606.2106955,
+    "ast_hash": "8710677e247a8fcb10d92d24f70bd142",
+    "semantic_hash": "8710677e247a8fcb10d92d24f70bd142"
   },
   "index.html": {
-    "mtime": 1790514282.1288002,
-    "seen": 1790514415.1054535,
-    "ast_hash": "e5311bd3c48d730a9a081aa20cd13f56",
-    "semantic_hash": ""
+    "mtime": 1790645356.6130486,
+    "seen": 1790646606.2106974,
+    "ast_hash": "bc214f6961b7b8303bbea524c86140c4",
+    "semantic_hash": "bc214f6961b7b8303bbea524c86140c4"
   },
   "listar-negocio.html": {
-    "mtime": 1790514098.707288,
-    "seen": 1790514415.1054554,
-    "ast_hash": "de1f9ba3a37838ff2d6585050a5003f5",
-    "semantic_hash": ""
+    "mtime": 1790645356.687973,
+    "seen": 1790646606.2107,
+    "ast_hash": "0ea5134db008e436830b6da679eb0807",
+    "semantic_hash": "0ea5134db008e436830b6da679eb0807"
   },
   "login.html": {
-    "mtime": 1790512347.22015,
-    "seen": 1790514415.1054573,
-    "ast_hash": "2ebc689f12f51e927de4a7aee10c394b",
-    "semantic_hash": ""
+    "mtime": 1790645356.7663987,
+    "seen": 1790646606.2107024,
+    "ast_hash": "62652f800c4addabd82dc20910dbcfb8",
+    "semantic_hash": "62652f800c4addabd82dc20910dbcfb8"
   },
   "privacidad.html": {
-    "mtime": 1790514098.8454943,
-    "seen": 1790514415.1054592,
-    "ast_hash": "0f13864199a799b0be655c84d5ef65d9",
-    "semantic_hash": ""
+    "mtime": 1790645356.8699927,
+    "seen": 1790646606.210704,
+    "ast_hash": "7f234264e71c05d0b9d21d347c47cf76",
+    "semantic_hash": "7f234264e71c05d0b9d21d347c47cf76"
   },
   "quienes-somos.html": {
-    "mtime": 1790514098.936457,
-    "seen": 1790514415.1054614,
-    "ast_hash": "8ea8601d455b5af849f3a534bbc91e17",
-    "semantic_hash": ""
+    "mtime": 1790645356.936676,
+    "seen": 1790646606.2107065,
+    "ast_hash": "86049df024d3c27c6b0e6e457576d899",
+    "semantic_hash": "86049df024d3c27c6b0e6e457576d899"
   },
   "robots.txt": {
     "mtime": 1789355855.6402414,
@@ -384,10 +378,10 @@
     "semantic_hash": "e81a7ded94e935af260afa189640f695"
   },
   "terminos.html": {
-    "mtime": 1790514099.0286112,
-    "seen": 1790514415.1167424,
-    "ast_hash": "92a86004464b82c705247e2809e54656",
-    "semantic_hash": ""
+    "mtime": 1790645357.011703,
+    "seen": 1790646606.2107153,
+    "ast_hash": "7679802cf53905ca945e78f354c8d287",
+    "semantic_hash": "7679802cf53905ca945e78f354c8d287"
   },
   "apple-touch-icon.png": {
     "mtime": 1788562689.6625414,
@@ -522,16 +516,16 @@
     "semantic_hash": "5ba3817fbab0eeaab9843b57eb087f1c"
   },
   "cartas-bilingues.js": {
-    "mtime": 1790324579.6469023,
-    "seen": 1790324832.5423596,
-    "ast_hash": "30e96b72bf7f7ea87db68b8e524a6e7d",
-    "semantic_hash": "30e96b72bf7f7ea87db68b8e524a6e7d"
+    "mtime": 1790925258.2531254,
+    "seen": 1790926226.0837917,
+    "ast_hash": "e064ee6b3bca737f225c3cee6eadfcc1",
+    "semantic_hash": ""
   },
   "tests/cartas-bilingues.test.js": {
-    "mtime": 1790020806.1273608,
-    "seen": 1790032315.2024207,
-    "ast_hash": "66e6485745447a4f9136cf552e6ea1c4",
-    "semantic_hash": "66e6485745447a4f9136cf552e6ea1c4"
+    "mtime": 1790925195.8486402,
+    "seen": 1790926226.0838842,
+    "ast_hash": "ed11d695186c87dfe2c171828f9acf80",
+    "semantic_hash": ""
   },
   "tests/direccion-formas.test.js": {
     "mtime": 1789953765.3989103,
@@ -798,10 +792,10 @@
     "semantic_hash": "189cd2087c05b9b61aceffa05d4ac121"
   },
   "tests/credito-identidad.test.js": {
-    "mtime": 1790020836.225036,
-    "seen": 1790032315.2024236,
-    "ast_hash": "c8c8a86cd08e2ffe1a4c2f592f46d385",
-    "semantic_hash": "c8c8a86cd08e2ffe1a4c2f592f46d385"
+    "mtime": 1790943467.6987574,
+    "seen": 1790943536.776372,
+    "ast_hash": "d4647803c54087c380d8ac32f2fbeba6",
+    "semantic_hash": ""
   },
   "tests/fixtures/cartas-antes-005.json": {
     "mtime": 1790020445.1790168,
@@ -1231,260 +1225,926 @@
   },
   "netlify/functions/admin-pagos.js": {
     "mtime": 1790482526.6482835,
-    "seen": 1790482616.7384222,
+    "seen": 1790624662.8987193,
     "ast_hash": "044d7aa2c3860568fb856f8a648a8e28",
-    "semantic_hash": ""
+    "semantic_hash": "044d7aa2c3860568fb856f8a648a8e28"
   },
   "netlify/functions/lib/pagos-catalogo.js": {
     "mtime": 1790482373.424481,
-    "seen": 1790482616.739076,
+    "seen": 1790624662.8987386,
     "ast_hash": "1d4103e8cbc9770d79d6a1165c5261cb",
-    "semantic_hash": ""
+    "semantic_hash": "1d4103e8cbc9770d79d6a1165c5261cb"
   },
   "netlify/functions/lib/pagos-stripe.js": {
     "mtime": 1790482373.8991396,
-    "seen": 1790482616.739078,
+    "seen": 1790624662.8987403,
     "ast_hash": "4ec7b5bce4eb8d3998fc09ab6a59a0c7",
-    "semantic_hash": ""
+    "semantic_hash": "4ec7b5bce4eb8d3998fc09ab6a59a0c7"
   },
   "netlify/functions/pagos-crear-sesion.js": {
     "mtime": 1790482478.2629604,
-    "seen": 1790482616.7390797,
+    "seen": 1790624662.8987424,
     "ast_hash": "f4696f725d1ffedfba0cc42a4b2cc409",
-    "semantic_hash": ""
+    "semantic_hash": "f4696f725d1ffedfba0cc42a4b2cc409"
   },
   "netlify/functions/pagos-historial.js": {
     "mtime": 1790482478.694713,
-    "seen": 1790482616.739081,
+    "seen": 1790624662.8987443,
     "ast_hash": "755552ecac59e88a83106d6c474faffc",
-    "semantic_hash": ""
+    "semantic_hash": "755552ecac59e88a83106d6c474faffc"
   },
   "netlify/functions/pagos-portal.js": {
     "mtime": 1790482479.186306,
-    "seen": 1790482616.7390826,
+    "seen": 1790624662.898747,
     "ast_hash": "182515c83b008acc123cd4349c93f99e",
-    "semantic_hash": ""
+    "semantic_hash": "182515c83b008acc123cd4349c93f99e"
   },
   "netlify/functions/pagos-webhook.js": {
     "mtime": 1790482526.2229965,
-    "seen": 1790482616.7390838,
+    "seen": 1790624662.8987489,
     "ast_hash": "52211af2b3982d112fedd8f68e7958e0",
-    "semantic_hash": ""
+    "semantic_hash": "52211af2b3982d112fedd8f68e7958e0"
   },
   "tests/admin-pagos.test.js": {
     "mtime": 1790482595.596585,
-    "seen": 1790482616.7404637,
+    "seen": 1790624662.8987944,
     "ast_hash": "ea8d46a9b12ee63254184301ae34d3bc",
-    "semantic_hash": ""
+    "semantic_hash": "ea8d46a9b12ee63254184301ae34d3bc"
   },
   "tests/fixtures/stripe/charge-dispute-created.json": {
     "mtime": 1790482593.3296883,
-    "seen": 1790482616.741148,
+    "seen": 1790624662.8988173,
     "ast_hash": "2aba3a02a3fe4f8d3a2d11256965cdb9",
-    "semantic_hash": ""
+    "semantic_hash": "2aba3a02a3fe4f8d3a2d11256965cdb9"
   },
   "tests/fixtures/stripe/charge-refunded.json": {
     "mtime": 1790482592.8595264,
-    "seen": 1790482616.74115,
+    "seen": 1790624662.89882,
     "ast_hash": "29e2f183142aa2be3bd92f6c93005ab9",
-    "semantic_hash": ""
+    "semantic_hash": "29e2f183142aa2be3bd92f6c93005ab9"
   },
   "tests/fixtures/stripe/checkout-session-completed.json": {
     "mtime": 1790482591.9534266,
-    "seen": 1790482616.7411516,
+    "seen": 1790624662.8988218,
     "ast_hash": "5261afa48c18d1d51637c1e6a583eff5",
-    "semantic_hash": ""
+    "semantic_hash": "5261afa48c18d1d51637c1e6a583eff5"
   },
   "tests/fixtures/stripe/customer-subscription-updated.json": {
     "mtime": 1790482593.7521558,
-    "seen": 1790482616.741153,
+    "seen": 1790624662.8988247,
     "ast_hash": "e3b248e6410bbdece666d3f6bbcd7d11",
-    "semantic_hash": ""
+    "semantic_hash": "e3b248e6410bbdece666d3f6bbcd7d11"
   },
   "tests/fixtures/stripe/payment-intent-payment-failed.json": {
     "mtime": 1790482592.3985772,
-    "seen": 1790482616.741155,
+    "seen": 1790624662.898827,
     "ast_hash": "8926e9a0430fb54c22af16ad04bfdd48",
-    "semantic_hash": ""
+    "semantic_hash": "8926e9a0430fb54c22af16ad04bfdd48"
   },
   "tests/pagos-catalogo.test.js": {
     "mtime": 1790482594.2545495,
-    "seen": 1790482616.7439556,
+    "seen": 1790624662.898977,
     "ast_hash": "e275de8c4ca6655194958aaddf482d7f",
-    "semantic_hash": ""
+    "semantic_hash": "e275de8c4ca6655194958aaddf482d7f"
   },
   "tests/pagos-crear-sesion.test.js": {
     "mtime": 1790482595.16761,
-    "seen": 1790482616.7439575,
+    "seen": 1790624662.8989787,
     "ast_hash": "f36d2f41ebcec0ba58e5f780650386eb",
-    "semantic_hash": ""
+    "semantic_hash": "f36d2f41ebcec0ba58e5f780650386eb"
   },
   "tests/pagos-historial.test.js": {
     "mtime": 1790482596.1142316,
-    "seen": 1790482616.743959,
+    "seen": 1790624662.898981,
     "ast_hash": "7afd3049f7cfcbc76f7f0af1cee0d6fe",
-    "semantic_hash": ""
+    "semantic_hash": "7afd3049f7cfcbc76f7f0af1cee0d6fe"
   },
   "tests/pagos-portal.test.js": {
     "mtime": 1790482596.5161808,
-    "seen": 1790482616.7439606,
+    "seen": 1790624662.8989832,
     "ast_hash": "a6732f07df80c20d853c077c18589937",
-    "semantic_hash": ""
+    "semantic_hash": "a6732f07df80c20d853c077c18589937"
   },
   "tests/pagos-webhook.test.js": {
     "mtime": 1790482594.7051983,
-    "seen": 1790482616.743962,
+    "seen": 1790624662.8989854,
     "ast_hash": "7383ac55422df62e9e213c9e68d777fb",
-    "semantic_hash": ""
+    "semantic_hash": "7383ac55422df62e9e213c9e68d777fb"
   },
   "specs/010-themora-payment-center/checklists/requirements.md": {
     "mtime": 1790474129.5201476,
-    "seen": 1790482616.7574568,
+    "seen": 1790624662.899083,
     "ast_hash": "6f842461c100e1f8c50119d115269e4d",
-    "semantic_hash": ""
+    "semantic_hash": "6f842461c100e1f8c50119d115269e4d"
   },
   "specs/010-themora-payment-center/contracts/admin-pagos.md": {
     "mtime": 1790481646.94117,
-    "seen": 1790482616.7574592,
+    "seen": 1790624662.8990858,
     "ast_hash": "745922f060b2f39310fce9ccdddcac92",
-    "semantic_hash": ""
+    "semantic_hash": "745922f060b2f39310fce9ccdddcac92"
   },
   "specs/010-themora-payment-center/contracts/pagos-crear-sesion.md": {
     "mtime": 1790481618.1480303,
-    "seen": 1790482616.7574608,
+    "seen": 1790624662.899088,
     "ast_hash": "2413544843af8b2f55a9fde6383d9397",
-    "semantic_hash": ""
+    "semantic_hash": "2413544843af8b2f55a9fde6383d9397"
   },
   "specs/010-themora-payment-center/contracts/pagos-historial.md": {
     "mtime": 1790481113.421293,
-    "seen": 1790482616.7574627,
+    "seen": 1790624662.8990905,
     "ast_hash": "1b002db3e7236d51951c006d5572f54f",
-    "semantic_hash": ""
+    "semantic_hash": "1b002db3e7236d51951c006d5572f54f"
   },
   "specs/010-themora-payment-center/contracts/pagos-portal.md": {
     "mtime": 1790481124.1117208,
-    "seen": 1790482616.7574646,
+    "seen": 1790624662.899093,
     "ast_hash": "f33ec01bb2a3e917ca120d0c3b91e152",
-    "semantic_hash": ""
+    "semantic_hash": "f33ec01bb2a3e917ca120d0c3b91e152"
   },
   "specs/010-themora-payment-center/contracts/pagos-webhook.md": {
     "mtime": 1790481101.059086,
-    "seen": 1790482616.757466,
+    "seen": 1790624662.899096,
     "ast_hash": "ea86178eaf37243d4d7c7f26d17f0a81",
-    "semantic_hash": ""
+    "semantic_hash": "ea86178eaf37243d4d7c7f26d17f0a81"
   },
   "specs/010-themora-payment-center/data-model.md": {
     "mtime": 1790481585.2364693,
-    "seen": 1790482616.7574677,
+    "seen": 1790624662.8990986,
     "ast_hash": "c2c9b49a00d27ab49aa9a9fd1846a04b",
-    "semantic_hash": ""
+    "semantic_hash": "c2c9b49a00d27ab49aa9a9fd1846a04b"
   },
   "specs/010-themora-payment-center/plan.md": {
     "mtime": 1790481676.0114944,
-    "seen": 1790482616.757469,
+    "seen": 1790624662.8991015,
     "ast_hash": "a6d993614555c880a2acab09bd81a1be",
-    "semantic_hash": ""
+    "semantic_hash": "a6d993614555c880a2acab09bd81a1be"
   },
   "specs/010-themora-payment-center/quickstart.md": {
     "mtime": 1790481686.4885073,
-    "seen": 1790482616.7574706,
+    "seen": 1790624662.8991032,
     "ast_hash": "8dce8de8090dece4618991c993f89c97",
-    "semantic_hash": ""
+    "semantic_hash": "8dce8de8090dece4618991c993f89c97"
   },
   "specs/010-themora-payment-center/research.md": {
     "mtime": 1790480202.2335691,
-    "seen": 1790482616.757472,
+    "seen": 1790624662.899106,
     "ast_hash": "202b8f257917290c97f7a6da89cc5d28",
-    "semantic_hash": ""
+    "semantic_hash": "202b8f257917290c97f7a6da89cc5d28"
   },
   "specs/010-themora-payment-center/spec.md": {
     "mtime": 1790474115.9064305,
-    "seen": 1790482616.757474,
+    "seen": 1790624662.8991084,
     "ast_hash": "748fb0da57b451992dd0ef54669f5709",
-    "semantic_hash": ""
+    "semantic_hash": "748fb0da57b451992dd0ef54669f5709"
   },
   "specs/010-themora-payment-center/tasks.md": {
     "mtime": 1790481914.0081477,
-    "seen": 1790482616.7574763,
+    "seen": 1790624662.8991103,
     "ast_hash": "4e5d77d8b2bfde686e98595a4b26df3f",
-    "semantic_hash": ""
+    "semantic_hash": "4e5d77d8b2bfde686e98595a4b26df3f"
   },
   "tests/cabecera-pie.test.js": {
     "mtime": 1790514126.423738,
-    "seen": 1790514415.0934103,
+    "seen": 1790624662.8988023,
     "ast_hash": "64841b7f5d872685c5f3b575743d516b",
-    "semantic_hash": ""
+    "semantic_hash": "64841b7f5d872685c5f3b575743d516b"
   },
   "specs/011-ux-audit-remediation/baseline.md": {
     "mtime": 1790512601.8406832,
-    "seen": 1790514415.1167178,
+    "seen": 1790624662.8991122,
     "ast_hash": "31dbbb5132f30129883d8e955394a4e3",
-    "semantic_hash": ""
+    "semantic_hash": "31dbbb5132f30129883d8e955394a4e3"
   },
   "specs/011-ux-audit-remediation/checklists/requirements.md": {
     "mtime": 1790514425.8863134,
-    "seen": 1790562618.419772,
+    "seen": 1790624662.8991148,
     "ast_hash": "60c87a315475604f9d53796008a7e4ba",
-    "semantic_hash": ""
+    "semantic_hash": "60c87a315475604f9d53796008a7e4ba"
   },
   "specs/011-ux-audit-remediation/color-mapping-log.md": {
     "mtime": 1790514310.9198892,
-    "seen": 1790514415.1167226,
+    "seen": 1790624662.8991168,
     "ast_hash": "958dd91e5770f1f40b753f852df16ab2",
-    "semantic_hash": ""
+    "semantic_hash": "958dd91e5770f1f40b753f852df16ab2"
   },
   "specs/011-ux-audit-remediation/contracts/consistency-test.md": {
     "mtime": 1790510020.3310761,
-    "seen": 1790514415.1167243,
+    "seen": 1790624662.8991191,
     "ast_hash": "052d6bbb05b0095a0caf1465fbba883a",
-    "semantic_hash": ""
+    "semantic_hash": "052d6bbb05b0095a0caf1465fbba883a"
   },
   "specs/011-ux-audit-remediation/contracts/footer.md": {
     "mtime": 1790510314.981204,
-    "seen": 1790514415.1167257,
+    "seen": 1790624662.8991215,
     "ast_hash": "147788752f7c83c3e0d1c7af70df8e3a",
-    "semantic_hash": ""
+    "semantic_hash": "147788752f7c83c3e0d1c7af70df8e3a"
   },
   "specs/011-ux-audit-remediation/contracts/ui-rules.md": {
     "mtime": 1790510017.294461,
-    "seen": 1790514415.1167274,
+    "seen": 1790624662.8991241,
     "ast_hash": "c670f526d0d2aaba5bd02c68f58f18b7",
-    "semantic_hash": ""
+    "semantic_hash": "c670f526d0d2aaba5bd02c68f58f18b7"
   },
   "specs/011-ux-audit-remediation/data-model.md": {
     "mtime": 1790509978.3981054,
-    "seen": 1790514415.116729,
+    "seen": 1790624662.8991268,
     "ast_hash": "52edfd7ed62e2865630e5bea85c70e5f",
-    "semantic_hash": ""
+    "semantic_hash": "52edfd7ed62e2865630e5bea85c70e5f"
   },
   "specs/011-ux-audit-remediation/plan.md": {
     "mtime": 1790510077.7311294,
-    "seen": 1790514415.116731,
+    "seen": 1790624662.8991294,
     "ast_hash": "44a7ee9bfefcc5d0f366bf10270072b5",
-    "semantic_hash": ""
+    "semantic_hash": "44a7ee9bfefcc5d0f366bf10270072b5"
   },
   "specs/011-ux-audit-remediation/quickstart.md": {
     "mtime": 1790510036.978112,
-    "seen": 1790514415.1167328,
+    "seen": 1790624662.899131,
     "ast_hash": "f5368aa2fe6bdfac1add255db7754f37",
-    "semantic_hash": ""
+    "semantic_hash": "f5368aa2fe6bdfac1add255db7754f37"
   },
   "specs/011-ux-audit-remediation/research.md": {
     "mtime": 1790509975.3037355,
-    "seen": 1790514415.116735,
+    "seen": 1790624662.8991337,
     "ast_hash": "f9576b3cb199a4c8c866c2fe69ca79ef",
-    "semantic_hash": ""
+    "semantic_hash": "f9576b3cb199a4c8c866c2fe69ca79ef"
   },
   "specs/011-ux-audit-remediation/spec.md": {
     "mtime": 1790510107.0537035,
-    "seen": 1790514415.1167371,
+    "seen": 1790624662.8991358,
     "ast_hash": "82e5cd7c1647aee28b25b9f1a20871c9",
-    "semantic_hash": ""
+    "semantic_hash": "82e5cd7c1647aee28b25b9f1a20871c9"
   },
   "specs/011-ux-audit-remediation/tasks.md": {
     "mtime": 1790514376.7621944,
-    "seen": 1790514415.116739,
+    "seen": 1790624662.8991382,
     "ast_hash": "75d530063aa7f000096b06f9b4ed519c",
+    "semantic_hash": "75d530063aa7f000096b06f9b4ed519c"
+  },
+  "graphify-out/memory/query_20260928_095826_c0a2e1ee_which_pages_load_which_scripts_and_which_netlify_f.md": {
+    "mtime": 1790589506.3763726,
+    "seen": 1790624662.8990557,
+    "ast_hash": "bba812feef941aef81c7d503111ff514",
+    "semantic_hash": "bba812feef941aef81c7d503111ff514"
+  },
+  "graphify-out/memory/query_20260928_095827_5cb906b3_what_does_the_tds_data_model__entradatds_resultado.md": {
+    "mtime": 1790589507.9625413,
+    "seen": 1790624662.8990571,
+    "ast_hash": "2f7bfda02366bf6c444957aed343d384",
+    "semantic_hash": "2f7bfda02366bf6c444957aed343d384"
+  },
+  "graphify-out/memory/query_20260928_095829_a574bd6d_audit_the_website_for_ui_ux_problems__accessibilit.md": {
+    "mtime": 1790589509.4778638,
+    "seen": 1790624662.899058,
+    "ast_hash": "ffd79572460d4880e600ec44da99d588",
+    "semantic_hash": "ffd79572460d4880e600ec44da99d588"
+  },
+  "graphify-out/memory/query_20260928_193347_9009b377_auditor\u00eda_de_accesibilidad_y_ux_del_sitio__qu\u00e9_pro.md": {
+    "mtime": 1790624027.4581757,
+    "seen": 1790624662.8990622,
+    "ast_hash": "45d7a730ebe961a510dc351719622f7d",
+    "semantic_hash": "45d7a730ebe961a510dc351719622f7d"
+  },
+  "graphify-out/memory/query_20260928_193349_7f221d4f_revisi\u00f3n_de_dise\u00f1o_visual__jerarqu\u00eda__tipograf\u00eda.md": {
+    "mtime": 1790624029.0794325,
+    "seen": 1790624662.8990638,
+    "ast_hash": "1ef6d14ac19c98ff5de31fa3cb6d923a",
+    "semantic_hash": "1ef6d14ac19c98ff5de31fa3cb6d923a"
+  },
+  "graphify-out/memory/query_20260928_193350_d924d1e0_s\u00edntesis_de_hallazgos_ui_ux__causas_ra\u00edz__dependen.md": {
+    "mtime": 1790624030.6318674,
+    "seen": 1790624662.8990653,
+    "ast_hash": "b2aee3a0574b9a282e91a59df6ef27e3",
+    "semantic_hash": "b2aee3a0574b9a282e91a59df6ef27e3"
+  },
+  "graphify-out/memory/query_20260928_193352_61192ef9_qu\u00e9_problemas_tiene_graphify_en_este_proyecto.md": {
+    "mtime": 1790624032.163052,
+    "seen": 1790624662.899067,
+    "ast_hash": "3cda12148c08476d9c9e7b922507c1d3",
+    "semantic_hash": "3cda12148c08476d9c9e7b922507c1d3"
+  },
+  "specs/012-un-sistema-visual/contracts/paper-hero.md": {
+    "mtime": 1790606938.6705456,
+    "seen": 1790624662.8991392,
+    "ast_hash": "3b044f8c49ad5a3d8816607da2348730",
+    "semantic_hash": "3b044f8c49ad5a3d8816607da2348730"
+  },
+  "specs/012-un-sistema-visual/contracts/ui-rules-v2.md": {
+    "mtime": 1790606935.57893,
+    "seen": 1790624662.8991406,
+    "ast_hash": "456e5121fd4e96fcdcaab4227b9349bf",
+    "semantic_hash": "456e5121fd4e96fcdcaab4227b9349bf"
+  },
+  "specs/012-un-sistema-visual/contracts/visual-system-test.md": {
+    "mtime": 1790606941.974728,
+    "seen": 1790624662.8991413,
+    "ast_hash": "c90c66f54ad86475fb4ab084646021b9",
+    "semantic_hash": "c90c66f54ad86475fb4ab084646021b9"
+  },
+  "specs/012-un-sistema-visual/data-model.md": {
+    "mtime": 1790606932.409557,
+    "seen": 1790624662.8991425,
+    "ast_hash": "3aa3bcc650badb294fcfe3d48a203f19",
+    "semantic_hash": "3aa3bcc650badb294fcfe3d48a203f19"
+  },
+  "specs/012-un-sistema-visual/plan.md": {
+    "mtime": 1790636033.1084502,
+    "seen": 1790646606.2107103,
+    "ast_hash": "fc1a13cd7ead819953d1fd1538cf9eb5",
+    "semantic_hash": "fc1a13cd7ead819953d1fd1538cf9eb5"
+  },
+  "specs/012-un-sistema-visual/quickstart.md": {
+    "mtime": 1790606969.54562,
+    "seen": 1790624662.899145,
+    "ast_hash": "22433ec318e1ffbfb1f43992bcb3f6ed",
+    "semantic_hash": "22433ec318e1ffbfb1f43992bcb3f6ed"
+  },
+  "specs/012-un-sistema-visual/research.md": {
+    "mtime": 1790606759.709635,
+    "seen": 1790624662.8991458,
+    "ast_hash": "cd210792593d402d4f97e11794a5d70e",
+    "semantic_hash": "cd210792593d402d4f97e11794a5d70e"
+  },
+  "specs/012-un-sistema-visual/spec.md": {
+    "mtime": 1790629301.4015672,
+    "seen": 1790646606.2107124,
+    "ast_hash": "0504df2c9fcbdfa022157f6d49959c23",
+    "semantic_hash": "0504df2c9fcbdfa022157f6d49959c23"
+  },
+  "tests/sistema-visual.test.js": {
+    "mtime": 1790636230.6694052,
+    "seen": 1790646606.2106373,
+    "ast_hash": "3b09475f8c387ec03db2f6d9986dd1a7",
+    "semantic_hash": "3b09475f8c387ec03db2f6d9986dd1a7"
+  },
+  "graphify-out/memory/query_20260928_210158_01983d94_por_qu\u00e9_parpadea_la_p\u00e1gina_al_navegar_y_por_qu\u00e9_el.md": {
+    "mtime": 1790629318.6656597,
+    "seen": 1790646606.2106903,
+    "ast_hash": "c404c5a8a30c1c6e8422e71ab2591ded",
+    "semantic_hash": "c404c5a8a30c1c6e8422e71ab2591ded"
+  },
+  "specs/012-un-sistema-visual/color-mapping-log.md": {
+    "mtime": 1790641093.611607,
+    "seen": 1790646606.2107081,
+    "ast_hash": "a4371126d72006f272849a506b7f54bd",
+    "semantic_hash": "a4371126d72006f272849a506b7f54bd"
+  },
+  "specs/012-un-sistema-visual/tasks.md": {
+    "mtime": 1790645424.3496807,
+    "seen": 1790646606.2107139,
+    "ast_hash": "801cf7361abdef937613b17df1bf102d",
+    "semantic_hash": "801cf7361abdef937613b17df1bf102d"
+  },
+  "graphify-out/memory/query_20260929_014115_326d561f_qu\u00e9_se_implement\u00f3_en_la_spec_012_y_qu\u00e9_causaba_el.md": {
+    "mtime": 1790646075.050176,
+    "seen": 1790646606.2106931,
+    "ast_hash": "cc3fcdd2d1f73840c5ea111018132ff7",
+    "semantic_hash": "cc3fcdd2d1f73840c5ea111018132ff7"
+  },
+  "tests/credito-fase0.test.js": {
+    "mtime": 1790943221.252223,
+    "seen": 1790943536.7763684,
+    "ast_hash": "c76f9f60ce0157667a38f4965ea8931d",
+    "semantic_hash": ""
+  },
+  "specs/013-lector-credito-metodologia/checklists/requirements.md": {
+    "mtime": 1790820875.6495736,
+    "seen": 1790868231.3133564,
+    "ast_hash": "75db1ef9615a8727a61fcb9ba7d14840",
+    "semantic_hash": "75db1ef9615a8727a61fcb9ba7d14840"
+  },
+  "specs/013-lector-credito-metodologia/spec.md": {
+    "mtime": 1790820875.6008193,
+    "seen": 1790868231.3133738,
+    "ast_hash": "70fd64b9fe5084b8f430917b733a74f1",
+    "semantic_hash": "70fd64b9fe5084b8f430917b733a74f1"
+  },
+  "specs/013-lector-credito-metodologia/contracts/lector-credito-api.md": {
+    "mtime": 1790741834.0208182,
+    "seen": 1790868231.3133585,
+    "ast_hash": "57a877ccb3452d6c8e44c503d86ae449",
+    "semantic_hash": "57a877ccb3452d6c8e44c503d86ae449"
+  },
+  "specs/013-lector-credito-metodologia/contracts/ui-cuentas.md": {
+    "mtime": 1790741901.899523,
+    "seen": 1790868231.3133605,
+    "ast_hash": "5cdb3dca14930398671baaefbebc78ac",
+    "semantic_hash": "5cdb3dca14930398671baaefbebc78ac"
+  },
+  "specs/013-lector-credito-metodologia/data-model.md": {
+    "mtime": 1790867239.8084192,
+    "seen": 1790868231.3133652,
+    "ast_hash": "192fe279cb58631ee7e5a5403c94e595",
+    "semantic_hash": "192fe279cb58631ee7e5a5403c94e595"
+  },
+  "specs/013-lector-credito-metodologia/plan.md": {
+    "mtime": 1790741598.7718437,
+    "seen": 1790868231.3133678,
+    "ast_hash": "69e567f51aa901b95ad8be3ca559dee2",
+    "semantic_hash": "69e567f51aa901b95ad8be3ca559dee2"
+  },
+  "specs/013-lector-credito-metodologia/quickstart.md": {
+    "mtime": 1790741922.110185,
+    "seen": 1790868231.3133698,
+    "ast_hash": "45f3e3882457ac97f2f69be929ed2006",
+    "semantic_hash": "45f3e3882457ac97f2f69be929ed2006"
+  },
+  "specs/013-lector-credito-metodologia/research.md": {
+    "mtime": 1790741663.8073297,
+    "seen": 1790868231.313372,
+    "ast_hash": "f664bae1d46001aa00decb141a9a8ed6",
+    "semantic_hash": "f664bae1d46001aa00decb141a9a8ed6"
+  },
+  "specs/013-lector-credito-metodologia/tasks.md": {
+    "mtime": 1790824439.8552265,
+    "seen": 1790868231.3133755,
+    "ast_hash": "900d12f4ce1afc90a456ec8d31515e44",
+    "semantic_hash": "900d12f4ce1afc90a456ec8d31515e44"
+  },
+  "lector-credito-perfiles.js": {
+    "mtime": 1790867154.4127429,
+    "seen": 1790868231.3130562,
+    "ast_hash": "f12508a0c87f8c9ab43cb244f52e56bf",
+    "semantic_hash": "f12508a0c87f8c9ab43cb244f52e56bf"
+  },
+  "lector-credito.js": {
+    "mtime": 1790871066.6259897,
+    "seen": 1790919505.73685,
+    "ast_hash": "4bafbce7515891c9e096c5a00341e251",
+    "semantic_hash": ""
+  },
+  "tests/credito-lector-ui.test.js": {
+    "mtime": 1790943462.7628033,
+    "seen": 1790943536.7763755,
+    "ast_hash": "dc66379fc6d1b1fd828a7fcaefade2f2",
+    "semantic_hash": ""
+  },
+  "tests/fixtures/credito/equifax.json": {
+    "mtime": 1790821713.0071616,
+    "seen": 1790868231.3131843,
+    "ast_hash": "e22f99cfbc75ff104b6540ab9cc34fe8",
+    "semantic_hash": "e22f99cfbc75ff104b6540ab9cc34fe8"
+  },
+  "tests/fixtures/credito/esperado/equifax.json": {
+    "mtime": 1790867196.806752,
+    "seen": 1790868231.3131864,
+    "ast_hash": "d09392557a3f66a50949a8b7373a3074",
+    "semantic_hash": "d09392557a3f66a50949a8b7373a3074"
+  },
+  "tests/fixtures/credito/esperado/experian.json": {
+    "mtime": 1790867196.8310807,
+    "seen": 1790868231.3131928,
+    "ast_hash": "db0ab1fbba8883335a24234f120aba67",
+    "semantic_hash": "db0ab1fbba8883335a24234f120aba67"
+  },
+  "tests/fixtures/credito/esperado/generico.json": {
+    "mtime": 1790867196.839605,
+    "seen": 1790868231.313199,
+    "ast_hash": "7f409837934263837971d3a5b6fc52d8",
+    "semantic_hash": "7f409837934263837971d3a5b6fc52d8"
+  },
+  "tests/fixtures/credito/esperado/transunion.json": {
+    "mtime": 1790867196.8361185,
+    "seen": 1790868231.3132021,
+    "ast_hash": "7fb1f91d5fda9c76f8a1071fcf43b847",
+    "semantic_hash": "7fb1f91d5fda9c76f8a1071fcf43b847"
+  },
+  "tests/fixtures/credito/experian.json": {
+    "mtime": 1790821713.008163,
+    "seen": 1790868231.3132086,
+    "ast_hash": "54e689da6216403064a0b63ef8ac1f5e",
+    "semantic_hash": "54e689da6216403064a0b63ef8ac1f5e"
+  },
+  "tests/fixtures/credito/generico.json": {
+    "mtime": 1790821713.0167198,
+    "seen": 1790868231.3132107,
+    "ast_hash": "cdcf2e4bdaeff4798dce4ae8b86a50fb",
+    "semantic_hash": "cdcf2e4bdaeff4798dce4ae8b86a50fb"
+  },
+  "tests/fixtures/credito/transunion.json": {
+    "mtime": 1790821713.015705,
+    "seen": 1790868231.3132129,
+    "ast_hash": "d808535e29f5fe0ed0e72a1b07b67d9c",
+    "semantic_hash": "d808535e29f5fe0ed0e72a1b07b67d9c"
+  },
+  "tests/lector-credito-perfiles.test.js": {
+    "mtime": 1790821748.2498264,
+    "seen": 1790868231.313295,
+    "ast_hash": "06b149fa0f098afa94204e724d31be3a",
+    "semantic_hash": "06b149fa0f098afa94204e724d31be3a"
+  },
+  "tests/lector-credito.test.js": {
+    "mtime": 1790867196.9466112,
+    "seen": 1790868231.3132968,
+    "ast_hash": "c4890ed326d465a58d8b51ef4a587fba",
+    "semantic_hash": "c4890ed326d465a58d8b51ef4a587fba"
+  },
+  "tests/fixtures/credito/LEEME.md": {
+    "mtime": 1790821098.9111822,
+    "seen": 1790868231.3133974,
+    "ast_hash": "4c2d17bdad418fc89a408033e4b02553",
+    "semantic_hash": "4c2d17bdad418fc89a408033e4b02553"
+  },
+  "tests/fixtures/credito/esperado/experian-tabla.json": {
+    "mtime": 1790824398.117025,
+    "seen": 1790868231.3131907,
+    "ast_hash": "2300a60889f4d54fc835bea6e4f7eb9a",
+    "semantic_hash": "2300a60889f4d54fc835bea6e4f7eb9a"
+  },
+  "tests/fixtures/credito/experian-tabla.json": {
+    "mtime": 1790824376.756168,
+    "seen": 1790868231.3132062,
+    "ast_hash": "bfd0a62b3e4ba7ac6efd37023e6c7892",
+    "semantic_hash": "bfd0a62b3e4ba7ac6efd37023e6c7892"
+  },
+  "specs/014-resumen-consumidor/plan.md": {
+    "mtime": 1790863105.849609,
+    "seen": 1790868231.3133867,
+    "ast_hash": "672cbd42cec5d9fac4ea6cfdff41bf22",
+    "semantic_hash": "672cbd42cec5d9fac4ea6cfdff41bf22"
+  },
+  "specs/014-resumen-consumidor/checklists/requirements.md": {
+    "mtime": 1790857952.6507921,
+    "seen": 1790868231.313378,
+    "ast_hash": "d35743cdc49f039a442b00faa5a8ae6f",
+    "semantic_hash": "d35743cdc49f039a442b00faa5a8ae6f"
+  },
+  "specs/014-resumen-consumidor/spec.md": {
+    "mtime": 1790863069.8169074,
+    "seen": 1790868231.3133926,
+    "ast_hash": "596bad319f940d4d36d96744ec09a8b2",
+    "semantic_hash": "596bad319f940d4d36d96744ec09a8b2"
+  },
+  "specs/014-resumen-consumidor/contracts/analista-api.md": {
+    "mtime": 1790863036.1228094,
+    "seen": 1790868231.3133807,
+    "ast_hash": "eddaee12858f59f0d71c03997360bba7",
+    "semantic_hash": "eddaee12858f59f0d71c03997360bba7"
+  },
+  "specs/014-resumen-consumidor/contracts/ui-resumen.md": {
+    "mtime": 1790863059.9229262,
+    "seen": 1790868231.3133824,
+    "ast_hash": "810cd09380a2cc3f82ad4461f9c811a1",
+    "semantic_hash": "810cd09380a2cc3f82ad4461f9c811a1"
+  },
+  "specs/014-resumen-consumidor/data-model.md": {
+    "mtime": 1790943179.4540088,
+    "seen": 1790943536.7771354,
+    "ast_hash": "9bef67b9ab70d7a3e45a236e1f8517c8",
+    "semantic_hash": ""
+  },
+  "specs/014-resumen-consumidor/quickstart.md": {
+    "mtime": 1790863042.6550837,
+    "seen": 1790868231.3133888,
+    "ast_hash": "c94067b64915cac80b3967cc9c81a28d",
+    "semantic_hash": "c94067b64915cac80b3967cc9c81a28d"
+  },
+  "specs/014-resumen-consumidor/research.md": {
+    "mtime": 1790945798.890288,
+    "seen": 1790947996.6464689,
+    "ast_hash": "da656ad8c60ad8dbea61a6e40f3d42ee",
+    "semantic_hash": ""
+  },
+  "specs/014-resumen-consumidor/tasks.md": {
+    "mtime": 1790943518.856187,
+    "seen": 1790943536.777148,
+    "ast_hash": "7e0c47cd38c3ada36433b7dfcf6d151a",
+    "semantic_hash": ""
+  },
+  "analista-credito.js": {
+    "mtime": 1790945798.267187,
+    "seen": 1790947996.6460238,
+    "ast_hash": "3e887d53962003f6424b411de701d0d8",
+    "semantic_hash": ""
+  },
+  "tests/analista-credito.test.js": {
+    "mtime": 1790945780.3258677,
+    "seen": 1790947996.646138,
+    "ast_hash": "3028e1119a8eeffe4c3faa6fadfac7f0",
+    "semantic_hash": ""
+  },
+  "tests/fixtures/credito/esperado/experian-resumen.json": {
+    "mtime": 1790867196.841622,
+    "seen": 1790868231.3131883,
+    "ast_hash": "a42513b6583c55dea5d0f5eb373a0a5a",
+    "semantic_hash": "a42513b6583c55dea5d0f5eb373a0a5a"
+  },
+  "tests/fixtures/credito/experian-resumen.json": {
+    "mtime": 1790867048.1935096,
+    "seen": 1790868231.3132043,
+    "ast_hash": "efd7aa7b8a9634bccf251dd7d4dc738f",
+    "semantic_hash": "efd7aa7b8a9634bccf251dd7d4dc738f"
+  },
+  "tests/credito-resumen-ui.test.js": {
+    "mtime": 1790945732.3103502,
+    "seen": 1790947996.6461563,
+    "ast_hash": "23046a7dcf6829296ca5af4b8b895a27",
+    "semantic_hash": ""
+  },
+  "herramientas-credito.js": {
+    "mtime": 1790920052.3716557,
+    "seen": 1790920246.9345932,
+    "ast_hash": "6d2007d1aa9796c9765663db370d66e3",
+    "semantic_hash": ""
+  },
+  "tests/fixtures/credito/agente/acme-zeta.json": {
+    "mtime": 1790919242.0283656,
+    "seen": 1790919505.7435265,
+    "ast_hash": "d712520e457d7f8fc8638a64327e07bb",
+    "semantic_hash": ""
+  },
+  "tests/herramientas-credito.test.js": {
+    "mtime": 1790920040.424719,
+    "seen": 1790920246.9349005,
+    "ast_hash": "854a1cfbda0f32b21f6e40995d3bcf30",
+    "semantic_hash": ""
+  },
+  "specs/015/pruebas.md": {
+    "mtime": 1790908609.902273,
+    "seen": 1790919505.7755682,
+    "ast_hash": "e902b06f52c220e7cd91a16ae4cd372a",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/checklists/requirements.md": {
+    "mtime": 1790914795.908175,
+    "seen": 1790919505.7755706,
+    "ast_hash": "acea497a6d7dc269eb8717af2e127f48",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/contracts/herramientas-api.md": {
+    "mtime": 1790915759.8683095,
+    "seen": 1790919505.775573,
+    "ast_hash": "130b98510e8978ab2c2f4ffb1d99f5bc",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/data-model.md": {
+    "mtime": 1790915733.095008,
+    "seen": 1790919505.7755759,
+    "ast_hash": "df4fd9c9ce503dad21314e90da29f489",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/plan.md": {
+    "mtime": 1790915831.7147605,
+    "seen": 1790919505.775578,
+    "ast_hash": "e701fe7e159c6b4dfefecad575b15661",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/quickstart.md": {
+    "mtime": 1790920053.374519,
+    "seen": 1790920246.935492,
+    "ast_hash": "b2c6007f107b44cc0721a17fba57e432",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/research.md": {
+    "mtime": 1790915701.2391756,
+    "seen": 1790919505.7755835,
+    "ast_hash": "ebfb189386d6f216a5a3c5d01ba19cc6",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/spec.md": {
+    "mtime": 1790914780.0349848,
+    "seen": 1790919505.7755852,
+    "ast_hash": "1d87109a11f6dfd786df3f022b81818c",
+    "semantic_hash": ""
+  },
+  "specs/016-herramientas-agente-credito/tasks.md": {
+    "mtime": 1790919512.04621,
+    "seen": 1790920246.9355013,
+    "ast_hash": "158af850164049e57282a096c60bc3e8",
+    "semantic_hash": ""
+  },
+  "tests/fixtures/credito/agente/LEEME.md": {
+    "mtime": 1790919241.2010925,
+    "seen": 1790919505.7760484,
+    "ast_hash": "e3a985d8e4d9abea069e46c890bdee15",
+    "semantic_hash": ""
+  },
+  "agente-credito-cliente.js": {
+    "mtime": 1790943583.561578,
+    "seen": 1790943613.4027708,
+    "ast_hash": "d69698f8d53f0438da1e5243e918059c",
+    "semantic_hash": ""
+  },
+  "netlify/functions/agente-credito.js": {
+    "mtime": 1790925170.5784423,
+    "seen": 1790926226.0838184,
+    "ast_hash": "5a3e4ae505454a35977e40ff1801ed38",
+    "semantic_hash": ""
+  },
+  "netlify/functions/lib/agente-credito-manual.js": {
+    "mtime": 1790925085.769814,
+    "seen": 1790926226.0838315,
+    "ast_hash": "c0b91d911ddd8c356a40fbae274b7002",
+    "semantic_hash": ""
+  },
+  "netlify/functions/lib/agente-credito-pase.js": {
+    "mtime": 1790923818.4611633,
+    "seen": 1790924265.6855857,
+    "ast_hash": "e47d3361c47b74605ca52db7b801e3c1",
+    "semantic_hash": ""
+  },
+  "netlify/functions/lib/agente-credito-validar.js": {
+    "mtime": 1790925107.337955,
+    "seen": 1790926226.0838346,
+    "ast_hash": "ebee0995e31ad521536564ae3c60118a",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-ayuda.js": {
+    "mtime": 1790925120.3752723,
+    "seen": 1790926226.0838687,
+    "ast_hash": "1b28b440184589b2eaf8606283cdce3f",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-cliente.test.js": {
+    "mtime": 1790943535.8189893,
+    "seen": 1790943536.7763274,
+    "ast_hash": "30fc0902bf9877c711118b066d7a41cb",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-funcion.test.js": {
+    "mtime": 1790925139.8420994,
+    "seen": 1790926226.0838711,
+    "ast_hash": "c3d8cac28b72d29b78da746d3b01ddb4",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-manual.test.js": {
+    "mtime": 1790925043.006545,
+    "seen": 1790926226.0838726,
+    "ast_hash": "b13f4242871056915987bc2b224efbe8",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-pase.test.js": {
+    "mtime": 1790923808.888276,
+    "seen": 1790924265.6856484,
+    "ast_hash": "efb07ba867e38dfd32a17d0c6578cadb",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-validar.test.js": {
+    "mtime": 1790925042.3172967,
+    "seen": 1790926226.0838752,
+    "ast_hash": "a2367dafe0ed117120cd19a5c497830f",
+    "semantic_hash": ""
+  },
+  "tests/manual/agente-credito-real.js": {
+    "mtime": 1790924127.9340277,
+    "seen": 1790924265.6857772,
+    "ast_hash": "d8882957eb8cb0bf679ec3dcd4892a8c",
+    "semantic_hash": ""
+  },
+  "INSTRUCCIONES-AGENTE-CREDITO.md": {
+    "mtime": 1790924115.6471286,
+    "seen": 1790924265.6858294,
+    "ast_hash": "489f3988d2054b63b468920ee51749b7",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/checklists/requirements.md": {
+    "mtime": 1790922081.0731254,
+    "seen": 1790924265.6861453,
+    "ast_hash": "e9c03d5f36de7159e24981921c90f86a",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/contracts/agente-credito-api.md": {
+    "mtime": 1790923038.4200487,
+    "seen": 1790924265.686147,
+    "ast_hash": "63b63eb2b1a48240b6ba129fcee1dc36",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/data-model.md": {
+    "mtime": 1790923031.3541832,
+    "seen": 1790924265.6861484,
+    "ast_hash": "e795957a8754da931792816ee56b2b14",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/plan.md": {
+    "mtime": 1790922235.22588,
+    "seen": 1790924265.6861498,
+    "ast_hash": "f6f29e7bf73f6466c402e8d5a4f9ef5f",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/quickstart.md": {
+    "mtime": 1790922185.6511705,
+    "seen": 1790924265.6861515,
+    "ast_hash": "a685c8456fc89bcb70e3c6433cac3de2",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/research.md": {
+    "mtime": 1790923024.508975,
+    "seen": 1790924265.686153,
+    "ast_hash": "714831b98368b1a6ac8f57ca8b63e870",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/spec.md": {
+    "mtime": 1790923017.6139743,
+    "seen": 1790924265.6861541,
+    "ast_hash": "728b6ce803bbfbc4c13bf62c8eb62828",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/tasks.md": {
+    "mtime": 1790924314.7996314,
+    "seen": 1790924324.54598,
+    "ast_hash": "4edf5763a809079900c7f762cdb944c9",
+    "semantic_hash": ""
+  },
+  "cartas-agente.js": {
+    "mtime": 1790926181.833602,
+    "seen": 1790926226.0837781,
+    "ast_hash": "c69a884ce41deec856deaf69aa710bf2",
+    "semantic_hash": ""
+  },
+  "tests/cartas-agente.test.js": {
+    "mtime": 1790926070.7442348,
+    "seen": 1790926226.0838828,
+    "ast_hash": "2a9391ccec368c1f69e41f549a7adb30",
+    "semantic_hash": ""
+  },
+  "specs/018-cartas-agente/checklists/requirements.md": {
+    "mtime": 1790924766.0570278,
+    "seen": 1790926226.0842242,
+    "ast_hash": "6b64f9a5698a4c4a318ea27a5094d16e",
+    "semantic_hash": ""
+  },
+  "specs/018-cartas-agente/contracts/cartas-agente-api.md": {
+    "mtime": 1790924843.2439115,
+    "seen": 1790926226.0842257,
+    "ast_hash": "9952097d23fa051aa12d3cfdb4217ce8",
+    "semantic_hash": ""
+  },
+  "specs/018-cartas-agente/plan.md": {
+    "mtime": 1790924839.7628584,
+    "seen": 1790926226.0842264,
+    "ast_hash": "e13202d4e071b6b98c40b229051cb04f",
+    "semantic_hash": ""
+  },
+  "specs/018-cartas-agente/spec.md": {
+    "mtime": 1790924762.413592,
+    "seen": 1790926226.0842273,
+    "ast_hash": "ef08b92a561b8f988d20696b32312d7b",
+    "semantic_hash": ""
+  },
+  "specs/018-cartas-agente/tasks.md": {
+    "mtime": 1790926213.010107,
+    "seen": 1790926226.0842283,
+    "ast_hash": "e2dcc8cbb1a54554b4cc210cf176e612",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/checklists/requirements.md": {
+    "mtime": 1790927010.5270164,
+    "seen": 1790929705.5771823,
+    "ast_hash": "850892f17e0c975b3b69a0f173b549ee",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/contracts/vista-api.md": {
+    "mtime": 1790927253.9682877,
+    "seen": 1790929705.5772297,
+    "ast_hash": "e91d518d0d864738562454edce70bf34",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/plan.md": {
+    "mtime": 1790927056.5217996,
+    "seen": 1790929705.5772326,
+    "ast_hash": "f0d4a938176ae9945a66f07366bbfb1a",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/spec.md": {
+    "mtime": 1790927006.9631593,
+    "seen": 1790929705.5772345,
+    "ast_hash": "8bf2d3072e72d09d7325e2be34aae757",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/tasks.md": {
+    "mtime": 1790945135.453557,
+    "seen": 1790945143.0935936,
+    "ast_hash": "0a81f45a0693f29979ca01d007e7cfff",
+    "semantic_hash": ""
+  },
+  "agente-credito-vista.js": {
+    "mtime": 1790945100.1507297,
+    "seen": 1790945143.0930827,
+    "ast_hash": "ff7ded0cf52cb8bb9b7ee619ef768bf3",
+    "semantic_hash": ""
+  },
+  "tests/agente-credito-vista.test.js": {
+    "mtime": 1790945098.730944,
+    "seen": 1790945143.0932007,
+    "ast_hash": "9f5872c48c9e2db5cd1288abd26cceb0",
+    "semantic_hash": ""
+  },
+  "tests/credito-agente-ui.test.js": {
+    "mtime": 1790945752.110864,
+    "seen": 1790947996.6461492,
+    "ast_hash": "478504bf688cd4386955fce4950effd0",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/notas-revision.md": {
+    "mtime": 1790945135.4640093,
+    "seen": 1790945143.0935893,
+    "ast_hash": "f673e2e31a41f7f1fc0a150d85149f4e",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/tasks-menores.md": {
+    "mtime": 1790945799.4929495,
+    "seen": 1790947996.6465082,
+    "ast_hash": "b5a12e8d1f7a99821c1618d298d54697",
     "semantic_hash": ""
   }
 }

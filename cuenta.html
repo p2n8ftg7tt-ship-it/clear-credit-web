@@ -25,19 +25,20 @@
 <link rel="canonical" href="https://mithemora.com/cuenta.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   #accountContent{padding:0}
   /* ---- Mi cuenta: identidad + plan ---- */
   .acct-identity{padding:56px 0 46px;background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
-  .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(217,168,74,.14);border-radius:50%;right:-200px;top:-210px}
+  .acct-identity::before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(159,211,219,.14);border-radius:50%;right:-200px;top:-210px}
   .acct-identity-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .acct-identity-left{display:flex;align-items:center;gap:20px}
   .acct-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--gold-light);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font:700 1.6rem var(--font-display);flex:none}
   /* Sin overflow:hidden y sin esta regla, la foto se salía del círculo. */
   .acct-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+  .acct-kicker{display:block;color:var(--gold-light);font-size:.66rem;font-weight:800;margin-bottom:6px}
   .acct-name{font-size:1.9rem;color:#fff;letter-spacing:-.02em;font-family:var(--font-display)}
   .acct-meta{margin:6px 0 0;color:rgba(255,255,255,.62);font-size:.84rem}
   .acct-identity-right{display:flex;align-items:center;gap:12px}
@@ -58,11 +59,11 @@
   .acct-card.is-gold{border-left-color:var(--gold)}
   .acct-card.is-teal{border-left-color:var(--teal)}
   .acct-card.is-navy{border-left-color:var(--navy)}
-  .acct-card-kicker{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .acct-card-kicker{font-size:.64rem;font-weight:800;}
   .acct-card h3{font-size:1.02rem;color:var(--navy-deep);font-family:var(--font-display)}
   .acct-card p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.55;flex-grow:1}
   .acct-card-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-weight:700;font-size:.78rem;text-decoration:none}
-  .acct-card-link:hover{color:var(--gold)}
+  .acct-card-link:hover{color:var(--texto-acento)}
   .acct-bar{height:5px;border-radius:99px;background:var(--paper-dim);overflow:hidden}
   .acct-bar span{display:block;height:100%;background:var(--gold)}
 
@@ -82,20 +83,20 @@
   .acct-config-card>.acct-note{margin-bottom:10px}
   .acct-field{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
   .acct-field:last-child{border-bottom:0;padding-bottom:0}
-  .acct-field-label{display:block;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+  .acct-field-label{display:block;font-size:.68rem;color:var(--muted);margin-bottom:2px}
   .acct-field-value{font-size:.88rem;color:var(--ink);font-weight:600}
   .acct-field-sub{font-size:.76rem;color:var(--muted);display:block;margin-top:2px}
   .acct-link-btn{border:0;background:none;color:var(--teal);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;text-decoration:none}
-  .acct-link-btn:hover{color:var(--gold)}
+  .acct-link-btn:hover{color:var(--texto-acento)}
   .acct-link-btn:disabled{color:var(--muted);cursor:not-allowed}
   .acct-note{font-size:.76rem;color:var(--muted);line-height:1.5}
 
   .acct-toggle{width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;flex:none;border:0;cursor:pointer;padding:0}
   .acct-toggle::after{content:"";position:absolute;top:2.5px;left:2.5px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:.15s ease}
-  .acct-toggle.is-on{background:var(--gold)}
+  .acct-toggle.is-on{background:var(--accion)}
   .acct-toggle.is-on::after{left:19.5px}
   .acct-toggle:disabled{opacity:.5;cursor:not-allowed}
-  .acct-soon{font-size:.62rem;font-weight:800;color:var(--muted);background:var(--line);padding:3px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;flex:none}
+  .acct-soon{font-size:.62rem;font-weight:800;color:var(--muted);background:var(--line);padding:3px 8px;border-radius:999px;flex:none}
   .acct-saved-flash{font-size:.7rem;color:var(--good);font-weight:700;margin-left:8px;opacity:0;transition:opacity .2s ease}
   .acct-saved-flash.is-visible{opacity:1}
 
@@ -133,7 +134,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -327,7 +328,7 @@
             <div class="acct-profile-fields">
               <div class="form-group"><label for="profileName">Nombre</label><input id="profileName" autocomplete="name" placeholder="Tu nombre"></div>
               <div class="form-group"><label for="profileUsername">Nombre de usuario</label><input id="profileUsername" autocomplete="nickname" maxlength="64" placeholder="Cómo quieres aparecer" aria-describedby="profileUsernameHint"><p class="acct-note" id="profileUsernameHint">Se muestra en tu cuenta. Seguirás entrando con tu correo o proveedor habitual.</p></div>
-              <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" autocomplete="tel" placeholder="Opcional"></div>
+              <div class="form-group"><label for="profilePhone">Teléfono</label><input id="profilePhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Opcional"></div>
               <div class="form-group full"><label for="profileAddress">Dirección</label><input id="profileAddress" autocomplete="street-address" placeholder="Opcional" data-dir-calle="persona" data-dir-tipo="persona"></div>
               <div class="form-group"><label for="profileCity">Ciudad</label><input id="profileCity" autocomplete="address-level2" placeholder="Opcional" data-dir-ciudad="persona"></div>
               <div class="form-group"><label for="profileState">Estado y código postal</label><input id="profileState" autocomplete="address-level1" placeholder="Opcional" data-dir-estado-cp="persona"></div>
@@ -353,16 +354,16 @@
             <h3>Notificaciones</h3>
             <p class="acct-note">Guardamos tu preferencia para cuando activemos los avisos automáticos — por ahora seguimos revisando tu cuenta manualmente.</p>
             <div class="acct-field">
-              <span class="acct-field-value">Alertas por correo</span>
-              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleEmail" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashEmail">Guardado ✓</span></span>
+              <span class="acct-field-value" id="acctLabelEmail">Alertas por correo</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleEmail" aria-pressed="false" aria-labelledby="acctLabelEmail"></button><span class="acct-saved-flash" id="acctFlashEmail" role="status"></span></span>
             </div>
             <div class="acct-field">
-              <span class="acct-field-value">Alertas por SMS</span>
-              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleSms" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashSms">Guardado ✓</span></span>
+              <span class="acct-field-value" id="acctLabelSms">Alertas por SMS</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleSms" aria-pressed="false" aria-labelledby="acctLabelSms"></button><span class="acct-saved-flash" id="acctFlashSms" role="status"></span></span>
             </div>
             <div class="acct-field">
-              <span class="acct-field-value">Resumen semanal de tu crédito</span>
-              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleWeekly" aria-pressed="false"></button><span class="acct-saved-flash" id="acctFlashWeekly">Guardado ✓</span></span>
+              <span class="acct-field-value" id="acctLabelWeekly">Resumen semanal de tu crédito</span>
+              <span style="display:flex;align-items:center;"><button type="button" class="acct-toggle" id="acctToggleWeekly" aria-pressed="false" aria-labelledby="acctLabelWeekly"></button><span class="acct-saved-flash" id="acctFlashWeekly" role="status"></span></span>
             </div>
           </div>
 
@@ -647,10 +648,13 @@
     }
   }
 
+  // El texto se escribe al guardar (y se borra después) para que el lector de
+  // pantalla lo anuncie: una región role=status solo avisa cuando cambia su texto.
   function flash(id){
     const el = $(id);
+    el.textContent = 'Guardado ✓';
     el.classList.add('is-visible');
-    setTimeout(()=> el.classList.remove('is-visible'), 1400);
+    setTimeout(()=>{ el.classList.remove('is-visible'); el.textContent = ''; }, 1400);
   }
 
   async function toggleAndSave(btn, flashId){

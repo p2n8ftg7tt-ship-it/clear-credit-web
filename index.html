@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+  <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ===== HERO — «El resaltador» =====
@@ -43,40 +44,6 @@
     .home-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
     .home-hero-nota{margin-top:16px;font-size:.82rem!important;color:var(--muted)!important;}
 
-    .home-hero-muestra{position:relative;max-width:470px;width:100%;margin-inline:auto;}
-    .hm-rotulo{font:italic 400 .82rem var(--font-body);color:var(--muted);margin:0 0 14px 6px;}
-    .hm-hoja{position:relative;}
-    /* La segunda hoja detrás: es un papel, no una tarjeta. */
-    .hm-hoja::before{content:"";position:absolute;inset:14px -12px 40px 12px;background:var(--copia-celeste,#fff);border:1px solid var(--line);transform:rotate(2.2deg);}
-    .hm-carta{position:relative;background:#fff;border:1px solid var(--line);padding:30px 32px 34px;transform:rotate(-1deg);
-      box-shadow:0 24px 40px -30px rgba(18,63,79,.45);font:400 .78rem/1.72 var(--font-body);color:var(--ink);}
-    .hm-carta p{margin:0 0 11px;}
-    .hm-membrete{display:flex;flex-direction:column;padding-bottom:12px;margin-bottom:16px!important;border-bottom:1px solid var(--line);}
-    .hm-membrete strong{font:700 .86rem var(--font-display);color:var(--ink);letter-spacing:-.01em;}
-    .hm-membrete span{font-size:.7rem;color:var(--muted);}
-    .hm-ref{font-size:.72rem;color:var(--muted);}
-    .hm-firma{margin:18px 0 0!important;}
-    /* El trazo: sin box-decoration-break, el fondo se reparte entre las
-       líneas como una sola tira, así que se "pinta" en orden de lectura. */
-    .hm-marca{color:inherit;padding:1px 2px;
-      background:linear-gradient(176deg,transparent 8%,var(--resaltador) 10%,var(--resaltador) 88%,transparent 92%) no-repeat 0 0/0% 100%;
-      animation:hm-marcar 1.1s cubic-bezier(.55,.1,.35,1) .7s forwards;}
-    @keyframes hm-marcar{to{background-size:100% 100%;}}
-    .hm-nota{position:relative;z-index:2;width:min(300px,88%);margin:-30px -14px 0 auto;padding:16px 18px 14px;background:#fff;
-      border:1.5px solid var(--tinta);border-radius:4px;transform:rotate(1.2deg);
-      animation:hm-nota .5s ease-out 1.8s both;}
-    .hm-nota strong{display:block;font:700 .92rem var(--font-display);color:var(--tinta);margin-bottom:4px;}
-    .hm-nota p{margin:0;font-size:.84rem;line-height:1.6;color:var(--ink);}
-    @keyframes hm-nota{from{opacity:0;transform:rotate(1.2deg) translateY(8px);}}
-    @media(prefers-reduced-motion:reduce){
-      .hm-marca{animation:none;background-size:100% 100%;}
-      .hm-nota{animation:none;}
-    }
-    @media(max-width:560px){
-      .hm-carta{padding:22px 20px 26px;}
-      .hm-nota{margin:-8px 0 0 auto;}
-    }
-
     /* ===== TRES DATOS ===== */
     .tres-section{padding:64px 0 0;background:var(--paper);}
     .tres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
@@ -92,7 +59,7 @@
        cada una con su propio fondo tinta — no tres cajas blancas iguales. */
     .papeles-section{padding:70px 0;background:var(--paper);}
     .papel-card{display:flex;flex-direction:column;text-decoration:none;}
-    .papel-card .papel-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);}
+    .papel-card .papel-kicker{font-size:.62rem;font-weight:900;color:var(--teal);}
     .papel-card h3{font:600 1.32rem var(--font-display);margin:9px 0 10px;color:var(--ink);}
     .papel-card p{color:var(--muted);font-size:.87rem;line-height:1.6;flex:1;}
     .papel-card .papel-cta{display:inline-block;margin-top:18px;color:var(--navy);font-weight:800;font-size:.8rem;}
@@ -104,7 +71,7 @@
       border-radius:var(--radius-2xl);padding:26px 24px;text-decoration:none;transition:background .18s ease,transform .18s ease;}
     .negocio-card:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);}
     .negocio-card.is-primero{background:rgba(23,104,122,.16);border-color:rgba(23,104,122,.5);}
-    .negocio-card .negocio-kicker{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-light);}
+    .negocio-card .negocio-kicker{font-size:.62rem;font-weight:900;color:var(--gold-light);}
     .negocio-card h3{font:600 1.22rem var(--font-display);margin:9px 0 9px;color:#fff;}
     .negocio-card p{color:rgba(255,255,255,.72);font-size:.85rem;line-height:1.6;flex:1;}
     .negocio-card .negocio-cta{display:inline-block;margin-top:17px;color:var(--gold-light);font-weight:800;font-size:.8rem;}
@@ -239,7 +206,7 @@
 
   <header>
     <div class="nav">
-      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+      <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="links" id="navLinks" aria-label="Navegación principal">
         
@@ -295,19 +262,19 @@
              la línea que importa se resalta al cargar y al lado queda lo que
              significa en español. Es un ejemplo inventado y va rotulado como
              tal: nunca una carta real ni el membrete de ninguna organización. -->
-        <aside class="home-hero-muestra" aria-label="Ejemplo de cómo explicamos una carta">
-          <p class="hm-rotulo">Ejemplo inventado de una carta de cobranza</p>
-          <div class="hm-hoja">
-            <div class="hm-carta" lang="en">
-              <p class="hm-membrete"><strong>Collection Agency, LLC</strong><span>P.O. Box 0000, Anytown, USA</span></p>
-              <p class="hm-ref">Re: Account ending in 4471<br>Balance due: $1,284.50</p>
+        <aside class="papel-muestra copia-celeste" aria-label="Ejemplo de cómo explicamos una carta">
+          <p class="papel-muestra-rotulo">Ejemplo inventado de una carta de cobranza</p>
+          <div class="papel-muestra-hoja">
+            <div class="papel-muestra-carta" lang="en">
+              <p class="papel-muestra-membrete"><strong>Collection Agency, LLC</strong><span>P.O. Box 0000, Anytown, USA</span></p>
+              <p class="papel-muestra-ref">Re: Account ending in 4471<br>Balance due: $1,284.50</p>
               <p>Dear Customer,</p>
               <p>Our client has assigned your account to our office for collection.</p>
-              <p><mark class="hm-marca">Unless you dispute the validity of this debt, or any portion of it, within 30 days after receipt of this notice, the debt will be assumed to be valid.</mark></p>
+              <p><mark class="papel-muestra-marca">Unless you dispute the validity of this debt, or any portion of it, within 30 days after receipt of this notice, the debt will be assumed to be valid.</mark></p>
               <p>If you notify us in writing within the 30-day period, we will obtain verification of the debt and mail you a copy.</p>
-              <p class="hm-firma">Account Services</p>
+              <p class="papel-muestra-firma">Account Services</p>
             </div>
-            <div class="hm-nota">
+            <div class="papel-muestra-nota">
               <strong>La fecha que importa</strong>
               <p>Tienes 30 días desde que la recibiste para pedir por escrito que te prueben que la deuda es tuya. Si no lo haces, la dan por válida.</p>
             </div>

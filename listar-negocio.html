@@ -24,7 +24,8 @@
 <link rel="canonical" href="https://mithemora.com/listar-negocio.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
+<script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <style>
   .ln-hero{
@@ -44,9 +45,9 @@
   .ln-include-card p{margin:0;color:var(--muted);font-size:.87rem}
   .ln-price-wrap{background:var(--navy-deep);border-radius:var(--radius-xl);padding:32px 28px;color:#fff;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
   .ln-price-tag{font:700 2.6rem var(--font-display);color:#fff}
-  .ln-price-tag small{display:block;font:700 .68rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+  .ln-price-tag small{display:block;font:700 .68rem var(--font-body);color:var(--gold-light);margin-bottom:6px}
   .ln-price-note{max-width:420px;font-size:.85rem;color:rgba(255,255,255,.75)}
-  .ln-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:6px;margin-bottom:10px}
+  .ln-launch-badge{display:inline-block;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:.68rem;padding:5px 10px;border-radius:6px;margin-bottom:10px}
   .ln-trust{display:flex;gap:16px;align-items:flex-start;background:var(--paper-dim);border-left:3px solid var(--gold);border-radius:8px;padding:18px 20px;margin-top:26px}
   .ln-trust p{margin:0;color:var(--muted);font-size:.87rem}
   .ln-trust strong{display:block;color:var(--navy-deep);font-size:.85rem;margin-bottom:3px}
@@ -63,7 +64,7 @@
   .ln-doc-helper{display:block;font-size:.7rem;color:var(--muted);margin-top:6px;line-height:1.5}
 
   /* Verificación: encabezados de cada parte */
-  .ln-verif-part{margin:20px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal)}
+  .ln-verif-part{margin:20px 0 10px;padding-top:16px;border-top:1px solid var(--line);font-size:.72rem;font-weight:800;color:var(--teal)}
   .ln-verif-part b{color:var(--navy-deep)}
   .ln-verif-apple{margin-bottom:4px}
   /* Los dos métodos que pide Apple, numerados */
@@ -99,7 +100,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo"><span class="brand-name">Themora</span></a>
+    <a href="index.html" class="brand"><img src="images/logo-header.png" alt="Themora" class="brand-logo" width="36" height="36"><span class="brand-name">Themora</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks" aria-label="Navegación principal">
       
@@ -239,15 +240,15 @@
         <div class="ln-form-grid">
           <div class="form-group">
             <label for="lnNombre">Tu nombre</label>
-            <input type="text" id="lnNombre" name="nombre" required>
+            <input type="text" id="lnNombre" name="nombre" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="lnCorreo">Tu correo electrónico</label>
-            <input type="email" id="lnCorreo" name="correo" required>
+            <input type="email" id="lnCorreo" name="correo" autocomplete="email" spellcheck="false" required>
           </div>
           <div class="form-group">
             <label for="lnTelefono">Tu teléfono <span class="ln-optional">(opcional ahora)</span></label>
-            <input type="tel" id="lnTelefono" name="telefono">
+            <input type="tel" id="lnTelefono" name="telefono" autocomplete="tel">
           </div>
           <div class="form-group">
             <label for="lnGmail">¿Ya tienes cuenta de Gmail para el negocio?</label>
@@ -267,11 +268,11 @@
           </div>
           <div class="form-group">
             <label for="lnTelNegocio">Teléfono del negocio <span class="ln-optional">(opcional ahora)</span></label>
-            <input type="tel" id="lnTelNegocio" name="telefono_negocio">
+            <input type="tel" id="lnTelNegocio" name="telefono_negocio" autocomplete="off">
           </div>
           <div class="form-group full">
             <label for="lnDireccion">Dirección completa del negocio <span class="ln-optional">(opcional ahora)</span></label>
-            <input type="text" id="lnDireccion" name="direccion" data-dir-calle="negocio" data-dir-tipo="negocio">
+            <input type="text" id="lnDireccion" name="direccion" autocomplete="off" data-dir-calle="negocio" data-dir-tipo="negocio">
           </div>
           <div class="form-group full">
             <label for="lnHorario">Horario de atención <span class="ln-optional">(opcional ahora)</span></label>
@@ -443,7 +444,7 @@
 <!-- Formulario compatible con Netlify Forms (igual que en contacto.html y credito.html):
      al desplegar en Netlify, este formulario queda registrado automáticamente aunque lo
      enviemos por JavaScript, sin necesitar backend propio. -->
-<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="sr-only" id="lnStaticForm">
+<form name="listar-negocio" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden id="lnStaticForm">
   <input type="text" name="referencia" />
   <input type="hidden" name="form-name" value="listar-negocio" />
   <input name="bot-field" />
