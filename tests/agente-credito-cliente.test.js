@@ -203,3 +203,10 @@ test('lo que se envía al servidor nunca lleva privado ni datos del consumidor (
   cuerpos.forEach((c) => { assert.ok(!c.includes('0123')); assert.ok(!c.includes('"privado"')); });
   assert.ok(JSON.parse(cuerpos[0]).etiquetado.marcadas.cuentas.includes('B'));
 });
+
+test('letrasDe: mismo orden que el etiquetador (spec 019)', () => {
+  const r = cargar('agente/acme-zeta.json');
+  assert.deepStrictEqual(C.letrasDe(r), { A: 'A', B: 'B', C: 'C', D: 'D' });
+  const otro = { cuentas: [{ id: 'x-1' }, { id: 'x-2' }] };
+  assert.deepStrictEqual(C.letrasDe(otro), { 'x-1': 'A', 'x-2': 'B' });
+});

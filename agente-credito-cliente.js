@@ -155,6 +155,13 @@
     return { etiquetado, paraHerramientas, privado };
   }
 
+  /* Mapa id de cuenta → letra, el mismo orden que usa el etiquetador (spec 019, D3). */
+  function letrasDe(reporte) {
+    const mapa = {};
+    ((reporte && reporte.cuentas) || []).forEach((c, i) => { mapa[c.id] = letra(i); });
+    return mapa;
+  }
+
   /* ------------------------------------------------------------ respaldo local (FR-023) */
   function hoyDispositivo() {
     const d = new Date();
@@ -266,7 +273,7 @@
     }
     return local('demasiadas_vueltas', false, hoy);
   }
-  const API = { etiquetarReporte, analisisLocal, analizarConAgente, _limpiarTexto: limpiarTexto, _limpiarProfundo: limpiarProfundo };
+  const API = { etiquetarReporte, analisisLocal, analizarConAgente, letrasDe, _limpiarTexto: limpiarTexto, _limpiarProfundo: limpiarProfundo };
   if (typeof window !== 'undefined') window.ThemoraAgenteCredito = API;
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
 })();
