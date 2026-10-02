@@ -99,3 +99,15 @@ test('renderCarta: validación pide el cobrador; datos escapados', () => {
   assert.ok(html.includes('Validación de deuda') && html.includes('data-campo="cobrador.calle"') && html.includes('los datos del cobrador'));
   assert.ok(!html.includes('<b>ANA</b>') && html.includes('&lt;b&gt;ANA&lt;/b&gt;'));
 });
+
+/* Revisión final de la 019 (hallazgo 5): piezas sueltas para actualizar una tarjeta sin redibujar la lista. */
+test('revisión 5: textoEstadoCarta y renderCartaFinal', () => {
+  let b = borrador();
+  assert.strictEqual(V.textoEstadoCarta(b), 'Falta: tu nombre, tu dirección');
+  assert.strictEqual(V.renderCartaFinal(b, null), '');
+  b = CA.confirmar(CA.actualizarDatos(b, { remitente: REM }), { inexacta: true, yoEnvio: true });
+  assert.strictEqual(V.textoEstadoCarta(b), 'Aprobada: lista para que la envíes tú');
+  const final = V.renderCartaFinal(b, CA.textoFinal(b, { fecha: new Date(2026, 9, 2) }));
+  assert.ok(final.includes('cr-letter-pair') && final.includes('copiar-carta'));
+  assert.ok(V.renderCarta(b, CA.textoFinal(b)).includes('<div class="cr-carta-final">'));
+});

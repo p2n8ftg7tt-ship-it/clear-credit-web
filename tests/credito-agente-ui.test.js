@@ -192,3 +192,56 @@ test('recorrido completo con la función real y la IA simulada: carta aprobada y
   api.alCambiarCampo(id, 'remitente.street', '2 OAK RD');
   assert.match(nodos.crCartasLista.innerHTML, /data-estado="borrador"/);
 });
+
+/* ----------------------------------------------------------------- revisión final de la 019 (hallazgo 1) */
+
+test('revisión 1: un análisis viejo que termina después de cambiar de reporte no toca el nuevo', async () => {
+  let terminar, onEventoViejo;
+  const lento = (reporte, op) => { onEventoViejo = op.onEvento; return new Promise((r) => { terminar = r; }); };
+  const { api, nodos } = crearEntornoPagina({ analizarConAgente: lento });
+  api.iniciarAgente(reporteAcme(), null);
+  api.alPedirAgente();
+  const enCurso = api.alConfirmarMarcas([], []);
+  api.limpiarAgente();
+  api.iniciarAgente(reporteAcme(), null);
+  onEventoViejo('herramienta:calcularUtilizacion');
+  terminar(Object.assign({ modo: 'ia', hoy: '2026-10-01' }, AY.RESULTADO_VALIDO));
+  await enCurso;
+  assert.strictEqual(nodos.crPasos.hijos.length, 0, 'no entran pasos del análisis viejo');
+  assert.strictEqual(nodos.crAgenteResultado.hidden, true, 'no se pinta el resultado viejo');
+  assert.deepStrictEqual(api.estadoAgente.borradores, []);
+  assert.strictEqual(api.estadoAgente.usado, false);
+  assert.strictEqual(api.estadoAgente.corriendo, false);
+  assert.strictEqual(nodos.crAgenteBoton.disabled, false, 'el botón queda usable para el reporte nuevo');
+});
+
+/* ----------------------------------------------------------------- revisión final de la 019 (hallazgo 5) */
+
+test('revisión 5: editar un campo o marcar una casilla actualiza solo esa tarjeta, sin redibujar la lista', async () => {
+  const { api, nodos } = crearEntornoPagina();
+  api.iniciarAgente(reporteAcme(), null);
+  api.alPedirAgente();
+  await api.alConfirmarMarcas([], []);
+  const id = api.estadoAgente.borradores[0].id;
+  let redibujos = 0;
+  const casillas = { inexacta: { checked: false }, yoEnvio: { checked: false } };
+  const partes = { '.cr-carta-estado': { textContent: '' }, '.cr-carta-final': { innerHTML: '' } };
+  const tarjeta = { attrs: {}, setAttribute(k, v) { this.attrs[k] = v; },
+    querySelector(sel) { const m = /data-confirmacion="(\w+)"/.exec(sel); return m ? casillas[m[1]] : partes[sel]; } };
+  let html = nodos.crCartasLista.innerHTML;
+  nodos.crCartasLista = { hijos: [], attrs: {}, hidden: false,
+    get innerHTML() { return html; }, set innerHTML(v) { redibujos++; html = v; },
+    querySelector: (sel) => (sel === '.cr-carta-agente[data-id="' + id + '"]' ? tarjeta : null) };
+  Object.keys(REM).forEach((k) => api.alCambiarCampo(id, 'remitente.' + k, REM[k]));
+  api.alConfirmar(id, 'inexacta', true);
+  api.alConfirmar(id, 'yoEnvio', true);
+  assert.strictEqual(redibujos, 0, 'la lista no se redibuja (no se pierde el foco ni el clic)');
+  assert.strictEqual(tarjeta.attrs['data-estado'], 'aprobada');
+  assert.strictEqual(partes['.cr-carta-estado'].textContent, 'Aprobada: lista para que la envíes tú');
+  assert.ok(partes['.cr-carta-final'].innerHTML.includes('ACCOUNTS I AM DISPUTING'));
+  assert.deepStrictEqual([casillas.inexacta.checked, casillas.yoEnvio.checked], [true, true]);
+  api.alCambiarCampo(id, 'remitente.street', '2 OAK RD');
+  assert.strictEqual(tarjeta.attrs['data-estado'], 'borrador');
+  assert.deepStrictEqual([casillas.inexacta.checked, casillas.yoEnvio.checked], [false, false]);
+  assert.strictEqual(partes['.cr-carta-final'].innerHTML, '');
+});

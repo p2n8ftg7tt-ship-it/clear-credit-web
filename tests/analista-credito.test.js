@@ -243,3 +243,19 @@ test('Fase 0 FR-002: ningún texto del analista da órdenes ni garantías', () =
   const textos = JSON.stringify(A.REGLAS.map((r) => [r.textos, r.citas]));
   assert.ok(!ORDENES.test(textos));
 });
+
+/* ------------------------------------------------------------ Revisión final de la 019 (hallazgos 2 y 3) */
+
+test('revisión 2: no se marca «más de 7 años» si hay atrasos recientes en la misma cuenta', () => {
+  const c = cta('m', { historial: [mes(2017, 3, 'atraso_30'), mes(2025, 11, 'atraso_60')] });
+  assert.strictEqual(A.esObsoleta(c, '2026-05-20'), false);
+  const p = A.analizar(rep([c])).problemas[0];
+  assert.ok(!p.hallazgos.some((h) => h.regla === 'obsoleta'));
+});
+
+test('revisión 3: la cobranza muestra cuándo entró a cobranza; el «as of» solo ordena', () => {
+  const p = A.analizar(leer('experian-resumen.json')).problemas;
+  const cob = p.find((x) => x.id.includes('0123'));
+  assert.strictEqual(cob.frase, 'En cobranza, jun. 2018');
+  assert.strictEqual(p[0].id, cob.id, 'sigue primero por su fecha vigente (abr. 2026)');
+});

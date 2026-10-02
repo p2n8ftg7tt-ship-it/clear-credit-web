@@ -2905,6 +2905,12 @@
          armarFormulario(problema, formId) devuelve los campos del formulario existente (fuera de este bloque). */
       const CLAVE_HALLAZGO = { cobranza: 'collection', charge_off: 'charge-off', reposesion: 'repossession', ejecucion_hipotecaria: 'foreclosure',
         atraso: 'late-payments', saldo_vencido: 'past-due-amount', registro_publico: 'bankruptcy' };
+      /* La carta en inglés (la que se envía) identifica la cuenta: acreedor y número tal como el reporte lo
+         enmascara. Sin esto, dos charge-offs darían cartas idénticas (revisión final de la 019, hallazgo 4). */
+      function argumentoCarta(p) {
+        const d = p.datosCarta || {};
+        return [d.acreedor, d.numero].filter(Boolean).join(' ');
+      }
       function cartaDeProblema(p, armarFormulario) {
         if (!p.carta) return '';
         const formId = 'crCartaProblema-' + String(p.id).replace(/[^a-z0-9-]/gi, '');
@@ -2912,7 +2918,7 @@
         const inner = typeof armarFormulario === 'function' ? armarFormulario(p, formId) : '';
         return '<button class="cr-solution-toggle" type="button" aria-expanded="false" aria-controls="' + formId + '" data-open-label="Ocultar formulario" data-closed-label="' + etiqueta + '">' + etiqueta + '</button>' +
           '<form class="cr-solution-form" id="' + formId + '" data-solution-type="' + p.carta + '" data-issue-title="' + escapeHtml(p.frase) + '" data-issue-key="' +
-          (CLAVE_HALLAZGO[p.hallazgos[0].regla] || '') + '" data-issue-arg="" hidden>' + inner + '</form>';
+          (CLAVE_HALLAZGO[p.hallazgos[0].regla] || '') + '" data-issue-arg="' + escapeHtml(argumentoCarta(p)) + '" hidden>' + inner + '</form>';
       }
       function renderAnalisis(p, armarFormulario, sinCarta) {
         const hallazgos = p.hallazgos.map(h => '<div class="cr-hallazgo">' +
@@ -2940,7 +2946,8 @@
       /* 019-agente:inicio */
       /* El agente en la página (spec 019): la vista vive en agente-credito-vista.js; aquí solo el estado
          y los pasos. Ningún dato personal va al agente: analizarConAgente etiqueta el reporte antes. */
-      const estadoAgente = { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false };
+      /* corrida: cada análisis lleva su número; lo que llegue de una corrida vieja se ignora (revisión final, hallazgo 1). */
+      const estadoAgente = { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false, corrida: 0 };
       const V = () => window.ThemoraAgenteVista;
       /* Analítica: solo el nombre fijo del evento, sin datos (Principio II). */
       const evento = cual => { if (window.ThemoraStats) window.ThemoraStats.evento(cual); };
@@ -2949,7 +2956,8 @@
         ['crMarcar', 'crAgenteResultado', 'crCartasLista'].forEach(id => { $(id).innerHTML = ''; });
         ['crMarcar', 'crAgenteResultado', 'crCartasAgente', 'crAgenteSesion', 'crAgenteAviso'].forEach(id => { $(id).hidden = true; });
         $('crPasos').querySelectorAll('[data-agente]').forEach(li => li.remove());
-        Object.assign(estadoAgente, { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false });
+        Object.assign(estadoAgente, { reporte: null, analisis: null, preparado: null, letras: {}, resultado: null, borradores: [], corriendo: false, usado: false, corrida: estadoAgente.corrida + 1 });
+        $('crAgenteBoton').disabled = false;
         $('crAgente').hidden = true;
       }
 
@@ -2992,19 +3000,23 @@
       async function alConfirmarMarcas(cuentaIds, datos) {
         if (estadoAgente.corriendo || !estadoAgente.reporte) return;
         estadoAgente.corriendo = true;
+        const corrida = ++estadoAgente.corrida;
+        const vigente = () => corrida === estadoAgente.corrida;
         $('crAgenteBoton').disabled = true;
         $('crMarcar').hidden = true;
         $('crMarcar').innerHTML = '';
         const token = window.CCAuth && window.CCAuth.getAccessToken ? window.CCAuth.getAccessToken() : null;
         try {
           const r = await window.ThemoraAgenteCredito.analizarConAgente(estadoAgente.reporte, {
-            accessToken: token, marcadas: { cuentaIds: cuentaIds || [], datos: datos || [] }, onEvento: agregarPasoAgente
+            accessToken: token, marcadas: { cuentaIds: cuentaIds || [], datos: datos || [] }, onEvento: codigo => { if (vigente()) agregarPasoAgente(codigo); }
           });
-          mostrarResultadoAgente(r);
+          if (vigente()) mostrarResultadoAgente(r);
         } finally {
-          estadoAgente.corriendo = false;
-          estadoAgente.usado = true;
-          $('crAgenteBoton').disabled = false;
+          if (vigente()) {
+            estadoAgente.corriendo = false;
+            estadoAgente.usado = true;
+            $('crAgenteBoton').disabled = false;
+          }
         }
       }
 
@@ -3023,13 +3035,24 @@
         $('crCartasAgente').hidden = !estadoAgente.borradores.length;
       }
 
+      /* Solo la tarjeta editada: estado, casillas y carta final. Redibujar la lista haría perder el foco y el clic. */
+      function actualizarTarjeta(b) {
+        const lista = $('crCartasLista');
+        const tarjeta = lista.querySelector ? lista.querySelector('.cr-carta-agente[data-id="' + b.id + '"]') : null;
+        if (!tarjeta) { pintarCartas(); return; }
+        tarjeta.setAttribute('data-estado', b.estado);
+        tarjeta.querySelector('.cr-carta-estado').textContent = V().textoEstadoCarta(b);
+        ['inexacta', 'yoEnvio'].forEach(clave => { const x = tarjeta.querySelector('[data-confirmacion="' + clave + '"]'); if (x) x.checked = !!b.confirmaciones[clave]; });
+        tarjeta.querySelector('.cr-carta-final').innerHTML = V().renderCartaFinal(b, b.estado === 'aprobada' ? window.ThemoraCartasAgente.textoFinal(b) : null);
+      }
+
       function reemplazarBorrador(id, cambio) {
         const i = estadoAgente.borradores.findIndex(b => b.id === id);
         if (i < 0) return null;
         const antes = estadoAgente.borradores[i].estado;
         const nuevo = cambio(estadoAgente.borradores[i]);
         estadoAgente.borradores = estadoAgente.borradores.map((b, k) => (k === i ? nuevo : b));
-        pintarCartas();
+        actualizarTarjeta(nuevo);
         if (nuevo.estado === 'aprobada' && antes !== 'aprobada') evento('carta-aprobada');
         return nuevo;
       }

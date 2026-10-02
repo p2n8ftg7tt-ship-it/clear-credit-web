@@ -270,3 +270,14 @@ test('US5: impresión con todos los análisis (T040)', () => {
   assert.ok(/#crAnalisisImpresion\{display:block/.test(print), 'el contenedor se muestra al imprimir');
   assert.ok(/\.cr-pasos[^{]*\{display:none/.test(print) || /#crProgress[^{]*\{display:none/.test(print), 'los pasos se ocultan al imprimir');
 });
+
+test('revisión 4: la carta de un círculo identifica la cuenta (acreedor y número enmascarado)', () => {
+  const { api } = cargarResumen();
+  const a = analizar('experian-resumen.json');
+  api.renderResumen(a);
+  const co = a.problemas.find((p) => p.id.includes('3411'));
+  const html = api.renderAnalisis(co, () => '');
+  const arg = (html.match(/data-issue-arg="([^"]*)"/) || [])[1];
+  assert.ok(arg && arg.includes('COOPERATIVA DEMO CREDIT UNION'), 'falta el acreedor: ' + arg);
+  if (co.datosCarta.numero) assert.ok(arg.includes(co.datosCarta.numero), 'falta el número enmascarado');
+});

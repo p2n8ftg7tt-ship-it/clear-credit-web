@@ -157,23 +157,30 @@
       '<input type="text" data-id="' + escapar(id) + '" data-campo="' + grupo + '.' + campo + '" value="' + escapar((valores || {})[campo] || '') + '"></label>').join('');
   }
 
+  /* Piezas sueltas: la página actualiza solo la tarjeta editada, sin redibujar la lista (revisión final, hallazgo 5). */
+  function textoEstadoCarta(b) {
+    return b.estado === 'incompleto' ? 'Falta: ' + (b.faltan || []).map((f) => FALTA[f] || f).join(', ')
+      : b.estado === 'aprobada' ? 'Aprobada: lista para que la envíes tú' : 'Marca las dos confirmaciones para aprobarla';
+  }
+
+  function renderCartaFinal(b, textoFinal) {
+    if (!b || b.estado !== 'aprobada' || !textoFinal) return '';
+    const celda = (clase, lang, lineas) => '<div class="cr-letter-cell ' + clase + '" lang="' + lang + '">' + (lineas || []).map((l) => '<p>' + escapar(l) + '</p>').join('') + '</div>';
+    return '<div class="cr-letter-pair" role="group" aria-label="Carta en español y en inglés">' +
+      (textoFinal.bloques || []).map((bl) => '<div class="cr-letter-row">' + celda('es', 'es', bl.es) + celda('en', 'en', bl.en) + '</div>').join('') + '</div>' +
+      '<button type="button" class="cr-outline-btn" data-accion="copiar-carta" data-id="' + escapar(b.id) + '">Copiar carta en inglés</button>' +
+      '<ol class="cr-carta-guia">' + (textoFinal.guia || []).map((g) => '<li>' + escapar(g) + '</li>').join('') + '</ol>';
+  }
+
   function renderCarta(borrador, textoFinal) {
     const b = borrador || {};
     const validacion = b.tipo === 'debt-validation';
     const destinatario = validacion ? 'el cobrador' : (b.destino ? b.destino.destinatario : 'buró no reconocido');
     const cuentas = (b.cuentas || []).map((c) => escapar(c.acreedor || ('Cuenta ' + c.letra)) + (c.ultimos4 ? ' (termina en ' + escapar(c.ultimos4) + ')' : '')).join(', ');
-    const estado = b.estado === 'incompleto' ? 'Falta: ' + (b.faltan || []).map((f) => FALTA[f] || f).join(', ')
-      : b.estado === 'aprobada' ? 'Aprobada: lista para que la envíes tú' : 'Marca las dos confirmaciones para aprobarla';
+    const estado = textoEstadoCarta(b);
     const conf = b.confirmaciones || {};
     const casilla = (clave, texto) => '<label class="cr-carta-confirmacion"><input type="checkbox" data-id="' + escapar(b.id) + '" data-confirmacion="' + clave + '"' + (conf[clave] ? ' checked' : '') + '> ' + texto + '</label>';
-    let final = '';
-    if (b.estado === 'aprobada' && textoFinal) {
-      const celda = (clase, lang, lineas) => '<div class="cr-letter-cell ' + clase + '" lang="' + lang + '">' + (lineas || []).map((l) => '<p>' + escapar(l) + '</p>').join('') + '</div>';
-      final = '<div class="cr-letter-pair" role="group" aria-label="Carta en español y en inglés">' +
-        (textoFinal.bloques || []).map((bl) => '<div class="cr-letter-row">' + celda('es', 'es', bl.es) + celda('en', 'en', bl.en) + '</div>').join('') + '</div>' +
-        '<button type="button" class="cr-outline-btn" data-accion="copiar-carta" data-id="' + escapar(b.id) + '">Copiar carta en inglés</button>' +
-        '<ol class="cr-carta-guia">' + (textoFinal.guia || []).map((g) => '<li>' + escapar(g) + '</li>').join('') + '</ol>';
-    }
+    const final = renderCartaFinal(b, textoFinal);
     return '<article class="cr-carta-agente" data-id="' + escapar(b.id) + '" data-estado="' + escapar(b.estado) + '">' +
       '<h4>' + escapar(TITULO_CARTA[b.tipo] || 'Carta') + '</h4>' +
       '<p class="cr-carta-para">Para: ' + escapar(destinatario) + (cuentas ? '. Cuentas: ' + cuentas : '') + '</p>' +
@@ -181,10 +188,10 @@
       (validacion ? '<fieldset><legend>Datos del cobrador</legend>' + campos('cobrador', CAMPOS_COBRADOR, (b.datos || {}).cobrador, b.id) + '</fieldset>' : '') +
       casilla('inexacta', validacion ? 'Quiero pedir la validación de esta deuda' : 'Revisé que esta información es inexacta') +
       casilla('yoEnvio', 'Yo envío esta carta') +
-      '<p class="cr-carta-estado" role="status">' + escapar(estado) + '</p>' + final + '</article>';
+      '<p class="cr-carta-estado" role="status">' + escapar(estado) + '</p><div class="cr-carta-final">' + final + '</div></article>';
   }
 
-  const API = { AVISO, TIPO_PASO, MOTIVO_RESPALDO, FALTA, escapar, textoEvento, renderMarcar, renderResultado, renderAgenteEnCirculo, renderCarta };
+  const API = { AVISO, TIPO_PASO, MOTIVO_RESPALDO, FALTA, escapar, textoEvento, renderMarcar, renderResultado, renderAgenteEnCirculo, renderCarta, textoEstadoCarta, renderCartaFinal };
   if (typeof window !== 'undefined') window.ThemoraAgenteVista = API;
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
 })();

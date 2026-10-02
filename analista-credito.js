@@ -149,8 +149,9 @@
     { id: 'cobranza', gravedad: 'roja', carta: 'debt-validation',
       detecta: (c) => {
         if (!c.esCobranza && !(tieneValor(c.tipo) && c.tipo.valor === 'cobranza')) return null;
-        const fecha = mesAsOf(c) || isoDe(c.fechaCobranza) || isoDe(c.dofd);
-        return { fecha, dato: conFecha('En cobranza', fecha), origen: origenDe(c.estado) || origenDe(c.acreedor) };
+        /* Se muestra cuándo entró a cobranza; la fecha «as of» del saldo solo sirve para ordenar (hallazgo 3). */
+        const fecha = isoDe(c.fechaCobranza) || isoDe(c.dofd) || mesAsOf(c);
+        return { fecha, orden: mesAsOf(c) || fecha, dato: conFecha('En cobranza', fecha), origen: origenDe(c.estado) || origenDe(c.acreedor) };
       } },
     { id: 'charge_off', gravedad: 'roja', carta: 'bureau-dispute',
       detecta: (c) => {
@@ -234,10 +235,12 @@
       citas: [{ ley: 'FCRA', seccion: '§ 1681c(a)', texto: 'La información negativa más antigua que el plazo no debería aparecer en el reporte.' }] }
   };
 
-  /* Inicio = DOFD o, si falta, el mes verificable más antiguo con atraso; obsoleta si inicio + 180 días + 7 años < fecha del reporte. */
+  /* Inicio = DOFD o, si falta, el atraso verificable MÁS RECIENTE: un atraso nuevo todavía se puede
+     reportar 7 años (§ 1681c(a)(5)), así que la cuenta solo es «más de 7 años» si hasta el último lo es.
+     Obsoleta si inicio + 180 días + 7 años < fecha del reporte. (Revisión final de la 019, hallazgo 2.) */
   function esObsoleta(cuenta, fechaReporte) {
     const atrasos = hist(cuenta, /^atraso_\d+$/).map((x) => x.iso).sort();
-    const inicio = isoDe(cuenta.dofd) || atrasos[0] || '';
+    const inicio = isoDe(cuenta.dofd) || atrasos[atrasos.length - 1] || '';
     const ref = String(fechaReporte || '');
     if (!/^\d{4}-\d{2}/.test(inicio) || !/^\d{4}-\d{2}/.test(ref)) return false;
     const [a, m] = inicio.split('-').map(Number);
@@ -275,7 +278,7 @@
       lista.push({
         id: c.id, acreedor, nombreCorto: nombreCorto(acreedor), iniciales: iniciales(acreedor),
         gravedad: principal.regla.gravedad, gravedadTexto: GRAVEDAD_TEXTO[principal.regla.gravedad],
-        frase: principal.d.dato, fechaProblema: principal.d.fecha ? { iso: principal.d.fecha } : null,
+        frase: principal.d.dato, fechaProblema: principal.d.fecha ? { iso: principal.d.fecha } : null, _orden: principal.d.orden || principal.d.fecha || '',
         hallazgos: halla.map((x) => hallazgo(x.regla, x.d)),
         carta: principal.regla.carta,
         datosCarta: { acreedor, numero: textoDe(c.numero), buro: reporte.buro || 'desconocido' }
@@ -290,8 +293,10 @@
         hallazgos: [hallazgo({ id: 'registro_publico', gravedad: 'roja' }, d)], carta: 'bureau-dispute',
         datosCarta: { acreedor: nombre, numero: '', buro: reporte.buro || 'desconocido' } });
     });
-    return lista.sort((a, b) => RANGO[a.gravedad] - RANGO[b.gravedad] ||
-      ((b.fechaProblema && b.fechaProblema.iso) || '').localeCompare((a.fechaProblema && a.fechaProblema.iso) || ''));
+    const orden = (x) => (x._orden !== undefined ? x._orden : (x.fechaProblema && x.fechaProblema.iso) || '');
+    lista.sort((a, b) => RANGO[a.gravedad] - RANGO[b.gravedad] || orden(b).localeCompare(orden(a)));
+    lista.forEach((x) => { delete x._orden; });
+    return lista;
   }
 
   /* Pasos del análisis local con datos reales (014 US4). Un solo número de problemas: problemas.length. */
