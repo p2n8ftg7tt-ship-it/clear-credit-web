@@ -294,16 +294,34 @@
       ((b.fechaProblema && b.fechaProblema.iso) || '').localeCompare((a.fechaProblema && a.fechaProblema.iso) || ''));
   }
 
+  /* Pasos del análisis local con datos reales (014 US4). Un solo número de problemas: problemas.length. */
+  function pasosDe(reporte, resumen, problemas, consultas) {
+    const plural = (n, uno, varios) => n + ' ' + (n === 1 ? uno : varios);
+    const observar = [resumen.buro.id !== 'desconocido' ? resumen.buro.nombre : 'Buró no reconocido']
+      .concat(resumen.fecha ? [resumen.fecha.texto] : [])
+      .concat(resumen.paginas ? [plural(resumen.paginas.totales, 'página', 'páginas')] : []).join(', ');
+    const n = problemas.length;
+    return [
+      { id: 'observar', estado: 'hecho', texto: observar },
+      { id: 'leer', estado: 'hecho', texto: 'Leí ' + plural(resumen.cuentas.total, 'cuenta', 'cuentas') + ' y ' + plural(consultas.duras.total, 'consulta dura', 'consultas duras') },
+      { id: 'revisar', estado: 'hecho', texto: 'Revisé cada cuenta contra la FCRA y la FDCPA' },
+      { id: 'concluir', estado: 'hecho', texto: n ? 'Encontré ' + plural(n, 'cuenta', 'cuentas') + ' con problemas' : 'No encontré cuentas con problemas' }
+    ];
+  }
+
   function analizar(reporte, opciones) {
     if (!reporte || typeof reporte !== 'object' || !Array.isArray(reporte.cuentas)) {
       throw new TypeError('analizar: se esperaba un Reporte de ThemoraLector');
     }
+    const resumen = resumenGeneral(reporte);
+    const problemas = problemasDe(reporte, opciones);
+    const consultas = { duras: grupoConsultas(reporte, TIPOS_CONSULTA.duras), blandas: grupoConsultas(reporte, TIPOS_CONSULTA.blandas) };
     return {
-      resumen: resumenGeneral(reporte),
+      resumen,
       abiertas: cuentasAbiertas(reporte),
-      problemas: problemasDe(reporte, opciones),
-      consultas: { duras: grupoConsultas(reporte, TIPOS_CONSULTA.duras), blandas: grupoConsultas(reporte, TIPOS_CONSULTA.blandas) },
-      pasos: [],
+      problemas,
+      consultas,
+      pasos: pasosDe(reporte, resumen, problemas, consultas),
       conclusion: '',
       advertencias: advertenciasDe(reporte)
     };

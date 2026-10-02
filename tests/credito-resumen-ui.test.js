@@ -196,3 +196,32 @@ test('US3: la página abre y cierra el análisis al tocar un círculo y precarga
   assert.match(fuera, /collectorName/);
   assert.ok(reglasDe('.cr-analisis').length > 0, 'CSS del panel de análisis');
 });
+
+/* ----------------------------------------------------------------- US4: pasos (spec 014 T033–T034, hechas en la 019) */
+
+test('US4: #crPasos con aria-live y cuatro pasos pendientes', () => {
+  const ol = html.match(/<ol class="cr-pasos" id="crPasos"[^>]*>([\s\S]*?)<\/ol>/);
+  assert.ok(ol, 'existe <ol id="crPasos">');
+  assert.match(ol[0], /aria-live="polite"/);
+  const pasos = ol[1].match(/<li[^>]*data-paso="(\w+)"[^>]*data-estado="pendiente"/g) || [];
+  assert.deepStrictEqual(pasos.map((l) => l.match(/data-paso="(\w+)"/)[1]), ['observar', 'leer', 'revisar', 'concluir']);
+});
+
+test('US4: runAnalysis marca los pasos con analisis.pasos, sin la espera decorativa', () => {
+  assert.ok(!html.includes('setTimeout(resolve, 400)'), 'se borró la espera de 400 ms');
+  const run = html.slice(html.indexOf('async function runAnalysis()'), html.indexOf("$('crSelectButton').addEventListener"));
+  assert.match(run, /marcarPaso\('observar', 'en_curso'/);
+  assert.match(run, /fallido/);
+  assert.match(run, /\.pasos/);
+});
+
+test('US4: CSS de los pasos con tokens; el único movimiento vive en prefers-reduced-motion', () => {
+  const reglas = reglasDe('.cr-pasos').join('}');
+  ['var(--good)', 'var(--accion)', 'var(--corrector)', 'var(--muted)'].forEach((x) => assert.ok(reglas.includes(x), x));
+  const animaciones = estilo.match(/animation:[^;}]*paso/g) || [];
+  assert.ok(animaciones.length >= 1);
+  const media = estilo.indexOf('@media(prefers-reduced-motion:no-preference)');
+  assert.ok(media > 0, 'existe el media query');
+  const dentro = estilo.slice(media, estilo.indexOf('}}', media));
+  animaciones.forEach((x) => assert.ok(dentro.includes(x), 'la animación de los pasos va dentro del media query'));
+});

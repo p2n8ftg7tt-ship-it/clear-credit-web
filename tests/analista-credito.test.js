@@ -171,3 +171,18 @@ test('US3 esObsoleta (T025)', () => {
   assert.ok(obs.queDiceLaLey.some((c) => c.seccion === '§ 1681c(a)'));
   assert.strictEqual(cobranza.gravedad, 'roja');
 });
+
+/* ------------------------------------------------------------ US4: pasos (spec 014 T031, hecha en la 019) */
+
+test('US4 pasos con datos reales (T031)', () => {
+  const a = A.analizar(leer('experian-resumen.json'));
+  assert.deepStrictEqual(a.pasos.map((p) => p.id), ['observar', 'leer', 'revisar', 'concluir']);
+  a.pasos.forEach((p) => assert.strictEqual(p.estado, 'hecho'));
+  assert.ok(a.pasos[0].texto.includes('Experian') && a.pasos[0].texto.includes('2026'));
+  assert.ok(a.pasos[1].texto.includes('5 cuentas') && a.pasos[1].texto.includes('3 consultas duras'), a.pasos[1].texto);
+  assert.strictEqual(a.pasos[2].texto, 'Revisé cada cuenta contra la FCRA y la FDCPA');
+  assert.strictEqual(a.pasos[3].texto, 'Encontré 3 cuentas con problemas');
+  const uno = A.analizar(rep([cta('x', { esCobranza: true })]));
+  assert.strictEqual(uno.pasos[3].texto, 'Encontré 1 cuenta con problemas');
+  assert.strictEqual(A.analizar(rep([])).pasos[3].texto, 'No encontré cuentas con problemas');
+});

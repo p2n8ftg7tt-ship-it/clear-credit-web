@@ -719,6 +719,19 @@
     .cr-analisis ul, .cr-analisis ol { margin: 0; padding-left: 1.25rem; }
     .cr-hallazgo + .cr-hallazgo { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--renglon); }
     .cr-analisis-nota { font-style: italic; }
+    /* Pasos del análisis (014 US4): un marcador por estado; el único movimiento es el pulso del paso en curso. */
+    .cr-pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+    .cr-pasos li { position: relative; padding-left: 1.75rem; color: var(--tinta); }
+    .cr-pasos li::before { position: absolute; left: 0; top: .05rem; width: 1.1rem; text-align: center; font-weight: 700; }
+    .cr-pasos li[data-estado=pendiente] { color: var(--muted); }
+    .cr-pasos li[data-estado=pendiente]::before { content: '○'; color: var(--muted); }
+    .cr-pasos li[data-estado=en_curso]::before { content: '●'; color: var(--accion); }
+    .cr-pasos li[data-estado=hecho]::before { content: '✓'; color: var(--good); }
+    .cr-pasos li[data-estado=fallido]::before { content: '✕'; color: var(--corrector); }
+    @media (prefers-reduced-motion: no-preference) {
+      .cr-pasos li[data-estado=en_curso]::before { animation: cr-paso-pulso 1.2s ease-in-out infinite; }
+      @keyframes cr-paso-pulso { 50% { opacity: .35; } }
+    }
     .cr-abiertas {
       max-width: 22rem;
       margin-top: 16px;
@@ -2683,10 +2696,13 @@
           </div>
           <button class="cr-analyze-btn" id="crAnalyzeButton" data-umami-event="reporte-evaluar" type="button"
             hidden>Leer mi reporte</button>
-          <div class="cr-progress" id="crProgress" aria-live="polite" hidden>
-            <div class="cr-progress-copy"><strong id="crProgressTitle">Leyendo tu reporte…</strong><small
-                id="crProgressText">Extraemos únicamente el contenido necesario</small></div>
-            <span class="cr-progress-renglon" aria-hidden="true"><span id="crProgressBar"></span></span>
+          <div class="cr-progress" id="crProgress" hidden>
+            <ol class="cr-pasos" id="crPasos" aria-live="polite">
+              <li data-paso="observar" data-estado="pendiente">Leer el documento</li>
+              <li data-paso="leer" data-estado="pendiente">Ordenar tus cuentas y consultas</li>
+              <li data-paso="revisar" data-estado="pendiente">Revisar cada cuenta con la ley</li>
+              <li data-paso="concluir" data-estado="pendiente">Preparar el resumen</li>
+            </ol>
           </div>
           <div class="cr-error" id="crError" role="alert" hidden><b>!</b>
             <p><strong>No pudimos completar la evaluación</strong><span id="crErrorText"></span></p>
@@ -4010,7 +4026,8 @@
 
       function render(data, reporte, extracted) {
         window.__ccLastAnalysis = data;
-        renderResumen(reporte && window.ThemoraAnalista ? window.ThemoraAnalista.analizar(reporte) : null);
+        const analisis = reporte && window.ThemoraAnalista ? window.ThemoraAnalista.analizar(reporte) : null;
+        renderResumen(analisis);
         const detectedBureau = CREDIT_BUREAUS[data.bureauKey] || CREDIT_BUREAUS.unknown;
         $('crConclusion').textContent = data.conclusion;
         $('crHealth').className = 'cr-health ' + data.tone;
@@ -4033,6 +4050,7 @@
         renderCuentas(reporte);
         results.hidden = false;
         setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+        return analisis;
       }
 
       /* ---------------------------------------------------------------------------------------
@@ -4277,33 +4295,50 @@
           (avisos.length ? '<p class="cr-summary-item"><strong>Avisos del archivo:</strong> ' + escapeHtml(avisos.join('; ')) + '.</p>' : '');
       }
 
-      function setProgress(title, text, fraction) {
-        $('crProgressTitle').textContent = title;
-        $('crProgressText').textContent = text;
-        $('crProgressBar').style.width = Math.round(Math.max(0, Math.min(1, fraction)) * 100) + '%';
+      /* Pasos de lectura (014 US4): pendiente → en_curso → hecho, o fallido. */
+      const TEXTOS_PASO = { observar: 'Leer el documento', leer: 'Ordenar tus cuentas y consultas', revisar: 'Revisar cada cuenta con la ley', concluir: 'Preparar el resumen' };
+      function marcarPaso(id, estado, texto) {
+        const li = document.querySelector('#crPasos [data-paso="' + id + '"]');
+        if (!li) return;
+        li.dataset.estado = estado;
+        if (texto) li.textContent = texto;
+      }
+      function reiniciarPasos() {
+        Object.keys(TEXTOS_PASO).forEach(id => marcarPaso(id, 'pendiente', TEXTOS_PASO[id]));
+        document.querySelectorAll('#crPasos [data-agente]').forEach(li => li.remove());
+      }
+      function setProgress(title) {
+        marcarPaso('observar', 'en_curso', title);
       }
 
       async function runAnalysis() {
         if (!selectedFile) return;
         errorBox.hidden = true; results.hidden = true; analyzeButton.hidden = true; progress.hidden = false;
-        setProgress('Leyendo tu reporte…', 'Extraemos únicamente el contenido necesario', 0);
+        reiniciarPasos();
+        marcarPaso('observar', 'en_curso', 'Leyendo tu reporte…');
         try {
           const extension = selectedFile.name.toLowerCase().split('.').pop();
           let extracted;
-          if (extension === 'pdf') extracted = await extractPdf(selectedFile, (page, total) => setProgress('Leyendo la página ' + page + ' de ' + total, 'El archivo no sale de tu dispositivo', (page - 1) / total));
+          if (extension === 'pdf') extracted = await extractPdf(selectedFile, (page, total) => marcarPaso('observar', 'en_curso', 'Leyendo la página ' + page + ' de ' + total));
           else if (extension === 'docx') extracted = await extractWord(selectedFile);
           else extracted = await extractExcel(selectedFile);
           const lector = window.ThemoraLector;
           const reporte = lector && extracted.paginas ? lector.leerReporte(extracted.paginas, { paginasTotales: extracted.paginasTotales }) : null;
           const sinTexto = reporte && reporte.advertencias.some(a => a.codigo === 'sin_texto');
           if (sinTexto || extracted.text.replace(/\s/g, '').length < 100) throw new Error('No pudimos leer texto en este archivo. Si es una foto o un escaneo, descarga el PDF original desde el sitio del buró.');
-          setProgress('Ordenando tus cuentas…', 'Preparamos cada cuenta con sus datos y de dónde salieron', 1);
-          await new Promise(resolve => setTimeout(resolve, 400));
+          marcarPaso('leer', 'en_curso');
           const data = evaluateDocument(extracted.text, extracted.detail);
           if (reporte) Object.assign(data, summaryFromReport(reporte));
-          render(data, reporte, extracted);
-          progress.hidden = true; analyzeButton.hidden = false;
-        } catch (error) { showError(error && error.message ? error.message : 'No pudimos procesar el documento. Inténtalo con otro archivo.'); }
+          const analisis = render(data, reporte, extracted);
+          if (analisis) analisis.pasos.forEach(p => marcarPaso(p.id, p.estado, p.texto));
+          else ['observar', 'leer', 'revisar', 'concluir'].forEach(id => marcarPaso(id, 'hecho'));
+          analyzeButton.hidden = false;
+        } catch (error) {
+          const enCurso = document.querySelector('#crPasos [data-estado="en_curso"]');
+          if (enCurso) enCurso.dataset.estado = 'fallido';
+          showError(error && error.message ? error.message : 'No pudimos procesar el documento. Inténtalo con otro archivo.');
+          progress.hidden = false;
+        }
       }
 
       $('crSelectButton').addEventListener('click', event => { event.stopPropagation(); input.click(); });
