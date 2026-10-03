@@ -1,29 +1,12 @@
 <!--
-Sync Impact Report (borrar antes de hacer commit)
-- Version change: 1.0.0 → 1.1.0
-- Principios modificados: ninguno renombrado ni redefinido; los 5 principios existentes
-  (I–V) se mantienen tal cual.
-- Secciones añadidas: ninguna nueva a nivel de encabezado.
-- Secciones ampliadas:
-  - Restricciones técnicas y de despliegue: nueva regla "Pagos y datos de tarjeta"
-    (Stripe como autoridad del estado de pago, prohibición de tocar datos crudos de
-    tarjeta, verificación de firma de webhook, llaves de Stripe junto a las demás
-    llaves de entorno).
-  - Flujo de desarrollo y calidad: nueva regla "Código que toca dinero" (idempotencia,
-    eventos de webhook duplicados, registro de auditoría para acciones de admin sobre
-    pagos/reembolsos).
-- Secciones eliminadas: ninguna
-- Motivo de la enmienda: se solicitó construir un "Themora Payment Center" con Stripe;
-  la propia sección de Cumplimiento de esta constitución exige revisión completa al
-  añadir un servicio externo nuevo. Esta enmienda solo fija las reglas durables de
-  seguridad/auditoría para cualquier código que toque dinero; la implementación del
-  Payment Center en sí queda fuera de este comando (ver Next Actions de la respuesta).
-- TODOs pendientes:
-  - TODO(NATIVE_REVIEW): traducciones a portugués y criollo haitiano escritas por Claude;
-    falta revisión de hablantes nativos (ver Principio V).
-  - RATIFICATION_DATE se mantiene en el día de adopción original (2026-09-20).
-- Plantillas dependientes (plan/spec/tasks) leen la constitución en tiempo de ejecución;
-  no se modificaron aquí.
+Sync Impact Report
+- Version change: 1.1.0 → 1.2.0 (MINOR: se amplía la guía con lo aprendido; ningún principio cambia de sentido)
+- Principio ampliado: III (interruptor para apagar la IA sin republicar).
+- Sección añadida: «Lecciones aprendidas (2026-09/10)»: IA y plataforma, costo, secretos, Codex, Windows, retomar.
+- Motivo: el agente de crédito (specs 016–019) se construyó en 4 fases y la prueba real recién en la última
+  mostró que la respuesta final no cabe en los 10 s de Netlify; además, sin créditos de Netlify no se pudo
+  republicar para apagarlo. Estas reglas evitan repetir ese recorrido al empezar de cero.
+- TODOs pendientes: TODO(NATIVE_REVIEW) de portugués y criollo haitiano (Principio V).
 -->
 # Themora Constitution
 
@@ -55,7 +38,9 @@ Toda función asistida por IA MUST tener un camino local que responda por sí so
 la llave, no hay sesión, la función tarda demasiado o falla, la experiencia MUST degradarse
 a ese camino o a un aviso honesto con opción de reintentar o agendar una cita; NEVER dejar
 a la persona sin respuesta ni mandarla a buscar por su cuenta en otro sitio como sustituto.
-La IA es un extra para cuentas con sesión, no un requisito para que el sitio sirva.
+La IA es un extra para cuentas con sesión, no un requisito para que el sitio sirva. Toda
+función que gaste dinero en IA MUST poder apagarse sin republicar el sitio (por ejemplo, una
+bandera o un límite en Supabase), porque republicar también puede fallar o costar.
 Razón: controla el costo, evita abuso de la llave y mantiene el sitio útil cuando algo se cae.
 
 ### IV. Una sola verdad, probada
@@ -127,6 +112,55 @@ quien más necesita claridad.
   Stripe, antes de publicarse. Toda acción de administración sobre pagos o reembolsos
   MUST quedar en un registro de auditoría (quién, cuándo, qué cambió).
 
+## Lecciones aprendidas (2026-09/10)
+
+Reglas nacidas de problemas reales. Si se empieza de cero, se aplican desde el día uno.
+
+- **Medir la IA de verdad antes de construir alrededor.** Antes de escribir la spec de una
+  función con IA, se hace una prueba mínima (spike) contra la API real, con el tamaño de
+  respuesta real, y se anota el tiempo y el costo. Las funciones normales de Netlify cortan
+  a los 10 s: una respuesta larga (JSON de miles de tokens) no cabe. Si no cabe, se elige
+  desde el principio streaming (Edge Function), Background Function con espera, o una
+  respuesta más corta. El agente de crédito se diseñó en 4 fases y la prueba real llegó en
+  la última: falló por tiempo.
+- **Retorno antes que gasto.** Una función que cuesta dinero por uso (IA, APIs pagadas)
+  MUST tener primero señal de demanda (uso del camino local gratuito, analítica de eventos)
+  y la aprobación explícita del dueño para el gasto. Se informa el costo estimado por uso
+  antes de cada prueba pagada.
+- **Créditos de la plataforma.** Cada `git push` a `main` dispara una compilación en
+  Netlify, y las compilaciones gastan créditos de la cuenta. Sin créditos, la compilación
+  se salta («Skipped due to account credit usage exceeded») y el sitio queda congelado en
+  la versión anterior. Se agrupan los cambios antes de publicar y se revisa el saldo antes
+  de depender de una republicación.
+- **Publicar.** Se publica con `git push origin master:main`; nunca subiendo archivos a
+  mano por la web.
+- **Secretos y pruebas pagadas.** Claude no lee llaves (el permiso lo bloquea, y está
+  bien). Las pruebas reales las corre el dueño desde Claude Code con
+  `! VAR="$(netlify env:get VAR)" node tests/manual/<prueba>.js`; la llave no sale en la
+  conversación. Las pruebas que cuestan dinero viven en `tests/manual/` y no terminan en
+  `.test.js`.
+- **Saldo prepagado como tope.** En Anthropic se usa saldo prepagado sin recarga
+  automática; el saldo es el límite de gasto. Si se activa la recarga, se pone antes un
+  límite mensual.
+- **Trabajo con Codex.** Codex implementa a partir de tareas con TDD escritas en
+  `specs/<nnn>/`; Claude revisa y hace los commits (Codex no puede escribir en `.git`). Si
+  el modelo configurado falla, se usa otro modelo solo para esa corrida, sin tocar la
+  configuración. Si Codex se queda sin límite o sin memoria, se verifica qué tareas quedaron
+  hechas (casillas y pruebas) antes de continuar.
+- **Ediciones masivas con script.** Antes de un script que borre o mueva bloques, se hace
+  copia de seguridad y se ancla en un texto único y comprobado; luego se compara el número
+  de líneas. Un ancla equivocada borró 1,846 líneas una vez.
+- **Windows.** Las pruebas se corren con `node --test tests/*.test.js` (la carpeta sola no
+  funciona igual). Los fallos que ya existían se anotan por nombre y no se mezclan con los
+  del trabajo nuevo.
+- **Pausar sin perder el hilo.** Todo trabajo que se detiene deja una nota de
+  «punto de retomar» en su carpeta `specs/<nnn>/` (estado, diagnóstico, opciones y
+  siguiente paso) y una línea en la memoria que apunte a ella. Al retomar se lee esa nota,
+  no todo el historial.
+- **Specs por fases pequeñas.** Una función grande se parte en specs independientes
+  (cálculo → IA → acciones → interfaz), cada una con su prueba y su commit. La que pone en
+  riesgo la viabilidad (costo, tiempo, permisos) se prueba primero.
+
 ## Governance
 
 Esta constitución prevalece sobre otras prácticas del proyecto. Cuando una instrucción,
@@ -146,4 +180,4 @@ plantilla o costumbre la contradiga, gana la constitución hasta que se enmiende
 - **Guía operativa.** Las instrucciones de trabajo del día a día viven en `CLAUDE.md` y en
   los archivos `INSTRUCCIONES-*.md`; si chocan con esta constitución, se corrigen.
 
-**Version**: 1.1.0 | **Ratified**: 2026-09-20 | **Last Amended**: 2026-09-26
+**Version**: 1.2.0 | **Ratified**: 2026-09-20 | **Last Amended**: 2026-10-03
