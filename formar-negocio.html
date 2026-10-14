@@ -27,6 +27,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
 <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="vidrio.css">
+  <link rel="stylesheet" href="desarrollo.css">
 <style>
   .fn-badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
   .fn-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.76rem;font-weight:700;padding:7px 12px;border-radius:20px;}
@@ -165,7 +167,7 @@
            página ahora dice lo que de verdad se puede sostener. -->
       <!-- El precio arriba, no al final. Quien no puede pagarlo se entera en
            tres segundos en vez de leer la página entera para descubrirlo. -->
-      <p class="hero-precio">Cuesta <b data-precio-de="formar" hidden></b>. No se cobra nada hasta que te confirmemos por escrito que podemos hacerlo en tu estado y tú digas que sí.</p>
+      <p class="hero-precio"><b data-precio-de="formar" hidden></b>. Estamos actualizando nuestros términos y nuestra privacidad; por ahora no recibimos pedidos ni cobramos nada.</p>
       <p class="fn-guia-libre"><a href="#pasos-llc">¿Prefieres hacerlo tú mismo? Aquí están los pasos completos, gratis →</a></p>
     </div>
   </section>
@@ -358,21 +360,21 @@
   <section style="background:var(--paper-dim);">
     <div class="wrap">
       <div class="fn-price-wrap">
-        <span class="fn-launch-badge">Precio de lanzamiento</span>
+        <span class="fn-launch-badge">Pausado por ahora</span>
         <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.1rem);color:var(--navy-deep);margin:0;">Formación de LLC + EIN</h2>
         <div class="fn-price-grid">
           <div class="fn-price-item">
             <span class="lbl">Nuestra tarifa de servicio</span>
-            <span class="amt">$149</span>
+            <span class="amt" style="font-size:1.2rem">✕ No disponible por ahora</span>
             <p>Incluye la preparación y presentación de tu LLC, el trámite del EIN, y la plantilla de acuerdo operativo.</p>
           </div>
           <div class="fn-price-item">
             <span class="lbl">Cuota del estado (aparte)</span>
             <span class="amt">$100</span>
-            <p>En Virginia son $100 — se la pagas directo al estado o te la cobramos junto con nuestra tarifa, como prefieras. En otros estados puede variar; te lo confirmamos antes de empezar.</p>
+            <p>En Virginia son $100 y se pagan directo al estado, no a nosotros. En otros estados puede variar.</p>
           </div>
         </div>
-        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);"><strong>Honorarios en dólares estadounidenses (USD).</strong> El EIN en sí siempre es gratis con el IRS: nuestra tarifa es solo por el trabajo de hacer el trámite por ti.<br><br><strong>Qué NO incluye:</strong> la cuota que cobra tu estado (en Virginia son $100 USD, que se pagan al estado, no a nosotros), la cuota anual de mantenimiento ($50 USD al año en Virginia), el servicio de agente registrado si decides contratar uno, y las licencias o permisos que pida tu ciudad o condado. De todo eso te decimos el costo antes, pero no va dentro de esta tarifa.<br><br>Es un precio de lanzamiento. <strong>El precio que te confirmemos por escrito es el que se respeta hasta terminar tu trámite</strong>, aunque el de la página suba después.</p>
+        <p style="margin-top:18px;font-size:.8rem;color:var(--muted);"><strong>Los honorarios del servicio no están disponibles por ahora.</strong> El EIN en sí siempre es gratis con el IRS.<br><br><strong>Lo que nunca va con nosotros:</strong> la cuota que cobra tu estado (en Virginia son $100 USD) y la cuota anual de mantenimiento ($50 USD al año en Virginia) se pagan al estado, no a nosotros; igual que el servicio de agente registrado si decides contratar uno y las licencias o permisos que pida tu ciudad o condado.</p>
       </div>
     </div>
   </section>
@@ -594,5 +596,6 @@
 <script src="whatsapp.js"></script>
 <script src="pago.js"></script>
 <script src="analytics.js"></script>
+<script src="gota.js" defer></script>
 </body>
 </html>

@@ -140,6 +140,8 @@ test('§B no quedan restos de la paleta marrón ni el degradado dorado', () => {
 });
 
 // ---------- §C Forma de los botones ----------
+// Excepción deliberada: los botones de vidrio de vidrio.css (cápsula, 999px) son decisión de diseño posterior a la
+// spec 012. Ese archivo no se escanea aquí; cualquier otro botón sigue la esquina de 6px.
 const selectorBoton = /(^|[\s.,>+~])([\w-]*btn[\w-]*|[\w-]*-cta)(?![\w-])/;
 const excepcionPildora = /(chip|pill|badge|track|fill|barra|coach-suggestion|credit-coach-input|acct-toggle|ct-process|nav-group-btn|nav-toggle|saved-item-meta)/;
 test('§C los botones de acción usan la esquina de 6px', () => {

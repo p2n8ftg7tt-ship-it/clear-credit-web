@@ -27,6 +27,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
 <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="vidrio.css">
+  <link rel="stylesheet" href="desarrollo.css">
 <style>
   .legal-wrap{max-width:760px;margin-inline:auto;padding:0 22px}
   .legal-updated{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;color:var(--muted);background:var(--paper-dim);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-bottom:8px}
@@ -232,7 +234,7 @@
            que acaba de llegar al país y no discute en inglés. -->
       <p>El trabajo se divide en etapas. Si se detiene, se devuelve <strong>todo lo correspondiente a las etapas que no se hicieron</strong>. Las etapas ya hechas no se devuelven, porque el trabajo ya se hizo.</p>
 
-      <p><strong>Poner tu ficha en los dos mapas</strong> (<b data-precio-de="listar" data-precio-formato="monto" hidden></b> USD):</p>
+      <p><strong>Poner tu ficha en los dos mapas</strong> (<b data-precio-de="listar" data-precio-formato="monto" hidden></b>):</p>
 
       <div class="legal-table-scroll">
       <table class="legal-table legal-table-plazos">
@@ -245,7 +247,7 @@
       </table>
       </div>
 
-      <p><strong>Formar tu LLC y tramitar tu EIN</strong> (<b data-precio-de="formar" data-precio-formato="monto" hidden></b> USD de honorarios, aparte de la cuota del estado):</p>
+      <p><strong>Formar tu LLC y tramitar tu EIN</strong> (<b data-precio-de="formar" data-precio-formato="monto" hidden></b>; los honorarios van aparte de la cuota del estado):</p>
 
       <div class="legal-table-scroll">
       <table class="legal-table legal-table-plazos">
@@ -390,5 +392,6 @@
 <script src="empresa.js"></script>
 <script src="pago.js"></script>
 <script src="analytics.js"></script>
+<script src="gota.js" defer></script>
 </body>
 </html>

@@ -20,6 +20,8 @@ function normalizar(bloque) {
     .replace(/\bis-active\b/g, '')
     .replace(/<div class="wrap revision-legal">[\s\S]*?<\/div>\s*/g, '')
     .replace(/\s+/g, ' ')
+    .replace(/> </g, '><') // un formateador puede partir líneas entre etiquetas y poner un espacio antes de «/>»;
+    .replace(/ \/>/g, '/>') // el contenido es el mismo
     .trim();
 }
 

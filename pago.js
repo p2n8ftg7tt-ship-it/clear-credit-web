@@ -48,6 +48,13 @@
      al confirmar, en vez de inventar uno. */
   var MEDIOS_DE_COBRO = [];
 
+  /* ←←← COBROS EN PAUSA. Mientras esté en true la web NO pide dinero: los precios dicen
+     «No disponible por ahora», el bloque «Cómo funciona el pago» se cambia por un aviso y los
+     formularios de los dos servicios de pago quedan cerrados. Es temporal, hasta terminar de
+     actualizar los términos y la privacidad. Para reabrir los cobros: ponlo en false. */
+  var COBROS_PAUSADOS = true;
+  var TEXTO_PAUSA = 'No disponible por ahora';
+
   /* ---------------------------------------------------------------------
      PRECIOS — la única lista de precios del sitio.
 
@@ -84,6 +91,7 @@
     var slots = document.querySelectorAll('[data-precio-de]');
     for (var i = 0; i < slots.length; i++) {
       var el = slots[i];
+      if (COBROS_PAUSADOS) { el.textContent = TEXTO_PAUSA; el.hidden = false; continue; }
       var p = PRECIOS[el.getAttribute('data-precio-de')];
       if (!p || !p.monto) { el.hidden = true; continue; }
       var formato = el.getAttribute('data-precio-formato') || 'linea';
@@ -222,8 +230,34 @@
       'y <a href="contacto.html">pregúntanos</a> primero — así se ven las suplantaciones.</p>';
   }
 
+  /* Cierra los formularios que terminan en un cobro: nada se puede escribir ni enviar. */
+  function pausarFormularios() {
+    ['fnForm', 'lnForm'].forEach(function (id) {
+      var f = document.getElementById(id);
+      if (!f) return;
+      f.setAttribute('aria-disabled', 'true');
+      f.querySelectorAll('input,select,textarea,button').forEach(function (c) { c.disabled = true; });
+      var enviar = f.querySelector('button[type="submit"]');
+      if (enviar) enviar.textContent = '✕ ' + TEXTO_PAUSA;
+    });
+  }
+
+  function pintarPausa() {
+    document.documentElement.classList.add('cobros-pausados');
+    pausarFormularios();
+    document.querySelectorAll('.pago-caja').forEach(function (caja) {
+      caja.innerHTML =
+        '<h3 class="pago-titulo">✕ ' + TEXTO_PAUSA + '</h3>' +
+        '<p class="pago-nota">Estamos actualizando nuestros términos y nuestra política de privacidad. ' +
+        'Hasta entonces <strong>no recibimos pedidos ni cobramos nada</strong> por este servicio. ' +
+        'Si tienes dudas, <a href="contacto.html">escríbenos</a>.</p>';
+      caja.hidden = false;
+    });
+  }
+
   function pintar() {
     pintarPrecios();
+    if (COBROS_PAUSADOS) { pintarPausa(); return; }
     document.querySelectorAll('.pago-caja').forEach(function (caja) {
       /* El precio sale de PRECIOS si la caja dice de cuál servicio es;
          data-precio a mano sigue funcionando para no romper nada. */
@@ -254,6 +288,7 @@
     nuevaReferencia: nuevaReferencia,
     MEDIOS: MEDIOS_DE_COBRO,
     TARJETA: FACTURA_CON_TARJETA,
+    PAUSADO: COBROS_PAUSADOS,
     PRECIOS: PRECIOS,
     textoPrecio: textoPrecio
   };

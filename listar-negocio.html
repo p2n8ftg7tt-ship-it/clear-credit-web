@@ -27,6 +27,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=optional" rel="stylesheet">
 <script>/* Colores de marca guardados en el panel: se ponen antes de dibujar para que no cambien a mitad de carga (cms.js los actualiza). */try{var c=JSON.parse(localStorage.getItem("themora_colores")||"{}");for(var k in c)if(/^--[\w-]+$/.test(k)&&/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(c[k]))document.documentElement.style.setProperty(k,c[k])}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="vidrio.css">
+  <link rel="stylesheet" href="desarrollo.css">
 <style>
   .ln-hero{
     background:
@@ -146,7 +148,7 @@
       <p>Muchos negocios hispanos pierden clientes todos los días simplemente porque no aparecen cuando alguien busca &quot;cerca de mí&quot;. Yo me encargo de configurarlo por ti — tú me envías los datos, yo hago el trabajo técnico.</p>
       <!-- El precio arriba, no al final. Quien no puede pagarlo se entera en
            tres segundos en vez de leer la página entera para descubrirlo. -->
-      <p class="hero-precio">Cuesta <b data-precio-de="listar" hidden></b>. No se cobra nada hasta que te confirmemos por escrito que podemos hacerlo y tú digas que sí.</p>
+      <p class="hero-precio"><b data-precio-de="listar" hidden></b>. Estamos actualizando nuestros términos y nuestra privacidad; por ahora no recibimos pedidos ni cobramos nada.</p>
     </div>
   </section>
 
@@ -214,10 +216,10 @@
     <div class="wrap">
       <div class="ln-price-wrap">
         <div>
-          <span class="ln-launch-badge">Precio de lanzamiento</span>
-          <div class="ln-price-tag"><small>Los dos mapas, un solo pago</small><span data-precio-de="listar" data-precio-formato="monto">$49.99</span></div>
+          <span class="ln-launch-badge">Pausado por ahora</span>
+          <div class="ln-price-tag"><small>Los dos mapas</small><span data-precio-de="listar" data-precio-formato="monto">No disponible por ahora</span></div>
         </div>
-        <p class="ln-price-note"><strong>Precio en dólares estadounidenses (USD), pago único.</strong> Incluye la configuración en Google Maps y en Apple Maps y el seguimiento de la verificación.<br><br><strong>Qué NO incluye:</strong> lo que Google o Apple decidan (ellos aprueban, nosotros no), fotografía profesional, ni el mantenimiento mensual de la ficha.<br><br>Es un precio de lanzamiento. <strong>El precio que te confirmemos por escrito es el que se respeta hasta terminar tu trámite</strong>, aunque el de la página suba después.</p>
+        <p class="ln-price-note"><strong>Pedidos en pausa mientras actualizamos nuestros términos y nuestra privacidad.</strong> El servicio incluye la configuración en Google Maps y en Apple Maps y el seguimiento de la verificación.<br><br><strong>Qué NO incluye:</strong> lo que Google o Apple decidan (ellos aprueban, nosotros no), fotografía profesional, ni el mantenimiento mensual de la ficha.</p>
       </div>
     </div>
   </section>
@@ -692,5 +694,6 @@
 <script src="whatsapp.js"></script>
 <script src="pago.js"></script>
 <script src="analytics.js"></script>
+<script src="gota.js" defer></script>
 </body>
 </html>

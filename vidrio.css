@@ -1,0 +1,514 @@
+/* Botones de vidrio — un solo estilo para toda la web.
+   Cuerpo casi transparente, borde claro con una línea oscura fina abajo (el grosor del cristal),
+   resplandor blanco debajo y sombra suave. El reflejo sigue al cursor y el clic lanza una onda (gota.js).
+   Va con «body» delante para ganarle a los estilos de cada página.
+   Quedan fuera a propósito: menú, pestañas y los botones que son enlaces subrayados. */
+body .btn,
+body .nav-auth-btn:not(.is-logged-in),
+body .cr-select-btn,
+body .cr-analyze-btn,
+body .cr-outline-btn,
+body .ct-select-btn,
+body .ct-camera-btn,
+body .ct-analyze-btn,
+body .fha-learn-btn,
+body .official-report-btn,
+body .auth-social-btn,
+body .refresh-btn,
+body .auth-cta-btn{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  --gx:50%;--gy:30%;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.95);
+  color:var(--tinta);
+  text-shadow:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.85) 0%,rgba(255,255,255,.2) 24%,rgba(255,255,255,.04) 55%,rgba(255,255,255,.42) 100%);
+  -webkit-backdrop-filter:blur(2px) saturate(1.2);
+  backdrop-filter:blur(2px) saturate(1.2);
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,1),
+    inset 0 0 18px rgba(255,255,255,.85),
+    inset 0 -6px 10px rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(255,255,255,.9),
+    0 0 0 1px rgba(150,156,162,.3),
+    0 1px 0 rgba(25,28,30,.75),
+    0 3px 5px -1px rgba(255,255,255,1),
+    0 0 24px rgba(255,255,255,1),
+    0 18px 24px -10px rgba(0,0,0,.5);
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease,color .2s ease
+}
+
+/* Acción principal: el mismo vidrio con un velo de color de la marca. */
+body .btn-gold,
+body .cr-analyze-btn,
+body .ct-analyze-btn{background-color:rgba(23,104,122,.14);color:var(--tinta)}
+
+/* Reflejo superior: una franja fina de luz. */
+body .btn:not([aria-busy="true"])::before,
+body .nav-auth-btn:not(.is-logged-in):not([aria-busy="true"])::before,
+body .cr-select-btn:not([aria-busy="true"])::before,
+body .cr-analyze-btn:not([aria-busy="true"])::before,
+body .cr-outline-btn:not([aria-busy="true"])::before,
+body .ct-select-btn:not([aria-busy="true"])::before,
+body .ct-camera-btn:not([aria-busy="true"])::before,
+body .ct-analyze-btn:not([aria-busy="true"])::before,
+body .fha-learn-btn:not([aria-busy="true"])::before,
+body .official-report-btn:not([aria-busy="true"])::before,
+body .auth-social-btn:not([aria-busy="true"])::before,
+body .refresh-btn:not([aria-busy="true"])::before,
+body .auth-cta-btn:not([aria-busy="true"])::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:2px;left:14px;right:14px;height:38%;
+  border-radius:999px 999px 60% 60% / 999px 999px 40% 40%;
+  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0));
+  pointer-events:none
+}
+/* Borde de cristal interior y, encima, el reflejo que sigue al cursor. */
+body .btn::after,
+body .nav-auth-btn:not(.is-logged-in)::after,
+body .cr-select-btn::after,
+body .cr-analyze-btn::after,
+body .cr-outline-btn::after,
+body .ct-select-btn::after,
+body .ct-camera-btn::after,
+body .ct-analyze-btn::after,
+body .fha-learn-btn::after,
+body .official-report-btn::after,
+body .auth-social-btn::after,
+body .refresh-btn::after,
+body .auth-cta-btn::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:2px;
+  border-radius:inherit;
+  border:1px solid rgba(255,255,255,.55);
+  background:radial-gradient(circle 70px at var(--gx) var(--gy),rgba(255,255,255,.7),rgba(255,255,255,0) 70%);
+  opacity:1;
+  pointer-events:none
+}
+
+body .btn:hover,
+body .nav-auth-btn:not(.is-logged-in):hover,
+body .cr-select-btn:hover,
+body .cr-analyze-btn:hover,
+body .cr-outline-btn:hover,
+body .ct-select-btn:hover,
+body .ct-camera-btn:hover,
+body .ct-analyze-btn:hover,
+body .fha-learn-btn:hover,
+body .official-report-btn:hover,
+body .auth-social-btn:hover,
+body .refresh-btn:hover,
+body .auth-cta-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.04);
+  background-color:rgba(190,220,255,.22);
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,1),
+    inset 0 0 18px rgba(225,240,255,.85),
+    inset 0 -6px 10px rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(255,255,255,.95),
+    0 0 0 1px rgba(150,156,162,.3),
+    0 1px 0 rgba(25,28,30,.75),
+    0 3px 5px -1px rgba(255,255,255,1),
+    0 0 22px rgba(255,255,255,1),
+    0 22px 28px -10px rgba(0,0,0,.55)
+}
+body .btn-gold:hover,
+body .cr-analyze-btn:hover,
+body .ct-analyze-btn:hover{background-color:rgba(23,104,122,.2);color:var(--tinta)}
+
+body .btn:active,
+body .nav-auth-btn:not(.is-logged-in):active,
+body .cr-select-btn:active,
+body .cr-analyze-btn:active,
+body .cr-outline-btn:active,
+body .ct-select-btn:active,
+body .ct-camera-btn:active,
+body .ct-analyze-btn:active,
+body .fha-learn-btn:active,
+body .official-report-btn:active,
+body .auth-social-btn:active,
+body .refresh-btn:active,
+body .auth-cta-btn:active{
+  transform:translateY(1px);
+  filter:brightness(.97);
+  background-color:rgba(120,125,130,.12);
+  box-shadow:
+    inset 0 3px 6px rgba(0,0,0,.18),
+    inset 0 -2px 4px rgba(255,255,255,.6),
+    0 0 0 1px rgba(150,156,162,.3),
+    0 1px 0 rgba(25,28,30,.75),
+    0 2px 3px -1px rgba(255,255,255,.9),
+    0 6px 10px -6px rgba(0,0,0,.3)
+}
+
+body .btn:disabled,
+body .nav-auth-btn:not(.is-logged-in):disabled,
+body .cr-select-btn:disabled,
+body .cr-analyze-btn:disabled,
+body .cr-outline-btn:disabled,
+body .ct-select-btn:disabled,
+body .ct-camera-btn:disabled,
+body .ct-analyze-btn:disabled,
+body .fha-learn-btn:disabled,
+body .official-report-btn:disabled,
+body .auth-social-btn:disabled,
+body .refresh-btn:disabled,
+body .auth-cta-btn:disabled,
+body .btn[aria-disabled="true"],
+body .nav-auth-btn:not(.is-logged-in)[aria-disabled="true"],
+body .cr-select-btn[aria-disabled="true"],
+body .cr-analyze-btn[aria-disabled="true"],
+body .cr-outline-btn[aria-disabled="true"],
+body .ct-select-btn[aria-disabled="true"],
+body .ct-camera-btn[aria-disabled="true"],
+body .ct-analyze-btn[aria-disabled="true"],
+body .fha-learn-btn[aria-disabled="true"],
+body .official-report-btn[aria-disabled="true"],
+body .auth-social-btn[aria-disabled="true"],
+body .refresh-btn[aria-disabled="true"],
+body .auth-cta-btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none;filter:none}
+
+body .btn:focus-visible,
+body .nav-auth-btn:not(.is-logged-in):focus-visible,
+body .cr-select-btn:focus-visible,
+body .cr-analyze-btn:focus-visible,
+body .cr-outline-btn:focus-visible,
+body .ct-select-btn:focus-visible,
+body .ct-camera-btn:focus-visible,
+body .ct-analyze-btn:focus-visible,
+body .fha-learn-btn:focus-visible,
+body .official-report-btn:focus-visible,
+body .auth-social-btn:focus-visible,
+body .refresh-btn:focus-visible,
+body .auth-cta-btn:focus-visible{outline:3px solid var(--franja-celeste);outline-offset:3px}
+
+/* Sobre fondos oscuros: cuerpo gris translúcido, texto blanco y luz de la marca detrás del cristal. */
+body .band-dark .btn,
+body .band-dark .nav-auth-btn:not(.is-logged-in),
+body .band-dark .cr-select-btn,
+body .band-dark .cr-analyze-btn,
+body .band-dark .cr-outline-btn,
+body .band-dark .ct-select-btn,
+body .band-dark .ct-camera-btn,
+body .band-dark .ct-analyze-btn,
+body .band-dark .fha-learn-btn,
+body .band-dark .official-report-btn,
+body .band-dark .auth-social-btn,
+body .band-dark .refresh-btn,
+body .band-dark .auth-cta-btn,
+body .account-cta-box .btn,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in),
+body .account-cta-box .cr-select-btn,
+body .account-cta-box .cr-analyze-btn,
+body .account-cta-box .cr-outline-btn,
+body .account-cta-box .ct-select-btn,
+body .account-cta-box .ct-camera-btn,
+body .account-cta-box .ct-analyze-btn,
+body .account-cta-box .fha-learn-btn,
+body .account-cta-box .official-report-btn,
+body .account-cta-box .auth-social-btn,
+body .account-cta-box .refresh-btn,
+body .account-cta-box .auth-cta-btn,
+body .negocio-card .btn,
+body .negocio-card .nav-auth-btn:not(.is-logged-in),
+body .negocio-card .cr-select-btn,
+body .negocio-card .cr-analyze-btn,
+body .negocio-card .cr-outline-btn,
+body .negocio-card .ct-select-btn,
+body .negocio-card .ct-camera-btn,
+body .negocio-card .ct-analyze-btn,
+body .negocio-card .fha-learn-btn,
+body .negocio-card .official-report-btn,
+body .negocio-card .auth-social-btn,
+body .negocio-card .refresh-btn,
+body .negocio-card .auth-cta-btn{
+  --brillo:95,168,184;
+  color:#fff;
+  border-color:rgba(226,241,244,.75);
+  text-shadow:0 1px 2px rgba(18,63,79,.55);
+  background:linear-gradient(180deg,rgba(214,222,226,.34) 0%,rgba(150,162,168,.2) 55%,rgba(110,124,131,.28) 100%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.1),
+    0 0 16px rgba(var(--brillo),.65),
+    0 0 42px rgba(var(--brillo),.32),
+    inset 0 0 16px rgba(226,241,244,.28),
+    inset 0 2px 2px rgba(255,255,255,.7),
+    inset 0 -9px 14px rgba(18,63,79,.28)
+}
+body .band-dark .btn::before,
+body .band-dark .nav-auth-btn:not(.is-logged-in)::before,
+body .band-dark .cr-select-btn::before,
+body .band-dark .cr-analyze-btn::before,
+body .band-dark .cr-outline-btn::before,
+body .band-dark .ct-select-btn::before,
+body .band-dark .ct-camera-btn::before,
+body .band-dark .ct-analyze-btn::before,
+body .band-dark .fha-learn-btn::before,
+body .band-dark .official-report-btn::before,
+body .band-dark .auth-social-btn::before,
+body .band-dark .refresh-btn::before,
+body .band-dark .auth-cta-btn::before,
+body .account-cta-box .btn::before,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in)::before,
+body .account-cta-box .cr-select-btn::before,
+body .account-cta-box .cr-analyze-btn::before,
+body .account-cta-box .cr-outline-btn::before,
+body .account-cta-box .ct-select-btn::before,
+body .account-cta-box .ct-camera-btn::before,
+body .account-cta-box .ct-analyze-btn::before,
+body .account-cta-box .fha-learn-btn::before,
+body .account-cta-box .official-report-btn::before,
+body .account-cta-box .auth-social-btn::before,
+body .account-cta-box .refresh-btn::before,
+body .account-cta-box .auth-cta-btn::before,
+body .negocio-card .btn::before,
+body .negocio-card .nav-auth-btn:not(.is-logged-in)::before,
+body .negocio-card .cr-select-btn::before,
+body .negocio-card .cr-analyze-btn::before,
+body .negocio-card .cr-outline-btn::before,
+body .negocio-card .ct-select-btn::before,
+body .negocio-card .ct-camera-btn::before,
+body .negocio-card .ct-analyze-btn::before,
+body .negocio-card .fha-learn-btn::before,
+body .negocio-card .official-report-btn::before,
+body .negocio-card .auth-social-btn::before,
+body .negocio-card .refresh-btn::before,
+body .negocio-card .auth-cta-btn::before{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.04) 85%)}
+body .band-dark .btn::after,
+body .band-dark .nav-auth-btn:not(.is-logged-in)::after,
+body .band-dark .cr-select-btn::after,
+body .band-dark .cr-analyze-btn::after,
+body .band-dark .cr-outline-btn::after,
+body .band-dark .ct-select-btn::after,
+body .band-dark .ct-camera-btn::after,
+body .band-dark .ct-analyze-btn::after,
+body .band-dark .fha-learn-btn::after,
+body .band-dark .official-report-btn::after,
+body .band-dark .auth-social-btn::after,
+body .band-dark .refresh-btn::after,
+body .band-dark .auth-cta-btn::after,
+body .account-cta-box .btn::after,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in)::after,
+body .account-cta-box .cr-select-btn::after,
+body .account-cta-box .cr-analyze-btn::after,
+body .account-cta-box .cr-outline-btn::after,
+body .account-cta-box .ct-select-btn::after,
+body .account-cta-box .ct-camera-btn::after,
+body .account-cta-box .ct-analyze-btn::after,
+body .account-cta-box .fha-learn-btn::after,
+body .account-cta-box .official-report-btn::after,
+body .account-cta-box .auth-social-btn::after,
+body .account-cta-box .refresh-btn::after,
+body .account-cta-box .auth-cta-btn::after,
+body .negocio-card .btn::after,
+body .negocio-card .nav-auth-btn:not(.is-logged-in)::after,
+body .negocio-card .cr-select-btn::after,
+body .negocio-card .cr-analyze-btn::after,
+body .negocio-card .cr-outline-btn::after,
+body .negocio-card .ct-select-btn::after,
+body .negocio-card .ct-camera-btn::after,
+body .negocio-card .ct-analyze-btn::after,
+body .negocio-card .fha-learn-btn::after,
+body .negocio-card .official-report-btn::after,
+body .negocio-card .auth-social-btn::after,
+body .negocio-card .refresh-btn::after,
+body .negocio-card .auth-cta-btn::after{border-color:rgba(255,255,255,.35)}
+body .band-dark .btn:hover,
+body .band-dark .nav-auth-btn:not(.is-logged-in):hover,
+body .band-dark .cr-select-btn:hover,
+body .band-dark .cr-analyze-btn:hover,
+body .band-dark .cr-outline-btn:hover,
+body .band-dark .ct-select-btn:hover,
+body .band-dark .ct-camera-btn:hover,
+body .band-dark .ct-analyze-btn:hover,
+body .band-dark .fha-learn-btn:hover,
+body .band-dark .official-report-btn:hover,
+body .band-dark .auth-social-btn:hover,
+body .band-dark .refresh-btn:hover,
+body .band-dark .auth-cta-btn:hover,
+body .account-cta-box .btn:hover,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in):hover,
+body .account-cta-box .cr-select-btn:hover,
+body .account-cta-box .cr-analyze-btn:hover,
+body .account-cta-box .cr-outline-btn:hover,
+body .account-cta-box .ct-select-btn:hover,
+body .account-cta-box .ct-camera-btn:hover,
+body .account-cta-box .ct-analyze-btn:hover,
+body .account-cta-box .fha-learn-btn:hover,
+body .account-cta-box .official-report-btn:hover,
+body .account-cta-box .auth-social-btn:hover,
+body .account-cta-box .refresh-btn:hover,
+body .account-cta-box .auth-cta-btn:hover,
+body .negocio-card .btn:hover,
+body .negocio-card .nav-auth-btn:not(.is-logged-in):hover,
+body .negocio-card .cr-select-btn:hover,
+body .negocio-card .cr-analyze-btn:hover,
+body .negocio-card .cr-outline-btn:hover,
+body .negocio-card .ct-select-btn:hover,
+body .negocio-card .ct-camera-btn:hover,
+body .negocio-card .ct-analyze-btn:hover,
+body .negocio-card .fha-learn-btn:hover,
+body .negocio-card .official-report-btn:hover,
+body .negocio-card .auth-social-btn:hover,
+body .negocio-card .refresh-btn:hover,
+body .negocio-card .auth-cta-btn:hover{
+  color:#fff;
+  background:linear-gradient(180deg,rgba(226,234,238,.42) 0%,rgba(160,172,178,.26) 55%,rgba(120,134,141,.34) 100%);
+  border-color:rgba(255,255,255,.95);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.2),
+    0 0 22px rgba(var(--brillo),.85),
+    0 0 58px rgba(var(--brillo),.5),
+    inset 0 0 20px rgba(226,241,244,.38),
+    inset 0 2px 2px rgba(255,255,255,.8),
+    inset 0 -9px 14px rgba(18,63,79,.3)
+}
+body .band-dark .btn:active,
+body .band-dark .nav-auth-btn:not(.is-logged-in):active,
+body .band-dark .cr-select-btn:active,
+body .band-dark .cr-analyze-btn:active,
+body .band-dark .cr-outline-btn:active,
+body .band-dark .ct-select-btn:active,
+body .band-dark .ct-camera-btn:active,
+body .band-dark .ct-analyze-btn:active,
+body .band-dark .fha-learn-btn:active,
+body .band-dark .official-report-btn:active,
+body .band-dark .auth-social-btn:active,
+body .band-dark .refresh-btn:active,
+body .band-dark .auth-cta-btn:active,
+body .account-cta-box .btn:active,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in):active,
+body .account-cta-box .cr-select-btn:active,
+body .account-cta-box .cr-analyze-btn:active,
+body .account-cta-box .cr-outline-btn:active,
+body .account-cta-box .ct-select-btn:active,
+body .account-cta-box .ct-camera-btn:active,
+body .account-cta-box .ct-analyze-btn:active,
+body .account-cta-box .fha-learn-btn:active,
+body .account-cta-box .official-report-btn:active,
+body .account-cta-box .auth-social-btn:active,
+body .account-cta-box .refresh-btn:active,
+body .account-cta-box .auth-cta-btn:active,
+body .negocio-card .btn:active,
+body .negocio-card .nav-auth-btn:not(.is-logged-in):active,
+body .negocio-card .cr-select-btn:active,
+body .negocio-card .cr-analyze-btn:active,
+body .negocio-card .cr-outline-btn:active,
+body .negocio-card .ct-select-btn:active,
+body .negocio-card .ct-camera-btn:active,
+body .negocio-card .ct-analyze-btn:active,
+body .negocio-card .fha-learn-btn:active,
+body .negocio-card .official-report-btn:active,
+body .negocio-card .auth-social-btn:active,
+body .negocio-card .refresh-btn:active,
+body .negocio-card .auth-cta-btn:active{
+  box-shadow:0 0 14px rgba(var(--brillo),.7),inset 0 3px 8px rgba(18,63,79,.4),inset 0 0 14px rgba(226,241,244,.25)
+}
+body .band-dark .btn:focus-visible,
+body .band-dark .nav-auth-btn:not(.is-logged-in):focus-visible,
+body .band-dark .cr-select-btn:focus-visible,
+body .band-dark .cr-analyze-btn:focus-visible,
+body .band-dark .cr-outline-btn:focus-visible,
+body .band-dark .ct-select-btn:focus-visible,
+body .band-dark .ct-camera-btn:focus-visible,
+body .band-dark .ct-analyze-btn:focus-visible,
+body .band-dark .fha-learn-btn:focus-visible,
+body .band-dark .official-report-btn:focus-visible,
+body .band-dark .auth-social-btn:focus-visible,
+body .band-dark .refresh-btn:focus-visible,
+body .band-dark .auth-cta-btn:focus-visible,
+body .account-cta-box .btn:focus-visible,
+body .account-cta-box .nav-auth-btn:not(.is-logged-in):focus-visible,
+body .account-cta-box .cr-select-btn:focus-visible,
+body .account-cta-box .cr-analyze-btn:focus-visible,
+body .account-cta-box .cr-outline-btn:focus-visible,
+body .account-cta-box .ct-select-btn:focus-visible,
+body .account-cta-box .ct-camera-btn:focus-visible,
+body .account-cta-box .ct-analyze-btn:focus-visible,
+body .account-cta-box .fha-learn-btn:focus-visible,
+body .account-cta-box .official-report-btn:focus-visible,
+body .account-cta-box .auth-social-btn:focus-visible,
+body .account-cta-box .refresh-btn:focus-visible,
+body .account-cta-box .auth-cta-btn:focus-visible,
+body .negocio-card .btn:focus-visible,
+body .negocio-card .nav-auth-btn:not(.is-logged-in):focus-visible,
+body .negocio-card .cr-select-btn:focus-visible,
+body .negocio-card .cr-analyze-btn:focus-visible,
+body .negocio-card .cr-outline-btn:focus-visible,
+body .negocio-card .ct-select-btn:focus-visible,
+body .negocio-card .ct-camera-btn:focus-visible,
+body .negocio-card .ct-analyze-btn:focus-visible,
+body .negocio-card .fha-learn-btn:focus-visible,
+body .negocio-card .official-report-btn:focus-visible,
+body .negocio-card .auth-social-btn:focus-visible,
+body .negocio-card .refresh-btn:focus-visible,
+body .negocio-card .auth-cta-btn:focus-visible{outline-color:#fff}
+
+/* Onda al hacer clic. */
+.gota-onda{
+  position:absolute;
+  z-index:-1;
+  border-radius:50%;
+  width:20px;height:20px;
+  margin:-10px 0 0 -10px;
+  background:radial-gradient(circle,rgba(255,255,255,0) 52%,rgba(255,255,255,.9) 60%,rgba(255,255,255,0) 72%);
+  box-shadow:0 0 0 1.5px rgba(255,255,255,.7);
+  pointer-events:none;
+  animation:gota-onda .75s cubic-bezier(.2,.6,.3,1) forwards
+}
+@keyframes gota-onda{
+  from{transform:scale(0);opacity:.95}
+  to{transform:scale(var(--gota-escala,14));opacity:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  body .btn,
+body .nav-auth-btn:not(.is-logged-in),
+body .cr-select-btn,
+body .cr-analyze-btn,
+body .cr-outline-btn,
+body .ct-select-btn,
+body .ct-camera-btn,
+body .ct-analyze-btn,
+body .fha-learn-btn,
+body .official-report-btn,
+body .auth-social-btn,
+body .refresh-btn,
+body .auth-cta-btn{transition:none}
+  body .btn:hover,
+body .nav-auth-btn:not(.is-logged-in):hover,
+body .cr-select-btn:hover,
+body .cr-analyze-btn:hover,
+body .cr-outline-btn:hover,
+body .ct-select-btn:hover,
+body .ct-camera-btn:hover,
+body .ct-analyze-btn:hover,
+body .fha-learn-btn:hover,
+body .official-report-btn:hover,
+body .auth-social-btn:hover,
+body .refresh-btn:hover,
+body .auth-cta-btn:hover,
+  body .btn:active,
+body .nav-auth-btn:not(.is-logged-in):active,
+body .cr-select-btn:active,
+body .cr-analyze-btn:active,
+body .cr-outline-btn:active,
+body .ct-select-btn:active,
+body .ct-camera-btn:active,
+body .ct-analyze-btn:active,
+body .fha-learn-btn:active,
+body .official-report-btn:active,
+body .auth-social-btn:active,
+body .refresh-btn:active,
+body .auth-cta-btn:active{transform:none}
+  .gota-onda{display:none}
+}
