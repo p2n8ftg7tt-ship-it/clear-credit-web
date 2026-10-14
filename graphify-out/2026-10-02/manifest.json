@@ -163,7 +163,7 @@
   },
   "supabase-schema.sql": {
     "mtime": 1790924114.349231,
-    "seen": 1790945151.5821853,
+    "seen": 1790949083.4421246,
     "ast_hash": "28b718ce2456c2476190bd5631993592",
     "semantic_hash": ""
   },
@@ -318,9 +318,9 @@
     "semantic_hash": "563be4040dedbf5cd6cad857f6f4097a"
   },
   "credito.html": {
-    "mtime": 1790945100.1527405,
-    "seen": 1790945143.0933583,
-    "ast_hash": "8f03a14d5a81c80568daa926d6665230",
+    "mtime": 1790945768.9654264,
+    "seen": 1790947996.6462975,
+    "ast_hash": "7a46d8ed6fa28f89f873336a7629c903",
     "semantic_hash": ""
   },
   "cuenta.html": {
@@ -1800,10 +1800,10 @@
     "semantic_hash": "c94067b64915cac80b3967cc9c81a28d"
   },
   "specs/014-resumen-consumidor/research.md": {
-    "mtime": 1790864607.7906566,
-    "seen": 1790868231.3133905,
-    "ast_hash": "e53fc27462061d0f2fcb5693e7ab8383",
-    "semantic_hash": "e53fc27462061d0f2fcb5693e7ab8383"
+    "mtime": 1790945798.890288,
+    "seen": 1790947996.6464689,
+    "ast_hash": "da656ad8c60ad8dbea61a6e40f3d42ee",
+    "semantic_hash": ""
   },
   "specs/014-resumen-consumidor/tasks.md": {
     "mtime": 1790943518.856187,
@@ -1812,15 +1812,15 @@
     "semantic_hash": ""
   },
   "analista-credito.js": {
-    "mtime": 1790945005.1588187,
-    "seen": 1790945143.093087,
-    "ast_hash": "0100fc9cce73e105eac63d4eeaee2cd7",
+    "mtime": 1790945798.267187,
+    "seen": 1790947996.6460238,
+    "ast_hash": "3e887d53962003f6424b411de701d0d8",
     "semantic_hash": ""
   },
   "tests/analista-credito.test.js": {
-    "mtime": 1790944991.089818,
-    "seen": 1790945143.093202,
-    "ast_hash": "a5484c48b607a29723b50f48ef5d0d57",
+    "mtime": 1790945780.3258677,
+    "seen": 1790947996.646138,
+    "ast_hash": "3028e1119a8eeffe4c3faa6fadfac7f0",
     "semantic_hash": ""
   },
   "tests/fixtures/credito/esperado/experian-resumen.json": {
@@ -1836,9 +1836,9 @@
     "semantic_hash": "efd7aa7b8a9634bccf251dd7d4dc738f"
   },
   "tests/credito-resumen-ui.test.js": {
-    "mtime": 1790945018.3264384,
-    "seen": 1790945143.0932207,
-    "ast_hash": "6d18153c7d41251eef5d49da8085354b",
+    "mtime": 1790945732.3103502,
+    "seen": 1790947996.6461563,
+    "ast_hash": "23046a7dcf6829296ca5af4b8b895a27",
     "semantic_hash": ""
   },
   "herramientas-credito.js": {
@@ -2130,15 +2130,21 @@
     "semantic_hash": ""
   },
   "tests/credito-agente-ui.test.js": {
-    "mtime": 1790945098.7570999,
-    "seen": 1790945143.0932138,
-    "ast_hash": "3a41cf4c410995f8409ee3e3b90ae3f5",
+    "mtime": 1790945752.110864,
+    "seen": 1790947996.6461492,
+    "ast_hash": "478504bf688cd4386955fce4950effd0",
     "semantic_hash": ""
   },
   "specs/019-agente-en-credito/notas-revision.md": {
     "mtime": 1790945135.4640093,
     "seen": 1790945143.0935893,
     "ast_hash": "f673e2e31a41f7f1fc0a150d85149f4e",
+    "semantic_hash": ""
+  },
+  "specs/019-agente-en-credito/tasks-menores.md": {
+    "mtime": 1790945799.4929495,
+    "seen": 1790947996.6465082,
+    "ast_hash": "b5a12e8d1f7a99821c1618d298d54697",
     "semantic_hash": ""
   }
 }

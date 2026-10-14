@@ -138,10 +138,10 @@
     "semantic_hash": "4a378b3d6fd38d33d8d0b89b7595fce3"
   },
   "pago.js": {
-    "mtime": 1790324580.255212,
-    "seen": 1790324832.5444686,
-    "ast_hash": "738faf0c76eacc34273d53887c268e66",
-    "semantic_hash": "738faf0c76eacc34273d53887c268e66"
+    "mtime": 1791977074.8884845,
+    "seen": 1791977177.052188,
+    "ast_hash": "567decf9b35188f31f2755d25564a357",
+    "semantic_hash": ""
   },
   "quick-calculators.js": {
     "mtime": 1790324580.3140574,
@@ -163,8 +163,8 @@
   },
   "supabase-schema.sql": {
     "mtime": 1790924114.349231,
-    "seen": 1790945151.5821853,
-    "ast_hash": "",
+    "seen": 1791976811.7729106,
+    "ast_hash": "28b718ce2456c2476190bd5631993592",
     "semantic_hash": ""
   },
   "tests/autocompletar-direccion.test.js": {
@@ -270,106 +270,106 @@
     "semantic_hash": "9278131217468cddf57c22b1883e77eb"
   },
   "admin.html": {
-    "mtime": 1790645355.5642564,
-    "seen": 1790646606.2106667,
-    "ast_hash": "c5f593c80419e29bc1efb843e06e8a23",
-    "semantic_hash": "c5f593c80419e29bc1efb843e06e8a23"
+    "mtime": 1791977087.5018911,
+    "seen": 1791977177.0526705,
+    "ast_hash": "4b68846daf5e95f2a7b343bf8c6e1096",
+    "semantic_hash": ""
   },
   "agendar.html": {
-    "mtime": 1790645355.7059643,
-    "seen": 1790646606.2106686,
-    "ast_hash": "1e9f60b87054a5629ec04949e74e3328",
-    "semantic_hash": "1e9f60b87054a5629ec04949e74e3328"
+    "mtime": 1791977087.5024226,
+    "seen": 1791977177.0526736,
+    "ast_hash": "1c2c75c7f5fd587fa526365409563e25",
+    "semantic_hash": ""
   },
   "aparezco.html": {
-    "mtime": 1790645355.781926,
-    "seen": 1790646606.2106707,
-    "ast_hash": "a67bf0374161d65d409c431fd986db89",
-    "semantic_hash": "a67bf0374161d65d409c431fd986db89"
+    "mtime": 1791977087.5039897,
+    "seen": 1791977177.052677,
+    "ast_hash": "ed2eaa76b80f08afabf57af730e7df32",
+    "semantic_hash": ""
   },
   "cartas-claras.html": {
-    "mtime": 1790645355.8645716,
-    "seen": 1790646606.2106724,
-    "ast_hash": "6ada0818637621e203d14b32e770c482",
-    "semantic_hash": "6ada0818637621e203d14b32e770c482"
+    "mtime": 1791977087.50569,
+    "seen": 1791977177.0526803,
+    "ast_hash": "6d4965029bac2810112c0fd659d16dc3",
+    "semantic_hash": ""
   },
   "comprar-auto.html": {
-    "mtime": 1790645355.9512587,
-    "seen": 1790646606.2106745,
-    "ast_hash": "56ef57fde7fe0f1ccaaa4d57253b0465",
-    "semantic_hash": "56ef57fde7fe0f1ccaaa4d57253b0465"
+    "mtime": 1791977087.5067313,
+    "seen": 1791977177.052683,
+    "ast_hash": "3bc5c2d0d4175cfc344c68712a6d73e5",
+    "semantic_hash": ""
   },
   "comprar-casa.html": {
-    "mtime": 1790645356.0252895,
-    "seen": 1790646606.2106762,
-    "ast_hash": "e94ebf05f2fde631d94dba86da8b7588",
-    "semantic_hash": "e94ebf05f2fde631d94dba86da8b7588"
+    "mtime": 1791977087.508917,
+    "seen": 1791977177.0526855,
+    "ast_hash": "64780966276d850cbd35f164a18b6854",
+    "semantic_hash": ""
   },
   "contacto.html": {
-    "mtime": 1790645356.10437,
-    "seen": 1790646606.2106783,
-    "ast_hash": "6c937671b0bb5271f0fe7c57c57a0ede",
-    "semantic_hash": "6c937671b0bb5271f0fe7c57c57a0ede"
+    "mtime": 1791977087.508917,
+    "seen": 1791977177.0526886,
+    "ast_hash": "4f52e656d36efb57453e6aaeafb42e11",
+    "semantic_hash": ""
   },
   "contrato-auto.html": {
-    "mtime": 1790645356.1780457,
-    "seen": 1790646606.2106805,
-    "ast_hash": "563be4040dedbf5cd6cad857f6f4097a",
-    "semantic_hash": "563be4040dedbf5cd6cad857f6f4097a"
+    "mtime": 1791977087.5110724,
+    "seen": 1791977177.0526912,
+    "ast_hash": "108b0bf1bfd1fe275f5de88d49400f7b",
+    "semantic_hash": ""
   },
   "credito.html": {
-    "mtime": 1790945768.9654264,
-    "seen": 1790947996.6462975,
-    "ast_hash": "7a46d8ed6fa28f89f873336a7629c903",
+    "mtime": 1791977087.5120814,
+    "seen": 1791977177.0526943,
+    "ast_hash": "bfaedee6423698d036387a7aac643b22",
     "semantic_hash": ""
   },
   "cuenta.html": {
-    "mtime": 1790645356.3615541,
-    "seen": 1790646606.2106848,
-    "ast_hash": "f373dbc42fcb73858c92e850cf91243d",
-    "semantic_hash": "f373dbc42fcb73858c92e850cf91243d"
+    "mtime": 1791977087.591799,
+    "seen": 1791977177.0526972,
+    "ast_hash": "9df378319ae3b47eb3975c1f1a4a67f9",
+    "semantic_hash": ""
   },
   "formar-negocio.html": {
-    "mtime": 1790645356.4543438,
-    "seen": 1790646606.2106867,
-    "ast_hash": "75c121e1b4d6718f365837fca6149736",
-    "semantic_hash": "75c121e1b4d6718f365837fca6149736"
+    "mtime": 1791977087.6480756,
+    "seen": 1791977177.0526998,
+    "ast_hash": "b6ef5f3bba11c858185dc6e4ad92e93f",
+    "semantic_hash": ""
   },
   "herramientas.html": {
-    "mtime": 1790645356.5208213,
-    "seen": 1790646606.2106955,
-    "ast_hash": "8710677e247a8fcb10d92d24f70bd142",
-    "semantic_hash": "8710677e247a8fcb10d92d24f70bd142"
+    "mtime": 1791977087.655653,
+    "seen": 1791977177.0527446,
+    "ast_hash": "b46eddbdf7fdda6abf4b041ab7df2438",
+    "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1790645356.6130486,
-    "seen": 1790646606.2106974,
-    "ast_hash": "bc214f6961b7b8303bbea524c86140c4",
-    "semantic_hash": "bc214f6961b7b8303bbea524c86140c4"
+    "mtime": 1791977087.6954556,
+    "seen": 1791977177.0527482,
+    "ast_hash": "6fb82275dfe9a67c977577f1336878ef",
+    "semantic_hash": ""
   },
   "listar-negocio.html": {
-    "mtime": 1790645356.687973,
-    "seen": 1790646606.2107,
-    "ast_hash": "0ea5134db008e436830b6da679eb0807",
-    "semantic_hash": "0ea5134db008e436830b6da679eb0807"
+    "mtime": 1791977087.746297,
+    "seen": 1791977177.0527513,
+    "ast_hash": "0ae39930e4e97e2ff3bd20fd8bd92aee",
+    "semantic_hash": ""
   },
   "login.html": {
-    "mtime": 1790645356.7663987,
-    "seen": 1790646606.2107024,
-    "ast_hash": "62652f800c4addabd82dc20910dbcfb8",
-    "semantic_hash": "62652f800c4addabd82dc20910dbcfb8"
+    "mtime": 1791977087.7482967,
+    "seen": 1791977177.052755,
+    "ast_hash": "e6bb4607f822951e3579d9d16ae249d2",
+    "semantic_hash": ""
   },
   "privacidad.html": {
-    "mtime": 1790645356.8699927,
-    "seen": 1790646606.210704,
-    "ast_hash": "7f234264e71c05d0b9d21d347c47cf76",
-    "semantic_hash": "7f234264e71c05d0b9d21d347c47cf76"
+    "mtime": 1791977087.749296,
+    "seen": 1791977177.0527582,
+    "ast_hash": "676389befaa0c9b6e7e5931a9bf79098",
+    "semantic_hash": ""
   },
   "quienes-somos.html": {
-    "mtime": 1790645356.936676,
-    "seen": 1790646606.2107065,
-    "ast_hash": "86049df024d3c27c6b0e6e457576d899",
-    "semantic_hash": "86049df024d3c27c6b0e6e457576d899"
+    "mtime": 1791977087.749296,
+    "seen": 1791977177.0527616,
+    "ast_hash": "af98b50c2f7b8e98dd2ad1c50bc19758",
+    "semantic_hash": ""
   },
   "robots.txt": {
     "mtime": 1789355855.6402414,
@@ -378,10 +378,10 @@
     "semantic_hash": "e81a7ded94e935af260afa189640f695"
   },
   "terminos.html": {
-    "mtime": 1790645357.011703,
-    "seen": 1790646606.2107153,
-    "ast_hash": "7679802cf53905ca945e78f354c8d287",
-    "semantic_hash": "7679802cf53905ca945e78f354c8d287"
+    "mtime": 1791977087.7979639,
+    "seen": 1791977177.0533614,
+    "ast_hash": "28650d30526b9c0e84082e002de35c2a",
+    "semantic_hash": ""
   },
   "apple-touch-icon.png": {
     "mtime": 1788562689.6625414,
@@ -498,10 +498,10 @@
     "semantic_hash": "863f9e4bb27db13d2cb7cf8b6e07f862"
   },
   "CLAUDE.md": {
-    "mtime": 1789895557.1611216,
-    "seen": 1789978410.7978823,
-    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
-    "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
+    "mtime": 1791000548.587308,
+    "seen": 1791820655.8097336,
+    "ast_hash": "7853289284764ee0bff1cd7abd57c44b",
+    "semantic_hash": ""
   },
   "specs/001-auto-address-autocomplete/checklists/requirements.md": {
     "mtime": 1789898569.5883212,
@@ -1404,10 +1404,10 @@
     "semantic_hash": "4e5d77d8b2bfde686e98595a4b26df3f"
   },
   "tests/cabecera-pie.test.js": {
-    "mtime": 1790514126.423738,
-    "seen": 1790624662.8988023,
-    "ast_hash": "64841b7f5d872685c5f3b575743d516b",
-    "semantic_hash": "64841b7f5d872685c5f3b575743d516b"
+    "mtime": 1791976585.4201236,
+    "seen": 1791976679.2027142,
+    "ast_hash": "986191525d4c0bf9242d837f727046d7",
+    "semantic_hash": ""
   },
   "specs/011-ux-audit-remediation/baseline.md": {
     "mtime": 1790512601.8406832,
@@ -1572,10 +1572,10 @@
     "semantic_hash": "0504df2c9fcbdfa022157f6d49959c23"
   },
   "tests/sistema-visual.test.js": {
-    "mtime": 1790636230.6694052,
-    "seen": 1790646606.2106373,
-    "ast_hash": "3b09475f8c387ec03db2f6d9986dd1a7",
-    "semantic_hash": "3b09475f8c387ec03db2f6d9986dd1a7"
+    "mtime": 1791976567.008121,
+    "seen": 1791976679.2115967,
+    "ast_hash": "2df18a55a2c9a70a16a98b0f450d8fc0",
+    "semantic_hash": ""
   },
   "graphify-out/memory/query_20260928_210158_01983d94_por_qu\u00e9_parpadea_la_p\u00e1gina_al_navegar_y_por_qu\u00e9_el.md": {
     "mtime": 1790629318.6656597,
@@ -2145,6 +2145,102 @@
     "mtime": 1790945799.4929495,
     "seen": 1790947996.6465082,
     "ast_hash": "b5a12e8d1f7a99821c1618d298d54697",
+    "semantic_hash": ""
+  },
+  "specs/017-agente-credito-ia/notas-prueba-real.md": {
+    "mtime": 1790997090.1351416,
+    "seen": 1790997123.102565,
+    "ast_hash": "6c4834e7734ed15c4d54a5a143031c67",
+    "semantic_hash": ""
+  },
+  "gota.js": {
+    "mtime": 1791976489.3833308,
+    "seen": 1791976679.1956117,
+    "ast_hash": "29d46f3ed387480295355a4f4c7c29d4",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T10-55-49-959Z.yml": {
+    "mtime": 1791975349.9613402,
+    "seen": 1791976679.2129002,
+    "ast_hash": "65f8eb5b2709a5e8da41a0c1fcf80242",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T10-55-58-953Z.yml": {
+    "mtime": 1791975358.9561577,
+    "seen": 1791976679.2129025,
+    "ast_hash": "65f8eb5b2709a5e8da41a0c1fcf80242",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T10-57-11-431Z.yml": {
+    "mtime": 1791975431.4343724,
+    "seen": 1791976679.2129042,
+    "ast_hash": "cf078307191ee0f1f58206263d4b585a",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T10-57-14-342Z.yml": {
+    "mtime": 1791975434.3444297,
+    "seen": 1791976679.2129054,
+    "ast_hash": "cf078307191ee0f1f58206263d4b585a",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-01-11-018Z.yml": {
+    "mtime": 1791975671.0298667,
+    "seen": 1791976679.212907,
+    "ast_hash": "b47070d4a7aba4647639b507f55f657a",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-01-23-950Z.yml": {
+    "mtime": 1791975683.9625342,
+    "seen": 1791976679.2129083,
+    "ast_hash": "88c3c37c8a11d0cd744c552d064284bd",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-03-27-024Z.yml": {
+    "mtime": 1791975807.026739,
+    "seen": 1791976679.2129102,
+    "ast_hash": "df4139824c0373d14fa9d65529cc092d",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-03-37-110Z.yml": {
+    "mtime": 1791975817.1103885,
+    "seen": 1791976679.2129116,
+    "ast_hash": "dd1b68185b801327aad8a19b9575bc2c",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-05-53-065Z.yml": {
+    "mtime": 1791975953.0648744,
+    "seen": 1791976679.212913,
+    "ast_hash": "cf078307191ee0f1f58206263d4b585a",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-17-02-430Z.yml": {
+    "mtime": 1791976622.4319875,
+    "seen": 1791976679.2129147,
+    "ast_hash": "c8752de787ae494b9a8b6a1d88d85bf7",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-17-15-002Z.yml": {
+    "mtime": 1791976635.0063255,
+    "seen": 1791976679.2129161,
+    "ast_hash": "f6529a8c95c3f1e2772dfb9fa800bebd",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-17-27-499Z.yml": {
+    "mtime": 1791976647.5031404,
+    "seen": 1791976679.2129176,
+    "ast_hash": "d174aefbf9c511e8635f25fcba31a85c",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-24-52-654Z.yml": {
+    "mtime": 1791977092.6578102,
+    "seen": 1791977177.0526066,
+    "ast_hash": "89ed91b038918ff5030cf50606b834e2",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-25-32-245Z.yml": {
+    "mtime": 1791977132.2485828,
+    "seen": 1791977177.052609,
+    "ast_hash": "8d38a7d14efbad9de028eeaa3afa18ed",
     "semantic_hash": ""
   }
 }
