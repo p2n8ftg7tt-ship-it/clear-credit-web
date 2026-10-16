@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T04:09:15.398693+00:00",
+  "generated_at": "2026-10-14T11:29:51.709345+00:00",
   "nodes": {
     "auth": {
       "code_fingerprint": "b99b2706fa11a777978a9c99a4eb678a91016d78e1cfa28724ccc18ab15c1472",
@@ -12,7 +12,7 @@
           "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
         }
       ],
-      "score": 0.905493351,
+      "score": 0.697328375,
       "source_file": "auth.js",
       "status": "tentative",
       "uses": 1
@@ -38,7 +38,7 @@
           "q": "Síntesis de hallazgos UI/UX: causas raíz, dependencias, riesgos y prioridades"
         }
       ],
-      "score": 2.719267067,
+      "score": 2.094131428,
       "source_file": "cms.js",
       "status": "preferred",
       "uses": 3
@@ -59,7 +59,7 @@
           "q": "Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
         }
       ],
-      "score": 1.815053283,
+      "score": 1.397788459,
       "source_file": "nav.js",
       "status": "preferred",
       "uses": 2
@@ -80,7 +80,7 @@
           "q": "Auditoría de accesibilidad y UX del sitio: qué problemas objetivos hay y dónde"
         }
       ],
-      "score": 1.808426424,
+      "score": 1.392685057,
       "source_file": "specs/011-ux-audit-remediation/color-mapping-log.md",
       "status": "preferred",
       "uses": 2
@@ -117,7 +117,7 @@
           "q": "Which pages load which scripts and which netlify functions and external services do they call?"
         }
       ],
-      "score": 0.919148402,
+      "score": 0.707844249,
       "source_file": "specs/011-ux-audit-remediation/color-mapping-log.md",
       "status": "contested",
       "uses": 3,
@@ -135,7 +135,7 @@
           "q": "Síntesis de hallazgos UI/UX: causas raíz, dependencias, riesgos y prioridades"
         }
       ],
-      "score": 0.008308906,
+      "score": 0.006398761,
       "source_file": "specs/011-ux-audit-remediation/contracts/ui-rules.md",
       "status": "contested",
       "uses": 1,

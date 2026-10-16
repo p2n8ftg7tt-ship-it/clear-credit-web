@@ -126,10 +126,10 @@
     "semantic_hash": "26b466572f2a5254ca42d0e1ed553813"
   },
   "netlify/functions/revisar-negocio.js": {
-    "mtime": 1790287682.37305,
-    "seen": 1790326147.6409323,
-    "ast_hash": "ac7d28afc964b68fc2eb13f90f712232",
-    "semantic_hash": "ac7d28afc964b68fc2eb13f90f712232"
+    "mtime": 1792182679.7349641,
+    "seen": 1792182753.3769894,
+    "ast_hash": "1f934516e250d4c9a1b0f465e6cea6d8",
+    "semantic_hash": ""
   },
   "page-loader.js": {
     "mtime": 1790324580.188164,
@@ -2241,6 +2241,18 @@
     "mtime": 1791977132.2485828,
     "seen": 1791977177.052609,
     "ast_hash": "8d38a7d14efbad9de028eeaa3afa18ed",
+    "semantic_hash": ""
+  },
+  "netlify/functions/lib/jev-coincidencia.js": {
+    "mtime": 1792182670.0654976,
+    "seen": 1792182753.3769686,
+    "ast_hash": "a7e8464776f862c00a1bdd22d2017a11",
+    "semantic_hash": ""
+  },
+  "tests/jev-coincidencia.test.js": {
+    "mtime": 1792182710.1168542,
+    "seen": 1792182753.3773162,
+    "ast_hash": "10ad18911e57f3255597740e100d5fcf",
     "semantic_hash": ""
   }
 }

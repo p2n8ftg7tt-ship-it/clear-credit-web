@@ -1,12 +1,12 @@
 # Graph Report - MyWeb  (2026-10-14)
 
 ## Corpus Check
-- 322 files · ~608,629 words
+- 322 files · ~611,724 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 30 file(s) not represented in the graph (top: .log 10, .xml 5, .csv 5)
+- Unclassified: 32 file(s) not represented in the graph (top: .log 11, .xml 5, .csv 5)
 
 ## Summary
-- 3800 nodes · 5969 edges · 291 communities (247 shown, 44 thin omitted)
+- 3802 nodes · 5973 edges · 283 communities (240 shown, 43 thin omitted)
 - Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 957 edges (avg confidence: 0.9)
 - Token cost: 0 input · 0 output
 
@@ -25,13 +25,13 @@
 - lector-credito.js
 - tasas-navegador.test.js
 - cartas-bilingues.test.js
-- letra
+- Contrato — `ThemoraAgenteVista` (`agente-credito-vista.js`)
 - sistema-visual.test.js
 - updateContract
 - agente-credito-ayuda.js
 - direccion-autocompletar.js
 - Research — Fase 1: lectura cuenta por cuenta
-- FR-030: Show survey publication date
+- Implementation Plan: Address Autocomplete + Bilingual Letters
 - credito-agente-ui.test.js
 - contrato-auto.html (Contrato del dealer page)
 - 014-resumen-consumidor/spec.md
@@ -41,13 +41,13 @@
 - revisar-negocio.js
 - tasas-hipoteca-funcion.test.js
 - tds.js scoring module (ThemoraTDS)
-- agente-credito-manual.js
+- agente-credito.js
 - Themora Digital Score (TDS) - Indice de Salud Digital
 - Tasks: Themora Payment Center
 - auth.js
 - Block on comprar-casa.html (#tasas)
 - 011-ux-audit-remediation/research.md
-- submitBureauDispute
+- armar
 - credito.html (credit analyzer page)
 - cartas-bilingues.js
 - cartas-claras.html (Cartas Claras page)
@@ -66,7 +66,7 @@
 - 001-auto-address-autocomplete/spec.md
 - User Scenarios & Testing *(mandatory)*
 - Tasks: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters
-- Freddie Mac PMMS (headline source)
+- NY Fed target range (Fed signal, effr JSON)
 - Payment Center Data Model
 - comprar-casa.html (Tu crédito y la compra de tu casa)
 - Spec 012: One Visual System
@@ -102,9 +102,9 @@
 - Feature Specification: "¿Aparezco?" fills in my city from my location
 - Research — Agente de crédito con IA (017)
 - tds.test.js
-- Review Focus
+- crearHandler
 - Feature Specification: Automatic Address Autocomplete
-- Supabase table tasas_config (threshold + launch switch)
+- Mortgage Rate Watch Agent (feature 004)
 - User Scenarios & Testing *(mandatory)*
 - User Scenarios & Testing *(mandatory)*
 - cabecera-pie.test.js
@@ -112,7 +112,7 @@
 - login.html (Iniciar sesión)
 - classifyletterlocally
 - credit-coach.js
-- conectarBloque
+- detalle
 - tasas-paginas.test.js
 - zyron-leyes.test.js
 - supabase-schema.sql
@@ -120,7 +120,8 @@
 - explain-auto-contract.js
 - explain-letter.js
 - autocompletar-direccion.test.js
-- Feature Specification: UX Audit Remediation (Trust, Accessibility, Consistency)
+- Data Model: address blocks and letters
+- 004-mortgage-rate-agent/tasks.md
 - agente-credito-cliente.js
 - Tasks: One Visual System (012)
 - formularios-direccion.test.js
@@ -131,7 +132,7 @@
 - auth-helpers.js
 - admin-pagos.js
 - Contract: Site-wide UI rules
-- Entities
+- Contract: Admin payment operations
 - Instrucciones: activar login en Themora
 - Research: Mortgage Rate Watch Agent
 - Tasks: Mortgage Rate Watch Agent (Buy-a-House page)
@@ -159,16 +160,16 @@
 - Shared footer contract (4 groups + no somos line)
 - Contract: `GET /.netlify/functions/ubicacion`
 - tasas-texto.test.js
-- Quickstart: prove the feature works end to end
+- INSTRUCCIONES-DIRECCIONES.md
 - doc-paginas.js
 - pagos-historial.js
 - Data Model — Lector de reportes de crédito
-- Implementation Plan: Cartas del agente de crédito (Fase 3)
-- Tooling memory: graphify problems in this project
+- Review Focus
+- Feature Specification: UX Audit Remediation (Trust, Accessibility, Consistency)
 - Implementation Plan: Themora Digital Score (TDS) on "¿Aparezco?"
 - Themora Payment Center
 - Quickstart: Validating the Themora Payment Center
-- Quickstart: Validate UX Audit Remediation
+- Memory: spec 012 implementation summary and root cause of the page jump
 - revisar-negocio-tds.test.js
 - admin.html (panel de administrador)
 - TDSInputError
@@ -184,10 +185,10 @@
 - facturas() (Stripe invoice draft panel)
 - revisarLimite
 - Quickstart — validar las herramientas de cálculo (016)
-- Tests for User Story 1 (write first; they fail until implementation)
+- T033: create cartas-bilingues.js module
 - admin-pagos.md
 - Phase 0 Research: Themora Payment Center
-- Contract: floating houses, panel, states, wording
+- Constitution Check
 - 013-lector-credito-metodologia/spec.md
 - montarSugerenciasCorreo
 - empresa.js
@@ -203,13 +204,13 @@
 - paraGuardar
 - Specification Quality Checklist: Themora Digital Score (TDS) on "¿Aparezco?"
 - Specification Quality Checklist: "¿Aparezco?" fills in my city from my location
-- Specification Quality Checklist: Herramientas de cálculo del agente de crédito (Fase 1)
+- Quickstart B: manual walkthrough
 - Q: Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito
 - eliminar-cuenta.js
 - 011-ux-audit-remediation/data-model.md
 - README: Themora casa y auto separados
 - Contract: on-page block, banner and wording rules
-- Feature Specification: Cartas del agente de crédito (Fase 3: el agente actúa)
+- FR-006: collector and business addresses included
 - Specification Quality Checklist: Themora Payment Center
 - analytics.js
 - aparezco.html (¿Aparece mi negocio?)
@@ -221,7 +222,7 @@
 - normalize
 - Payment Center Quickstart Validation
 - Entities
-- Contract: owner status (`tasas-admin`)
+- diasEsperados
 - Contract: TDS block on `aparezco.html`
 - Contract: Customer payment history
 - renderColorGrid
@@ -239,16 +240,15 @@
 - Menú de Navegación
 - Hero: Habla con el Equipo de Themora
 - Widget de WhatsApp
-- valoresParaBloque
+- 1. Address block (Part A)
 - Quickstart: validate "¿Aparezco?" city from location
 - Quickstart: validate the Themora Digital Score
 - Form messages retained 24 months in Netlify
-- Phase 4: User Story 1 — Ver mi reporte cuenta por cuenta (Priority: P1) — Fase 1 🎯 MVP
-- 3. Formato del JSON esperado
+- Supabase table tasas_config (threshold + launch switch)
+- parseKeepingFloats
 - FICO y VantageScore según el crédito solicitado
-- 6. Cómo se compara (capa C)
 - Guardar análisis en la cuenta (CCAuth.saveAnalysis)
-- Bottom-left placement, z-index 140 below assistant (200) and full-screen tool (300)
+- FR-016: wire 'Tu calle y numero' on tools page collector letter form
 - Quickstart D: run graphify update after changes
 - Design constraint G-PLACE: confirm placement/size on a real phone
 - Phase 7: Polish & cross-cutting concerns
@@ -259,18 +259,15 @@
 - Contract: Address suggestion service
 - supa
 - pago.js
-- Specification Quality Checklist: Resumen del consumidor en el analizador de crédito
 - agente-credito-vista.test.js
 - agente/LEEME.md
-- agente-credito.js
+- agente-credito-pase.js
 - preview-casas.js
-- Bloque B — el agente en la página
 - Implementation Plan: Lector de reportes de crédito — Fase 1 (lectura cuenta por cuenta)
 - Task list for feature 004
 - Data Model — Agente de crédito con IA (017)
 - Stripe Checkout Session creation (mode payment)
-- Contract: upstream source feeds (what the agent reads)
-- etiquetas
+- Contract — `ThemoraLector` y `ThemoraLectorPerfiles`
 - Contract — Interfaz del lector: «Tus cuentas, una por una» y rediseño visual
 - ensureBrain
 - cartas-agente.js
@@ -279,18 +276,13 @@
 - Data Model — Herramientas de cálculo del agente de crédito (016)
 - Quickstart — validar el agente de crédito con IA (017)
 - Implementation for User Story 3
-- R7: Alert kinds, dedupe key and hysteresis
 - Contratos — Agente de crédito con IA (017)
 - Agente de crédito con IA (Fase 2) — Implementation Plan
 - savePreferences
-- pagos-webhook.test.js
 - notas-revision.md
 - 003-address-autocomplete-bilingual-letters/tasks.md
-- Wording rules pinned by tests (forbidden words, no en vivo)
 - Prueba real del agente (SC-006): resultado y punto de retomar
 - Phase 0 Research: decisions and rationale
-- ultimaRevisionEn snapshot field
-- Contract: public snapshot (`tasas-hipoteca`)
 
 ## God Nodes (most connected - your core abstractions)
 1. `estado()` - 51 edges
@@ -364,7 +356,7 @@
 - **Themora page hero banner images** — images_hero_compra_auto, images_hero_compra_casa, images_hero_familia, images_listar_negocio_hero, images_quienes_somos_hero [INFERRED 0.85]
 - **Posicionamiento de confianza: educativo, no abogados/prestamista/reparación de crédito** — index_lo_que_no_somos, terminos_que_es_y_no_es, terminos_no_cobra_reparacion_credito, terminos_informacion_educativa, quienes_somos_mision, index_fuentes_oficiales_trust [INFERRED 0.85]
 
-## Communities (291 total, 44 thin omitted)
+## Communities (283 total, 43 thin omitted)
 
 ### Community 0 - "FR-022: free text unchanged in both columns plus review note"
 Cohesion: 0.16
@@ -387,28 +379,28 @@ Cohesion: 0.08
 Nodes (39): Alert threshold umbral_pp 0.125 and held anomalous readings, Daily agent run: Mon/Tue publish, other days watch only, Rate sources: Freddie Mac PMMS, US Treasury 10Y, Federal Reserve target range, Launch switches TASAS_LANZADO and activo, Supabase tables tasas_config, tasas_lecturas, tasas_publicado, tasas_alertas, tasas_corridas, cabecerasServicio(), ejecutarCorrida(), leer() (+31 more)
 
 ### Community 5 - "Tasks: Resumen del consumidor en el analizador de crédito"
-Cohesion: 0.09
-Nodes (22): tiposDeTarjeta(), Dependencies & Execution Order, Entrega incremental, Format: `[ID] [P?] [Story] Description`, Global Constraints, Implementación US3, Implementation Strategy, MVP (US1) (+14 more)
+Cohesion: 0.10
+Nodes (20): Dependencies & Execution Order, Entrega incremental, Format: `[ID] [P?] [Story] Description`, Global Constraints, Implementación US3, Implementation Strategy, MVP (US1), Notes (+12 more)
 
 ### Community 6 - "lector-credito.js"
 Cohesion: 0.13
 Nodes (40): agregarCodigos(), agregarIdentidad(), anchoColumna(), asignarCampo(), buscarNombrePersonalSinEtiqueta(), cerrarCuenta(), clasificarAviso(), clasificarTipo() (+32 more)
 
 ### Community 7 - "tasas-navegador.test.js"
-Cohesion: 0.07
-Nodes (16): assert, casasDe(), codigoReal, conLanzamiento, correr(), El, estadoDe(), fs (+8 more)
+Cohesion: 0.06
+Nodes (18): Published snapshot — `tasas_publicado` (one row, `id = 'actual'`), assert, casasDe(), codigoReal, conLanzamiento, correr(), El, estadoDe() (+10 more)
 
 ### Community 8 - "cartas-bilingues.test.js"
 Cohesion: 0.07
-Nodes (24): Letter invariants (paired blocks, fact parity, verbatim text, pure English), R20: letter test strategy (parity, leakage, honesty), FR-017: both columns contain the same facts, assert, BLOQUES, BURO, C, casos() (+16 more)
+Nodes (24): Reporte, R8. Validación del resultado (servidor), assert, BLOQUES, BURO, C, casos(), CB (+16 more)
 
-### Community 9 - "letra"
-Cohesion: 0.20
-Nodes (12): letra(), letrasDe(), R7. Etiquetador (navegador), `renderAgenteEnCirculo(resultado, letra, privado) → html`, Archivos, Constitution Check, Decisiones, Implementation Plan: El agente en la página del analizador (Fase 4) (+4 more)
+### Community 9 - "Contrato — `ThemoraAgenteVista` (`agente-credito-vista.js`)"
+Cohesion: 0.08
+Nodes (25): letra(), letrasDe(), R7. Etiquetador (navegador), Contrato — `ThemoraAgenteVista` (`agente-credito-vista.js`), `renderAgenteEnCirculo(resultado, letra, privado) → html`, `renderMarcar({ cuentas, datos }) → html`, `renderResultado(resultado, privado) → html`, `textoEvento(codigo, privado) → string` (+17 more)
 
 ### Community 10 - "sistema-visual.test.js"
 Cohesion: 0.07
-Nodes (37): Risk: 55 data-umami-event attributes must not change, Contract: Site-wide UI rules v2 (012), Banned values (brown rgba, #171008, gold gradient, Montserrat, Playfair), Pill radius allow-list (chips, tracks, toggles), Preserved interfaces (data-umami-event, ids, names, data-cms), Contract: Site-wide UI rules v2, Contract: tests/sistema-visual.test.js (012), sistema-visual test §B Banned values (+29 more)
+Nodes (36): Risk: 55 data-umami-event attributes must not change, Contract: Site-wide UI rules v2 (012), Banned values (brown rgba, #171008, gold gradient, Montserrat, Playfair), Pill radius allow-list (chips, tracks, toggles), Preserved interfaces (data-umami-event, ids, names, data-cms), Contract: Site-wide UI rules v2, Contract: tests/sistema-visual.test.js (012), sistema-visual test §B Banned values (+28 more)
 
 ### Community 11 - "updateContract"
 Cohesion: 0.17
@@ -419,12 +411,16 @@ Cohesion: 0.11
 Nodes (24): handler(), acme(), AHORA, C, crearEntorno(), { crearHandler }, ENV, fs (+16 more)
 
 ### Community 13 - "direccion-autocompletar.js"
-Cohesion: 0.10
-Nodes (29): Behavior guarantees (tested or verified in the quickstart), window.ThemoraDireccion API (conectar, conectarBloque, __prueba), Browser API (`window.ThemoraDireccion`), Contract: Address form markup and browser API, Coverage test contract (`tests/formularios-direccion.test.js`), data-dir-* markup attributes (calle, ciudad, estado, cp, estado-cp, tipo, scope), Fixed marking per form, Markup (+21 more)
+Cohesion: 0.14
+Nodes (22): evento(), inyectarCss(), Behavior guarantees (tested or verified in the quickstart), window.ThemoraDireccion API (conectar, conectarBloque, __prueba), Browser API (`window.ThemoraDireccion`), Contract: Address form markup and browser API, Coverage test contract (`tests/formularios-direccion.test.js`), data-dir-* markup attributes (calle, ciudad, estado, cp, estado-cp, tipo, scope) (+14 more)
 
 ### Community 14 - "Research — Fase 1: lectura cuenta por cuenta"
 Cohesion: 0.12
 Nodes (16): R10. Límite, saldo más alto y monto original, R11. Vocabulario común de códigos de pago, R12. Consultas, R13. Texto explicativo del buró, R14. Convivencia con la evaluación actual, R15. Fixtures sintéticos, R16. Reportes en español, R17. Dirección visual del lector (frontend-design) (+8 more)
+
+### Community 15 - "Implementation Plan: Address Autocomplete + Bilingual Letters"
+Cohesion: 0.09
+Nodes (25): netlify.toml, Constitution Check, Delivery order (6 steps), Gate G-BLOCK: block internal files in netlify.toml, Gate G-TESTS: node --test green before publish, Principle I: honestidad y no asesoria, Implementation Plan: Address Autocomplete + Bilingual Letters, 0. Prerequisites (+17 more)
 
 ### Community 16 - "credito-agente-ui.test.js"
 Cohesion: 0.11
@@ -435,12 +431,12 @@ Cohesion: 0.11
 Nodes (27): escapehtml(), CFPB, contrato-auto.html (Contrato del dealer page), actualizarantes(), agregarextra(), Antes de firmar checklist, banderas(), calcular() (+19 more)
 
 ### Community 18 - "014-resumen-consumidor/spec.md"
-Cohesion: 0.09
-Nodes (17): analisisParaGuardar() adapter, REGLAS (rules as data), ThemoraAnalista (analista-credito.js), cartelHtml(), renderResumen(), `analizar(reporte, opciones?) → Analisis`, Cambios en `ThemoraLector` (lector-credito.js), Contract — `ThemoraAnalista` (analista-credito.js) (+9 more)
+Cohesion: 0.08
+Nodes (21): REGLAS (rules as data), ThemoraAnalista (analista-credito.js), cartelHtml(), renderResumen(), Content Quality, Feature Readiness, Notes, Requirement Completeness (+13 more)
 
 ### Community 19 - "Audit memory: accessibility and UX audit 2026-09-28"
-Cohesion: 0.13
-Nodes (17): Audit memory: accessibility and UX audit 2026-09-28, cuenta .acct-toggle buttons without accessible name, Admin fields without label (clientSearch, paBuscar, paCorreo, paReferencia, paServicio), mortgage-calculator.js uses alert() for an error, Netlify backup forms use class=sr-only instead of hidden (bot-field reachable), Email/phone fields with type=text, Form errors not linked via aria-invalid/aria-describedby (credito, herramientas), 'Guardado ✓' .7rem without aria-live (JS only changes opacity) (+9 more)
+Cohesion: 0.08
+Nodes (28): Audit memory: accessibility and UX audit 2026-09-28, cuenta .acct-toggle buttons without accessible name, Admin fields without label (clientSearch, paBuscar, paCorreo, paReferencia, paServicio), mortgage-calculator.js uses alert() for an error, Auto Coach iframe is another design system (#062C60, Montserrat, 8-9px, 12-13px text), Netlify backup forms use class=sr-only instead of hidden (bot-field reachable), Email/phone fields with type=text, Form errors not linked via aria-invalid/aria-describedby (credito, herramientas) (+20 more)
 
 ### Community 20 - "C8 Page-to-page flash and uniform header"
 Cohesion: 0.11
@@ -451,7 +447,7 @@ Cohesion: 0.18
 Nodes (11): Dependencies & Execution Order, Entrega incremental, Format: `[ID] [P?] [Story] Description`, Implementation Strategy, MVP (US1), Notes, Parallel Example: User Story 1, Phase 3: User Story 0 — Resultados honestos en el lector actual (Priority: P1) — Fase 0 ✅ (+3 more)
 
 ### Community 22 - "revisar-negocio.js"
-Cohesion: 0.12
+Cohesion: 0.13
 Nodes (29): Apple Maps API (solo confirma existencia), base64url(), buscarGoogle(), calcularCompetencia(), consultarApple(), consultarGoogle(), consultasCategoria(), conTiempo() (+21 more)
 
 ### Community 23 - "tasas-hipoteca-funcion.test.js"
@@ -462,17 +458,17 @@ Nodes (43): cabecerasServicio(), handler(), L, responder(), Analytics events: ta
 Cohesion: 0.18
 Nodes (16): Contract: `POST /.netlify/functions/revisar-negocio` — response changes, Rules, Success `200` — before → after, Data model 007: TDS, Accion, Data Model: Themora Digital Score (TDS), EntradaTDS, EntradaTDS (input to `calcular`) (+8 more)
 
-### Community 25 - "agente-credito-manual.js"
-Cohesion: 0.33
-Nodes (5): ESQUEMA_RESULTADO, HERRAMIENTAS, listaTextos, sinEntrada, texto
+### Community 25 - "agente-credito.js"
+Cohesion: 0.15
+Nodes (11): { barreraDatosPersonales, validarCartas, validarResultado }, crypto, { firmarPase, leerPase, hmacConversacion }, hoyEste(), { MANUAL, HERRAMIENTAS, ESQUEMA_RESULTADO }, NOMBRES_HERRAMIENTAS, ESQUEMA_RESULTADO, HERRAMIENTAS (+3 more)
 
 ### Community 26 - "Themora Digital Score (TDS) - Indice de Salud Digital"
 Cohesion: 0.12
 Nodes (19): Plan 007: TDS implementation, tests/tds.test.js and tests/revisar-negocio-tds.test.js, Aparezco page (aparezco.html), Project constitution (Honestidad, Privacidad, Sin IA, Una sola verdad, Multilingue), Guajiro Llc reference case, TDS health bands (Invisible/Vulnerable/Saludable/Fuerte/Dominante), Actividad pillar (10%), Completitud pillar (15%) (+11 more)
 
 ### Community 27 - "Tasks: Themora Payment Center"
-Cohesion: 0.06
-Nodes (33): buscar(), Behavior — `aprobarPago`, Behavior — `reembolsar`, Contract: Admin payment operations, Request, Responses, Tests (`tests/admin-pagos.test.js`), Dependencies & Execution Order (+25 more)
+Cohesion: 0.08
+Nodes (24): Dependencies & Execution Order, Format: `[ID] [P?] [Story] Description`, Implementation for User Story 1, Implementation for User Story 2, Implementation for User Story 3, Implementation for User Story 5, Implementation Strategy, Incremental Delivery (+16 more)
 
 ### Community 28 - "auth.js"
 Cohesion: 0.12
@@ -486,17 +482,17 @@ Nodes (22): Snapshot failure behavior table, frescura field (al_dia / sin_actual
 Cohesion: 0.09
 Nodes (17): --gold (#5FA8B8, 2.7:1) used as text, Focus rule: 3px --accion light / --agua dark, ≥3:1, --focus-color token (--agua in dark contexts), Phase 0 Research: UX Audit Remediation, R10. contrato-auto alignment (audit M2 narrowed), R11. Homepage CTA and heading, R12. Other small items, R1. Footer: one static block, enforced by a test (+9 more)
 
-### Community 31 - "submitBureauDispute"
-Cohesion: 0.30
-Nodes (13): ThemoraCartas (cartas-bilingues.js), letterBureau(), letterIssue(), lettersUnavailable(), limpiarCampos(), marcarCampos(), phoneIsValid(), readPersonalInfo() (+5 more)
+### Community 31 - "armar"
+Cohesion: 0.29
+Nodes (14): armar(), ThemoraCartas (cartas-bilingues.js), letterBureau(), letterIssue(), lettersUnavailable(), limpiarCampos(), marcarCampos(), phoneIsValid() (+6 more)
 
 ### Community 32 - "credito.html (credit analyzer page)"
-Cohesion: 0.17
-Nodes (10): Motor de búsqueda de opciones (comparadores), Mr. Credit Coach (chat widget), Supabase no configurado (bloqueador de lanzamiento), credito.html (credit analyzer page), Proceso de disputa FCRA ante los burós, stripReportNoise(), Themora audit report and roadmap (INFORME-CREDITO-CLARO), ThemoraLectorPerfiles (lector-credito-perfiles.js) (+2 more)
+Cohesion: 0.18
+Nodes (10): analisisParaGuardar() adapter, analyzer.js (orphan analyzer, deleted), Motor de búsqueda de opciones (comparadores), Mr. Credit Coach (chat widget), Supabase no configurado (bloqueador de lanzamiento), credito.html (credit analyzer page), Themora audit report and roadmap (INFORME-CREDITO-CLARO), ThemoraLectorPerfiles (lector-credito-perfiles.js) (+2 more)
 
 ### Community 33 - "cartas-bilingues.js"
-Cohesion: 0.19
-Nodes (26): agruparDetectados(), armar(), bloque(), bloqueCuentasDisputadas(), buro(), cartaDisputaBuro(), cartaIdentidad(), cartaValidacionDeuda() (+18 more)
+Cohesion: 0.28
+Nodes (20): agruparDetectados(), bloque(), bloqueCuentasDisputadas(), buro(), cartaDisputaBuro(), cartaIdentidad(), cartaValidacionDeuda(), claveDeDato() (+12 more)
 
 ### Community 34 - "cartas-claras.html (Cartas Claras page)"
 Cohesion: 0.16
@@ -507,24 +503,24 @@ Cohesion: 0.09
 Nodes (18): assert, test, assert, DATOS, P, test, assert, H (+10 more)
 
 ### Community 36 - "tds.js"
-Cohesion: 0.18
-Nodes (19): aggregate(), buildReasons(), canonicalJson(), categoryFor(), current(), detectReviewBurst(), evaluate(), growReviews() (+11 more)
+Cohesion: 0.17
+Nodes (21): aggregate(), buildReasons(), canonicalJson(), categoryFor(), current(), detectReviewBurst(), evaluate(), growReviews() (+13 more)
 
 ### Community 37 - "montarBloque"
-Cohesion: 0.28
-Nodes (15): evento(), inyectarCss(), montarBloque(), abrir(), apagarPorFalla(), avisarAlDueno(), cerrar(), decir() (+7 more)
+Cohesion: 0.22
+Nodes (17): conectar(), limpio(), montarBloque(), abrir(), apagarPorFalla(), avisarAlDueno(), cerrar(), decir() (+9 more)
 
 ### Community 38 - "C5 Paper hero on credito (trial)"
-Cohesion: 0.10
-Nodes (21): .copia-* tool colors work as navigation, Home hero paper letter + highlighter is the only idea with own identity, Memory: spec 012 implementation summary and root cause of the page jump, Pending: credito hero ~1.7 screens at 375px (goal <=1.2); shorten intro text, Pending: images/credito-hero-1..4.jpg unused; delete with approval, Contract: .papel-muestra shared paper sample (012), Paper sample content rules ('Ejemplo inventado', one <mark>, no 'debes'), credito sample: invented tradeline, 'La fecha que cuenta', FCRA §605 7 años (+13 more)
+Cohesion: 0.18
+Nodes (14): Pending: credito hero ~1.7 screens at 375px (goal <=1.2); shorten intro text, Pending: images/credito-hero-1..4.jpg unused; delete with approval, credito sample: invented tradeline, 'La fecha que cuenta', FCRA §605 7 años, sistema-visual test §G Legal figure (7 años vs zyron-leyes.js FCRA §605), C5 Paper hero on credito (trial), 7-year note (FCRA §605) on credito sample, FR-012 credito uses shared paper hero, Paper sample hero component (.papel-muestra) (+6 more)
 
 ### Community 39 - "C2 Accessibility-critical colors on role tokens"
 Cohesion: 0.15
-Nodes (17): Pending: cartas-claras "Explicar esta carta" button low contrast (--gold bg, dark text), localStorage key themora_colores (cached admin colors), sistema-visual test §A Contrast of role tokens, --borde-campo field border token, C2 Accessibility-critical colors on role tokens, --focus-ring / --focus-color tokens, --texto-acento role token, FR-004 focus rings on role tokens, 3:1 (+9 more)
+Nodes (18): Pending: cartas-claras "Explicar esta carta" button low contrast (--gold bg, dark text), localStorage key themora_colores (cached admin colors), sistema-visual test §A Contrast of role tokens, --texto-acento role token (var(--accion)), --borde-campo field border token, C2 Accessibility-critical colors on role tokens, --focus-ring / --focus-color tokens, --texto-acento role token (+10 more)
 
 ### Community 40 - "Part A — Address suggestions"
 Cohesion: 0.10
-Nodes (21): Open questions (defaults chosen; none block planning), Part A — Address suggestions, Part B — Bilingual letters, Phase 0 Research: Address Autocomplete Everywhere + Bilingual Letters, R10. Stale text, R11. Where the letter content lives, R13. English for analyzer findings (`issueTitle`), R14. Detected identity values (`Nombre` / `Teléfono` / `Dirección`) (+13 more)
+Nodes (20): Open questions (defaults chosen; none block planning), Part A — Address suggestions, Part B — Bilingual letters, Phase 0 Research: Address Autocomplete Everywhere + Bilingual Letters, R10. Stale text, R11. Where the letter content lives, R13. English for analyzer findings (`issueTitle`), R14. Detected identity values (`Nombre` / `Teléfono` / `Dirección`) (+12 more)
 
 ### Community 41 - "Implementation Plan: Agente de crédito con IA (Fase 2: el agente piensa)"
 Cohesion: 0.07
@@ -532,7 +528,7 @@ Nodes (26): Content Quality, Feature Readiness, Notes, Requirement Completeness,
 
 ### Community 42 - "herramientas-credito.js"
 Cohesion: 0.24
-Nodes (23): buscarMarcaVendida(), buscarPosiblesDuplicados(), calcularFechaSalida(), calcularUtilizacion(), contarConsultasDuras(), datoSimple(), ejecutar(), esCobranzaOChargeOff() (+15 more)
+Nodes (24): buscarMarcaVendida(), buscarPosiblesDuplicados(), calcularFechaSalida(), calcularUtilizacion(), contarConsultasDuras(), datoSimple(), ejecutar(), esCobranzaOChargeOff() (+16 more)
 
 ### Community 43 - "ubicacion.mjs"
 Cohesion: 0.14
@@ -540,18 +536,18 @@ Nodes (13): ciudadDetectada(), clasificar(), codigoEstado(), desdePerfil(), form
 
 ### Community 44 - "tasas-hipoteca-logica.js"
 Cohesion: 0.12
-Nodes (24): alertaPublica(), calcularCambio(), calcularFrescura(), claveAlerta(), construirRespuestaPublica(), diaIso(), DIAS_PUBLICACION, diasEsperados() (+16 more)
+Nodes (24): alertaPublica(), calcularCambio(), calcularFrescura(), claveAlerta(), construirRespuestaPublica(), DIAS_PUBLICACION, evaluarAlertas(), evaluarPlausibilidad() (+16 more)
 
 ### Community 45 - "Audit memory: visual design review 2026-09-28"
-Cohesion: 0.12
-Nodes (20): Auto Coach iframe is another design system (#062C60, Montserrat, 8-9px, 12-13px text), Audit memory: visual design review 2026-09-28, Brown rgba(201,138,62)/rgba(184,134,59) leftovers in 20 places, Chained dark blocks (~1600px dark on credito; .citizen-myth on comprar-casa), contacto says 'Escríbeme' while site says 'nosotros', Main idea does not pass the home page (dark .page-hero with circles; credito stock photo), Login pill button with gradient, uppercase and brown glow, ~90-character lines in dark zones (limit 65ch) (+12 more)
+Cohesion: 0.13
+Nodes (18): Audit memory: visual design review 2026-09-28, Brown rgba(201,138,62)/rgba(184,134,59) leftovers in 20 places, Chained dark blocks (~1600px dark on credito; .citizen-myth on comprar-casa), .copia-* tool colors work as navigation, contacto says 'Escríbeme' while site says 'nosotros', Home hero paper letter + highlighter is the only idea with own identity, Main idea does not pass the home page (dark .page-hero with circles; credito stock photo), Login pill button with gradient, uppercase and brown glow (+10 more)
 
 ### Community 46 - "Tasks 012: One Visual System"
 Cohesion: 0.13
 Nodes (22): sistema-visual test §H Backup forms hidden, C1 Markup accessibility pack, C7 Minor fixes, FR-001 backup forms out of keyboard order and a11y tree, FR-002 cuenta toggles named; save announced politely, FR-003 correct type/autocomplete/name; admin labels, US1: keyboard and screen-reader users complete every form (P1), Tasks 012: One Visual System (+14 more)
 
 ### Community 47 - "001-auto-address-autocomplete/spec.md"
-Cohesion: 0.15
+Cohesion: 0.18
 Nodes (12): Project constitution (II minimal data, III works without third parties, IV tests), Entity: Person's address, Entity: Suggestion status note, Entity: Address suggestion, FR-017: no suggestions on collector/agency address fields, Automatic autocomplete with no opt-in checkbox, Stale opt-in wording next to Verificar direccion en Google Maps button, US1: suggestions appear as I type (P1) (+4 more)
 
 ### Community 48 - "User Scenarios & Testing *(mandatory)*"
@@ -562,9 +558,9 @@ Nodes (19): Assumptions, Diagnosis — why address suggestions do not work in ev
 Cohesion: 0.10
 Nodes (20): Dependencies & Execution Order, Format: `[ID] [P?] [Story] Description`, Global rules for every task, Implementation for User Story 1 (each form edit is a different file → parallel), Implementation strategy, Incremental delivery, MVP first, Notes (+12 more)
 
-### Community 50 - "Freddie Mac PMMS (headline source)"
-Cohesion: 0.13
-Nodes (20): Guarantees pinned by tests (values unaltered), Fed first run stores value, raises nothing, FRED mirrors (rejected), Freddie Mac PMMS (headline source), MBA weekly applications (not used in v1), mesesATraer Treasury month selection, Mortgage News Daily (not used in v1), NY Fed target range (Fed signal, effr JSON) (+12 more)
+### Community 50 - "NY Fed target range (Fed signal, effr JSON)"
+Cohesion: 0.16
+Nodes (16): Fed first run stores value, raises nothing, FRED mirrors (rejected), MBA weekly applications (not used in v1), mesesATraer Treasury month selection, Mortgage News Daily (not used in v1), NY Fed target range (Fed signal, effr JSON), Feed parsing rules (pure functions), U.S. Treasury 10-year yield (daily signal) (+8 more)
 
 ### Community 51 - "Payment Center Data Model"
 Cohesion: 0.20
@@ -575,28 +571,28 @@ Cohesion: 0.18
 Nodes (17): comprar-casa.html (Tu crédito y la compra de tu casa), calcular(), ¿Necesitas ser ciudadano para comprar tu casa?, Recorrido guiado convencional (7 pasos) con calculadora de PMI, Los 8 pasos para comprar casa en EE. UU., Reglas MIP FHA: UFMIP 1.75%, 0.55%/0.50% anual, 11 años si enganche >=10%, Recorrido guiado FHA (7 pasos), Tipos de préstamo hipotecario por perfil (FHA, VA, USDA, convencional) (+9 more)
 
 ### Community 53 - "Spec 012: One Visual System"
-Cohesion: 0.10
-Nodes (22): Pending: C6 Auto Coach and type scale (R6) deferred, Pending: commit and publish (git push origin master:main) with approval, Plan 012: One Visual System, C4 One definition per component (reduced; type scale deferred), C6 Auto Coach iframe brought into the system (DEFERRED), Spec 012: One Visual System, FR-010 font sizes from type-scale tokens, FR-011 each shared component defined once (+14 more)
+Cohesion: 0.12
+Nodes (20): Pending: C6 Auto Coach and type scale (R6) deferred, Plan 012: One Visual System, C4 One definition per component (reduced; type scale deferred), C6 Auto Coach iframe brought into the system (DEFERRED), Spec 012: One Visual System, FR-010 font sizes from type-scale tokens, FR-011 each shared component defined once, FR-013 Auto Coach iframe uses site system (+12 more)
 
 ### Community 54 - "002-fix-address-autocomplete/spec.md"
-Cohesion: 0.16
-Nodes (10): FR-016: wire 'Tu calle y numero' on tools page collector letter form, D1: address service not published (404), D2: browser script published, service missing, D3: service healthy, 20 tests pass, D4: feature wired only on credit-page letter forms, Entity: Health result (not published / key missing / refused / quota / working), Entity: Provider key (GOOGLE_PLACES_API_KEY), US1: suggestions appear on live site (P1) (+2 more)
+Cohesion: 0.19
+Nodes (8): D1: address service not published (404), D2: browser script published, service missing, D3: service healthy, 20 tests pass, Entity: Health result (not published / key missing / refused / quota / working), Entity: Provider key (GOOGLE_PLACES_API_KEY), US1: suggestions appear on live site (P1), US2: owner health check with five outcomes (P1), US4: documented local testing (P2)
 
 ### Community 55 - "agente-credito-vista.js"
 Cohesion: 0.36
 Nodes (11): campos(), escapar(), nombreCuenta(), pasoHtml(), renderAgenteEnCirculo(), renderCarta(), renderCartaFinal(), renderLocal() (+3 more)
 
 ### Community 56 - "personalFieldsHtml"
-Cohesion: 0.23
-Nodes (13): bureauOptionsHtml(), CREDIT_BUREAUS (direcciones de Equifax/Experian/TransUnion), detectedOptionsHtml(), Derechos frente a cobradores de deuda (FDCPA), letterResultHtml(), personalFieldsHtml(), renderBureauDisputeForm(), renderDebtValidationForm() (+5 more)
+Cohesion: 0.29
+Nodes (11): bureauOptionsHtml(), CREDIT_BUREAUS (direcciones de Equifax/Experian/TransUnion), detectedOptionsHtml(), Derechos frente a cobradores de deuda (FDCPA), letterResultHtml(), personalFieldsHtml(), renderBureauDisputeForm(), renderDebtValidationForm() (+3 more)
 
 ### Community 57 - "Plan 006: Floating Rate Houses"
-Cohesion: 0.15
-Nodes (19): Specification quality checklist 006, Contract: snapshot change ultimaRevisionEn, Snapshot public contract (feature 004), Data model 006 (view model, states, one additive field), Plan 006: Floating Rate Houses, comprar-casa.html (CSS-only edit), Constitution check for 006, Launch gates G-LENDERS, G-PRIV, G-TESTS, G-LAUNCH, G-PLACE (+11 more)
+Cohesion: 0.05
+Nodes (45): Test invariants (block parity, phone regex, street count, no Spanish in English), Specification quality checklist 006, Contract: snapshot change ultimaRevisionEn, Snapshot public contract (feature 004), ultimaRevisionEn snapshot field, Contract: floating houses, panel, states, wording, Categorical analytics events (tasas-casa-vista, tasas-casa-abierta, tasas-casas-cerradas), Failure and degradation: houses simply do not appear (+37 more)
 
 ### Community 58 - "tasas-texto.js"
 Cohesion: 0.19
-Nodes (15): Tests for User Story 3, Function: textoCasa(termino, dato), T011: implement textoCasa in tasas-texto.js, diaYFecha(), fechaCorta(), frasePrincipal(), notasDeAlerta(), partesFecha() (+7 more)
+Nodes (15): Tests for User Story 1 (write first; they fail until implementation), Function: textoCasa(termino, dato), T011: implement textoCasa in tasas-texto.js, diaYFecha(), fechaCorta(), frasePrincipal(), notasDeAlerta(), partesFecha() (+7 more)
 
 ### Community 59 - "ciudad-sugerida.js (ThemoraCiudad)"
 Cohesion: 0.17
@@ -619,8 +615,8 @@ Cohesion: 0.07
 Nodes (32): loadAdminData(), loadContentEditor(), loadTasasAdmin(), renderStats(), Supabase table contenido_sitio (CMS content), average(), cabecerasServicio(), corsHeaders() (+24 more)
 
 ### Community 64 - "Buscar negocio (apIr1 click handler)"
-Cohesion: 0.15
-Nodes (13): bandaDe(), Buscar negocio (apIr1 click handler), mostrar(), noDisponible(), pilaresHTML(), resultado(), scoreHTML(), TDS five pillars (#apPilares) (+5 more)
+Cohesion: 0.13
+Nodes (14): bandaDe(), Buscar negocio (apIr1 click handler), montarSimulador(), mostrar(), noDisponible(), pilaresHTML(), pintarSimulacion(), resultado() (+6 more)
 
 ### Community 65 - "Feature Specification: Mortgage Rate Watch Agent (Buy-a-House page)"
 Cohesion: 0.12
@@ -635,16 +631,16 @@ Cohesion: 0.29
 Nodes (7): Complexity Tracking, Documentation (this feature), Implementation Plan: Themora Payment Center, Project Structure, Source Code (repository root), Summary, Technical Context
 
 ### Community 68 - "Color mapping log (T026-T030)"
-Cohesion: 0.13
-Nodes (12): Radii other than 6px across pages, cartas-claras.html, Color mapping log (T026-T030), comprar-casa.html, contrato-auto.html, credito.html, index.html (English example letter), Kept off-palette values (amber status, bureau colors, score scale) (+4 more)
+Cohesion: 0.20
+Nodes (8): cartas-claras.html, Color mapping log (T026-T030), comprar-casa.html, contrato-auto.html, credito.html, index.html (English example letter), Kept off-palette values (amber status, bureau colors, score scale), Color mapping by role (white/black and print unchanged)
 
 ### Community 69 - "Color mapping log (012, C3)"
 Cohesion: 0.20
 Nodes (17): Brown shadow rgba(201,138,62) -> rgba(18,63,79), Brown text (#8a5a20, #8a5a1f, #8a6a2f) -> --tinta / --accion, Brown/gold tint and border -> celeste rgba(95,168,184), Color mapping log (012, C3), Gold glow on dark -> agua rgba(159,211,219), Gold gradient icon -> var(--copia, --copia-celeste), Zyron header gradient with #171008 -> solid --tinta, C3 Palette leftovers and button shape sweep (+9 more)
 
 ### Community 70 - "015 — Plan de pruebas del nuevo analizador de crédito"
-Cohesion: 0.14
-Nodes (13): 015 — Plan de pruebas del nuevo analizador de crédito, 10. Preguntas abiertas, 1. Qué se prueba y por qué, 2.1 Carpetas, 2.2 Privacidad (bloqueante), 2.3 Reglas de anonimización, 2.4 Cobertura del banco, 2. El banco de reportes (+5 more)
+Cohesion: 0.08
+Nodes (25): 015 — Plan de pruebas del nuevo analizador de crédito, 10. Preguntas abiertas, 1. Qué se prueba y por qué, 2.1 Carpetas, 2.2 Privacidad (bloqueante), 2.3 Reglas de anonimización, 2.4 Cobertura del banco, 2. El banco de reportes (+17 more)
 
 ### Community 71 - "Research: One Visual System (012)"
 Cohesion: 0.12
@@ -659,24 +655,24 @@ Cohesion: 0.12
 Nodes (16): Assumptions, Diagnosis (observed on 2026-09-20, before writing this spec), Edge Cases, Feature Specification: Fix Address Autocomplete Not Working, Functional Requirements, Key Entities, Measurable Outcomes, Probable causes, most likely first, and how to resolve each (+8 more)
 
 ### Community 74 - "Specification Quality Checklist: Cartas del agente de crédito (Fase 3)"
-Cohesion: 0.25
-Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Cartas del agente de crédito (Fase 3)
+Cohesion: 0.12
+Nodes (13): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Cartas del agente de crédito (Fase 3), Assumptions, Edge Cases, Feature Specification: Cartas del agente de crédito (Fase 3: el agente actúa) (+5 more)
 
 ### Community 75 - "credito-resumen-ui.test.js"
 Cohesion: 0.13
 Nodes (12): Analista, analizar(), assert, cargarFixture(), css, estilo, fs, html (+4 more)
 
 ### Community 76 - "simulate"
-Cohesion: 0.15
-Nodes (14): montarSimulador(), pintarSimulacion(), TDS simulator (#apSimulador), Fase 1: Base, Fase 2: Motor en JavaScript, Fase 3: Función y página, Fase 4: Cierre, Tasks: Motor TDS 0.1 en ¿Aparezco? (+6 more)
+Cohesion: 0.21
+Nodes (12): Fase 1: Base, Fase 2: Motor en JavaScript, Fase 3: Función y página, Fase 4: Cierre, Tasks: Motor TDS 0.1 en ¿Aparezco?, applyChanges(), deepCopy(), readInput() (+4 more)
 
 ### Community 77 - "agente-credito-validar.js"
-Cohesion: 0.17
-Nodes (20): CLAVES_PROHIBIDAS, contarOraciones(), esListaDeTextos(), esTexto(), mismasClaves(), MOTIVOS_CARTA, normalNumero(), numerosDelDato() (+12 more)
+Cohesion: 0.16
+Nodes (21): CLAVES_PROHIBIDAS, contarOraciones(), esListaDeTextos(), esTexto(), mismasClaves(), MOTIVOS_CARTA, normalNumero(), numerosDelDato() (+13 more)
 
 ### Community 78 - "herramientas-credito.test.js"
-Cohesion: 0.15
-Nodes (18): Phase 1: Setup (Shared Infrastructure), Phase 2: Foundational (Blocking Prerequisites), Phase 6: User Story 4 - Consultas duras en 12 meses (Priority: P3), Tests for User Story 4 ⚠️, CuentaEtiquetada, ReporteEtiquetado (lo único del reporte que sale del dispositivo), assert, cargarAcme() (+10 more)
+Cohesion: 0.12
+Nodes (23): MesHistorial, Campos de entrada que se usan, Implementation for User Story 4, Phase 1: Setup (Shared Infrastructure), Phase 2: Foundational (Blocking Prerequisites), Phase 6: User Story 4 - Consultas duras en 12 meses (Priority: P3), Phase 7: Polish & Cross-Cutting Concerns, Tests for User Story 4 ⚠️ (+15 more)
 
 ### Community 79 - "Tasks: UX Audit Remediation (Trust, Accessibility, Consistency)"
 Cohesion: 0.11
@@ -703,20 +699,20 @@ Cohesion: 0.15
 Nodes (12): R10. Manual y herramientas viven en el servidor, R11. Tiempo límite, R12. Pruebas sin gastar dinero, R13. Documentación y publicación, R1. Llamada a Claude: HTTP directo con `fetch`, sin SDK, R2. Parámetros del modelo, R3. El resultado final: `output_config.format` con JSON Schema, R4. Ciclo dirigido por el navegador y conversación a prueba de manipulaciones (+4 more)
 
 ### Community 85 - "tds.test.js"
-Cohesion: 0.15
-Nodes (11): loadModel(), assert, DIR, EJEMPLOS, fs, guajiro(), modelo, path (+3 more)
+Cohesion: 0.12
+Nodes (16): Motor de US1, Perfiles de US1, Phase 4: User Story 1 — Ver mi reporte cuenta por cuenta (Priority: P1) — Fase 1 🎯 MVP, Página de US1 (integración y rediseño, ver `contracts/ui-cuentas.md`), Tests y fixtures de US1 (escribir primero; deben fallar), assert, DIR, EJEMPLOS (+8 more)
 
-### Community 86 - "Review Focus"
-Cohesion: 0.18
-Nodes (11): textoFinal(), Review Focus, Task 3: `BUROS` y el bloque de varias cuentas en `cartas-bilingues.js`, Task 4: `cartas-agente.js` — borradores y aprobación, Task 5: Cierre, Contrato — `ThemoraAgenteVista` (`agente-credito-vista.js`), `renderCarta(borrador, textoFinal?) → html`, `renderMarcar({ cuentas, datos }) → html` (+3 more)
+### Community 86 - "crearHandler"
+Cohesion: 0.31
+Nodes (7): crearHandler(), etiquetadoDe(), llamarClaude(), pasoClaude(), resultadosDe(), respaldo(), responder()
 
 ### Community 87 - "Feature Specification: Automatic Address Autocomplete"
 Cohesion: 0.14
 Nodes (14): Assumptions, Current State (observed before writing this spec), Edge Cases, Feature Specification: Automatic Address Autocomplete, Functional Requirements, Key Entities, Measurable Outcomes, Requirements *(mandatory)* (+6 more)
 
-### Community 88 - "Supabase table tasas_config (threshold + launch switch)"
-Cohesion: 0.09
-Nodes (24): Constitution principles I-V check, Specification Quality Checklist (004), Banner priority: fed_objetivo > weekly 30 > weekly 15 > tesoro_10a, Categorical analytics events (tasas-*), Site-wide dismissible banner (.tasas-aviso), localStorage key themora_tasas_aviso_cerrado, Supabase table tasas_config (threshold + launch switch), Banner page list (12 pages) (+16 more)
+### Community 88 - "Mortgage Rate Watch Agent (feature 004)"
+Cohesion: 0.16
+Nodes (12): Specification Quality Checklist (004), Banner priority: fed_objetivo > weekly 30 > weekly 15 > tesoro_10a, Site-wide dismissible banner (.tasas-aviso), localStorage key themora_tasas_aviso_cerrado, Banner page list (12 pages), Assumption: banner shown on public browse pages only, Buy-a-Car rate agent (reference behavior), FR-007: Watch sources every day (+4 more)
 
 ### Community 89 - "User Scenarios & Testing *(mandatory)*"
 Cohesion: 0.14
@@ -746,17 +742,17 @@ Nodes (12): CATEGORY_ACTIONS, CATEGORY_EXPLANATIONS, CATEGORY_KEYWORDS, classify
 Cohesion: 0.23
 Nodes (14): addMessage(), addTyping(), answerFallback(), answerLocal(), aplicarIdiomaUI(), ask(), askAI(), close() (+6 more)
 
-### Community 96 - "conectarBloque"
-Cohesion: 0.40
-Nodes (5): conectarBloque(), Implementation of the shape-aware, declarative script, Phase 2: Foundational (blocks every user story), Public-site protection (gate G-BLOCK), Tests first (must FAIL before implementation)
+### Community 96 - "detalle"
+Cohesion: 0.22
+Nodes (10): conectarBloque(), Implementation of the shape-aware, declarative script, Implementation: the analyzer UI, Implementation: the module (sequential — one file), Phase 2: Foundational (blocks every user story), Phase 5: User Story 3 — I see my letter in Spanish and English side by side (Priority: P1) (Part B), Public-site protection (gate G-BLOCK), Tests first (must FAIL before implementation) (+2 more)
 
 ### Community 97 - "tasas-paginas.test.js"
 Cohesion: 0.18
 Nodes (11): assert, cssCasas(), fs, leer(), PAGINAS_CON_BANNER, PAGINAS_SIN_BANNER, path, raiz (+3 more)
 
 ### Community 98 - "zyron-leyes.test.js"
-Cohesion: 0.15
-Nodes (9): assert, { DIGESTO_LEYES }, IDIOMAS, LEYES, path, PROHIBIDAS, RAIZ, RUTAS (+1 more)
+Cohesion: 0.12
+Nodes (12): FechaCalculada, ResultadoFechaSalida, base(), assert, { DIGESTO_LEYES }, IDIOMAS, LEYES, path (+4 more)
 
 ### Community 99 - "supabase-schema.sql"
 Cohesion: 0.13
@@ -775,16 +771,20 @@ Cohesion: 0.26
 Nodes (11): aplicarCoherencia(), CAMPOS_LISTA, CAMPOS_TEXTO, corsHeaders(), ETIQUETAS, handler(), jsonResponse(), normalizar() (+3 more)
 
 ### Community 103 - "autocompletar-direccion.test.js"
-Cohesion: 0.12
-Nodes (18): Gate G-TESTS: node --test green before publish, Post-Design Constitution Re-check, Step 1: automated checks (node --test tests/*.test.js), Implementation: the analyzer UI, Implementation: the module (sequential — one file), Phase 5: User Story 3 — I see my letter in Spanish and English side by side (Priority: P1) (Part B), Tests for User Story 3, assert (+10 more)
+Cohesion: 0.20
+Nodes (8): assert, consolaReal, errores, llamadas, modulo, path, RUTA, test
 
-### Community 104 - "Feature Specification: UX Audit Remediation (Trust, Accessibility, Consistency)"
-Cohesion: 0.12
-Nodes (16): Assumptions, Edge Cases, Feature Specification: UX Audit Remediation (Trust, Accessibility, Consistency), Functional Requirements, Implementation Order, Key Entities, Measurable Outcomes, Objectives (+8 more)
+### Community 104 - "Data Model: address blocks and letters"
+Cohesion: 0.33
+Nodes (10): ThemoraCartas.armar(tipo, datos) -> resultado, 2. Letter (Part B), 3. Finding key (analyzer), Data Model: Address Autocomplete Everywhere + Bilingual Letters, Letter block (`bloque`), Letter input (datos), Letter result (`resultado`), Data Model: address blocks and letters (+2 more)
+
+### Community 105 - "004-mortgage-rate-agent/tasks.md"
+Cohesion: 0.22
+Nodes (7): Contract: public snapshot (`tasas-hipoteca`), Failure behavior, Guarantees the tests pin, Response `200 application/json; charset=utf-8`, Data Model: Mortgage Rate Watch Agent, Derived (never stored), Relationships
 
 ### Community 106 - "agente-credito-cliente.js"
-Cohesion: 0.17
-Nodes (22): analisisLocal(), analizarConAgente(), difNombre(), ejecutarPedido(), enviar(), etiquetarCuenta(), etiquetarIdentidad(), etiquetarReporte() (+14 more)
+Cohesion: 0.18
+Nodes (21): analisisLocal(), analizarConAgente(), difNombre(), ejecutarPedido(), enviar(), etiquetarCuenta(), etiquetarIdentidad(), etiquetarReporte() (+13 more)
 
 ### Community 107 - "Tasks: One Visual System (012)"
 Cohesion: 0.17
@@ -799,8 +799,8 @@ Cohesion: 0.20
 Nodes (11): agente, assert, crear(), ENV, fs, fx(), JUEVES, LUNES (+3 more)
 
 ### Community 110 - "evaluateDocument"
-Cohesion: 0.06
-Nodes (26): Aviso de envío «Se queda en tu dispositivo», Analizador local del reporte de crédito (el archivo no sale del teléfono), Date of first delinquency (fecha de primera morosidad), detectCreditBureau(), evaluateDocument(), extractAccountsSummary(), extractInquiriesSummary(), extractPdf() (+18 more)
+Cohesion: 0.07
+Nodes (23): tiposDeTarjeta(), Aviso de envío «Se queda en tu dispositivo», Analizador local del reporte de crédito (el archivo no sale del teléfono), Date of first delinquency (fecha de primera morosidad), detectCreditBureau(), evaluateDocument(), extractAccountsSummary(), extractInquiriesSummary() (+15 more)
 
 ### Community 111 - "Herramientas page (Themora tools hub)"
 Cohesion: 0.20
@@ -815,44 +815,44 @@ Cohesion: 0.21
 Nodes (9): destinoSeguro(), esComun(), esPatron(), evaluar(), mensajeError(), normalizar(), problemaCorreo(), conectarMedidor() (password strength meter) (+1 more)
 
 ### Community 114 - "admin-pagos.js"
-Cohesion: 0.27
-Nodes (11): data(), {esAdmin,usuarioDelToken,supa,stripe,idempotencyKey}, H, handler(), out(), {SERVICIOS,MAX_TASAS_CENTAVOS}, crypto, esAdmin() (+3 more)
+Cohesion: 0.17
+Nodes (15): data(), {esAdmin,usuarioDelToken,supa,stripe,idempotencyKey}, H, handler(), out(), {SERVICIOS,MAX_TASAS_CENTAVOS}, crypto, esAdmin() (+7 more)
 
 ### Community 115 - "Contract: Site-wide UI rules"
 Cohesion: 0.18
 Nodes (11): Already compliant: skip link, <main>, lang, reduced-motion rule, aria-expanded menu, Weak hero hierarchy (invisible secondary button; .talk-card competes), Calls to action, Contract: Site-wide UI rules, Floating layers, Focus, One primary (.btn-gold) action per hero, Shape (+3 more)
 
-### Community 116 - "Entities"
-Cohesion: 0.18
-Nodes (11): Agent Run — `tasas_corridas`, Alert Threshold + launch switch — `tasas_config` (one row, `id = 'principal'`), Data Model: Mortgage Rate Watch Agent, Derived (never stored), Entities, Published snapshot — `tasas_publicado` (one row, `id = 'actual'`), Rate Alert — `tasas_alertas`, Rate Reading — `tasas_lecturas` (+3 more)
+### Community 116 - "Contract: Admin payment operations"
+Cohesion: 0.28
+Nodes (9): buscar(), Behavior — `aprobarPago`, Behavior — `reembolsar`, Contract: Admin payment operations, Request, Responses, Tests (`tests/admin-pagos.test.js`), Implementation for User Story 4 (+1 more)
 
 ### Community 117 - "Instrucciones: activar login en Themora"
 Cohesion: 0.18
 Nodes (8): Instrucciones: activar login en Themora, SUPABASE_URL / SUPABASE_ANON_KEY en auth.js, Plantillas de correo de Supabase en espanol, INSTRUCCIONES-LOGIN-SOCIAL.md, Rate limits y SMTP propio, Site URL y Redirect URLs de Supabase, supabase-schema.sql, Tablas analisis_credito y calculos_hipoteca (RLS)
 
 ### Community 118 - "Research: Mortgage Rate Watch Agent"
-Cohesion: 0.20
-Nodes (10): R12. Anything else the constitution needs, R1. Which source is the headline, and can we display it?, R2. The cadence reality (important for the user), R3. Which "supporting signals" are usable? (FR-015 vs FR-018), R4. Where does the agent run?, R5. Where is the data stored and how do pages read it?, R6. How does the site know it is "safe to show"? (Constitution: docs before mention), R7. Alert rules that are testable and cannot flap (+2 more)
+Cohesion: 0.18
+Nodes (11): R12. Anything else the constitution needs, R1. Which source is the headline, and can we display it?, R2. The cadence reality (important for the user), R3. Which "supporting signals" are usable? (FR-015 vs FR-018), R4. Where does the agent run?, R5. Where is the data stored and how do pages read it?, R6. How does the site know it is "safe to show"? (Constitution: docs before mention), R7. Alert rules that are testable and cannot flap (+3 more)
 
 ### Community 119 - "Tasks: Mortgage Rate Watch Agent (Buy-a-House page)"
-Cohesion: 0.13
-Nodes (15): tipoDeCorrida(), Dependencies & execution order, Format: `[ID] [P?] [Story] Description`, Global rules for every task, Implementation strategy, Launch commit (one commit; perform only after the owner approves T055 and completes T056; in this order), Owner actions (not part of the implementation tasks; do not perform until the owner says so), Parallel opportunities (+7 more)
+Cohesion: 0.10
+Nodes (20): construirSnapshotTitular(), tipoDeCorrida(), Dependencies & execution order, Format: `[ID] [P?] [Story] Description`, Global rules for every task, Implementation for User Story 1, Implementation strategy, Launch commit (one commit; perform only after the owner approves T055 and completes T056; in this order) (+12 more)
 
 ### Community 120 - "Contract: Customer Portal session"
 Cohesion: 0.40
 Nodes (5): Behavior, Contract: Customer Portal session, Request, Responses, Tests (`tests/pagos-portal.test.js`)
 
 ### Community 121 - "estado"
-Cohesion: 0.15
-Nodes (17): How the owner reads the result, New action: `estado` (no Google call, no cost), Complexity Tracking, Constitution Check, Delivery order (input for `/speckit-tasks`), Documentation (this feature), Implementation Plan: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters, Principle I: honestidad y no asesoria (+9 more)
+Cohesion: 0.13
+Nodes (22): Complexity Tracking, Delivery order (input for `/speckit-tasks`), Documentation (this feature), Implementation Plan: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters, Post-Design Constitution Re-check, Project Structure, Source Code (repository root), Summary (+14 more)
 
 ### Community 122 - "011-ux-audit-remediation/spec.md"
-Cohesion: 0.15
-Nodes (10): Spec quality checklist (011), Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: UX Audit Remediation, empresa.js slot modes (corta, full, operador), Design tokens (styles.css :root) (+2 more)
+Cohesion: 0.09
+Nodes (18): Spec quality checklist (011), Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: UX Audit Remediation, 1. Trust (Phase 1), 2. Accessibility (Phase 2) (+10 more)
 
 ### Community 123 - "Tasks: Herramientas de cálculo del agente de crédito (Fase 1)"
-Cohesion: 0.11
-Nodes (18): Dependencies & Execution Order, Format: `[ID] [P?] [Story] Description`, Implementation for User Story 2, Implementation Strategy, Incremental Delivery, MVP First (User Story 1 Only), Notes, Parallel Example: Setup (+10 more)
+Cohesion: 0.10
+Nodes (20): Dependencies & Execution Order, Format: `[ID] [P?] [Story] Description`, Implementation for User Story 2, Implementation Strategy, Incremental Delivery, MVP First (User Story 1 Only), Notes, Parallel Example: Setup (+12 more)
 
 ### Community 124 - "Research — Resumen del consumidor (014)"
 Cohesion: 0.18
@@ -907,8 +907,8 @@ Cohesion: 0.18
 Nodes (10): `buscarPosiblesDuplicados(cuentas) → PosibleDuplicado[]`, `calcularFechaSalida(cuenta, { hoy }) → ResultadoFechaSalida`, `calcularUtilizacion(cuentas) → ResultadoUtilizacion`, `CATALOGO`, `contarConsultasDuras(consultas, { hoy, meses = 12 }) → ConteoConsultasDuras`, Contrato — `ThemoraHerramientas` (`herramientas-credito.js`), `ejecutar(nombre, reporte, opciones) → resultado`, Ejemplo (ACME/ZETA, hoy `2026-10-01`) (+2 more)
 
 ### Community 138 - "Implementation Plan: Herramientas de cálculo del agente de crédito (Fase 1)"
-Cohesion: 0.15
-Nodes (13): rango(), Complexity Tracking, Constitution Check, Documentation (this feature), Fases de implementación (para `/speckit-tasks`), Implementation Plan: Herramientas de cálculo del agente de crédito (Fase 1), Project Structure, Riesgos (+5 more)
+Cohesion: 0.12
+Nodes (14): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Herramientas de cálculo del agente de crédito (Fase 1), Complexity Tracking, Documentation (this feature), Fases de implementación (para `/speckit-tasks`) (+6 more)
 
 ### Community 139 - "Research: Themora Digital Score (TDS) on "¿Aparezco?""
 Cohesion: 0.20
@@ -930,9 +930,9 @@ Nodes (16): Contract: `GET /.netlify/functions/ubicacion`, Guarantees, Headers (
 Cohesion: 0.20
 Nodes (6): AHORA_CASA, assert, cadenas(), L, T, test
 
-### Community 144 - "Quickstart: prove the feature works end to end"
-Cohesion: 0.07
-Nodes (27): Agregar el autocompletado a un formulario nuevo, Antes de mencionarlo al público, Autocompletado de direcciones con Google — publicar, comprobar y qué hacer si falla, Deploy, key, daily quota cap and browser verification steps, Manual entry fallback when autocomplete fails, Paso 1 — Publica con la línea de comandos de Netlify, Paso 2 — Comprueba el servicio con un solo comando, Paso 3 — La llave de Google (+19 more)
+### Community 144 - "INSTRUCCIONES-DIRECCIONES.md"
+Cohesion: 0.12
+Nodes (14): Agregar el autocompletado a un formulario nuevo, Antes de mencionarlo al público, Autocompletado de direcciones con Google — publicar, comprobar y qué hacer si falla, Deploy, key, daily quota cap and browser verification steps, Manual entry fallback when autocomplete fails, Paso 1 — Publica con la línea de comandos de Netlify, Paso 2 — Comprueba el servicio con un solo comando, Paso 3 — La llave de Google (+6 more)
 
 ### Community 145 - "doc-paginas.js"
 Cohesion: 0.44
@@ -943,16 +943,16 @@ Cohesion: 0.23
 Nodes (10): Admin Pagos approve panel (aprobarPago), usuarioDelToken(), H, handler(), out(), {usuarioDelToken,supa,stripe}, H, handler() (+2 more)
 
 ### Community 147 - "Data Model — Lector de reportes de crédito"
-Cohesion: 0.11
-Nodes (19): Asunto — Fase 2, Aviso, Comparacion — Fase 3, Consulta, Cuenta, Data Model — Lector de reportes de crédito, Disputa — Fase 5, Entidades de fases posteriores (solo diseño) (+11 more)
+Cohesion: 0.17
+Nodes (12): Asunto — Fase 2, Aviso, Comparacion — Fase 3, Consulta, Cuenta, Data Model — Lector de reportes de crédito, Disputa — Fase 5, Entidades de fases posteriores (solo diseño) (+4 more)
 
-### Community 148 - "Implementation Plan: Cartas del agente de crédito (Fase 3)"
-Cohesion: 0.18
-Nodes (11): Constitution Check, Decisiones (research), Implementation Plan: Cartas del agente de crédito (Fase 3), Summary, Technical Context, Cartas del agente (Fase 3) — Implementation Plan, Cobertura, Global Constraints (+3 more)
+### Community 148 - "Review Focus"
+Cohesion: 0.14
+Nodes (16): textoFinal(), Constitution Check, Decisiones (research), Implementation Plan: Cartas del agente de crédito (Fase 3), Summary, Technical Context, Cartas del agente (Fase 3) — Implementation Plan, Cobertura (+8 more)
 
-### Community 149 - "Tooling memory: graphify problems in this project"
-Cohesion: 0.09
-Nodes (21): Query memory: which pages load which scripts (corrected), Page→script load map (auth.js, cms.js, nav.js, empresa.js, analytics.js on every page), Graph gap: HTML <script src> includes not extracted as edges, Query memory: TDS data model feeds into (corrected), Graph gap: calcular() name collision (tds.js:137 vs mortgage-accelerator.js), Query memory: UI/UX audit via graph (dead end), Graph gap: no CSS rules, form fields, focus styles or srcdoc content, Tooling memory: graphify problems in this project (+13 more)
+### Community 149 - "Feature Specification: UX Audit Remediation (Trust, Accessibility, Consistency)"
+Cohesion: 0.05
+Nodes (37): Query memory: which pages load which scripts (corrected), Page→script load map (auth.js, cms.js, nav.js, empresa.js, analytics.js on every page), Graph gap: HTML <script src> includes not extracted as edges, Query memory: TDS data model feeds into (corrected), Graph gap: calcular() name collision (tds.js:137 vs mortgage-accelerator.js), Query memory: UI/UX audit via graph (dead end), Graph gap: no CSS rules, form fields, focus styles or srcdoc content, Tooling memory: graphify problems in this project (+29 more)
 
 ### Community 150 - "Implementation Plan: Themora Digital Score (TDS) on "¿Aparezco?""
 Cohesion: 0.22
@@ -966,9 +966,9 @@ Nodes (10): eventosWebhook action, eventos_pago_webhook table, Themora Payment C
 Cohesion: 0.22
 Nodes (9): Before moving to Stripe live mode, Prerequisites, Quickstart: Validating the Themora Payment Center, Scenario 1 — One-time catalog payment (User Story 1), Scenario 2 — Declined card (User Story 1, edge case), Scenario 3 — Duplicate webhook delivery (User Story 5), Scenario 4 — Refund (User Story 4), Scenario 5 — Webhook signature tampering (+1 more)
 
-### Community 153 - "Quickstart: Validate UX Audit Remediation"
-Cohesion: 0.18
-Nodes (10): 1. Trust (Phase 1), 2. Accessibility (Phase 2), 3. Label sizes, 4. Performance (Phase 3), 5. Shape and color (Phases 4-5), 6. Focus and polish (Phase 6), Done when, Prerequisites (+2 more)
+### Community 153 - "Memory: spec 012 implementation summary and root cause of the page jump"
+Cohesion: 0.25
+Nodes (4): Memory: spec 012 implementation summary and root cause of the page jump, Pending: commit and publish (git push origin master:main) with approval, T002 Before screenshots of 18 pages, T034 graphify update and owner report, no commit/push
 
 ### Community 154 - "revisar-negocio-tds.test.js"
 Cohesion: 0.28
@@ -1008,7 +1008,7 @@ Nodes (8): R1 — Where the approximate location comes from, R2 — Caching and 
 
 ### Community 164 - "tasas-agente (Netlify scheduled function)"
 Cohesion: 0.17
-Nodes (17): Cache-Control public s-maxage=300 policy, GET /.netlify/functions/tasas-hipoteca contract, Reading states verificada / retenida, Supabase table tasas_alertas (alerts), Supabase table tasas_corridas (agent runs), Supabase table tasas_lecturas (rate readings), Supabase table tasas_publicado (published snapshot), supabase-schema.sql (five new tables) (+9 more)
+Nodes (14): Cache-Control public s-maxage=300 policy, GET /.netlify/functions/tasas-hipoteca contract, Guarantees pinned by tests (values unaltered), Freddie Mac PMMS (headline source), PMMS_history.csv feed, Supabase table tasas_publicado (published snapshot), tasas-agente (Netlify scheduled function), TASAS_FORZAR_TIPO test override env var (+6 more)
 
 ### Community 165 - "loadLists"
 Cohesion: 0.29
@@ -1026,9 +1026,9 @@ Nodes (4): frenoActivo() (soft retry brake), showMessage(), cabecerasServicio(),
 Cohesion: 0.25
 Nodes (7): 1. Pruebas de la feature, 2. Zona horaria (determinismo), 3. Sin regresiones (SC-007), 4. Prueba manual rápida, 5. Después de cambiar código, Quickstart — validar las herramientas de cálculo (016), Requisitos
 
-### Community 169 - "Tests for User Story 1 (write first; they fail until implementation)"
-Cohesion: 0.25
-Nodes (9): construirSnapshotTitular(), fechaMDYaIso(), numeroOnull(), parsePmms(), Implementation for User Story 1, Phase 3: User Story 1 — See today's reference rates with source and date (Priority: P1) 🎯 MVP, Phase 6: User Story 4 — Understand where the numbers come from (Priority: P2), Tests for User Story 1 (write first; they fail until implementation) (+1 more)
+### Community 169 - "T033: create cartas-bilingues.js module"
+Cohesion: 0.22
+Nodes (8): Letter invariants (paired blocks, fact parity, verbatim text, pure English), TODO(NATIVE_REVIEW) marker, R12. English wording rules, R20: letter test strategy (parity, leakage, honesty), FR-017: both columns contain the same facts, Letter block with es and en text (entity), Letter draft (entity), T033: create cartas-bilingues.js module
 
 ### Community 170 - "admin-pagos.md"
 Cohesion: 0.21
@@ -1038,13 +1038,13 @@ Nodes (9): aprobarPago action, reembolsar action (refund with over-refund guard)
 Cohesion: 0.29
 Nodes (7): Phase 0 Research: Themora Payment Center, R1: Reconcile self-service checkout with the existing "never charges alone" policy, R2: Stripe integration approach — raw REST vs. `stripe` npm SDK, R3: Content-Security-Policy impact of Stripe Checkout / Customer Portal, R5: Idempotency and duplicate-webhook handling, R6: Subscriptions as "ready but inactive" infrastructure, R7: Reuse of existing admin/session auth
 
-### Community 172 - "Contract: floating houses, panel, states, wording"
-Cohesion: 0.14
-Nodes (14): Contract: floating houses, panel, states, wording, Categorical analytics events (tasas-casa-vista, tasas-casa-abierta, tasas-casas-cerradas), Failure and degradation: houses simply do not appear, Script-created markup (div.casas-flotantes, button.casa, #casasPanel), pintarCasas (draw houses from snapshot), Refresh every 15 minutes while tab visible, textoCasa, textoPanelCasa (+6 more)
+### Community 172 - "Constitution Check"
+Cohesion: 0.28
+Nodes (9): Constitution Check, Daily cron 13:00 UTC (9am EDT / 8am EST), Gate G-BLOCK, Gate G-SETUP, Gate G-SRC (owner approves source list), Gate G-TESTS, INSTRUCCIONES-TASAS.md setup guide, netlify.toml schedule and 404 rule (+1 more)
 
 ### Community 173 - "013-lector-credito-metodologia/spec.md"
 Cohesion: 0.08
-Nodes (17): analyzer.js (orphan analyzer, deleted), Categorías de asunto (FACTUAL_ERROR, DUPLICATE, ...), FLUJO DE TRABAJO DEL LECTOR DE CREDITO (propuesta), THEMORA-MASTER-SPEC (metodología de 8 capas, 12 pasos), Periodo de reporte: 7 años desde DOFD + 180 días (FCRA §605), Vocabulario común de códigos de pago, Content Quality, Feature Readiness (+9 more)
+Nodes (16): Categorías de asunto (FACTUAL_ERROR, DUPLICATE, ...), FLUJO DE TRABAJO DEL LECTOR DE CREDITO (propuesta), THEMORA-MASTER-SPEC (metodología de 8 capas, 12 pasos), Periodo de reporte: 7 años desde DOFD + 180 días (FCRA §605), Vocabulario común de códigos de pago, Content Quality, Feature Readiness, Notes (+8 more)
 
 ### Community 174 - "montarSugerenciasCorreo"
 Cohesion: 0.47
@@ -1079,20 +1079,20 @@ Cohesion: 0.33
 Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Mortgage Rate Watch Agent (Buy-a-House page)
 
 ### Community 182 - "Contract: Bilingual letter module and result markup"
-Cohesion: 0.11
-Nodes (25): API, ThemoraCartas.armar(tipo, datos) -> resultado, Contract: Bilingual letter module and result markup, ETIQUETAS_HALLAZGO finding label map, ETIQUETAS_TIPO_DATO label map, formatearFecha(fecha, es|en), Layout rules, Letter structure per type (identity, bureau-dispute, debt-validation) (+17 more)
+Cohesion: 0.12
+Nodes (16): API, Contract: Bilingual letter module and result markup, ETIQUETAS_HALLAZGO finding label map, ETIQUETAS_TIPO_DATO label map, formatearFecha(fecha, es|en), Layout rules, Letter structure per type (identity, bureau-dispute, debt-validation), Letter structure (identical block ids in both languages) (+8 more)
 
 ### Community 183 - "User Scenarios & Testing *(mandatory)*"
 Cohesion: 0.12
 Nodes (13): Content Quality, Feature Readiness, Requirement Completeness, Specification Quality Checklist: El agente en la página del analizador (Fase 4), Assumptions, Edge Cases, Feature Specification: El agente en la página del analizador (Fase 4), Success Criteria *(mandatory)* (+5 more)
 
 ### Community 184 - "GET /.netlify/functions/tasas-admin contract"
-Cohesion: 0.18
-Nodes (13): Authorization: session + app_metadata.is_admin (401/403), admin.html Agente de tasas placement, diasEsperados: last 14 expected days, missed run visible, GET /.netlify/functions/tasas-admin contract, Error text is short category only (sanearErrorFuente), admin.html Agente de tasas section, tasas-admin (owner status function), tasas-hipoteca-logica.js (pure logic module) (+5 more)
+Cohesion: 0.11
+Nodes (26): Authorization: session + app_metadata.is_admin (401/403), admin.html Agente de tasas placement, diasEsperados: last 14 expected days, missed run visible, GET /.netlify/functions/tasas-admin contract, Error text is short category only (sanearErrorFuente), Alert states activa -> superada / despejada, Reading states verificada / retenida, Supabase table tasas_alertas (alerts) (+18 more)
 
 ### Community 185 - "paraGuardar"
-Cohesion: 0.11
-Nodes (18): paraGuardar(), Complexity Tracking, Constitution Check, Documentation (this feature), Implementation Plan: Resumen del consumidor en el analizador de crédito, Orden de entrega (por historia), Project Structure, Source Code (repository root) (+10 more)
+Cohesion: 0.07
+Nodes (27): paraGuardar(), Analisis (nuevo, salida de `ThemoraAnalista.analizar(reporte, opciones?)`), Cambios en `Identidad` (lector-credito.js), Data Model — Resumen del consumidor (014), GrupoConsultas, HallazgoLegal, PasoAgente, ResumenGeneral (+19 more)
 
 ### Community 186 - "Specification Quality Checklist: Themora Digital Score (TDS) on "¿Aparezco?""
 Cohesion: 0.33
@@ -1102,9 +1102,9 @@ Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, 
 Cohesion: 0.33
 Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: "¿Aparezco?" fills in my city from my location
 
-### Community 188 - "Specification Quality Checklist: Herramientas de cálculo del agente de crédito (Fase 1)"
+### Community 188 - "Quickstart B: manual walkthrough"
 Cohesion: 0.25
-Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Herramientas de cálculo del agente de crédito (Fase 1)
+Nodes (7): Categorical analytics events (tasas-*), Quickstart B: manual walkthrough, R9: Front-end shape (two root files, banner pages), FR-021: Categorical-only analytics, FR-022: No sign-in; failures never break the page, SC-005: Failure never blanks the page, SC-008: Analytics carry no values
 
 ### Community 189 - "Q: Por qué parpadea la página al navegar y por qué el encabezado no se ve igual en credito"
 Cohesion: 0.40
@@ -1115,8 +1115,8 @@ Cohesion: 0.28
 Nodes (7): deleteAllMyData(), eliminarCuenta(), sondearBorrado() (probe eliminar-cuenta), handler(), HEADERS, respuesta(), usuarioDelToken()
 
 ### Community 191 - "011-ux-audit-remediation/data-model.md"
-Cohesion: 0.20
-Nodes (9): Field borders use --line (1.33:1) instead of --borde-campo, Labels below .75rem, Labels ≥ .75rem; text ≥4.5:1, --borde-campo token (#6E8890), Contact channels (`whatsapp.js`, owner-filled), Data Model: UX Audit Remediation, Design tokens (`styles.css :root`), --gold alias (--franja-celeste) (+1 more)
+Cohesion: 0.15
+Nodes (11): Radii other than 6px across pages, Shape rule: 6px surfaces, pill chips, 50% avatars, Contact channels (`whatsapp.js`, owner-filled), Data Model: UX Audit Remediation, Design tokens (`styles.css :root`), empresa.js slot modes (corta, full, operador), --gold alias (--franja-celeste), Legal identity (`empresa.js`, owner-filled) (+3 more)
 
 ### Community 192 - "README: Themora casa y auto separados"
 Cohesion: 0.40
@@ -1126,9 +1126,9 @@ Nodes (5): README: Themora casa y auto separados, comprar-auto.html (mapa de 50 
 Cohesion: 0.40
 Nodes (5): 1. Block on `comprar-casa.html` (`#tasas`), 2. Banner (all pages in the banner list), 3. Wording rules (pinned by tests, SC-006), 4. Analytics (categorical only, FR-021), Contract: on-page block, banner and wording rules
 
-### Community 194 - "Feature Specification: Cartas del agente de crédito (Fase 3: el agente actúa)"
-Cohesion: 0.25
-Nodes (8): Assumptions, Edge Cases, Feature Specification: Cartas del agente de crédito (Fase 3: el agente actúa), Success Criteria *(mandatory)*, User Scenarios & Testing *(mandatory)*, User Story 1 - El agente propone las cartas que corresponden (Priority: P1), User Story 2 - Ver el borrador de cada carta en español e inglés (Priority: P1), User Story 3 - Aprobar una carta: siempre decide el consumidor (Priority: P1)
+### Community 194 - "FR-006: collector and business addresses included"
+Cohesion: 0.47
+Nodes (3): Specification Quality Checklist, Gate G-PRIV: update privacy text for all forms, Spec 001 (FR-016, FR-017, FR-015)
 
 ### Community 195 - "Specification Quality Checklist: Themora Payment Center"
 Cohesion: 0.40
@@ -1166,9 +1166,9 @@ Nodes (7): lib/pagos-stripe.js (shared Stripe REST helper), Payment Center Quick
 Cohesion: 0.18
 Nodes (11): `auditoria_pagos` — Audit Log Entry, Data Model: Themora Payment Center, `disputas` — Dispute (chargeback), Entities, `eventos_pago_webhook` — Webhook Event (idempotency + admin visibility), `pagos_config` — Feature gate (subscriptions readiness), `pagos` — Payment (one-time catalog charge), `reembolsos` — Refund (+3 more)
 
-### Community 206 - "Contract: owner status (`tasas-admin`)"
-Cohesion: 0.50
-Nodes (3): Contract: owner status (`tasas-admin`), Front-end placement, Response `200`
+### Community 206 - "diasEsperados"
+Cohesion: 0.20
+Nodes (9): diaIso(), diasEsperados(), horasDesdeUltimaOk(), sanearErrorFuente(), Contract: owner status (`tasas-admin`), Front-end placement, Owner-view requirements it must satisfy, Response `200` (+1 more)
 
 ### Community 207 - "Contract: TDS block on `aparezco.html`"
 Cohesion: 0.50
@@ -1186,9 +1186,9 @@ Nodes (3): Aviso Legal (no somos prestamistas ni asesores con licencia), Aside Q
 Cohesion: 1.00
 Nodes (3): Themora header logo: gold and navy ribbon T mark, Hero: Themora marble goddess statue with owl, tarot-style card (Wisdom, Opportunity, Clarity, Prosperity), Themora brand: A wiser today, a brighter tomorrow
 
-### Community 227 - "valoresParaBloque"
-Cohesion: 0.29
-Nodes (6): limpio(), valoresParaBloque(), 1. Address block (Part A), Address detail (returned by the service, unchanged), Address suggestion (returned by the service, unchanged), Composed values per shape (pure function `valoresParaBloque`)
+### Community 227 - "1. Address block (Part A)"
+Cohesion: 0.50
+Nodes (4): 1. Address block (Part A), Address detail (returned by the service, unchanged), Address suggestion (returned by the service, unchanged), Composed values per shape (pure function `valoresParaBloque`)
 
 ### Community 229 - "Quickstart: validate "¿Aparezco?" city from location"
 Cohesion: 0.29
@@ -1198,17 +1198,13 @@ Nodes (6): 1. Unit tests (rules), 2. Function contract, 3. On the deployed site 
 Cohesion: 0.33
 Nodes (6): 1. Scoring rules, 2. Function response, 3. Whole suite, 4. On the deploy preview, Prerequisites, Quickstart: validate the Themora Digital Score
 
-### Community 232 - "Phase 4: User Story 1 — Ver mi reporte cuenta por cuenta (Priority: P1) — Fase 1 🎯 MVP"
-Cohesion: 0.33
-Nodes (6): Motor de US1, Perfiles de US1, Phase 4: User Story 1 — Ver mi reporte cuenta por cuenta (Priority: P1) — Fase 1 🎯 MVP, Página de US1 (integración y rediseño, ver `contracts/ui-cuentas.md`), Tests y fixtures de US1 (escribir primero; deben fallar), esperado()
+### Community 232 - "Supabase table tasas_config (threshold + launch switch)"
+Cohesion: 0.47
+Nodes (5): Supabase table tasas_config (threshold + launch switch), Entity: Alert Threshold, Entity: Rate Alert, FR-010: Alert on >= threshold move or Fed target change, FR-014: Single owner-adjustable threshold
 
-### Community 233 - "3. Formato del JSON esperado"
-Cohesion: 0.33
-Nodes (6): 3.1 `cuentas[]`, 3.2 `inconsistencias[]`, 3.3 `plan[]`, 3.4 `noDebeAparecer[]`, 3.5 Esquema y validación del esperado, 3. Formato del JSON esperado
-
-### Community 235 - "6. Cómo se compara (capa C)"
-Cohesion: 0.33
-Nodes (6): 6.1 Cuentas, 6.2 Inconsistencias, 6.3 Plan, 6.4 Metas, 6.5 Línea base y regresión, 6. Cómo se compara (capa C)
+### Community 233 - "parseKeepingFloats"
+Cohesion: 1.00
+Nodes (3): parseKeepingFloats(), string(), value()
 
 ### Community 238 - "Guardar análisis en la cuenta (CCAuth.saveAnalysis)"
 Cohesion: 0.67
@@ -1219,72 +1215,60 @@ Cohesion: 0.29
 Nodes (6): 1. Crear el contador en Supabase, 2. Crear el secreto de los pases en Netlify, 3. Poner un límite de gasto en Anthropic (recomendado), 4. Probar con Claude de verdad (cuesta centavos), Agente de crédito con IA — cómo activarlo, Qué guarda y qué no
 
 ### Community 275 - "modelFromText"
-Cohesion: 0.29
-Nodes (9): check(), modelFromDict(), modelFromText(), parseKeepingFloats(), string(), value(), plain(), readInput() (+1 more)
+Cohesion: 0.31
+Nodes (6): check(), loadModel(), modelFromDict(), modelFromText(), plain(), TDSModelError
 
 ### Community 276 - "Implementation Plan: UX Audit Remediation (Trust, Accessibility, Consistency)"
 Cohesion: 0.17
 Nodes (11): Risk: cms.js:26 and admin color editor write legacy tokens (765 uses), Complexity Tracking, Constitution Check, Documentation (this feature), Implementation Order, 011 six-phase implementation order (Trust→Polish), Implementation Plan: UX Audit Remediation (Trust, Accessibility, Consistency), Project Structure (+3 more)
 
 ### Community 277 - "Feature Specification: Herramientas de cálculo del agente de crédito (Fase 1)"
-Cohesion: 0.13
-Nodes (15): Alcance, Assumptions, Edge Cases, Feature Specification: Herramientas de cálculo del agente de crédito (Fase 1), Functional Requirements, Key Entities *(include if feature involves data)*, Measurable Outcomes, Requirements *(mandatory)* (+7 more)
+Cohesion: 0.14
+Nodes (14): Alcance, Edge Cases, Feature Specification: Herramientas de cálculo del agente de crédito (Fase 1), Functional Requirements, Key Entities *(include if feature involves data)*, Measurable Outcomes, Requirements *(mandatory)*, Resultados de referencia (ACME/ZETA, hoy `2026-10-01`) (+6 more)
 
 ### Community 279 - "Contract: Address suggestion service"
-Cohesion: 0.18
-Nodes (13): Contract: Address suggestion service, detalle action, estado action (vivo, configurado; no Google call, no cost), Existing actions (unchanged), GOOGLE_PLACES_API_KEY env variable, Order of checks: method, origin, body, estado, key, session, limits, Google, sugerir action, Tests (added to `tests/autocompletar-direccion.test.js`) (+5 more)
+Cohesion: 0.16
+Nodes (15): Contract: Address suggestion service, detalle action, estado action (vivo, configurado; no Google call, no cost), Existing actions (unchanged), GOOGLE_PLACES_API_KEY env variable, How the owner reads the result, New action: `estado` (no Google call, no cost), Order of checks: method, origin, body, estado, key, session, limits, Google (+7 more)
 
 ### Community 280 - "supa"
 Cohesion: 0.44
 Nodes (8): supa(), verificarFirmaWebhook(), dispatch(), H, handler(), out(), patch(), {verificarFirmaWebhook,supa}
 
 ### Community 281 - "pago.js"
-Cohesion: 0.47
-Nodes (8): comparacionMedios(), listaMedios(), notaFinal(), pintar(), pintarPrecios(), quienCobra(), textoPaso3(), textoPrecio()
-
-### Community 282 - "Specification Quality Checklist: Resumen del consumidor en el analizador de crédito"
-Cohesion: 0.33
-Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Resumen del consumidor en el analizador de crédito
+Cohesion: 0.38
+Nodes (10): comparacionMedios(), listaMedios(), notaFinal(), pausarFormularios(), pintar(), pintarPausa(), pintarPrecios(), quienCobra() (+2 more)
 
 ### Community 283 - "agente-credito-vista.test.js"
-Cohesion: 0.18
-Nodes (12): Functional Requirements, Key Entities, Requirements *(mandatory)*, assert, AY, borrador(), C, CA (+4 more)
+Cohesion: 0.11
+Nodes (19): `ThemoraLectorPerfiles`, Contratos — Cartas del agente (018), Propuesta (en el resultado del agente), `ThemoraCartas` (cambios en `cartas-bilingues.js`), `ThemoraCartasAgente` (`cartas-agente.js`, nuevo, UMD), Functional Requirements, Key Entities, Requirements *(mandatory)* (+11 more)
 
-### Community 285 - "agente-credito.js"
-Cohesion: 0.12
-Nodes (24): { barreraDatosPersonales, validarCartas, validarResultado }, crearHandler(), etiquetadoDe(), llamarClaude(), pasoClaude(), resultadosDe(), crypto, { firmarPase, leerPase, hmacConversacion } (+16 more)
+### Community 285 - "agente-credito-pase.js"
+Cohesion: 0.31
+Nodes (10): canonico(), crypto, firmarPase(), hmac(), hmacConversacion(), leerPase(), barreraDatosPersonales(), revisarTexto() (+2 more)
 
 ### Community 286 - "preview-casas.js"
 Cohesion: 0.20
 Nodes (10): R7. Fechas, CASOS, conHoras(), fs, http, iso(), path, RAIZ (+2 more)
-
-### Community 287 - "Bloque B — el agente en la página"
-Cohesion: 0.18
-Nodes (10): Bloque A — terminar la 014, Bloque B — el agente en la página, Cobertura, El agente en la página del analizador (Fase 4) — Implementation Plan, Review Focus, Task 1: Tareas pendientes de la 014 (US2, US3, US4, US5), Task 3: Vista del agente — tarjetas de cartas, Task 4: Cableado en `credito.html` (+2 more)
 
 ### Community 288 - "Implementation Plan: Lector de reportes de crédito — Fase 1 (lectura cuenta por cuenta)"
 Cohesion: 0.25
 Nodes (8): Complexity Tracking, Constitution Check, Documentation (this feature), Implementation Plan: Lector de reportes de crédito — Fase 1 (lectura cuenta por cuenta), Project Structure, Source Code (repository root), Summary, Technical Context
 
 ### Community 290 - "Task list for feature 004"
-Cohesion: 0.13
-Nodes (23): PALABRAS_PROHIBIDAS forbidden word list, Wording rules (facts only, forbidden words), Constitution Check, Daily cron 13:00 UTC (9am EDT / 8am EST), Gate G-BLOCK, Gate G-SETUP, Gate G-SRC (owner approves source list), Gate G-TESTS (+15 more)
+Cohesion: 0.21
+Nodes (15): Constitution principles I-V check, PALABRAS_PROHIBIDAS forbidden word list, Wording rules (facts only, forbidden words), tasas-texto.js (wording module), Quickstart A: automated node --test checks, R11. Testing approach, FR-003: Educational reference, no advice or prediction, SC-006: Zero advice/prediction wording (+7 more)
 
 ### Community 291 - "Data Model — Agente de crédito con IA (017)"
-Cohesion: 0.25
-Nodes (7): AnalisisLocal, Data Model — Agente de crédito con IA (017), EventoProgreso, Respuesta del servidor, ResultadoAgente (JSON Schema del resultado, `additionalProperties: false` en todo), UsoDiario (Supabase), Vuelta (pedido del navegador)
+Cohesion: 0.22
+Nodes (8): AnalisisLocal, Data Model — Agente de crédito con IA (017), EventoProgreso, Pase, Respuesta del servidor, ResultadoAgente (JSON Schema del resultado, `additionalProperties: false` en todo), UsoDiario (Supabase), Vuelta (pedido del navegador)
 
 ### Community 293 - "Stripe Checkout Session creation (mode payment)"
 Cohesion: 0.33
 Nodes (4): Stripe Checkout Session creation (mode payment), Constitution Check, lib/pagos-catalogo.js (shared price catalog), R4: Single source of truth for the price catalog (Principle IV)
 
-### Community 294 - "Contract: upstream source feeds (what the agent reads)"
-Cohesion: 0.50
-Nodes (5): mesesATraer(), Change control, Contract: upstream source feeds (what the agent reads), Deliberately not used in v1, Parsing rules (pure functions, tested with fixtures)
-
-### Community 295 - "etiquetas"
-Cohesion: 0.15
-Nodes (12): Contract — `ThemoraLector` y `ThemoraLectorPerfiles`, Entrada común: `Pagina`, Errores y casos límite, `ThemoraLector.detectarBuro(paginas) → { buro, puntaje, formatoVerificado }`, `ThemoraLector.leerReporte(paginas, opciones?) → Reporte`, `ThemoraLectorPerfiles`, Utilidades expuestas (y probadas), Contratos — Cartas del agente (018) (+4 more)
+### Community 295 - "Contract — `ThemoraLector` y `ThemoraLectorPerfiles`"
+Cohesion: 0.33
+Nodes (6): Contract — `ThemoraLector` y `ThemoraLectorPerfiles`, Entrada común: `Pagina`, Errores y casos límite, `ThemoraLector.detectarBuro(paginas) → { buro, puntaje, formatoVerificado }`, `ThemoraLector.leerReporte(paginas, opciones?) → Reporte`, Utilidades expuestas (y probadas)
 
 ### Community 296 - "Contract — Interfaz del lector: «Tus cuentas, una por una» y rediseño visual"
 Cohesion: 0.18
@@ -1303,20 +1287,16 @@ Cohesion: 0.24
 Nodes (9): Auto Coach iframe simulator (#fc-auto-simulator, srcdoc), Credit card payoff simulator (#simulador-pago-tarjeta), Debt-to-income simulator (#simulador-dti), Quick calculators section (#calculadoras-rapidas), Report-driven tools (utilization simulator, correction request generator), Credit utilization simulator (#simulador-utilizacion), band(), calc() (+1 more)
 
 ### Community 303 - "Data Model — Herramientas de cálculo del agente de crédito (016)"
-Cohesion: 0.20
-Nodes (9): Catálogo, ConteoConsultasDuras, Data Model — Herramientas de cálculo del agente de crédito (016), Errores de uso (`TypeError`) frente a datos faltantes, FechaCalculada, PosibleDuplicado, ResultadoFechaSalida, ResultadoUtilizacion (+1 more)
+Cohesion: 0.33
+Nodes (5): ConteoConsultasDuras, Data Model — Herramientas de cálculo del agente de crédito (016), Errores de uso (`TypeError`) frente a datos faltantes, PosibleDuplicado, ResultadoUtilizacion
 
 ### Community 304 - "Quickstart — validar el agente de crédito con IA (017)"
 Cohesion: 0.29
 Nodes (6): 1. Pruebas automáticas (no gastan dinero), 2. Configuración (la hace el dueño; ver `INSTRUCCIONES-AGENTE-CREDITO.md`), 3. Prueba real (gasta centavos; solo con aprobación del dueño), 4. Después de cambiar código, Quickstart — validar el agente de crédito con IA (017), Requisitos
 
 ### Community 305 - "Implementation for User Story 3"
-Cohesion: 0.18
-Nodes (12): Páginas que muestran la franja de aviso, semanalPendiente(), A. Automated checks (no network, no database), B. Manual walkthrough (after the first deploy), C. Four-week trial (success criteria SC-002, SC-003), D. After any code change, Prerequisites, Quickstart: validating the Mortgage Rate Watch Agent (+4 more)
-
-### Community 306 - "R7: Alert kinds, dedupe key and hysteresis"
-Cohesion: 0.33
-Nodes (5): Alert states activa -> superada / despejada, Alert kinds: movimiento_semanal, tesoro_10a, fed_objetivo, Plausibility ranges and 1.0 pp jump rule, FR-013: Alert superseded by next reading, no flapping, FR-032: Fed alert wording as fact
+Cohesion: 0.15
+Nodes (16): Páginas que muestran la franja de aviso, mesesATraer(), Change control, Contract: upstream source feeds (what the agent reads), Deliberately not used in v1, Parsing rules (pure functions, tested with fixtures), A. Automated checks (no network, no database), B. Manual walkthrough (after the first deploy) (+8 more)
 
 ### Community 308 - "Contratos — Agente de crédito con IA (017)"
 Cohesion: 0.40
@@ -1326,33 +1306,17 @@ Nodes (4): 1. Función `POST /.netlify/functions/agente-credito`, 2. Módulo del
 Cohesion: 0.40
 Nodes (4): Agente de crédito con IA (Fase 2) — Implementation Plan, Cobertura de la spec, Global Constraints, Review Focus
 
-### Community 314 - "pagos-webhook.test.js"
-Cohesion: 0.33
-Nodes (4): assert, crypto, test, {verificarFirmaWebhook,idempotencyKey}
-
 ### Community 326 - "003-address-autocomplete-bilingual-letters/tasks.md"
 Cohesion: 0.18
 Nodes (5): Content Quality, Feature Readiness, Notes, Requirement Completeness, Specification Quality Checklist: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters
-
-### Community 328 - "Wording rules pinned by tests (forbidden words, no en vivo)"
-Cohesion: 0.22
-Nodes (7): Test invariants (block parity, phone regex, street count, no Spanish in English), Wording rules pinned by tests (forbidden words, no en vivo), Active-agent status (Activo / Sin actualizar) with 48-hour last-check rule, Details Panel opened from a house, Honesty rules: no advice, no prediction, reference-only disclaimer (FR-015), Lender Link (link only, never lender figures; FR-022), Approved rate sources: Freddie Mac weekly headline, 10-year Treasury, Fed target rate
 
 ### Community 330 - "Prueba real del agente (SC-006): resultado y punto de retomar"
 Cohesion: 0.25
 Nodes (7): Diagnóstico, Estado de la activación (2026-10-02), Opciones (el dueño aún no eligió), Prueba real del agente (SC-006): resultado y punto de retomar, Resultado de la prueba real, Siguiente paso, También pendiente
 
 ### Community 331 - "Phase 0 Research: decisions and rationale"
-Cohesion: 0.14
-Nodes (17): Specification Quality Checklist, Behavior guarantees (min 4 chars, fires input/change, turns off on failure), Gate G-PRIV: update privacy text for all forms, Open questions with defaults chosen, Phase 0 Research: decisions and rationale, D1: suggestion service not published (404 in production), D2: only F1 wired, script loaded by one page, D3: script only understands separate street/city/state/ZIP (+9 more)
-
-### Community 332 - "ultimaRevisionEn snapshot field"
-Cohesion: 0.40
-Nodes (4): ultimaRevisionEn snapshot field, estadoCasa, House state machine (activo / sin_actualizar / sin_datos), tasas_corridas table (run log, owner-only)
-
-### Community 334 - "Contract: public snapshot (`tasas-hipoteca`)"
-Cohesion: 0.50
-Nodes (4): Contract: public snapshot (`tasas-hipoteca`), Failure behavior, Guarantees the tests pin, Response `200 application/json; charset=utf-8`
+Cohesion: 0.18
+Nodes (15): Behavior guarantees (min 4 chars, fires input/change, turns off on failure), Open questions with defaults chosen, Phase 0 Research: decisions and rationale, D1: suggestion service not published (404 in production), D2: only F1 wired, script loaded by one page, D3: script only understands separate street/city/state/ZIP, D4: person cannot tell which forms have suggestions, FR-008: nothing sent until the person types in a street field (+7 more)
 
 ## Ambiguous Edges - Review These
 - `tasas-hipoteca-logica.js` → `T020: extend construirRespuestaPublica with ultimaRevisionEn`  [AMBIGUOUS]
@@ -1369,13 +1333,13 @@ Nodes (4): Contract: public snapshot (`tasas-hipoteca`), Failure behavior, Guara
   images/compass.jpg · relation: conceptually_related_to
 - `Hero: young couple with laptop, cash and US flag` → `Hero: map pin and navigation app icons (business listing)`  [AMBIGUOUS]
   images/listar-negocio-hero.jpg · relation: conceptually_related_to
-- `Semantic colors kept on purpose (.aviso-envio #8A5A00, .pago-*, TDS bands, .range-seg, .rate-status, password meter, Google/Microsoft logos)` → `Owner decision 9: do nothing in Auto Coach`  [AMBIGUOUS]
+- `Owner decision 9: do nothing in Auto Coach` → `Semantic colors kept on purpose (.aviso-envio #8A5A00, .pago-*, TDS bands, .range-seg, .rate-status, password meter, Google/Microsoft logos)`  [AMBIGUOUS]
   specs/012-un-sistema-visual/color-mapping-log.md · relation: references
 
 ## Knowledge Gaps
-- **229 isolated node(s):** `Widget de Calendario en Vivo (opcional)`, `Campo Correo Electrónico`, `Campo Días Disponibles (checkboxes)`, `Campo Horas Disponibles (checkboxes)`, `Campo Mensaje (opcional)` (+224 more)
+- **229 isolated node(s):** `Aviso de envío «Se queda en tu dispositivo»`, `Widget de Calendario en Vivo (opcional)`, `Campo Correo Electrónico`, `Campo Días Disponibles (checkboxes)`, `Campo Horas Disponibles (checkboxes)` (+224 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1590 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **44 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **43 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -1390,16 +1354,16 @@ Nodes (4): Contract: public snapshot (`tasas-hipoteca`), Failure behavior, Guara
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `estado()` connect `estado` to `lector-credito.js`, `Research — Herramientas de cálculo del agente de crédito (016)`, `Implementation Plan: Herramientas de cálculo del agente de crédito (Fase 1)`, `direccion-autocompletar.js`, `Contract: `GET /.netlify/functions/ubicacion``, `Quickstart: prove the feature works end to end`, `Data Model — Lector de reportes de crédito`, `Contract: Address suggestion service`, `Tasks: Themora Payment Center`, `etiquetas`, `Part A — Address suggestions`, `Tests for User Story 1 (write first; they fail until implementation)`, `Data Model — Herramientas de cálculo del agente de crédito (016)`, `Tasks: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters`, `Implementation for User Story 3`, `Agente de tasas hipotecarias — cómo dejarlo funcionando`, `Entities`, `herramientas-credito.test.js`, `Review Focus`, `credit-coach.js`, `conectarBloque`, `valoresParaBloque`, `Quickstart: validate "¿Aparezco?" city from location`, `autocompletar-direccion.test.js`, `6. Cómo se compara (capa C)`, `evaluateDocument`, `Entities`, `Research: Mortgage Rate Watch Agent`?**
-  _High betweenness centrality (0.210) - this node is a cross-community bridge._
+- **Why does `estado()` connect `estado` to `lector-credito.js`, `Research — Herramientas de cálculo del agente de crédito (016)`, `direccion-autocompletar.js`, `Contract: `GET /.netlify/functions/ubicacion``, `Implementation Plan: Address Autocomplete + Bilingual Letters`, `Data Model — Lector de reportes de crédito`, `Contract: Address suggestion service`, `Tasks: Themora Payment Center`, `agente-credito-vista.test.js`, `Part A — Address suggestions`, `Data Model — Herramientas de cálculo del agente de crédito (016)`, `Tasks: Address Autocomplete Everywhere + Side-by-Side Bilingual Letters`, `Implementation for User Story 3`, `paraGuardar`, `015 — Plan de pruebas del nuevo analizador de crédito`, `Agente de tasas hipotecarias — cómo dejarlo funcionando`, `Entities`, `herramientas-credito.test.js`, `credit-coach.js`, `detalle`, `zyron-leyes.test.js`, `1. Address block (Part A)`, `Quickstart: validate "¿Aparezco?" city from location`, `autocompletar-direccion.test.js`, `Research: Mortgage Rate Watch Agent`, `Tasks: Mortgage Rate Watch Agent (Buy-a-House page)`, `Tasks: Herramientas de cálculo del agente de crédito (Fase 1)`?**
+  _High betweenness centrality (0.256) - this node is a cross-community bridge._
 - **Are the 49 inferred relationships involving `estado()` (e.g. with `answerLocal()` and `Paso 5 — Probar un aviso`) actually correct?**
   _`estado()` has 49 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Widget de Calendario en Vivo (opcional)`, `Campo Correo Electrónico`, `Campo Días Disponibles (checkboxes)` to the rest of the system?**
+- **What connects `Aviso de envío «Se queda en tu dispositivo»`, `Widget de Calendario en Vivo (opcional)`, `Campo Correo Electrónico` to the rest of the system?**
   _229 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `INSTRUCCIONES-CARTAS-BILINGUES.md` be split into smaller, more focused modules?**
   _Cohesion score 0.05384150030248034 - nodes in this community are weakly interconnected._
-- **Why does `Implementation Plan: Address Autocomplete + Bilingual Letters` connect `direccion-autocompletar.js` to `cartas-bilingues.js`, `INSTRUCCIONES-CARTAS-BILINGUES.md`, `zyron-leyes.js`, `autocompletar-direccion.test.js`, `cartas-bilingues.test.js`, `Phase 0 Research: decisions and rationale`, `formularios-direccion.test.js`, `Quickstart: prove the feature works end to end`, `autocompletar-direccion.js`, `Contract: Bilingual letter module and result markup`, `Contract: Address suggestion service`, `estado`?**
-  _High betweenness centrality (0.121) - this node is a cross-community bridge._
+- **Why does `Implementation Plan: Address Autocomplete + Bilingual Letters` connect `Implementation Plan: Address Autocomplete + Bilingual Letters` to `cartas-bilingues.js`, `INSTRUCCIONES-CARTAS-BILINGUES.md`, `zyron-leyes.js`, `autocompletar-direccion.test.js`, `Data Model: address blocks and letters`, `cartas-bilingues.test.js`, `Phase 0 Research: decisions and rationale`, `formularios-direccion.test.js`, `direccion-autocompletar.js`, `INSTRUCCIONES-DIRECCIONES.md`, `autocompletar-direccion.js`, `Contract: Bilingual letter module and result markup`, `Contract: Address suggestion service`?**
+  _High betweenness centrality (0.122) - this node is a cross-community bridge._
 
 ### Low-confidence Hints
 _AMBIGUOUS edges — the extractor was unsure. Verify before acting on these._

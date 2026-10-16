@@ -138,10 +138,10 @@
     "semantic_hash": "4a378b3d6fd38d33d8d0b89b7595fce3"
   },
   "pago.js": {
-    "mtime": 1790324580.255212,
-    "seen": 1790324832.5444686,
-    "ast_hash": "738faf0c76eacc34273d53887c268e66",
-    "semantic_hash": "738faf0c76eacc34273d53887c268e66"
+    "mtime": 1791977074.8884845,
+    "seen": 1791977177.052188,
+    "ast_hash": "567decf9b35188f31f2755d25564a357",
+    "semantic_hash": ""
   },
   "quick-calculators.js": {
     "mtime": 1790324580.3140574,
@@ -270,105 +270,105 @@
     "semantic_hash": "9278131217468cddf57c22b1883e77eb"
   },
   "admin.html": {
-    "mtime": 1791976483.942845,
-    "seen": 1791976679.2144077,
-    "ast_hash": "dfa9913fe048ee5781398a06735628f3",
+    "mtime": 1791977087.5018911,
+    "seen": 1791977177.0526705,
+    "ast_hash": "4b68846daf5e95f2a7b343bf8c6e1096",
     "semantic_hash": ""
   },
   "agendar.html": {
-    "mtime": 1791976483.9448934,
-    "seen": 1791976679.2144098,
-    "ast_hash": "383afdc71ee2a411dae27027fce2fbd2",
+    "mtime": 1791977087.5024226,
+    "seen": 1791977177.0526736,
+    "ast_hash": "1c2c75c7f5fd587fa526365409563e25",
     "semantic_hash": ""
   },
   "aparezco.html": {
-    "mtime": 1791976483.9468913,
-    "seen": 1791976679.2144113,
-    "ast_hash": "66bf7208731cee9b073a6c5c8bd9a3da",
+    "mtime": 1791977087.5039897,
+    "seen": 1791977177.052677,
+    "ast_hash": "ed2eaa76b80f08afabf57af730e7df32",
     "semantic_hash": ""
   },
   "cartas-claras.html": {
-    "mtime": 1791976483.947893,
-    "seen": 1791976679.2144134,
-    "ast_hash": "76eb21405fa8b6be3d596b764dde7115",
+    "mtime": 1791977087.50569,
+    "seen": 1791977177.0526803,
+    "ast_hash": "6d4965029bac2810112c0fd659d16dc3",
     "semantic_hash": ""
   },
   "comprar-auto.html": {
-    "mtime": 1791976483.948893,
-    "seen": 1791976679.2144146,
-    "ast_hash": "191415d45a892b02eae527ae06167ef1",
+    "mtime": 1791977087.5067313,
+    "seen": 1791977177.052683,
+    "ast_hash": "3bc5c2d0d4175cfc344c68712a6d73e5",
     "semantic_hash": ""
   },
   "comprar-casa.html": {
-    "mtime": 1791976483.9513738,
-    "seen": 1791976679.214416,
-    "ast_hash": "03fee4cd37f7094cab943c496cc99583",
+    "mtime": 1791977087.508917,
+    "seen": 1791977177.0526855,
+    "ast_hash": "64780966276d850cbd35f164a18b6854",
     "semantic_hash": ""
   },
   "contacto.html": {
-    "mtime": 1791976483.9523811,
-    "seen": 1791976679.2144177,
-    "ast_hash": "28395fa4777ef14707ab43d271e30ecb",
+    "mtime": 1791977087.508917,
+    "seen": 1791977177.0526886,
+    "ast_hash": "4f52e656d36efb57453e6aaeafb42e11",
     "semantic_hash": ""
   },
   "contrato-auto.html": {
-    "mtime": 1791976483.9733346,
-    "seen": 1791976679.2144186,
-    "ast_hash": "1443593fad289104df2df400c3284047",
+    "mtime": 1791977087.5110724,
+    "seen": 1791977177.0526912,
+    "ast_hash": "108b0bf1bfd1fe275f5de88d49400f7b",
     "semantic_hash": ""
   },
   "credito.html": {
-    "mtime": 1791976483.9765582,
-    "seen": 1791976679.2144203,
-    "ast_hash": "52767313b28c8270d90d2aef49fb6b5f",
+    "mtime": 1791977087.5120814,
+    "seen": 1791977177.0526943,
+    "ast_hash": "bfaedee6423698d036387a7aac643b22",
     "semantic_hash": ""
   },
   "cuenta.html": {
-    "mtime": 1791976483.9775586,
-    "seen": 1791976679.2144217,
-    "ast_hash": "b8f975a419857613ed1d182e63e0234e",
+    "mtime": 1791977087.591799,
+    "seen": 1791977177.0526972,
+    "ast_hash": "9df378319ae3b47eb3975c1f1a4a67f9",
     "semantic_hash": ""
   },
   "formar-negocio.html": {
-    "mtime": 1791976483.980255,
-    "seen": 1791976679.214423,
-    "ast_hash": "36f08b716c05d19de7468231bc23870c",
+    "mtime": 1791977087.6480756,
+    "seen": 1791977177.0526998,
+    "ast_hash": "b6ef5f3bba11c858185dc6e4ad92e93f",
     "semantic_hash": ""
   },
   "herramientas.html": {
-    "mtime": 1791976483.982263,
-    "seen": 1791976679.2153897,
-    "ast_hash": "6c81821ae6661ebc9c9f1d38eb7abb93",
+    "mtime": 1791977087.655653,
+    "seen": 1791977177.0527446,
+    "ast_hash": "b46eddbdf7fdda6abf4b041ab7df2438",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1791976504.523484,
-    "seen": 1791976679.2153914,
-    "ast_hash": "b2b1c51e7c32a1e142b8e8bbbd27283c",
+    "mtime": 1791977087.6954556,
+    "seen": 1791977177.0527482,
+    "ast_hash": "6fb82275dfe9a67c977577f1336878ef",
     "semantic_hash": ""
   },
   "listar-negocio.html": {
-    "mtime": 1791976483.9847517,
-    "seen": 1791976679.215393,
-    "ast_hash": "2e822a0327b569f69b7a1590e9b514e6",
+    "mtime": 1791977087.746297,
+    "seen": 1791977177.0527513,
+    "ast_hash": "0ae39930e4e97e2ff3bd20fd8bd92aee",
     "semantic_hash": ""
   },
   "login.html": {
-    "mtime": 1791976483.9867601,
-    "seen": 1791976679.2153943,
-    "ast_hash": "452990b6193ff15e8e212c7f110a0e49",
+    "mtime": 1791977087.7482967,
+    "seen": 1791977177.052755,
+    "ast_hash": "e6bb4607f822951e3579d9d16ae249d2",
     "semantic_hash": ""
   },
   "privacidad.html": {
-    "mtime": 1791976483.98776,
-    "seen": 1791976679.215396,
-    "ast_hash": "532d644a2e7f68d273b3290413c8365f",
+    "mtime": 1791977087.749296,
+    "seen": 1791977177.0527582,
+    "ast_hash": "676389befaa0c9b6e7e5931a9bf79098",
     "semantic_hash": ""
   },
   "quienes-somos.html": {
-    "mtime": 1791976483.98776,
-    "seen": 1791976679.2154036,
-    "ast_hash": "4794041aefc2e1a10e0cacad3851a820",
+    "mtime": 1791977087.749296,
+    "seen": 1791977177.0527616,
+    "ast_hash": "af98b50c2f7b8e98dd2ad1c50bc19758",
     "semantic_hash": ""
   },
   "robots.txt": {
@@ -378,9 +378,9 @@
     "semantic_hash": "e81a7ded94e935af260afa189640f695"
   },
   "terminos.html": {
-    "mtime": 1791976483.98776,
-    "seen": 1791976679.2304668,
-    "ast_hash": "ca1041b1c4ed3ebbeb1f44714655236c",
+    "mtime": 1791977087.7979639,
+    "seen": 1791977177.0533614,
+    "ast_hash": "28650d30526b9c0e84082e002de35c2a",
     "semantic_hash": ""
   },
   "apple-touch-icon.png": {
@@ -2229,6 +2229,18 @@
     "mtime": 1791976647.5031404,
     "seen": 1791976679.2129176,
     "ast_hash": "d174aefbf9c511e8635f25fcba31a85c",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-24-52-654Z.yml": {
+    "mtime": 1791977092.6578102,
+    "seen": 1791977177.0526066,
+    "ast_hash": "89ed91b038918ff5030cf50606b834e2",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-10-14T11-25-32-245Z.yml": {
+    "mtime": 1791977132.2485828,
+    "seen": 1791977177.052609,
+    "ast_hash": "8d38a7d14efbad9de028eeaa3afa18ed",
     "semantic_hash": ""
   }
 }

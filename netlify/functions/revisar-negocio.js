@@ -69,6 +69,7 @@
 const fs = require("fs");
 const path = require("path");
 const TDS = require("../../tds.js");
+const Jev = require("./lib/jev-coincidencia.js");
 
 /* Parámetros del TDS: models/tds-0.1.0.json (incluido en la función por
    netlify.toml). Leído como texto, su parameters_hash es idéntico al del
@@ -365,7 +366,9 @@ async function consultarGoogle(nombre, ciudad, giro) {
     buscarGoogle(consultaGiro, GOOGLE_FIELDS_BUSQUEDA_GIRO, 10),
   ]);
 
-  const mejor = candidatosNombre[0];
+  // Jev (opcional) escoge cuál de las fichas es el negocio; sin él, la primera.
+  const elegida = await Jev.elegirFicha({ nombre, ciudad, giro }, candidatosNombre).catch(() => null);
+  const mejor = elegida ? candidatosNombre[elegida] : candidatosNombre[0];
   if (!mejor) {
     return { encontrado: false, consultaNombre, consultaGiro, competencia: calcularCompetencia(candidatosGiro, null) };
   }
@@ -406,6 +409,7 @@ async function consultarGoogle(nombre, ciudad, giro) {
     // Solo para armar la entrada del TDS (entradaMotor); no se muestran.
     tipoPrincipal: mejor.primaryType || null,
     posicionNombre: candidatosNombre.indexOf(mejor) + 1,
+    elegidaPorJev: !!elegida,
     malla,
     sitioAccesible,
   };
@@ -719,7 +723,7 @@ exports.handler = async (event) => {
       conTiempo(consultarApple(nombre, ciudad), 6000).catch(() => ({ configurado: false, encontrado: null })),
     ]);
     // Lo que solo sirve para la entrada del TDS no viaja a la IA ni a la página.
-    const { malla, sitioAccesible, tipoPrincipal, posicionNombre, ...google } = googleCompleto;
+    const { malla, sitioAccesible, tipoPrincipal, posicionNombre, elegidaPorJev, ...google } = googleCompleto;
 
     let sugerencias;
     const sesionActiva = process.env.ANTHROPIC_API_KEY && (await haySesion(payload.accessToken));
